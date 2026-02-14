@@ -7,6 +7,7 @@ from datetime import datetime
 from typing import Any, Mapping
 
 SUPPORTED_SCHEMA_VERSIONS = {"1.0"}
+SUPPORTED_ACTION_TYPES = {"tool_call"}
 _REQUIRED_TOP_LEVEL = ("schema_version", "action_type", "tool_name", "input", "metadata")
 _REQUIRED_METADATA = ("proposal_id", "proposed_by", "timestamp")
 
@@ -73,6 +74,8 @@ def validate_action_schema(proposal: Mapping[str, Any]) -> None:
 
     if not isinstance(proposal["action_type"], str) or not proposal["action_type"].strip():
         raise ActionSchemaError("action_type must be a non-empty string")
+    if proposal["action_type"] not in SUPPORTED_ACTION_TYPES:
+        raise ActionSchemaError("unknown action_type")
 
     if not isinstance(proposal["tool_name"], str) or not proposal["tool_name"].strip():
         raise ActionSchemaError("tool_name must be a non-empty string")

@@ -63,12 +63,16 @@ def evaluate_budget(
     max_cost: float,
     used_cost: float,
     estimated_cost: float,
+    max_retries: int = 0,
+    used_retries: int = 0,
     additional_rule: Predicate | None = None,
 ) -> bool:
     """Evaluate built-in and optional policy-defined budget constraints."""
     if used_calls + 1 > max_calls:
         return False
     if used_cost + estimated_cost > max_cost:
+        return False
+    if used_retries > max_retries:
         return False
 
     if additional_rule is None:
@@ -82,6 +86,8 @@ def evaluate_budget(
             "max_cost": max_cost,
             "used_cost": used_cost,
             "estimated_cost": estimated_cost,
+            "max_retries": max_retries,
+            "used_retries": used_retries,
         },
     )
 

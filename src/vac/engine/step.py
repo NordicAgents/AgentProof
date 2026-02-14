@@ -40,16 +40,16 @@ def step(state: State, proposal: Mapping[str, Any], registry: ToolRegistry) -> S
         return _halted(state, proposal, before_hash, violations)
 
     # 3) preconditions
-    precondition = proposal.get("precondition", True)
+    precondition, precondition_rule = _extract_guard(proposal.get("precondition", True))
     precondition_ctx = {"state": state.to_dict(), "proposal": proposal}
     if not evaluate_predicate(precondition, precondition_ctx):
-        violations.append("preconditions:failed")
+        violations.append(_rule_violation("preconditions", precondition_rule))
         return _halted(state, proposal, before_hash, violations)
 
     # 4) invariants (checked before execution)
-    invariant = proposal.get("invariant", True)
+    invariant, invariant_rule = _extract_guard(proposal.get("invariant", True))
     if not evaluate_predicate(invariant, precondition_ctx):
-        violations.append("invariants:failed")
+        violations.append(_rule_violation("invariants", invariant_rule))
         return _halted(state, proposal, before_hash, violations)
 
     # 5) budget
@@ -63,6 +63,8 @@ def step(state: State, proposal: Mapping[str, Any], registry: ToolRegistry) -> S
         max_cost=state.budgets.max_cost,
         used_cost=state.budgets.used_cost,
         estimated_cost=estimated_cost,
+        max_retries=state.budgets.max_retries,
+        used_retries=state.budgets.used_retries,
         additional_rule=budget_rule,
     ):
         violations.append("budget:exceeded")
@@ -123,6 +125,21 @@ def _proposal_hash(seed: str) -> str:
     from hashlib import sha256
 
     return sha256(seed.encode("utf-8")).hexdigest()
+
+
+def _extract_guard(guard: Any) -> tuple[Any, str | None]:
+    if isinstance(guard, Mapping) and "predicate" in guard:
+        rule_id = guard.get("rule_id")
+        if rule_id is not None and not isinstance(rule_id, str):
+            rule_id = str(rule_id)
+        return guard.get("predicate", True), rule_id
+    return guard, None
+
+
+def _rule_violation(prefix: str, rule_id: str | None) -> str:
+    if rule_id:
+        return f"{prefix}:failed:{rule_id}"
+    return f"{prefix}:failed"
 
 
 def _halted(state: State, proposal: Mapping[str, Any], before_hash: str, violations: list[str]) -> State:
