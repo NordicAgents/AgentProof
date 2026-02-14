@@ -6,6 +6,7 @@ from copy import deepcopy
 from vac.engine.step import step
 from vac.state.model import BudgetCounters, State, canonical_state_hash
 from vac.tools.registry import ToolDefinition, ToolRegistry
+from vac.verification.spec import load_spec
 
 
 def test_schema_rejection_unknown_action_type(base_state: State, deterministic_registry: ToolRegistry, valid_proposal: dict[str, object]) -> None:
@@ -17,6 +18,8 @@ def test_schema_rejection_unknown_action_type(base_state: State, deterministic_r
     assert result.status == "halted"
     assert result.trace[-1]["decision"] == "denied"
     assert result.trace[-1]["violations"] == ["schema:unknown action_type"]
+    assert result.trace[-1]["rejection"]["rule_id"] == "SCHEMA-VALIDATION"
+    assert result.trace[-1]["rejection"]["solver_result"] == "unknown"
 
 
 def test_schema_rejection_invalid_input_payload(base_state: State, deterministic_registry: ToolRegistry, valid_proposal: dict[str, object]) -> None:
@@ -54,6 +57,8 @@ def test_unregistered_tool_fails_before_execution(base_state: State, valid_propo
 
     assert result.status == "halted"
     assert result.trace[-1]["violations"] == ["permissions:unregistered tool not.registered"]
+    assert result.trace[-1]["rejection"]["rule_id"] == "PERM-REGISTERED"
+    assert result.trace[-1]["rejection"]["solver_result"] == "unsat"
     assert calls["count"] == 0
 
 
@@ -64,6 +69,7 @@ def test_permission_mismatch_rejected(base_state: State, deterministic_registry:
 
     assert result.status == "halted"
     assert result.trace[-1]["violations"] == ["permissions:missing scope scope:email.send for email.send"]
+    assert result.trace[-1]["rejection"]["rule_id"] == "PERM-SCOPE"
 
 
 def test_policy_guard_failures_include_rule_ids(base_state: State, deterministic_registry: ToolRegistry, valid_proposal: dict[str, object]) -> None:
@@ -138,6 +144,21 @@ def test_determinism_same_inputs_same_decision_and_hash(base_state: State, deter
     assert result_one.status == result_two.status
     assert result_one.trace[-1]["decision"] == result_two.trace[-1]["decision"]
     assert canonical_state_hash(result_one) == canonical_state_hash(result_two)
+
+
+def test_timeout_solver_result_is_stable(base_state: State, deterministic_registry: ToolRegistry, valid_proposal: dict[str, object]) -> None:
+    spec = load_spec({"solver": {"timeout_ms": 0, "random_seed": 11, "tactic_profile": "fixed"}})
+    result = step(base_state, valid_proposal, deterministic_registry, spec=spec)
+
+    assert result.status == "halted"
+    assert result.trace[-1]["violations"] == ["solver:timeout"]
+    assert result.trace[-1]["rejection"]["solver_result"] == "timeout"
+    assert result.trace[-1]["rejection"]["diagnostics"] == {
+        "seed": 11,
+        "tactic_profile": "fixed",
+        "timeout_ms": 0,
+        "timeout": True,
+    }
 
 
 def test_trace_integrity_appends_step_hashes_decision_and_violations(base_state: State, deterministic_registry: ToolRegistry, valid_proposal: dict[str, object]) -> None:
