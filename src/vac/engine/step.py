@@ -5,8 +5,9 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from vac.actions.schema import ActionProposal, ActionSchemaError, validate_action_schema
-from vac.state.model import BudgetCounters, State, canonical_state_hash
+from vac.state.model import BudgetCounters, MonitorRuntimeState, State, canonical_state_hash
 from vac.tools.registry import ToolRegistry, ToolRegistryError
+from vac.verification.monitoring import MonitorSnapshot, evaluate_monitors
 from vac.verification.solver import SolverDecision, solve_constraints
 from vac.verification.spec import VerificationSpec, load_spec
 
@@ -23,6 +24,19 @@ def step(
 ) -> State:
     """Apply one proposal through ordered deterministic checks and wrapper execution."""
     before_hash = canonical_state_hash(state)
+    verification_spec = spec if spec is not None else load_spec(None)
+
+    event = {
+        "action_type": str(proposal.get("action_type", "")),
+        "tool_name": str(proposal.get("tool_name", "")),
+        "decision": "pending",
+        "tags": tuple(sorted(str(t) for t in proposal.get("tags", []) if isinstance(t, str))),
+    }
+    monitor_state, monitor_snapshots, monitor_decision = evaluate_monitors(
+        verification_spec.monitors,
+        state.monitor_state.rules,
+        event,
+    )
 
     # 1) schema
     try:
@@ -36,10 +50,28 @@ def step(
             "solver_result": "unknown",
             "diagnostics": {"error": str(exc)},
         }
-        return _halted(state, proposal, before_hash, [violation], rejection)
+        return _rejected(
+            state,
+            proposal,
+            before_hash,
+            [violation],
+            rejection,
+            monitor_state,
+            monitor_snapshots,
+            status="halted",
+        )
+
+    if monitor_decision.denied:
+        return _monitor_rejection(
+            state=state,
+            proposal=proposal,
+            before_hash=before_hash,
+            monitor_state=monitor_state,
+            monitor_snapshots=monitor_snapshots,
+            monitor_decision=monitor_decision,
+        )
 
     # 2) solver-backed policy layer
-    verification_spec = spec if spec is not None else load_spec(None)
     permission_scope: str | None = None
     if registry.is_registered(action.tool_name):
         permission_scope = registry.get(action.tool_name).permission_scope
@@ -64,7 +96,16 @@ def step(
     if not decision.is_allowed:
         violation = _format_solver_violation(decision)
         rejection = _rejection_payload(decision)
-        return _halted(state, proposal, before_hash, [violation], rejection)
+        return _rejected(
+            state,
+            proposal,
+            before_hash,
+            [violation],
+            rejection,
+            monitor_state,
+            monitor_snapshots,
+            status="halted",
+        )
 
     # 3) execute wrapper (all side-effects must stay inside wrapper)
     try:
@@ -77,7 +118,16 @@ def step(
             "solver_result": "unknown",
             "diagnostics": {"error": str(exc)},
         }
-        return _halted(state, proposal, before_hash, violations, rejection)
+        return _rejected(
+            state,
+            proposal,
+            before_hash,
+            violations,
+            rejection,
+            monitor_state,
+            monitor_snapshots,
+            status="halted",
+        )
 
     # 4) append trace
     updated_trace = list(state.trace)
@@ -95,23 +145,22 @@ def step(
     new_memory = dict(state.memory)
     new_memory[f"tools.{action.tool_name}.last_output"] = dict(tool_output)
 
+    trace_event = {
+        "step_index": next_step_index,
+        "proposal_hash": _proposal_hash(action.metadata.get("proposal_id", "")),
+        "decision": "allowed",
+        "violations": [],
+        "tool_call": {"name": action.tool_name, "input": dict(action.input)},
+        "state_hash_before": before_hash,
+        "state_hash_after": "pending",
+        "monitor": _monitor_trace_payload(monitor_snapshots, monitor_decision.escalate),
+    }
+
     candidate = state.with_updates(
         memory=new_memory,
         budgets=new_budgets,
-        trace=tuple(
-            updated_trace
-            + [
-                {
-                    "step_index": next_step_index,
-                    "proposal_hash": _proposal_hash(action.metadata.get("proposal_id", "")),
-                    "decision": "allowed",
-                    "violations": [],
-                    "tool_call": {"name": action.tool_name, "input": dict(action.input)},
-                    "state_hash_before": before_hash,
-                    "state_hash_after": "pending",
-                }
-            ]
-        ),
+        monitor_state=MonitorRuntimeState(rules=monitor_state),
+        trace=tuple(updated_trace + [trace_event]),
     )
 
     after_hash = canonical_state_hash(candidate)
@@ -155,12 +204,55 @@ def _rejection_payload(decision: SolverDecision) -> Mapping[str, Any]:
     }
 
 
-def _halted(
+def _monitor_rejection(
+    *,
+    state: State,
+    proposal: Mapping[str, Any],
+    before_hash: str,
+    monitor_state: Mapping[str, int],
+    monitor_snapshots: list[MonitorSnapshot],
+    monitor_decision: Any,
+) -> State:
+    violations = [f"temporal:{snapshot.rule_id}" for snapshot in monitor_snapshots if snapshot.violation]
+    first = sorted((s for s in monitor_snapshots if s.violation), key=lambda s: s.rule_id)[0]
+    rejection = {
+        "rule_type": "temporal",
+        "rule_id": first.rule_id,
+        "solver_result": "unsat",
+        "diagnostics": {
+            "handling": first.handling,
+            "escalate": monitor_decision.escalate,
+        },
+    }
+    return _rejected(
+        state,
+        proposal,
+        before_hash,
+        violations,
+        rejection,
+        monitor_state,
+        monitor_snapshots,
+        status=monitor_decision.status,
+    )
+
+
+def _monitor_trace_payload(monitor_snapshots: list[MonitorSnapshot], escalated: bool) -> Mapping[str, Any]:
+    return {
+        "transitions": [snapshot.to_trace_entry() for snapshot in monitor_snapshots],
+        "escalated": escalated,
+    }
+
+
+def _rejected(
     state: State,
     proposal: Mapping[str, Any],
     before_hash: str,
     violations: list[str],
     rejection: Mapping[str, Any],
+    monitor_state: Mapping[str, int],
+    monitor_snapshots: list[MonitorSnapshot],
+    *,
+    status: str,
 ) -> State:
     trace = list(state.trace)
     trace.append(
@@ -173,6 +265,7 @@ def _halted(
             "tool_call": None,
             "state_hash_before": before_hash,
             "state_hash_after": before_hash,
+            "monitor": _monitor_trace_payload(monitor_snapshots, bool(rejection.get("diagnostics", {}).get("escalate", False))),
         }
     )
-    return state.with_updates(trace=tuple(trace), status="halted")
+    return state.with_updates(trace=tuple(trace), monitor_state=MonitorRuntimeState(rules=monitor_state), status=status)
