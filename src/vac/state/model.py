@@ -19,6 +19,13 @@ class BudgetCounters:
 
 
 @dataclass(frozen=True)
+class MonitorRuntimeState:
+    """Deterministic runtime monitor state keyed by rule identifier."""
+
+    rules: Mapping[str, int] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
 class State:
     version: str
     run_id: str
@@ -35,7 +42,7 @@ class State:
     )
     permissions: frozenset[str] = field(default_factory=frozenset)
     trace: tuple[Mapping[str, Any], ...] = field(default_factory=tuple)
-    monitor_state: Mapping[str, Any] = field(default_factory=dict)
+    monitor_state: MonitorRuntimeState = field(default_factory=MonitorRuntimeState)
     status: str = "ready"
 
     def with_updates(self, **changes: Any) -> "State":
@@ -47,6 +54,17 @@ class State:
             data["permissions"] = frozenset(data["permissions"])
         if "trace" in data and not isinstance(data["trace"], tuple):
             data["trace"] = tuple(data["trace"])
+        if "monitor_state" in data:
+            monitor_state = data["monitor_state"]
+            if isinstance(monitor_state, MonitorRuntimeState):
+                pass
+            elif isinstance(monitor_state, Mapping):
+                if "rules" in monitor_state and isinstance(monitor_state["rules"], Mapping):
+                    data["monitor_state"] = MonitorRuntimeState(rules=dict(monitor_state["rules"]))
+                else:
+                    data["monitor_state"] = MonitorRuntimeState(rules=dict(monitor_state))
+            else:
+                raise TypeError("monitor_state must be a mapping or MonitorRuntimeState")
         return State(**data)
 
     def to_dict(self) -> dict[str, Any]:
@@ -64,7 +82,7 @@ class State:
             },
             "permissions": sorted(self.permissions),
             "trace": [_normalize(e) for e in self.trace],
-            "monitor_state": _normalize(self.monitor_state),
+            "monitor_state": {"rules": _normalize(self.monitor_state.rules)},
             "status": self.status,
         }
 
