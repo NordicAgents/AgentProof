@@ -5,6 +5,7 @@ from .config import SolverConfig
 from .monitoring import CompiledMonitorRule, MonitorCompileError, MonitorRuleSpec, compile_monitor_rule
 from .solver import SolverDecision, solve_constraints
 from .spec import VerificationSpec, load_spec
+from .report import generate_report
 
 __all__ = [
     "BmcResult",
@@ -18,4 +19,5 @@ __all__ = [
     "run_bmc",
     "load_spec",
     "solve_constraints",
+    "generate_report",
 ]
