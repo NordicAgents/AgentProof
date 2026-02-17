@@ -31,6 +31,7 @@ class ToolDefinition:
     permission_scope: str
     cost_model: Callable[[Mapping[str, Any]], float]
     wrapper: Callable[[Mapping[str, Any]], Mapping[str, Any]]
+    sandbox_profile: str = "standard"
 
 
 class ToolRegistry:
