@@ -5,6 +5,13 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from vac.actions.schema import ActionProposal, ActionSchemaError, validate_action_schema
+from vac.enterprise import (
+    EnterprisePolicyError,
+    MultiAgentPolicyError,
+    evaluate_information_flow_payload,
+    evaluate_multi_agent_payload,
+    evaluate_sandbox_profile,
+)
 from vac.state.model import BudgetCounters, MonitorRuntimeState, State, canonical_state_hash
 from vac.tools.registry import ToolRegistry, ToolRegistryError
 from vac.verification.monitoring import MonitorSnapshot, evaluate_monitors
@@ -71,7 +78,59 @@ def step(
             monitor_decision=monitor_decision,
         )
 
-    # 2) solver-backed policy layer
+    # 2) phase-4 enterprise hardening checks
+    try:
+        if not evaluate_information_flow_payload(proposal.get("infoflow_labels")):
+            return _rejected(
+                state,
+                proposal,
+                before_hash,
+                ["infoflow:label violation"],
+                {
+                    "rule_type": "infoflow",
+                    "rule_id": "INFOFLOW-LABELS",
+                    "solver_result": "unsat",
+                    "diagnostics": {},
+                },
+                monitor_state,
+                monitor_snapshots,
+                status="halted",
+            )
+
+        if not evaluate_multi_agent_payload(proposal.get("multi_agent")):
+            return _rejected(
+                state,
+                proposal,
+                before_hash,
+                ["multi-agent:policy violation"],
+                {
+                    "rule_type": "permissions",
+                    "rule_id": "MULTIAGENT-ACCESS",
+                    "solver_result": "unsat",
+                    "diagnostics": {},
+                },
+                monitor_state,
+                monitor_snapshots,
+                status="halted",
+            )
+    except (EnterprisePolicyError, MultiAgentPolicyError) as exc:
+        return _rejected(
+            state,
+            proposal,
+            before_hash,
+            [f"enterprise:{exc}"],
+            {
+                "rule_type": "schema",
+                "rule_id": "ENTERPRISE-POLICY",
+                "solver_result": "unknown",
+                "diagnostics": {"error": str(exc)},
+            },
+            monitor_state,
+            monitor_snapshots,
+            status="halted",
+        )
+
+    # 3) solver-backed policy layer
     permission_scope: str | None = None
     if registry.is_registered(action.tool_name):
         permission_scope = registry.get(action.tool_name).permission_scope
@@ -107,8 +166,31 @@ def step(
             status="halted",
         )
 
-    # 3) execute wrapper (all side-effects must stay inside wrapper)
+    # 4) execute wrapper (all side-effects must stay inside wrapper)
     try:
+        if registry.is_registered(action.tool_name):
+            required_profile = registry.get(action.tool_name).sandbox_profile
+            requested_profile = str(proposal.get("sandbox_profile", "standard"))
+            if not evaluate_sandbox_profile(required=required_profile, requested=requested_profile):
+                return _rejected(
+                    state,
+                    proposal,
+                    before_hash,
+                    [f"sandbox:requires {required_profile}, got {requested_profile}"],
+                    {
+                        "rule_type": "permissions",
+                        "rule_id": "SANDBOX-PROFILE",
+                        "solver_result": "unsat",
+                        "diagnostics": {
+                            "required": required_profile,
+                            "requested": requested_profile,
+                        },
+                    },
+                    monitor_state,
+                    monitor_snapshots,
+                    status="halted",
+                )
+
         tool_output = registry.invoke(action.tool_name, action.input, set(state.permissions))
     except ToolRegistryError as exc:
         violations = [f"execute:{exc}"]
@@ -129,7 +211,7 @@ def step(
             status="halted",
         )
 
-    # 4) append trace
+    # 5) append trace
     updated_trace = list(state.trace)
     next_step_index = len(updated_trace)
 

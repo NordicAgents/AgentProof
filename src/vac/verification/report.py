@@ -6,6 +6,7 @@ import hashlib
 import json
 from typing import Any, Mapping, Sequence
 
+from vac.enterprise.compliance import build_compliance_summary
 from vac.state.model import State, canonical_state_hash
 
 
@@ -33,6 +34,7 @@ def generate_report(
     nondeterminism_controls: Sequence[str] = (),
     signature_scheme: str = "none",
     key_id: str = "unsigned",
+    include_compliance: bool = True,
 ) -> dict[str, Any]:
     """Generate a deterministic verification report over a completed run."""
     allowed = sum(1 for event in final_state.trace if event.get("decision") == "allowed")
@@ -87,6 +89,7 @@ def generate_report(
             "tool_versions": dict(sorted((tool_versions or {}).items())),
             "nondeterminism_controls": list(nondeterminism_controls),
         },
+        "compliance": build_compliance_summary(final_state.trace) if include_compliance else {},
         "signatures": {
             "signature_scheme": signature_scheme,
             "key_id": key_id,
