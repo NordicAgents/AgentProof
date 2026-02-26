@@ -1,106 +1,52 @@
-
-# Vision: Verifiable AI Agents
+# Vision: Static Graph Verification for AI Agents
 
 ## Problem
 
-AI agents built on large language models are increasingly used to automate workflows, access APIs, manipulate data, and perform real-world actions.
+AI agents built on LangGraph (and similar frameworks) define their behavior as state-machine graphs: nodes are tools or LLM calls, edges are conditional transitions. Today, nobody analyzes these graphs before deployment. Safety checks happen at runtime — or not at all.
 
-However:
+Runtime gatekeeping has fundamental limits:
 
-- LLMs are probabilistic and non-deterministic
-- Tool calls can execute side effects directly
-- Most frameworks lack enforceable safety boundaries
-- There is no standardized mechanism for formal verification of agent behavior
+- It adds latency to every step.
+- It duplicates tool-binding logic the framework already provides.
+- It can only observe violations after they happen.
+- Audit trails are a commodity — multiple vendors already do this.
 
-As agents gain access to sensitive systems, the absence of verification becomes a systemic risk.
+The gap is **pre-deployment static analysis** of the agent's workflow graph.
 
----
+## Core Idea
 
-## Core Principle
+Treat a LangGraph `StateGraph` as a formal directed graph. Extract the topology — nodes, edges, conditional branches, tool bindings — and run verification algorithms on it before a single token is generated.
 
-Treat the LLM as untrusted.
+If a safety property holds on the graph structure, it holds for every possible execution trace.
 
-Verification must occur at the execution boundary, not inside the neural model.
+## What We Verify
 
-All side effects must pass through a deterministic, policy-enforced, formally analyzable core.
+- **Reachability:** Can the agent reach a dangerous tool node from its entry point?
+- **Isolation:** Are tool nodes with side effects gated by approval nodes?
+- **Temporal properties:** Do sequences of tool calls satisfy LTL constraints (e.g., "always authenticate before accessing data")?
+- **Dead paths:** Are there unreachable nodes or impossible transitions?
+- **Cycles:** Do loops have bounded iteration or exit conditions?
 
----
+## Approach
 
-## Long-Term Vision
+1. **Graph extraction:** Parse a `StateGraph` definition into an abstract directed graph with typed nodes and labeled edges.
+2. **Property specification:** Express safety properties as LTL formulas or structural graph predicates.
+3. **Static analysis:** Run model checking, reachability analysis, and structural verification on the abstract graph.
+4. **Verification report:** Produce a pass/fail report with counterexample traces for any violations.
 
-The long-term vision is to establish a standard execution microkernel for AI agents that provides:
+## What We Keep From v1
 
-- Typed action enforcement
-- Policy-defined safety guarantees
-- Formal constraint checking
-- Runtime trace monitoring
-- Auditable verification certificates
-
-This core should function independently of orchestration frameworks and model providers.
-
----
-
-## Design Philosophy
-
-### 1. Determinism at the Boundary
-The verification core must be deterministic. Given the same state and proposal, the decision must be identical.
-
-### 2. Minimal Trusted Computing Base
-Only the verification core and tool wrappers are trusted. All planning layers remain untrusted.
-
-### 3. Formal Where It Matters
-We focus formal methods on:
-- Action validity
-- Policy compliance
-- Resource bounds
-- Information flow
-- Execution traces
-
-We do not attempt to formally prove neural model correctness.
-
-### 4. Composability
-The system must integrate with existing frameworks without requiring architectural rewrites.
-
----
-
-## Strategic Goals
-
-### Short-Term
-- Implement typed action enforcement
-- Build policy DSL
-- Integrate SMT-based verification
-- Provide runtime monitoring
-- Deliver verification reporting
-
-### Medium-Term
-- Add bounded model checking
-- Provide formal certificates
-- Support multi-agent coordination policies
-- Introduce advanced information flow analysis
-
-### Long-Term
-- Establish open standard for agent execution verification
-- Enable regulatory compliance tooling
-- Support third-party auditing
-- Become the default execution boundary for high-stakes AI agents
-
----
+The LTL-to-DFA monitor compiler (`agentproof.monitor.ltl`) — a genuinely useful primitive for compiling temporal formulas into deterministic finite automata. This feeds directly into the graph model-checking pipeline.
 
 ## Non-Goals
 
-- Full formal proof of LLM internal reasoning
-- Replacement of orchestration frameworks
-- Guarantee of factual correctness
-- Elimination of all runtime risk
-
----
+- Runtime interception or gatekeeping.
+- Replacing LangGraph's execution engine.
+- Proving properties about LLM outputs (inherently non-deterministic).
+- Building another audit-trail SaaS.
 
 ## Why This Matters
 
-As AI agents move into financial systems, healthcare workflows, infrastructure management, and autonomous operations, verification must move from research to implementation.
+As AI agents move into production — managing infrastructure, accessing APIs, executing transactions — the cost of a bad workflow graph grows fast. Catching structural flaws before deployment is cheaper, faster, and more reliable than catching them at runtime.
 
-Without enforceable safety boundaries, agent autonomy cannot scale responsibly.
-
-The future of AI automation requires verifiable execution.
-
-VAC exists to provide that foundation.
+Static verification is the missing layer in the agent safety stack.
