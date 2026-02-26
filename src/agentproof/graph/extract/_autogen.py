@@ -28,6 +28,21 @@ def _agent_name(agent: Any) -> str:
     return getattr(agent, "name", type(agent).__name__)
 
 
+def _get_team_participants(team: Any) -> list[Any]:
+    """Get participants from an AutoGen v0.4 team or v0.2 GroupChat."""
+    # v0.4: .participants or ._participants
+    participants = getattr(team, "participants", None)
+    if participants is None:
+        participants = getattr(team, "_participants", None)
+    if participants is not None:
+        return list(participants)
+    # v0.2: .agents
+    agents = getattr(team, "agents", None)
+    if agents is not None:
+        return list(agents)
+    return []
+
+
 def extract_autogen(
     agents_or_groupchat: Any,
     allowed_transitions: dict[Any, list[Any]] | None = None,
@@ -36,7 +51,8 @@ def extract_autogen(
 
     Accepts either:
     - A list of agents + allowed_speaker_transitions_dict
-    - A GroupChat object (reads .agents and .allowed_speaker_transitions_dict)
+    - A GroupChat object (v0.2: reads .agents and .allowed_speaker_transitions_dict)
+    - A v0.4 Team object (RoundRobinGroupChat, SelectorGroupChat)
     """
     agents: list[Any]
     transitions: dict[Any, list[Any]] | None
@@ -45,16 +61,38 @@ def extract_autogen(
         agents = agents_or_groupchat
         transitions = allowed_transitions
     else:
-        # GroupChat or similar
-        agents = getattr(agents_or_groupchat, "agents", [])
-        transitions = getattr(agents_or_groupchat, "allowed_speaker_transitions_dict", allowed_transitions)
+        type_name = type(agents_or_groupchat).__name__
 
-        # Detect round-robin if speaker_selection_method is set
-        selection = getattr(agents_or_groupchat, "speaker_selection_method", None)
-        if selection == "round_robin" and transitions is None:
+        # v0.4 Team types
+        if type_name == "RoundRobinGroupChat":
+            agents = _get_team_participants(agents_or_groupchat)
+            # Round-robin: each agent speaks to the next in cyclic order
             transitions = {}
             for i, a in enumerate(agents):
                 transitions[a] = [agents[(i + 1) % len(agents)]]
+
+        elif type_name == "SelectorGroupChat":
+            agents = _get_team_participants(agents_or_groupchat)
+            # Selector: any agent can speak to any other (fully connected)
+            transitions = {}
+            for a in agents:
+                transitions[a] = [b for b in agents if b is not a]
+
+        else:
+            # v0.2 GroupChat or similar
+            agents = getattr(agents_or_groupchat, "agents", [])
+            transitions = getattr(
+                agents_or_groupchat,
+                "allowed_speaker_transitions_dict",
+                allowed_transitions,
+            )
+
+            # Detect round-robin if speaker_selection_method is set
+            selection = getattr(agents_or_groupchat, "speaker_selection_method", None)
+            if selection == "round_robin" and transitions is None:
+                transitions = {}
+                for i, a in enumerate(agents):
+                    transitions[a] = [agents[(i + 1) % len(agents)]]
 
     nodes: list[GraphNode] = []
     edges: list[GraphEdge] = []

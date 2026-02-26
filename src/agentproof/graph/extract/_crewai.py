@@ -78,7 +78,12 @@ def extract_crewai(crew: Any) -> AgentGraph:
 
     # Context dependencies: task.context lists other tasks this task depends on
     for task in tasks:
-        ctx = getattr(task, "context", None) or []
+        ctx_raw = getattr(task, "context", None)
+        # CrewAI uses a NOT_SPECIFIED sentinel that is truthy but not iterable
+        try:
+            ctx = list(ctx_raw) if ctx_raw else []
+        except TypeError:
+            ctx = []
         tid = task_obj_to_id[id(task)]
         for dep_task in ctx:
             dep_id = task_obj_to_id.get(id(dep_task))

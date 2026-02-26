@@ -23,6 +23,17 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
+langgraph = ["langgraph>=0.2"]
+adk = ["google-adk>=1.0"]
+autogen = ["autogen-agentchat>=0.4", "autogen-ext[openai]>=0.4"]
+crewai = ["crewai>=0.80"]
+all-frameworks = [
+    "langgraph>=0.2",
+    "google-adk>=1.0",
+    "autogen-agentchat>=0.4",
+    "autogen-ext[openai]>=0.4",
+    "crewai>=0.80",
+]
 
 [project.urls]
 Repository = "https://github.com/NordicAgents/agentproof"

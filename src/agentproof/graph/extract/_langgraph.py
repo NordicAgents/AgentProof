@@ -64,10 +64,24 @@ def extract_langgraph(graph: Any) -> AgentGraph:
     nodes: list[GraphNode] = []
     node_ids: set[str] = set()
 
-    for node in drawable.nodes:
-        nid = node if isinstance(node, str) else node.id
-        data = node if not isinstance(node, str) else None
-        if hasattr(drawable, "_nodes"):
+    raw_nodes = drawable.nodes
+    if isinstance(raw_nodes, dict):
+        # Real LangGraph Graph: .nodes is dict[str, Node]
+        node_items = list(raw_nodes.items())
+    elif raw_nodes and isinstance(raw_nodes, (list, tuple)):
+        first = raw_nodes[0]
+        if isinstance(first, str):
+            # List of string IDs (shouldn't normally happen but handle it)
+            node_items = [(n, None) for n in raw_nodes]
+        else:
+            # List of Node objects (stub path)
+            node_items = [(getattr(n, "id", str(n)), n) for n in raw_nodes]
+    else:
+        node_items = []
+
+    for nid, data in node_items:
+        # For stub objects, try _nodes dict for richer data
+        if hasattr(drawable, "_nodes") and isinstance(getattr(drawable, "_nodes", None), dict):
             data = drawable._nodes.get(nid, data)
 
         kind = _classify_node(nid, data)
