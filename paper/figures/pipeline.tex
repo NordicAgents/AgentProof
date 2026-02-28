@@ -1,0 +1,30 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners, align=center, minimum width=26mm, minimum height=9mm},
+  arrow/.style={-{Latex}, thick},
+  group/.style={draw, rounded corners, dashed, inner sep=4mm},
+  font=\small
+]
+  \node[box] (framework) {Framework\\workflow};
+  \node[box, right=14mm of framework] (extract) {Extractor};
+  \node[box, right=14mm of extract] (graph) {\texttt{AgentGraph}};
+
+  \node[box, below=10mm of graph, xshift=-12mm] (struct) {Structural\\checks};
+  \node[box, below=10mm of graph, xshift=+12mm] (temporal) {Temporal\\monitors};
+
+  \node[box, right=14mm of graph] (report) {Report /\\Decision};
+
+  \draw[arrow] (framework) -- (extract);
+  \draw[arrow] (extract) -- (graph);
+  \draw[arrow] (graph) -- (report);
+
+  \draw[arrow] (graph) -- (struct);
+  \draw[arrow] (graph) -- (temporal);
+  \draw[arrow] (struct) -- (report);
+  \draw[arrow] (temporal) -- (report);
+\end{tikzpicture}
+\end{document}
+

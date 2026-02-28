@@ -1,0 +1,31 @@
+\section{Evaluation}
+\label{sec:evaluation}
+
+We evaluate Agentproof along two axes:
+(i) graph extraction and structural statistics for representative agent
+workflows, and (ii) microbenchmarks for temporal monitor compilation and event
+evaluation throughput.
+
+\paragraph{Case studies.}
+We use the example workflows included with the repository: a manual data
+pipeline graph, a LangGraph customer support workflow, a hierarchical Google ADK
+pipeline, AutoGen team topologies, and CrewAI research crews. These examples are
+constructed without executing any external API calls.
+
+\paragraph{Methodology.}
+For each workflow, we extract an \texttt{AgentGraph} and compute node/edge counts
+as well as counts by node and edge kind. We measure extractor runtime as the
+median over 200 runs (after 20 warm-up runs) on the same in-memory workflow
+object. For temporal monitors, we measure compilation time as the median over
+500 runs per DSL string and evaluation throughput (events/s) over a fixed
+synthetic 1{,}000-event stream.
+
+\input{generated/case_study_table.tex}
+\input{generated/bench_table.tex}
+
+\paragraph{Discussion.}
+Across case studies, extracted graphs are small enough that structural checks
+complete in time linear in graph size. Temporal monitoring is also lightweight:
+rules compile into constant-size automata and evaluation performs a constant
+number of table lookups per event per rule.
+

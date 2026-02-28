@@ -1,0 +1,199 @@
+[
+  {
+    "extract_median_ms": 0.006124959327280521,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "conditional": 2,
+        "direct": 5
+      },
+      "edges": 7,
+      "framework": "manual",
+      "name": "data_pipeline",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "human": 1,
+        "llm": 1,
+        "router": 1,
+        "tool": 2
+      },
+      "nodes": 7
+    },
+    "label": "Manual",
+    "notes": "Manual construction (no framework extractor).",
+    "status": "ok",
+    "study_id": "manual_pipeline"
+  },
+  {
+    "extract_median_ms": 0.13383349869400263,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "conditional": 2,
+        "direct": 4
+      },
+      "edges": 6,
+      "framework": "langgraph",
+      "name": "LangGraph",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "human": 1,
+        "llm": 2,
+        "router": 1
+      },
+      "nodes": 6
+    },
+    "label": "LangGraph",
+    "notes": "Compiled StateGraph extracted via extract_langgraph().",
+    "status": "ok",
+    "study_id": "langgraph_customer_support"
+  },
+  {
+    "extract_median_ms": 0.014708959497511387,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "direct": 10,
+        "loop": 1,
+        "parallel": 2
+      },
+      "edges": 13,
+      "framework": "adk",
+      "name": "pipeline",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 3,
+        "subgraph": 3,
+        "tool": 3
+      },
+      "nodes": 11
+    },
+    "label": "ADK",
+    "notes": "ADK agent tree extracted via extract_adk().",
+    "status": "ok",
+    "study_id": "adk_pipeline"
+  },
+  {
+    "extract_median_ms": 0.005917041562497616,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "direct": 5
+      },
+      "edges": 5,
+      "framework": "autogen",
+      "name": "autogen",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 3
+      },
+      "nodes": 5
+    },
+    "label": "AutoGen (mod)",
+    "notes": "List + explicit transition relation.",
+    "status": "ok",
+    "study_id": "autogen_moderated"
+  },
+  {
+    "extract_median_ms": 0.005832989700138569,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "direct": 4
+      },
+      "edges": 4,
+      "framework": "autogen",
+      "name": "RoundRobinGroupChat",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 3
+      },
+      "nodes": 5
+    },
+    "label": "AutoGen (RR)",
+    "notes": "RoundRobinGroupChat extracted via built-in topology.",
+    "status": "ok",
+    "study_id": "autogen_round_robin"
+  },
+  {
+    "extract_median_ms": 0.005499925464391708,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "direct": 4
+      },
+      "edges": 4,
+      "framework": "autogen",
+      "name": "autogen",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 3
+      },
+      "nodes": 5
+    },
+    "label": "AutoGen (list)",
+    "notes": "List + explicit transition relation.",
+    "status": "ok",
+    "study_id": "autogen_direct_list"
+  },
+  {
+    "extract_median_ms": 0.008874922059476376,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "direct": 6
+      },
+      "edges": 6,
+      "framework": "crewai",
+      "name": "crew",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 4
+      },
+      "nodes": 6
+    },
+    "label": "CrewAI (seq)",
+    "notes": "Sequential process crew.",
+    "status": "ok",
+    "study_id": "crewai_sequential"
+  },
+  {
+    "extract_median_ms": 0.008999952115118504,
+    "extract_runs": 200,
+    "extract_warmup": 20,
+    "graph": {
+      "edge_kind_counts": {
+        "conditional": 3,
+        "direct": 6
+      },
+      "edges": 9,
+      "framework": "crewai",
+      "name": "crew",
+      "node_kind_counts": {
+        "entry": 1,
+        "exit": 1,
+        "llm": 3,
+        "router": 1
+      },
+      "nodes": 6
+    },
+    "label": "CrewAI (hier)",
+    "notes": "Hierarchical process crew.",
+    "status": "ok",
+    "study_id": "crewai_hierarchical"
+  }
+]

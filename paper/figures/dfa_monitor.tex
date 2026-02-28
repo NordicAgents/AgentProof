@@ -1,0 +1,25 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[
+  state/.style={draw, circle, minimum size=11mm, align=center, font=\small},
+  ok/.style={state, fill=green!10},
+  wait/.style={state, fill=orange!15},
+  bad/.style={state, fill=red!12},
+  arrow/.style={-{Latex}, thick},
+]
+  \node[ok] (s0) {$s_0$\\ready};
+  \node[wait, right=20mm of s0] (s1) {$s_1$\\waiting};
+  \node[bad, right=20mm of s1] (s2) {$s_2$\\violate};
+
+  \draw[arrow] (s0) edge[loop above] node[font=\scriptsize, align=center]{no $a$\\or $b$} (s0);
+  \draw[arrow] (s0) -- node[font=\scriptsize, align=center]{$a$ and not $b$} (s1);
+  \draw[arrow] (s1) -- node[font=\scriptsize, align=center]{$b$} (s0);
+  \draw[arrow] (s1) -- node[font=\scriptsize, align=center]{$a$ before $b$} (s2);
+  \draw[arrow] (s2) edge[loop above] node[font=\scriptsize]{any} (s2);
+
+  \node[below=8mm of s1, font=\small, align=center] {Example DSL: \texttt{a -> F b}\\(interleaving constraint)};
+\end{tikzpicture}
+\end{document}
+

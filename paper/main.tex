@@ -1,0 +1,70 @@
+\pdfoutput=1
+\documentclass[11pt]{article}
+
+\usepackage{arxiv}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\title{Agentproof: Static Graph Verification for Agent Workflow Graphs}
+
+% Placeholder author block (fill in later).
+\author{
+  First Last \\
+  Affiliation \\
+  \texttt{email@example.com}
+  \and
+  Second Author \\
+  Affiliation \\
+  \texttt{email@example.com}
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Modern agent frameworks encode tool-using behavior as explicit workflow graphs:
+nodes represent LLM calls, tools, routers, or human approval steps; edges
+represent possible control-flow transitions. Most ``agent safety'' products
+enforce policies at runtime by intercepting calls, adding latency and detecting
+violations only after execution is underway. We present \textit{Agentproof}, a
+static verification approach that treats an agent workflow as a formal directed
+graph and checks safety properties \emph{before deployment}. Agentproof provides
+(i) a unified abstract graph model across popular frameworks, (ii) extractors
+for several agent orchestration libraries, (iii) structural analyses for common
+workflow defects (unreachable nodes, dead ends, missing human gates), and (iv) a
+small temporal policy DSL compiled into deterministic finite automata for fast
+event-trace evaluation. We demonstrate the approach on representative workflow
+graphs built using real framework APIs and report microbenchmarks for extraction
+and monitor compilation/evaluation.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_background}
+\input{sections/03_system_overview}
+\input{sections/04_graph_model_and_extraction}
+\input{sections/05_verification_methods}
+\input{sections/06_evaluation}
+\input{sections/07_limitations_and_future_work}
+\input{sections/08_conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
+

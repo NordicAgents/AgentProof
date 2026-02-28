@@ -1,0 +1,48 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Agent systems increasingly operate over external tools: retrieving data,
+writing tickets, sending messages, mutating databases, and triggering workflows.
+In most orchestration frameworks, this behavior is represented explicitly as a
+workflow graph (or a closely related state machine): nodes encode computation
+steps and edges encode allowable transitions.
+
+Despite this structural representation, safety enforcement is commonly applied
+as a runtime gate---a wrapper around tool calls that checks a policy and either
+allows or blocks execution. Runtime checks are valuable, but they impose latency
+on every step and often detect violations only after the agent has already
+reached unsafe parts of its workflow.
+
+This paper argues for a complementary perspective: \emph{pre-deployment static
+verification} of agent workflow graphs. Static verification is successful in
+traditional systems because it reasons over an explicit model of behavior
+\citep{clarke1999modelchecking}. When agent behavior is graph-structured, many
+safety properties reduce to reachability, isolation, and temporal constraints
+over the graph topology.
+
+We present \textit{Agentproof}, a practical toolkit for static analysis of agent
+workflows. Agentproof focuses on properties that are (a) expressible over the
+workflow graph and (b) independent of LLM text generation semantics. In
+particular, it verifies the \emph{structure} of possible executions, not the
+content of model outputs.
+
+\paragraph{Contributions.}
+Agentproof makes the following contributions:
+\begin{itemize}
+  \item A unified abstract workflow graph model (\texttt{AgentGraph}) with typed
+  nodes and edges suitable for cross-framework analysis.
+  \item Extractors from several popular agent frameworks into this model,
+  enabling tool- and control-flow aware inspection before deployment.
+  \item A set of structural checks for common workflow defects (unreachable
+  nodes, dead ends, missing human approval gates, and tool declaration issues).
+  \item A small temporal policy DSL compiled to deterministic finite automata
+  for fast event-trace evaluation inspired by temporal logic monitoring
+  \citep{pnueli1977temporal}.
+\end{itemize}
+
+\paragraph{Scope.}
+Agentproof is designed to validate workflow design decisions early: ``can this
+graph reach a destructive tool?'' or ``must human review occur between two
+sensitive actions?'' It does not attempt to prove semantic properties of LLM
+outputs (e.g., truthfulness), which remain inherently non-deterministic.
+

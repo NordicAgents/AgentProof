@@ -1,0 +1,26 @@
+\section{Limitations and future work}
+\label{sec:limitations}
+
+\paragraph{Workflow structure vs.\ LLM semantics.}
+Agentproof verifies properties of the workflow \emph{topology} and the event
+stream emitted by execution. It does not prove semantic properties of LLM
+outputs (e.g., factuality or intent), which depend on non-deterministic model
+behavior and prompt/context choices.
+
+\paragraph{Extractor best-effort.}
+Frameworks evolve quickly and expose different internal representations across
+versions. The extractors in Agentproof are designed to be robust, but they
+inevitably involve heuristics (e.g., recognizing human review nodes by naming or
+metadata).
+
+\paragraph{Temporal DSL expressiveness.}
+The current temporal policy DSL is intentionally small and focused on common
+safety patterns; it is not a full LTL implementation. Extending to richer
+temporal fragments and to full graph $\times$ automaton model checking is a
+natural next step.
+
+\paragraph{Library integration.}
+Some structural analyses are currently demonstrated in examples. Future work
+includes packaging a stable verification API that returns structured reports and
+counterexample traces, suitable for CI gating and developer feedback.
+

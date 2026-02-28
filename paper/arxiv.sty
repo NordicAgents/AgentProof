@@ -1,0 +1,20 @@
+% Minimal arXiv-friendly preprint style.
+% This is intentionally lightweight: arXiv accepts standard LaTeX article
+% submissions, and this package only applies gentle formatting defaults.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{arxiv}[2026/02/28 Minimal arXiv preprint style]
+
+\RequirePackage{geometry}
+\geometry{margin=1in}
+
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{arXiv preprint}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+

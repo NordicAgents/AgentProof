@@ -1,0 +1,14 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Agent frameworks already encode behavior as explicit workflow graphs. Agentproof
+leverages this structure to enable pre-deployment verification of safety
+properties without adding runtime overhead. By extracting a unified abstract
+graph model, running inexpensive structural checks, and compiling temporal
+policies into deterministic monitors, Agentproof provides a practical safety
+layer for workflow-graph agents.
+
+The repository implementation and examples demonstrate that meaningful safety
+properties can be checked without running LLM inference, making static
+verification a useful complement to runtime guardrails for production agents.
+
