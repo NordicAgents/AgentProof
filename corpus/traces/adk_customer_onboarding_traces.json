@@ -1,0 +1,487 @@
+{
+  "workflow": "adk_customer_onboarding",
+  "framework": "adk",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "kyc_check",
+        "action_type": "tool",
+        "tool_name": "id_verify_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "credit_check",
+        "action_type": "tool",
+        "tool_name": "credit_bureau_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_assess",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "account_create",
+        "action_type": "tool",
+        "tool_name": "core_banking_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "welcome",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

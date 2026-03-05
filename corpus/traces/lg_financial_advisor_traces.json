@@ -1,0 +1,718 @@
+{
+  "workflow": "lg_financial_advisor",
+  "framework": "langgraph",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "advisor_review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "advisor_review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "advisor_review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "intake",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "portfolio_fetch",
+        "action_type": "tool",
+        "tool_name": "brokerage_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "market_analysis",
+        "action_type": "tool",
+        "tool_name": "market_data_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk_model",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recommendation",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "execute_trades",
+        "action_type": "tool",
+        "tool_name": "trading_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

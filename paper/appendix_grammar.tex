@@ -1,0 +1,44 @@
+\section{Temporal DSL grammar}
+\label{app:grammar}
+
+The full BNF grammar for the temporal policy DSL:
+
+\begin{verbatim}
+<rule>       ::= <forbidden>
+               | <impl_future>
+               | <until>
+               | <bounded>
+               | <chain>
+               | <conjunction>
+               | <disjunction>
+
+<forbidden>  ::= "G" "!" <atom>
+
+<impl_future>::= <atom> "->" "F" <atom>
+
+<until>      ::= <atom> "U" <atom>
+
+<bounded>    ::= <atom> "->" "F[<=" <int> "]" <atom>
+
+<chain>      ::= <atom> ("->" "F" <atom>){2,}
+
+<conjunction>::= "(" <rule> ")" "AND" "(" <rule> ")"
+
+<disjunction>::= "(" <rule> ")" "OR" "(" <rule> ")"
+
+<atom>       ::= "tool:" <name>
+               | "action:" <name>
+               | "decision:" <name>
+               | <tag_name>
+
+<name>       ::= [a-zA-Z_][a-zA-Z0-9_]*
+<tag_name>   ::= [a-zA-Z_][a-zA-Z0-9_]*
+<int>        ::= [1-9][0-9]*
+\end{verbatim}
+
+\paragraph{Predicate matching.}
+Atomic predicates are matched against event dictionaries:
+\texttt{tool:X} matches when the event's \texttt{tool\_name} field
+equals \texttt{X}; \texttt{action:X} matches \texttt{action\_type};
+\texttt{decision:X} matches the \texttt{decision} field; bare names
+match membership in the event's \texttt{tags} set.

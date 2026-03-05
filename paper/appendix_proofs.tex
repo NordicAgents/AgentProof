@@ -1,0 +1,104 @@
+\section{Soundness proofs}
+\label{app:proofs}
+
+We prove that each structural check is sound: if the check passes, the
+corresponding safety property holds for all valid execution traces.
+
+\begin{lemma}[Exit Reachability Soundness]
+\label{lem:exit_reach}
+If $\mathrm{ExitReach}(G)$ holds (i.e., the BFS/DFS from $v_0$ visits
+all of $V_f$), then for every exit node $v_f \in V_f$, there exists a
+directed path from $v_0$ to $v_f$ in $G$.
+\end{lemma}
+\begin{proof}
+The check computes $\mathrm{Reach}(v_0)$ by BFS from $v_0$, which
+correctly identifies all nodes reachable via directed edges
+\citep{clarke1999modelchecking}. If $v_f \in \mathrm{Reach}(v_0)$,
+then by the correctness of BFS there exists a path $v_0 \to \cdots \to
+v_f$. Since the check passes only when $V_f \subseteq
+\mathrm{Reach}(v_0)$, the result follows.
+\end{proof}
+
+\begin{lemma}[Dead-End Soundness]
+\label{lem:dead_end}
+If $\mathrm{NoDead}(G)$ holds, then every non-exit node in every trace
+of $G$ has at least one successor, and hence no maximal trace terminates
+at a non-exit node.
+\end{lemma}
+\begin{proof}
+Let $v$ be any node with $\kappa_V(v) \neq \textsc{exit}$. Since
+$\mathrm{NoDead}(G)$ holds, there exists $u$ such that $(v,u) \in E$.
+Therefore, if a trace $\pi$ visits $v$, the trace can be extended by
+$u$. A trace can only be maximal (i.e., cannot be extended) when it
+ends at a node in $V_f$ or at a node with no outgoing edges. Since
+every non-exit node has outgoing edges, all maximal traces end at exit
+nodes.
+\end{proof}
+
+\begin{lemma}[Router Shape Soundness]
+\label{lem:router_shape}
+If $\mathrm{RouterShape}(G)$ holds, then every outgoing transition from
+a router node is explicitly labeled as conditional.
+\end{lemma}
+\begin{proof}
+Direct from the predicate definition: the check iterates all edges
+$(v,u) \in E$ where $\kappa_V(v) = \textsc{router}$ and verifies
+$\kappa_E(v,u) = \textsc{conditional}$. Passing the check establishes
+the universal quantification.
+\end{proof}
+
+\begin{lemma}[Human Gate Soundness]
+\label{lem:human_gate}
+If $\mathrm{HumanGate}(G)$ holds, then the graph contains at least one
+node classified as a human-in-the-loop step.
+\end{lemma}
+\begin{proof}
+The check searches for $v \in V$ with $\kappa_V(v) = \textsc{human}$.
+Passing the check certifies existence.
+\end{proof}
+
+\begin{lemma}[Tool Declaration Soundness]
+\label{lem:tool_decl}
+If $\mathrm{ToolDecl}(G)$ holds, then every tool node explicitly
+declares its tool set.
+\end{lemma}
+\begin{proof}
+For each $v$ with $\kappa_V(v) = \textsc{tool}$, the check verifies
+$T(v) \neq \emptyset$. Passing the check establishes the universal
+statement.
+\end{proof}
+
+\begin{lemma}[Temporal Monitor Soundness]
+\label{lem:monitor}
+For each of the three base DFA patterns (forbidden, implication-future,
+until), if the compiled monitor reports no violation on a finite trace
+$\pi$, then $\pi$ satisfies the corresponding temporal formula.
+\end{lemma}
+\begin{proof}
+We proceed by cases.
+
+\emph{Forbidden ($\mathbf{G}\,\neg a$):} The DFA has two states:
+$s_0$ (safe) and $s_1$ (violated, absorbing). The transition
+function maps $s_0 \xrightarrow{a} s_1$ and
+$s_0 \xrightarrow{\neg a} s_0$, with $s_1$ absorbing.
+If the monitor never enters $s_1$, then $a$ was false at every step,
+establishing $\mathbf{G}\,\neg a$.
+
+\emph{Implication-future ($a \to \mathbf{F}\,b$):} The DFA has three
+states: $s_0$ (idle), $s_1$ (waiting for $b$), and $s_2$ (violated,
+absorbing). Transition: $s_0 \xrightarrow{a \wedge \neg b} s_1$;
+$s_1 \xrightarrow{b} s_0$; $s_1 \xrightarrow{a \wedge \neg b} s_2$.
+If the monitor never enters $s_2$, then every occurrence of $a$ is
+followed by $b$ before $a$ recurs.
+
+\emph{Until ($a\,\mathbf{U}\,b$):} The DFA has three states: $s_0$
+(waiting), $s_1$ (satisfied, absorbing), $s_2$ (violated, absorbing).
+Transition: $s_0 \xrightarrow{b} s_1$;
+$s_0 \xrightarrow{a \wedge \neg b} s_0$;
+$s_0 \xrightarrow{\neg a \wedge \neg b} s_2$.
+If the monitor never enters $s_2$, then $a$ held on every step until
+$b$ occurred, establishing $a\,\mathbf{U}\,b$.
+
+In each case the DFA state invariant is maintained by induction on
+the trace prefix.
+\end{proof}

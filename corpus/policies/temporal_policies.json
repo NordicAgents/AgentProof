@@ -1,0 +1,122 @@
+[
+  {
+    "id": "no_delete_production",
+    "dsl": "G !tool:delete_production_db",
+    "form": "forbidden",
+    "motivation": "Never invoke the production database deletion tool.",
+    "domain": "safety",
+    "on_violation": "halt"
+  },
+  {
+    "id": "no_drop_table",
+    "dsl": "G !tool:drop_table",
+    "form": "forbidden",
+    "motivation": "Forbid DROP TABLE operations in any workflow.",
+    "domain": "safety",
+    "on_violation": "halt"
+  },
+  {
+    "id": "no_rm_rf",
+    "dsl": "G !tool:rm_rf",
+    "form": "forbidden",
+    "motivation": "Forbid recursive file deletion tool invocations.",
+    "domain": "safety",
+    "on_violation": "halt"
+  },
+  {
+    "id": "email_requires_review",
+    "dsl": "tool:draft_email -> F tool:human_review",
+    "form": "implication_future",
+    "motivation": "Every email draft must be followed by human review before sending.",
+    "domain": "communication",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "pii_anonymize_bounded",
+    "dsl": "tool:fetch_pii -> F[<=3] tool:anonymize",
+    "form": "bounded_response",
+    "motivation": "After fetching PII, anonymization must occur within 3 steps.",
+    "domain": "privacy",
+    "on_violation": "halt"
+  },
+  {
+    "id": "deploy_requires_approval",
+    "dsl": "tool:deploy -> F tool:approve",
+    "form": "implication_future",
+    "motivation": "Every deployment action must be followed by an approval step.",
+    "domain": "devops",
+    "on_violation": "halt"
+  },
+  {
+    "id": "sql_query_then_review",
+    "dsl": "tool:sql_query -> F tool:review",
+    "form": "implication_future",
+    "motivation": "SQL queries against production data must be reviewed.",
+    "domain": "data",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "no_destructive_ops",
+    "dsl": "(G !tool:drop_table) AND (G !tool:rm_rf)",
+    "form": "conjunction",
+    "motivation": "Conjunction of two forbidden destructive operations.",
+    "domain": "safety",
+    "on_violation": "halt"
+  },
+  {
+    "id": "draft_then_review_then_send",
+    "dsl": "tool:draft -> F tool:review -> F tool:send",
+    "form": "response_chain",
+    "motivation": "Drafts must be reviewed before being sent — a three-step response chain.",
+    "domain": "communication",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "classify_then_route",
+    "dsl": "tool:classify -> F tool:route",
+    "form": "implication_future",
+    "motivation": "Classification must be followed by routing in triage workflows.",
+    "domain": "triage",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "fetch_data_then_validate",
+    "dsl": "tool:fetch_data -> F[<=2] tool:validate",
+    "form": "bounded_response",
+    "motivation": "Fetched data must be validated within 2 steps.",
+    "domain": "data",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "payment_requires_human",
+    "dsl": "tool:process_payment -> F tool:human_review",
+    "form": "implication_future",
+    "motivation": "Payment processing must always be followed by human review.",
+    "domain": "finance",
+    "on_violation": "halt"
+  },
+  {
+    "id": "no_send_without_review_or_block",
+    "dsl": "(tool:draft_email -> F tool:human_review) AND (G !tool:delete_production_db)",
+    "form": "conjunction",
+    "motivation": "Emails require review AND no production deletion — combining policy and safety.",
+    "domain": "general",
+    "on_violation": "halt"
+  },
+  {
+    "id": "analyze_until_decision",
+    "dsl": "tool:analyze U tool:decide",
+    "form": "until",
+    "motivation": "Analysis steps must continue until a decision is made.",
+    "domain": "analysis",
+    "on_violation": "escalate"
+  },
+  {
+    "id": "either_log_or_audit",
+    "dsl": "(tool:action -> F tool:log) OR (tool:action -> F tool:audit)",
+    "form": "disjunction",
+    "motivation": "After any action, either logging or auditing must occur.",
+    "domain": "compliance",
+    "on_violation": "escalate"
+  }
+]

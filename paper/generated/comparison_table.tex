@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Comparison with general-purpose model checkers.}
+\label{tab:comparison_mc}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+\textbf{Tool} & \textbf{Input} & \textbf{Properties} & \textbf{Modeling} & \textbf{Time} & \textbf{Domain} \\
+\midrule
+SPIN & Promela (manual) & Full LTL & High & Fast (small) & None \\
+NuSMV & SMV (manual) & CTL + LTL & High & Fast (small) & None \\
+CBMC & C source & Assertions & Medium & Bounded & None \\
+\textbf{Agentproof} & Auto-extracted & Safety LTL fragment & \textbf{None} & $O(|V|{+}|E|)$ & \textbf{Agent workflows} \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\raggedright\footnotesize
+SPIN, NuSMV, and CBMC require manual translation of agent workflows into their input languages. Agentproof extracts models automatically from framework APIs, eliminating the modeling step entirely.
+\end{table}

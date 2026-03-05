@@ -1,0 +1,101 @@
+{
+  "name": "crewai_hiring_pipeline",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "screen",
+      "kind": "tool",
+      "label": "resume_screener",
+      "tools": [
+        "parse_resume"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "score",
+      "kind": "llm",
+      "label": "candidate_scorer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "interview_prep",
+      "kind": "llm",
+      "label": "interview_preparer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "schedule",
+      "kind": "tool",
+      "label": "scheduler",
+      "tools": [
+        "calendar_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "review",
+      "kind": "human",
+      "label": "hiring_manager_review",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "screen",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "screen",
+      "target": "score",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "score",
+      "target": "interview_prep",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "interview_prep",
+      "target": "schedule",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "schedule",
+      "target": "review",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "review",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

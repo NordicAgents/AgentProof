@@ -1,0 +1,138 @@
+{
+  "name": "lg_multi_agent_research",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "research_planner",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "search",
+      "kind": "tool",
+      "label": "web_search",
+      "tools": [
+        "tavily_search",
+        "arxiv_search"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "review_router",
+      "kind": "router",
+      "label": "review_decision",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "human_review",
+      "kind": "human",
+      "label": "human_editor",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "planner",
+      "target": "researcher",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "researcher",
+      "target": "search",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "search",
+      "target": "writer",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "writer",
+      "target": "reviewer",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "reviewer",
+      "target": "review_router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "review_router",
+      "target": "researcher",
+      "kind": "conditional",
+      "condition": "needs_revision"
+    },
+    {
+      "source": "review_router",
+      "target": "human_review",
+      "kind": "conditional",
+      "condition": "needs_human"
+    },
+    {
+      "source": "review_router",
+      "target": "__end__",
+      "kind": "conditional",
+      "condition": "approved"
+    },
+    {
+      "source": "human_review",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "name": "lg_customer_support",
+    "framework": "langgraph",
+    "description": "LangGraph: Customer support with sentiment routing and escalation.",
+    "nodes": 9,
+    "edges": 10
+  },
+  {
+    "name": "lg_rag_pipeline",
+    "framework": "langgraph",
+    "description": "LangGraph: RAG pipeline with query rewriting and grading.",
+    "nodes": 9,
+    "edges": 9
+  },
+  {
+    "name": "lg_multi_agent_research",
+    "framework": "langgraph",
+    "description": "LangGraph: Multi-agent research with planner, researcher, writer.",
+    "nodes": 9,
+    "edges": 10
+  },
+  {
+    "name": "lg_code_assistant",
+    "framework": "langgraph",
+    "description": "LangGraph: Code generation assistant with tests and debugging loop.",
+    "nodes": 7,
+    "edges": 7
+  },
+  {
+    "name": "lg_email_triage",
+    "framework": "langgraph",
+    "description": "LangGraph: Email triage \u2014 DEFECT: dead-end node (draft_response has no outgoing edge).",
+    "nodes": 8,
+    "edges": 7
+  },
+  {
+    "name": "lg_financial_advisor",
+    "framework": "langgraph",
+    "description": "LangGraph: Financial advisor with portfolio analysis and compliance.",
+    "nodes": 11,
+    "edges": 11
+  },
+  {
+    "name": "crewai_content_pipeline",
+    "framework": "crewai",
+    "description": "CrewAI: Content creation pipeline (research, write, edit, publish).",
+    "nodes": 7,
+    "edges": 6
+  },
+  {
+    "name": "crewai_hiring_pipeline",
+    "framework": "crewai",
+    "description": "CrewAI: Hiring pipeline with screening and interviews.",
+    "nodes": 7,
+    "edges": 6
+  },
+  {
+    "name": "crewai_data_analysis",
+    "framework": "crewai",
+    "description": "CrewAI: Hierarchical data analysis \u2014 DEFECT: TOOL node missing tool declaration.",
+    "nodes": 8,
+    "edges": 10
+  },
+  {
+    "name": "crewai_marketing_campaign",
+    "framework": "crewai",
+    "description": "CrewAI: Marketing campaign \u2014 DEFECT: unreachable exit (publish has no edge to exit).",
+    "nodes": 8,
+    "edges": 6
+  },
+  {
+    "name": "autogen_software_team",
+    "framework": "autogen",
+    "description": "AutoGen: Software development team (PM, dev, tester, reviewer).",
+    "nodes": 7,
+    "edges": 7
+  },
+  {
+    "name": "autogen_debate",
+    "framework": "autogen",
+    "description": "AutoGen: Debate topology with moderator \u2014 DEFECT: router with non-conditional edges.",
+    "nodes": 6,
+    "edges": 7
+  },
+  {
+    "name": "autogen_investment_team",
+    "framework": "autogen",
+    "description": "AutoGen: Investment analysis team (analyst, risk, compliance, approver).",
+    "nodes": 7,
+    "edges": 6
+  },
+  {
+    "name": "autogen_round_robin_brainstorm",
+    "framework": "autogen",
+    "description": "AutoGen: Round-robin brainstorming \u2014 DEFECT: unreachable exit.",
+    "nodes": 5,
+    "edges": 4
+  },
+  {
+    "name": "adk_document_processing",
+    "framework": "adk",
+    "description": "ADK: Document processing pipeline (OCR, extract, classify, store).",
+    "nodes": 7,
+    "edges": 6
+  },
+  {
+    "name": "adk_compliance_review",
+    "framework": "adk",
+    "description": "ADK: Compliance review with parallel checks and loop for remediation.",
+    "nodes": 12,
+    "edges": 14
+  },
+  {
+    "name": "adk_customer_onboarding",
+    "framework": "adk",
+    "description": "ADK: Customer onboarding \u2014 DEFECT: missing human gate for KYC.",
+    "nodes": 7,
+    "edges": 6
+  },
+  {
+    "name": "adk_incident_response",
+    "framework": "adk",
+    "description": "ADK: Incident response with triage, parallel investigation, and resolution.",
+    "nodes": 12,
+    "edges": 14
+  }
+]

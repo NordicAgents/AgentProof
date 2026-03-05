@@ -1,0 +1,447 @@
+{
+  "workflow": "adk_document_processing",
+  "framework": "adk",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "pipeline",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "ocr",
+        "action_type": "tool",
+        "tool_name": "tesseract",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "extract",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "store",
+        "action_type": "tool",
+        "tool_name": "postgres_insert",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

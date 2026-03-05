@@ -1,0 +1,104 @@
+{
+  "name": "crewai_content_pipeline",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "research",
+      "kind": "tool",
+      "label": "researcher",
+      "tools": [
+        "web_search",
+        "scraper"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "write",
+      "kind": "llm",
+      "label": "writer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "edit",
+      "kind": "llm",
+      "label": "editor",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "seo",
+      "kind": "tool",
+      "label": "seo_optimizer",
+      "tools": [
+        "keyword_analyzer"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "publish",
+      "kind": "tool",
+      "label": "publisher",
+      "tools": [
+        "cms_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "research",
+      "target": "write",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "write",
+      "target": "edit",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "edit",
+      "target": "seo",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "seo",
+      "target": "publish",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "publish",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

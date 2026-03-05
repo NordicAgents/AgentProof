@@ -1,0 +1,103 @@
+{
+  "name": "autogen_software_team",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "pm",
+      "kind": "llm",
+      "label": "product_manager",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "developer",
+      "kind": "llm",
+      "label": "developer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "tester",
+      "kind": "llm",
+      "label": "qa_tester",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "code_reviewer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "user",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "pm",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "pm",
+      "target": "developer",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "developer",
+      "target": "tester",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "tester",
+      "target": "reviewer",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "reviewer",
+      "target": "developer",
+      "kind": "conditional",
+      "condition": "needs_fix"
+    },
+    {
+      "source": "reviewer",
+      "target": "user",
+      "kind": "conditional",
+      "condition": "approved"
+    },
+    {
+      "source": "user",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

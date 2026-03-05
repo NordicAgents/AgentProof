@@ -1,0 +1,112 @@
+{
+  "name": "lg_email_triage",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "classify",
+      "kind": "llm",
+      "label": "email_classifier",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "priority_router",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "urgent_handler",
+      "kind": "llm",
+      "label": "urgent_handler",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "normal_handler",
+      "kind": "llm",
+      "label": "normal_handler",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "draft_response",
+      "kind": "llm",
+      "label": "draft_response",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "send",
+      "kind": "tool",
+      "label": "send_email",
+      "tools": [
+        "smtp_send"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classify",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "classify",
+      "target": "router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "router",
+      "target": "urgent_handler",
+      "kind": "conditional",
+      "condition": "urgent"
+    },
+    {
+      "source": "router",
+      "target": "normal_handler",
+      "kind": "conditional",
+      "condition": "normal"
+    },
+    {
+      "source": "urgent_handler",
+      "target": "send",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "normal_handler",
+      "target": "draft_response",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "send",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

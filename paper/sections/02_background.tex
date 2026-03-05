@@ -2,43 +2,40 @@
 \label{sec:background}
 
 \subsection{Agent workflow graphs}
-Many agent frameworks represent behavior as a directed graph, sometimes called
-a \emph{state graph} or \emph{workflow graph}. Nodes correspond to steps such as:
-an LLM call, a tool invocation, a router/selector that branches based on state,
-or a human approval node. Edges correspond to transitions between these steps,
-including conditional branches, parallel fan-outs, or loop back-edges.
+Many agent frameworks represent behavior as a directed graph, sometimes
+called a \emph{state graph} or \emph{workflow graph}. Nodes correspond
+to computation steps: an LLM call, a tool invocation, a
+router/selector that branches based on state, or a human approval gate.
+Edges correspond to transitions between steps, including conditional
+branches, parallel fan-outs, and loop back-edges.
 
-This explicit control-flow model is a key difference between graph-orchestrated
-agents and monolithic ``single prompt'' LLM applications: verification can be
-performed over the topology without running the agent.
+This explicit control-flow model is a key difference between
+graph-orchestrated agents and monolithic ``single prompt''
+applications: the graph structure can be analyzed statically without
+executing the agent.
 
 \subsection{Structural verification}
-Structural properties are those that depend only on graph topology and type
+Structural properties depend only on graph topology and type
 annotations. Typical examples include:
-(i) reachability (can a node be reached from the entry point?),
-(ii) dead ends (nodes with no outgoing transitions),
-(iii) isolation (must a sensitive tool be preceded by a gate node?), and
-(iv) sanity constraints on router nodes.
+(i)~reachability (can a node be reached from the entry point?),
+(ii)~dead ends (nodes with no outgoing transitions),
+(iii)~isolation (must a sensitive tool be preceded by a gate node?),
+and (iv)~sanity constraints on router nodes.
 
-These checks are inexpensive: they can be implemented with standard graph
-algorithms (BFS/DFS) and run in time linear in the number of nodes and edges.
+These checks are inexpensive: they can be implemented with standard
+graph algorithms (BFS/DFS) and run in time linear in $|V| + |E|$.
 
 \subsection{Temporal monitors}
-Temporal logics such as linear temporal logic (LTL) provide a formal language to
-specify constraints over execution traces \citep{pnueli1977temporal}. A common
-verification route is to compile temporal constraints into automata and then
-reason over traces or over the product of a system model and the automaton.
+Temporal logics such as linear temporal logic
+(LTL)~\citep{pnueli1977temporal} provide a formal language to specify
+constraints over execution traces. A common verification strategy is to
+compile temporal constraints into automata and reason over traces or
+over the product of a system model and the
+automaton~\citep{vardi1994automata}.
 
-Agentproof implements a lightweight monitoring path: a small temporal policy DSL
-is compiled into a deterministic finite automaton (DFA) and evaluated over an
-event stream representing tool calls and other agent actions. This design is
-inspired by automata-theoretic monitoring approaches (e.g., \citep{vardi1994automata})
-but intentionally focuses on a small, practical fragment.
-
-\subsection{Related work (brief)}
-Runtime guardrails, policy engines, and tool-call interceptors enforce safety
-online, often with logging and audit support. Agentproof is complementary: it
-targets \emph{static} properties of the workflow design that can be checked
-before deployment, reducing the chance that unsafe topologies ship in the first
-place.
+We implement a lightweight monitoring path: a temporal policy DSL is
+compiled into deterministic finite automata and evaluated over an event
+stream representing tool calls and other agent actions. This design
+targets the safety fragment of LTL, deliberately trading full
+expressiveness for deployment simplicity.
 

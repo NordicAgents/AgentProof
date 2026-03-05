@@ -1,71 +1,156 @@
 \section{Verification methods}
 \label{sec:verification_methods}
 
-Agentproof provides two complementary verification layers: (i) structural checks
-over the extracted graph and (ii) temporal monitors evaluated over an event
-stream.
+We provide two complementary verification layers: (i)~structural checks
+over the extracted graph and (ii)~temporal monitors evaluated over an
+event stream.
 
 \subsection{Structural checks}
-Structural checks operate over the adjacency structure of the extracted directed
-graph and the node/edge kind labels.
+Structural checks operate over the adjacency structure and node/edge
+kind labels of $G$ (Definition~\ref{def:awg}). Each check implements
+one of the predicates from Definition~\ref{def:structural_predicates}.
 
 \paragraph{Exit reachability.}
-We compute the set of nodes reachable from the entry using BFS/DFS and verify
-that all declared exit nodes are included. This is $O(|V| + |E|)$.
+We compute the set of nodes reachable from $v_0$ using BFS and verify
+that $V_f \subseteq \mathrm{Reach}(v_0)$.
+Complexity: $O(|V| + |E|)$.
 
 \paragraph{Dead-end detection.}
-We identify nodes (excluding \texttt{EXIT}) with no outgoing edges. Dead ends
-often indicate missing transitions or incomplete error handling. This is
-$O(|V| + |E|)$ with adjacency precomputation.
+We identify nodes $v$ with $\kappa_V(v) \neq \textsc{exit}$ and no
+outgoing edges. Dead ends indicate missing transitions or incomplete
+error handling.
+Complexity: $O(|V| + |E|)$ with adjacency precomputation.
 
 \paragraph{Router shape checks.}
-Router nodes are expected to branch via conditional edges. We verify that all
-outgoing edges from a \texttt{ROUTER} are labeled \texttt{CONDITIONAL}. This is
-$O(|E|)$.
+We verify that all outgoing edges from \textsc{router} nodes are labeled
+\textsc{conditional}. Complexity: $O(|E|)$.
 
 \paragraph{Human-in-the-loop presence.}
-Some policies require at least one human approval node. We check whether the
-graph contains any node of kind \texttt{HUMAN}. This is $O(|V|)$.
+We check whether the graph contains any node with
+$\kappa_V(v) = \textsc{human}$. Complexity: $O(|V|)$.
 
 \paragraph{Tool declaration checks.}
-Tool nodes should declare the tool names they may call. We flag \texttt{TOOL}
-nodes with an empty tool list. This is $O(|V|)$.
+We flag \textsc{tool} nodes with $T(v) = \emptyset$.
+Complexity: $O(|V|)$.
+
+\paragraph{Witness trace generation.}
+When a check fails, the verifier produces a \emph{witness trace}: a
+concrete path through the graph demonstrating the defect. For
+unreachable exits, the witness shows the path from $v_0$ to the
+reachability frontier plus the unreachable target. For dead ends, the
+witness is a BFS path from $v_0$ to the stuck node. Witness traces
+follow standard model-checking practice~\citep{clarke1999modelchecking}
+and significantly aid debugging.
+
+\subsection{Cross-framework extraction challenge}
+\label{sec:extraction_challenge}
+
+A central contribution is the \emph{automatic} extraction of
+\texttt{AgentGraph} instances from heterogeneous framework APIs. Each
+framework represents workflows differently, making unified extraction
+non-trivial:
+
+\begin{itemize}
+  \item \textbf{LangGraph} uses an explicit \texttt{StateGraph} with
+  \texttt{add\_node()} and \texttt{add\_edge()} calls. Entry and exit
+  are string sentinels (\texttt{START}, \texttt{END}). Conditional
+  routing uses \texttt{add\_conditional\_edges()} with a path map dict.
+  \item \textbf{CrewAI} defines workflows implicitly via a list of
+  \texttt{Task} objects passed to a \texttt{Crew}. The topology depends
+  on the \texttt{process} parameter (\texttt{sequential} vs.\
+  \texttt{hierarchical}) and optional \texttt{context} dependencies
+  between tasks.
+  \item \textbf{AutoGen} uses group-chat patterns
+  (\texttt{RoundRobinGroupChat}, \texttt{SelectorGroupChat}) where agent
+  ordering defines the graph. Loop edges arise from round-robin cycling.
+  \item \textbf{Google ADK} composes agents via nesting constructors
+  (\texttt{SequentialAgent}, \texttt{ParallelAgent}, \texttt{LoopAgent})
+  with a \texttt{sub\_agents} list. The hierarchy must be flattened into
+  a single graph with appropriate edge kinds.
+\end{itemize}
+
+\noindent
+Our extractors normalize these diverse representations into the
+same \texttt{AgentGraph} type system (Definition~\ref{def:awg}),
+synthesizing entry/exit sentinel nodes where the framework does not
+provide them explicitly.  General-purpose model checkers such as
+SPIN~\citep{holzmann1997spin} or NuSMV~\citep{cimatti2002nusmv}
+could verify the same properties, but would require the developer to
+\emph{manually} translate the workflow into Promela or SMV---a
+process that takes hours even for small graphs (see
+Section~\ref{sec:related_work} for a concrete example).
 
 \subsection{Temporal policy monitors}
-Agentproof supports a small temporal policy DSL compiled into a DFA and
-evaluated with constant overhead per event.
+We support a temporal policy DSL covering the safety fragment of
+LTL~\citep{pnueli1977temporal}, compiled into deterministic finite
+automata and evaluated with constant overhead per event.
 
 \paragraph{Event model.}
-Events are dictionaries with optional fields such as \texttt{tool\_name},
-\texttt{action\_type}, \texttt{decision}, and a set of \texttt{tags}. Temporal
-predicates match against these fields (e.g., \texttt{tool:delete\_account}).
+Events are dictionaries with optional fields: \texttt{tool\_name},
+\texttt{action\_type}, \texttt{decision}, and a set of \texttt{tags}.
+Predicates match against these fields (e.g., \texttt{tool:delete\_account}).
 
-\paragraph{Supported DSL forms.}
-The implementation supports three forms:
-\begin{itemize}
-  \item \texttt{G !atom} (forbidden event): violation if \texttt{atom} matches any event.
-  \item \texttt{a -> F b} (interleaving constraint): once \texttt{a} occurs, \texttt{b} must occur before \texttt{a} occurs again.
-  \item \texttt{a U b} (until-like safety): \texttt{a} must hold on each step until \texttt{b} occurs; otherwise a violation is triggered.
-\end{itemize}
-These forms are intentionally restrictive; they capture common safety patterns
-while keeping compilation and evaluation simple.
+\paragraph{DSL grammar.}
+The DSL supports seven expression forms (full BNF in
+Appendix~\ref{app:grammar}):
+\begin{enumerate}
+  \item \textbf{Forbidden:} \texttt{G !atom} --- violation if
+    \texttt{atom} ever occurs.
+  \item \textbf{Implication-future:} \texttt{a -> F b} --- if \texttt{a}
+    occurs, \texttt{b} must follow before \texttt{a} recurs.
+  \item \textbf{Until:} \texttt{a U b} --- \texttt{a} must hold on every
+    step until \texttt{b} occurs.
+  \item \textbf{Bounded response:} \texttt{a -> F[<=k] b} --- if
+    \texttt{a} occurs, \texttt{b} must follow within $k$ steps.
+  \item \textbf{Response chain:} \texttt{a -> F b -> F c} --- once
+    \texttt{a} occurs, \texttt{b} then \texttt{c} must follow in
+    sequence before \texttt{a} recurs.
+  \item \textbf{Conjunction:} \texttt{(expr) AND (expr)} --- both
+    sub-properties must hold simultaneously.
+  \item \textbf{Disjunction:} \texttt{(expr) OR (expr)} --- at least
+    one sub-property must hold.
+\end{enumerate}
 
 \paragraph{Compilation to DFA.}
-Each rule is compiled into a DFA with a small fixed number of states (three in
-the current implementation). DFA transitions are implemented as a precomputed
-table indexed by a bit-vector valuation of predicates. This yields $O(1)$ state
-updates per event per rule.
+Each expression is parsed into an AST and compiled to a DFA via
+direct construction. Base patterns (forbidden, implication-future,
+until) produce 2--3 state DFAs. Bounded response produces a
+counter-augmented DFA with $k+2$ states. Conjunction and disjunction
+use the standard product automaton construction with
+$|Q_L| \times |Q_R|$ states~\citep{vardi1994automata}. DFA transitions
+are stored as precomputed tables indexed by bit-vector valuations over
+atomic predicates. Table~\ref{tab:dfa_states} summarizes DFA sizes.
+
+\begin{table}[t]
+\centering
+\small
+\caption{DFA state counts by pattern type.}
+\label{tab:dfa_states}
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Pattern} & \textbf{States} \\
+\midrule
+\texttt{G !atom} & 2 \\
+\texttt{a -> F b} & 3 \\
+\texttt{a U b} & 3 \\
+\texttt{a -> F[<=k] b} & $k + 2$ \\
+\texttt{a -> F b -> F c} (chain of $n$) & $n + 1$ \\
+\texttt{(A) AND (B)} & $|Q_A| \times |Q_B|$ \\
+\texttt{(A) OR (B)} & $|Q_A| \times |Q_B|$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{Evaluation and handling.}
-At runtime, each event advances the DFA state for every compiled rule. If any
-rule enters a violation state, Agentproof maps the rule's configured handling
-level (\texttt{warn}, \texttt{block}, \texttt{halt}, \texttt{escalate}) into an
-overall decision used by the caller.
+At runtime, each event advances the DFA state for every compiled rule
+via $O(1)$ table lookups. If any rule enters a violation state, the
+configured handling level (\texttt{warn}, \texttt{block},
+\texttt{halt}, \texttt{escalate}) determines the aggregate decision.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.85\linewidth]{figures/dfa_monitor.pdf}
-  \caption{Illustrative DFA for an \texttt{a -> F b}-style interleaving constraint: after \texttt{a} occurs, \texttt{b} must occur before \texttt{a} repeats.}
+  \caption{Illustrative DFA for an \texttt{a -> F b} interleaving constraint: after \texttt{a} occurs, \texttt{b} must occur before \texttt{a} repeats.}
   \label{fig:dfa}
 \end{figure}
 

@@ -1,0 +1,2450 @@
+{
+  "total_pairs": 270,
+  "applicable_pairs": 1,
+  "violated_pairs": 0,
+  "dsl_form_counts": {
+    "forbidden": 3,
+    "implication_future": 5,
+    "bounded_response": 2,
+    "conjunction": 2,
+    "response_chain": 1,
+    "until": 1,
+    "disjunction": 1
+  },
+  "dsl_coverage_pct": 100.0,
+  "all_policies_within_dsl": true,
+  "matrix": [
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_delete_production",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_drop_table",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_rm_rf",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "email_requires_review",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "pii_anonymize_bounded",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "deploy_requires_approval",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "status": "evaluated",
+      "pass_count": 10,
+      "fail_count": 0,
+      "trace_count": 10,
+      "violation_rate": 0.0,
+      "violations": [],
+      "workflow": "crewai_data_analysis",
+      "applicable": true
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "sql_query_then_review",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_destructive_ops",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "draft_then_review_then_send",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "classify_then_route",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "fetch_data_then_validate",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "payment_requires_human",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "no_send_without_review_or_block",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "analyze_until_decision",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "adk_compliance_review",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "adk_customer_onboarding",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "adk_document_processing",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "adk_incident_response",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "autogen_debate",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "autogen_investment_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "autogen_round_robin_brainstorm",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "autogen_software_team",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "crewai_content_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "crewai_data_analysis",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "crewai_hiring_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "crewai_marketing_campaign",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_code_assistant",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_customer_support",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_email_triage",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_financial_advisor",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_multi_agent_research",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    },
+    {
+      "policy_id": "either_log_or_audit",
+      "workflow": "lg_rag_pipeline",
+      "status": "not_applicable",
+      "applicable": false,
+      "pass_count": 0,
+      "fail_count": 0,
+      "trace_count": 10
+    }
+  ]
+}

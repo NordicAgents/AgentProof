@@ -1,0 +1,190 @@
+{
+  "name": "adk_incident_response",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "triage",
+      "kind": "llm",
+      "label": "incident_triage",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "severity_router",
+      "kind": "router",
+      "label": "severity_router",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "parallel_investigation",
+      "kind": "subgraph",
+      "label": "investigation",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "log_analysis",
+      "kind": "tool",
+      "label": "log_analyzer",
+      "tools": [
+        "elk_query",
+        "splunk_search"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "metric_check",
+      "kind": "tool",
+      "label": "metric_checker",
+      "tools": [
+        "prometheus_query"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "trace_analysis",
+      "kind": "tool",
+      "label": "trace_analyzer",
+      "tools": [
+        "jaeger_query"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "diagnose",
+      "kind": "llm",
+      "label": "root_cause_analysis",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "auto_remediate",
+      "kind": "tool",
+      "label": "auto_fix",
+      "tools": [
+        "kubectl_restart",
+        "config_rollback"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "human_escalation",
+      "kind": "human",
+      "label": "oncall_engineer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "postmortem",
+      "kind": "llm",
+      "label": "postmortem_generator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "triage",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "triage",
+      "target": "severity_router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "severity_router",
+      "target": "parallel_investigation",
+      "kind": "conditional",
+      "condition": "sev1_or_sev2"
+    },
+    {
+      "source": "severity_router",
+      "target": "log_analysis",
+      "kind": "conditional",
+      "condition": "sev3"
+    },
+    {
+      "source": "parallel_investigation",
+      "target": "log_analysis",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "parallel_investigation",
+      "target": "metric_check",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "parallel_investigation",
+      "target": "trace_analysis",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "log_analysis",
+      "target": "diagnose",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "metric_check",
+      "target": "diagnose",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "trace_analysis",
+      "target": "diagnose",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "diagnose",
+      "target": "auto_remediate",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "auto_remediate",
+      "target": "postmortem",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "human_escalation",
+      "target": "postmortem",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "postmortem",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

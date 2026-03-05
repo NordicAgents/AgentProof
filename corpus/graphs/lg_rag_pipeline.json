@@ -1,0 +1,133 @@
+{
+  "name": "lg_rag_pipeline",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "rewrite",
+      "kind": "llm",
+      "label": "query_rewriter",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "retrieve",
+      "kind": "tool",
+      "label": "retriever",
+      "tools": [
+        "vector_search"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "grade",
+      "kind": "llm",
+      "label": "relevance_grader",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "grade_router",
+      "kind": "router",
+      "label": "grade_decision",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "answer_generator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "web_search",
+      "kind": "tool",
+      "label": "web_search",
+      "tools": [
+        "tavily_search"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "hallucination_check",
+      "kind": "llm",
+      "label": "hallucination_grader",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "rewrite",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "rewrite",
+      "target": "retrieve",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "retrieve",
+      "target": "grade",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "grade",
+      "target": "grade_router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "grade_router",
+      "target": "generate",
+      "kind": "conditional",
+      "condition": "relevant"
+    },
+    {
+      "source": "grade_router",
+      "target": "web_search",
+      "kind": "conditional",
+      "condition": "not_relevant"
+    },
+    {
+      "source": "web_search",
+      "target": "generate",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "generate",
+      "target": "hallucination_check",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "hallucination_check",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

@@ -1,0 +1,692 @@
+{
+  "workflow": "adk_compliance_review",
+  "framework": "adk",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "security_check",
+        "action_type": "tool",
+        "tool_name": "vulnerability_scanner",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "legal_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "financial_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "security_check",
+        "action_type": "tool",
+        "tool_name": "vulnerability_scanner",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "security_check",
+        "action_type": "tool",
+        "tool_name": "vulnerability_scanner",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "financial_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "security_check",
+        "action_type": "tool",
+        "tool_name": "vulnerability_scanner",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "security_check",
+        "action_type": "tool",
+        "tool_name": "vulnerability_scanner",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "legal_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "s3_fetch",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "parallel_check",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "legal_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "aggregator",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "remediation_loop",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "fix",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "recheck",
+        "action_type": "tool",
+        "tool_name": "compliance_validator",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "signoff",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

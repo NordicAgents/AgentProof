@@ -1,20 +1,84 @@
 \section{Graph model and extraction}
 \label{sec:graph_model}
 
-Agentproof defines a framework-agnostic workflow representation,
-\texttt{AgentGraph}, with typed nodes and edges. This abstraction is the common
-surface for verification.
+We define a framework-agnostic workflow representation with typed nodes
+and edges. This abstraction is the common surface for all verification.
 
-\subsection{Abstract model}
-An \texttt{AgentGraph} consists of a set of nodes $V$, edges $E$, an entry node
-identifier, and one or more exit identifiers. Each node has a \emph{kind}:
-\texttt{ENTRY}, \texttt{EXIT}, \texttt{TOOL}, \texttt{LLM}, \texttt{ROUTER},
-\texttt{HUMAN}, \texttt{SUBGRAPH}, or \texttt{PASSTHROUGH}. Each edge has a kind:
-\texttt{DIRECT}, \texttt{CONDITIONAL}, \texttt{PARALLEL}, or \texttt{LOOP}.
+\subsection{Formal model}
 
-Tool nodes may include a list of bound tool names (e.g., \texttt{("http\_get",
-"s3\_download")}). Edges may include optional condition labels for conditional
-branches.
+\begin{definition}[Agent Workflow Graph]
+\label{def:awg}
+An \emph{agent workflow graph} is a tuple
+$G = (V, E, \kappa_V, \kappa_E, T, v_0, V_f)$ where:
+\begin{itemize}
+  \item $V$ is a finite set of nodes.
+  \item $E \subseteq V \times V$ is a set of directed edges.
+  \item $\kappa_V: V \to \mathcal{K}_V$ assigns each node a kind, with
+    $\mathcal{K}_V = \{\textsc{entry}, \textsc{exit}, \textsc{tool},
+    \textsc{llm}, \textsc{router}, \textsc{human}, \textsc{subgraph},
+    \textsc{passthrough}\}$.
+  \item $\kappa_E: E \to \mathcal{K}_E$ assigns each edge a kind, with
+    $\mathcal{K}_E = \{\textsc{direct}, \textsc{conditional},
+    \textsc{parallel}, \textsc{loop}\}$.
+  \item $T: V \to 2^{\text{ToolNames}}$ maps each node to a (possibly
+    empty) set of declared tool names; $T(v)$ is non-empty only when
+    $\kappa_V(v) = \textsc{tool}$.
+  \item $v_0 \in V$ with $\kappa_V(v_0) = \textsc{entry}$ is the unique
+    entry node.
+  \item $V_f \subseteq V$ with $\kappa_V(v) = \textsc{exit}$ for all
+    $v \in V_f$ is the set of exit nodes.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Execution trace]
+\label{def:trace}
+A \emph{trace} of $G$ is a finite sequence $\pi = v_0 v_1 \ldots v_n$
+such that $(v_i, v_{i+1}) \in E$ for all $0 \le i < n$.
+We write $\mathrm{Traces}(G)$ for the set of all maximal traces---those
+ending at a node in $V_f$ or at a node with no outgoing edges.
+\end{definition}
+
+\begin{definition}[Structural predicates]
+\label{def:structural_predicates}
+We define five structural predicates over $G$:
+\begin{enumerate}
+  \item $\mathrm{ExitReach}(G) \iff \forall v_f \in V_f.\;
+    v_f \in \mathrm{Reach}(v_0)$, where $\mathrm{Reach}(v_0)$ is the
+    set of nodes reachable from $v_0$ via directed paths.
+  \item $\mathrm{NoDead}(G) \iff \forall v \in V.\;
+    \kappa_V(v) \neq \textsc{exit} \implies
+    \exists u \in V.\; (v,u) \in E$.
+  \item $\mathrm{RouterShape}(G) \iff \forall v \in V.\;
+    \kappa_V(v) = \textsc{router} \implies
+    \forall (v,u) \in E.\; \kappa_E(v,u) = \textsc{conditional}$.
+  \item $\mathrm{HumanGate}(G) \iff \exists v \in V.\;
+    \kappa_V(v) = \textsc{human}$.
+  \item $\mathrm{ToolDecl}(G) \iff \forall v \in V.\;
+    \kappa_V(v) = \textsc{tool} \implies T(v) \neq \emptyset$.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Each predicate is decidable in time linear in $|V| + |E|$.
+Soundness lemmas establishing that passing checks guarantee the
+corresponding trace-level properties are given in
+Appendix~\ref{app:proofs}.
+
+\begin{definition}[Extraction correctness]
+\label{def:extraction_correctness}
+An extractor $\mathcal{E}_F$ for framework $F$ is \emph{correct} with
+respect to a workflow object $W$ if the extracted graph
+$G = \mathcal{E}_F(W)$ satisfies:
+(i)~every node in $G$ corresponds to a computation step in $W$ (no
+phantom nodes),
+(ii)~every computation step in $W$ appears as a node in $G$ (no missing
+nodes), and
+(iii)~$(u, v) \in E$ if and only if $W$ permits a transition from the
+step corresponding to $u$ to the step corresponding to $v$.
+Conditions (i)--(ii) correspond to node precision/recall~$= 1$;
+condition~(iii) corresponds to edge precision/recall~$= 1$.
+We validate this empirically in Section~\ref{sec:accuracy}.
+\end{definition}
 
 \subsection{Framework extractors}
 Agentproof includes extractors that map framework objects into this model:

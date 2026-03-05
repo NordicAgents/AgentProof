@@ -2,25 +2,47 @@
 \label{sec:limitations}
 
 \paragraph{Workflow structure vs.\ LLM semantics.}
-Agentproof verifies properties of the workflow \emph{topology} and the event
-stream emitted by execution. It does not prove semantic properties of LLM
-outputs (e.g., factuality or intent), which depend on non-deterministic model
-behavior and prompt/context choices.
+Our approach verifies properties of the workflow \emph{topology} and
+the event stream emitted by execution. It does not prove semantic
+properties of LLM outputs (e.g., factuality or intent), which depend
+on non-deterministic model behavior and prompt/context choices.
 
-\paragraph{Extractor best-effort.}
-Frameworks evolve quickly and expose different internal representations across
-versions. The extractors in Agentproof are designed to be robust, but they
-inevitably involve heuristics (e.g., recognizing human review nodes by naming or
-metadata).
+\paragraph{Extractor heuristics.}
+Frameworks evolve quickly and expose different internal representations
+across versions. The extractors employ heuristics (e.g., recognizing
+human review nodes by naming conventions) that may not generalize to
+all codebases. Section~\ref{sec:accuracy} discusses classification
+accuracy in detail.
+
+\paragraph{Runtime graph mutation (T3).}
+Some frameworks allow dynamic modification of the workflow graph during
+execution. If the post-mutation graph is not re-verified, static
+guarantees no longer hold. Integrating re-verification hooks into
+framework event systems is a natural extension.
 
 \paragraph{Temporal DSL expressiveness.}
-The current temporal policy DSL is intentionally small and focused on common
-safety patterns; it is not a full LTL implementation. Extending to richer
-temporal fragments and to full graph $\times$ automaton model checking is a
-natural next step.
+The DSL covers seven expression forms targeting the safety fragment of
+LTL but does not support full LTL, nested temporal operators beyond
+two levels, or past-time modalities. In our evaluation, all 15
+concrete policies fit within the seven-form fragment (100\% coverage),
+suggesting the fragment is sufficient for common agent safety
+requirements. Extending to richer fragments and to full graph
+$\times$ automaton product construction is future work.
 
-\paragraph{Library integration.}
-Some structural analyses are currently demonstrated in examples. Future work
-includes packaging a stable verification API that returns structured reports and
-counterexample traces, suitable for CI gating and developer feedback.
+\paragraph{False positive management.}
+Some flagged defects may be intentional design choices (e.g., dead-end
+nodes used as intentional error-halting states, or workflows that
+intentionally omit human gates for low-risk tasks). Future work
+includes annotation-based suppression (e.g.,
+\texttt{\# agentproof: ignore dead-end} comments), severity tiers,
+and configurable verification profiles. The library already supports
+a \texttt{suppressions} parameter for node-level exclusions.
+
+\paragraph{Corpus scale.}
+Our evaluation uses 18 curated workflows. We provide a GitHub mining
+pipeline (\texttt{scripts/scrape\_workflows.py}) and an AST-based
+fallback extractor (\texttt{scripts/ast\_extractor.py}) for building
+larger real-world corpora. A large-scale study across hundreds of
+open-source repositories would strengthen the empirical findings
+and provide a reusable benchmark for the community.
 

@@ -1,0 +1,477 @@
+{
+  "workflow": "crewai_hiring_pipeline",
+  "framework": "crewai",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "screen",
+        "action_type": "tool",
+        "tool_name": "parse_resume",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "score",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "interview_prep",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "schedule",
+        "action_type": "tool",
+        "tool_name": "calendar_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "review",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

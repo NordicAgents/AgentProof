@@ -1,0 +1,96 @@
+{
+  "name": "autogen_debate",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "moderator",
+      "kind": "router",
+      "label": "debate_moderator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "pro",
+      "kind": "llm",
+      "label": "pro_debater",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "con",
+      "kind": "llm",
+      "label": "con_debater",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "judge",
+      "kind": "llm",
+      "label": "judge",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "moderator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "moderator",
+      "target": "pro",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "moderator",
+      "target": "con",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "pro",
+      "target": "moderator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "con",
+      "target": "moderator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "moderator",
+      "target": "judge",
+      "kind": "conditional",
+      "condition": "debate_complete"
+    },
+    {
+      "source": "judge",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

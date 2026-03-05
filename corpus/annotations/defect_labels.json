@@ -1,0 +1,17 @@
+{
+  "adk_customer_onboarding:human_presence": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "adk_document_processing:human_presence": {"annotator_1": "tp", "annotator_2": "arguable", "agreed": "arguable"},
+  "autogen_debate:router_shape": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "autogen_debate:human_presence": {"annotator_1": "arguable", "annotator_2": "arguable", "agreed": "arguable"},
+  "autogen_round_robin_brainstorm:exit_reachability": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "autogen_round_robin_brainstorm:human_presence": {"annotator_1": "arguable", "annotator_2": "fp", "agreed": "arguable"},
+  "crewai_content_pipeline:human_presence": {"annotator_1": "tp", "annotator_2": "arguable", "agreed": "arguable"},
+  "crewai_data_analysis:human_presence": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "crewai_data_analysis:tool_declarations": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "crewai_marketing_campaign:dead_ends": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "crewai_marketing_campaign:human_presence": {"annotator_1": "tp", "annotator_2": "arguable", "agreed": "arguable"},
+  "lg_code_assistant:human_presence": {"annotator_1": "fp", "annotator_2": "arguable", "agreed": "arguable"},
+  "lg_email_triage:dead_ends": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "lg_email_triage:human_presence": {"annotator_1": "tp", "annotator_2": "tp", "agreed": "tp"},
+  "lg_rag_pipeline:human_presence": {"annotator_1": "fp", "annotator_2": "fp", "agreed": "fp"}
+}
