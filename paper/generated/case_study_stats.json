@@ -1,41 +1,14 @@
 [
   {
-    "extract_median_ms": 0.006124959327280521,
+    "extract_median_ms": 0.1855630544014275,
     "extract_runs": 200,
     "extract_warmup": 20,
     "graph": {
       "edge_kind_counts": {
         "conditional": 2,
-        "direct": 5
+        "direct": 6
       },
-      "edges": 7,
-      "framework": "manual",
-      "name": "data_pipeline",
-      "node_kind_counts": {
-        "entry": 1,
-        "exit": 1,
-        "human": 1,
-        "llm": 1,
-        "router": 1,
-        "tool": 2
-      },
-      "nodes": 7
-    },
-    "label": "Manual",
-    "notes": "Manual construction (no framework extractor).",
-    "status": "ok",
-    "study_id": "manual_pipeline"
-  },
-  {
-    "extract_median_ms": 0.13383349869400263,
-    "extract_runs": 200,
-    "extract_warmup": 20,
-    "graph": {
-      "edge_kind_counts": {
-        "conditional": 2,
-        "direct": 4
-      },
-      "edges": 6,
+      "edges": 8,
       "framework": "langgraph",
       "name": "LangGraph",
       "node_kind_counts": {
@@ -43,44 +16,202 @@
         "exit": 1,
         "human": 1,
         "llm": 2,
-        "router": 1
+        "router": 1,
+        "tool": 2
       },
-      "nodes": 6
+      "nodes": 8
     },
-    "label": "LangGraph",
-    "notes": "Compiled StateGraph extracted via extract_langgraph().",
+    "label": "LangGraph (incident)",
+    "notes": "Incident triage StateGraph with tool metadata + human approval node.",
     "status": "ok",
-    "study_id": "langgraph_customer_support"
+    "study_id": "langgraph_incident_response",
+    "verification": {
+      "structural": {
+        "checks": [
+          {
+            "check_id": "exit_reachability",
+            "missing_exits": [],
+            "passed": true
+          },
+          {
+            "check_id": "dead_ends",
+            "dead_ends": [],
+            "passed": true
+          },
+          {
+            "check_id": "router_shape",
+            "passed": true,
+            "router_count": 1,
+            "violations": []
+          },
+          {
+            "check_id": "human_presence",
+            "human_nodes": [
+              "human_approval"
+            ],
+            "passed": true,
+            "required": true
+          },
+          {
+            "check_id": "tool_declarations",
+            "passed": true,
+            "tool_node_count": 2,
+            "tool_nodes_missing_tools": []
+          }
+        ],
+        "passed_count": 5,
+        "total": 5
+      },
+      "temporal": {
+        "rule_count": 2,
+        "rules": [
+          {
+            "dsl": "G !tool:drop_database",
+            "on_violation": "halt",
+            "rule_id": "lg_forbid_drop_db"
+          },
+          {
+            "dsl": "decision:mitigate -> F action:human_approval",
+            "on_violation": "escalate",
+            "rule_id": "lg_mitigate_requires_approval_between"
+          }
+        ],
+        "summary": {
+          "BLOCKED": 0,
+          "ESCALATE": 1,
+          "HALT": 1,
+          "PASS": 1
+        },
+        "trace_count": 3,
+        "traces": {
+          "forbidden_tool": {
+            "status": "HALT",
+            "violated_rules": [
+              "lg_forbid_drop_db"
+            ]
+          },
+          "happy_path": {
+            "status": "PASS",
+            "violated_rules": []
+          },
+          "policy_violation": {
+            "status": "ESCALATE",
+            "violated_rules": [
+              "lg_mitigate_requires_approval_between"
+            ]
+          }
+        }
+      }
+    }
   },
   {
-    "extract_median_ms": 0.014708959497511387,
+    "extract_median_ms": 0.01862493809312582,
     "extract_runs": 200,
     "extract_warmup": 20,
     "graph": {
       "edge_kind_counts": {
-        "direct": 10,
+        "direct": 12,
         "loop": 1,
-        "parallel": 2
+        "parallel": 3
       },
-      "edges": 13,
+      "edges": 16,
       "framework": "adk",
-      "name": "pipeline",
+      "name": "compliance_pipeline",
       "node_kind_counts": {
         "entry": 1,
         "exit": 1,
+        "human": 1,
         "llm": 3,
         "subgraph": 3,
-        "tool": 3
+        "tool": 4
       },
-      "nodes": 11
+      "nodes": 13
     },
-    "label": "ADK",
-    "notes": "ADK agent tree extracted via extract_adk().",
+    "label": "ADK (compliance)",
+    "notes": "Sequential+parallel+loop compliance pipeline with human signoff gate.",
     "status": "ok",
-    "study_id": "adk_pipeline"
+    "study_id": "adk_compliance_pipeline",
+    "verification": {
+      "structural": {
+        "checks": [
+          {
+            "check_id": "exit_reachability",
+            "missing_exits": [],
+            "passed": true
+          },
+          {
+            "check_id": "dead_ends",
+            "dead_ends": [],
+            "passed": true
+          },
+          {
+            "check_id": "router_shape",
+            "passed": true,
+            "router_count": 0,
+            "violations": []
+          },
+          {
+            "check_id": "human_presence",
+            "human_nodes": [
+              "human_signoff"
+            ],
+            "passed": true,
+            "required": true
+          },
+          {
+            "check_id": "tool_declarations",
+            "passed": true,
+            "tool_node_count": 4,
+            "tool_nodes_missing_tools": []
+          }
+        ],
+        "passed_count": 5,
+        "total": 5
+      },
+      "temporal": {
+        "rule_count": 2,
+        "rules": [
+          {
+            "dsl": "G !tool:exfiltrate_data",
+            "on_violation": "halt",
+            "rule_id": "adk_forbid_exfil"
+          },
+          {
+            "dsl": "read_only U action:human_signoff",
+            "on_violation": "block",
+            "rule_id": "adk_read_only_until_signoff"
+          }
+        ],
+        "summary": {
+          "BLOCKED": 1,
+          "ESCALATE": 0,
+          "HALT": 1,
+          "PASS": 1
+        },
+        "trace_count": 3,
+        "traces": {
+          "forbidden_tool": {
+            "status": "HALT",
+            "violated_rules": [
+              "adk_forbid_exfil"
+            ]
+          },
+          "happy_path": {
+            "status": "PASS",
+            "violated_rules": []
+          },
+          "policy_violation": {
+            "status": "BLOCKED",
+            "violated_rules": [
+              "adk_read_only_until_signoff"
+            ]
+          }
+        }
+      }
+    }
   },
   {
-    "extract_median_ms": 0.005917041562497616,
+    "extract_median_ms": 0.0066659413278102875,
     "extract_runs": 200,
     "extract_warmup": 20,
     "graph": {
@@ -93,107 +224,92 @@
       "node_kind_counts": {
         "entry": 1,
         "exit": 1,
+        "human": 1,
         "llm": 3
-      },
-      "nodes": 5
-    },
-    "label": "AutoGen (mod)",
-    "notes": "List + explicit transition relation.",
-    "status": "ok",
-    "study_id": "autogen_moderated"
-  },
-  {
-    "extract_median_ms": 0.005832989700138569,
-    "extract_runs": 200,
-    "extract_warmup": 20,
-    "graph": {
-      "edge_kind_counts": {
-        "direct": 4
-      },
-      "edges": 4,
-      "framework": "autogen",
-      "name": "RoundRobinGroupChat",
-      "node_kind_counts": {
-        "entry": 1,
-        "exit": 1,
-        "llm": 3
-      },
-      "nodes": 5
-    },
-    "label": "AutoGen (RR)",
-    "notes": "RoundRobinGroupChat extracted via built-in topology.",
-    "status": "ok",
-    "study_id": "autogen_round_robin"
-  },
-  {
-    "extract_median_ms": 0.005499925464391708,
-    "extract_runs": 200,
-    "extract_warmup": 20,
-    "graph": {
-      "edge_kind_counts": {
-        "direct": 4
-      },
-      "edges": 4,
-      "framework": "autogen",
-      "name": "autogen",
-      "node_kind_counts": {
-        "entry": 1,
-        "exit": 1,
-        "llm": 3
-      },
-      "nodes": 5
-    },
-    "label": "AutoGen (list)",
-    "notes": "List + explicit transition relation.",
-    "status": "ok",
-    "study_id": "autogen_direct_list"
-  },
-  {
-    "extract_median_ms": 0.008874922059476376,
-    "extract_runs": 200,
-    "extract_warmup": 20,
-    "graph": {
-      "edge_kind_counts": {
-        "direct": 6
-      },
-      "edges": 6,
-      "framework": "crewai",
-      "name": "crew",
-      "node_kind_counts": {
-        "entry": 1,
-        "exit": 1,
-        "llm": 4
       },
       "nodes": 6
     },
-    "label": "CrewAI (seq)",
-    "notes": "Sequential process crew.",
+    "label": "AutoGen (change-control)",
+    "notes": "Acyclic speaker transitions with UserProxyAgent approver gate.",
     "status": "ok",
-    "study_id": "crewai_sequential"
-  },
-  {
-    "extract_median_ms": 0.008999952115118504,
-    "extract_runs": 200,
-    "extract_warmup": 20,
-    "graph": {
-      "edge_kind_counts": {
-        "conditional": 3,
-        "direct": 6
+    "study_id": "autogen_change_control",
+    "verification": {
+      "structural": {
+        "checks": [
+          {
+            "check_id": "exit_reachability",
+            "missing_exits": [],
+            "passed": true
+          },
+          {
+            "check_id": "dead_ends",
+            "dead_ends": [],
+            "passed": true
+          },
+          {
+            "check_id": "router_shape",
+            "passed": true,
+            "router_count": 0,
+            "violations": []
+          },
+          {
+            "check_id": "human_presence",
+            "human_nodes": [
+              "human_approver"
+            ],
+            "passed": true,
+            "required": true
+          },
+          {
+            "check_id": "tool_declarations",
+            "passed": true,
+            "tool_node_count": 0,
+            "tool_nodes_missing_tools": []
+          }
+        ],
+        "passed_count": 5,
+        "total": 5
       },
-      "edges": 9,
-      "framework": "crewai",
-      "name": "crew",
-      "node_kind_counts": {
-        "entry": 1,
-        "exit": 1,
-        "llm": 3,
-        "router": 1
-      },
-      "nodes": 6
-    },
-    "label": "CrewAI (hier)",
-    "notes": "Hierarchical process crew.",
-    "status": "ok",
-    "study_id": "crewai_hierarchical"
+      "temporal": {
+        "rule_count": 2,
+        "rules": [
+          {
+            "dsl": "G !tool:send_email",
+            "on_violation": "halt",
+            "rule_id": "ag_forbid_email"
+          },
+          {
+            "dsl": "decision:deploy -> F action:human_approval",
+            "on_violation": "halt",
+            "rule_id": "ag_deploy_needs_human_between"
+          }
+        ],
+        "summary": {
+          "BLOCKED": 0,
+          "ESCALATE": 0,
+          "HALT": 2,
+          "PASS": 1
+        },
+        "trace_count": 3,
+        "traces": {
+          "forbidden_tool": {
+            "status": "HALT",
+            "violated_rules": [
+              "ag_forbid_email"
+            ]
+          },
+          "happy_path": {
+            "status": "PASS",
+            "violated_rules": []
+          },
+          "policy_violation": {
+            "status": "HALT",
+            "violated_rules": [
+              "ag_deploy_needs_human_between"
+            ]
+          }
+        }
+      }
+    }
   }
 ]

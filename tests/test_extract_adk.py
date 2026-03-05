@@ -53,6 +53,14 @@ class TestLeafAgent:
         assert searcher.kind == NodeKind.TOOL
         assert searcher.tools == ("web_search",)
 
+    def test_human_name_is_classified_as_human(self):
+        agent = LlmAgent("human_signoff", model="gemini-pro")
+        graph = extract_adk(agent)
+
+        human = node_by_id(graph, "human_signoff")
+        assert human is not None
+        assert human.kind == NodeKind.HUMAN
+
 
 class TestSequentialAgent:
     def test_chain(self):

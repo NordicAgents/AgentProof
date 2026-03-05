@@ -8,7 +8,7 @@ Outputs (JSON):
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 import importlib
 import json
 from pathlib import Path
@@ -19,6 +19,7 @@ from typing import Any, Callable
 
 from agentproof.graph.model import AgentGraph, EdgeKind, NodeKind
 from agentproof.monitor.ltl import MonitorRuleSpec, compile_monitor_rule, evaluate_monitors
+from agentproof.verify import run_structural_checks
 
 
 PAPER_DIR = Path(__file__).resolve().parents[1]
@@ -67,6 +68,9 @@ class CaseStudy:
     label: str
     build_native: Callable[[], Any]
     extract_graph: Callable[[Any], AgentGraph]
+    temporal_rules: tuple[MonitorRuleSpec, ...] = ()
+    temporal_traces: dict[str, list[dict[str, Any]]] | None = None
+    require_human: bool = True
     notes: str = ""
 
 
@@ -80,116 +84,116 @@ def _safe_import(module: str):
 def _case_studies() -> list[CaseStudy]:
     studies: list[CaseStudy] = []
 
-    # Manual graph (already an AgentGraph).
-    ex_full = _safe_import("examples.full_verification")
-    if isinstance(ex_full, Exception):
-        pass
-    else:
-        studies.append(
-            CaseStudy(
-                study_id="manual_pipeline",
-                label="Manual",
-                build_native=lambda: None,
-                extract_graph=lambda _unused: ex_full.build_data_pipeline_graph(),
-                notes="Manual construction (no framework extractor).",
-            )
-        )
-
-    # LangGraph.
-    ex_lg = _safe_import("examples.langgraph_customer_support")
+    # LangGraph: incident response triage.
+    ex_lg = _safe_import("examples.langgraph_incident_response")
     if not isinstance(ex_lg, Exception):
         from agentproof.graph import extract_langgraph
 
-        compiled = ex_lg.build_customer_support_graph()
+        compiled = ex_lg.build_incident_response_graph()
         studies.append(
             CaseStudy(
-                study_id="langgraph_customer_support",
-                label="LangGraph",
+                study_id="langgraph_incident_response",
+                label="LangGraph (incident)",
                 build_native=lambda: compiled,
                 extract_graph=extract_langgraph,
-                notes="Compiled StateGraph extracted via extract_langgraph().",
+                temporal_rules=tuple(ex_lg.TEMPORAL_RULES),
+                temporal_traces=dict(ex_lg.TEMPORAL_TRACES),
+                notes="Incident triage StateGraph with tool metadata + human approval node.",
             )
         )
 
-    # Google ADK.
-    ex_adk = _safe_import("examples.adk_pipeline")
+    # Google ADK: compliance pipeline.
+    ex_adk = _safe_import("examples.adk_compliance_pipeline")
     if not isinstance(ex_adk, Exception):
         from agentproof.graph import extract_adk
 
-        pipeline = ex_adk.build_pipeline()
+        pipeline = ex_adk.build_compliance_pipeline()
         studies.append(
             CaseStudy(
-                study_id="adk_pipeline",
-                label="ADK",
+                study_id="adk_compliance_pipeline",
+                label="ADK (compliance)",
                 build_native=lambda: pipeline,
                 extract_graph=extract_adk,
-                notes="ADK agent tree extracted via extract_adk().",
+                temporal_rules=tuple(ex_adk.TEMPORAL_RULES),
+                temporal_traces=dict(ex_adk.TEMPORAL_TRACES),
+                notes="Sequential+parallel+loop compliance pipeline with human signoff gate.",
             )
         )
 
-    # AutoGen variants.
-    ex_ag = _safe_import("examples.autogen_debate")
+    # AutoGen AgentChat: change-control board.
+    ex_ag = _safe_import("examples.autogen_change_control")
     if not isinstance(ex_ag, Exception):
         from agentproof.graph import extract_autogen
 
-        agents, transitions = ex_ag.build_moderated_debate()
-        rr_team = ex_ag.build_round_robin()
-        direct_agents, direct_transitions = ex_ag.build_direct_list()
-
-        studies.extend(
-            [
-                CaseStudy(
-                    study_id="autogen_moderated",
-                    label="AutoGen (mod)",
-                    build_native=lambda: (agents, transitions),
-                    extract_graph=lambda payload: extract_autogen(payload[0], allowed_transitions=payload[1]),
-                    notes="List + explicit transition relation.",
-                ),
-                CaseStudy(
-                    study_id="autogen_round_robin",
-                    label="AutoGen (RR)",
-                    build_native=lambda: rr_team,
-                    extract_graph=extract_autogen,
-                    notes="RoundRobinGroupChat extracted via built-in topology.",
-                ),
-                CaseStudy(
-                    study_id="autogen_direct_list",
-                    label="AutoGen (list)",
-                    build_native=lambda: (direct_agents, direct_transitions),
-                    extract_graph=lambda payload: extract_autogen(payload[0], allowed_transitions=payload[1]),
-                    notes="List + explicit transition relation.",
-                ),
-            ]
-        )
-
-    # CrewAI variants.
-    ex_cw = _safe_import("examples.crewai_research_crew")
-    if not isinstance(ex_cw, Exception):
-        from agentproof.graph import extract_crewai
-
-        seq = ex_cw.build_research_crew()
-        hier = ex_cw.build_hierarchical_crew()
-
-        studies.extend(
-            [
-                CaseStudy(
-                    study_id="crewai_sequential",
-                    label="CrewAI (seq)",
-                    build_native=lambda: seq,
-                    extract_graph=extract_crewai,
-                    notes="Sequential process crew.",
-                ),
-                CaseStudy(
-                    study_id="crewai_hierarchical",
-                    label="CrewAI (hier)",
-                    build_native=lambda: hier,
-                    extract_graph=extract_crewai,
-                    notes="Hierarchical process crew.",
-                ),
-            ]
+        agents, transitions = ex_ag.build_change_control_team()
+        studies.append(
+            CaseStudy(
+                study_id="autogen_change_control",
+                label="AutoGen (change-control)",
+                build_native=lambda: (agents, transitions),
+                extract_graph=lambda payload: extract_autogen(payload[0], allowed_transitions=payload[1]),
+                temporal_rules=tuple(ex_ag.TEMPORAL_RULES),
+                temporal_traces=dict(ex_ag.TEMPORAL_TRACES),
+                notes="Acyclic speaker transitions with UserProxyAgent approver gate.",
+            )
         )
 
     return studies
+
+
+def _decision_severity(decision: Any) -> int:
+    if bool(getattr(decision, "escalate", False)):
+        return 3
+    if bool(getattr(decision, "halt", False)):
+        return 2
+    if bool(getattr(decision, "denied", False)):
+        return 1
+    return 0
+
+
+def _severity_label(level: int) -> str:
+    return {0: "PASS", 1: "BLOCKED", 2: "HALT", 3: "ESCALATE"}[int(level)]
+
+
+def _verify_temporal(
+    rules: tuple[MonitorRuleSpec, ...],
+    traces: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    compiled = tuple(compile_monitor_rule(r) for r in rules)
+
+    trace_results: dict[str, Any] = {}
+    summary = {"PASS": 0, "BLOCKED": 0, "HALT": 0, "ESCALATE": 0}
+
+    for trace_id in sorted(traces.keys()):
+        events = traces[trace_id]
+        state: dict[str, int] = {}
+        worst = 0
+        violated: set[str] = set()
+
+        for ev in events:
+            state, snapshots, decision = evaluate_monitors(compiled, state, ev)
+            worst = max(worst, _decision_severity(decision))
+            for snap in snapshots:
+                if snap.violation:
+                    violated.add(snap.rule_id)
+
+        status = _severity_label(worst)
+        summary[status] = int(summary.get(status, 0)) + 1
+        trace_results[trace_id] = {
+            "status": status,
+            "violated_rules": sorted(violated),
+        }
+
+    return {
+        "rule_count": len(rules),
+        "trace_count": len(traces),
+        "rules": [
+            {"rule_id": r.rule_id, "dsl": r.dsl, "on_violation": r.on_violation}
+            for r in rules
+        ],
+        "traces": trace_results,
+        "summary": summary,
+    }
 
 
 def collect_case_study_stats() -> list[dict[str, Any]]:
@@ -210,6 +214,12 @@ def collect_case_study_stats() -> list[dict[str, Any]]:
             entry["extract_median_ms"] = _median_time_ms(lambda: study.extract_graph(native), runs=200, warmup=20)
             entry["extract_runs"] = 200
             entry["extract_warmup"] = 20
+
+            verification: dict[str, Any] = {}
+            verification["structural"] = run_structural_checks(graph, require_human=study.require_human)
+            if study.temporal_rules and study.temporal_traces is not None:
+                verification["temporal"] = _verify_temporal(study.temporal_rules, study.temporal_traces)
+            entry["verification"] = verification
         except Exception as e:  # noqa: BLE001
             entry["status"] = "skipped"
             entry["error"] = f"{type(e).__name__}: {e}"

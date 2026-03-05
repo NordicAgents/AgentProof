@@ -1,7 +1,7 @@
 {
   "compile": [
     {
-      "compile_median_ms": 0.0025419285520911217,
+      "compile_median_ms": 0.002540997229516506,
       "compiled_states": [
         0,
         1,
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "compile_median_ms": 0.00500003807246685,
+      "compile_median_ms": 0.004959059879183769,
       "compiled_states": [
         0,
         1,
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "compile_median_ms": 0.00500003807246685,
+      "compile_median_ms": 0.005124951712787151,
       "compiled_states": [
         0,
         1,
@@ -48,7 +48,7 @@
   ],
   "evaluate": {
     "event_count": 1000,
-    "median_events_per_sec": 328461.2247721796,
+    "median_events_per_sec": 327936.2418697322,
     "monitor_count": 3,
     "rules": [
       "forbidden_tool",

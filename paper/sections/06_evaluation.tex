@@ -7,10 +7,12 @@ workflows, and (ii) microbenchmarks for temporal monitor compilation and event
 evaluation throughput.
 
 \paragraph{Case studies.}
-We use the example workflows included with the repository: a manual data
-pipeline graph, a LangGraph customer support workflow, a hierarchical Google ADK
-pipeline, AutoGen team topologies, and CrewAI research crews. These examples are
-constructed without executing any external API calls.
+We use three representative workflows built using real framework APIs:
+(i) a LangGraph incident response triage and mitigation graph,
+(ii) a hierarchical Google ADK compliance document pipeline (sequential +
+parallel + loop) with a human signoff step, and
+(iii) an AutoGen AgentChat change-control board topology with a human approver.
+These workflows are constructed without executing any external API calls.
 
 \paragraph{Methodology.}
 For each workflow, we extract an \texttt{AgentGraph} and compute node/edge counts
@@ -18,14 +20,36 @@ as well as counts by node and edge kind. We measure extractor runtime as the
 median over 200 runs (after 20 warm-up runs) on the same in-memory workflow
 object. For temporal monitors, we measure compilation time as the median over
 500 runs per DSL string and evaluation throughput (events/s) over a fixed
-synthetic 1{,}000-event stream.
+synthetic 1{,}000-event stream. We also run Agentproof's structural checks on
+each extracted graph and evaluate a small temporal policy suite over three
+representative traces per workflow (one safe, two unsafe).
 
 \input{generated/case_study_table.tex}
+\input{generated/case_study_verification_table.tex}
 \input{generated/bench_table.tex}
+
+\paragraph{LangGraph incident response.}
+The incident response workflow uses a conditional router to branch into either
+automatic mitigation or a human approval step before executing mitigation tools.
+We verify \texttt{G !tool:drop\_database} and
+\texttt{decision:mitigate -> F action:human\_approval}. The happy-path trace
+passes, while unsafe traces halt on the forbidden tool and escalate on missing
+approval between repeated mitigation decisions (Table~\ref{tab:case-study-verification}).
+
+\paragraph{ADK compliance pipeline.}
+The ADK pipeline composes sequential, parallel, and loop agents for document
+collection, analysis, remediation, and human signoff. We verify
+\texttt{G !tool:exfiltrate\_data} and \texttt{read\_only U action:human\_signoff}.
+The monitors halt on exfiltration attempts and block writes prior to signoff.
+
+\paragraph{AutoGen change-control board.}
+The AutoGen case study models an acyclic speaker transition topology ending in
+a \texttt{UserProxyAgent} approver. We verify \texttt{G !tool:send\_email} and
+\texttt{decision:deploy -> F action:human\_approval}; unsafe traces halt on email
+attempts and on repeated deploy decisions without a human approval event.
 
 \paragraph{Discussion.}
 Across case studies, extracted graphs are small enough that structural checks
 complete in time linear in graph size. Temporal monitoring is also lightweight:
 rules compile into constant-size automata and evaluation performs a constant
 number of table lookups per event per rule.
-

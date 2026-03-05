@@ -21,6 +21,9 @@ def _classify_agent(agent: Any) -> NodeKind:
     type_name = _agent_type_name(agent)
     if type_name in ("SequentialAgent", "ParallelAgent", "LoopAgent"):
         return NodeKind.SUBGRAPH
+    agent_name = getattr(agent, "name", "") or ""
+    if isinstance(agent_name, str) and "human" in agent_name.lower():
+        return NodeKind.HUMAN
     if hasattr(agent, "tools") and agent.tools:
         return NodeKind.TOOL
     if hasattr(agent, "model") and agent.model:
