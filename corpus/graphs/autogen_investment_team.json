@@ -1,0 +1,100 @@
+{
+  "name": "autogen_investment_team",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "analyst",
+      "kind": "llm",
+      "label": "financial_analyst",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "risk",
+      "kind": "llm",
+      "label": "risk_assessor",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "compliance",
+      "kind": "llm",
+      "label": "compliance_officer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "market_data",
+      "kind": "tool",
+      "label": "market_data",
+      "tools": [
+        "yahoo_finance",
+        "bloomberg_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "approver",
+      "kind": "human",
+      "label": "investment_committee",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyst",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "analyst",
+      "target": "market_data",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "market_data",
+      "target": "risk",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "risk",
+      "target": "compliance",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "compliance",
+      "target": "approver",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "approver",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

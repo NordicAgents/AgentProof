@@ -73,3 +73,67 @@ def adjacency(graph: AgentGraph) -> dict[str, list[str]]:
     for e in graph.edges:
         adj.setdefault(e.source, []).append(e.target)
     return adj
+
+
+# ---------------------------------------------------------------------------
+# Serialization
+# ---------------------------------------------------------------------------
+
+def graph_to_dict(graph: AgentGraph) -> dict[str, Any]:
+    """Serialize an AgentGraph to a JSON-compatible dict."""
+    return {
+        "name": graph.name,
+        "framework": graph.framework,
+        "entry_id": graph.entry_id,
+        "exit_ids": list(graph.exit_ids),
+        "nodes": [
+            {
+                "id": n.id,
+                "kind": n.kind.value,
+                "label": n.label,
+                "tools": list(n.tools),
+                "metadata": {k: v for k, v in n.metadata},
+            }
+            for n in graph.nodes
+        ],
+        "edges": [
+            {
+                "source": e.source,
+                "target": e.target,
+                "kind": e.kind.value,
+                "condition": e.condition,
+            }
+            for e in graph.edges
+        ],
+    }
+
+
+def graph_from_dict(data: dict[str, Any]) -> AgentGraph:
+    """Deserialize an AgentGraph from a dict (inverse of graph_to_dict)."""
+    nodes = tuple(
+        GraphNode(
+            id=n["id"],
+            kind=NodeKind(n["kind"]),
+            label=n.get("label", ""),
+            tools=tuple(n.get("tools", ())),
+            metadata=tuple((k, v) for k, v in n.get("metadata", {}).items()),
+        )
+        for n in data["nodes"]
+    )
+    edges = tuple(
+        GraphEdge(
+            source=e["source"],
+            target=e["target"],
+            kind=EdgeKind(e.get("kind", "direct")),
+            condition=e.get("condition", ""),
+        )
+        for e in data["edges"]
+    )
+    return AgentGraph(
+        name=data["name"],
+        framework=data["framework"],
+        nodes=nodes,
+        edges=edges,
+        entry_id=data["entry_id"],
+        exit_ids=tuple(data.get("exit_ids", ())),
+    )

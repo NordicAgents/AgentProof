@@ -1,0 +1,161 @@
+{
+  "name": "lg_financial_advisor",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "intake",
+      "kind": "llm",
+      "label": "client_intake",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "portfolio_fetch",
+      "kind": "tool",
+      "label": "portfolio_fetch",
+      "tools": [
+        "brokerage_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "market_analysis",
+      "kind": "tool",
+      "label": "market_analysis",
+      "tools": [
+        "market_data_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "risk_model",
+      "kind": "llm",
+      "label": "risk_modeler",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "recommendation",
+      "kind": "llm",
+      "label": "recommendation_engine",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "compliance_check",
+      "kind": "llm",
+      "label": "compliance_checker",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "compliance_router",
+      "kind": "router",
+      "label": "compliance_decision",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "advisor_review",
+      "kind": "human",
+      "label": "human_advisor",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "execute_trades",
+      "kind": "tool",
+      "label": "trade_executor",
+      "tools": [
+        "trading_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "intake",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "intake",
+      "target": "portfolio_fetch",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "portfolio_fetch",
+      "target": "market_analysis",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "market_analysis",
+      "target": "risk_model",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "risk_model",
+      "target": "recommendation",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "recommendation",
+      "target": "compliance_check",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "compliance_check",
+      "target": "compliance_router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "compliance_router",
+      "target": "advisor_review",
+      "kind": "conditional",
+      "condition": "needs_review"
+    },
+    {
+      "source": "compliance_router",
+      "target": "execute_trades",
+      "kind": "conditional",
+      "condition": "auto_approved"
+    },
+    {
+      "source": "advisor_review",
+      "target": "execute_trades",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "execute_trades",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

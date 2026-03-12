@@ -1,0 +1,53 @@
+# Example GitHub Actions workflow for running AgentProof verification
+# on agent workflow definitions in CI.
+#
+# Add this to your repository and adjust the workflow path below.
+
+name: AgentProof Verification
+
+on:
+  push:
+    paths:
+      - "workflows/**"
+      - "agents/**"
+  pull_request:
+    paths:
+      - "workflows/**"
+      - "agents/**"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install AgentProof
+        run: pip install agentproof
+
+      - name: Run structural verification
+        run: |
+          python -c "
+          import json, sys
+          from pathlib import Path
+          from agentproof import verify, graph_from_dict
+
+          failed = False
+          for p in sorted(Path('workflows').glob('*.json')):
+              graph = graph_from_dict(json.loads(p.read_text()))
+              report = verify(graph, require_human=True)
+              structural = report['structural']
+              status = 'PASS' if structural['passed_count'] == structural['total'] else 'FAIL'
+              print(f'{status} {p.name}: {structural[\"passed_count\"]}/{structural[\"total\"]} checks passed')
+              if status == 'FAIL':
+                  failed = True
+                  for check in structural['checks']:
+                      if not check['passed']:
+                          print(f'  - {check[\"check_id\"]}: FAILED')
+
+          if failed:
+              sys.exit(1)
+          "

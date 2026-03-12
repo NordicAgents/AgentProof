@@ -1,48 +1,110 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Agent systems increasingly operate over external tools: retrieving data,
-writing tickets, sending messages, mutating databases, and triggering workflows.
-In most orchestration frameworks, this behavior is represented explicitly as a
-workflow graph (or a closely related state machine): nodes encode computation
-steps and edges encode allowable transitions.
+Large language models (LLMs) are increasingly deployed as autonomous
+agents capable of interacting with external tools and
+APIs~\citep{schick2024toolformer, yao2023react}. Rather than generating
+text in isolation, these agents retrieve documents, query databases,
+send messages, and trigger downstream workflows---actions with
+real-world side effects. A growing body of work surveys this
+paradigm~\citep{wang2024agent_survey}, and several orchestration
+frameworks have emerged to structure agent behavior as explicit workflow
+graphs: LangGraph~\citep{langgraph_docs},
+CrewAI~\citep{crewai_docs}, AutoGen~\citep{wu2023autogen}, and Google
+ADK~\citep{google_adk_docs} each represent computation steps as nodes
+and allowable transitions as edges.
 
-Despite this structural representation, safety enforcement is commonly applied
-as a runtime gate---a wrapper around tool calls that checks a policy and either
-allows or blocks execution. Runtime checks are valuable, but they impose latency
-on every step and often detect violations only after the agent has already
-reached unsafe parts of its workflow.
+Despite this rich structural representation, safety enforcement in
+current agent systems remains predominantly a \emph{runtime} concern.
+Tools such as NeMo Guardrails~\citep{nemo_guardrails} and
+LlamaGuard~\citep{llamaguard} intercept individual LLM calls or tool
+invocations and apply content-level or policy-level filters at execution
+time. While valuable for catching toxic outputs and prompt injection
+attempts, these runtime approaches have three fundamental limitations:
+(i)~they impose per-call latency overhead, (ii)~they detect violations
+only when the offending execution path is actually exercised, and
+(iii)~they provide no coverage guarantees over paths that remain
+untriggered during testing.
 
-This paper argues for a complementary perspective: \emph{pre-deployment static
-verification} of agent workflow graphs. Static verification is successful in
-traditional systems because it reasons over an explicit model of behavior
-\citep{clarke1999modelchecking}. When agent behavior is graph-structured, many
-safety properties reduce to reachability, isolation, and temporal constraints
-over the graph topology.
+\paragraph{Motivating example.}
+Consider an email triage agent with the following workflow: incoming
+emails are classified by intent, routed to either an urgent or normal
+handler, drafted, and sent. During iterative development, a developer
+adds a \texttt{draft\_response} node on the normal-priority path but
+forgets to connect it to the \texttt{send} node. The result is a
+\emph{dead end}: normal-priority emails enter the draft stage and
+silently halt. A runtime guardrail would not catch this defect unless
+the normal-priority path is exercised with an email that triggers it.
+A static analysis of the workflow graph, however, immediately flags the
+dead-end node and produces a witness trace:
+\texttt{\_\_start\_\_ $\to$ classify $\to$ router $\to$
+normal\_handler $\to$ draft\_response} (stuck).
 
-We present \textit{Agentproof}, a practical toolkit for static analysis of agent
-workflows. Agentproof focuses on properties that are (a) expressible over the
-workflow graph and (b) independent of LLM text generation semantics. In
-particular, it verifies the \emph{structure} of possible executions, not the
-content of model outputs.
+\paragraph{Research gap.}
+This class of defect---a topological error in the workflow
+graph---cannot be addressed by content-level runtime guardrails. In
+principle, classical model checking techniques could detect such
+errors: reachability analysis, deadlock detection, and temporal logic
+verification are well-established in the formal methods
+literature~\citep{clarke1999modelchecking, baier2008modelchecking}.
+However, general-purpose model checkers such as
+SPIN~\citep{holzmann1997spin} and NuSMV~\citep{cimatti2002nusmv}
+require manual translation of the system under analysis into a
+dedicated modeling language---a prohibitive overhead for agent
+developers iterating on workflow designs. Similarly, the business
+process management (BPM) community has a long tradition of workflow
+soundness verification~\citep{vanderaalst2011bpm}, but these methods
+target visual modeling tools and standardized notations (e.g., BPMN,
+Petri nets), not the programmatic API objects through which agent
+frameworks define their graphs. To date, no system automatically
+extracts and statically verifies agent workflow graphs directly from
+framework source code.
+
+\paragraph{Our approach.}
+This paper argues for \emph{pre-deployment static verification} of
+agent workflow graphs. Our key observation is that modern agent
+frameworks expose workflow structure through their APIs, making the
+graph amenable to automated extraction and analysis. When agent behavior
+is graph-structured, safety properties reduce to reachability,
+isolation, and temporal constraints over the topology---properties that
+can be checked exhaustively without running the
+agent~\citep{clarke1999modelchecking}.
+
+We present \textsc{Agentproof}, a practical system for static analysis
+of agent workflows that focuses on properties (a)~expressible over the
+workflow graph and (b)~independent of LLM text generation semantics.
+Unlike general-purpose model checkers, Agentproof extracts the analysis
+model automatically from framework source code, requiring no manual
+modeling effort.
 
 \paragraph{Contributions.}
-Agentproof makes the following contributions:
 \begin{itemize}
-  \item A unified abstract workflow graph model (\texttt{AgentGraph}) with typed
-  nodes and edges suitable for cross-framework analysis.
-  \item Extractors from several popular agent frameworks into this model,
-  enabling tool- and control-flow aware inspection before deployment.
-  \item A set of structural checks for common workflow defects (unreachable
-  nodes, dead ends, missing human approval gates, and tool declaration issues).
-  \item A small temporal policy DSL compiled to deterministic finite automata
-  for fast event-trace evaluation inspired by temporal logic monitoring
-  \citep{pnueli1977temporal}.
+  \item A cross-framework extraction and integration pipeline: we show
+  that four major agent frameworks (LangGraph, CrewAI, AutoGen, Google
+  ADK) expose enough structure through their APIs to enable fully
+  automatic extraction into a \emph{unified abstract workflow model}
+  with typed nodes and edges---eliminating the manual modeling step
+  required by general-purpose model
+  checkers~(Section~\ref{sec:graph_model}).
+  \item Extractors for LangGraph, CrewAI, AutoGen, and Google ADK that
+  bridge heterogeneous framework representations---each with different
+  entry/exit conventions, edge semantics, and hierarchy
+  models---into a single \texttt{AgentGraph}.
+  \item A pre-deployment verification pipeline comprising five
+  structural checks with \emph{witness trace generation} and a temporal
+  policy DSL covering the safety fragment of LTL, compiled to
+  deterministic finite automata~(Section~\ref{sec:verification_methods}).
+  \item An empirical evaluation on 18 curated workflows demonstrating
+  that structural defects (dead-end nodes, unreachable exits) and
+  policy violations (missing human gates) are common, with sub-second
+  verification for graphs up to 5{,}000
+  nodes~(Section~\ref{sec:evaluation}).
 \end{itemize}
 
 \paragraph{Scope.}
-Agentproof is designed to validate workflow design decisions early: ``can this
-graph reach a destructive tool?'' or ``must human review occur between two
-sensitive actions?'' It does not attempt to prove semantic properties of LLM
-outputs (e.g., truthfulness), which remain inherently non-deterministic.
-
+Our approach validates workflow design decisions early: ``can this
+graph reach a destructive tool?'' or ``must human review occur between
+two sensitive actions?'' It does not attempt to prove semantic
+properties of LLM outputs (e.g., truthfulness), which remain
+inherently non-deterministic. We discuss this boundary precisely in
+our threat model (Section~\ref{sec:threat_model}).

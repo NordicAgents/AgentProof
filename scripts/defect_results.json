@@ -1,0 +1,301 @@
+{
+  "total_workflows": 18,
+  "workflows_with_defects": 10,
+  "workflows_with_structural_defects": 5,
+  "workflows_with_policy_violations": 10,
+  "structural_defect_rate": 27.8,
+  "policy_violation_rate": 55.6,
+  "total_defects": 15,
+  "defects_by_type": {
+    "human_presence": 10,
+    "router_shape": 1,
+    "exit_reachability": 1,
+    "tool_declarations": 1,
+    "dead_ends": 2
+  },
+  "defects_by_category": {
+    "structural": 5,
+    "policy": 10
+  },
+  "defects_by_severity": {
+    "high": 12,
+    "medium": 1,
+    "critical": 1,
+    "low": 1
+  },
+  "precision_by_check": {},
+  "details": [
+    {
+      "name": "adk_compliance_review",
+      "framework": "adk",
+      "nodes": 12,
+      "edges": 14,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "adk_customer_onboarding",
+      "framework": "adk",
+      "nodes": 7,
+      "edges": 6,
+      "passed": 4,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "adk_document_processing",
+      "framework": "adk",
+      "nodes": 7,
+      "edges": 6,
+      "passed": 4,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "adk_incident_response",
+      "framework": "adk",
+      "nodes": 12,
+      "edges": 14,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "autogen_debate",
+      "framework": "autogen",
+      "nodes": 6,
+      "edges": 7,
+      "passed": 3,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "router_shape",
+          "category": "structural",
+          "detail": "1 router(s) with non-conditional edges",
+          "severity": "medium"
+        },
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "autogen_investment_team",
+      "framework": "autogen",
+      "nodes": 7,
+      "edges": 6,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "autogen_round_robin_brainstorm",
+      "framework": "autogen",
+      "nodes": 5,
+      "edges": 4,
+      "passed": 3,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "exit_reachability",
+          "category": "structural",
+          "detail": "unreachable exits: ['__end__']",
+          "severity": "critical"
+        },
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "autogen_software_team",
+      "framework": "autogen",
+      "nodes": 7,
+      "edges": 7,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "crewai_content_pipeline",
+      "framework": "crewai",
+      "nodes": 7,
+      "edges": 6,
+      "passed": 4,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "crewai_data_analysis",
+      "framework": "crewai",
+      "nodes": 8,
+      "edges": 10,
+      "passed": 3,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        },
+        {
+          "check": "tool_declarations",
+          "category": "structural",
+          "detail": "tools without declarations: ['cleaner']",
+          "severity": "low"
+        }
+      ]
+    },
+    {
+      "name": "crewai_hiring_pipeline",
+      "framework": "crewai",
+      "nodes": 7,
+      "edges": 6,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "crewai_marketing_campaign",
+      "framework": "crewai",
+      "nodes": 8,
+      "edges": 6,
+      "passed": 3,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "dead_ends",
+          "category": "structural",
+          "detail": "dead-end nodes: ['analytics']",
+          "severity": "high",
+          "witnesses": {}
+        },
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "lg_code_assistant",
+      "framework": "langgraph",
+      "nodes": 7,
+      "edges": 7,
+      "passed": 4,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "lg_customer_support",
+      "framework": "langgraph",
+      "nodes": 9,
+      "edges": 10,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "lg_email_triage",
+      "framework": "langgraph",
+      "nodes": 8,
+      "edges": 7,
+      "passed": 3,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "dead_ends",
+          "category": "structural",
+          "detail": "dead-end nodes: ['draft_response']",
+          "severity": "high",
+          "witnesses": {
+            "draft_response": [
+              "__start__",
+              "classify",
+              "router",
+              "normal_handler",
+              "draft_response"
+            ]
+          }
+        },
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "name": "lg_financial_advisor",
+      "framework": "langgraph",
+      "nodes": 11,
+      "edges": 11,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "lg_multi_agent_research",
+      "framework": "langgraph",
+      "nodes": 9,
+      "edges": 10,
+      "passed": 5,
+      "total_checks": 5,
+      "defects": []
+    },
+    {
+      "name": "lg_rag_pipeline",
+      "framework": "langgraph",
+      "nodes": 9,
+      "edges": 9,
+      "passed": 4,
+      "total_checks": 5,
+      "defects": [
+        {
+          "check": "human_presence",
+          "category": "policy",
+          "detail": "no human-in-the-loop node",
+          "severity": "high"
+        }
+      ]
+    }
+  ]
+}

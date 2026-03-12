@@ -1,0 +1,102 @@
+{
+  "name": "adk_document_processing",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "pipeline",
+      "kind": "subgraph",
+      "label": "doc_pipeline",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "ocr",
+      "kind": "tool",
+      "label": "ocr_engine",
+      "tools": [
+        "tesseract",
+        "cloud_vision"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "extract",
+      "kind": "llm",
+      "label": "entity_extractor",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "classify",
+      "kind": "llm",
+      "label": "document_classifier",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "store",
+      "kind": "tool",
+      "label": "database_writer",
+      "tools": [
+        "postgres_insert"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "pipeline",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "pipeline",
+      "target": "ocr",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "ocr",
+      "target": "extract",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "extract",
+      "target": "classify",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "classify",
+      "target": "store",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "store",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

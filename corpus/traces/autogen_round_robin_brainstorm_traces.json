@@ -1,0 +1,3497 @@
+{
+  "workflow": "autogen_round_robin_brainstorm",
+  "framework": "autogen",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "critic",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "refiner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "idea_gen",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      }
+    ]
+  ]
+}

@@ -15,9 +15,9 @@ runs a suite of structural and temporal checks.
 \end{figure}
 
 \paragraph{Step 1: Obtain a workflow object.}
-Agentproof targets agent orchestration libraries that expose control flow as a
-graph or composition tree. In this repository we include case studies built
-using real APIs from LangGraph, Google ADK, AutoGen, and CrewAI
+The approach targets agent orchestration libraries that expose control
+flow as a graph or composition tree. We provide extractors for
+LangGraph, Google ADK, AutoGen, and CrewAI
 \citep{langgraph_docs,google_adk_docs,autogen_agentchat,crewai_docs}.
 
 \paragraph{Step 2: Extract an \texttt{AgentGraph}.}
@@ -31,18 +31,12 @@ agent: unreachable nodes, dead ends, routing shape mismatches, and the presence
 of human-in-the-loop nodes when required by policy.
 
 \paragraph{Step 4: Compile temporal policies.}
-Agentproof supports a small temporal policy DSL which is compiled to a DFA.
-Policies are written against abstract events (tool calls, action tags, or
-decisions) rather than framework internals.
+A temporal policy DSL is compiled to DFAs. Policies are written against
+abstract events (tool calls, action tags, or decisions) rather than
+framework internals.
 
 \paragraph{Step 5: Evaluate monitors over traces.}
-Monitors can be evaluated on offline simulated traces (as in our examples) or
-integrated into a runtime that emits events. Agentproof maps monitor violations
-to handling levels (warn, block, halt, escalate) to support different
-operational postures.
-
-\paragraph{Non-goals.}
-Agentproof does not attempt to prove properties about the natural language
-outputs of LLM calls. Its verification surface is intentionally the workflow
-graph and event stream, not the semantic correctness of generated text.
+Monitors are evaluated over offline simulated traces or integrated into
+a runtime event stream. Violations are mapped to handling levels (warn,
+block, halt, escalate) to support different operational postures.
 

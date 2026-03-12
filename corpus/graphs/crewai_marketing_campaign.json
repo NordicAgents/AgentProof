@@ -1,0 +1,114 @@
+{
+  "name": "crewai_marketing_campaign",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "research",
+      "kind": "tool",
+      "label": "market_researcher",
+      "tools": [
+        "survey_tool",
+        "competitor_analysis"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "strategist",
+      "kind": "llm",
+      "label": "campaign_strategist",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "copywriter",
+      "kind": "llm",
+      "label": "copywriter",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "designer",
+      "kind": "tool",
+      "label": "designer",
+      "tools": [
+        "dall_e",
+        "canva_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "publish",
+      "kind": "tool",
+      "label": "publisher",
+      "tools": [
+        "social_media_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "analytics",
+      "kind": "tool",
+      "label": "analytics",
+      "tools": [
+        "google_analytics"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "research",
+      "target": "strategist",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "strategist",
+      "target": "copywriter",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "copywriter",
+      "target": "designer",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "designer",
+      "target": "publish",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "publish",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

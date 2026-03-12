@@ -1,0 +1,71 @@
+{
+  "name": "autogen_round_robin_brainstorm",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "idea_gen",
+      "kind": "llm",
+      "label": "idea_generator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "critic",
+      "kind": "llm",
+      "label": "critic",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "refiner",
+      "kind": "llm",
+      "label": "refiner",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "idea_gen",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "idea_gen",
+      "target": "critic",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "critic",
+      "target": "refiner",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "refiner",
+      "target": "idea_gen",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

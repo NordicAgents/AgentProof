@@ -1,0 +1,585 @@
+{
+  "workflow": "lg_rag_pipeline",
+  "framework": "langgraph",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "rewrite",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "retrieve",
+        "action_type": "tool",
+        "tool_name": "vector_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "grade",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "grade_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "web_search",
+        "action_type": "tool",
+        "tool_name": "tavily_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "generate",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "hallucination_check",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

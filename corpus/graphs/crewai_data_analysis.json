@@ -1,0 +1,133 @@
+{
+  "name": "crewai_data_analysis",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "manager",
+      "kind": "router",
+      "label": "analysis_manager",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "collector",
+      "kind": "tool",
+      "label": "data_collector",
+      "tools": [
+        "sql_query",
+        "api_fetch"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "cleaner",
+      "kind": "tool",
+      "label": "data_cleaner",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "analyst",
+      "kind": "llm",
+      "label": "data_analyst",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "visualizer",
+      "kind": "tool",
+      "label": "chart_generator",
+      "tools": [
+        "matplotlib_render"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "reporter",
+      "kind": "llm",
+      "label": "report_writer",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "manager",
+      "target": "collector",
+      "kind": "conditional",
+      "condition": "collect"
+    },
+    {
+      "source": "manager",
+      "target": "cleaner",
+      "kind": "conditional",
+      "condition": "clean"
+    },
+    {
+      "source": "manager",
+      "target": "analyst",
+      "kind": "conditional",
+      "condition": "analyze"
+    },
+    {
+      "source": "manager",
+      "target": "visualizer",
+      "kind": "conditional",
+      "condition": "visualize"
+    },
+    {
+      "source": "collector",
+      "target": "reporter",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "cleaner",
+      "target": "reporter",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "analyst",
+      "target": "reporter",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "visualizer",
+      "target": "reporter",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "reporter",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

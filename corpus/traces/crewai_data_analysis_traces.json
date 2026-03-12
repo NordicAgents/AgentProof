@@ -1,0 +1,306 @@
+{
+  "workflow": "crewai_data_analysis",
+  "framework": "crewai",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "sql_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "cleaner",
+        "action_type": "tool"
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "sql_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "cleaner",
+        "action_type": "tool"
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "cleaner",
+        "action_type": "tool"
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "cleaner",
+        "action_type": "tool"
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "cleaner",
+        "action_type": "tool"
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "sql_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "analyst",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "manager",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "collector",
+        "action_type": "tool",
+        "tool_name": "sql_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "reporter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

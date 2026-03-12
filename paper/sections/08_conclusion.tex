@@ -1,14 +1,39 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Agent frameworks already encode behavior as explicit workflow graphs. Agentproof
-leverages this structure to enable pre-deployment verification of safety
-properties without adding runtime overhead. By extracting a unified abstract
-graph model, running inexpensive structural checks, and compiling temporal
-policies into deterministic monitors, Agentproof provides a practical safety
-layer for workflow-graph agents.
+Agent frameworks already encode behavior as explicit workflow graphs.
+We leverage this structure to enable pre-deployment verification of
+safety properties without adding runtime overhead.
 
-The repository implementation and examples demonstrate that meaningful safety
-properties can be checked without running LLM inference, making static
-verification a useful complement to runtime guardrails for production agents.
+\textsc{Agentproof} provides a unified graph model with structural
+checks and witness traces, a temporal policy DSL covering the safety
+fragment of LTL, and automatic extractors for four major agent
+frameworks---eliminating the manual modeling effort required by
+general-purpose model checkers. In 18 curated workflows, 27\% contain
+structural defects (dead ends, unreachable exits) and 55\% violate a
+human-gate policy when required. All 15 temporal safety policies we
+evaluated fit within our seven-form DSL fragment, with verification
+completing in sub-second time even for graphs of 5{,}000 nodes.
+
+The primary technical contribution is not the graph algorithms
+themselves---which are standard---but rather: (i)~the identification of
+a practical new domain where these algorithms apply directly,
+(ii)~the engineering of extractors that normalize four heterogeneous
+framework APIs into a single analyzable representation, and (iii)~the
+empirical finding that real-world agent workflow patterns contain
+structural defects detectable by these methods.
+
+Static verification does not replace runtime guardrails; the two
+approaches are complementary. By catching topology-level defects
+exhaustively before deployment, static analysis reduces the safety
+surface that runtime enforcement must cover, making both layers more
+effective.
+
+\paragraph{Artifact availability.}
+The \textsc{Agentproof} tool, curated corpus, temporal policies, and
+all evaluation scripts are available at
+\url{https://github.com/NordicAgents/AgentProof} under the MIT
+license. A reproducibility script
+(\texttt{scripts/reproduce\_all.sh}) runs the complete evaluation
+pipeline.
 

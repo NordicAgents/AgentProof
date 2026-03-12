@@ -1,0 +1,103 @@
+{
+  "name": "adk_customer_onboarding",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "kyc_check",
+      "kind": "tool",
+      "label": "kyc_verification",
+      "tools": [
+        "id_verify_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "credit_check",
+      "kind": "tool",
+      "label": "credit_score",
+      "tools": [
+        "credit_bureau_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "risk_assess",
+      "kind": "llm",
+      "label": "risk_assessment",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "account_create",
+      "kind": "tool",
+      "label": "create_account",
+      "tools": [
+        "core_banking_api"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "welcome",
+      "kind": "llm",
+      "label": "welcome_email_generator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "kyc_check",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "kyc_check",
+      "target": "credit_check",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "credit_check",
+      "target": "risk_assess",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "risk_assess",
+      "target": "account_create",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "account_create",
+      "target": "welcome",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "welcome",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

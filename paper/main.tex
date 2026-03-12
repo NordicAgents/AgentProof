@@ -6,12 +6,17 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{booktabs}
+\usepackage{multirow}
 \usepackage{microtype}
 \usepackage[numbers]{natbib}
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
@@ -19,7 +24,7 @@
   urlcolor=blue
 }
 
-\title{Agentproof: Static Graph Verification for Agent Workflow Graphs}
+\title{Agentproof: Static Verification of Agent Workflow Graphs}
 
 % Placeholder author block (fill in later).
 \author{
@@ -38,33 +43,48 @@
 \maketitle
 
 \begin{abstract}
-Modern agent frameworks encode tool-using behavior as explicit workflow graphs:
-nodes represent LLM calls, tools, routers, or human approval steps; edges
-represent possible control-flow transitions. Most ``agent safety'' products
-enforce policies at runtime by intercepting calls, adding latency and detecting
-violations only after execution is underway. We present \textit{Agentproof}, a
-static verification approach that treats an agent workflow as a formal directed
-graph and checks safety properties \emph{before deployment}. Agentproof provides
-(i) a unified abstract graph model across popular frameworks, (ii) extractors
-for several agent orchestration libraries, (iii) structural analyses for common
-workflow defects (unreachable nodes, dead ends, missing human gates), and (iv) a
-small temporal policy DSL compiled into deterministic finite automata for fast
-event-trace evaluation. We demonstrate the approach on representative workflow
-graphs built using real framework APIs and report microbenchmarks for extraction
-and monitor compilation/evaluation.
+Agent frameworks increasingly encode tool-using behavior as explicit
+workflow graphs, yet safety enforcement remains a runtime concern.
+We observe that these frameworks expose analyzable graph structure
+through their APIs, enabling pre-deployment static verification of
+safety properties that runtime guardrails can only check reactively.
+
+We present \textsc{Agentproof}, a system that automatically extracts a
+unified abstract graph model from four major agent frameworks
+(LangGraph, CrewAI, AutoGen, Google ADK), applies five structural
+checks with witness trace generation, and evaluates temporal safety
+policies via a DSL compiled to deterministic finite automata. Unlike
+general-purpose model checkers, Agentproof requires no manual modeling.
+
+In a study of 18 curated workflows, we find that 27\% contain
+structural defects (dead-end nodes, unreachable exits) and 55\% violate
+a human-gate policy---distinct categories that prior work conflates.
+All 15 temporal policies we define fit within our seven-form DSL
+fragment, and verification completes in sub-second time for graphs up
+to 5{,}000 nodes. Our corpus is author-constructed and moderate in size; defect rates
+should not be generalized without validation on larger real-world
+corpora. Nonetheless, static graph verification complements runtime
+guardrails by catching topology-level defects that runtime tools miss
+unless the offending path is exercised.
 \end{abstract}
 
 \input{sections/01_introduction}
+\input{sections/02a_threat_model}
 \input{sections/02_background}
 \input{sections/03_system_overview}
 \input{sections/04_graph_model_and_extraction}
 \input{sections/05_verification_methods}
 \input{sections/06_evaluation}
+\input{sections/09_related_work}
 \input{sections/07_limitations_and_future_work}
 \input{sections/08_conclusion}
 
 \bibliographystyle{plainnat}
 \bibliography{references}
+
+\appendix
+\input{appendix_proofs}
+\input{appendix_grammar}
 
 \end{document}
 

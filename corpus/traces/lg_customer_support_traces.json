@@ -1,0 +1,392 @@
+{
+  "workflow": "lg_customer_support",
+  "framework": "langgraph",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "escalate",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "escalate",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "faq_lookup",
+        "action_type": "tool",
+        "tool_name": "search_faq",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "escalate",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "escalate",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "order_status",
+        "action_type": "tool",
+        "tool_name": "query_orders_db",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "faq_lookup",
+        "action_type": "tool",
+        "tool_name": "search_faq",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "order_status",
+        "action_type": "tool",
+        "tool_name": "query_orders_db",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "order_status",
+        "action_type": "tool",
+        "tool_name": "query_orders_db",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "classify",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "escalate",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "respond",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "workflow": "crewai_content_pipeline",
+  "framework": "crewai",
+  "n_traces": 10,
+  "traces": [
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "web_search",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "write",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "edit",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "seo",
+        "action_type": "tool",
+        "tool_name": "keyword_analyzer",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "cms_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "name": "lg_code_assistant",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "understand",
+      "kind": "llm",
+      "label": "understand_task",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate_code",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "run_tests",
+      "kind": "tool",
+      "label": "test_runner",
+      "tools": [
+        "execute_code",
+        "run_pytest"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "test_router",
+      "kind": "router",
+      "label": "test_result_check",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "debug",
+      "kind": "llm",
+      "label": "debugger",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "understand",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "understand",
+      "target": "generate",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "generate",
+      "target": "run_tests",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "run_tests",
+      "target": "test_router",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "test_router",
+      "target": "__end__",
+      "kind": "conditional",
+      "condition": "all_pass"
+    },
+    {
+      "source": "test_router",
+      "target": "debug",
+      "kind": "conditional",
+      "condition": "failures"
+    },
+    {
+      "source": "debug",
+      "target": "generate",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}

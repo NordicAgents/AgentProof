@@ -1,55 +1,332 @@
 \section{Evaluation}
 \label{sec:evaluation}
 
-We evaluate Agentproof along two axes:
-(i) graph extraction and structural statistics for representative agent
-workflows, and (ii) microbenchmarks for temporal monitor compilation and event
-evaluation throughput.
+We evaluate our approach along six axes: (i)~a curated workflow
+corpus, (ii)~a defect study with separate structural and policy
+categories, (iii)~temporal policy evaluation on execution traces,
+(iv)~scalability experiments on synthetic graphs, (v)~a comparison
+with runtime guardrails, and (vi)~extractor accuracy.
 
-\paragraph{Case studies.}
-We use three representative workflows built using real framework APIs:
-(i) a LangGraph incident response triage and mitigation graph,
-(ii) a hierarchical Google ADK compliance document pipeline (sequential +
-parallel + loop) with a human signoff step, and
-(iii) an AutoGen AgentChat change-control board topology with a human approver.
-These workflows are constructed without executing any external API calls.
+\subsection{Workflow corpus}
 
-\paragraph{Methodology.}
-For each workflow, we extract an \texttt{AgentGraph} and compute node/edge counts
-as well as counts by node and edge kind. We measure extractor runtime as the
-median over 200 runs (after 20 warm-up runs) on the same in-memory workflow
-object. For temporal monitors, we measure compilation time as the median over
-500 runs per DSL string and evaluation throughput (events/s) over a fixed
-synthetic 1{,}000-event stream. We also run Agentproof's structural checks on
-each extracted graph and evaluate a small temporal policy suite over three
-representative traces per workflow (one safe, two unsafe).
+We constructed a curated benchmark of 18 agent workflows that we
+authored to reflect common patterns documented in each framework's
+official examples and tutorials. Workflows use LangGraph, CrewAI,
+AutoGen, and Google ADK and span diverse domains including customer
+support, RAG pipelines, code generation, financial analysis, compliance
+review, incident response, hiring, and marketing. Because the corpus is
+author-constructed rather than mined from production repositories,
+defect rates should not be interpreted as prevalence estimates for
+real-world agent systems. A larger-scale study on workflows mined from
+public GitHub repositories is underway
+(Section~\ref{sec:limitations}).
 
-\input{generated/case_study_table.tex}
-\input{generated/case_study_verification_table.tex}
-\input{generated/bench_table.tex}
+Table~\ref{tab:corpus} summarizes the corpus. Graphs range from 5 to
+12 nodes and 4 to 14 edges, with all four frameworks represented.
+Node-kind distributions reflect typical agent patterns: LLM nodes
+(inference steps) and TOOL nodes (external API calls) dominate, with
+ROUTER, HUMAN, and SUBGRAPH nodes appearing in more complex workflows.
 
-\paragraph{LangGraph incident response.}
-The incident response workflow uses a conditional router to branch into either
-automatic mitigation or a human approval step before executing mitigation tools.
-We verify \texttt{G !tool:drop\_database} and
-\texttt{decision:mitigate -> F action:human\_approval}. The happy-path trace
-passes, while unsafe traces halt on the forbidden tool and escalate on missing
-approval between repeated mitigation decisions (Table~\ref{tab:case-study-verification}).
+\begin{table}[t]
+\centering
+\small
+\caption{Workflow corpus statistics.}
+\label{tab:corpus}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Framework} & \textbf{Workflows} & \textbf{Avg.\ nodes} & \textbf{Avg.\ edges} \\
+\midrule
+LangGraph & 6 & 8.8 & 9.0 \\
+CrewAI & 4 & 7.5 & 7.0 \\
+AutoGen & 4 & 6.3 & 6.0 \\
+Google ADK & 4 & 9.5 & 10.0 \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{8.2} & \textbf{8.2} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\paragraph{ADK compliance pipeline.}
-The ADK pipeline composes sequential, parallel, and loop agents for document
-collection, analysis, remediation, and human signoff. We verify
-\texttt{G !tool:exfiltrate\_data} and \texttt{read\_only U action:human\_signoff}.
-The monitors halt on exfiltration attempts and block writes prior to signoff.
+\subsection{Defect study}
 
-\paragraph{AutoGen change-control board.}
-The AutoGen case study models an acyclic speaker transition topology ending in
-a \texttt{UserProxyAgent} approver. We verify \texttt{G !tool:send\_email} and
-\texttt{decision:deploy -> F action:human\_approval}; unsafe traces halt on email
-attempts and on repeated deploy decisions without a human approval event.
+We ran all five structural checks on each corpus workflow with
+\texttt{require\_human=True}. Table~\ref{tab:defects} summarizes the
+findings, separated by defect category.
 
-\paragraph{Discussion.}
-Across case studies, extracted graphs are small enough that structural checks
-complete in time linear in graph size. Temporal monitoring is also lightweight:
-rules compile into constant-size automata and evaluation performs a constant
-number of table lookups per event per rule.
+\begin{table}[t]
+\centering
+\small
+\caption{Defects found in the workflow corpus, separated by category.}
+\label{tab:defects}
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+\textbf{Category} & \textbf{Defect type} & \textbf{Count} & \textbf{Severity} & \textbf{Example} \\
+\midrule
+\multirow{4}{*}{Structural} & Dead-end nodes & 2 & High & Email draft with no send edge \\
+& Unreachable exit & 1 & Critical & Infinite loop, no exit path \\
+& Router shape violation & 1 & Medium & Debate moderator, direct edges \\
+& Missing tool declaration & 1 & Low & Data cleaner, empty tool set \\
+\midrule
+Policy & Missing human gate & 10 & High & Onboarding without approval \\
+\midrule
+& \textbf{Total} & \textbf{15} & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We distinguish two defect categories:
+\begin{itemize}
+  \item \textbf{Structural defects} (topology bugs): dead-end nodes,
+  unreachable exits, router shape violations, and missing tool
+  declarations. These are bugs regardless of operational context.
+  \textbf{5 of 18 (27\%)} workflows contain at least one structural
+  defect.
+  \item \textbf{Policy violations} (configurable checks): missing
+  human-in-the-loop gate. This check is context-dependent: it is
+  critical in regulated domains (healthcare, finance) but may be
+  unnecessary for internal tooling or low-risk tasks.
+  \textbf{10 of 18 (55\%)} workflows lack a human gate when
+  \texttt{require\_human=True}.
+\end{itemize}
+
+\noindent
+More critically, one workflow (a round-robin brainstorming agent)
+has an \emph{unreachable exit node}: agents cycle indefinitely with no
+path to termination. Two workflows have \emph{dead-end nodes} where
+execution silently stops. These structural defects would be difficult
+to detect through testing alone, as they manifest only on specific
+execution paths.
+
+For each failing check, the verifier produces a witness trace. For
+example, the dead-end in the email triage workflow yields the witness
+path: \texttt{\_\_start\_\_ $\to$ classify $\to$ router $\to$
+normal\_handler $\to$ draft\_response} (stuck).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/defect_bar.pdf}
+  \caption{Defect distribution across frameworks, grouped by defect type.
+  The dashed line separates structural defects (left) from policy
+  violations (right).}
+  \label{fig:defect_bar}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/precision_bar.pdf}
+  \caption{Precision per structural check. Each bar shows the breakdown
+  of true positives (TP), false positives (FP), and arguable findings.
+  Precision $P$ is computed as $\text{TP}/(\text{TP}+\text{FP})$.}
+  \label{fig:precision_bar}
+\end{figure}
+
+Figure~\ref{fig:defect_bar} visualizes the defect distribution across
+frameworks, and Figure~\ref{fig:precision_bar} shows the precision
+breakdown per check type. All structural checks achieve perfect
+precision ($P = 1.0$); the human-presence check has $P = 0.75$ due to
+one false positive in a low-risk workflow where human oversight was
+arguably unnecessary.
+
+\subsection{Temporal policy evaluation}
+\label{sec:temporal_eval}
+
+To evaluate the temporal DSL, we defined 15 concrete safety policies
+motivated by real-world requirements spanning six domains: safety,
+communication, privacy, DevOps, data governance, and compliance.
+Table~\ref{tab:policies} lists representative examples.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Representative temporal policies evaluated.}
+\label{tab:policies}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Policy} & \textbf{DSL expression} & \textbf{Domain} \\
+\midrule
+No destructive ops & \texttt{G !tool:drop\_table} & Safety \\
+Email review & \texttt{tool:draft\_email -> F tool:human\_review} & Communication \\
+PII anonymize & \texttt{tool:fetch\_pii -> F[<=3] tool:anonymize} & Privacy \\
+Deploy approval & \texttt{tool:deploy -> F tool:approve} & DevOps \\
+Draft-review-send & \texttt{tool:draft -> F tool:review -> F tool:send} & Communication \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All 15 policies compile successfully into DFAs. The policies exercise
+all seven DSL expression forms: 3~forbidden, 5~implication-future,
+2~bounded response, 1~response chain, 1~until, 2~conjunction, and
+1~disjunction. This demonstrates 100\% coverage of the supported DSL
+forms, and no policy required full LTL expressiveness beyond our
+seven-form fragment.
+
+We generated 10 random execution traces per workflow (180 total) and
+evaluated each policy against each trace. The evaluation pipeline
+determines policy applicability by checking whether the policy's
+atomic predicates appear in the workflow's traces.
+
+\paragraph{DSL scope justification.}
+After defining the 15 policies, we classified each by which DSL form
+it uses. All 15 fall within our seven-form fragment; none requires
+nested temporal operators, past-time modalities, or constructs beyond
+our grammar. This provides empirical evidence that the safety fragment
+is sufficient for practical agent workflow policies.
+We acknowledge that 15 policies from a single research group do not
+constitute an exhaustive requirements survey. We deliberately selected
+policies from six distinct domains and ensured all seven DSL forms were
+exercised. A systematic study of safety requirements from production
+agent deployments would provide stronger evidence for DSL sufficiency.
+
+\subsection{Scalability}
+
+We generated synthetic graphs at seven sizes (50--5{,}000 nodes) with
+edge density~2.0 and measured structural check time (median of 10
+trials). Figure~\ref{fig:scaling} and Table~\ref{tab:scaling} report
+the results.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/scaling_plot.pdf}
+  \caption{Structural check time vs.\ graph size (log--log scale, median
+  of 10 trials). Verification remains sub-second for graphs up to
+  5{,}000 nodes.}
+  \label{fig:scaling}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Structural check time vs.\ graph size. Monitor compilation and evaluation are size-independent.}
+\label{tab:scaling}
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+\textbf{Nodes} & \textbf{Edges} & \textbf{Struct.\ (ms)} & \textbf{Mon.\ eval (ms)} \\
+\midrule
+50 & 104 & 0.04 & \multirow{7}{*}{4.0} \\
+100 & 214 & 0.07 & \\
+200 & 430 & 0.22 & \\
+500 & 1{,}074 & 1.24 & \\
+1{,}000 & 2{,}128 & 4.02 & \\
+2{,}000 & 4{,}252 & 21.2 & \\
+5{,}000 & 10{,}713 & 104.7 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Structural checks scale approximately linearly in $|V| + |E|$ for
+graphs up to 1{,}000 nodes, with super-linear growth at larger sizes
+due to quadratic edge scanning in router-shape and tool-declaration
+checks. Even at 5{,}000 nodes (far larger than any production agent
+workflow we have encountered), verification completes in $\sim$105\,ms.
+Temporal monitor compilation (0.065\,ms for 5 rules) and evaluation
+(4.0\,ms for 1{,}000 events, $\sim$247{,}000 events/s) are independent
+of graph size.
+
+We note that real agent workflows are currently small (5--12 nodes in
+our corpus), so the scalability experiment demonstrates
+ceiling-freeness rather than practical necessity. As agent systems grow
+towards multi-agent compositions and hierarchical subgraph
+structures, larger graphs will become more common.
+
+\paragraph{Comparison to ad-hoc scripts.}
+One might ask whether a simple Python script iterating over the graph's
+adjacency list could detect the same defects. For individual checks
+(e.g., finding nodes with no outgoing edges), the answer is
+yes---the graph algorithms are standard. Agentproof's value lies not in
+algorithmic novelty but in (i)~automatic extraction from four
+heterogeneous framework APIs, (ii)~a unified type system that makes
+checks portable across frameworks, (iii)~witness trace generation that
+pinpoints the defective path, and (iv)~a temporal policy layer that
+separates safety specification from verification machinery. A bespoke
+script would need to be rewritten for each framework and would lack
+composable policy evaluation.
+
+\subsection{Comparison with runtime guardrails}
+\label{sec:comparison}
+
+Table~\ref{tab:comparison} provides a qualitative comparison between
+our static approach and representative runtime guardrail tools.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Static verification vs.\ runtime guardrails.}
+\label{tab:comparison}
+\begin{tabular}{@{}p{2.8cm}p{2.2cm}p{2.2cm}@{}}
+\toprule
+\textbf{Property} & \textbf{Agentproof (static)} & \textbf{Runtime tools} \\
+\midrule
+Detection time & Pre-deployment & At execution \\
+Structural defects & \checkmark & Path-dependent \\
+Toxic LLM output & --- & \checkmark \\
+Runtime overhead & None & Per-call latency \\
+Coverage & All paths & Exercised paths \\
+Witness traces & \checkmark & Stack traces \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+\textbf{Scenario A:} An unreachable exit node in a rarely-triggered
+conditional branch. Our static analysis detects this immediately; a
+runtime guardrail would miss it unless that branch is exercised during
+testing.
+
+\noindent
+\textbf{Scenario B:} An LLM generates toxic content in a response.
+Runtime content filters (LlamaGuard, NeMo Guardrails) catch this; our
+approach cannot, as LLM output semantics are out of scope.
+
+\noindent
+\textbf{Scenario C:} A conditional path bypasses a required human
+approval gate. Our static analysis flags the missing gate on that path;
+runtime tools may miss it if the bypass path is not triggered.
+
+The two approaches are complementary: static verification catches
+topology-level defects exhaustively, while runtime guardrails handle
+content-level and context-dependent violations.
+
+\subsection{Extractor accuracy}
+\label{sec:accuracy}
+
+We validated extractor fidelity using the framework-specific examples
+in our test suite. For each of the four extractors (LangGraph, CrewAI,
+AutoGen, ADK), we compared extracted graphs against manually annotated
+ground truth across 4--8 test cases per framework, measuring node
+detection precision/recall, node-kind classification accuracy, and
+edge detection precision/recall.
+
+Node detection achieves perfect precision and recall across all
+frameworks (all nodes are correctly identified). Node-kind
+classification accuracy is 100\% for entry/exit sentinels and tool nodes
+(detected by tool bindings), and 100\% for AutoGen agent types (detected
+by class hierarchy). Edge detection precision and recall are both
+100\% for all frameworks tested.
+
+\paragraph{Human-node detection limitation.}
+The primary source of classification error is human-node detection in
+LangGraph, which relies on a naming heuristic
+(\texttt{"human" in name}): nodes not following this convention are
+misclassified as LLM nodes. We identify four strategies for human-node
+detection, in order of increasing reliability:
+(1)~\emph{Naming heuristic} (current default): match node names against
+keywords---low implementation cost but brittle.
+(2)~\emph{Interrupt annotation}: detect LangGraph's
+\texttt{interrupt\_before}/\texttt{interrupt\_after}
+markers---framework-specific but semantically precise.
+(3)~\emph{Input-call detection}: identify \texttt{input()} or
+equivalent blocking calls in node functions via AST
+inspection---cross-framework but may produce false positives.
+(4)~\emph{Explicit type annotation}: require developers to mark human
+nodes via a decorator or metadata field---most reliable but requires
+adoption.
+On our test suite, only strategy~(1) produces misclassifications;
+strategies~(2)--(4) would require validation on a larger real-world
+corpus. We prioritize strategy~(2) for the next release as it requires
+no developer action.
+
+These results confirm that the extractors faithfully reproduce the
+graph structure, with the caveat that human-node identification depends
+on naming conventions that may not hold universally. Alternative
+detection strategies (e.g., detecting \texttt{interrupt\_before} /
+\texttt{interrupt\_after} annotations in LangGraph, or \texttt{input()}
+calls) are promising directions for improving recall.

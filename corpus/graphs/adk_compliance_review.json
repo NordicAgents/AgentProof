@@ -1,0 +1,187 @@
+{
+  "name": "adk_compliance_review",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "collector",
+      "kind": "tool",
+      "label": "evidence_collector",
+      "tools": [
+        "s3_fetch",
+        "api_call"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "parallel_check",
+      "kind": "subgraph",
+      "label": "parallel_checks",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "legal_check",
+      "kind": "llm",
+      "label": "legal_compliance",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "financial_check",
+      "kind": "llm",
+      "label": "financial_compliance",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "security_check",
+      "kind": "tool",
+      "label": "security_scan",
+      "tools": [
+        "vulnerability_scanner"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "aggregator",
+      "kind": "llm",
+      "label": "findings_aggregator",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "remediation_loop",
+      "kind": "subgraph",
+      "label": "remediation",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "fix",
+      "kind": "llm",
+      "label": "remediation_agent",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "recheck",
+      "kind": "tool",
+      "label": "recheck",
+      "tools": [
+        "compliance_validator"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "signoff",
+      "kind": "human",
+      "label": "compliance_officer_signoff",
+      "tools": [],
+      "metadata": {}
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "collector",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "collector",
+      "target": "parallel_check",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "parallel_check",
+      "target": "legal_check",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "parallel_check",
+      "target": "financial_check",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "parallel_check",
+      "target": "security_check",
+      "kind": "parallel",
+      "condition": ""
+    },
+    {
+      "source": "legal_check",
+      "target": "aggregator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "financial_check",
+      "target": "aggregator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "security_check",
+      "target": "aggregator",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "aggregator",
+      "target": "remediation_loop",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "remediation_loop",
+      "target": "fix",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "fix",
+      "target": "recheck",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "recheck",
+      "target": "fix",
+      "kind": "loop",
+      "condition": ""
+    },
+    {
+      "source": "recheck",
+      "target": "signoff",
+      "kind": "direct",
+      "condition": ""
+    },
+    {
+      "source": "signoff",
+      "target": "__end__",
+      "kind": "direct",
+      "condition": ""
+    }
+  ]
+}
