@@ -1,7 +1,7 @@
 \section{Verification methods}
 \label{sec:verification_methods}
 
-We provide two complementary verification layers: (i)~structural checks
+Agentproof provides two complementary verification layers: (i)~structural checks
 over the extracted graph and (ii)~temporal monitors evaluated over an
 event stream.
 
@@ -11,26 +11,26 @@ kind labels of $G$ (Definition~\ref{def:awg}). Each check implements
 one of the predicates from Definition~\ref{def:structural_predicates}.
 
 \paragraph{Exit reachability.}
-We compute the set of nodes reachable from $v_0$ using BFS and verify
+The set of nodes reachable from $v_0$ is computed using BFS to verify
 that $V_f \subseteq \mathrm{Reach}(v_0)$.
 Complexity: $O(|V| + |E|)$.
 
 \paragraph{Dead-end detection.}
-We identify nodes $v$ with $\kappa_V(v) \neq \textsc{exit}$ and no
+Nodes $v$ with $\kappa_V(v) \neq \textsc{exit}$ and no
 outgoing edges. Dead ends indicate missing transitions or incomplete
 error handling.
 Complexity: $O(|V| + |E|)$ with adjacency precomputation.
 
 \paragraph{Router shape checks.}
-We verify that all outgoing edges from \textsc{router} nodes are labeled
+The check verifies that all outgoing edges from \textsc{router} nodes are labeled
 \textsc{conditional}. Complexity: $O(|E|)$.
 
 \paragraph{Human-in-the-loop presence.}
-We check whether the graph contains any node with
+This check determines whether the graph contains any node with
 $\kappa_V(v) = \textsc{human}$. Complexity: $O(|V|)$.
 
 \paragraph{Tool declaration checks.}
-We flag \textsc{tool} nodes with $T(v) = \emptyset$.
+The check flags \textsc{tool} nodes with $T(v) = \emptyset$.
 Complexity: $O(|V|)$.
 
 \paragraph{Witness trace generation.}
@@ -70,18 +70,18 @@ non-trivial:
 \end{itemize}
 
 \noindent
-Our extractors normalize these diverse representations into the
+The extractors normalize these diverse representations into the
 same \texttt{AgentGraph} type system (Definition~\ref{def:awg}),
 synthesizing entry/exit sentinel nodes where the framework does not
 provide them explicitly.  General-purpose model checkers such as
 SPIN~\citep{holzmann1997spin} or NuSMV~\citep{cimatti2002nusmv}
 could verify the same properties, but would require the developer to
-\emph{manually} translate the workflow into Promela or SMV---a
+\emph{manually} translate the workflow into Promela or SMV a
 process that takes hours even for small graphs (see
 Section~\ref{sec:related_work} for a concrete example).
 
 \subsection{Temporal policy monitors}
-We support a temporal policy DSL covering the safety fragment of
+Agentproof supports a temporal policy DSL covering the safety fragment of
 LTL~\citep{pnueli1977temporal}, compiled into deterministic finite
 automata and evaluated with constant overhead per event.
 
@@ -94,20 +94,20 @@ Predicates match against these fields (e.g., \texttt{tool:delete\_account}).
 The DSL supports seven expression forms (full BNF in
 Appendix~\ref{app:grammar}):
 \begin{enumerate}
-  \item \textbf{Forbidden:} \texttt{G !atom} --- violation if
+  \item \textbf{Forbidden:} \texttt{G !atom}   violation if
     \texttt{atom} ever occurs.
-  \item \textbf{Implication-future:} \texttt{a -> F b} --- if \texttt{a}
+  \item \textbf{Implication-future:} \texttt{a -> F b}   if \texttt{a}
     occurs, \texttt{b} must follow before \texttt{a} recurs.
-  \item \textbf{Until:} \texttt{a U b} --- \texttt{a} must hold on every
+  \item \textbf{Until:} \texttt{a U b}   \texttt{a} must hold on every
     step until \texttt{b} occurs.
-  \item \textbf{Bounded response:} \texttt{a -> F[<=k] b} --- if
+  \item \textbf{Bounded response:} \texttt{a -> F[<=k] b}   if
     \texttt{a} occurs, \texttt{b} must follow within $k$ steps.
-  \item \textbf{Response chain:} \texttt{a -> F b -> F c} --- once
+  \item \textbf{Response chain:} \texttt{a -> F b -> F c}   once
     \texttt{a} occurs, \texttt{b} then \texttt{c} must follow in
     sequence before \texttt{a} recurs.
-  \item \textbf{Conjunction:} \texttt{(expr) AND (expr)} --- both
+  \item \textbf{Conjunction:} \texttt{(expr) AND (expr)}   both
     sub-properties must hold simultaneously.
-  \item \textbf{Disjunction:} \texttt{(expr) OR (expr)} --- at least
+  \item \textbf{Disjunction:} \texttt{(expr) OR (expr)}   at least
     one sub-property must hold.
 \end{enumerate}
 
@@ -150,7 +150,7 @@ configured handling level (\texttt{warn}, \texttt{block},
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.85\linewidth]{figures/dfa_monitor.pdf}
-  \caption{Illustrative DFA for an \texttt{a -> F b} interleaving constraint: after \texttt{a} occurs, \texttt{b} must occur before \texttt{a} repeats.}
+  \caption{Illustrative DFA for an $a \to \mathbf{F}\, b$ interleaving constraint: after $a$ occurs, $b$ must occur before $a$ repeats.}
   \label{fig:dfa}
 \end{figure}
 

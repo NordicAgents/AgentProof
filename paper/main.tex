@@ -26,15 +26,22 @@
 
 \title{Agentproof: Static Verification of Agent Workflow Graphs}
 
-% Placeholder author block (fill in later).
 \author{
-  First Last \\
-  Affiliation \\
-  \texttt{email@example.com}
+  Melwin Xavier \\
+  Lule\aa{} tekniska universitet, Sweden \\
+  \texttt{melwin.xavier@ltu.se}
   \and
-  Second Author \\
-  Affiliation \\
-  \texttt{email@example.com}
+  Vaisakh M A \\
+  Independent Researcher \\
+  \texttt{997vaisakh@gmail.com}
+  \and
+  Melveena Jolly \\
+  Independent Researcher \\
+  \texttt{melveenajollyk@gmail.com}
+  \and
+  Midhun Xavier \\
+  Independent Researcher \\
+  \texttt{midhun@industriagents.com}
 }
 
 \date{}
@@ -45,23 +52,23 @@
 \begin{abstract}
 Agent frameworks increasingly encode tool-using behavior as explicit
 workflow graphs, yet safety enforcement remains a runtime concern.
-We observe that these frameworks expose analyzable graph structure
+These frameworks expose analyzable graph structure
 through their APIs, enabling pre-deployment static verification of
 safety properties that runtime guardrails can only check reactively.
 
-We present \textsc{Agentproof}, a system that automatically extracts a
+This paper presents \textsc{Agentproof}, a system that automatically extracts a
 unified abstract graph model from four major agent frameworks
 (LangGraph, CrewAI, AutoGen, Google ADK), applies five structural
 checks with witness trace generation, and evaluates temporal safety
 policies via a DSL compiled to deterministic finite automata. Unlike
 general-purpose model checkers, Agentproof requires no manual modeling.
 
-In a study of 18 curated workflows, we find that 27\% contain
+In a study of 18 curated workflows, 27\% contain
 structural defects (dead-end nodes, unreachable exits) and 55\% violate
 a human-gate policy---distinct categories that prior work conflates.
-All 15 temporal policies we define fit within our seven-form DSL
+All 15 temporal policies defined fit within the seven-form DSL
 fragment, and verification completes in sub-second time for graphs up
-to 5{,}000 nodes. Our corpus is author-constructed and moderate in size; defect rates
+to 5{,}000 nodes. The corpus is author-constructed and moderate in size; defect rates
 should not be generalized without validation on larger real-world
 corpora. Nonetheless, static graph verification complements runtime
 guardrails by catching topology-level defects that runtime tools miss

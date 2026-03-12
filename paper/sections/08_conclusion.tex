@@ -2,21 +2,21 @@
 \label{sec:conclusion}
 
 Agent frameworks already encode behavior as explicit workflow graphs.
-We leverage this structure to enable pre-deployment verification of
+Agentproof leverages this structure to enable pre-deployment verification of
 safety properties without adding runtime overhead.
 
 \textsc{Agentproof} provides a unified graph model with structural
 checks and witness traces, a temporal policy DSL covering the safety
 fragment of LTL, and automatic extractors for four major agent
-frameworks---eliminating the manual modeling effort required by
+frameworks eliminating the manual modeling effort required by
 general-purpose model checkers. In 18 curated workflows, 27\% contain
 structural defects (dead ends, unreachable exits) and 55\% violate a
-human-gate policy when required. All 15 temporal safety policies we
-evaluated fit within our seven-form DSL fragment, with verification
+human-gate policy when required. All 15 temporal safety policies
+evaluated fit within the seven-form DSL fragment, with verification
 completing in sub-second time even for graphs of 5{,}000 nodes.
 
 The primary technical contribution is not the graph algorithms
-themselves---which are standard---but rather: (i)~the identification of
+themselves which are standard but rather: (i)~the identification of
 a practical new domain where these algorithms apply directly,
 (ii)~the engineering of extractors that normalize four heterogeneous
 framework APIs into a single analyzable representation, and (iii)~the

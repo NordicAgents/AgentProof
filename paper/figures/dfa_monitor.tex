@@ -10,16 +10,16 @@
   arrow/.style={-{Latex}, thick},
 ]
   \node[ok] (s0) {$s_0$\\ready};
-  \node[wait, right=20mm of s0] (s1) {$s_1$\\waiting};
-  \node[bad, right=20mm of s1] (s2) {$s_2$\\violate};
+  \node[wait, right=30mm of s0] (s1) {$s_1$\\waiting};
+  \node[bad, right=30mm of s1] (s2) {$s_2$\\violate};
 
   \draw[arrow] (s0) edge[loop above] node[font=\scriptsize, align=center]{no $a$\\or $b$} (s0);
-  \draw[arrow] (s0) -- node[font=\scriptsize, align=center]{$a$ and not $b$} (s1);
-  \draw[arrow] (s1) -- node[font=\scriptsize, align=center]{$b$} (s0);
-  \draw[arrow] (s1) -- node[font=\scriptsize, align=center]{$a$ before $b$} (s2);
+  \draw[arrow] (s0) to[bend left=20] node[above, font=\scriptsize]{$a \wedge \neg b$} (s1);
+  \draw[arrow] (s1) to[bend left=20] node[below, font=\scriptsize]{$b$} (s0);
+  \draw[arrow] (s1) -- node[above, font=\scriptsize]{$a$ before $b$} (s2);
   \draw[arrow] (s2) edge[loop above] node[font=\scriptsize]{any} (s2);
 
-  \node[below=8mm of s1, font=\small, align=center] {Example DSL: \texttt{a -> F b}\\(interleaving constraint)};
+  \node[below=15mm of s1, font=\small, align=center] {Example DSL: $a \to \mathbf{F}\, b$ (interleaving constraint)};
 \end{tikzpicture}
 \end{document}
 

@@ -1,7 +1,7 @@
 \section{Graph model and extraction}
 \label{sec:graph_model}
 
-We define a framework-agnostic workflow representation with typed nodes
+This section defines a framework-agnostic workflow representation with typed nodes
 and edges. This abstraction is the common surface for all verification.
 
 \subsection{Formal model}
@@ -13,13 +13,14 @@ $G = (V, E, \kappa_V, \kappa_E, T, v_0, V_f)$ where:
 \begin{itemize}
   \item $V$ is a finite set of nodes.
   \item $E \subseteq V \times V$ is a set of directed edges.
-  \item $\kappa_V: V \to \mathcal{K}_V$ assigns each node a kind, with
-    $\mathcal{K}_V = \{\textsc{entry}, \textsc{exit}, \textsc{tool},
-    \textsc{llm}, \textsc{router}, \textsc{human}, \textsc{subgraph},
+  \item $\kappa_V: V \to \mathcal{K}_V$ assigns each node a kind, with\\
+    $\mathcal{K}_V = \{\textsc{entry},\; \textsc{exit},\;
+    \textsc{tool},\; \textsc{llm},\; \textsc{router},\;
+    \textsc{human},\; \textsc{subgraph},\;
     \textsc{passthrough}\}$.
-  \item $\kappa_E: E \to \mathcal{K}_E$ assigns each edge a kind, with
-    $\mathcal{K}_E = \{\textsc{direct}, \textsc{conditional},
-    \textsc{parallel}, \textsc{loop}\}$.
+  \item $\kappa_E: E \to \mathcal{K}_E$ assigns each edge a kind, with\\
+    $\mathcal{K}_E = \{\textsc{direct},\; \textsc{conditional},\;
+    \textsc{parallel},\; \textsc{loop}\}$.
   \item $T: V \to 2^{\text{ToolNames}}$ maps each node to a (possibly
     empty) set of declared tool names; $T(v)$ is non-empty only when
     $\kappa_V(v) = \textsc{tool}$.
@@ -34,13 +35,13 @@ $G = (V, E, \kappa_V, \kappa_E, T, v_0, V_f)$ where:
 \label{def:trace}
 A \emph{trace} of $G$ is a finite sequence $\pi = v_0 v_1 \ldots v_n$
 such that $(v_i, v_{i+1}) \in E$ for all $0 \le i < n$.
-We write $\mathrm{Traces}(G)$ for the set of all maximal traces---those
+$\mathrm{Traces}(G)$ denotes the set of all maximal traces those
 ending at a node in $V_f$ or at a node with no outgoing edges.
 \end{definition}
 
 \begin{definition}[Structural predicates]
 \label{def:structural_predicates}
-We define five structural predicates over $G$:
+Five structural predicates over $G$ are defined:
 \begin{enumerate}
   \item $\mathrm{ExitReach}(G) \iff \forall v_f \in V_f.\;
     v_f \in \mathrm{Reach}(v_0)$, where $\mathrm{Reach}(v_0)$ is the
@@ -77,7 +78,7 @@ nodes), and
 step corresponding to $u$ to the step corresponding to $v$.
 Conditions (i)--(ii) correspond to node precision/recall~$= 1$;
 condition~(iii) corresponds to edge precision/recall~$= 1$.
-We validate this empirically in Section~\ref{sec:accuracy}.
+This is validated empirically in Section~\ref{sec:accuracy}.
 \end{definition}
 
 \subsection{Framework extractors}

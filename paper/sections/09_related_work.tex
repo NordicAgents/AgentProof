@@ -1,7 +1,7 @@
 \section{Related work}
 \label{sec:related_work}
 
-We situate our work within four areas. Runtime tools catch
+This section situates the present work within four areas. Runtime tools catch
 content-level violations but miss structural defects. General-purpose
 model checkers could verify the same properties but require manual
 modeling. Temporal monitoring is well-studied but not applied to agent
@@ -22,7 +22,7 @@ unsafe content in model outputs.
 Rebuff~\citep{rebuff} focuses specifically on prompt injection detection.
 These tools operate at runtime and catch violations only when the
 offending code path is actually exercised.
-Our approach is complementary: we verify structural properties of the
+Agentproof is complementary: it verifies structural properties of the
 workflow topology \emph{before deployment}, catching defects such as
 unreachable exits, dead-end branches, and missing human gates that
 runtime tools cannot detect unless the defective path is triggered
@@ -39,16 +39,16 @@ provides sound over-approximations for dataflow analysis.
 Table~\ref{tab:comparison_mc} provides a qualitative comparison.
 The key difference is \emph{modeling effort}: SPIN requires manual
 translation of a workflow into Promela, NuSMV into SMV, and CBMC into
-annotated C. For the email triage workflow in our corpus (8~nodes,
+annotated C. For the email triage workflow in the corpus (8~nodes,
 7~edges), the equivalent Promela model requires ${\sim}60$ lines and
 manual specification of the state space, transitions, and LTL
-properties (see \texttt{corpus/comparisons/email\_triage.pml} in our
+properties (see \texttt{corpus/comparisons/email\_triage.pml} in the
 artifact). Agentproof extracts the same model automatically with a
 single function call.
 
 \input{generated/comparison_table}
 
-Our approach applies model-checking ideas to a new domain: agent
+Agentproof applies model-checking ideas to a new domain: agent
 workflow graphs extracted from orchestration framework APIs. The
 contribution is not the graph algorithms themselves (which are
 standard) but (i)~the automatic extraction from heterogeneous
@@ -67,9 +67,9 @@ monitoring that distinguishes between ``currently satisfied'' and
 ``permanently satisfied.''
 Barringer et al.~\citep{barringer2004eagle} present the EAGLE framework
 for rule-based monitoring.
-Our temporal monitors are deliberately lightweight: we target the safety
+The temporal monitors are deliberately lightweight, targeting the safety
 fragment of LTL with DFAs of 2--$O(k)$ states per rule, trading
-expressiveness for deployment simplicity. In our evaluation, all 15
+expressiveness for deployment simplicity. In the evaluation, all 15
 practical agent safety policies fall within this fragment, validating the
 design choice empirically (Section~\ref{sec:temporal_eval}).
 
@@ -85,7 +85,7 @@ Research on multi-agent coordination safety~\citep{gabriel2024ethics}
 examines the risks of agent-to-agent interaction, including unintended
 emergent behavior.
 These works focus on alignment, capability evaluation, and policy
-governance. Our contribution addresses a complementary layer: the
+governance. The present contribution addresses a complementary layer: the
 \emph{structural soundness of the orchestration graph itself}. Even a
 well-aligned LLM can produce unsafe outcomes if the workflow graph
 routes it through an unintended path or bypasses a required approval
@@ -96,13 +96,13 @@ step.
 The business process management (BPM) community has extensively studied
 workflow soundness. Van der Aalst's work on Petri-net-based soundness
 checking for workflow nets~\citep{vanderaalst2011bpm} ensures that
-every case can complete and no dead transitions exist---properties
-closely analogous to our exit-reachability and dead-end checks. BPMN
+every case can complete and no dead transitions exist properties
+closely analogous to Agentproof's exit-reachability and dead-end checks. BPMN
 verification tools~\citep{dijkman2008bpmn} apply similar analyses to
 industry-standard process models.
-Our work differs in \emph{domain}: agent workflow graphs have typed
+This work differs in \emph{domain}: agent workflow graphs have typed
 nodes (LLM, TOOL, HUMAN) with framework-specific semantics that BPM
-tools do not model, and our extraction pipeline targets programmatic API
+tools do not model, and the extraction pipeline targets programmatic API
 objects rather than visual process models.
 
 \subsection{Constrained decoding and structured generation}

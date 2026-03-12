@@ -1,7 +1,7 @@
 \section{Evaluation}
 \label{sec:evaluation}
 
-We evaluate our approach along six axes: (i)~a curated workflow
+The proposed approach is evaluated along six axes: (i)~a curated workflow
 corpus, (ii)~a defect study with separate structural and policy
 categories, (iii)~temporal policy evaluation on execution traces,
 (iv)~scalability experiments on synthetic graphs, (v)~a comparison
@@ -9,7 +9,7 @@ with runtime guardrails, and (vi)~extractor accuracy.
 
 \subsection{Workflow corpus}
 
-We constructed a curated benchmark of 18 agent workflows that we
+The evaluation uses a curated benchmark of 18 agent workflows
 authored to reflect common patterns documented in each framework's
 official examples and tutorials. Workflows use LangGraph, CrewAI,
 AutoGen, and Google ADK and span diverse domains including customer
@@ -48,7 +48,7 @@ Google ADK & 4 & 9.5 & 10.0 \\
 
 \subsection{Defect study}
 
-We ran all five structural checks on each corpus workflow with
+All five structural checks were run on each corpus workflow with
 \texttt{require\_human=True}. Table~\ref{tab:defects} summarizes the
 findings, separated by defect category.
 
@@ -73,7 +73,7 @@ Policy & Missing human gate & 10 & High & Onboarding without approval \\
 \end{tabular}
 \end{table}
 
-We distinguish two defect categories:
+Two defect categories are distinguished:
 \begin{itemize}
   \item \textbf{Structural defects} (topology bugs): dead-end nodes,
   unreachable exits, router shape violations, and missing tool
@@ -129,7 +129,7 @@ arguably unnecessary.
 \subsection{Temporal policy evaluation}
 \label{sec:temporal_eval}
 
-To evaluate the temporal DSL, we defined 15 concrete safety policies
+To evaluate the temporal DSL, 15 concrete safety policies were defined
 motivated by real-world requirements spanning six domains: safety,
 communication, privacy, DevOps, data governance, and compliance.
 Table~\ref{tab:policies} lists representative examples.
@@ -156,29 +156,29 @@ All 15 policies compile successfully into DFAs. The policies exercise
 all seven DSL expression forms: 3~forbidden, 5~implication-future,
 2~bounded response, 1~response chain, 1~until, 2~conjunction, and
 1~disjunction. This demonstrates 100\% coverage of the supported DSL
-forms, and no policy required full LTL expressiveness beyond our
+forms, and no policy required full LTL expressiveness beyond the
 seven-form fragment.
 
-We generated 10 random execution traces per workflow (180 total) and
+Ten random execution traces were generated per workflow (180 total) and
 evaluated each policy against each trace. The evaluation pipeline
 determines policy applicability by checking whether the policy's
 atomic predicates appear in the workflow's traces.
 
 \paragraph{DSL scope justification.}
-After defining the 15 policies, we classified each by which DSL form
-it uses. All 15 fall within our seven-form fragment; none requires
+After defining the 15 policies, each was classified by which DSL form
+it uses. All 15 fall within the seven-form fragment; none requires
 nested temporal operators, past-time modalities, or constructs beyond
-our grammar. This provides empirical evidence that the safety fragment
+the grammar. This provides empirical evidence that the safety fragment
 is sufficient for practical agent workflow policies.
-We acknowledge that 15 policies from a single research group do not
-constitute an exhaustive requirements survey. We deliberately selected
+It is acknowledged that 15 policies from a single research group do not
+constitute an exhaustive requirements survey. The policies were deliberately selected
 policies from six distinct domains and ensured all seven DSL forms were
 exercised. A systematic study of safety requirements from production
 agent deployments would provide stronger evidence for DSL sufficiency.
 
 \subsection{Scalability}
 
-We generated synthetic graphs at seven sizes (50--5{,}000 nodes) with
+Synthetic graphs were generated at seven sizes (50--5{,}000 nodes) with
 edge density~2.0 and measured structural check time (median of 10
 trials). Figure~\ref{fig:scaling} and Table~\ref{tab:scaling} report
 the results.
@@ -216,13 +216,13 @@ Structural checks scale approximately linearly in $|V| + |E|$ for
 graphs up to 1{,}000 nodes, with super-linear growth at larger sizes
 due to quadratic edge scanning in router-shape and tool-declaration
 checks. Even at 5{,}000 nodes (far larger than any production agent
-workflow we have encountered), verification completes in $\sim$105\,ms.
+workflow encountered in practice), verification completes in $\sim$105\,ms.
 Temporal monitor compilation (0.065\,ms for 5 rules) and evaluation
 (4.0\,ms for 1{,}000 events, $\sim$247{,}000 events/s) are independent
 of graph size.
 
-We note that real agent workflows are currently small (5--12 nodes in
-our corpus), so the scalability experiment demonstrates
+Real agent workflows are currently small (5--12 nodes in
+the corpus), so the scalability experiment demonstrates
 ceiling-freeness rather than practical necessity. As agent systems grow
 towards multi-agent compositions and hierarchical subgraph
 structures, larger graphs will become more common.
@@ -231,7 +231,7 @@ structures, larger graphs will become more common.
 One might ask whether a simple Python script iterating over the graph's
 adjacency list could detect the same defects. For individual checks
 (e.g., finding nodes with no outgoing edges), the answer is
-yes---the graph algorithms are standard. Agentproof's value lies not in
+yes the graph algorithms are standard. Agentproof's value lies not in
 algorithmic novelty but in (i)~automatic extraction from four
 heterogeneous framework APIs, (ii)~a unified type system that makes
 checks portable across frameworks, (iii)~witness trace generation that
@@ -244,7 +244,7 @@ composable policy evaluation.
 \label{sec:comparison}
 
 Table~\ref{tab:comparison} provides a qualitative comparison between
-our static approach and representative runtime guardrail tools.
+the static approach and representative runtime guardrail tools.
 
 \begin{table}[t]
 \centering
@@ -257,7 +257,7 @@ our static approach and representative runtime guardrail tools.
 \midrule
 Detection time & Pre-deployment & At execution \\
 Structural defects & \checkmark & Path-dependent \\
-Toxic LLM output & --- & \checkmark \\
+Toxic LLM output &   & \checkmark \\
 Runtime overhead & None & Per-call latency \\
 Coverage & All paths & Exercised paths \\
 Witness traces & \checkmark & Stack traces \\
@@ -267,18 +267,18 @@ Witness traces & \checkmark & Stack traces \\
 
 \noindent
 \textbf{Scenario A:} An unreachable exit node in a rarely-triggered
-conditional branch. Our static analysis detects this immediately; a
+conditional branch. Agentproof's static analysis detects this immediately; a
 runtime guardrail would miss it unless that branch is exercised during
 testing.
 
 \noindent
 \textbf{Scenario B:} An LLM generates toxic content in a response.
-Runtime content filters (LlamaGuard, NeMo Guardrails) catch this; our
-approach cannot, as LLM output semantics are out of scope.
+Runtime content filters (LlamaGuard, NeMo Guardrails) catch this;
+Agentproof cannot, as LLM output semantics are out of scope.
 
 \noindent
 \textbf{Scenario C:} A conditional path bypasses a required human
-approval gate. Our static analysis flags the missing gate on that path;
+approval gate. Agentproof's static analysis flags the missing gate on that path;
 runtime tools may miss it if the bypass path is not triggered.
 
 The two approaches are complementary: static verification catches
@@ -288,9 +288,9 @@ content-level and context-dependent violations.
 \subsection{Extractor accuracy}
 \label{sec:accuracy}
 
-We validated extractor fidelity using the framework-specific examples
-in our test suite. For each of the four extractors (LangGraph, CrewAI,
-AutoGen, ADK), we compared extracted graphs against manually annotated
+Extractor fidelity was validated using the framework-specific examples
+in the test suite. For each of the four extractors (LangGraph, CrewAI,
+AutoGen, ADK), extracted graphs were compared against manually annotated
 ground truth across 4--8 test cases per framework, measuring node
 detection precision/recall, node-kind classification accuracy, and
 edge detection precision/recall.
@@ -306,22 +306,22 @@ by class hierarchy). Edge detection precision and recall are both
 The primary source of classification error is human-node detection in
 LangGraph, which relies on a naming heuristic
 (\texttt{"human" in name}): nodes not following this convention are
-misclassified as LLM nodes. We identify four strategies for human-node
+misclassified as LLM nodes. Four strategies for human-node
 detection, in order of increasing reliability:
 (1)~\emph{Naming heuristic} (current default): match node names against
-keywords---low implementation cost but brittle.
+keywords low implementation cost but brittle.
 (2)~\emph{Interrupt annotation}: detect LangGraph's
 \texttt{interrupt\_before}/\texttt{interrupt\_after}
-markers---framework-specific but semantically precise.
+markers framework-specific but semantically precise.
 (3)~\emph{Input-call detection}: identify \texttt{input()} or
 equivalent blocking calls in node functions via AST
-inspection---cross-framework but may produce false positives.
+inspection cross-framework but may produce false positives.
 (4)~\emph{Explicit type annotation}: require developers to mark human
-nodes via a decorator or metadata field---most reliable but requires
+nodes via a decorator or metadata field most reliable but requires
 adoption.
-On our test suite, only strategy~(1) produces misclassifications;
+On the test suite, only strategy~(1) produces misclassifications;
 strategies~(2)--(4) would require validation on a larger real-world
-corpus. We prioritize strategy~(2) for the next release as it requires
+corpus. Strategy~(2) is prioritized for the next release as it requires
 no developer action.
 
 These results confirm that the extractors faithfully reproduce the

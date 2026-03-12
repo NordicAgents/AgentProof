@@ -1,7 +1,7 @@
 \section{Soundness proofs}
 \label{app:proofs}
 
-We prove that each structural check is sound: if the check passes, the
+This appendix proves that each structural check is sound: if the check passes, the
 corresponding safety property holds for all valid execution traces.
 
 \begin{lemma}[Exit Reachability Soundness]
@@ -75,7 +75,7 @@ until), if the compiled monitor reports no violation on a finite trace
 $\pi$, then $\pi$ satisfies the corresponding temporal formula.
 \end{lemma}
 \begin{proof}
-We proceed by cases.
+The proof proceeds by cases.
 
 \emph{Forbidden ($\mathbf{G}\,\neg a$):} The DFA has two states:
 $s_0$ (safe) and $s_1$ (violated, absorbing). The transition
