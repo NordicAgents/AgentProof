@@ -58,9 +58,11 @@ safety properties that runtime guardrails can only check reactively.
 
 This paper presents \textsc{Agentproof}, a system that automatically extracts a
 unified abstract graph model from four major agent frameworks
-(LangGraph, CrewAI, AutoGen, Google ADK), applies five structural
+(LangGraph, CrewAI, AutoGen, Google ADK), applies six structural
 checks with witness trace generation, and evaluates temporal safety
-policies via a DSL compiled to deterministic finite automata. Unlike
+policies via a DSL compiled to deterministic finite automata---both
+statically through a graph\,$\times$\,DFA product construction and at
+runtime over event traces. Unlike
 general-purpose model checkers, Agentproof requires no manual modeling.
 
 In a study of 18 curated workflows, 27\% contain
@@ -76,8 +78,8 @@ unless the offending path is exercised.
 \end{abstract}
 
 \input{sections/01_introduction}
-\input{sections/02a_threat_model}
 \input{sections/02_background}
+\input{sections/02a_threat_model}
 \input{sections/03_system_overview}
 \input{sections/04_graph_model_and_extraction}
 \input{sections/05_verification_methods}

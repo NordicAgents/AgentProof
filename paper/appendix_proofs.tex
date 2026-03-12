@@ -68,6 +68,59 @@ $T(v) \neq \emptyset$. Passing the check establishes the universal
 statement.
 \end{proof}
 
+\begin{lemma}[Reverse Reachability Soundness]
+\label{lem:reverse_reach}
+If $\mathrm{ExitReachAll}(G)$ holds (i.e.,
+$\mathrm{Reach}(v_0) \subseteq \mathrm{RevReach}(V_f)$), then for every
+node~$v$ reachable from~$v_0$, there exists a directed path from~$v$ to
+some exit node~$v_f \in V_f$.
+\end{lemma}
+\begin{proof}
+The check computes $\mathrm{RevReach}(V_f)$ by BFS on the reverse
+adjacency starting from all nodes in~$V_f$. By the correctness of BFS,
+$v \in \mathrm{RevReach}(V_f)$ implies the existence of a path
+$v \to \cdots \to v_f$ for some $v_f \in V_f$. The check passes only when
+$\mathrm{Reach}(v_0) \subseteq \mathrm{RevReach}(V_f)$, so the result
+holds for every reachable node.
+\end{proof}
+
+\begin{lemma}[Human Gate Coverage Soundness]
+\label{lem:human_gate_cov}
+If $\mathrm{HumanGateCov}(G, S)$ holds for a set~$S$ of sensitive tool
+names, then every path from~$v_0$ to a node invoking a tool in~$S$
+passes through at least one \textsc{human} node.
+\end{lemma}
+\begin{proof}
+The check constructs a modified graph~$G'$ by removing all
+\textsc{human}-typed nodes and their incident edges, then computes
+$\mathrm{Reach}_{G'}(v_0)$.  If no sensitive tool node is in
+$\mathrm{Reach}_{G'}(v_0)$, then in the original graph~$G$ every path
+from~$v_0$ to such a node must traverse a removed \textsc{human} node.
+Conversely, if a sensitive tool node is reachable in~$G'$, the
+check fails and reports the human-free path.
+\end{proof}
+
+\begin{lemma}[Static Temporal Soundness]
+\label{lem:static_temporal}
+For a compiled monitor rule with DFA $(Q, q_0, \delta, F_{\mathrm{viol}})$
+and an agent workflow graph~$G$, if the graph~$\times$~DFA product
+construction reports no violation, then no execution trace of~$G$
+violates the temporal property.
+\end{lemma}
+\begin{proof}
+The product BFS explores all reachable states in
+$V \times Q$.  Each product state $(v, q)$ represents being at graph
+node~$v$ with the DFA in state~$q$.  For each successor~$u$ of~$v$ in~$G$,
+the DFA transitions via $q' = \delta(q, \sigma(v))$ where $\sigma(v)$ is the
+event symbol for node~$v$, and the product successor $(u, q')$ is enqueued.
+If no reachable product state has $q' \in F_{\mathrm{viol}}$, then no
+execution trace --- which corresponds to a path through product states ---
+can reach a violation state.  This is an over-approximation: the product
+explores all \emph{graph paths}, which is a superset of actual runtime traces
+(since runtime traces depend on LLM decisions at router nodes).  Hence the
+analysis is sound but potentially conservative.
+\end{proof}
+
 \begin{lemma}[Temporal Monitor Soundness]
 \label{lem:monitor}
 For each of the three base DFA patterns (forbidden, implication-future,

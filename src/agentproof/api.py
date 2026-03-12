@@ -18,15 +18,17 @@ from agentproof.monitor.ltl import (
     compile_monitor_rule,
     evaluate_monitors,
 )
-from agentproof.verify import run_structural_checks
+from agentproof.verify import check_temporal_property, run_structural_checks
 
 
 def verify(
     graph: AgentGraph,
     *,
     require_human: bool = False,
+    sensitive_tools: set[str] | None = None,
     monitor_rules: list[MonitorRuleSpec] | None = None,
     event_trace: list[dict[str, Any]] | None = None,
+    static_temporal: bool = False,
 ) -> dict[str, Any]:
     """Run structural checks and optional temporal monitoring.
 
@@ -36,10 +38,16 @@ def verify(
         The agent workflow graph to verify.
     require_human : bool
         Whether to require a human-in-the-loop node.
+    sensitive_tools : set[str] | None
+        Tool names that require a HUMAN gate.  When provided, a
+        ``human_gate_coverage`` policy check is added.
     monitor_rules : list[MonitorRuleSpec] | None
         Temporal policy rules to compile and evaluate.
     event_trace : list[dict] | None
         Simulated event trace for temporal monitoring.
+    static_temporal : bool
+        When *True* and *monitor_rules* is provided, run static temporal
+        verification via graph x DFA product construction.
 
     Returns
     -------
@@ -50,7 +58,9 @@ def verify(
     report: dict[str, Any] = {}
 
     # Structural checks
-    report["structural"] = run_structural_checks(graph, require_human=require_human)
+    report["structural"] = run_structural_checks(
+        graph, require_human=require_human, sensitive_tools=sensitive_tools,
+    )
 
     # Temporal monitoring
     if monitor_rules:
@@ -90,6 +100,12 @@ def verify(
                 for step in all_snapshots
                 for snap in step
                 if snap.get("violation")
+            ]
+
+        # Static temporal verification (graph x DFA product)
+        if static_temporal and compiled:
+            report["static_temporal"] = [
+                check_temporal_property(graph, cr) for cr in compiled
             ]
 
     return report

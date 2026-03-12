@@ -41,7 +41,7 @@ dead-end node and produces a witness trace:
 normal\_handler $\to$ draft\_response} (stuck).
 
 \paragraph{Research gap.}
-This class of defect a topological error in the workflow
+This class of defect---a topological error in the workflow
 graph cannot be addressed by content-level runtime guardrails. In
 principle, classical model checking techniques could detect such
 errors: reachability analysis, deadlock detection, and temporal logic
@@ -50,7 +50,7 @@ literature~\citep{clarke1999modelchecking, baier2008modelchecking}.
 However, general-purpose model checkers such as
 SPIN~\citep{holzmann1997spin} and NuSMV~\citep{cimatti2002nusmv}
 require manual translation of the system under analysis into a
-dedicated modeling language a prohibitive overhead for agent
+dedicated modeling language---a prohibitive overhead for agent
 developers iterating on workflow designs. Similarly, the business
 process management (BPM) community has a long tradition of workflow
 soundness verification~\citep{vanderaalst2011bpm}, but these methods
@@ -70,7 +70,7 @@ isolation, and temporal constraints over the topology properties that
 can be checked exhaustively without running the
 agent~\citep{clarke1999modelchecking}.
 
-This paper presents \textsc{Agentproof}, a practical system for static analysis
+This paper presents Agentproof, a practical system for static analysis
 of agent workflows that focuses on properties (a)~expressible over the
 workflow graph and (b)~independent of LLM text generation semantics.
 Unlike general-purpose model checkers, Agentproof extracts the analysis
@@ -79,17 +79,14 @@ modeling effort.
 
 \paragraph{Contributions.}
 \begin{itemize}
-  \item A cross-framework extraction and integration pipeline: four major agent frameworks (LangGraph, CrewAI, AutoGen, Google
-  ADK) expose enough structure through their APIs to enable fully
-  automatic extraction into a \emph{unified abstract workflow model}
-  with typed nodes and edges eliminating the manual modeling step
-  required by general-purpose model
+  \item A cross-framework extraction pipeline: extractors for four major
+  agent frameworks (LangGraph, CrewAI, AutoGen, Google ADK) automatically
+  bridge heterogeneous representations---each with different entry/exit
+  conventions, edge semantics, and hierarchy models---into a unified
+  abstract workflow model with typed nodes and edges, eliminating the
+  manual modeling step required by general-purpose model
   checkers~(Section~\ref{sec:graph_model}).
-  \item Extractors for LangGraph, CrewAI, AutoGen, and Google ADK that
-  bridge heterogeneous framework representations each with different
-  entry/exit conventions, edge semantics, and hierarchy
-  models into a single \texttt{AgentGraph}.
-  \item A pre-deployment verification pipeline comprising five
+  \item A pre-deployment verification pipeline comprising six
   structural checks with \emph{witness trace generation} and a temporal
   policy DSL covering the safety fragment of LTL, compiled to
   deterministic finite automata~(Section~\ref{sec:verification_methods}).

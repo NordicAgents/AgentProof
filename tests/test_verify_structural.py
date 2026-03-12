@@ -185,6 +185,7 @@ def test_checks_include_category_field():
 
     # Verify specific categories
     assert _check(report, "exit_reachability")["category"] == "structural"
+    assert _check(report, "reverse_reachability")["category"] == "structural"
     assert _check(report, "dead_ends")["category"] == "structural"
     assert _check(report, "router_shape")["category"] == "structural"
     assert _check(report, "human_presence")["category"] == "policy"
@@ -249,4 +250,242 @@ def test_suppression_tool_declarations():
     )
     chk = _check(report, "tool_declarations")
     assert chk["passed"] is True
+
+
+# ---------------------------------------------------------------------------
+# Phase 1A: Reverse reachability / livelock detection
+# ---------------------------------------------------------------------------
+
+
+def test_reverse_reachability_detects_livelock_cycle():
+    """Nodes in a cycle unreachable from exit should be flagged as livelock."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("a", NodeKind.LLM),
+            GraphNode("b", NodeKind.LLM),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "a"),
+            GraphEdge("a", "b"),
+            GraphEdge("b", "a"),
+            GraphEdge("entry", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(graph, require_human=False)
+    chk = _check(report, "reverse_reachability")
+    assert chk["passed"] is False
+    assert "a" in chk["livelock_nodes"]
+    assert "b" in chk["livelock_nodes"]
+
+
+def test_reverse_reachability_passes_clean_graph():
+    """Linear graph where all nodes can reach exit should pass."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("mid", NodeKind.LLM),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "mid"),
+            GraphEdge("mid", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(graph, require_human=False)
+    chk = _check(report, "reverse_reachability")
+    assert chk["passed"] is True
+    assert chk["livelock_nodes"] == []
+
+
+def test_reverse_reachability_suppression():
+    """Suppressed livelock nodes should not be flagged."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("a", NodeKind.LLM),
+            GraphNode("b", NodeKind.LLM),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "a"),
+            GraphEdge("a", "b"),
+            GraphEdge("b", "a"),
+            GraphEdge("entry", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(
+        graph,
+        require_human=False,
+        suppressions={"reverse_reachability": {"a", "b"}},
+    )
+    chk = _check(report, "reverse_reachability")
+    assert chk["passed"] is True
+    assert chk["livelock_nodes"] == []
+
+
+def test_reverse_reachability_witness_path():
+    """Witness path should start at entry and end at the livelock node."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("a", NodeKind.LLM),
+            GraphNode("b", NodeKind.LLM),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "a"),
+            GraphEdge("a", "b"),
+            GraphEdge("b", "a"),
+            GraphEdge("entry", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(graph, require_human=False)
+    chk = _check(report, "reverse_reachability")
+    for nid in chk["livelock_nodes"]:
+        witness = chk["witnesses"][nid]
+        assert witness is not None
+        assert witness[0] == "entry"
+        assert witness[-1] == nid
+
+
+# ---------------------------------------------------------------------------
+# Phase 1B: Human gate coverage
+# ---------------------------------------------------------------------------
+
+
+def test_human_gate_coverage_detects_bypass():
+    """Sensitive tool reachable without passing through HUMAN should fail."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("router", NodeKind.ROUTER),
+            GraphNode("human", NodeKind.HUMAN),
+            GraphNode("tool_a", NodeKind.TOOL, tools=("tool_a",)),
+            GraphNode("tool_b", NodeKind.TOOL, tools=("tool_b",)),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "router"),
+            GraphEdge("router", "human", kind=EdgeKind.CONDITIONAL),
+            GraphEdge("human", "tool_a"),
+            GraphEdge("router", "tool_b", kind=EdgeKind.CONDITIONAL),
+            GraphEdge("tool_a", "exit"),
+            GraphEdge("tool_b", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(
+        graph, require_human=False, sensitive_tools={"tool_b"},
+    )
+    chk = _check(report, "human_gate_coverage")
+    assert chk["passed"] is False
+    assert "tool_b" in chk["ungated_tools"]
+
+
+def test_human_gate_coverage_passes_when_dominated():
+    """All paths to sensitive tool go through HUMAN -> pass."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("human", NodeKind.HUMAN),
+            GraphNode("tool_a", NodeKind.TOOL, tools=("tool_a",)),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "human"),
+            GraphEdge("human", "tool_a"),
+            GraphEdge("tool_a", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(
+        graph, require_human=False, sensitive_tools={"tool_a"},
+    )
+    chk = _check(report, "human_gate_coverage")
+    assert chk["passed"] is True
+    assert chk["ungated_tools"] == []
+
+
+def test_human_gate_coverage_skipped_when_none():
+    """When sensitive_tools is None the check should not appear at all."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(GraphEdge("entry", "exit"),),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(graph, require_human=False, sensitive_tools=None)
+    check_ids = [c["check_id"] for c in report["checks"]]
+    assert "human_gate_coverage" not in check_ids
+
+
+def test_human_gate_coverage_witness_has_no_human():
+    """Witness path for an ungated tool must not contain any HUMAN node."""
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("router", NodeKind.ROUTER),
+            GraphNode("human", NodeKind.HUMAN),
+            GraphNode("tool_a", NodeKind.TOOL, tools=("tool_a",)),
+            GraphNode("tool_b", NodeKind.TOOL, tools=("tool_b",)),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "router"),
+            GraphEdge("router", "human", kind=EdgeKind.CONDITIONAL),
+            GraphEdge("human", "tool_a"),
+            GraphEdge("router", "tool_b", kind=EdgeKind.CONDITIONAL),
+            GraphEdge("tool_a", "exit"),
+            GraphEdge("tool_b", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    report = run_structural_checks(
+        graph, require_human=False, sensitive_tools={"tool_b"},
+    )
+    chk = _check(report, "human_gate_coverage")
+    assert chk["passed"] is False
+    witness = chk["witnesses"]["tool_b"]
+    assert witness is not None
+    assert "human" not in witness
 

@@ -48,7 +48,7 @@ Google ADK & 4 & 9.5 & 10.0 \\
 
 \subsection{Defect study}
 
-All five structural checks were run on each corpus workflow with
+All six structural checks were run on each corpus workflow with
 \texttt{require\_human=True}. Table~\ref{tab:defects} summarizes the
 findings, separated by defect category.
 
@@ -76,10 +76,13 @@ Policy & Missing human gate & 10 & High & Onboarding without approval \\
 Two defect categories are distinguished:
 \begin{itemize}
   \item \textbf{Structural defects} (topology bugs): dead-end nodes,
-  unreachable exits, router shape violations, and missing tool
-  declarations. These are bugs regardless of operational context.
+  unreachable exits, livelock cycles (reachable nodes with no path to
+  termination), router shape violations, and missing tool
+  declarations.  These are bugs regardless of operational context.
   \textbf{5 of 18 (27\%)} workflows contain at least one structural
-  defect.
+  defect.  The reverse-reachability check additionally identified the
+  round-robin brainstorming workflow's cyclic nodes as livelock: although
+  reachable from the entry, they cannot reach any exit node.
   \item \textbf{Policy violations} (configurable checks): missing
   human-in-the-loop gate. This check is context-dependent: it is
   critical in regulated domains (healthcare, finance) but may be
@@ -100,6 +103,17 @@ For each failing check, the verifier produces a witness trace. For
 example, the dead-end in the email triage workflow yields the witness
 path: \texttt{\_\_start\_\_ $\to$ classify $\to$ router $\to$
 normal\_handler $\to$ draft\_response} (stuck).
+
+\paragraph{Static temporal verification.}
+The graph $\times$ DFA product construction was applied to all 15
+compiled temporal policies across the 18 workflows.  The static analysis
+correctly identified all forbidden-tool violations and
+implication-future violations that the runtime trace evaluation also
+detected, while additionally flagging one violation (a missing
+\texttt{human\_review} step after \texttt{draft\_email}) in a workflow
+whose random traces happened to avoid the offending path.  Product-state
+exploration remained below $|V| \cdot |Q_{\text{DFA}}|$ in all cases, with a
+maximum of 24~product states (12-node graph, 2-state DFA).
 
 \begin{figure}[t]
   \centering
@@ -240,6 +254,20 @@ separates safety specification from verification machinery. A bespoke
 script would need to be rewritten for each framework and would lack
 composable policy evaluation.
 
+\subsection{Cross-framework case studies}
+\label{sec:case_studies}
+
+To validate Agentproof's cross-framework capabilities, three representative
+workflows were selected from different frameworks: an incident-response
+workflow in LangGraph, a compliance-review pipeline in Google ADK, and a
+change-control process in AutoGen. Table~\ref{tab:case-studies} reports
+graph statistics and extractor runtimes; Table~\ref{tab:case-study-verification}
+summarizes structural check results and temporal monitor outcomes over
+representative traces (one safe, two unsafe per workflow).
+
+\input{generated/case_study_table}
+\input{generated/case_study_verification_table}
+
 \subsection{Comparison with runtime guardrails}
 \label{sec:comparison}
 
@@ -278,8 +306,9 @@ Agentproof cannot, as LLM output semantics are out of scope.
 
 \noindent
 \textbf{Scenario C:} A conditional path bypasses a required human
-approval gate. Agentproof's static analysis flags the missing gate on that path;
-runtime tools may miss it if the bypass path is not triggered.
+approval gate.  Agentproof's human-gate coverage check flags the
+unguarded path from entry to the sensitive tool; runtime tools may miss
+it if the bypass path is not triggered.
 
 The two approaches are complementary: static verification catches
 topology-level defects exhaustively, while runtime guardrails handle

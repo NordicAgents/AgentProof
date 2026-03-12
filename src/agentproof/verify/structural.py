@@ -8,6 +8,14 @@ from typing import Any
 from agentproof.graph.model import AgentGraph, EdgeKind, NodeKind, adjacency
 
 
+def _reverse_adj(graph: AgentGraph) -> dict[str, list[str]]:
+    """Build reverse adjacency mapping: target -> list of sources."""
+    rev: dict[str, list[str]] = {n.id: [] for n in graph.nodes}
+    for e in graph.edges:
+        rev.setdefault(e.target, []).append(e.source)
+    return rev
+
+
 def _find_path(adj: dict[str, list[str]], start: str, target: str) -> list[str] | None:
     """BFS path finder returning a witness path from *start* to *target*, or None."""
     if start == target:
@@ -75,20 +83,26 @@ def run_structural_checks(
     *,
     require_human: bool,
     suppressions: dict[str, set[str]] | None = None,
+    sensitive_tools: set[str] | None = None,
 ) -> dict[str, Any]:
     """Run the standard structural checks described in the paper.
 
-    Checks implemented (exactly five):
+    Checks implemented (six core, plus optional policy checks):
       1) Exit reachability
-      2) Dead-end detection (excluding EXIT)
-      3) Router shape (ROUTER outgoing edges must be CONDITIONAL)
-      4) Human-in-the-loop presence (optional, controlled by require_human)
-      5) Tool declaration checks (TOOL nodes must declare tools)
+      2) Reverse reachability / livelock detection
+      3) Dead-end detection (excluding EXIT)
+      4) Router shape (ROUTER outgoing edges must be CONDITIONAL)
+      5) Human-in-the-loop presence (optional, controlled by require_human)
+      5b) Human gate coverage (optional, controlled by sensitive_tools)
+      6) Tool declaration checks (TOOL nodes must declare tools)
 
     Args:
         suppressions: Optional mapping of check_id to node IDs to ignore.
             For example, ``{"dead_ends": {"intentional_halt"}}`` suppresses
             the dead-end finding for the *intentional_halt* node.
+        sensitive_tools: Optional set of tool names that require a HUMAN gate.
+            When provided, adds a ``human_gate_coverage`` check verifying
+            that every sensitive tool node is dominated by a HUMAN node.
 
     Returns a JSON-serializable report with witness traces for failures.
     """
@@ -123,7 +137,37 @@ def run_structural_checks(
         }
     )
 
-    # 2) Dead-end detection (excluding EXIT)
+    # 2) Reverse reachability / livelock detection
+    rev = _reverse_adj(graph)
+    can_reach_exit: set[str] = set()
+    rev_frontier: list[str] = list(graph.exit_ids)
+    while rev_frontier:
+        node_id = rev_frontier.pop()
+        if node_id in can_reach_exit:
+            continue
+        can_reach_exit.add(node_id)
+        rev_frontier.extend(rev.get(node_id, []))
+
+    suppressed_reverse = suppressions.get("reverse_reachability", set())
+    livelock_nodes = sorted(
+        nid for nid in reachable
+        if nid not in can_reach_exit
+        and nid not in suppressed_reverse
+    )
+    witnesses_livelock: dict[str, list[str] | None] = {}
+    for nid in livelock_nodes:
+        witnesses_livelock[nid] = _find_path(adj, graph.entry_id, nid)
+    checks.append(
+        {
+            "check_id": "reverse_reachability",
+            "category": "structural",
+            "passed": len(livelock_nodes) == 0,
+            "livelock_nodes": livelock_nodes,
+            "witnesses": witnesses_livelock,
+        }
+    )
+
+    # 3) Dead-end detection (excluding EXIT)  [was check 2]
     suppressed_dead = suppressions.get("dead_ends", set())
     dead_ends = sorted(
         n.id
@@ -145,7 +189,7 @@ def run_structural_checks(
         }
     )
 
-    # 3) Router shape checks
+    # 4) Router shape checks
     router_ids = sorted(n.id for n in graph.nodes if n.kind == NodeKind.ROUTER)
     router_violations: list[dict[str, Any]] = []
     for rid in router_ids:
@@ -167,7 +211,7 @@ def run_structural_checks(
         }
     )
 
-    # 4) Human-in-the-loop presence
+    # 5) Human-in-the-loop presence
     human_nodes = sorted(n.id for n in graph.nodes if n.kind == NodeKind.HUMAN)
     checks.append(
         {
@@ -179,7 +223,49 @@ def run_structural_checks(
         }
     )
 
-    # 5) Tool declaration checks
+    # 5b) Human gate coverage (optional)
+    if sensitive_tools is not None:
+        # Build adjacency excluding HUMAN nodes
+        human_ids = {n.id for n in graph.nodes if n.kind == NodeKind.HUMAN}
+        adj_no_human: dict[str, list[str]] = {
+            n.id: [] for n in graph.nodes if n.id not in human_ids
+        }
+        for e in graph.edges:
+            if e.source not in human_ids and e.target not in human_ids:
+                adj_no_human.setdefault(e.source, []).append(e.target)
+
+        # BFS from entry on human-free adjacency
+        reachable_no_human: set[str] = set()
+        nh_frontier: list[str] = [graph.entry_id] if graph.entry_id not in human_ids else []
+        while nh_frontier:
+            nid = nh_frontier.pop()
+            if nid in reachable_no_human:
+                continue
+            reachable_no_human.add(nid)
+            nh_frontier.extend(adj_no_human.get(nid, []))
+
+        # Find sensitive tool nodes reachable without passing through HUMAN
+        node_map = {n.id: n for n in graph.nodes}
+        ungated_tools = sorted(
+            nid for nid in reachable_no_human
+            if nid in node_map
+            and node_map[nid].kind == NodeKind.TOOL
+            and any(t in sensitive_tools for t in node_map[nid].tools)
+        )
+        witnesses_gate: dict[str, list[str] | None] = {}
+        for nid in ungated_tools:
+            witnesses_gate[nid] = _find_path(adj_no_human, graph.entry_id, nid)
+        checks.append(
+            {
+                "check_id": "human_gate_coverage",
+                "category": "policy",
+                "passed": len(ungated_tools) == 0,
+                "ungated_tools": ungated_tools,
+                "witnesses": witnesses_gate,
+            }
+        )
+
+    # 6) Tool declaration checks
     suppressed_tools = suppressions.get("tool_declarations", set())
     tool_nodes = [n for n in graph.nodes if n.kind == NodeKind.TOOL]
     missing_tool_decls = sorted(

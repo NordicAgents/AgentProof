@@ -15,6 +15,16 @@ The set of nodes reachable from $v_0$ is computed using BFS to verify
 that $V_f \subseteq \mathrm{Reach}(v_0)$.
 Complexity: $O(|V| + |E|)$.
 
+\paragraph{Reverse reachability.}
+A complementary check verifies that every node reachable from $v_0$ can
+itself reach some exit node in $V_f$.  The algorithm performs a BFS on the
+\emph{reverse} adjacency (edges traversed backward) starting from all exit
+nodes to compute $\mathrm{RevReach}(V_f)$.  Any node in
+$\mathrm{Reach}(v_0) \setminus \mathrm{RevReach}(V_f)$ is a
+\emph{livelock node}: reachable from the entry but trapped in a cycle with
+no path to termination.
+Complexity: $O(|V| + |E|)$.
+
 \paragraph{Dead-end detection.}
 Nodes $v$ with $\kappa_V(v) \neq \textsc{exit}$ and no
 outgoing edges. Dead ends indicate missing transitions or incomplete
@@ -26,8 +36,14 @@ The check verifies that all outgoing edges from \textsc{router} nodes are labele
 \textsc{conditional}. Complexity: $O(|E|)$.
 
 \paragraph{Human-in-the-loop presence.}
-This check determines whether the graph contains any node with
-$\kappa_V(v) = \textsc{human}$. Complexity: $O(|V|)$.
+The existence check determines whether the graph contains any node with
+$\kappa_V(v) = \textsc{human}$.  An optional \emph{coverage} variant
+verifies that for a set~$S$ of sensitive tool names, no path from $v_0$ to
+a node invoking a tool in~$S$ avoids all \textsc{human} nodes.  The
+coverage check builds a modified adjacency excluding \textsc{human} nodes
+and performs BFS from $v_0$; any sensitive tool node still reachable
+indicates a human-free path.
+Complexity: existence $O(|V|)$; coverage $O(|V| + |E|)$.
 
 \paragraph{Tool declaration checks.}
 The check flags \textsc{tool} nodes with $T(v) = \emptyset$.
@@ -42,43 +58,16 @@ witness is a BFS path from $v_0$ to the stuck node. Witness traces
 follow standard model-checking practice~\citep{clarke1999modelchecking}
 and significantly aid debugging.
 
-\subsection{Cross-framework extraction challenge}
-\label{sec:extraction_challenge}
-
-A central contribution is the \emph{automatic} extraction of
-\texttt{AgentGraph} instances from heterogeneous framework APIs. Each
-framework represents workflows differently, making unified extraction
-non-trivial:
-
-\begin{itemize}
-  \item \textbf{LangGraph} uses an explicit \texttt{StateGraph} with
-  \texttt{add\_node()} and \texttt{add\_edge()} calls. Entry and exit
-  are string sentinels (\texttt{START}, \texttt{END}). Conditional
-  routing uses \texttt{add\_conditional\_edges()} with a path map dict.
-  \item \textbf{CrewAI} defines workflows implicitly via a list of
-  \texttt{Task} objects passed to a \texttt{Crew}. The topology depends
-  on the \texttt{process} parameter (\texttt{sequential} vs.\
-  \texttt{hierarchical}) and optional \texttt{context} dependencies
-  between tasks.
-  \item \textbf{AutoGen} uses group-chat patterns
-  (\texttt{RoundRobinGroupChat}, \texttt{SelectorGroupChat}) where agent
-  ordering defines the graph. Loop edges arise from round-robin cycling.
-  \item \textbf{Google ADK} composes agents via nesting constructors
-  (\texttt{SequentialAgent}, \texttt{ParallelAgent}, \texttt{LoopAgent})
-  with a \texttt{sub\_agents} list. The hierarchy must be flattened into
-  a single graph with appropriate edge kinds.
-\end{itemize}
-
-\noindent
-The extractors normalize these diverse representations into the
-same \texttt{AgentGraph} type system (Definition~\ref{def:awg}),
-synthesizing entry/exit sentinel nodes where the framework does not
-provide them explicitly.  General-purpose model checkers such as
-SPIN~\citep{holzmann1997spin} or NuSMV~\citep{cimatti2002nusmv}
-could verify the same properties, but would require the developer to
-\emph{manually} translate the workflow into Promela or SMV a
-process that takes hours even for small graphs (see
-Section~\ref{sec:related_work} for a concrete example).
+\paragraph{Static temporal verification.}
+In addition to runtime trace evaluation, temporal policies can be checked
+\emph{statically} via a graph $\times$ DFA product construction.  For a
+compiled rule with DFA states~$Q$ and transition function~$\delta$, the
+product state space is $V \times Q$.  BFS from $(v_0, q_0)$ advances the
+DFA at each node using the node's event signature and follows graph edges.
+If any product state $(v, q')$ has $q'$ in the DFA violation set, the
+property is violated and the BFS parent chain yields a witness path.
+Explored states are bounded by $|V| \cdot |Q|$, so verification remains
+linear in graph size for fixed-size DFAs.
 
 \subsection{Temporal policy monitors}
 Agentproof supports a temporal policy DSL covering the safety fragment of
@@ -142,10 +131,15 @@ atomic predicates. Table~\ref{tab:dfa_states} summarizes DFA sizes.
 \end{table}
 
 \paragraph{Evaluation and handling.}
-At runtime, each event advances the DFA state for every compiled rule
-via $O(1)$ table lookups. If any rule enters a violation state, the
-configured handling level (\texttt{warn}, \texttt{block},
-\texttt{halt}, \texttt{escalate}) determines the aggregate decision.
+Temporal policies support two evaluation modes.  In \emph{static mode},
+the graph~$\times$~DFA product construction
+(Section~\ref{sec:system_overview}, Step~5a) explores all reachable
+product states; a violation in any product state implies the property
+can be violated on some graph path.  In \emph{runtime mode}, each event
+advances the DFA state for every compiled rule via $O(1)$ table lookups.
+If any rule enters a violation state, the configured handling level
+(\texttt{warn}, \texttt{block}, \texttt{halt}, \texttt{escalate})
+determines the aggregate decision.
 
 \begin{figure}[t]
   \centering

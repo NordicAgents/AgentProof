@@ -26,8 +26,7 @@ LTL but does not support full LTL, nested temporal operators beyond
 two levels, or past-time modalities. In the evaluation, all 15
 concrete policies fit within the seven-form fragment (100\% coverage),
 suggesting the fragment is sufficient for common agent safety
-requirements. Extending to richer fragments and to full graph
-$\times$ automaton product construction is future work.
+requirements. Extending to richer temporal fragments (e.g., past-time LTL) is future work.
 
 \paragraph{False positive management.}
 Some flagged defects may be intentional design choices (e.g., dead-end
@@ -38,11 +37,20 @@ includes annotation-based suppression (e.g.,
 and configurable verification profiles. The library already supports
 a \texttt{suppressions} parameter for node-level exclusions.
 
+\paragraph{Static temporal conservatism.}
+The graph $\times$ DFA product construction explores all topological
+paths, including paths that may be infeasible at runtime due to router
+conditions or LLM decision logic.  This makes the analysis sound
+(no false negatives) but potentially conservative (false positives).
+Incorporating edge conditions into the product construction to prune
+infeasible paths is a direction for future work.
+
 \paragraph{Corpus scale.}
 The evaluation uses 18 curated workflows. Agentproof provides a GitHub mining
 pipeline (\texttt{scripts/\allowbreak scrape\_workflows.py}) and an AST-based
 fallback extractor (\texttt{scripts/\allowbreak ast\_extractor.py}) for building
 larger real-world corpora. A large-scale study across hundreds of
-open-source repositories would strengthen the empirical findings
-and provide a reusable benchmark for the community.
+open-source repositories is needed to validate whether the defect rates
+observed in the curated corpus reflect broader trends, and to provide a
+reusable benchmark for the community.
 

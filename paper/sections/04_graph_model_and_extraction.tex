@@ -41,11 +41,15 @@ ending at a node in $V_f$ or at a node with no outgoing edges.
 
 \begin{definition}[Structural predicates]
 \label{def:structural_predicates}
-Five structural predicates over $G$ are defined:
+Six structural predicates over $G$ are defined:
 \begin{enumerate}
   \item $\mathrm{ExitReach}(G) \iff \forall v_f \in V_f.\;
     v_f \in \mathrm{Reach}(v_0)$, where $\mathrm{Reach}(v_0)$ is the
     set of nodes reachable from $v_0$ via directed paths.
+  \item $\mathrm{ExitReachAll}(G) \iff \mathrm{Reach}(v_0) \subseteq
+    \mathrm{RevReach}(V_f)$, where $\mathrm{RevReach}(V_f)$ is the set
+    of nodes from which some exit node in $V_f$ is reachable via directed
+    paths. This ensures every reachable node can eventually reach an exit.
   \item $\mathrm{NoDead}(G) \iff \forall v \in V.\;
     \kappa_V(v) \neq \textsc{exit} \implies
     \exists u \in V.\; (v,u) \in E$.
@@ -53,7 +57,10 @@ Five structural predicates over $G$ are defined:
     \kappa_V(v) = \textsc{router} \implies
     \forall (v,u) \in E.\; \kappa_E(v,u) = \textsc{conditional}$.
   \item $\mathrm{HumanGate}(G) \iff \exists v \in V.\;
-    \kappa_V(v) = \textsc{human}$.
+    \kappa_V(v) = \textsc{human}$.  An optional path-based variant,
+    $\mathrm{HumanGateCov}(G, S)$, verifies that for a designated
+    set~$S$ of sensitive tools, every path from $v_0$ to a node
+    invoking a tool in~$S$ passes through a \textsc{human} node.
   \item $\mathrm{ToolDecl}(G) \iff \forall v \in V.\;
     \kappa_V(v) = \textsc{tool} \implies T(v) \neq \emptyset$.
 \end{enumerate}
@@ -105,6 +112,44 @@ connects leaf speakers to exit.
 CrewAI describes task pipelines (sequential or hierarchical). The extractor
 creates a node per task, uses process mode to add sequential edges or manager
 routing edges, and incorporates context dependencies between tasks.
+
+\subsection{Cross-framework extraction challenge}
+\label{sec:extraction_challenge}
+
+A central contribution is the \emph{automatic} extraction of
+\texttt{AgentGraph} instances from heterogeneous framework APIs. Each
+framework represents workflows differently, making unified extraction
+non-trivial:
+
+\begin{itemize}
+  \item \textbf{LangGraph} uses an explicit \texttt{StateGraph} with
+  \texttt{add\_node()} and \texttt{add\_edge()} calls. Entry and exit
+  are string sentinels (\texttt{START}, \texttt{END}). Conditional
+  routing uses \texttt{add\_conditional\_edges()} with a path map dict.
+  \item \textbf{CrewAI} defines workflows implicitly via a list of
+  \texttt{Task} objects passed to a \texttt{Crew}. The topology depends
+  on the \texttt{process} parameter (\texttt{sequential} vs.\
+  \texttt{hierarchical}) and optional \texttt{context} dependencies
+  between tasks.
+  \item \textbf{AutoGen} uses group-chat patterns
+  (\texttt{RoundRobinGroupChat}, \texttt{SelectorGroupChat}) where agent
+  ordering defines the graph. Loop edges arise from round-robin cycling.
+  \item \textbf{Google ADK} composes agents via nesting constructors
+  (\texttt{SequentialAgent}, \texttt{ParallelAgent}, \texttt{LoopAgent})
+  with a \texttt{sub\_agents} list. The hierarchy must be flattened into
+  a single graph with appropriate edge kinds.
+\end{itemize}
+
+\noindent
+The extractors normalize these diverse representations into the
+same \texttt{AgentGraph} type system (Definition~\ref{def:awg}),
+synthesizing entry/exit sentinel nodes where the framework does not
+provide them explicitly.  General-purpose model checkers such as
+SPIN~\citep{holzmann1997spin} or NuSMV~\citep{cimatti2002nusmv}
+could verify the same properties, but would require the developer to
+\emph{manually} translate the workflow into Promela or SMV---a
+process that takes hours even for small graphs (see
+Section~\ref{sec:related_work} for a concrete example).
 
 \subsection{Example workflow graph}
 Figure~\ref{fig:example_graph} shows a small extracted workflow used throughout

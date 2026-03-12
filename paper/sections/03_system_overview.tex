@@ -35,8 +35,13 @@ A temporal policy DSL is compiled to DFAs. Policies are written against
 abstract events (tool calls, action tags, or decisions) rather than
 framework internals.
 
-\paragraph{Step 5: Evaluate monitors over traces.}
-Monitors are evaluated over offline simulated traces or integrated into
-a runtime event stream. Violations are mapped to handling levels (warn,
-block, halt, escalate) to support different operational postures.
+\paragraph{Step 5a: Static temporal verification.}
+Each compiled DFA is combined with the extracted graph in a product
+construction: BFS over $(V \times Q)$ detects temporal violations
+reachable on \emph{any} graph path, without executing the agent.
+
+\paragraph{Step 5b: Runtime monitor evaluation.}
+Monitors are also evaluated over offline simulated traces or integrated
+into a runtime event stream. Violations are mapped to handling levels
+(warn, block, halt, escalate) to support different operational postures.
 

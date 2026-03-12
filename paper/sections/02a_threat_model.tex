@@ -14,7 +14,7 @@ are difficult to catch by manual inspection, especially in large graphs.
 An adversary with write access to workflow definitions (e.g., via
 compromised configuration files, a shared workflow registry, or a
 supply-chain attack on a workflow library) may craft topologies that
-bypass safety gates for example, adding a conditional branch that
+bypass safety gates---for example, adding a conditional branch that
 routes around a required human-approval node.
 
 \noindent
@@ -44,7 +44,7 @@ exists in principle (shared repositories, pip-installable workflow
 packages) and because defending against it requires no additional
 machinery beyond the structural checks already needed for T1. No
 adversarial evaluations have been conducted to determine whether a
-sophisticated attacker could craft topologies that evade all five
+sophisticated attacker could craft topologies that evade all six
 structural checks while still achieving a malicious objective; such
 red-teaming is an important direction for future work.
 
