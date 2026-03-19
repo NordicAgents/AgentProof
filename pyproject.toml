@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "agentproof"
+name = "agentproofx"
 version = "0.3.0"
 description = "Static graph verification for agent workflows — LangGraph, ADK, AutoGen, CrewAI"
 readme = "README.md"

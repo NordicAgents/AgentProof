@@ -7,17 +7,17 @@ Supports **LangGraph**, **Google ADK**, **AutoGen**, and **CrewAI**.
 ## Install
 
 ```bash
-pip install agentproof
+pip install agentproofx
 ```
 
 With framework extractors:
 
 ```bash
-pip install agentproof[langgraph]
-pip install agentproof[adk]
-pip install agentproof[autogen]
-pip install agentproof[crewai]
-pip install agentproof[all-frameworks]
+pip install agentproofx[langgraph]
+pip install agentproofx[adk]
+pip install agentproofx[autogen]
+pip install agentproofx[crewai]
+pip install agentproofx[all-frameworks]
 ```
 
 ## Quick Start
@@ -65,10 +65,10 @@ print(report["structural"])
 
 | Framework | Extra | Extractor |
 |-----------|-------|-----------|
-| LangGraph | `agentproof[langgraph]` | `agentproof.graph.extract._langgraph` |
-| Google ADK | `agentproof[adk]` | `agentproof.graph.extract._adk` |
-| AutoGen | `agentproof[autogen]` | `agentproof.graph.extract._autogen` |
-| CrewAI | `agentproof[crewai]` | `agentproof.graph.extract._crewai` |
+| LangGraph | `agentproofx[langgraph]` | `agentproof.graph.extract._langgraph` |
+| Google ADK | `agentproofx[adk]` | `agentproof.graph.extract._adk` |
+| AutoGen | `agentproofx[autogen]` | `agentproof.graph.extract._autogen` |
+| CrewAI | `agentproofx[crewai]` | `agentproof.graph.extract._crewai` |
 
 You can also construct an `AgentGraph` directly without any framework dependency.
 
