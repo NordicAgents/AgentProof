@@ -78,6 +78,9 @@ automata and evaluated with constant overhead per event.
 Events are dictionaries with optional fields: \texttt{tool\_name},
 \texttt{action\_type}, \texttt{decision}, and a set of \texttt{tags}.
 Predicates match against these fields (e.g., \texttt{tool:delete\_account}).
+The event symbol $\sigma(v)$ is derived from the node's kind and tool
+bindings: tool nodes emit \texttt{tool:$t$} for each $t \in T(v)$;
+other nodes emit their kind label.
 
 \paragraph{DSL grammar.}
 The DSL supports seven expression forms (full BNF in

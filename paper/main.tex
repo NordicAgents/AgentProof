@@ -65,16 +65,18 @@ statically through a graph\,$\times$\,DFA product construction and at
 runtime over event traces. Unlike
 general-purpose model checkers, Agentproof requires no manual modeling.
 
-In a study of 18 curated workflows, 27\% contain
-structural defects (dead-end nodes, unreachable exits) and 55\% violate
-a human-gate policy---distinct categories that prior work conflates.
-All 15 temporal policies defined fit within the seven-form DSL
-fragment, and verification completes in sub-second time for graphs up
-to 5{,}000 nodes. The corpus is author-constructed and moderate in size; defect rates
-should not be generalized without validation on larger real-world
-corpora. Nonetheless, static graph verification complements runtime
-guardrails by catching topology-level defects that runtime tools miss
-unless the offending path is exercised.
+In a curated benchmark of 18 author-constructed workflows, 27\% of the
+benchmark contain structural defects (dead-end nodes, unreachable exits)
+and 55\% violate a human-gate policy when enforced---distinct categories
+that prior work conflates. All 15 temporal policies defined fit within
+the seven-form DSL fragment, and verification completes in sub-second
+time for graphs up to 5{,}000 nodes. The corpus serves as a reproducible
+benchmark for evaluating static verification tools rather than as a
+prevalence study; defect rates reflect tool detection capability on a
+targeted benchmark, not base rates in production systems. Nonetheless,
+static graph verification complements runtime guardrails by catching
+topology-level defects that runtime tools miss unless the offending path
+is exercised.
 \end{abstract}
 
 \input{sections/01_introduction}

@@ -35,8 +35,11 @@ $G = (V, E, \kappa_V, \kappa_E, T, v_0, V_f)$ where:
 \label{def:trace}
 A \emph{trace} of $G$ is a finite sequence $\pi = v_0 v_1 \ldots v_n$
 such that $(v_i, v_{i+1}) \in E$ for all $0 \le i < n$.
-$\mathrm{Traces}(G)$ denotes the set of all maximal traces those
+$\mathrm{Traces}(G)$ denotes the set of all maximal traces---those
 ending at a node in $V_f$ or at a node with no outgoing edges.
+A trace that enters a cycle with no path to $V_f$ or a dead end is
+non-maximal; the reverse-reachability check ($\mathrm{ExitReachAll}$)
+detects such livelock conditions.
 \end{definition}
 
 \begin{definition}[Structural predicates]

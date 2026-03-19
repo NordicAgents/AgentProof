@@ -11,8 +11,12 @@ on non-deterministic model behavior and prompt/context choices.
 Frameworks evolve quickly and expose different internal representations
 across versions. The extractors employ heuristics (e.g., recognizing
 human review nodes by naming conventions) that may not generalize to
-all codebases. Section~\ref{sec:accuracy} discusses classification
-accuracy in detail.
+all codebases. The current validation uses 27 stub-based test cases
+(Section~\ref{sec:accuracy}); the gap between stub-based validation and
+the diversity of real-world workflow definitions is not yet measured.
+The AST-based extractor (\texttt{scripts/\allowbreak ast\_extractor.py})
+provides an independent extraction path that could serve as a
+cross-validation tool to strengthen confidence in extraction fidelity.
 
 \paragraph{Runtime graph mutation (T3).}
 Some frameworks allow dynamic modification of the workflow graph during
@@ -23,10 +27,17 @@ framework event systems is a natural extension.
 \paragraph{Temporal DSL expressiveness.}
 The DSL covers seven expression forms targeting the safety fragment of
 LTL but does not support full LTL, nested temporal operators beyond
-two levels, or past-time modalities. In the evaluation, all 15
-concrete policies fit within the seven-form fragment (100\% coverage),
-suggesting the fragment is sufficient for common agent safety
-requirements. Extending to richer temporal fragments (e.g., past-time LTL) is future work.
+two levels, past-time modalities, or real-time bounds beyond step
+counting. All 15 evaluation policies fit within this fragment; however,
+these policies were authored by the same team that designed the DSL,
+introducing a self-selection bias: requirements that did not fit the
+grammar were unlikely to be proposed. The policies were inspired by
+external standards (GDPR~\citep{gdpr_article22},
+SOC~2~\citep{aicpa_soc2}, OWASP LLM Top~10~\citep{owasp_llm_top10}),
+which provides partial mitigation, but a systematic survey of safety
+requirements from independent production deployments is needed to
+validate DSL sufficiency. Extending to richer temporal fragments
+(e.g., past-time LTL, real-time constraints) is future work.
 
 \paragraph{False positive management.}
 Some flagged defects may be intentional design choices (e.g., dead-end
@@ -46,11 +57,17 @@ Incorporating edge conditions into the product construction to prune
 infeasible paths is a direction for future work.
 
 \paragraph{Corpus scale.}
-The evaluation uses 18 curated workflows. Agentproof provides a GitHub mining
-pipeline (\texttt{scripts/\allowbreak scrape\_workflows.py}) and an AST-based
-fallback extractor (\texttt{scripts/\allowbreak ast\_extractor.py}) for building
-larger real-world corpora. A large-scale study across hundreds of
-open-source repositories is needed to validate whether the defect rates
-observed in the curated corpus reflect broader trends, and to provide a
-reusable benchmark for the community.
+The evaluation uses 18 author-constructed workflows.
+\emph{Threat to validity:} because the corpus was designed to include
+representative defects and anti-patterns, the observed defect rates
+reflect detection capability on a targeted benchmark, not prevalence in
+production systems. Generalizing these rates requires validation on
+independently authored workflows.
+Agentproof provides a GitHub mining pipeline
+(\texttt{scripts/\allowbreak scrape\_workflows.py}) and an AST-based
+fallback extractor (\texttt{scripts/\allowbreak ast\_extractor.py}) as
+ready infrastructure for building larger real-world corpora. A
+large-scale study across hundreds of open-source repositories is needed
+to establish base rates and to provide a reusable benchmark for the
+community.
 

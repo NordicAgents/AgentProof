@@ -10,15 +10,15 @@ with runtime guardrails, and (vi)~extractor accuracy.
 \subsection{Workflow corpus}
 
 The evaluation uses a curated benchmark of 18 agent workflows
-authored to reflect common patterns documented in each framework's
-official examples and tutorials. Workflows use LangGraph, CrewAI,
-AutoGen, and Google ADK and span diverse domains including customer
-support, RAG pipelines, code generation, financial analysis, compliance
-review, incident response, hiring, and marketing. Because the corpus is
-author-constructed rather than mined from production repositories,
-defect rates should not be interpreted as prevalence estimates for
-real-world agent systems. A larger-scale study on workflows mined from
-public GitHub repositories is underway
+authored to represent common patterns and known anti-patterns documented
+in each framework's official examples and tutorials. Workflows use
+LangGraph, CrewAI, AutoGen, and Google ADK and span diverse domains
+including customer support, RAG pipelines, code generation, financial
+analysis, compliance review, incident response, hiring, and marketing.
+Because the corpus was designed to include representative defects, the
+defect rates below reflect tool detection capability on a targeted
+benchmark, not base rates in production systems. A larger-scale study on
+workflows mined from public GitHub repositories is planned
 (Section~\ref{sec:limitations}).
 
 Table~\ref{tab:corpus} summarizes the corpus. Graphs range from 5 to
@@ -79,7 +79,8 @@ Two defect categories are distinguished:
   unreachable exits, livelock cycles (reachable nodes with no path to
   termination), router shape violations, and missing tool
   declarations.  These are bugs regardless of operational context.
-  \textbf{5 of 18 (27\%)} workflows contain at least one structural
+  The tool successfully detected all injected structural defects:
+  \textbf{5 of 18} benchmark workflows contain at least one structural
   defect.  The reverse-reachability check additionally identified the
   round-robin brainstorming workflow's cyclic nodes as livelock: although
   reachable from the entry, they cannot reach any exit node.
@@ -87,8 +88,10 @@ Two defect categories are distinguished:
   human-in-the-loop gate. This check is context-dependent: it is
   critical in regulated domains (healthcare, finance) but may be
   unnecessary for internal tooling or low-risk tasks.
-  \textbf{10 of 18 (55\%)} workflows lack a human gate when
-  \texttt{require\_human=True}.
+  \textbf{10 of 18} benchmark workflows lack a human gate when
+  \texttt{require\_human=True}; however, the annotation data shows that
+  some of these are arguable or false positives---workflows where human
+  oversight may be unnecessary given the low-risk nature of the task.
 \end{itemize}
 
 \noindent
@@ -169,8 +172,7 @@ Draft-review-send & \texttt{tool:draft -> F tool:review -> F tool:send} & Commun
 All 15 policies compile successfully into DFAs. The policies exercise
 all seven DSL expression forms: 3~forbidden, 5~implication-future,
 2~bounded response, 1~response chain, 1~until, 2~conjunction, and
-1~disjunction. This demonstrates 100\% coverage of the supported DSL
-forms, and no policy required full LTL expressiveness beyond the
+1~disjunction. No policy required full LTL expressiveness beyond the
 seven-form fragment.
 
 Ten random execution traces were generated per workflow (180 total) and
@@ -182,13 +184,27 @@ atomic predicates appear in the workflow's traces.
 After defining the 15 policies, each was classified by which DSL form
 it uses. All 15 fall within the seven-form fragment; none requires
 nested temporal operators, past-time modalities, or constructs beyond
-the grammar. This provides empirical evidence that the safety fragment
-is sufficient for practical agent workflow policies.
+the grammar.
+
+While the policies were constructed by the authors, their motivations
+derive from published regulatory and industry requirements:
+\texttt{payment\_requires\_human} from GDPR Article~22 (automated
+decision-making requires human review)~\citep{gdpr_article22};
+\texttt{pii\_anonymize\_bounded} from GDPR data minimization
+principles; \texttt{deploy\_requires\_approval} from SOC~2 change
+management controls~\citep{aicpa_soc2};
+\texttt{email\_requires\_review} from organizational communication
+policies; \texttt{no\_destructive\_ops} from OWASP LLM Top~10 (LLM06:
+excessive agency)~\citep{owasp_llm_top10}; and
+\texttt{either\_log\_or\_audit} from SOC~2 audit logging requirements.
+This grounding in external standards suggests the DSL fragment covers
+practical safety needs, though a systematic requirements survey from
+production deployments would provide stronger evidence.
+
 It is acknowledged that 15 policies from a single research group do not
-constitute an exhaustive requirements survey. The policies were deliberately selected
-policies from six distinct domains and ensured all seven DSL forms were
-exercised. A systematic study of safety requirements from production
-agent deployments would provide stronger evidence for DSL sufficiency.
+constitute an exhaustive requirements survey. The policies were
+deliberately selected from six distinct domains and ensured all seven
+DSL forms were exercised.
 
 \subsection{Scalability}
 
@@ -240,12 +256,16 @@ the corpus), so the scalability experiment demonstrates
 ceiling-freeness rather than practical necessity. As agent systems grow
 towards multi-agent compositions and hierarchical subgraph
 structures, larger graphs will become more common.
+The practical false positive rate from treating all conditional edges as
+feasible in the graph\,$\times$\,DFA product construction is not
+measured in this evaluation and is a direction for future
+quantification.
 
 \paragraph{Comparison to ad-hoc scripts.}
 One might ask whether a simple Python script iterating over the graph's
 adjacency list could detect the same defects. For individual checks
 (e.g., finding nodes with no outgoing edges), the answer is
-yes the graph algorithms are standard. Agentproof's value lies not in
+yes---the graph algorithms are standard. Agentproof's value lies not in
 algorithmic novelty but in (i)~automatic extraction from four
 heterogeneous framework APIs, (ii)~a unified type system that makes
 checks portable across frameworks, (iii)~witness trace generation that
@@ -318,18 +338,11 @@ content-level and context-dependent violations.
 \label{sec:accuracy}
 
 Extractor fidelity was validated using the framework-specific examples
-in the test suite. For each of the four extractors (LangGraph, CrewAI,
-AutoGen, ADK), extracted graphs were compared against manually annotated
-ground truth across 4--8 test cases per framework, measuring node
-detection precision/recall, node-kind classification accuracy, and
-edge detection precision/recall.
-
-Node detection achieves perfect precision and recall across all
-frameworks (all nodes are correctly identified). Node-kind
-classification accuracy is 100\% for entry/exit sentinels and tool nodes
-(detected by tool bindings), and 100\% for AutoGen agent types (detected
-by class hierarchy). Edge detection precision and recall are both
-100\% for all frameworks tested.
+in the test suite: 5~LangGraph, 7~CrewAI, 7~AutoGen, and 8~ADK test
+cases (27 total). For each extractor, extracted graphs were compared
+against manually annotated ground truth, measuring node detection
+precision/recall, node-kind classification accuracy, and edge detection
+precision/recall.
 
 \paragraph{Human-node detection limitation.}
 The primary source of classification error is human-node detection in
@@ -338,24 +351,34 @@ LangGraph, which relies on a naming heuristic
 misclassified as LLM nodes. Four strategies for human-node
 detection, in order of increasing reliability:
 (1)~\emph{Naming heuristic} (current default): match node names against
-keywords low implementation cost but brittle.
+keywords---low implementation cost but brittle.
 (2)~\emph{Interrupt annotation}: detect LangGraph's
 \texttt{interrupt\_before}/\texttt{interrupt\_after}
-markers framework-specific but semantically precise.
+markers---framework-specific but semantically precise.
 (3)~\emph{Input-call detection}: identify \texttt{input()} or
 equivalent blocking calls in node functions via AST
-inspection cross-framework but may produce false positives.
+inspection---cross-framework but may produce false positives.
 (4)~\emph{Explicit type annotation}: require developers to mark human
-nodes via a decorator or metadata field most reliable but requires
+nodes via a decorator or metadata field---most reliable but requires
 adoption.
 On the test suite, only strategy~(1) produces misclassifications;
 strategies~(2)--(4) would require validation on a larger real-world
 corpus. Strategy~(2) is prioritized for the next release as it requires
 no developer action.
 
-These results confirm that the extractors faithfully reproduce the
-graph structure, with the caveat that human-node identification depends
-on naming conventions that may not hold universally. Alternative
-detection strategies (e.g., detecting \texttt{interrupt\_before} /
-\texttt{interrupt\_after} annotations in LangGraph, or \texttt{input()}
-calls) are promising directions for improving recall.
+\paragraph{Extraction results.}
+With the human-node caveat above, node detection achieves perfect
+precision and recall across all frameworks on the test suite. Node-kind
+classification accuracy is 100\% for entry/exit sentinels and tool nodes
+(detected by tool bindings), and 100\% for AutoGen agent types (detected
+by class hierarchy). Edge detection precision and recall are both
+100\% for all frameworks tested.
+
+On the test suite, which uses programmatic framework stubs, extraction
+achieves perfect precision and recall for nodes and edges. This
+validates the extraction logic against known API patterns but does not
+measure robustness to the diversity of real-world workflow definitions.
+The AST-based extractor (\texttt{scripts/ast\_extractor.py}) provides
+an independent extraction path; agreement between runtime and AST
+extraction on the same workflows would strengthen confidence and is a
+direction for future cross-validation.
