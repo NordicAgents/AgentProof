@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agentproofx"
-version = "0.3.0"
+version = "0.3.1"
 description = "Static graph verification for agent workflows — LangGraph, ADK, AutoGen, CrewAI"
 readme = "README.md"
 license = "MIT"

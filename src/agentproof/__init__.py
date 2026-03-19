@@ -3,7 +3,7 @@
 from .graph.model import AgentGraph, graph_from_dict, graph_to_dict
 from .api import generate_traces, verify
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 __all__: list[str] = [
     "AgentGraph",
