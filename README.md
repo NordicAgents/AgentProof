@@ -164,3 +164,15 @@ See [`examples/`](examples/) for full runnable versions of each example.
 ## License
 
 MIT
+
+## Citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@article{xavier2026agentproof,
+  title={Agentproof: Static Verification of Agent Workflow Graphs},
+  author={Xavier, Melwin and Jolly, Melveena and Xavier, Midhun and others},
+  journal={arXiv preprint arXiv:2603.20356},
+  year={2026}
+}
