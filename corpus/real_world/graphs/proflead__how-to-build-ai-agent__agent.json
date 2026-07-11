@@ -1,0 +1,62 @@
+{
+  "name": "proflead__how-to-build-ai-agent__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "topic_agent",
+      "kind": "llm",
+      "label": "topic_agent",
+      "tools": []
+    },
+    {
+      "id": "draft_agent",
+      "kind": "llm",
+      "label": "draft_agent",
+      "tools": []
+    },
+    {
+      "id": "format_agent",
+      "kind": "llm",
+      "label": "format_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "topic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "topic_agent",
+      "target": "draft_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_agent",
+      "target": "format_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "format_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

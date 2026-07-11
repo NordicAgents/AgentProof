@@ -1,0 +1,60 @@
+{
+  "name": "Kobemilly__AutoGen_GraphFlow__travel_planner_ollama",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "filtered_summary_agent",
+      "kind": "llm",
+      "label": "filtered_summary_agent",
+      "tools": []
+    },
+    {
+      "id": "filtered_language_agent",
+      "kind": "llm",
+      "label": "filtered_language_agent",
+      "tools": []
+    },
+    {
+      "id": "filtered_local_agent",
+      "kind": "llm",
+      "label": "filtered_local_agent",
+      "tools": []
+    },
+    {
+      "id": "planner_agent",
+      "kind": "llm",
+      "label": "planner_agent",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "planner_agent",
+      "target": "filtered_local_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "planner_agent",
+      "target": "filtered_language_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "filtered_local_agent",
+      "target": "filtered_summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "filtered_language_agent",
+      "target": "filtered_summary_agent",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "agent",
+      "kind": "tool",
+      "label": "AssistantAgent 'agent' (MCP fetch tools bound, reflect_on_tool_use)",
+      "tools": [
+        "mcp_server_tools",
+        "fetch"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "agent",
+      "kind": "loop"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

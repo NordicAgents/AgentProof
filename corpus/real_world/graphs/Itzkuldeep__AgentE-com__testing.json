@@ -1,0 +1,111 @@
+{
+  "name": "Itzkuldeep__AgentE-com__testing",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "CallAgent",
+      "kind": "llm",
+      "label": "CallAgent",
+      "tools": []
+    },
+    {
+      "id": "EmailSenderAgent",
+      "kind": "llm",
+      "label": "EmailSenderAgent",
+      "tools": []
+    },
+    {
+      "id": "ConversationAgent",
+      "kind": "llm",
+      "label": "ConversationAgent",
+      "tools": []
+    },
+    {
+      "id": "SchedulerAgent",
+      "kind": "llm",
+      "label": "SchedulerAgent",
+      "tools": []
+    },
+    {
+      "id": "RAGAgent",
+      "kind": "llm",
+      "label": "RAGAgent",
+      "tools": []
+    },
+    {
+      "id": "Mailgetter",
+      "kind": "llm",
+      "label": "Mailgetter",
+      "tools": []
+    },
+    {
+      "id": "MeetAgent",
+      "kind": "llm",
+      "label": "MeetAgent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "CallAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "CallAgent",
+      "target": "EmailSenderAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "EmailSenderAgent",
+      "target": "ConversationAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "ConversationAgent",
+      "target": "SchedulerAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "SchedulerAgent",
+      "target": "RAGAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "RAGAgent",
+      "target": "Mailgetter",
+      "kind": "direct"
+    },
+    {
+      "source": "Mailgetter",
+      "target": "MeetAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "MeetAgent",
+      "target": "CallAgent",
+      "kind": "loop"
+    },
+    {
+      "source": "MeetAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

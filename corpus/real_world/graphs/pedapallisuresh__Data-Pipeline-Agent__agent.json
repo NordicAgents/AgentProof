@@ -1,0 +1,51 @@
+{
+  "name": "pedapallisuresh__Data-Pipeline-Agent__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "bronze_to_silver_agent",
+      "kind": "llm",
+      "label": "bronze_to_silver_agent",
+      "tools": []
+    },
+    {
+      "id": "silver_to_gold_agent",
+      "kind": "llm",
+      "label": "silver_to_gold_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "bronze_to_silver_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "bronze_to_silver_agent",
+      "target": "silver_to_gold_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "silver_to_gold_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

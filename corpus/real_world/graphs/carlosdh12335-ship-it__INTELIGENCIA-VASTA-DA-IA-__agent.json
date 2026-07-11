@@ -1,0 +1,38 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "action",
+      "kind": "llm",
+      "label": "action",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "action",
+      "target": "agent",
+      "kind": "direct"
+    }
+  ]
+}

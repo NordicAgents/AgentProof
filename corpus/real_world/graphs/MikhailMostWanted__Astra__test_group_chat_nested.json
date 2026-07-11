@@ -1,0 +1,51 @@
+{
+  "name": "MikhailMostWanted__Astra__test_group_chat_nested",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "middle_team",
+      "kind": "llm",
+      "label": "middle_team",
+      "tools": []
+    },
+    {
+      "id": "agent4",
+      "kind": "llm",
+      "label": "agent4",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "middle_team",
+      "kind": "direct"
+    },
+    {
+      "source": "middle_team",
+      "target": "agent4",
+      "kind": "direct"
+    },
+    {
+      "source": "agent4",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

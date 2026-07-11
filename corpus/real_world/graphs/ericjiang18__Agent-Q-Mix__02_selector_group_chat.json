@@ -1,0 +1,62 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__02_selector_group_chat",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "python_expert",
+      "kind": "llm",
+      "label": "python_expert",
+      "tools": []
+    },
+    {
+      "id": "javascript_expert",
+      "kind": "llm",
+      "label": "javascript_expert",
+      "tools": []
+    },
+    {
+      "id": "database_expert",
+      "kind": "llm",
+      "label": "database_expert",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "python_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "python_expert",
+      "target": "javascript_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "javascript_expert",
+      "target": "database_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "database_expert",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

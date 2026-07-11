@@ -1,0 +1,197 @@
+{
+  "name": "jkmaina__autogen_blueprint__03_model_based_selector",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "data_expert",
+      "kind": "llm",
+      "label": "data_expert (data analysis & statistics)"
+    },
+    {
+      "id": "code_expert",
+      "kind": "llm",
+      "label": "code_expert (programming & algorithms)"
+    },
+    {
+      "id": "research_expert",
+      "kind": "llm",
+      "label": "research_expert (research & literature review)"
+    },
+    {
+      "id": "writing_expert",
+      "kind": "llm",
+      "label": "writing_expert (writing & content creation)"
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner (task planning & organization)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "data_expert",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "code_expert",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "research_expert",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "writing_expert",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "conditional"
+    },
+    {
+      "source": "data_expert",
+      "target": "code_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "data_expert",
+      "target": "research_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "data_expert",
+      "target": "writing_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "data_expert",
+      "target": "planner",
+      "kind": "loop"
+    },
+    {
+      "source": "code_expert",
+      "target": "data_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "code_expert",
+      "target": "research_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "code_expert",
+      "target": "writing_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "code_expert",
+      "target": "planner",
+      "kind": "loop"
+    },
+    {
+      "source": "research_expert",
+      "target": "data_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "research_expert",
+      "target": "code_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "research_expert",
+      "target": "writing_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "research_expert",
+      "target": "planner",
+      "kind": "loop"
+    },
+    {
+      "source": "writing_expert",
+      "target": "data_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "writing_expert",
+      "target": "code_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "writing_expert",
+      "target": "research_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "writing_expert",
+      "target": "planner",
+      "kind": "loop"
+    },
+    {
+      "source": "planner",
+      "target": "data_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "planner",
+      "target": "code_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "planner",
+      "target": "research_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "planner",
+      "target": "writing_expert",
+      "kind": "loop"
+    },
+    {
+      "source": "data_expert",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "code_expert",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "research_expert",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "writing_expert",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "planner",
+      "target": "__end__",
+      "kind": "conditional"
+    }
+  ]
+}

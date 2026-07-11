@@ -1,0 +1,57 @@
+{
+  "name": "volcengine__veadk-python__main",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "outliner",
+      "kind": "llm",
+      "label": "outliner"
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer"
+    },
+    {
+      "id": "editor",
+      "kind": "llm",
+      "label": "editor"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "outliner",
+      "kind": "direct"
+    },
+    {
+      "source": "outliner",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "editor",
+      "kind": "direct"
+    },
+    {
+      "source": "editor",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

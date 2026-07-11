@@ -1,0 +1,52 @@
+{
+  "name": "feixiao__ai__ex03",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "primary_agent",
+      "kind": "llm",
+      "label": "primary (AssistantAgent, qwen3:8b)"
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic (AssistantAgent, qwen3:8b)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end (TextMentionTermination 'APPROVE')"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "primary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "primary_agent",
+      "target": "critic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "critic_agent",
+      "target": "primary_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "critic_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

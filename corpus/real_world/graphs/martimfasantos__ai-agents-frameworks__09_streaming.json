@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__09_streaming",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "answer_the_following_questions_about_the_user:_{qu",
+      "kind": "llm",
+      "label": "Answer the following questions about the user: {qu",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "answer_the_following_questions_about_the_user:_{qu",
+      "kind": "direct"
+    },
+    {
+      "source": "answer_the_following_questions_about_the_user:_{qu",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

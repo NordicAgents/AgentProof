@@ -1,0 +1,447 @@
+{
+  "name": "SPZts__AutoModel__MainTeam",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "indicator_selector",
+      "kind": "llm",
+      "label": "indicator_selector",
+      "tools": []
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent",
+      "tools": []
+    },
+    {
+      "id": "model_01_agent",
+      "kind": "llm",
+      "label": "model_01_agent",
+      "tools": []
+    },
+    {
+      "id": "model_02_agent",
+      "kind": "llm",
+      "label": "model_02_agent",
+      "tools": []
+    },
+    {
+      "id": "model_03_agent",
+      "kind": "llm",
+      "label": "model_03_agent",
+      "tools": []
+    },
+    {
+      "id": "model_04_agent",
+      "kind": "llm",
+      "label": "model_04_agent",
+      "tools": []
+    },
+    {
+      "id": "model_05_agent",
+      "kind": "llm",
+      "label": "model_05_agent",
+      "tools": []
+    },
+    {
+      "id": "model_06_agent",
+      "kind": "llm",
+      "label": "model_06_agent",
+      "tools": []
+    },
+    {
+      "id": "model_07_agent",
+      "kind": "llm",
+      "label": "model_07_agent",
+      "tools": []
+    },
+    {
+      "id": "model_08_agent",
+      "kind": "llm",
+      "label": "model_08_agent",
+      "tools": []
+    },
+    {
+      "id": "model_09_agent",
+      "kind": "llm",
+      "label": "model_09_agent",
+      "tools": []
+    },
+    {
+      "id": "model_10_agent",
+      "kind": "llm",
+      "label": "model_10_agent",
+      "tools": []
+    },
+    {
+      "id": "model_11_agent",
+      "kind": "llm",
+      "label": "model_11_agent",
+      "tools": []
+    },
+    {
+      "id": "model_12_agent",
+      "kind": "llm",
+      "label": "model_12_agent",
+      "tools": []
+    },
+    {
+      "id": "model_13_agent",
+      "kind": "llm",
+      "label": "model_13_agent",
+      "tools": []
+    },
+    {
+      "id": "model_14_agent",
+      "kind": "llm",
+      "label": "model_14_agent",
+      "tools": []
+    },
+    {
+      "id": "model_15_agent",
+      "kind": "llm",
+      "label": "model_15_agent",
+      "tools": []
+    },
+    {
+      "id": "model_16_agent",
+      "kind": "llm",
+      "label": "model_16_agent",
+      "tools": []
+    },
+    {
+      "id": "model_17_agent",
+      "kind": "llm",
+      "label": "model_17_agent",
+      "tools": []
+    },
+    {
+      "id": "model_18_agent",
+      "kind": "llm",
+      "label": "model_18_agent",
+      "tools": []
+    },
+    {
+      "id": "model_19_agent",
+      "kind": "llm",
+      "label": "model_19_agent",
+      "tools": []
+    },
+    {
+      "id": "model_20_agent",
+      "kind": "llm",
+      "label": "model_20_agent",
+      "tools": []
+    },
+    {
+      "id": "model_21_agent",
+      "kind": "llm",
+      "label": "model_21_agent",
+      "tools": []
+    },
+    {
+      "id": "model_22_agent",
+      "kind": "llm",
+      "label": "model_22_agent",
+      "tools": []
+    },
+    {
+      "id": "model_23_agent",
+      "kind": "llm",
+      "label": "model_23_agent",
+      "tools": []
+    },
+    {
+      "id": "model_24_agent",
+      "kind": "llm",
+      "label": "model_24_agent",
+      "tools": []
+    },
+    {
+      "id": "model_25_agent",
+      "kind": "llm",
+      "label": "model_25_agent",
+      "tools": []
+    },
+    {
+      "id": "model_26_agent",
+      "kind": "llm",
+      "label": "model_26_agent",
+      "tools": []
+    },
+    {
+      "id": "model_27_agent",
+      "kind": "llm",
+      "label": "model_27_agent",
+      "tools": []
+    },
+    {
+      "id": "model_28_agent",
+      "kind": "llm",
+      "label": "model_28_agent",
+      "tools": []
+    },
+    {
+      "id": "model_29_agent",
+      "kind": "llm",
+      "label": "model_29_agent",
+      "tools": []
+    },
+    {
+      "id": "model_30_agent",
+      "kind": "llm",
+      "label": "model_30_agent",
+      "tools": []
+    },
+    {
+      "id": "model_31_agent",
+      "kind": "llm",
+      "label": "model_31_agent",
+      "tools": []
+    },
+    {
+      "id": "model_32_agent",
+      "kind": "llm",
+      "label": "model_32_agent",
+      "tools": []
+    },
+    {
+      "id": "model_33_agent",
+      "kind": "llm",
+      "label": "model_33_agent",
+      "tools": []
+    },
+    {
+      "id": "model_34_agent",
+      "kind": "llm",
+      "label": "model_34_agent",
+      "tools": []
+    },
+    {
+      "id": "model_35_agent",
+      "kind": "llm",
+      "label": "model_35_agent",
+      "tools": []
+    },
+    {
+      "id": "model_36_agent",
+      "kind": "llm",
+      "label": "model_36_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "indicator_selector",
+      "kind": "direct"
+    },
+    {
+      "source": "indicator_selector",
+      "target": "summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "model_01_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_01_agent",
+      "target": "model_02_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_02_agent",
+      "target": "model_03_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_03_agent",
+      "target": "model_04_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_04_agent",
+      "target": "model_05_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_05_agent",
+      "target": "model_06_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_06_agent",
+      "target": "model_07_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_07_agent",
+      "target": "model_08_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_08_agent",
+      "target": "model_09_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_09_agent",
+      "target": "model_10_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_10_agent",
+      "target": "model_11_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_11_agent",
+      "target": "model_12_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_12_agent",
+      "target": "model_13_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_13_agent",
+      "target": "model_14_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_14_agent",
+      "target": "model_15_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_15_agent",
+      "target": "model_16_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_16_agent",
+      "target": "model_17_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_17_agent",
+      "target": "model_18_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_18_agent",
+      "target": "model_19_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_19_agent",
+      "target": "model_20_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_20_agent",
+      "target": "model_21_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_21_agent",
+      "target": "model_22_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_22_agent",
+      "target": "model_23_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_23_agent",
+      "target": "model_24_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_24_agent",
+      "target": "model_25_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_25_agent",
+      "target": "model_26_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_26_agent",
+      "target": "model_27_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_27_agent",
+      "target": "model_28_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_28_agent",
+      "target": "model_29_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_29_agent",
+      "target": "model_30_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_30_agent",
+      "target": "model_31_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_31_agent",
+      "target": "model_32_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_32_agent",
+      "target": "model_33_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_33_agent",
+      "target": "model_34_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_34_agent",
+      "target": "model_35_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_35_agent",
+      "target": "model_36_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "model_36_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

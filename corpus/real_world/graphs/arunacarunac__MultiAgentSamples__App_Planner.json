@@ -1,0 +1,73 @@
+{
+  "name": "arunacarunac__MultiAgentSamples__App_Planner",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planning_agent",
+      "kind": "llm",
+      "label": "planning_agent",
+      "tools": []
+    },
+    {
+      "id": "web_search_agent",
+      "kind": "llm",
+      "label": "web_search_agent",
+      "tools": []
+    },
+    {
+      "id": "doctor_agent",
+      "kind": "llm",
+      "label": "doctor_agent",
+      "tools": []
+    },
+    {
+      "id": "data_analyst_agent",
+      "kind": "llm",
+      "label": "data_analyst_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planning_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "planning_agent",
+      "target": "web_search_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "web_search_agent",
+      "target": "doctor_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "doctor_agent",
+      "target": "data_analyst_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "data_analyst_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

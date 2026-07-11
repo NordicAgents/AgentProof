@@ -1,0 +1,67 @@
+{
+  "name": "LxYuan0420__nlp__bank_chatbot_example",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "primary_agent",
+      "kind": "llm",
+      "label": "primary_agent",
+      "tools": []
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "primary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "primary_agent",
+      "target": "critic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "critic_agent",
+      "target": "user_proxy",
+      "kind": "loop"
+    },
+    {
+      "source": "critic_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "name": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "global_workspace_agent",
+      "kind": "router",
+      "label": "Global_Workspace_Agent (coordinator; picks NEXT AGENT)"
+    },
+    {
+      "id": "perception_agent",
+      "kind": "llm",
+      "label": "Perception_Agent (summarize obs + list admissible commands)"
+    },
+    {
+      "id": "attention_agent",
+      "kind": "llm",
+      "label": "Attention_Agent (identify important info)"
+    },
+    {
+      "id": "evaluation_agent",
+      "kind": "llm",
+      "label": "Evaluation_Agent (evaluate candidate commands)"
+    },
+    {
+      "id": "execution_agent",
+      "kind": "tool",
+      "label": "Execution_Agent (calls execute_function)",
+      "tools": [
+        "execute_function"
+      ]
+    },
+    {
+      "id": "environment_proxy",
+      "kind": "tool",
+      "label": "Environment_Proxy (executes execute_action -> env.step)",
+      "tools": [
+        "execute_function"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end (SUCCESS/FAILURE termination)"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "global_workspace_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "global_workspace_agent",
+      "target": "perception_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "global_workspace_agent",
+      "target": "attention_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "global_workspace_agent",
+      "target": "evaluation_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "global_workspace_agent",
+      "target": "execution_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "perception_agent",
+      "target": "global_workspace_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "attention_agent",
+      "target": "global_workspace_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "evaluation_agent",
+      "target": "global_workspace_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "execution_agent",
+      "target": "environment_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "environment_proxy",
+      "target": "perception_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "global_workspace_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

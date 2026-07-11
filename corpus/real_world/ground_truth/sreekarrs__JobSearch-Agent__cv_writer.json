@@ -1,0 +1,102 @@
+{
+  "name": "sreekarrs__JobSearch-Agent__cv_writer",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "Start"
+    },
+    {
+      "id": "InitialDraftGenerator",
+      "kind": "llm",
+      "label": "Initial draft generation (output_key=current_draft)"
+    },
+    {
+      "id": "Critic",
+      "kind": "llm",
+      "label": "Critique draft (output_key=critic_feedback)"
+    },
+    {
+      "id": "FactChecker",
+      "kind": "llm",
+      "label": "Fact-check draft (output_key=fact_check_report)"
+    },
+    {
+      "id": "Reviser",
+      "kind": "llm",
+      "label": "Revise draft (output_key=current_draft)"
+    },
+    {
+      "id": "ExitConditionChecker",
+      "kind": "router",
+      "label": "Loop exit-condition check (LoopAgent, max_iterations=MAX_LOOP_ITERATIONS)"
+    },
+    {
+      "id": "GrammarChecker",
+      "kind": "llm",
+      "label": "Grammar/style polish (output_key=grammar_corrections)"
+    },
+    {
+      "id": "FinalDraftGenerator",
+      "kind": "llm",
+      "label": "Final draft generation (output_key=final_draft)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "InitialDraftGenerator",
+      "kind": "direct"
+    },
+    {
+      "source": "InitialDraftGenerator",
+      "target": "Critic",
+      "kind": "direct"
+    },
+    {
+      "source": "Critic",
+      "target": "FactChecker",
+      "kind": "direct"
+    },
+    {
+      "source": "FactChecker",
+      "target": "Reviser",
+      "kind": "direct"
+    },
+    {
+      "source": "Reviser",
+      "target": "ExitConditionChecker",
+      "kind": "direct"
+    },
+    {
+      "source": "ExitConditionChecker",
+      "target": "Critic",
+      "kind": "loop"
+    },
+    {
+      "source": "ExitConditionChecker",
+      "target": "GrammarChecker",
+      "kind": "conditional"
+    },
+    {
+      "source": "GrammarChecker",
+      "target": "FinalDraftGenerator",
+      "kind": "direct"
+    },
+    {
+      "source": "FinalDraftGenerator",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

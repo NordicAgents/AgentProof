@@ -1,0 +1,55 @@
+{
+  "name": "jkmaina__autogen_blueprint__03_parallel_flow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "tech_researcher",
+      "kind": "llm",
+      "label": "tech_researcher",
+      "tools": []
+    },
+    {
+      "id": "market_researcher",
+      "kind": "llm",
+      "label": "market_researcher",
+      "tools": []
+    },
+    {
+      "id": "social_researcher",
+      "kind": "llm",
+      "label": "social_researcher",
+      "tools": []
+    },
+    {
+      "id": "synthesizer",
+      "kind": "llm",
+      "label": "synthesizer",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "tech_researcher",
+      "target": "synthesizer",
+      "kind": "direct"
+    },
+    {
+      "source": "market_researcher",
+      "target": "synthesizer",
+      "kind": "direct"
+    },
+    {
+      "source": "social_researcher",
+      "target": "synthesizer",
+      "kind": "direct"
+    }
+  ]
+}

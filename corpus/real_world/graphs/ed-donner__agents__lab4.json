@@ -1,0 +1,44 @@
+{
+  "name": "ed-donner__agents__lab4",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "worker_node",
+      "kind": "router",
+      "label": "worker_node",
+      "tools": []
+    },
+    {
+      "id": "evaluator_node",
+      "kind": "router",
+      "label": "evaluator_node",
+      "tools": []
+    },
+    {
+      "id": "tools_node",
+      "kind": "tool",
+      "label": "tools_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "worker_node",
+      "kind": "direct"
+    },
+    {
+      "source": "tools_node",
+      "target": "worker_node",
+      "kind": "direct"
+    }
+  ]
+}

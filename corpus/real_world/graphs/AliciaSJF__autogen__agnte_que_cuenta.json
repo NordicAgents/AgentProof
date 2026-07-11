@@ -1,0 +1,84 @@
+{
+  "name": "AliciaSJF__autogen__agnte_que_cuenta",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "add_agent",
+      "kind": "llm",
+      "label": "add_agent",
+      "tools": []
+    },
+    {
+      "id": "multiply_agent",
+      "kind": "llm",
+      "label": "multiply_agent",
+      "tools": []
+    },
+    {
+      "id": "subtract_agent",
+      "kind": "llm",
+      "label": "subtract_agent",
+      "tools": []
+    },
+    {
+      "id": "divide_agent",
+      "kind": "llm",
+      "label": "divide_agent",
+      "tools": []
+    },
+    {
+      "id": "identity_agent",
+      "kind": "llm",
+      "label": "identity_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "add_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "add_agent",
+      "target": "multiply_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "multiply_agent",
+      "target": "subtract_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "subtract_agent",
+      "target": "divide_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "divide_agent",
+      "target": "identity_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "identity_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

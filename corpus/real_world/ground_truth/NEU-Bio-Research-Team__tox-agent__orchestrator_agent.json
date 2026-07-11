@@ -1,0 +1,70 @@
+{
+  "name": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "InputValidator",
+      "kind": "tool",
+      "label": "Validate SMILES input (LlmAgent with validate_smiles bound)",
+      "tools": [
+        "validate_smiles"
+      ]
+    },
+    {
+      "id": "screening_agent",
+      "kind": "llm",
+      "label": "Toxicity screening agent"
+    },
+    {
+      "id": "researcher_agent",
+      "kind": "llm",
+      "label": "Literature research agent"
+    },
+    {
+      "id": "writer_agent",
+      "kind": "llm",
+      "label": "Final report synthesis agent"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "InputValidator",
+      "kind": "direct"
+    },
+    {
+      "source": "InputValidator",
+      "target": "screening_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "screening_agent",
+      "target": "researcher_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher_agent",
+      "target": "writer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "writer_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

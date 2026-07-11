@@ -1,0 +1,82 @@
+{
+  "name": "Damish-7__MOLYSIS__health_agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "manager",
+      "kind": "llm",
+      "label": "manager (healthcare coordinator)"
+    },
+    {
+      "id": "diet_specialist",
+      "kind": "llm",
+      "label": "diet_specialist"
+    },
+    {
+      "id": "fitness_trainer",
+      "kind": "llm",
+      "label": "fitness_trainer"
+    },
+    {
+      "id": "risk_analyst",
+      "kind": "llm",
+      "label": "risk_analyst"
+    },
+    {
+      "id": "report_agent",
+      "kind": "llm",
+      "label": "medical_report (cardiologist, emits TERMINATE)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager",
+      "kind": "direct"
+    },
+    {
+      "source": "manager",
+      "target": "diet_specialist",
+      "kind": "direct"
+    },
+    {
+      "source": "diet_specialist",
+      "target": "fitness_trainer",
+      "kind": "direct"
+    },
+    {
+      "source": "fitness_trainer",
+      "target": "risk_analyst",
+      "kind": "direct"
+    },
+    {
+      "source": "risk_analyst",
+      "target": "report_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "report_agent",
+      "target": "manager",
+      "kind": "loop"
+    },
+    {
+      "source": "report_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

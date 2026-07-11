@@ -1,0 +1,56 @@
+{
+  "name": "surpradhan__agent-event-protocol__autogen_multiagent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "researcher",
+      "kind": "loop"
+    },
+    {
+      "source": "writer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

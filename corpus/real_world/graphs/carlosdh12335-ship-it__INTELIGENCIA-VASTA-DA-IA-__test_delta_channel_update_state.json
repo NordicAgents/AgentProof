@@ -1,0 +1,56 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_delta_channel_update_state",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "model",
+      "kind": "llm",
+      "label": "model",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "model",
+      "kind": "direct"
+    },
+    {
+      "source": "model",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "model",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

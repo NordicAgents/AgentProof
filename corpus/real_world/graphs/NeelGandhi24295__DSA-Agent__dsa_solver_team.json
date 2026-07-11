@@ -1,0 +1,56 @@
+{
+  "name": "NeelGandhi24295__DSA-Agent__dsa_solver_team",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "problem_solver_agent",
+      "kind": "llm",
+      "label": "problem_solver_agent",
+      "tools": []
+    },
+    {
+      "id": "code_executor_agent",
+      "kind": "llm",
+      "label": "code_executor_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "problem_solver_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "problem_solver_agent",
+      "target": "code_executor_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "code_executor_agent",
+      "target": "problem_solver_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "code_executor_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

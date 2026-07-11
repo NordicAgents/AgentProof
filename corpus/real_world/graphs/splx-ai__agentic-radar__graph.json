@@ -1,0 +1,51 @@
+{
+  "name": "splx-ai__agentic-radar__graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "input_node",
+      "kind": "llm",
+      "label": "input_node",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "generator",
+      "kind": "llm",
+      "label": "generator",
+      "tools": []
+    },
+    {
+      "id": "output_node",
+      "kind": "llm",
+      "label": "output_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "input_node",
+      "kind": "direct"
+    }
+  ]
+}

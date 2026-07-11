@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__03_built_in_tools",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "scrape_the_official_crewai_website_(https://crewai",
+      "kind": "llm",
+      "label": "Scrape the official CrewAI website (https://crewai",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "scrape_the_official_crewai_website_(https://crewai",
+      "kind": "direct"
+    },
+    {
+      "source": "scrape_the_official_crewai_website_(https://crewai",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

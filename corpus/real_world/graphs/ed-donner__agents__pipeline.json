@@ -1,0 +1,58 @@
+{
+  "name": "ed-donner__agents__pipeline",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner_agent",
+      "kind": "router",
+      "label": "planner_agent",
+      "tools": []
+    },
+    {
+      "id": "developer_agent",
+      "kind": "router",
+      "label": "developer_agent",
+      "tools": []
+    },
+    {
+      "id": "validation_agent",
+      "kind": "router",
+      "label": "validation_agent",
+      "tools": []
+    },
+    {
+      "id": "handle_error",
+      "kind": "llm",
+      "label": "handle_error",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "handle_error",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

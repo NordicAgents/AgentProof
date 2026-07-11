@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__04_structured_outputs",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "provide_details_about_the_dog_named_max.",
+      "kind": "llm",
+      "label": "Provide details about the dog named Max.",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "provide_details_about_the_dog_named_max.",
+      "kind": "direct"
+    },
+    {
+      "source": "provide_details_about_the_dog_named_max.",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

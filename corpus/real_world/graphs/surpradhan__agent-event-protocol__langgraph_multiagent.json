@@ -1,0 +1,75 @@
+{
+  "name": "surpradhan__agent-event-protocol__langgraph_multiagent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "name",
+      "kind": "llm",
+      "label": "name",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "orchestrator",
+      "kind": "direct"
+    },
+    {
+      "source": "orchestrator",
+      "target": "r",
+      "kind": "direct"
+    },
+    {
+      "source": "r",
+      "target": "synthesize",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesize",
+      "target": "fact_check",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesize",
+      "target": "risk_review",
+      "kind": "direct"
+    },
+    {
+      "source": "fact_check",
+      "target": "editor",
+      "kind": "direct"
+    },
+    {
+      "source": "risk_review",
+      "target": "editor",
+      "kind": "direct"
+    },
+    {
+      "source": "editor",
+      "target": "publish",
+      "kind": "direct"
+    },
+    {
+      "source": "publish",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

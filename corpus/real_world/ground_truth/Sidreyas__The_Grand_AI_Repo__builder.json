@@ -1,0 +1,147 @@
+{
+  "name": "Sidreyas__The_Grand_AI_Repo__builder",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "calc_assistant",
+      "kind": "tool",
+      "label": "calc_assistant (AssistantAgent, calculator tool)",
+      "tools": [
+        "calculator_tool"
+      ]
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic_agent (AssistantAgent, critique)"
+    },
+    {
+      "id": "websurfer_agent",
+      "kind": "tool",
+      "label": "websurfer_agent (MultimodalWebSurfer)",
+      "tools": [
+        "web_browser"
+      ]
+    },
+    {
+      "id": "verification_assistant",
+      "kind": "llm",
+      "label": "verification_assistant (AssistantAgent, verify/summarize)"
+    },
+    {
+      "id": "web_user_proxy",
+      "kind": "human",
+      "label": "web_user_proxy (UserProxyAgent)"
+    },
+    {
+      "id": "research_assistant",
+      "kind": "tool",
+      "label": "research_assistant (AssistantAgent, search+fetch)",
+      "tools": [
+        "google_search_tool",
+        "fetch_webpage_tool"
+      ]
+    },
+    {
+      "id": "verifier",
+      "kind": "llm",
+      "label": "verifier (AssistantAgent, research QA)"
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent (AssistantAgent, report)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "calc_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "websurfer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "research_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "calc_assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "critic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "critic_agent",
+      "target": "calc_assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "websurfer_agent",
+      "target": "verification_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "verification_assistant",
+      "target": "web_user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "web_user_proxy",
+      "target": "websurfer_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "research_assistant",
+      "target": "verifier",
+      "kind": "direct"
+    },
+    {
+      "source": "verifier",
+      "target": "summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "research_assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "verification_assistant",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

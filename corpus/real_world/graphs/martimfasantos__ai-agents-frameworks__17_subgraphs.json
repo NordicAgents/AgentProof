@@ -1,0 +1,132 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__17_subgraphs",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research",
+      "kind": "llm",
+      "label": "research",
+      "tools": []
+    },
+    {
+      "id": "fact_check",
+      "kind": "llm",
+      "label": "fact_check",
+      "tools": []
+    },
+    {
+      "id": "research_team",
+      "kind": "llm",
+      "label": "research_team",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "count",
+      "kind": "llm",
+      "label": "count",
+      "tools": []
+    },
+    {
+      "id": "sentiment",
+      "kind": "llm",
+      "label": "sentiment",
+      "tools": []
+    },
+    {
+      "id": "summarize",
+      "kind": "llm",
+      "label": "summarize",
+      "tools": []
+    },
+    {
+      "id": "analyze",
+      "kind": "llm",
+      "label": "analyze",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research",
+      "kind": "direct"
+    },
+    {
+      "source": "research",
+      "target": "fact_check",
+      "kind": "direct"
+    },
+    {
+      "source": "fact_check",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "research_team",
+      "kind": "direct"
+    },
+    {
+      "source": "research_team",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "count",
+      "kind": "direct"
+    },
+    {
+      "source": "count",
+      "target": "sentiment",
+      "kind": "direct"
+    },
+    {
+      "source": "sentiment",
+      "target": "summarize",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "analyze",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

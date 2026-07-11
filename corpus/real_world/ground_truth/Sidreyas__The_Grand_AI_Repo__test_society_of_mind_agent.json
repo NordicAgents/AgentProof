@@ -1,0 +1,67 @@
+{
+  "name": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "society_of_mind",
+      "kind": "subgraph",
+      "label": "SocietyOfMindAgent (society_of_mind_agent) wrapping inner RoundRobinGroupChat"
+    },
+    {
+      "id": "agent1",
+      "kind": "llm",
+      "label": "AssistantAgent agent1 (assistant1) - inner team participant"
+    },
+    {
+      "id": "agent2",
+      "kind": "llm",
+      "label": "AssistantAgent agent2 (assistant2) - inner team participant"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "society_of_mind",
+      "kind": "direct"
+    },
+    {
+      "source": "society_of_mind",
+      "target": "agent1",
+      "kind": "direct"
+    },
+    {
+      "source": "agent1",
+      "target": "agent2",
+      "kind": "direct"
+    },
+    {
+      "source": "agent2",
+      "target": "agent1",
+      "kind": "loop"
+    },
+    {
+      "source": "agent2",
+      "target": "society_of_mind",
+      "kind": "direct"
+    },
+    {
+      "source": "society_of_mind",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

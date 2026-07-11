@@ -1,0 +1,78 @@
+{
+  "name": "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "local_data_agent",
+      "kind": "llm",
+      "label": "local_data_agent",
+      "tools": []
+    },
+    {
+      "id": "local_web_surfer",
+      "kind": "llm",
+      "label": "local_web_surfer",
+      "tools": []
+    },
+    {
+      "id": "local_assistant",
+      "kind": "llm",
+      "label": "local_assistant",
+      "tools": []
+    },
+    {
+      "id": "local_user_proxy",
+      "kind": "human",
+      "label": "local_user_proxy",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "local_data_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "local_data_agent",
+      "target": "local_web_surfer",
+      "kind": "direct"
+    },
+    {
+      "source": "local_web_surfer",
+      "target": "local_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "local_assistant",
+      "target": "local_user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "local_user_proxy",
+      "target": "local_data_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "local_user_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

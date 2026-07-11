@@ -1,0 +1,101 @@
+{
+  "name": "ed-donner__agents__agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "clarifier",
+      "kind": "llm",
+      "label": "clarifier",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "searcher",
+      "kind": "llm",
+      "label": "searcher",
+      "tools": []
+    },
+    {
+      "id": "sufficiency",
+      "kind": "router",
+      "label": "sufficiency",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "evaluator",
+      "kind": "router",
+      "label": "evaluator",
+      "tools": []
+    },
+    {
+      "id": "emailer",
+      "kind": "llm",
+      "label": "emailer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "clarifier",
+      "kind": "direct"
+    },
+    {
+      "source": "clarifier",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "searcher",
+      "kind": "direct"
+    },
+    {
+      "source": "searcher",
+      "target": "sufficiency",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "emailer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

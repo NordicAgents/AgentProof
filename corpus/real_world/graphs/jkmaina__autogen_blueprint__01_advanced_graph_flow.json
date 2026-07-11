@@ -1,0 +1,108 @@
+{
+  "name": "jkmaina__autogen_blueprint__01_advanced_graph_flow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "analyst",
+      "kind": "llm",
+      "label": "analyst",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "reviser",
+      "kind": "llm",
+      "label": "reviser",
+      "tools": []
+    },
+    {
+      "id": "publisher",
+      "kind": "llm",
+      "label": "publisher",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "analyst",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "analyst",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "reviser",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "publisher",
+      "kind": "direct"
+    },
+    {
+      "source": "reviser",
+      "target": "reviewer",
+      "kind": "direct"
+    }
+  ]
+}

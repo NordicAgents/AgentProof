@@ -1,0 +1,46 @@
+{
+  "name": "arunacarunac__MultiAgentSamples__App",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "assistant_agent",
+      "kind": "tool",
+      "label": "assistant_agent (AssistantAgent, tools=[get_weather, web_search])",
+      "tools": [
+        "get_weather",
+        "web_search"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assistant_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant_agent",
+      "target": "assistant_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "assistant_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

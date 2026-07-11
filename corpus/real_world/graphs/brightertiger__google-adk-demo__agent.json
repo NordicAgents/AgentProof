@@ -1,0 +1,62 @@
+{
+  "name": "brightertiger__google-adk-demo__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "crawler_agent",
+      "kind": "llm",
+      "label": "crawler_agent",
+      "tools": []
+    },
+    {
+      "id": "address_agent",
+      "kind": "llm",
+      "label": "address_agent",
+      "tools": []
+    },
+    {
+      "id": "geocoding_agent",
+      "kind": "llm",
+      "label": "geocoding_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "crawler_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "crawler_agent",
+      "target": "address_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "address_agent",
+      "target": "geocoding_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "geocoding_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

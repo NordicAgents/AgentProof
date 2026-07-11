@@ -1,0 +1,102 @@
+{
+  "name": "gabrielpreda__adk-sql-agent__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "safety_check_agent",
+      "kind": "llm",
+      "label": "safety_check_agent (LlmAgent: secure/not-secure classification)"
+    },
+    {
+      "id": "security_router_agent",
+      "kind": "router",
+      "label": "security_router_agent (LlmAgent: exit-if-not-secure / continue-if-secure)"
+    },
+    {
+      "id": "rewrite_prompt_agent",
+      "kind": "llm",
+      "label": "rewrite_prompt_agent (RefinementLoop step 1)"
+    },
+    {
+      "id": "generator_agent",
+      "kind": "llm",
+      "label": "generator_agent (RefinementLoop step 2: SQL generation)"
+    },
+    {
+      "id": "analyzer_agent",
+      "kind": "llm",
+      "label": "analyzer_agent (RefinementLoop step 3)"
+    },
+    {
+      "id": "reflexion_agent",
+      "kind": "llm",
+      "label": "reflexion_agent (RefinementLoop step 4)"
+    },
+    {
+      "id": "routing_agent",
+      "kind": "router",
+      "label": "routing_agent (RefinementLoop step 5: loop continue/exit)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "safety_check_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "safety_check_agent",
+      "target": "security_router_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "security_router_agent",
+      "target": "rewrite_prompt_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_prompt_agent",
+      "target": "generator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "generator_agent",
+      "target": "analyzer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_agent",
+      "target": "reflexion_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "reflexion_agent",
+      "target": "routing_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "routing_agent",
+      "target": "rewrite_prompt_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "routing_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

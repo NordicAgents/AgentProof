@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__15_mcp_integration",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "list_3_interesting_facts_about_the_python_programm",
+      "kind": "llm",
+      "label": "List 3 interesting facts about the Python programm",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "list_3_interesting_facts_about_the_python_programm",
+      "kind": "direct"
+    },
+    {
+      "source": "list_3_interesting_facts_about_the_python_programm",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

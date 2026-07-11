@@ -1,0 +1,62 @@
+{
+  "name": "olileger__py-autogen__expD",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "consultant",
+      "kind": "llm",
+      "label": "consultant",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "other_reviewer",
+      "kind": "llm",
+      "label": "other_reviewer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "consultant",
+      "kind": "direct"
+    },
+    {
+      "source": "consultant",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "other_reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "other_reviewer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

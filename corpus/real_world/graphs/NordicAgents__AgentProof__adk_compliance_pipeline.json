@@ -1,0 +1,84 @@
+{
+  "name": "NordicAgents__AgentProof__adk_compliance_pipeline",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "collect_docs",
+      "kind": "llm",
+      "label": "collect_docs",
+      "tools": []
+    },
+    {
+      "id": "analysis_parallel",
+      "kind": "llm",
+      "label": "analysis_parallel",
+      "tools": []
+    },
+    {
+      "id": "remediation_loop",
+      "kind": "llm",
+      "label": "remediation_loop",
+      "tools": []
+    },
+    {
+      "id": "human_signoff",
+      "kind": "llm",
+      "label": "human_signoff",
+      "tools": []
+    },
+    {
+      "id": "publish",
+      "kind": "llm",
+      "label": "publish",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "collect_docs",
+      "kind": "direct"
+    },
+    {
+      "source": "collect_docs",
+      "target": "analysis_parallel",
+      "kind": "direct"
+    },
+    {
+      "source": "analysis_parallel",
+      "target": "remediation_loop",
+      "kind": "direct"
+    },
+    {
+      "source": "remediation_loop",
+      "target": "human_signoff",
+      "kind": "direct"
+    },
+    {
+      "source": "human_signoff",
+      "target": "publish",
+      "kind": "direct"
+    },
+    {
+      "source": "publish",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

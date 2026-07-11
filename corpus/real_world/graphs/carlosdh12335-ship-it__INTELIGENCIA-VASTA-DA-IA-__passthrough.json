@@ -1,0 +1,32 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__passthrough",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "_graph_passthrough",
+      "kind": "llm",
+      "label": "_graph_passthrough",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "input_node",
+      "target": "passthrough_node",
+      "kind": "direct"
+    },
+    {
+      "source": "passthrough_node",
+      "target": "output_node",
+      "kind": "direct"
+    }
+  ]
+}

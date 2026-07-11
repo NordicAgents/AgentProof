@@ -1,0 +1,62 @@
+{
+  "name": "RubensZimbres__Multi-Agent-System-A2A-ADK-MCP__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "judge_agent",
+      "kind": "llm",
+      "label": "judge_agent",
+      "tools": []
+    },
+    {
+      "id": "sql_agent",
+      "kind": "llm",
+      "label": "sql_agent",
+      "tools": []
+    },
+    {
+      "id": "mask_agent",
+      "kind": "llm",
+      "label": "mask_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "judge_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "judge_agent",
+      "target": "sql_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "sql_agent",
+      "target": "mask_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "mask_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

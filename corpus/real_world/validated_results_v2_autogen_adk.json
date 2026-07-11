@@ -1,0 +1,2360 @@
+{
+  "extractor_fidelity_real_code": {
+    "n": 60,
+    "overall": {
+      "node_precision": 0.879,
+      "node_recall": 0.8,
+      "edge_precision": 0.726,
+      "edge_recall": 0.602,
+      "kind_accuracy": 0.918
+    },
+    "per_framework": {
+      "autogen": {
+        "n": 35,
+        "node_precision": 1.0,
+        "node_recall": 0.942,
+        "edge_precision": 0.957,
+        "edge_recall": 0.77,
+        "kind_accuracy": 0.9
+      },
+      "adk": {
+        "n": 25,
+        "node_precision": 0.709,
+        "node_recall": 0.602,
+        "edge_precision": 0.403,
+        "edge_recall": 0.367,
+        "kind_accuracy": 0.943
+      }
+    }
+  },
+  "triage": {
+    "n_workflows_triaged": 60,
+    "n_defects_triaged": 56,
+    "label_distribution": {
+      "intentional": 43,
+      "extraction_artifact": 7,
+      "arguable": 5,
+      "real_defect": 1
+    },
+    "label_fractions": {
+      "intentional": 0.768,
+      "extraction_artifact": 0.125,
+      "arguable": 0.089,
+      "real_defect": 0.018
+    },
+    "by_check": {
+      "human_presence": {
+        "intentional": 43,
+        "extraction_artifact": 6,
+        "arguable": 4,
+        "real_defect": 1
+      },
+      "router-non-conditional-edges": {
+        "extraction_artifact": 1
+      },
+      "sensitive-path-bypasses-human-review": {
+        "arguable": 1
+      }
+    },
+    "validated_rates_on_sample": {
+      "workflows_with_real_structural_defect": 0,
+      "workflows_with_real_policy_gap": 1,
+      "pct_real_structural": 0.0,
+      "pct_real_policy": 1.7
+    },
+    "flag_precision_real_over_all": 0.018,
+    "per_check_real_fraction": {
+      "human_presence": 0.019,
+      "router-non-conditional-edges": 0.0,
+      "sensitive-path-bypasses-human-review": 0.0
+    }
+  },
+  "crosscheck_edge_recall_vs_artifact": {
+    "mean_edge_recall_workflows_with_artifact_label": 0.857,
+    "mean_edge_recall_workflows_with_real_label": 0.273
+  },
+  "fidelity_details": [
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.231,
+        "tp": 3,
+        "fp": 0,
+        "fn": 10
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "assistant",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.08,
+        "tp": 2,
+        "fp": 0,
+        "fn": 23
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "waqasniazi9__voice-agent__builder",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SPZts__AutoModel__model32",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.444,
+        "tp": 4,
+        "fp": 0,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "MikhailMostWanted__Astra__test_group_chat_endpoint",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.75,
+        "recall": 0.333,
+        "tp": 3,
+        "fp": 1,
+        "fn": 6
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "microsoft__ACV__test_group_chat_endpoint",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "assistant",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "nokia__mcp-redfish__agent",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Saimoguloju__AI-Agents__sample_agent",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "MikhailMostWanted__Astra__app_team",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "NanGePlus__AutoGenV04Test__CacheTeam",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "blueming333__aicraft-class-autogen__2_RunTeam",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "LightningGod7__prometheus__test_agent",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AkshatKumar12__AutoGen_Learning__teams",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "MikhailMostWanted__Astra__test_team_manager",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "ericjiang18__Agent-Q-Mix__test_agent",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.625,
+      "kind_correct": 5,
+      "kind_total": 8,
+      "kind_mismatches": [
+        {
+          "node_id": "environment_proxy",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "execution_agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "global_workspace_agent",
+          "expected": "router",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        }
+      ],
+      "edge_detection": {
+        "precision": 0.429,
+        "recall": 0.273,
+        "tp": 3,
+        "fp": 4,
+        "fn": 8
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Damish-7__MOLYSIS__multi_agents",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "microsoft__ACV__test_agent",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 1,
+        "fn": 0,
+        "fp": 0,
+        "recall": 1.0
+      },
+      "failure_modes": {},
+      "slug": "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.8,
+      "kind_correct": 4,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "candidate",
+          "expected": "human",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "AkshatKumar12__AutoGen_Learning__test",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "feixiao__ai__ex03",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SPZts__AutoModel__model22",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 9,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.889,
+      "kind_correct": 8,
+      "kind_total": 9,
+      "kind_mismatches": [
+        {
+          "node_id": "user_proxy",
+          "expected": "passthrough",
+          "actual": "human",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.889,
+        "tp": 8,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 1,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 7,
+      "kind_total": 7,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "tp": 6,
+        "fp": 0,
+        "fn": 24
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "jkmaina__autogen_blueprint__03_model_based_selector",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 5,
+        "fp": 0,
+        "fn": 5
+      },
+      "node_kind_accuracy": 0.8,
+      "kind_correct": 4,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "research_assistant",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.267,
+        "tp": 4,
+        "fp": 0,
+        "fn": 11
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 6,
+      "kind_total": 6,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.8,
+        "recall": 0.667,
+        "tp": 4,
+        "fp": 1,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 1,
+        "fn": 0,
+        "fp": 0,
+        "recall": 1.0
+      },
+      "failure_modes": {},
+      "slug": "Arhamirfan__Snake-Agents__snake_autogen",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.833,
+      "kind_correct": 5,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "local_web_surfer",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 1,
+        "fn": 0,
+        "fp": 0,
+        "recall": 1.0
+      },
+      "failure_modes": {},
+      "slug": "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "tp": 4,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.5,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 2,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "assistant",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "MikhailMostWanted__Astra__mcp_session_host_example",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "assistant_agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "arunacarunac__MultiAgentSamples__App",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.8,
+      "kind_correct": 4,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "user",
+          "expected": "tool",
+          "actual": "human",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "tp": 4,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 1,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "microsoft__ACV__test_cache_agent",
+      "framework": "autogen",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 7,
+      "kind_total": 7,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Damish-7__MOLYSIS__health_agents",
+      "framework": "autogen",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 10,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 10,
+      "kind_total": 10,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 10,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 1,
+        "fn": 0,
+        "fp": 0,
+        "recall": 1.0
+      },
+      "failure_modes": {},
+      "slug": "Itzkuldeep__AgentE-com__main",
+      "framework": "autogen",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 1,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "playbook_updater",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 0.333,
+        "recall": 0.333,
+        "tp": 1,
+        "fp": 2,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AIAnytime__agentic-context-engineering__curator",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "merdandt__SalesShortcut__potential_lead_finder_agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "volcengine__veadk-python__main",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.556,
+        "tp": 5,
+        "fp": 0,
+        "fn": 4
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.75,
+        "recall": 0.273,
+        "tp": 3,
+        "fp": 1,
+        "fn": 8
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "tp": 2,
+        "fp": 3,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 4,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AbhiShetye0703__Google-ADK__sequentialAgent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.4,
+        "tp": 2,
+        "fp": 2,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "esk000__AIAgentsIntensive__LoopAgent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.333,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 4,
+        "fn": 4
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 5,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "joansantoso__iox-adk__agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.222,
+        "tp": 2,
+        "fp": 2,
+        "fn": 7
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 9
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.8,
+        "recall": 0.444,
+        "tp": 4,
+        "fp": 1,
+        "fn": 5
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "security_router_agent",
+          "expected": "router",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        }
+      ],
+      "edge_detection": {
+        "precision": 0.5,
+        "recall": 0.222,
+        "tp": 2,
+        "fp": 2,
+        "fn": 7
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "gabrielpreda__adk-sql-agent__agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.8,
+      "kind_correct": 4,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "request_URL",
+          "expected": "human",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "merdandt__SalesShortcut__websiter_creator_agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 7,
+      "kind_total": 7,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "merdandt__SalesShortcut__outreach_email_agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.6,
+        "recall": 0.5,
+        "tp": 3,
+        "fp": 2,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.25,
+        "recall": 0.2,
+        "tp": 1,
+        "fp": 3,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 2,
+        "fn": 4
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 7
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AbhiShetye0703__Google-ADK__parallelAgent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "dream-horizon-org__pulse__agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "tp": 2,
+        "fp": 3,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 4,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Astrodevil__ADK-Agent-Examples__agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 2,
+        "fn": 2
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 3
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "svpino__ml.school__agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "email_sender_agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "merdandt__SalesShortcut__email_agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "docker__compose-for-agents__agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 2,
+        "fn": 4
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 7
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "esk000__AIAgentsIntensive__parallelAgent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.4,
+        "tp": 2,
+        "fp": 2,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 8,
+      "kind_total": 8,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "lordpython__multi-agent-video-system__agent",
+      "framework": "adk",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.286,
+        "recall": 0.25,
+        "tp": 2,
+        "fp": 5,
+        "fn": 6
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 6,
+        "fn": 6
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "ed-donner__agents__sequential_agents",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.286,
+        "tp": 2,
+        "fp": 2,
+        "fn": 5
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 6
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.667,
+        "recall": 0.111,
+        "tp": 2,
+        "fp": 1,
+        "fn": 16
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 26
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "NordicAgents__AgentProof__test_extract_adk",
+      "framework": "adk",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.833,
+        "tp": 5,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.6,
+      "kind_correct": 3,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "crawler_agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "geocoding_agent",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 0.25,
+        "recall": 0.143,
+        "tp": 1,
+        "fp": 3,
+        "fn": 6
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "brightertiger__google-adk-demo__agent",
+      "framework": "adk",
+      "gt_confidence": "medium"
+    }
+  ],
+  "triage_details": [
+    {
+      "slug": "waqasniazi9__voice-agent__builder",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "SPZts__AutoModel__model32",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__test_group_chat_endpoint",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "microsoft__ACV__test_group_chat_endpoint",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "nokia__mcp-redfish__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Saimoguloju__AI-Agents__sample_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__app_team",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "NanGePlus__AutoGenV04Test__CacheTeam",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__2_RunTeam",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "LightningGod7__prometheus__test_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "AkshatKumar12__AutoGen_Learning__teams",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__test_team_manager",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "ericjiang18__Agent-Q-Mix__test_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Damish-7__MOLYSIS__multi_agents",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "microsoft__ACV__test_agent",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "AkshatKumar12__AutoGen_Learning__test",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "feixiao__ai__ex03",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "SPZts__AutoModel__model22",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "jkmaina__autogen_blueprint__03_model_based_selector",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "high"
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__mcp_session_host_example",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "medium"
+    },
+    {
+      "slug": "arunacarunac__MultiAgentSamples__App",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Damish-7__MOLYSIS__health_agents",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Itzkuldeep__AgentE-com__main",
+      "check": "router-non-conditional-edges",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Itzkuldeep__AgentE-com__main",
+      "check": "sensitive-path-bypasses-human-review",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "AIAnytime__agentic-context-engineering__curator",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "merdandt__SalesShortcut__potential_lead_finder_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "volcengine__veadk-python__main",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+      "check": "human_presence",
+      "label": "real_defect",
+      "confidence": "high"
+    },
+    {
+      "slug": "AbhiShetye0703__Google-ADK__sequentialAgent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "esk000__AIAgentsIntensive__LoopAgent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "joansantoso__iox-adk__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "gabrielpreda__adk-sql-agent__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "merdandt__SalesShortcut__websiter_creator_agent",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "merdandt__SalesShortcut__outreach_email_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "AbhiShetye0703__Google-ADK__parallelAgent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "dream-horizon-org__pulse__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Astrodevil__ADK-Agent-Examples__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "svpino__ml.school__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "merdandt__SalesShortcut__email_agent",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "docker__compose-for-agents__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "esk000__AIAgentsIntensive__parallelAgent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "lordpython__multi-agent-video-system__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "ed-donner__agents__sequential_agents",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "NordicAgents__AgentProof__test_extract_adk",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "medium"
+    },
+    {
+      "slug": "brightertiger__google-adk-demo__agent",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "high"
+    }
+  ]
+}

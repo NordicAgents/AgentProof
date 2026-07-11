@@ -1,0 +1,86 @@
+{
+  "name": "AbhiShetye0703__Google-ADK__parallelAgent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "TechResearcher",
+      "kind": "tool",
+      "label": "TechResearcher (AI/ML trends)",
+      "tools": [
+        "google_search"
+      ]
+    },
+    {
+      "id": "HealthResearcher",
+      "kind": "tool",
+      "label": "HealthResearcher (medical breakthroughs)",
+      "tools": [
+        "google_search"
+      ]
+    },
+    {
+      "id": "FinanceResearcher",
+      "kind": "tool",
+      "label": "FinanceResearcher (fintech trends)",
+      "tools": [
+        "google_search"
+      ]
+    },
+    {
+      "id": "AggregatorAgent",
+      "kind": "llm",
+      "label": "AggregatorAgent (executive summary synthesis)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "TechResearcher",
+      "kind": "parallel"
+    },
+    {
+      "source": "__start__",
+      "target": "HealthResearcher",
+      "kind": "parallel"
+    },
+    {
+      "source": "__start__",
+      "target": "FinanceResearcher",
+      "kind": "parallel"
+    },
+    {
+      "source": "TechResearcher",
+      "target": "AggregatorAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "HealthResearcher",
+      "target": "AggregatorAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "FinanceResearcher",
+      "target": "AggregatorAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "AggregatorAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

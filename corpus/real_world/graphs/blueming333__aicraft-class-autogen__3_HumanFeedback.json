@@ -1,0 +1,56 @@
+{
+  "name": "blueming333__aicraft-class-autogen__3_HumanFeedback",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "weather_agent",
+      "kind": "llm",
+      "label": "weather_agent",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "weather_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "weather_agent",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "weather_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "user_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

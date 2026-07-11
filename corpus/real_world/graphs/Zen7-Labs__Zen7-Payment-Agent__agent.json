@@ -1,0 +1,62 @@
+{
+  "name": "Zen7-Labs__Zen7-Payment-Agent__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "payer_agent",
+      "kind": "llm",
+      "label": "payer_agent",
+      "tools": []
+    },
+    {
+      "id": "settlement_agent",
+      "kind": "llm",
+      "label": "settlement_agent",
+      "tools": []
+    },
+    {
+      "id": "payee_agent",
+      "kind": "llm",
+      "label": "payee_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "payer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "payer_agent",
+      "target": "settlement_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "settlement_agent",
+      "target": "payee_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "payee_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

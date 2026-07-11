@@ -1,0 +1,62 @@
+{
+  "name": "ed-donner__agents__showdown",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "chelsea_agent",
+      "kind": "llm",
+      "label": "chelsea_agent",
+      "tools": []
+    },
+    {
+      "id": "city_agent",
+      "kind": "llm",
+      "label": "city_agent",
+      "tools": []
+    },
+    {
+      "id": "mediator",
+      "kind": "llm",
+      "label": "mediator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "chelsea_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "chelsea_agent",
+      "target": "city_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "city_agent",
+      "target": "mediator",
+      "kind": "direct"
+    },
+    {
+      "source": "mediator",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

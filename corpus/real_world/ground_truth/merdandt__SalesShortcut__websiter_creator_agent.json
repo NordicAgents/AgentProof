@@ -1,0 +1,57 @@
+{
+  "name": "merdandt__SalesShortcut__websiter_creator_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "Start"
+    },
+    {
+      "id": "prepare_prompt",
+      "kind": "llm",
+      "label": "prepare_prompt (prompt_prepare_agent): build website-creation prompt"
+    },
+    {
+      "id": "request_URL",
+      "kind": "human",
+      "label": "request_URL (request_human_creation): human-in-the-loop request for created website URL"
+    },
+    {
+      "id": "process_decision",
+      "kind": "llm",
+      "label": "process_decision (process_decision_agent): process the decision/result"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "prepare_prompt",
+      "kind": "direct"
+    },
+    {
+      "source": "prepare_prompt",
+      "target": "request_URL",
+      "kind": "direct"
+    },
+    {
+      "source": "request_URL",
+      "target": "process_decision",
+      "kind": "direct"
+    },
+    {
+      "source": "process_decision",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

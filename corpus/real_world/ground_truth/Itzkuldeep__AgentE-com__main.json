@@ -1,0 +1,112 @@
+{
+  "name": "Itzkuldeep__AgentE-com__main",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "call_agent",
+      "kind": "llm",
+      "label": "CallAgent"
+    },
+    {
+      "id": "meet_agent",
+      "kind": "llm",
+      "label": "MeetAgent"
+    },
+    {
+      "id": "mailgetter",
+      "kind": "llm",
+      "label": "Mailgetter"
+    },
+    {
+      "id": "rag_agent",
+      "kind": "llm",
+      "label": "RAGAgent"
+    },
+    {
+      "id": "scheduler_agent",
+      "kind": "llm",
+      "label": "SchedulerAgent"
+    },
+    {
+      "id": "email_sender_agent",
+      "kind": "llm",
+      "label": "EmailSenderAgent"
+    },
+    {
+      "id": "conversation_agent",
+      "kind": "llm",
+      "label": "ConversationAgent"
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "UserAgent (CustomUserProxyAgent, human_input_mode=ALWAYS)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "call_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "call_agent",
+      "target": "meet_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "meet_agent",
+      "target": "mailgetter",
+      "kind": "direct"
+    },
+    {
+      "source": "mailgetter",
+      "target": "rag_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "rag_agent",
+      "target": "scheduler_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "scheduler_agent",
+      "target": "email_sender_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "email_sender_agent",
+      "target": "conversation_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "conversation_agent",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "call_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "user_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

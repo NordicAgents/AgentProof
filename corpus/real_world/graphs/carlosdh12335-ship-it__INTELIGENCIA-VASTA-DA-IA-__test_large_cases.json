@@ -1,0 +1,487 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_large_cases",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "add_one",
+      "kind": "router",
+      "label": "add_one",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "rewrite_query",
+      "kind": "llm",
+      "label": "rewrite_query",
+      "tools": []
+    },
+    {
+      "id": "retriever_one",
+      "kind": "llm",
+      "label": "retriever_one",
+      "tools": []
+    },
+    {
+      "id": "retriever_two",
+      "kind": "llm",
+      "label": "retriever_two",
+      "tools": []
+    },
+    {
+      "id": "qa",
+      "kind": "llm",
+      "label": "qa",
+      "tools": []
+    },
+    {
+      "id": "tool_two",
+      "kind": "tool",
+      "label": "tool_two",
+      "tools": []
+    },
+    {
+      "id": "tool_one",
+      "kind": "tool",
+      "label": "tool_one",
+      "tools": []
+    },
+    {
+      "id": "do",
+      "kind": "llm",
+      "label": "do",
+      "tools": []
+    },
+    {
+      "id": "flaky",
+      "kind": "llm",
+      "label": "flaky",
+      "tools": []
+    },
+    {
+      "id": "inner_1",
+      "kind": "llm",
+      "label": "inner_1",
+      "tools": []
+    },
+    {
+      "id": "inner_2",
+      "kind": "llm",
+      "label": "inner_2",
+      "tools": []
+    },
+    {
+      "id": "outer_1",
+      "kind": "llm",
+      "label": "outer_1",
+      "tools": []
+    },
+    {
+      "id": "inner",
+      "kind": "llm",
+      "label": "inner",
+      "tools": []
+    },
+    {
+      "id": "outer_2",
+      "kind": "llm",
+      "label": "outer_2",
+      "tools": []
+    },
+    {
+      "id": "grandchild_1",
+      "kind": "llm",
+      "label": "grandchild_1",
+      "tools": []
+    },
+    {
+      "id": "grandchild_2",
+      "kind": "llm",
+      "label": "grandchild_2",
+      "tools": []
+    },
+    {
+      "id": "child_1",
+      "kind": "llm",
+      "label": "child_1",
+      "tools": []
+    },
+    {
+      "id": "parent_1",
+      "kind": "llm",
+      "label": "parent_1",
+      "tools": []
+    },
+    {
+      "id": "child",
+      "kind": "llm",
+      "label": "child",
+      "tools": []
+    },
+    {
+      "id": "parent_2",
+      "kind": "llm",
+      "label": "parent_2",
+      "tools": []
+    },
+    {
+      "id": "edit",
+      "kind": "llm",
+      "label": "edit",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "generate_joke",
+      "kind": "llm",
+      "label": "generate_joke",
+      "tools": []
+    },
+    {
+      "id": "foo",
+      "kind": "llm",
+      "label": "foo",
+      "tools": []
+    },
+    {
+      "id": "model_node",
+      "kind": "llm",
+      "label": "model_node",
+      "tools": []
+    },
+    {
+      "id": "weather_node",
+      "kind": "llm",
+      "label": "weather_node",
+      "tools": []
+    },
+    {
+      "id": "router_node",
+      "kind": "router",
+      "label": "router_node",
+      "tools": []
+    },
+    {
+      "id": "normal_llm_node",
+      "kind": "llm",
+      "label": "normal_llm_node",
+      "tools": []
+    },
+    {
+      "id": "weather_graph",
+      "kind": "llm",
+      "label": "weather_graph",
+      "tools": []
+    },
+    {
+      "id": "update_x",
+      "kind": "llm",
+      "label": "update_x",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node",
+      "kind": "llm",
+      "label": "subgraph_node",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "add_one",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_two",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever_one",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever_two",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tool_two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "do",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tool_two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_1",
+      "target": "inner_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer_1",
+      "kind": "direct"
+    },
+    {
+      "source": "outer_1",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "outer_2",
+      "kind": "direct"
+    },
+    {
+      "source": "outer_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "grandchild_1",
+      "target": "grandchild_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "grandchild_1",
+      "kind": "direct"
+    },
+    {
+      "source": "grandchild_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "child_1",
+      "kind": "direct"
+    },
+    {
+      "source": "child_1",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_1",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_1",
+      "target": "child",
+      "kind": "direct"
+    },
+    {
+      "source": "child",
+      "target": "parent_2",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "edit",
+      "kind": "direct"
+    },
+    {
+      "source": "edit",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_joke",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "model_node",
+      "kind": "direct"
+    },
+    {
+      "source": "model_node",
+      "target": "weather_node",
+      "kind": "direct"
+    },
+    {
+      "source": "weather_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router_node",
+      "kind": "direct"
+    },
+    {
+      "source": "normal_llm_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "weather_graph",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "update_x",
+      "kind": "direct"
+    },
+    {
+      "source": "update_x",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

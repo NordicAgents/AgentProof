@@ -1,0 +1,56 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_task_runner_tool",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent1",
+      "kind": "llm",
+      "label": "agent1",
+      "tools": []
+    },
+    {
+      "id": "agent2",
+      "kind": "llm",
+      "label": "agent2",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent1",
+      "kind": "direct"
+    },
+    {
+      "source": "agent1",
+      "target": "agent2",
+      "kind": "direct"
+    },
+    {
+      "source": "agent2",
+      "target": "agent1",
+      "kind": "loop"
+    },
+    {
+      "source": "agent2",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

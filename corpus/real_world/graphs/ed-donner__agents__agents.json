@@ -1,0 +1,84 @@
+{
+  "name": "ed-donner__agents__agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyst",
+      "kind": "llm",
+      "label": "analyst",
+      "tools": []
+    },
+    {
+      "id": "cfo",
+      "kind": "llm",
+      "label": "cfo",
+      "tools": []
+    },
+    {
+      "id": "risk_officer",
+      "kind": "llm",
+      "label": "risk_officer",
+      "tools": []
+    },
+    {
+      "id": "portfolio_manager",
+      "kind": "llm",
+      "label": "portfolio_manager",
+      "tools": []
+    },
+    {
+      "id": "secretary",
+      "kind": "llm",
+      "label": "secretary",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyst",
+      "kind": "direct"
+    },
+    {
+      "source": "analyst",
+      "target": "cfo",
+      "kind": "direct"
+    },
+    {
+      "source": "cfo",
+      "target": "risk_officer",
+      "kind": "direct"
+    },
+    {
+      "source": "risk_officer",
+      "target": "portfolio_manager",
+      "kind": "direct"
+    },
+    {
+      "source": "portfolio_manager",
+      "target": "secretary",
+      "kind": "direct"
+    },
+    {
+      "source": "secretary",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

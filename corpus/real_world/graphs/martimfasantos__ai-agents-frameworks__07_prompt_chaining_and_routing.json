@@ -1,0 +1,106 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__07_prompt_chaining_and_routing",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "outline",
+      "kind": "llm",
+      "label": "outline",
+      "tools": []
+    },
+    {
+      "id": "draft",
+      "kind": "llm",
+      "label": "draft",
+      "tools": []
+    },
+    {
+      "id": "polish",
+      "kind": "llm",
+      "label": "polish",
+      "tools": []
+    },
+    {
+      "id": "classify",
+      "kind": "router",
+      "label": "classify",
+      "tools": []
+    },
+    {
+      "id": "technical",
+      "kind": "llm",
+      "label": "technical",
+      "tools": []
+    },
+    {
+      "id": "billing",
+      "kind": "llm",
+      "label": "billing",
+      "tools": []
+    },
+    {
+      "id": "general",
+      "kind": "llm",
+      "label": "general",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "outline",
+      "kind": "direct"
+    },
+    {
+      "source": "outline",
+      "target": "draft",
+      "kind": "direct"
+    },
+    {
+      "source": "draft",
+      "target": "polish",
+      "kind": "direct"
+    },
+    {
+      "source": "polish",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "classify",
+      "kind": "direct"
+    },
+    {
+      "source": "technical",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "billing",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "general",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

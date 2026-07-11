@@ -1,0 +1,73 @@
+{
+  "name": "project194-cognitivellm__cognitivellm__run_autogen",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "assistant_agent",
+      "kind": "llm",
+      "label": "assistant_agent",
+      "tools": []
+    },
+    {
+      "id": "executor_agent",
+      "kind": "llm",
+      "label": "executor_agent",
+      "tools": []
+    },
+    {
+      "id": "grounding_agent",
+      "kind": "llm",
+      "label": "grounding_agent",
+      "tools": []
+    },
+    {
+      "id": "environment_proxy",
+      "kind": "llm",
+      "label": "environment_proxy",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assistant_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant_agent",
+      "target": "executor_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "executor_agent",
+      "target": "grounding_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "grounding_agent",
+      "target": "environment_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "environment_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

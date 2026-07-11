@@ -1,0 +1,63 @@
+{
+  "name": "Astrodevil__ADK-Agent-Examples__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "ExaAgent",
+      "kind": "tool",
+      "label": "ExaAgent (Fetches IPL 2025 news via Exa)",
+      "tools": [
+        "exa_search_ipl"
+      ]
+    },
+    {
+      "id": "TavilyAgent",
+      "kind": "tool",
+      "label": "TavilyAgent (Fetches AI news from Hacker News via Tavily)",
+      "tools": [
+        "tavily_search_hn"
+      ]
+    },
+    {
+      "id": "SummaryAgent",
+      "kind": "llm",
+      "label": "SummaryAgent (Summarizes Exa + Tavily results)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "ExaAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "ExaAgent",
+      "target": "TavilyAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "TavilyAgent",
+      "target": "SummaryAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "SummaryAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

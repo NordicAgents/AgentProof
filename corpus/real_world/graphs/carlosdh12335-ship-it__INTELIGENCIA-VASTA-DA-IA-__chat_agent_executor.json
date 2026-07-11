@@ -1,0 +1,91 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__chat_agent_executor",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "pre_model_hook",
+      "kind": "llm",
+      "label": "pre_model_hook",
+      "tools": []
+    },
+    {
+      "id": "post_model_hook",
+      "kind": "router",
+      "label": "post_model_hook",
+      "tools": []
+    },
+    {
+      "id": "generate_structured_response",
+      "kind": "llm",
+      "label": "generate_structured_response",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "router",
+      "label": "tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "pre_model_hook",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "entrypoint",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "post_model_hook",
+      "kind": "direct"
+    },
+    {
+      "source": "post_model_hook",
+      "target": "generate_structured_response",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "generate_structured_response",
+      "kind": "direct"
+    },
+    {
+      "source": "pre_model_hook",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "entrypoint",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "post_model_hook",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "entrypoint",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "entbappy__Automated-Candidate-Interview-Evaluation-System__app",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "interviewer",
+      "kind": "llm",
+      "label": "interviewer",
+      "tools": []
+    },
+    {
+      "id": "candidate",
+      "kind": "llm",
+      "label": "candidate",
+      "tools": []
+    },
+    {
+      "id": "evaluator",
+      "kind": "llm",
+      "label": "evaluator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "interviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "interviewer",
+      "target": "candidate",
+      "kind": "direct"
+    },
+    {
+      "source": "candidate",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "evaluator",
+      "target": "interviewer",
+      "kind": "loop"
+    },
+    {
+      "source": "evaluator",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

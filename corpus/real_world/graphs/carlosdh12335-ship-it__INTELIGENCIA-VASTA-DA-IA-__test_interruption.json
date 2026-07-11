@@ -1,0 +1,82 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_interruption",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "step_1",
+      "kind": "llm",
+      "label": "step_1",
+      "tools": []
+    },
+    {
+      "id": "step_2",
+      "kind": "llm",
+      "label": "step_2",
+      "tools": []
+    },
+    {
+      "id": "step_3",
+      "kind": "llm",
+      "label": "step_3",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "step_1",
+      "kind": "direct"
+    },
+    {
+      "source": "step_1",
+      "target": "step_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_2",
+      "target": "step_3",
+      "kind": "direct"
+    },
+    {
+      "source": "step_3",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_1",
+      "kind": "direct"
+    },
+    {
+      "source": "step_1",
+      "target": "step_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_2",
+      "target": "step_3",
+      "kind": "direct"
+    },
+    {
+      "source": "step_3",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

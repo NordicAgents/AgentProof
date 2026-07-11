@@ -1,0 +1,73 @@
+{
+  "name": "ed-donner__agents__summarizer",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "parse_input",
+      "kind": "llm",
+      "label": "parse_input",
+      "tools": []
+    },
+    {
+      "id": "chunk_text",
+      "kind": "llm",
+      "label": "chunk_text",
+      "tools": []
+    },
+    {
+      "id": "summarize_chunks",
+      "kind": "llm",
+      "label": "summarize_chunks",
+      "tools": []
+    },
+    {
+      "id": "create_final_summary",
+      "kind": "llm",
+      "label": "create_final_summary",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "parse_input",
+      "kind": "direct"
+    },
+    {
+      "source": "parse_input",
+      "target": "chunk_text",
+      "kind": "direct"
+    },
+    {
+      "source": "chunk_text",
+      "target": "summarize_chunks",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize_chunks",
+      "target": "create_final_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "create_final_summary",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

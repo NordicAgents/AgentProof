@@ -1,0 +1,67 @@
+{
+  "name": "RubyJiu__data-structure__multiAgent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "web_surfer",
+      "kind": "llm",
+      "label": "web_surfer",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "web_surfer",
+      "kind": "direct"
+    },
+    {
+      "source": "web_surfer",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "web_surfer",
+      "kind": "loop"
+    },
+    {
+      "source": "user_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

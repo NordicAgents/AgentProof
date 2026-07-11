@@ -1,0 +1,56 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__mcp_session_host_example",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "other_assistant",
+      "kind": "llm",
+      "label": "other_assistant",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "other_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "other_assistant",
+      "target": "assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "other_assistant",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

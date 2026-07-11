@@ -1,0 +1,73 @@
+{
+  "name": "NordicAgents__AgentProof__adk_pipeline",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "ingest",
+      "kind": "llm",
+      "label": "ingest",
+      "tools": []
+    },
+    {
+      "id": "process",
+      "kind": "llm",
+      "label": "process",
+      "tools": []
+    },
+    {
+      "id": "validate",
+      "kind": "llm",
+      "label": "validate",
+      "tools": []
+    },
+    {
+      "id": "publish",
+      "kind": "llm",
+      "label": "publish",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "ingest",
+      "kind": "direct"
+    },
+    {
+      "source": "ingest",
+      "target": "process",
+      "kind": "direct"
+    },
+    {
+      "source": "process",
+      "target": "validate",
+      "kind": "direct"
+    },
+    {
+      "source": "validate",
+      "target": "publish",
+      "kind": "direct"
+    },
+    {
+      "source": "publish",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

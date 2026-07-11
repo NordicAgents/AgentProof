@@ -1,0 +1,107 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_type_checking",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "valid",
+      "kind": "llm",
+      "label": "valid",
+      "tools": []
+    },
+    {
+      "id": "invalid",
+      "kind": "llm",
+      "label": "invalid",
+      "tools": []
+    },
+    {
+      "id": "invalid_node",
+      "kind": "llm",
+      "label": "invalid_node",
+      "tools": []
+    },
+    {
+      "id": "a",
+      "kind": "llm",
+      "label": "a",
+      "tools": []
+    },
+    {
+      "id": "b",
+      "kind": "llm",
+      "label": "b",
+      "tools": []
+    },
+    {
+      "id": "a_wrong",
+      "kind": "llm",
+      "label": "a_wrong",
+      "tools": []
+    },
+    {
+      "id": "b_wrong",
+      "kind": "llm",
+      "label": "b_wrong",
+      "tools": []
+    },
+    {
+      "id": "a_inclusive",
+      "kind": "llm",
+      "label": "a_inclusive",
+      "tools": []
+    },
+    {
+      "id": "b_inclusive",
+      "kind": "llm",
+      "label": "b_inclusive",
+      "tools": []
+    },
+    {
+      "id": "a_narrow",
+      "kind": "llm",
+      "label": "a_narrow",
+      "tools": []
+    },
+    {
+      "id": "b_narrow",
+      "kind": "llm",
+      "label": "b_narrow",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "valid",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "valid",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "valid",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "valid",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    }
+  ]
+}

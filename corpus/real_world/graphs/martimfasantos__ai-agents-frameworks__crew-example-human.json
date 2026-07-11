@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__crew-example-human",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "\n____1._write_three_variations_of_a_cold_email_sel",
+      "kind": "llm",
+      "label": "\n    1. Write three variations of a cold email sel",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "\n____1._write_three_variations_of_a_cold_email_sel",
+      "kind": "direct"
+    },
+    {
+      "source": "\n____1._write_three_variations_of_a_cold_email_sel",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

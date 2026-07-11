@@ -1,0 +1,104 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_react_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "add",
+      "kind": "llm",
+      "label": "add",
+      "tools": []
+    },
+    {
+      "id": "multiply",
+      "kind": "llm",
+      "label": "multiply",
+      "tools": []
+    },
+    {
+      "id": "react_agent",
+      "kind": "llm",
+      "label": "react_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "tools",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "add",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "multiply",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tools",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "react_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "react_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "react_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "react_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

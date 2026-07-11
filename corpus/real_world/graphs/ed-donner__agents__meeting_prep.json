@@ -1,0 +1,112 @@
+{
+  "name": "ed-donner__agents__meeting_prep",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_person",
+      "kind": "llm",
+      "label": "research_person",
+      "tools": []
+    },
+    {
+      "id": "research_company",
+      "kind": "llm",
+      "label": "research_company",
+      "tools": []
+    },
+    {
+      "id": "talking_points",
+      "kind": "llm",
+      "label": "talking_points",
+      "tools": []
+    },
+    {
+      "id": "agenda",
+      "kind": "llm",
+      "label": "agenda",
+      "tools": []
+    },
+    {
+      "id": "followup",
+      "kind": "llm",
+      "label": "followup",
+      "tools": []
+    },
+    {
+      "id": "evaluate",
+      "kind": "router",
+      "label": "evaluate",
+      "tools": []
+    },
+    {
+      "id": "revise",
+      "kind": "llm",
+      "label": "revise",
+      "tools": []
+    },
+    {
+      "id": "compile",
+      "kind": "llm",
+      "label": "compile",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_person",
+      "kind": "direct"
+    },
+    {
+      "source": "research_person",
+      "target": "research_company",
+      "kind": "direct"
+    },
+    {
+      "source": "research_company",
+      "target": "talking_points",
+      "kind": "direct"
+    },
+    {
+      "source": "talking_points",
+      "target": "agenda",
+      "kind": "direct"
+    },
+    {
+      "source": "agenda",
+      "target": "followup",
+      "kind": "direct"
+    },
+    {
+      "source": "followup",
+      "target": "evaluate",
+      "kind": "direct"
+    },
+    {
+      "source": "revise",
+      "target": "evaluate",
+      "kind": "direct"
+    },
+    {
+      "source": "compile",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "microsoft__ACV__cluster_manager",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "code_executor",
+      "kind": "llm",
+      "label": "code_executor",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "code_executor",
+      "kind": "direct"
+    },
+    {
+      "source": "code_executor",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,1869 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_pregel_async",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "parallel",
+      "kind": "llm",
+      "label": "parallel",
+      "tools": []
+    },
+    {
+      "id": "bad",
+      "kind": "llm",
+      "label": "bad",
+      "tools": []
+    },
+    {
+      "id": "tool_two",
+      "kind": "tool",
+      "label": "tool_two",
+      "tools": []
+    },
+    {
+      "id": "do",
+      "kind": "llm",
+      "label": "do",
+      "tools": []
+    },
+    {
+      "id": "tool_one",
+      "kind": "tool",
+      "label": "tool_one",
+      "tools": []
+    },
+    {
+      "id": "awhile",
+      "kind": "llm",
+      "label": "awhile",
+      "tools": []
+    },
+    {
+      "id": "alittlewhile",
+      "kind": "llm",
+      "label": "alittlewhile",
+      "tools": []
+    },
+    {
+      "id": "aparallelwhile",
+      "kind": "llm",
+      "label": "aparallelwhile",
+      "tools": []
+    },
+    {
+      "id": "anotherwhile",
+      "kind": "llm",
+      "label": "anotherwhile",
+      "tools": []
+    },
+    {
+      "id": "a",
+      "kind": "llm",
+      "label": "a",
+      "tools": []
+    },
+    {
+      "id": "b",
+      "kind": "llm",
+      "label": "b",
+      "tools": []
+    },
+    {
+      "id": "c",
+      "kind": "llm",
+      "label": "c",
+      "tools": []
+    },
+    {
+      "id": "one",
+      "kind": "llm",
+      "label": "one",
+      "tools": []
+    },
+    {
+      "id": "two",
+      "kind": "llm",
+      "label": "two",
+      "tools": []
+    },
+    {
+      "id": "node_one",
+      "kind": "router",
+      "label": "node_one",
+      "tools": []
+    },
+    {
+      "id": "node_two",
+      "kind": "router",
+      "label": "node_two",
+      "tools": []
+    },
+    {
+      "id": "mynode",
+      "kind": "llm",
+      "label": "mynode",
+      "tools": []
+    },
+    {
+      "id": "flaky",
+      "kind": "llm",
+      "label": "flaky",
+      "tools": []
+    },
+    {
+      "id": "foo",
+      "kind": "llm",
+      "label": "foo",
+      "tools": []
+    },
+    {
+      "id": "1",
+      "kind": "router",
+      "label": "1",
+      "tools": []
+    },
+    {
+      "id": "node2",
+      "kind": "llm",
+      "label": "node2",
+      "tools": []
+    },
+    {
+      "id": "3",
+      "kind": "llm",
+      "label": "3",
+      "tools": []
+    },
+    {
+      "id": "2",
+      "kind": "llm",
+      "label": "2",
+      "tools": []
+    },
+    {
+      "id": "left",
+      "kind": "router",
+      "label": "left",
+      "tools": []
+    },
+    {
+      "id": "right",
+      "kind": "llm",
+      "label": "right",
+      "tools": []
+    },
+    {
+      "id": "rewrite_query",
+      "kind": "router",
+      "label": "rewrite_query",
+      "tools": []
+    },
+    {
+      "id": "analyzer_one",
+      "kind": "llm",
+      "label": "analyzer_one",
+      "tools": []
+    },
+    {
+      "id": "retriever_one",
+      "kind": "llm",
+      "label": "retriever_one",
+      "tools": []
+    },
+    {
+      "id": "retriever_two",
+      "kind": "llm",
+      "label": "retriever_two",
+      "tools": []
+    },
+    {
+      "id": "qa",
+      "kind": "llm",
+      "label": "qa",
+      "tools": []
+    },
+    {
+      "id": "process",
+      "kind": "llm",
+      "label": "process",
+      "tools": []
+    },
+    {
+      "id": "decider",
+      "kind": "router",
+      "label": "decider",
+      "tools": []
+    },
+    {
+      "id": "up",
+      "kind": "llm",
+      "label": "up",
+      "tools": []
+    },
+    {
+      "id": "inner",
+      "kind": "router",
+      "label": "inner",
+      "tools": []
+    },
+    {
+      "id": "side",
+      "kind": "llm",
+      "label": "side",
+      "tools": []
+    },
+    {
+      "id": "inner_1",
+      "kind": "llm",
+      "label": "inner_1",
+      "tools": []
+    },
+    {
+      "id": "inner_2",
+      "kind": "llm",
+      "label": "inner_2",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node_1",
+      "kind": "llm",
+      "label": "subgraph_node_1",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node_2",
+      "kind": "llm",
+      "label": "subgraph_node_2",
+      "tools": []
+    },
+    {
+      "id": "node_1",
+      "kind": "llm",
+      "label": "node_1",
+      "tools": []
+    },
+    {
+      "id": "node_2",
+      "kind": "llm",
+      "label": "node_2",
+      "tools": []
+    },
+    {
+      "id": "outer_1",
+      "kind": "llm",
+      "label": "outer_1",
+      "tools": []
+    },
+    {
+      "id": "outer_2",
+      "kind": "llm",
+      "label": "outer_2",
+      "tools": []
+    },
+    {
+      "id": "node",
+      "kind": "llm",
+      "label": "node",
+      "tools": []
+    },
+    {
+      "id": "grandchild_1",
+      "kind": "llm",
+      "label": "grandchild_1",
+      "tools": []
+    },
+    {
+      "id": "grandchild_2",
+      "kind": "llm",
+      "label": "grandchild_2",
+      "tools": []
+    },
+    {
+      "id": "child_1",
+      "kind": "llm",
+      "label": "child_1",
+      "tools": []
+    },
+    {
+      "id": "parent_1",
+      "kind": "llm",
+      "label": "parent_1",
+      "tools": []
+    },
+    {
+      "id": "child",
+      "kind": "llm",
+      "label": "child",
+      "tools": []
+    },
+    {
+      "id": "parent_2",
+      "kind": "llm",
+      "label": "parent_2",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "other_node",
+      "kind": "llm",
+      "label": "other_node",
+      "tools": []
+    },
+    {
+      "id": "c_one",
+      "kind": "llm",
+      "label": "c_one",
+      "tools": []
+    },
+    {
+      "id": "c_two",
+      "kind": "llm",
+      "label": "c_two",
+      "tools": []
+    },
+    {
+      "id": "p_one",
+      "kind": "llm",
+      "label": "p_one",
+      "tools": []
+    },
+    {
+      "id": "p_two",
+      "kind": "llm",
+      "label": "p_two",
+      "tools": []
+    },
+    {
+      "id": "gp_one",
+      "kind": "llm",
+      "label": "gp_one",
+      "tools": []
+    },
+    {
+      "id": "gp_two",
+      "kind": "llm",
+      "label": "gp_two",
+      "tools": []
+    },
+    {
+      "id": "tool",
+      "kind": "tool",
+      "label": "tool",
+      "tools": []
+    },
+    {
+      "id": "alice",
+      "kind": "llm",
+      "label": "alice",
+      "tools": []
+    },
+    {
+      "id": "respond",
+      "kind": "llm",
+      "label": "respond",
+      "tools": []
+    },
+    {
+      "id": "bar",
+      "kind": "llm",
+      "label": "bar",
+      "tools": []
+    },
+    {
+      "id": "node1",
+      "kind": "llm",
+      "label": "node1",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "step1",
+      "kind": "llm",
+      "label": "step1",
+      "tools": []
+    },
+    {
+      "id": "step2",
+      "kind": "llm",
+      "label": "step2",
+      "tools": []
+    },
+    {
+      "id": "step3",
+      "kind": "llm",
+      "label": "step3",
+      "tools": []
+    },
+    {
+      "id": "step4",
+      "kind": "llm",
+      "label": "step4",
+      "tools": []
+    },
+    {
+      "id": "slow",
+      "kind": "llm",
+      "label": "slow",
+      "tools": []
+    },
+    {
+      "id": "fast",
+      "kind": "llm",
+      "label": "fast",
+      "tools": []
+    },
+    {
+      "id": "invoke_sub_agent",
+      "kind": "llm",
+      "label": "invoke_sub_agent",
+      "tools": []
+    },
+    {
+      "id": "add",
+      "kind": "llm",
+      "label": "add",
+      "tools": []
+    },
+    {
+      "id": "multiply",
+      "kind": "llm",
+      "label": "multiply",
+      "tools": []
+    },
+    {
+      "id": "call_same_subgraph",
+      "kind": "llm",
+      "label": "call_same_subgraph",
+      "tools": []
+    },
+    {
+      "id": "call_multiple_subgraphs",
+      "kind": "llm",
+      "label": "call_multiple_subgraphs",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node",
+      "kind": "llm",
+      "label": "subgraph_node",
+      "tools": []
+    },
+    {
+      "id": "other_subgraph_node",
+      "kind": "llm",
+      "label": "other_subgraph_node",
+      "tools": []
+    },
+    {
+      "id": "parent_node",
+      "kind": "llm",
+      "label": "parent_node",
+      "tools": []
+    },
+    {
+      "id": "call_model",
+      "kind": "llm",
+      "label": "call_model",
+      "tools": []
+    },
+    {
+      "id": "my_node",
+      "kind": "llm",
+      "label": "my_node",
+      "tools": []
+    },
+    {
+      "id": "route",
+      "kind": "router",
+      "label": "route",
+      "tools": []
+    },
+    {
+      "id": "subnode_2",
+      "kind": "llm",
+      "label": "subnode_2",
+      "tools": []
+    },
+    {
+      "id": "subnode_1",
+      "kind": "llm",
+      "label": "subnode_1",
+      "tools": []
+    },
+    {
+      "id": "call_subgraph",
+      "kind": "llm",
+      "label": "call_subgraph",
+      "tools": []
+    },
+    {
+      "id": "ask",
+      "kind": "llm",
+      "label": "ask",
+      "tools": []
+    },
+    {
+      "id": "setup",
+      "kind": "llm",
+      "label": "setup",
+      "tools": []
+    },
+    {
+      "id": "step_b",
+      "kind": "llm",
+      "label": "step_b",
+      "tools": []
+    },
+    {
+      "id": "step_a",
+      "kind": "llm",
+      "label": "step_a",
+      "tools": []
+    },
+    {
+      "id": "multi_interrupt",
+      "kind": "llm",
+      "label": "multi_interrupt",
+      "tools": []
+    },
+    {
+      "id": "prepare",
+      "kind": "llm",
+      "label": "prepare",
+      "tools": []
+    },
+    {
+      "id": "chatbot",
+      "kind": "llm",
+      "label": "chatbot",
+      "tools": []
+    },
+    {
+      "id": "node_b",
+      "kind": "llm",
+      "label": "node_b",
+      "tools": []
+    },
+    {
+      "id": "node_a",
+      "kind": "llm",
+      "label": "node_a",
+      "tools": []
+    },
+    {
+      "id": "task",
+      "kind": "llm",
+      "label": "task",
+      "tools": []
+    },
+    {
+      "id": "map",
+      "kind": "llm",
+      "label": "map",
+      "tools": []
+    },
+    {
+      "id": "nothing",
+      "kind": "llm",
+      "label": "nothing",
+      "tools": []
+    },
+    {
+      "id": "node_a_child",
+      "kind": "llm",
+      "label": "node_a_child",
+      "tools": []
+    },
+    {
+      "id": "node_b_child",
+      "kind": "llm",
+      "label": "node_b_child",
+      "tools": []
+    },
+    {
+      "id": "node_b_parent",
+      "kind": "llm",
+      "label": "node_b_parent",
+      "tools": []
+    },
+    {
+      "id": "parent_cmd",
+      "kind": "llm",
+      "label": "parent_cmd",
+      "tools": []
+    },
+    {
+      "id": "three",
+      "kind": "llm",
+      "label": "three",
+      "tools": []
+    },
+    {
+      "id": "subgraph",
+      "kind": "llm",
+      "label": "subgraph",
+      "tools": []
+    },
+    {
+      "id": "human_node_1",
+      "kind": "human",
+      "label": "human_node_1",
+      "tools": []
+    },
+    {
+      "id": "human_node_2",
+      "kind": "human",
+      "label": "human_node_2",
+      "tools": []
+    },
+    {
+      "id": "robot_input_node",
+      "kind": "llm",
+      "label": "robot_input_node",
+      "tools": []
+    },
+    {
+      "id": "human_input_node",
+      "kind": "human",
+      "label": "human_input_node",
+      "tools": []
+    },
+    {
+      "id": "double",
+      "kind": "llm",
+      "label": "double",
+      "tools": []
+    },
+    {
+      "id": "always_failing",
+      "kind": "llm",
+      "label": "always_failing",
+      "tools": []
+    },
+    {
+      "id": "sub_fail_node",
+      "kind": "llm",
+      "label": "sub_fail_node",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parallel",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tool_two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "do",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tool_two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "alittlewhile",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "aparallelwhile",
+      "kind": "direct"
+    },
+    {
+      "source": "alittlewhile",
+      "target": "awhile",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "alittlewhile",
+      "kind": "direct"
+    },
+    {
+      "source": "alittlewhile",
+      "target": "awhile",
+      "kind": "direct"
+    },
+    {
+      "source": "awhile",
+      "target": "anotherwhile",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "one",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_one",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1.1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "mynode",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "right",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_two",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_two",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever_one",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever_two",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "process",
+      "kind": "direct"
+    },
+    {
+      "source": "process",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_two",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "retriever_two",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "up",
+      "kind": "direct"
+    },
+    {
+      "source": "up",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "side",
+      "kind": "direct"
+    },
+    {
+      "source": "side",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_1",
+      "target": "inner_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_1",
+      "target": "inner_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node_1",
+      "target": "subgraph_node_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_1",
+      "target": "inner_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer_1",
+      "kind": "direct"
+    },
+    {
+      "source": "outer_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_1",
+      "target": "inner_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_1",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer_1",
+      "kind": "direct"
+    },
+    {
+      "source": "outer_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "grandchild_1",
+      "target": "grandchild_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "grandchild_1",
+      "kind": "direct"
+    },
+    {
+      "source": "grandchild_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "child_1",
+      "kind": "direct"
+    },
+    {
+      "source": "child_1",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_1",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_1",
+      "target": "child",
+      "kind": "direct"
+    },
+    {
+      "source": "child",
+      "target": "parent_2",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "node",
+      "target": "other_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "one",
+      "kind": "direct"
+    },
+    {
+      "source": "one",
+      "target": "two",
+      "kind": "direct"
+    },
+    {
+      "source": "two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "c_one",
+      "kind": "direct"
+    },
+    {
+      "source": "c_one",
+      "target": "c_two",
+      "kind": "direct"
+    },
+    {
+      "source": "c_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "p_one",
+      "kind": "direct"
+    },
+    {
+      "source": "p_one",
+      "target": "p_two",
+      "kind": "direct"
+    },
+    {
+      "source": "p_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "c_one",
+      "kind": "direct"
+    },
+    {
+      "source": "c_one",
+      "target": "c_two",
+      "kind": "direct"
+    },
+    {
+      "source": "c_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "p_one",
+      "kind": "direct"
+    },
+    {
+      "source": "p_one",
+      "target": "p_two",
+      "kind": "direct"
+    },
+    {
+      "source": "p_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "gp_one",
+      "kind": "direct"
+    },
+    {
+      "source": "gp_one",
+      "target": "gp_two",
+      "kind": "direct"
+    },
+    {
+      "source": "gp_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "tool",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "alice",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "respond",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "bar",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "foo",
+      "kind": "direct"
+    },
+    {
+      "source": "foo",
+      "target": "bar",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node1",
+      "kind": "direct"
+    },
+    {
+      "source": "node1",
+      "target": "node2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node1",
+      "kind": "direct"
+    },
+    {
+      "source": "node1",
+      "target": "node2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fast",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node1",
+      "kind": "direct"
+    },
+    {
+      "source": "node1",
+      "target": "node2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "invoke_sub_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "invoke_sub_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "add",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "multiply",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_same_subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_multiple_subgraphs",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "add",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "multiply",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_same_subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_multiple_subgraphs",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "other_subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "route",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "route",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "subnode_1",
+      "target": "subnode_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subnode_1",
+      "kind": "direct"
+    },
+    {
+      "source": "call_subgraph",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "ask",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "setup",
+      "target": "ask",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "setup",
+      "kind": "direct"
+    },
+    {
+      "source": "ask",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "step_b",
+      "target": "ask",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "multi_interrupt",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "prepare",
+      "target": "multi_interrupt",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "prepare",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "chatbot",
+      "kind": "direct"
+    },
+    {
+      "source": "chatbot",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "tool",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "map",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tool",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a_child",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a_child",
+      "target": "node_b_child",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_cmd",
+      "kind": "direct"
+    },
+    {
+      "source": "two",
+      "target": "three",
+      "kind": "direct"
+    },
+    {
+      "source": "one",
+      "target": "two",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "one",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "human_node_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "human_node_2",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "slow",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "robot_input_node",
+      "kind": "direct"
+    },
+    {
+      "source": "robot_input_node",
+      "target": "human_input_node",
+      "kind": "direct"
+    },
+    {
+      "source": "double",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "double",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_fail_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    }
+  ]
+}

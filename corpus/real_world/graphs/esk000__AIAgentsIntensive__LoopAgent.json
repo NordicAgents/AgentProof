@@ -1,0 +1,51 @@
+{
+  "name": "esk000__AIAgentsIntensive__LoopAgent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "initial_writer_agent",
+      "kind": "llm",
+      "label": "initial_writer_agent",
+      "tools": []
+    },
+    {
+      "id": "story_refinement_loop",
+      "kind": "llm",
+      "label": "story_refinement_loop",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "initial_writer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "initial_writer_agent",
+      "target": "story_refinement_loop",
+      "kind": "direct"
+    },
+    {
+      "source": "story_refinement_loop",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

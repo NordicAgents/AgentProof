@@ -1,0 +1,63 @@
+{
+  "name": "ed-donner__agents__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "evaluate",
+      "kind": "router",
+      "label": "evaluate",
+      "tools": []
+    },
+    {
+      "id": "give_hint",
+      "kind": "llm",
+      "label": "give_hint",
+      "tools": []
+    },
+    {
+      "id": "next_question",
+      "kind": "llm",
+      "label": "next_question",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "give_hint",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "next_question",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

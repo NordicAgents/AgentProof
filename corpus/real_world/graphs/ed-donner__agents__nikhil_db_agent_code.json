@@ -1,0 +1,82 @@
+{
+  "name": "ed-donner__agents__nikhil_db_agent_code",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "show_tables",
+      "kind": "llm",
+      "label": "show_tables",
+      "tools": []
+    },
+    {
+      "id": "fetch_schema",
+      "kind": "llm",
+      "label": "fetch_schema",
+      "tools": []
+    },
+    {
+      "id": "get_schema_node",
+      "kind": "llm",
+      "label": "get_schema_node",
+      "tools": []
+    },
+    {
+      "id": "make_query",
+      "kind": "router",
+      "label": "make_query",
+      "tools": []
+    },
+    {
+      "id": "validate_sql",
+      "kind": "llm",
+      "label": "validate_sql",
+      "tools": []
+    },
+    {
+      "id": "run_query_node",
+      "kind": "llm",
+      "label": "run_query_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "show_tables",
+      "kind": "direct"
+    },
+    {
+      "source": "show_tables",
+      "target": "fetch_schema",
+      "kind": "direct"
+    },
+    {
+      "source": "fetch_schema",
+      "target": "fetch_schema_node",
+      "kind": "direct"
+    },
+    {
+      "source": "fetch_schema_node",
+      "target": "make_query",
+      "kind": "direct"
+    },
+    {
+      "source": "validate_sql",
+      "target": "run_sql",
+      "kind": "direct"
+    },
+    {
+      "source": "run_sql",
+      "target": "make_query",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "mdfahad999__Autogen_sqlite__Autogen_sqlite",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "engineer",
+      "kind": "llm",
+      "label": "engineer",
+      "tools": []
+    },
+    {
+      "id": "sr_data_analyst",
+      "kind": "llm",
+      "label": "sr_data_analyst",
+      "tools": []
+    },
+    {
+      "id": "product_manager",
+      "kind": "llm",
+      "label": "product_manager",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "engineer",
+      "target": "sr_data_analyst",
+      "kind": "direct"
+    },
+    {
+      "source": "sr_data_analyst",
+      "target": "product_manager",
+      "kind": "direct"
+    },
+    {
+      "source": "product_manager",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

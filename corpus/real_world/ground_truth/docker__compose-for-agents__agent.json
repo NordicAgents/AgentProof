@@ -1,0 +1,57 @@
+{
+  "name": "docker__compose-for-agents__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "reddit_researcher_agent",
+      "kind": "llm",
+      "label": "reddit_researcher_agent"
+    },
+    {
+      "id": "customer_feedback_agent",
+      "kind": "llm",
+      "label": "customer_feedback_agent"
+    },
+    {
+      "id": "catalog_agent",
+      "kind": "llm",
+      "label": "catalog_agent"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "reddit_researcher_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "reddit_researcher_agent",
+      "target": "customer_feedback_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "customer_feedback_agent",
+      "target": "catalog_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "catalog_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

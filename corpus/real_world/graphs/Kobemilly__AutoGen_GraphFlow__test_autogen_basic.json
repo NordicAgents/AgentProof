@@ -1,0 +1,44 @@
+{
+  "name": "Kobemilly__AutoGen_GraphFlow__test_autogen_basic",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "formatter",
+      "kind": "llm",
+      "label": "formatter",
+      "tools": []
+    },
+    {
+      "id": "proofreader",
+      "kind": "llm",
+      "label": "proofreader",
+      "tools": []
+    },
+    {
+      "id": "translator",
+      "kind": "llm",
+      "label": "translator",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "translator",
+      "target": "proofreader",
+      "kind": "direct"
+    },
+    {
+      "source": "proofreader",
+      "target": "formatter",
+      "kind": "direct"
+    }
+  ]
+}

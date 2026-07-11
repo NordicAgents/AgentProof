@@ -1,0 +1,101 @@
+{
+  "name": "ed-donner__agents__graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "local_events",
+      "kind": "router",
+      "label": "local_events",
+      "tools": []
+    },
+    {
+      "id": "online_search",
+      "kind": "llm",
+      "label": "online_search",
+      "tools": []
+    },
+    {
+      "id": "merge_local",
+      "kind": "llm",
+      "label": "merge_local",
+      "tools": []
+    },
+    {
+      "id": "weather",
+      "kind": "llm",
+      "label": "weather",
+      "tools": []
+    },
+    {
+      "id": "outfit_advisor",
+      "kind": "llm",
+      "label": "outfit_advisor",
+      "tools": []
+    },
+    {
+      "id": "venues_rag",
+      "kind": "llm",
+      "label": "venues_rag",
+      "tools": []
+    },
+    {
+      "id": "analysis",
+      "kind": "llm",
+      "label": "analysis",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "local_events",
+      "kind": "direct"
+    },
+    {
+      "source": "online_search",
+      "target": "weather",
+      "kind": "direct"
+    },
+    {
+      "source": "merge_local",
+      "target": "weather",
+      "kind": "direct"
+    },
+    {
+      "source": "weather",
+      "target": "outfit_advisor",
+      "kind": "direct"
+    },
+    {
+      "source": "outfit_advisor",
+      "target": "venues_rag",
+      "kind": "direct"
+    },
+    {
+      "source": "venues_rag",
+      "target": "analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "analysis",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

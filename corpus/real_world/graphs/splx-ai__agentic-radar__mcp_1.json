@@ -1,0 +1,40 @@
+{
+  "name": "splx-ai__agentic-radar__mcp_1",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "list_the_available_mcp_tools_and_provide_a_short_d",
+      "kind": "llm",
+      "label": "List the available MCP tools and provide a short d",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "list_the_available_mcp_tools_and_provide_a_short_d",
+      "kind": "direct"
+    },
+    {
+      "source": "list_the_available_mcp_tools_and_provide_a_short_d",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

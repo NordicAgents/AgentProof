@@ -1,0 +1,40 @@
+{
+  "name": "olileger__py-autogen__expA",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "w_agent",
+      "kind": "llm",
+      "label": "w_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "w_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "w_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

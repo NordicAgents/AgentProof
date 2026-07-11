@@ -1,0 +1,120 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__08_graph_flow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "summarizer",
+      "kind": "llm",
+      "label": "summarizer",
+      "tools": []
+    },
+    {
+      "id": "culture_expert",
+      "kind": "llm",
+      "label": "culture_expert",
+      "tools": []
+    },
+    {
+      "id": "food_expert",
+      "kind": "llm",
+      "label": "food_expert",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "negative_responder",
+      "kind": "llm",
+      "label": "negative_responder",
+      "tools": []
+    },
+    {
+      "id": "positive_responder",
+      "kind": "llm",
+      "label": "positive_responder",
+      "tools": []
+    },
+    {
+      "id": "classifier",
+      "kind": "llm",
+      "label": "classifier",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "writer",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "food_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "culture_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "food_expert",
+      "target": "summarizer",
+      "kind": "direct"
+    },
+    {
+      "source": "culture_expert",
+      "target": "summarizer",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "classifier",
+      "target": "positive_responder",
+      "kind": "direct"
+    },
+    {
+      "source": "classifier",
+      "target": "negative_responder",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "classifier",
+      "kind": "direct"
+    }
+  ]
+}

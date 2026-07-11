@@ -1,0 +1,85 @@
+{
+  "name": "lordpython__multi-agent-video-system__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry"
+    },
+    {
+      "id": "research_agent",
+      "kind": "llm",
+      "label": "research_agent"
+    },
+    {
+      "id": "story_agent",
+      "kind": "llm",
+      "label": "story_agent"
+    },
+    {
+      "id": "asset_sourcing_agent",
+      "kind": "llm",
+      "label": "asset_sourcing_agent"
+    },
+    {
+      "id": "image_generation_agent",
+      "kind": "llm",
+      "label": "image_generation_agent"
+    },
+    {
+      "id": "audio_agent",
+      "kind": "llm",
+      "label": "audio_agent"
+    },
+    {
+      "id": "video_assembly_agent",
+      "kind": "llm",
+      "label": "video_assembly_agent"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "research_agent",
+      "target": "story_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "story_agent",
+      "target": "asset_sourcing_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "asset_sourcing_agent",
+      "target": "image_generation_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "image_generation_agent",
+      "target": "audio_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "audio_agent",
+      "target": "video_assembly_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "video_assembly_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

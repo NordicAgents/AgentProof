@@ -1,0 +1,52 @@
+{
+  "name": "Saimoguloju__AI-Agents__sample_agent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "coder",
+      "kind": "llm",
+      "label": "coder (AssistantAgent - writes Python)"
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer (AssistantAgent - approves / says TERMINATE)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "coder",
+      "kind": "direct"
+    },
+    {
+      "source": "coder",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "coder",
+      "kind": "loop"
+    },
+    {
+      "source": "reviewer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

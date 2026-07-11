@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__00_hello_world",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "say_hello_to_the_world",
+      "kind": "llm",
+      "label": "Say hello to the world",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "say_hello_to_the_world",
+      "kind": "direct"
+    },
+    {
+      "source": "say_hello_to_the_world",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "ed-donner__agents__github_review_util",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "fetch_pr_context",
+      "kind": "router",
+      "label": "fetch_pr_context",
+      "tools": []
+    },
+    {
+      "id": "review_pull_request",
+      "kind": "llm",
+      "label": "review_pull_request",
+      "tools": []
+    },
+    {
+      "id": "supervise_review",
+      "kind": "llm",
+      "label": "supervise_review",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "fetch_pr_context",
+      "kind": "direct"
+    },
+    {
+      "source": "review_pull_request",
+      "target": "supervise_review",
+      "kind": "direct"
+    },
+    {
+      "source": "supervise_review",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "review_pull_request",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

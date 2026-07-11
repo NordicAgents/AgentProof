@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__11_reasoning",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "given_a_list_of_customer_feedback_messages,_classi",
+      "kind": "llm",
+      "label": "Given a list of customer feedback messages, classi",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "given_a_list_of_customer_feedback_messages,_classi",
+      "kind": "direct"
+    },
+    {
+      "source": "given_a_list_of_customer_feedback_messages,_classi",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

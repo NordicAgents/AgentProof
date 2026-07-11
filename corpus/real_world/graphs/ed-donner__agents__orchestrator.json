@@ -1,0 +1,68 @@
+{
+  "name": "ed-donner__agents__orchestrator",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "code_extractor",
+      "kind": "router",
+      "label": "code_extractor",
+      "tools": []
+    },
+    {
+      "id": "bug_detector",
+      "kind": "llm",
+      "label": "bug_detector",
+      "tools": []
+    },
+    {
+      "id": "style_reviewer",
+      "kind": "llm",
+      "label": "style_reviewer",
+      "tools": []
+    },
+    {
+      "id": "summarizer",
+      "kind": "llm",
+      "label": "summarizer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "code_extractor",
+      "kind": "direct"
+    },
+    {
+      "source": "bug_detector",
+      "target": "style_reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "style_reviewer",
+      "target": "summarizer",
+      "kind": "direct"
+    },
+    {
+      "source": "summarizer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

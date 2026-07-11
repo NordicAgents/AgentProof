@@ -1,0 +1,67 @@
+{
+  "name": "AkshatKumar12__AutoGen_Learning__test",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "interiewer",
+      "kind": "llm",
+      "label": "interiewer",
+      "tools": []
+    },
+    {
+      "id": "Manager",
+      "kind": "llm",
+      "label": "Manager",
+      "tools": []
+    },
+    {
+      "id": "candidate",
+      "kind": "llm",
+      "label": "candidate",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "interiewer",
+      "kind": "direct"
+    },
+    {
+      "source": "interiewer",
+      "target": "Manager",
+      "kind": "direct"
+    },
+    {
+      "source": "Manager",
+      "target": "candidate",
+      "kind": "direct"
+    },
+    {
+      "source": "candidate",
+      "target": "interiewer",
+      "kind": "loop"
+    },
+    {
+      "source": "candidate",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "name": "waqasniazi9__voice-agent__builder",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    },
+    {
+      "id": "calc_assistant",
+      "kind": "tool",
+      "label": "assistant_agent (calc_team RR + selector_default_team)",
+      "tools": [
+        "calculator_tool"
+      ]
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic_agent (selector_default_team)"
+    },
+    {
+      "id": "alice_agent",
+      "kind": "llm",
+      "label": "Alice (swarm_team, handoff to Bob)"
+    },
+    {
+      "id": "bob_agent",
+      "kind": "llm",
+      "label": "Bob (swarm_team, handoff to Alice)"
+    },
+    {
+      "id": "websurfer_agent",
+      "kind": "tool",
+      "label": "websurfer_agent (MultimodalWebSurfer, websurfer_team)"
+    },
+    {
+      "id": "verification_assistant",
+      "kind": "llm",
+      "label": "assistant_agent / verifier (websurfer_team)"
+    },
+    {
+      "id": "web_user_proxy",
+      "kind": "human",
+      "label": "user_proxy (UserProxyAgent, websurfer_team)"
+    },
+    {
+      "id": "research_assistant",
+      "kind": "tool",
+      "label": "research_assistant (deep_research_team)",
+      "tools": [
+        "google_search_tool",
+        "fetch_webpage_tool"
+      ]
+    },
+    {
+      "id": "verifier",
+      "kind": "llm",
+      "label": "verifier (deep_research_team)"
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent (deep_research_team)"
+    },
+    {
+      "id": "assistant",
+      "kind": "tool",
+      "label": "assistant (lite RoundRobin team)",
+      "tools": [
+        "calculator_tool"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "calc_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "calc_assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "calc_assistant",
+      "target": "critic_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "critic_agent",
+      "target": "calc_assistant",
+      "kind": "conditional"
+    },
+    {
+      "source": "critic_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "alice_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "alice_agent",
+      "target": "bob_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "bob_agent",
+      "target": "alice_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "alice_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "bob_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "websurfer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "websurfer_agent",
+      "target": "verification_assistant",
+      "kind": "conditional"
+    },
+    {
+      "source": "verification_assistant",
+      "target": "websurfer_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "verification_assistant",
+      "target": "web_user_proxy",
+      "kind": "conditional"
+    },
+    {
+      "source": "web_user_proxy",
+      "target": "websurfer_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "verification_assistant",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "research_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "research_assistant",
+      "target": "verifier",
+      "kind": "conditional"
+    },
+    {
+      "source": "verifier",
+      "target": "research_assistant",
+      "kind": "conditional"
+    },
+    {
+      "source": "verifier",
+      "target": "summary_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "summary_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "assistant",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

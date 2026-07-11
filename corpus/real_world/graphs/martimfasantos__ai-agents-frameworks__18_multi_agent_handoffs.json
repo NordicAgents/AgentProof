@@ -1,0 +1,72 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__18_multi_agent_handoffs",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "coordinator",
+      "kind": "llm",
+      "label": "coordinator",
+      "tools": []
+    },
+    {
+      "id": "coordinator_tools",
+      "kind": "tool",
+      "label": "coordinator_tools",
+      "tools": []
+    },
+    {
+      "id": "sales_agent",
+      "kind": "llm",
+      "label": "sales_agent",
+      "tools": []
+    },
+    {
+      "id": "sales_tools",
+      "kind": "tool",
+      "label": "sales_tools",
+      "tools": []
+    },
+    {
+      "id": "support_agent",
+      "kind": "llm",
+      "label": "support_agent",
+      "tools": []
+    },
+    {
+      "id": "support_tools",
+      "kind": "tool",
+      "label": "support_tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "coordinator_tools",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "sales_tools",
+      "target": "sales_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "support_tools",
+      "target": "support_agent",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "jkmaina__autogen_blueprint__01_basic_graph_flow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "reviewer",
+      "kind": "direct"
+    }
+  ]
+}

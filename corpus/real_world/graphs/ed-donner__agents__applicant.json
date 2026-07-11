@@ -1,0 +1,60 @@
+{
+  "name": "ed-donner__agents__applicant",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "listing_worker",
+      "kind": "llm",
+      "label": "listing_worker",
+      "tools": []
+    },
+    {
+      "id": "evaluate_job_postings",
+      "kind": "llm",
+      "label": "evaluate_job_postings",
+      "tools": []
+    },
+    {
+      "id": "notification_worker",
+      "kind": "llm",
+      "label": "notification_worker",
+      "tools": []
+    },
+    {
+      "id": "notification_response",
+      "kind": "llm",
+      "label": "notification_response",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "listing_worker",
+      "target": "evaluate_job_postings",
+      "kind": "direct"
+    },
+    {
+      "source": "evaluate_job_postings",
+      "target": "notification_worker",
+      "kind": "direct"
+    },
+    {
+      "source": "notification_worker",
+      "target": "notification_response",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "listing_worker",
+      "kind": "direct"
+    }
+  ]
+}

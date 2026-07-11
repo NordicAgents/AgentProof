@@ -1,0 +1,68 @@
+{
+  "name": "NordicAgents__AgentProof__langgraph_customer_support",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "llm",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "escalate_human",
+      "kind": "human",
+      "label": "escalate_human",
+      "tools": []
+    },
+    {
+      "id": "tool_call",
+      "kind": "tool",
+      "label": "tool_call",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "tool_call",
+      "kind": "direct"
+    },
+    {
+      "source": "escalate_human",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "tool_call",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

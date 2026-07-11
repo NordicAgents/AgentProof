@@ -1,0 +1,73 @@
+{
+  "name": "AIAnytime__agentic-context-engineering__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "state_initializer",
+      "kind": "llm",
+      "label": "state_initializer",
+      "tools": []
+    },
+    {
+      "id": "generator",
+      "kind": "llm",
+      "label": "generator",
+      "tools": []
+    },
+    {
+      "id": "reflector",
+      "kind": "llm",
+      "label": "reflector",
+      "tools": []
+    },
+    {
+      "id": "curator",
+      "kind": "llm",
+      "label": "curator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "state_initializer",
+      "kind": "direct"
+    },
+    {
+      "source": "state_initializer",
+      "target": "generator",
+      "kind": "direct"
+    },
+    {
+      "source": "generator",
+      "target": "reflector",
+      "kind": "direct"
+    },
+    {
+      "source": "reflector",
+      "target": "curator",
+      "kind": "direct"
+    },
+    {
+      "source": "curator",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

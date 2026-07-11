@@ -1,0 +1,51 @@
+{
+  "name": "karthikvenkatesan-eaton__Autogen_GraphRAG_Ollama__appUI",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "retriever",
+      "kind": "llm",
+      "label": "retriever",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "retriever",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

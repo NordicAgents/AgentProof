@@ -1,0 +1,72 @@
+{
+  "name": "Arhamirfan__Snake-Agents__snake_autogen",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "Admin (UserProxyAgent, human_input_mode=TERMINATE, code_execution_config)"
+    },
+    {
+      "id": "engineer",
+      "kind": "llm",
+      "label": "Engineer (AssistantAgent, writes code)"
+    },
+    {
+      "id": "QA",
+      "kind": "llm",
+      "label": "QA (AssistantAgent, tests code)"
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "Planner (AssistantAgent, suggests/revises plan)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "engineer",
+      "target": "QA",
+      "kind": "direct"
+    },
+    {
+      "source": "QA",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "user_proxy",
+      "kind": "loop"
+    },
+    {
+      "source": "user_proxy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

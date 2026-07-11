@@ -1,0 +1,78 @@
+{
+  "name": "Damish-7__MOLYSIS__health_team_agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "manager",
+      "kind": "llm",
+      "label": "manager",
+      "tools": []
+    },
+    {
+      "id": "diet_specialist",
+      "kind": "llm",
+      "label": "diet_specialist",
+      "tools": []
+    },
+    {
+      "id": "fitness_trainer",
+      "kind": "llm",
+      "label": "fitness_trainer",
+      "tools": []
+    },
+    {
+      "id": "risk_analyst",
+      "kind": "llm",
+      "label": "risk_analyst",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager",
+      "kind": "direct"
+    },
+    {
+      "source": "manager",
+      "target": "diet_specialist",
+      "kind": "direct"
+    },
+    {
+      "source": "diet_specialist",
+      "target": "fitness_trainer",
+      "kind": "direct"
+    },
+    {
+      "source": "fitness_trainer",
+      "target": "risk_analyst",
+      "kind": "direct"
+    },
+    {
+      "source": "risk_analyst",
+      "target": "manager",
+      "kind": "loop"
+    },
+    {
+      "source": "risk_analyst",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

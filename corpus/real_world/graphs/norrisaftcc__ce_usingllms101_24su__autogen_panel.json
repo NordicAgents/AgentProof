@@ -1,0 +1,95 @@
+{
+  "name": "norrisaftcc__ce_usingllms101_24su__autogen_panel",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "engineer",
+      "kind": "llm",
+      "label": "engineer",
+      "tools": []
+    },
+    {
+      "id": "scientist",
+      "kind": "llm",
+      "label": "scientist",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "executor",
+      "kind": "llm",
+      "label": "executor",
+      "tools": []
+    },
+    {
+      "id": "critic",
+      "kind": "llm",
+      "label": "critic",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "engineer",
+      "target": "scientist",
+      "kind": "direct"
+    },
+    {
+      "source": "scientist",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "executor",
+      "target": "critic",
+      "kind": "direct"
+    },
+    {
+      "source": "critic",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

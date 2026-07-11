@@ -1,0 +1,62 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__02_tools",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "get_the_current_weather_in_lisbon",
+      "kind": "llm",
+      "label": "Get the current weather in Lisbon",
+      "tools": []
+    },
+    {
+      "id": "find_out_what_time_it_is_in_new_york",
+      "kind": "llm",
+      "label": "Find out what time it is in New York",
+      "tools": []
+    },
+    {
+      "id": "scrape_the_crewai_website_to_find_out_what_service",
+      "kind": "llm",
+      "label": "Scrape the CrewAI website to find out what service",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "get_the_current_weather_in_lisbon",
+      "kind": "direct"
+    },
+    {
+      "source": "get_the_current_weather_in_lisbon",
+      "target": "find_out_what_time_it_is_in_new_york",
+      "kind": "direct"
+    },
+    {
+      "source": "find_out_what_time_it_is_in_new_york",
+      "target": "scrape_the_crewai_website_to_find_out_what_service",
+      "kind": "direct"
+    },
+    {
+      "source": "scrape_the_crewai_website_to_find_out_what_service",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_retry",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "other_node",
+      "kind": "llm",
+      "label": "other_node",
+      "tools": []
+    },
+    {
+      "id": "failing_node",
+      "kind": "llm",
+      "label": "failing_node",
+      "tools": []
+    },
+    {
+      "id": "always_failing",
+      "kind": "llm",
+      "label": "always_failing",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "failing_node",
+      "target": "other_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    }
+  ]
+}

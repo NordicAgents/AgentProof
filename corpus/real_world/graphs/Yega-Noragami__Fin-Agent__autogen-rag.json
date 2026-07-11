@@ -1,0 +1,62 @@
+{
+  "name": "Yega-Noragami__Fin-Agent__autogen-rag",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "assistant_for_Research",
+      "kind": "llm",
+      "label": "assistant_for_Research",
+      "tools": []
+    },
+    {
+      "id": "assistant_for_Strategy",
+      "kind": "llm",
+      "label": "assistant_for_Strategy",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "assistant_for_Research",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant_for_Research",
+      "target": "assistant_for_Strategy",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant_for_Strategy",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

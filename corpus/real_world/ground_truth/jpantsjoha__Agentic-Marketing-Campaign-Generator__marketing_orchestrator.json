@@ -1,0 +1,83 @@
+{
+  "name": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "URLAnalysisAgent",
+      "kind": "llm",
+      "label": "URL analysis (web content intel extraction)"
+    },
+    {
+      "id": "FileAnalysisAgent",
+      "kind": "llm",
+      "label": "File analysis (multimodal content)"
+    },
+    {
+      "id": "BusinessContextAgent",
+      "kind": "llm",
+      "label": "Business context synthesis"
+    },
+    {
+      "id": "SocialContentAgent",
+      "kind": "tool",
+      "label": "Social post generation",
+      "tools": [
+        "generate_social_posts"
+      ]
+    },
+    {
+      "id": "HashtagOptimizationAgent",
+      "kind": "tool",
+      "label": "Hashtag optimization",
+      "tools": [
+        "optimize_hashtags"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "URLAnalysisAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "URLAnalysisAgent",
+      "target": "FileAnalysisAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "FileAnalysisAgent",
+      "target": "BusinessContextAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "BusinessContextAgent",
+      "target": "SocialContentAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "SocialContentAgent",
+      "target": "HashtagOptimizationAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "HashtagOptimizationAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

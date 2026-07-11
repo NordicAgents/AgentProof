@@ -1,0 +1,51 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__05_tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "generated_simple_code_for_this:_{topic}",
+      "kind": "llm",
+      "label": "Generated simple code for this: {topic}",
+      "tools": []
+    },
+    {
+      "id": "interpret_and_simplify_code_snippet_using_the_tool",
+      "kind": "llm",
+      "label": "Interpret and simplify code snippet using the tool",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generated_simple_code_for_this:_{topic}",
+      "kind": "direct"
+    },
+    {
+      "source": "generated_simple_code_for_this:_{topic}",
+      "target": "interpret_and_simplify_code_snippet_using_the_tool",
+      "kind": "direct"
+    },
+    {
+      "source": "interpret_and_simplify_code_snippet_using_the_tool",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

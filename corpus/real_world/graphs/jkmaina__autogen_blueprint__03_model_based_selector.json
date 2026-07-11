@@ -1,0 +1,84 @@
+{
+  "name": "jkmaina__autogen_blueprint__03_model_based_selector",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "data_expert",
+      "kind": "llm",
+      "label": "data_expert",
+      "tools": []
+    },
+    {
+      "id": "code_expert",
+      "kind": "llm",
+      "label": "code_expert",
+      "tools": []
+    },
+    {
+      "id": "research_expert",
+      "kind": "llm",
+      "label": "research_expert",
+      "tools": []
+    },
+    {
+      "id": "writing_expert",
+      "kind": "llm",
+      "label": "writing_expert",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "data_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "data_expert",
+      "target": "code_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "code_expert",
+      "target": "research_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "research_expert",
+      "target": "writing_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "writing_expert",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

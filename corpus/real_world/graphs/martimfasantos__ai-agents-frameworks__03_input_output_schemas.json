@@ -1,0 +1,62 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__03_input_output_schemas",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research",
+      "kind": "llm",
+      "label": "research",
+      "tools": []
+    },
+    {
+      "id": "analyze",
+      "kind": "llm",
+      "label": "analyze",
+      "tools": []
+    },
+    {
+      "id": "answer",
+      "kind": "llm",
+      "label": "answer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research",
+      "kind": "direct"
+    },
+    {
+      "source": "research",
+      "target": "analyze",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze",
+      "target": "answer",
+      "kind": "direct"
+    },
+    {
+      "source": "answer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

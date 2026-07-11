@@ -1,0 +1,294 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_stream_events_v3_e2e",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "process_node",
+      "kind": "llm",
+      "label": "process_node",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "inner",
+      "kind": "llm",
+      "label": "inner",
+      "tools": []
+    },
+    {
+      "id": "call_model",
+      "kind": "llm",
+      "label": "call_model",
+      "tools": []
+    },
+    {
+      "id": "return_message",
+      "kind": "llm",
+      "label": "return_message",
+      "tools": []
+    },
+    {
+      "id": "pre",
+      "kind": "llm",
+      "label": "pre",
+      "tools": []
+    },
+    {
+      "id": "writer_node",
+      "kind": "llm",
+      "label": "writer_node",
+      "tools": []
+    },
+    {
+      "id": "step_one",
+      "kind": "llm",
+      "label": "step_one",
+      "tools": []
+    },
+    {
+      "id": "step_two",
+      "kind": "llm",
+      "label": "step_two",
+      "tools": []
+    },
+    {
+      "id": "fail",
+      "kind": "llm",
+      "label": "fail",
+      "tools": []
+    },
+    {
+      "id": "return_msg",
+      "kind": "llm",
+      "label": "return_msg",
+      "tools": []
+    },
+    {
+      "id": "add_a",
+      "kind": "llm",
+      "label": "add_a",
+      "tools": []
+    },
+    {
+      "id": "add_b",
+      "kind": "llm",
+      "label": "add_b",
+      "tools": []
+    },
+    {
+      "id": "sub_b",
+      "kind": "llm",
+      "label": "sub_b",
+      "tools": []
+    },
+    {
+      "id": "sub_a",
+      "kind": "llm",
+      "label": "sub_a",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "process_node",
+      "kind": "direct"
+    },
+    {
+      "source": "process_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "return_message",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "return_message",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "pre",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "pre",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "writer_node",
+      "kind": "direct"
+    },
+    {
+      "source": "writer_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_one",
+      "kind": "direct"
+    },
+    {
+      "source": "step_one",
+      "target": "step_two",
+      "kind": "direct"
+    },
+    {
+      "source": "step_two",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fail",
+      "kind": "direct"
+    },
+    {
+      "source": "fail",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "return_msg",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "return_msg",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "add_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "add_a",
+      "kind": "direct"
+    },
+    {
+      "source": "add_b",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "add_b",
+      "kind": "direct"
+    },
+    {
+      "source": "sub_b",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "sub_a",
+      "target": "sub_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_a",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    }
+  ]
+}

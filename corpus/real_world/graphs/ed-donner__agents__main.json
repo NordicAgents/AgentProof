@@ -1,0 +1,90 @@
+{
+  "name": "ed-donner__agents__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_planner",
+      "kind": "llm",
+      "label": "research_planner",
+      "tools": []
+    },
+    {
+      "id": "sme_plan_review",
+      "kind": "router",
+      "label": "sme_plan_review",
+      "tools": []
+    },
+    {
+      "id": "search_retrieval",
+      "kind": "llm",
+      "label": "search_retrieval",
+      "tools": []
+    },
+    {
+      "id": "sme_source_review",
+      "kind": "llm",
+      "label": "sme_source_review",
+      "tools": []
+    },
+    {
+      "id": "content_processor",
+      "kind": "llm",
+      "label": "content_processor",
+      "tools": []
+    },
+    {
+      "id": "write_outputs",
+      "kind": "llm",
+      "label": "write_outputs",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_planner",
+      "kind": "direct"
+    },
+    {
+      "source": "research_planner",
+      "target": "sme_plan_review",
+      "kind": "direct"
+    },
+    {
+      "source": "search_retrieval",
+      "target": "sme_source_review",
+      "kind": "direct"
+    },
+    {
+      "source": "sme_source_review",
+      "target": "content_processor",
+      "kind": "direct"
+    },
+    {
+      "source": "content_processor",
+      "target": "write_outputs",
+      "kind": "direct"
+    },
+    {
+      "source": "write_outputs",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

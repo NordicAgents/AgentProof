@@ -1,0 +1,67 @@
+{
+  "name": "win4r__mytest__cc-codex",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "generator",
+      "kind": "llm",
+      "label": "generator",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "fixer",
+      "kind": "llm",
+      "label": "fixer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generator",
+      "kind": "direct"
+    },
+    {
+      "source": "generator",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "fixer",
+      "kind": "direct"
+    },
+    {
+      "source": "fixer",
+      "target": "generator",
+      "kind": "loop"
+    },
+    {
+      "source": "fixer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

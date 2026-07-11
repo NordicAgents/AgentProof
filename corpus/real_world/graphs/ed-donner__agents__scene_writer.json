@@ -1,0 +1,40 @@
+{
+  "name": "ed-donner__agents__scene_writer",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "task",
+      "kind": "llm",
+      "label": "task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "task",
+      "kind": "direct"
+    },
+    {
+      "source": "task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

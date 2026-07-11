@@ -1,0 +1,235 @@
+{
+  "name": "NordicAgents__AgentProof__test_extract_adk",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    },
+    {
+      "id": "chat",
+      "kind": "llm",
+      "label": "chat (LlmAgent, gemini-pro)"
+    },
+    {
+      "id": "searcher",
+      "kind": "tool",
+      "label": "searcher (LlmAgent + web_search tool)",
+      "tools": [
+        "web_search"
+      ]
+    },
+    {
+      "id": "human_signoff",
+      "kind": "human",
+      "label": "human_signoff (name-classified human)"
+    },
+    {
+      "id": "pipeline",
+      "kind": "passthrough",
+      "label": "pipeline (SequentialAgent container)"
+    },
+    {
+      "id": "step_1",
+      "kind": "llm",
+      "label": "step_1"
+    },
+    {
+      "id": "step_2",
+      "kind": "llm",
+      "label": "step_2"
+    },
+    {
+      "id": "step_3",
+      "kind": "llm",
+      "label": "step_3"
+    },
+    {
+      "id": "fork",
+      "kind": "passthrough",
+      "label": "fork (ParallelAgent container)"
+    },
+    {
+      "id": "branch_a",
+      "kind": "llm",
+      "label": "branch_a"
+    },
+    {
+      "id": "branch_b",
+      "kind": "llm",
+      "label": "branch_b"
+    },
+    {
+      "id": "retry",
+      "kind": "passthrough",
+      "label": "retry (LoopAgent container)"
+    },
+    {
+      "id": "check",
+      "kind": "llm",
+      "label": "check"
+    },
+    {
+      "id": "act",
+      "kind": "llm",
+      "label": "act"
+    },
+    {
+      "id": "root",
+      "kind": "llm",
+      "label": "root"
+    },
+    {
+      "id": "wrapper",
+      "kind": "passthrough",
+      "label": "wrapper (SequentialAgent container)"
+    },
+    {
+      "id": "leaf",
+      "kind": "llm",
+      "label": "leaf"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "chat",
+      "kind": "direct"
+    },
+    {
+      "source": "chat",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "searcher",
+      "kind": "direct"
+    },
+    {
+      "source": "searcher",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "human_signoff",
+      "kind": "direct"
+    },
+    {
+      "source": "human_signoff",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "pipeline",
+      "kind": "direct"
+    },
+    {
+      "source": "pipeline",
+      "target": "step_1",
+      "kind": "direct"
+    },
+    {
+      "source": "step_1",
+      "target": "step_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_2",
+      "target": "step_3",
+      "kind": "direct"
+    },
+    {
+      "source": "step_3",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fork",
+      "kind": "direct"
+    },
+    {
+      "source": "fork",
+      "target": "branch_a",
+      "kind": "parallel"
+    },
+    {
+      "source": "fork",
+      "target": "branch_b",
+      "kind": "parallel"
+    },
+    {
+      "source": "branch_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "branch_b",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "retry",
+      "kind": "direct"
+    },
+    {
+      "source": "retry",
+      "target": "check",
+      "kind": "direct"
+    },
+    {
+      "source": "check",
+      "target": "act",
+      "kind": "direct"
+    },
+    {
+      "source": "act",
+      "target": "check",
+      "kind": "loop"
+    },
+    {
+      "source": "act",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "root",
+      "kind": "direct"
+    },
+    {
+      "source": "root",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "wrapper",
+      "kind": "direct"
+    },
+    {
+      "source": "wrapper",
+      "target": "leaf",
+      "kind": "direct"
+    },
+    {
+      "source": "leaf",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

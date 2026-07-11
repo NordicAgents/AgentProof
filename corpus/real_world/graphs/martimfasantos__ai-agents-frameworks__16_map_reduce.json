@@ -1,0 +1,46 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__16_map_reduce",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyze",
+      "kind": "llm",
+      "label": "analyze",
+      "tools": []
+    },
+    {
+      "id": "synthesize",
+      "kind": "llm",
+      "label": "synthesize",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "analyze",
+      "target": "synthesize",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesize",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

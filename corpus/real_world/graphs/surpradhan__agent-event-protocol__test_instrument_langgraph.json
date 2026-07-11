@@ -1,0 +1,51 @@
+{
+  "name": "surpradhan__agent-event-protocol__test_instrument_langgraph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "increment",
+      "kind": "llm",
+      "label": "increment",
+      "tools": []
+    },
+    {
+      "id": "double",
+      "kind": "llm",
+      "label": "double",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "increment",
+      "kind": "direct"
+    },
+    {
+      "source": "increment",
+      "target": "double",
+      "kind": "direct"
+    },
+    {
+      "source": "double",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

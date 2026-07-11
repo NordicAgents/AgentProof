@@ -1,0 +1,62 @@
+{
+  "name": "surpradhan__agent-event-protocol__crewai_multiagent",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_the_topic_'ai_agent_observability'.",
+      "kind": "llm",
+      "label": "Research the topic 'AI agent observability'.",
+      "tools": []
+    },
+    {
+      "id": "analyze_the_research_findings.",
+      "kind": "llm",
+      "label": "Analyze the research findings.",
+      "tools": []
+    },
+    {
+      "id": "write_the_final_report_from_the_analysis.",
+      "kind": "llm",
+      "label": "Write the final report from the analysis.",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_the_topic_'ai_agent_observability'.",
+      "kind": "direct"
+    },
+    {
+      "source": "research_the_topic_'ai_agent_observability'.",
+      "target": "analyze_the_research_findings.",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_research_findings.",
+      "target": "write_the_final_report_from_the_analysis.",
+      "kind": "direct"
+    },
+    {
+      "source": "write_the_final_report_from_the_analysis.",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

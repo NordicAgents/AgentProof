@@ -1,0 +1,902 @@
+{
+  "aking66/visual-ai-automation": {
+    "path": "corpus/real_world/_repos/aking66__visual-ai-automation",
+    "sha": "64bbdc68a16b6218ac161f70d1c29a15a5cdb494",
+    "stars": 1
+  },
+  "ZhangJinHaHaHa/FinchainAgent": {
+    "path": "corpus/real_world/_repos/ZhangJinHaHaHa__FinchainAgent",
+    "sha": "f6f04ed5605ea7875b3cb8c91faa5bd54bbc4d40",
+    "stars": 213
+  },
+  "Nagi-ovo/CRAG-Ollama-Chat": {
+    "path": "corpus/real_world/_repos/Nagi-ovo__CRAG-Ollama-Chat",
+    "sha": "61530aaa8deb3425a86b3fe53666cd3c9bd0d4c9",
+    "stars": 110
+  },
+  "FinAgent-Lab/FinAgent_Investment_Agent": {
+    "path": "corpus/real_world/_repos/FinAgent-Lab__FinAgent_Investment_Agent",
+    "sha": "9f104486754dc00f98354eda5fba9fb94f082a49",
+    "stars": 5
+  },
+  "houyongsheng/local_rag": {
+    "path": "corpus/real_world/_repos/houyongsheng__local_rag",
+    "sha": "f4263b9b5301fa03904242b40413c667989bcf9a",
+    "stars": 2
+  },
+  "vego147/AI_Research_Img_Assistance": {
+    "path": "corpus/real_world/_repos/vego147__AI_Research_Img_Assistance",
+    "sha": "42fb97c91e9017d0eaa2da9330ebbded3d101a8e",
+    "stars": 0
+  },
+  "naman06dev/memory-chatbot": {
+    "path": "corpus/real_world/_repos/naman06dev__memory-chatbot",
+    "sha": "0b1836f288d09eacd608fd9c87def80cf3126740",
+    "stars": 19
+  },
+  "AllwynJesu/langgraph-simple-chatbot": {
+    "path": "corpus/real_world/_repos/AllwynJesu__langgraph-simple-chatbot",
+    "sha": "b70d1011865fa847a550eff2080ab84254ffafc2",
+    "stars": 0
+  },
+  "Brenmull12/Hoohacks2025": {
+    "path": "corpus/real_world/_repos/Brenmull12__Hoohacks2025",
+    "sha": "f65c81457248b552151a3d6a4c108e518d4a87ff",
+    "stars": 2
+  },
+  "noriyukitakei/sf6-ai-analysis": {
+    "path": "corpus/real_world/_repos/noriyukitakei__sf6-ai-analysis",
+    "sha": "c3986fe8462c61039f5cb49810037b082fc2d344",
+    "stars": 0
+  },
+  "miranda-santos-ricardo/langgraph_academy_own_agent_exercise": {
+    "path": "corpus/real_world/_repos/miranda-santos-ricardo__langgraph_academy_own_agent_exercise",
+    "sha": "94615696b81c913e9d9ad014a99b5ed0de15bac9",
+    "stars": 0
+  },
+  "leewow03/llm": {
+    "path": "corpus/real_world/_repos/leewow03__llm",
+    "sha": "49141bfda30393fab348d54b47980b898b8b8811",
+    "stars": 0
+  },
+  "d-hackmt/Research-Paper-agent": {
+    "path": "corpus/real_world/_repos/d-hackmt__Research-Paper-agent",
+    "sha": "8e177e5fa01a388694e72bff1dcf7a7fe9f430a4",
+    "stars": 0
+  },
+  "shivam682/codiing": {
+    "path": "corpus/real_world/_repos/shivam682__codiing",
+    "sha": "048556b21890f8a830c335013916a7edfd07389b",
+    "stars": 0
+  },
+  "opengles3d/ollama_rag": {
+    "path": "corpus/real_world/_repos/opengles3d__ollama_rag",
+    "sha": "716890de8f9189080bffcb0371caf26fbfb592b1",
+    "stars": 1
+  },
+  "Anashwar00/agentic_ai": {
+    "path": "corpus/real_world/_repos/Anashwar00__agentic_ai",
+    "sha": "cfd97b1426d72273a4c95cb648457bfda914b896",
+    "stars": 0
+  },
+  "Yaseen1109/course-outline-generaror": {
+    "path": "corpus/real_world/_repos/Yaseen1109__course-outline-generaror",
+    "sha": "2c86f9c40f1e716749a94b47c51e1178741140d3",
+    "stars": 0
+  },
+  "Shardul003/11October": {
+    "path": "corpus/real_world/_repos/Shardul003__11October",
+    "sha": "98f560722ee5dc3d47ad7d70fa13f4c4d5f03543",
+    "stars": 0
+  },
+  "abhishekCS0024/LangGraph": {
+    "path": "corpus/real_world/_repos/abhishekCS0024__LangGraph",
+    "sha": "fd370530ddd7b2292103de81cb717751b312f779",
+    "stars": 0
+  },
+  "Mhijazi16/LanggraphExercise": {
+    "path": "corpus/real_world/_repos/Mhijazi16__LanggraphExercise",
+    "sha": "8c0e11424b200c7423a274b82511262d6de5d4fc",
+    "stars": 0
+  },
+  "arnavvag/task2model": {
+    "path": "corpus/real_world/_repos/arnavvag__task2model",
+    "sha": "c80092cb2aa6eabfd8b3a2b912c34d8706931067",
+    "stars": 0
+  },
+  "Snehal377/AI_Portfolio_Recommendation_System": {
+    "path": "corpus/real_world/_repos/Snehal377__AI_Portfolio_Recommendation_System",
+    "sha": "753e8b7d8dc34193ce3c57817ddc2d3cd1dd899d",
+    "stars": 0
+  },
+  "Nikhilp18/How-to-guide-for-LangGraph": {
+    "path": "corpus/real_world/_repos/Nikhilp18__How-to-guide-for-LangGraph",
+    "sha": "5ef86975c3d2adb75c7f1e336e4c5cfe407cc869",
+    "stars": 0
+  },
+  "timleow/gym-kfc-daddies": {
+    "path": "corpus/real_world/_repos/timleow__gym-kfc-daddies",
+    "sha": "561f4029e4edb59c610905132e547a9b697965ac",
+    "stars": 0
+  },
+  "icyzh/Quillgraph": {
+    "path": "corpus/real_world/_repos/icyzh__Quillgraph",
+    "sha": "a437825901ea4e1f868881b69e28313e59ab6d1b",
+    "stars": 0
+  },
+  "Sarfaraz021/WhatsApp-data-Assistant-Using-Qdrant-VectorDB": {
+    "path": "corpus/real_world/_repos/Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB",
+    "sha": "efe35d816f1ccc31f847c8a1904fd1386faa6c10",
+    "stars": 1
+  },
+  "peytonrivers/AI-Agentic-System-using-Canvas-LMS-API": {
+    "path": "corpus/real_world/_repos/peytonrivers__AI-Agentic-System-using-Canvas-LMS-API",
+    "sha": "a529fdad22102d55d13fd082f65d7c9ea3f835e2",
+    "stars": 0
+  },
+  "CaioLessaSimao/LangGraph-teste": {
+    "path": "corpus/real_world/_repos/CaioLessaSimao__LangGraph-teste",
+    "sha": "f906c19b82e1db63ae1e56276c706ac32aab636e",
+    "stars": 0
+  },
+  "giribeans29/ml_project": {
+    "path": "corpus/real_world/_repos/giribeans29__ml_project",
+    "sha": "a83d62d62ea0a128a36ac8c0aea6ac7cefe4e918",
+    "stars": 0
+  },
+  "thisyanthpolice/Local-Agentic-Research-Assistant-LARA-": {
+    "path": "corpus/real_world/_repos/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-",
+    "sha": "0d8545161c9a5ec4e69b9ad74c48258f69bd2fc2",
+    "stars": 0
+  },
+  "bhattyuvraj22/Fitness-AIagent": {
+    "path": "corpus/real_world/_repos/bhattyuvraj22__Fitness-AIagent",
+    "sha": "3c8994d45fb7ce26a8eef2ef42b8cc26249e162e",
+    "stars": 1
+  },
+  "ankeethelps/localguide": {
+    "path": "corpus/real_world/_repos/ankeethelps__localguide",
+    "sha": "edf0e84bfa4291f70228e94d8bd47c4b168d710d",
+    "stars": 0
+  },
+  "dhruvladia/career-coach-ai": {
+    "path": "corpus/real_world/_repos/dhruvladia__career-coach-ai",
+    "sha": "204aea0283ce478732a7d923e9528539ba76b15d",
+    "stars": 0
+  },
+  "tweetlol/eve": {
+    "path": "corpus/real_world/_repos/tweetlol__eve",
+    "sha": "1a3ebe2089805a5b6a1d279facc1a8d22e0cc990",
+    "stars": 0
+  },
+  "Avneesh26024/Gen_AI_Exchange": {
+    "path": "corpus/real_world/_repos/Avneesh26024__Gen_AI_Exchange",
+    "sha": "73b68d7ed3bca375eb3c815241f0d2c958d95e89",
+    "stars": 0
+  },
+  "Sujas-Aggarwal/langraph-chatbot": {
+    "path": "corpus/real_world/_repos/Sujas-Aggarwal__langraph-chatbot",
+    "sha": "1e5cc6bd1ea8875de5058289fab6d3ad71138a5a",
+    "stars": 0
+  },
+  "its-kundan/fin": {
+    "path": "corpus/real_world/_repos/its-kundan__fin",
+    "sha": "a47f4a7604a4961cb88f2ebe85b745b2c7efc4a1",
+    "stars": 0
+  },
+  "AdaptiveBProcess/bpm_agent": {
+    "path": "corpus/real_world/_repos/AdaptiveBProcess__bpm_agent",
+    "sha": "8ca648be0b7b69ec9c7a39cb7ef59696f2569086",
+    "stars": 0
+  },
+  "kaustubha-chaturvedi/CRAG-BNS": {
+    "path": "corpus/real_world/_repos/kaustubha-chaturvedi__CRAG-BNS",
+    "sha": "ec1fd35ab252ed16b6b1d4ba13ee3b3e4f94cf02",
+    "stars": 0
+  },
+  "siddiquiamir/LangChain-2025": {
+    "path": "corpus/real_world/_repos/siddiquiamir__LangChain-2025",
+    "sha": "4b0e18020d0d6a56d0522f3de646093b0d59955f",
+    "stars": 0
+  },
+  "AliHShahid/agentic_ai_langgraph": {
+    "path": "corpus/real_world/_repos/AliHShahid__agentic_ai_langgraph",
+    "sha": "114d24d21b075390fefa91f42a85d6c4b5efdde5",
+    "stars": 0
+  },
+  "Harshit-Malhotra/Visual-AI-Automation-Builder": {
+    "path": "corpus/real_world/_repos/Harshit-Malhotra__Visual-AI-Automation-Builder",
+    "sha": "4370924321d395e8958cc9366db9ce5af196495f",
+    "stars": 0
+  },
+  "USC-FORTIS/AD-AGENT": {
+    "path": "corpus/real_world/_repos/USC-FORTIS__AD-AGENT",
+    "sha": "f14a9c065ca84e21dd78abf95db7d96b9460c2ba",
+    "stars": 100
+  },
+  "GaoDalie/LangGraph_Example": {
+    "path": "corpus/real_world/_repos/GaoDalie__LangGraph_Example",
+    "sha": "4965e27a1a29bee9029ff17bb05aff1bdef56fd4",
+    "stars": 45
+  },
+  "botextractai/ai-langgraph-multi-agent": {
+    "path": "corpus/real_world/_repos/botextractai__ai-langgraph-multi-agent",
+    "sha": "502d21711b0f4335f18017402083c99a7aab825c",
+    "stars": 32
+  },
+  "nicknochnack/LanggraphCrashCourse": {
+    "path": "corpus/real_world/_repos/nicknochnack__LanggraphCrashCourse",
+    "sha": "f51a7dd8e1fae41586757bf88b3160e6a7dca189",
+    "stars": 26
+  },
+  "raj-2005/Langgraph-RAG": {
+    "path": "corpus/real_world/_repos/raj-2005__Langgraph-RAG",
+    "sha": "76aaa34b92c2a3da6a7735fd3831fa0837023da4",
+    "stars": 4
+  },
+  "TirendazAcademy/Build-Smarter-AI-Agents": {
+    "path": "corpus/real_world/_repos/TirendazAcademy__Build-Smarter-AI-Agents",
+    "sha": "efcb55ee2195f43ef21c2a43759083f3621df68b",
+    "stars": 8
+  },
+  "PovedaAqui/cybertrace-ai": {
+    "path": "corpus/real_world/_repos/PovedaAqui__cybertrace-ai",
+    "sha": "82843b1b6665cb52600a615c6d8af31758def66f",
+    "stars": 7
+  },
+  "huangdihd/ProjectAI": {
+    "path": "corpus/real_world/_repos/huangdihd__ProjectAI",
+    "sha": "76d35404844caf1e10e9cd714963f08fd6dec86f",
+    "stars": 6
+  },
+  "RidaNaz/Chatbot": {
+    "path": "corpus/real_world/_repos/RidaNaz__Chatbot",
+    "sha": "c0637eaddfb2a9929ce454bf5de5a4452b3e89be",
+    "stars": 16
+  },
+  "aniket-work/How-To-Build-AI-Agents-To-Decompose-Tasks-Execute-Parallel-via-Map-Reduce": {
+    "path": "corpus/real_world/_repos/aniket-work__How-To-Build-AI-Agents-To-Decompose-Tasks-Execute-Parallel-via-Map-Reduce",
+    "sha": "b4e19dfcb169d64a883ddb2dfc02025d1325189b",
+    "stars": 10
+  },
+  "Adityagupta930/Recruiter-agency-workflow": {
+    "path": "corpus/real_world/_repos/Adityagupta930__Recruiter-agency-workflow",
+    "sha": "b87e1f1dc566b826f253632428e03b5b19e5ac1d",
+    "stars": 6
+  },
+  "samkerr4coding/music_store_assistant_langGraph": {
+    "path": "corpus/real_world/_repos/samkerr4coding__music_store_assistant_langGraph",
+    "sha": "76698c75c8e935571aa2b10f9115762b8655e671",
+    "stars": 3
+  },
+  "maxidiazbattan/Agentic-RAG-langgraph-ollama-streamlit": {
+    "path": "corpus/real_world/_repos/maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit",
+    "sha": "fde35006d862b46b4a3edfd3dfa3543b388f71a1",
+    "stars": 7
+  },
+  "Harsh1210/llm-opsbot": {
+    "path": "corpus/real_world/_repos/Harsh1210__llm-opsbot",
+    "sha": "f6350041cd29182a257ba91fb82f5e436363d75a",
+    "stars": 2
+  },
+  "iblameandrew/open-deepthink": {
+    "path": "corpus/real_world/_repos/iblameandrew__open-deepthink",
+    "sha": "9ea7a966dad491e72db390796c81b63b5b61912e",
+    "stars": 150
+  },
+  "mozaloom/event-rag-agent": {
+    "path": "corpus/real_world/_repos/mozaloom__event-rag-agent",
+    "sha": "010f17bc2fc4f50419ebdd2bdb77cd505041fa44",
+    "stars": 3
+  },
+  "Chrisolande/MedReportAI": {
+    "path": "corpus/real_world/_repos/Chrisolande__MedReportAI",
+    "sha": "157f8f6118288e26ec99a862f85cbe4b83aad38d",
+    "stars": 2
+  },
+  "jakenolan/langgraph-custom-tools": {
+    "path": "corpus/real_world/_repos/jakenolan__langgraph-custom-tools",
+    "sha": "9894baaca6b11a2dadffee092c127bc722b42577",
+    "stars": 7
+  },
+  "DipeshDhote/RAG_Based_Chatbot": {
+    "path": "corpus/real_world/_repos/DipeshDhote__RAG_Based_Chatbot",
+    "sha": "41db0d8b6f1fd06b3bc62cdadd5e2bf871e6875b",
+    "stars": 0
+  },
+  "KomachiZ/BICO": {
+    "path": "corpus/real_world/_repos/KomachiZ__BICO",
+    "sha": "8bfc1b6dd254bff3a5969baa467efca28d7a6c46",
+    "stars": 3
+  },
+  "sap156/AI-Claims-Agent-LangGraph": {
+    "path": "corpus/real_world/_repos/sap156__AI-Claims-Agent-LangGraph",
+    "sha": "8e62e03905fe767fc2cd57cc98c8f141149e37df",
+    "stars": 6
+  },
+  "Kasun-Tharaka/Multi-Agent-AI-RAG": {
+    "path": "corpus/real_world/_repos/Kasun-Tharaka__Multi-Agent-AI-RAG",
+    "sha": "566e6d9110e5ba39d65f9a61f54dd2476daba5ba",
+    "stars": 0
+  },
+  "anmol091192/NewsGenie-AI-News-Search-Assistant": {
+    "path": "corpus/real_world/_repos/anmol091192__NewsGenie-AI-News-Search-Assistant",
+    "sha": "88519450ffb69127682143ad1cc3151e4465d899",
+    "stars": 1
+  },
+  "hargurjeet/Langraph": {
+    "path": "corpus/real_world/_repos/hargurjeet__Langraph",
+    "sha": "c6e1c18ab050e9231ecff5e94db47d711835894d",
+    "stars": 0
+  },
+  "Md-Emon-Hasan/LangGraph": {
+    "path": "corpus/real_world/_repos/Md-Emon-Hasan__LangGraph",
+    "sha": "edce49945e89927a05fe63eaadeadd1a55c80315",
+    "stars": 2
+  },
+  "Pai1403/Single-Agent_LLM": {
+    "path": "corpus/real_world/_repos/Pai1403__Single-Agent_LLM",
+    "sha": "69223a8693a07ace79c9cbef7f93759495fb58ad",
+    "stars": 0
+  },
+  "Dhanush-Kumar-007/LangGraph-Begginer-Chatbot-project": {
+    "path": "corpus/real_world/_repos/Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project",
+    "sha": "8ea72f5a88e61065e9a69263fe7fbd9e3f094bbd",
+    "stars": 0
+  },
+  "musashimiyomoto/langgraph-agent": {
+    "path": "corpus/real_world/_repos/musashimiyomoto__langgraph-agent",
+    "sha": "b8bec6bffcc9c9b6fa80f9ce0426defb195ce87f",
+    "stars": 3
+  },
+  "vansh-khaneja/RAG-using-LangGraph-Agents": {
+    "path": "corpus/real_world/_repos/vansh-khaneja__RAG-using-LangGraph-Agents",
+    "sha": "f37458a9465f7fa8a588004a8742663795921272",
+    "stars": 3
+  },
+  "mvdiogo/Langgraph-langchain-Ollama-and-DuckDuckGo": {
+    "path": "corpus/real_world/_repos/mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo",
+    "sha": "51649e0d497668c940f05ab4c11e9cc62ddb4a9b",
+    "stars": 8
+  },
+  "Elcano20241021/ReAct-Function-Calling": {
+    "path": "corpus/real_world/_repos/Elcano20241021__ReAct-Function-Calling",
+    "sha": "256ef6b57944670c87ad77d5e70b281b87491182",
+    "stars": 0
+  },
+  "nahcol10/Perplexity2.0": {
+    "path": "corpus/real_world/_repos/nahcol10__Perplexity2.0",
+    "sha": "a3301efc9d33b98d6341ed3f35fa453cfb718839",
+    "stars": 0
+  },
+  "SAMAR-CODE404/backend": {
+    "path": "corpus/real_world/_repos/SAMAR-CODE404__backend",
+    "sha": "3047d819697ba78d78938a13606bf81821995b12",
+    "stars": 7
+  },
+  "phillippbertram/langgraph-agent": {
+    "path": "corpus/real_world/_repos/phillippbertram__langgraph-agent",
+    "sha": "66eaa498ef94891379eae25cb533a3e3c3cce6eb",
+    "stars": 0
+  },
+  "lakshaykaushik5/Personal_AI_Assistant": {
+    "path": "corpus/real_world/_repos/lakshaykaushik5__Personal_AI_Assistant",
+    "sha": "2575b897a8091af96c5d82980b3258d92a0cd0a1",
+    "stars": 0
+  },
+  "srmadani/ev-charging-tg-bot": {
+    "path": "corpus/real_world/_repos/srmadani__ev-charging-tg-bot",
+    "sha": "ee7b5da0c7b76534c164210ec4542e7b5255ce74",
+    "stars": 2
+  },
+  "vlecuye/mesop_gemini": {
+    "path": "corpus/real_world/_repos/vlecuye__mesop_gemini",
+    "sha": "f72f0846380a97a34a1a159ec58617b7922f6b7c",
+    "stars": 0
+  },
+  "Krishan098/AgenticRAG": {
+    "path": "corpus/real_world/_repos/Krishan098__AgenticRAG",
+    "sha": "2ced881ae4ab2d0d846feb0a4bcb608bebbc734f",
+    "stars": 1
+  },
+  "UniformSegue/24H-Du-Code-LeMans": {
+    "path": "corpus/real_world/_repos/UniformSegue__24H-Du-Code-LeMans",
+    "sha": "29083dc276c9eb873fc10cf3f0c0daeaa5bd3718",
+    "stars": 2
+  },
+  "0evja/LangGraph-Agent": {
+    "path": "corpus/real_world/_repos/0evja__LangGraph-Agent",
+    "sha": "2112ded2cb149f178f69fadcca4d20890156de49",
+    "stars": 0
+  },
+  "ferrerallan/ai-react-agent": {
+    "path": "corpus/real_world/_repos/ferrerallan__ai-react-agent",
+    "sha": "4fc3fd31b6ae71a41e385ac5f8c700a6137c26cd",
+    "stars": 0
+  },
+  "LeonardoDaviti/LangGraph-Tutorials": {
+    "path": "corpus/real_world/_repos/LeonardoDaviti__LangGraph-Tutorials",
+    "sha": "898ff1fc6186a25a74e5d7568842944aa7d3a043",
+    "stars": 0
+  },
+  "gokul-1998/lang_chain_basics": {
+    "path": "corpus/real_world/_repos/gokul-1998__lang_chain_basics",
+    "sha": "8b433d76d396699ab602f5f22828c174860831dc",
+    "stars": 0
+  },
+  "eigsi/chatdoc-extractor": {
+    "path": "corpus/real_world/_repos/eigsi__chatdoc-extractor",
+    "sha": "48a352de110c668a5262d0fe572ee57c9c5f0a75",
+    "stars": 0
+  },
+  "shazy89/ai-learning": {
+    "path": "corpus/real_world/_repos/shazy89__ai-learning",
+    "sha": "fe853004b8417c56ad44052394c350df8fad0690",
+    "stars": 0
+  },
+  "RagibShahriyear/LLM_Project": {
+    "path": "corpus/real_world/_repos/RagibShahriyear__LLM_Project",
+    "sha": "8f681ab4de3738743ba43ad767438eebd8e69789",
+    "stars": 0
+  },
+  "foxyglue/faq-db-chat": {
+    "path": "corpus/real_world/_repos/foxyglue__faq-db-chat",
+    "sha": "d91013a67cb63ecd15c0cb74b5682ce9c3a512b2",
+    "stars": 0
+  },
+  "PasinduDN/travel_agent_backend": {
+    "path": "corpus/real_world/_repos/PasinduDN__travel_agent_backend",
+    "sha": "dd77d633743a80c4eb0c94dfe494edbf6e2618f5",
+    "stars": 0
+  },
+  "nkigen/langgraph": {
+    "path": "corpus/real_world/_repos/nkigen__langgraph",
+    "sha": "79c2ab99641933d0c307d55a8cb5072d2de6024f",
+    "stars": 0
+  },
+  "juananpe/langgraph-flask": {
+    "path": "corpus/real_world/_repos/juananpe__langgraph-flask",
+    "sha": "351fa829d79e911e2e3ccfcd54e27c6adde3c93f",
+    "stars": 0
+  },
+  "anthony-ism/riz-mAIstro-react-agent": {
+    "path": "corpus/real_world/_repos/anthony-ism__riz-mAIstro-react-agent",
+    "sha": "e45ecd3a632cb9113104ef9b260d1a7ad8c2a314",
+    "stars": 0
+  },
+  "MdArshath2004/snowflakeoptimization": {
+    "path": "corpus/real_world/_repos/MdArshath2004__snowflakeoptimization",
+    "sha": "49cbdde22691d7be480997853930f2341e2ad4d2",
+    "stars": 1
+  },
+  "winstonbartlegod/enhanced-multimodal-rag": {
+    "path": "corpus/real_world/_repos/winstonbartlegod__enhanced-multimodal-rag",
+    "sha": "11f520efbcddd7011482124d4b3856d901cb59d9",
+    "stars": 2
+  },
+  "vishnusurya11/ember": {
+    "path": "corpus/real_world/_repos/vishnusurya11__ember",
+    "sha": "a992997e7737fdeebc305932c4e9a96b896be025",
+    "stars": 1
+  },
+  "haipham05/PDF_QA_Chatbot": {
+    "path": "corpus/real_world/_repos/haipham05__PDF_QA_Chatbot",
+    "sha": "8fe526955204fc55ae2a8b3cd16abfd49bee52cb",
+    "stars": 2
+  },
+  "Shashn-ai/YouTube-Blog-Generator": {
+    "path": "corpus/real_world/_repos/Shashn-ai__YouTube-Blog-Generator",
+    "sha": "75ab7f4b0c69902bde5d85bac37ead950704950c",
+    "stars": 1
+  },
+  "sensyzhe/research-rag": {
+    "path": "corpus/real_world/_repos/sensyzhe__research-rag",
+    "sha": "335197111f18a394376d162114517d32ad287cc4",
+    "stars": 0
+  },
+  "codemaker2015/langgraph-demos": {
+    "path": "corpus/real_world/_repos/codemaker2015__langgraph-demos",
+    "sha": "98ba5985faed789cd8171dcb5eef541a1d6c5d21",
+    "stars": 5
+  },
+  "devananda6200/stockbuy-chatbot-langgraph": {
+    "path": "corpus/real_world/_repos/devananda6200__stockbuy-chatbot-langgraph",
+    "sha": "7a3d0481b108bd3441234ed3989ea65dcb3b43ea",
+    "stars": 0
+  },
+  "junison17/CREWAI-3": {
+    "path": "corpus/real_world/_repos/junison17__CREWAI-3",
+    "sha": "e0755bb02de7b54b621c8a4f9ac3b516db1c6d6c",
+    "stars": 0
+  },
+  "cashilaa/Crew-AI-Research-Tool": {
+    "path": "corpus/real_world/_repos/cashilaa__Crew-AI-Research-Tool",
+    "sha": "170ee3fde5b32cb0f5e2954bc2cb491e6b61e892",
+    "stars": 0
+  },
+  "ferdaousbouzaiene/yourcoach": {
+    "path": "corpus/real_world/_repos/ferdaousbouzaiene__yourcoach",
+    "sha": "0041f05a1305a55ddeef7b020cc73a903999936f",
+    "stars": 0
+  },
+  "pa-git/Snowflake-notes": {
+    "path": "corpus/real_world/_repos/pa-git__Snowflake-notes",
+    "sha": "eb7c0c75db83d5f8f62833189a44244b03608d7a",
+    "stars": 0
+  },
+  "alippo-com/mattermost-flutter": {
+    "path": "corpus/real_world/_repos/alippo-com__mattermost-flutter",
+    "sha": "0a237e9c98c0af32a383f7f09e8864810e82ad4c",
+    "stars": 9
+  },
+  "Tusharbecoding/multi-youtube-agent": {
+    "path": "corpus/real_world/_repos/Tusharbecoding__multi-youtube-agent",
+    "sha": "26ab0feb7c9931539c96a9ad68008e8770a127cd",
+    "stars": 32
+  },
+  "aniket-work/How_I_Trained_AI_Agents": {
+    "path": "corpus/real_world/_repos/aniket-work__How_I_Trained_AI_Agents",
+    "sha": "b1c30866d24a2c0336c8e44ddabe60709fb76a4b",
+    "stars": 4
+  },
+  "allysonbarros/crewai_linkedin_post_pipeline": {
+    "path": "corpus/real_world/_repos/allysonbarros__crewai_linkedin_post_pipeline",
+    "sha": "fdb49994fdf4cf8fa99936f17aa025897ba33474",
+    "stars": 3
+  },
+  "Lucky-akash321/News-Reporter-AI-using-CrewAI": {
+    "path": "corpus/real_world/_repos/Lucky-akash321__News-Reporter-AI-using-CrewAI",
+    "sha": "b8601979b4418d9cbd498f9c4ab816ea7b4c27ae",
+    "stars": 7
+  },
+  "ahmadmustafa02/AI-Powered-Marketing-Automation-Marketing-Agentic-AI": {
+    "path": "corpus/real_world/_repos/ahmadmustafa02__AI-Powered-Marketing-Automation-Marketing-Agentic-AI",
+    "sha": "69838168482bb3ee718efc749cf0a925143d56e7",
+    "stars": 4
+  },
+  "peytoncasper/swarm-recipe-scraping-agent": {
+    "path": "corpus/real_world/_repos/peytoncasper__swarm-recipe-scraping-agent",
+    "sha": "5cdac2f5a9e52797695ff4156a71bab8b99b72f0",
+    "stars": 3
+  },
+  "areibman/HackReporter": {
+    "path": "corpus/real_world/_repos/areibman__HackReporter",
+    "sha": "fc6c0f41668692150b0e882dd87022cf3fa8d425",
+    "stars": 0
+  },
+  "YUGESHKARAN/Mentor-Consulting-Crew": {
+    "path": "corpus/real_world/_repos/YUGESHKARAN__Mentor-Consulting-Crew",
+    "sha": "c9bb5ff269f57bee46e619f57697cbe3973b6fe0",
+    "stars": 1
+  },
+  "AIWalaBro/CrewAI_Youtube_Video_Summarizer": {
+    "path": "corpus/real_world/_repos/AIWalaBro__CrewAI_Youtube_Video_Summarizer",
+    "sha": "580f4cc99f0e7d940fa2fc08fdf125bf4de9c458",
+    "stars": 3
+  },
+  "ramamoorthy07/Multi-Agent-Market-Research-and-Use-Case-Generation-System": {
+    "path": "corpus/real_world/_repos/ramamoorthy07__Multi-Agent-Market-Research-and-Use-Case-Generation-System",
+    "sha": "0cb0c1705f2d253c0ee8e74dd819d34788cf3c3d",
+    "stars": 8
+  },
+  "yrd2612/chatbot": {
+    "path": "corpus/real_world/_repos/yrd2612__chatbot",
+    "sha": "597be5ae420f866b513a554420ed3f99100b2a1f",
+    "stars": 0
+  },
+  "matttbates/job-search-assistant": {
+    "path": "corpus/real_world/_repos/matttbates__job-search-assistant",
+    "sha": "32339b5b83576211ec65b27b588f2017d9e662e4",
+    "stars": 2
+  },
+  "deetrees/NexStoryKids": {
+    "path": "corpus/real_world/_repos/deetrees__NexStoryKids",
+    "sha": "3ef324dc2fe28baff4b746831ae8f67e4956c705",
+    "stars": 0
+  },
+  "aryannair876/findlead-intelligence-platform": {
+    "path": "corpus/real_world/_repos/aryannair876__findlead-intelligence-platform",
+    "sha": "e3dc353ae037a5073289b0fb9df1124687708f02",
+    "stars": 0
+  },
+  "firaflash/career-mentor-ai-agent": {
+    "path": "corpus/real_world/_repos/firaflash__career-mentor-ai-agent",
+    "sha": "b1a8cca802589c77d8591a44c776aa348bcc48ba",
+    "stars": 1
+  },
+  "AIwithhassan/multiagent-newsletter-generator": {
+    "path": "corpus/real_world/_repos/AIwithhassan__multiagent-newsletter-generator",
+    "sha": "c3858e9f34027b6e9795a097bf1436841149175e",
+    "stars": 4
+  },
+  "Godson90/ai_agents": {
+    "path": "corpus/real_world/_repos/Godson90__ai_agents",
+    "sha": "ff6bb6b9822ff49ec62820720180c90ed9a64e3a",
+    "stars": 0
+  },
+  "sidharthdk/CrewAi": {
+    "path": "corpus/real_world/_repos/sidharthdk__CrewAi",
+    "sha": "a32844ecb237ac85fc8ddf154a4e6207c8fe4c07",
+    "stars": 0
+  },
+  "deysanjeeb/clipGen": {
+    "path": "corpus/real_world/_repos/deysanjeeb__clipGen",
+    "sha": "9b001141b2522e012e7d035ec50cf7b2090b76c7",
+    "stars": 0
+  },
+  "sanncchhezz/agent_test": {
+    "path": "corpus/real_world/_repos/sanncchhezz__agent_test",
+    "sha": "ff902a4dc5f354e0beb4feba282818547f739955",
+    "stars": 0
+  },
+  "Visheshh21/Vishesh_Blood_test_analyzer": {
+    "path": "corpus/real_world/_repos/Visheshh21__Vishesh_Blood_test_analyzer",
+    "sha": "0cd52bc3877ea43e3b9b59ca2d40639530e78646",
+    "stars": 0
+  },
+  "goabiaryan/fullstack-inferencing": {
+    "path": "corpus/real_world/_repos/goabiaryan__fullstack-inferencing",
+    "sha": "d0ee65c2ba4764818e4d993b6eb5111d21f593cf",
+    "stars": 1
+  },
+  "ich-youness/Cybersecurity-AI-Agents": {
+    "path": "corpus/real_world/_repos/ich-youness__Cybersecurity-AI-Agents",
+    "sha": "5fe79531778e2199bb9dd4576a65bbdc257c431c",
+    "stars": 0
+  },
+  "lmaoitsjerry/crispy-fiesta": {
+    "path": "corpus/real_world/_repos/lmaoitsjerry__crispy-fiesta",
+    "sha": "ccf2e887e7cc56a9171c6817dba5d1e927358c83",
+    "stars": 0
+  },
+  "CaioVictor3/CREW_AI-PDF": {
+    "path": "corpus/real_world/_repos/CaioVictor3__CREW_AI-PDF",
+    "sha": "5ed474962dd1f6b4c63dfa7577f294a67633a76d",
+    "stars": 0
+  },
+  "Abdulla-alk/crewai": {
+    "path": "corpus/real_world/_repos/Abdulla-alk__crewai",
+    "sha": "dc288dd6a2737bd2bfa878429f9b374f1e1bb838",
+    "stars": 0
+  },
+  "shubhamkathar/AI-NEWS-AGNET-": {
+    "path": "corpus/real_world/_repos/shubhamkathar__AI-NEWS-AGNET-",
+    "sha": "22cbc6c15f98ffd4f2ea863f2db95feda871ef5d",
+    "stars": 0
+  },
+  "divyansh-tripathi7/AutoMated_LinkedinCrew": {
+    "path": "corpus/real_world/_repos/divyansh-tripathi7__AutoMated_LinkedinCrew",
+    "sha": "8c02f5172bc7a7dc56e913385af2c221b98811fb",
+    "stars": 0
+  },
+  "Karan-Baid-19/darwixai_hackathon": {
+    "path": "corpus/real_world/_repos/Karan-Baid-19__darwixai_hackathon",
+    "sha": "d7a10f9ab8c9d41a2840fde029ef3abad6c3640b",
+    "stars": 0
+  },
+  "garvit5555/transportation_service_chatbot_using_agent": {
+    "path": "corpus/real_world/_repos/garvit5555__transportation_service_chatbot_using_agent",
+    "sha": "70e6448626a10fe7f4c96d15c6b6e48d058b0333",
+    "stars": 0
+  },
+  "IbrahimAlobid2/Smart-Procurement-Agents": {
+    "path": "corpus/real_world/_repos/IbrahimAlobid2__Smart-Procurement-Agents",
+    "sha": "b29b530a4ec295e6963ffd709d4aaca2337f1d58",
+    "stars": 1
+  },
+  "puravky/yt_analyzer": {
+    "path": "corpus/real_world/_repos/puravky__yt_analyzer",
+    "sha": "82f5e8010b0dfbac4fbdbb1ebab2386ddc688962",
+    "stars": 0
+  },
+  "Jamahl/fraya-25": {
+    "path": "corpus/real_world/_repos/Jamahl__fraya-25",
+    "sha": "8da54c34951398cf66e0bba1144dfba40f240c3c",
+    "stars": 0
+  },
+  "kunallll17/Financial-doc-analyzer-crewai": {
+    "path": "corpus/real_world/_repos/kunallll17__Financial-doc-analyzer-crewai",
+    "sha": "a3b0bc38d51aa6a4d074bd49f239c936d28fe6bc",
+    "stars": 0
+  },
+  "phasetherapper/jobstride": {
+    "path": "corpus/real_world/_repos/phasetherapper__jobstride",
+    "sha": "62d0e90ba5f093d977fbe34374d74ad8194642ea",
+    "stars": 0
+  },
+  "suryaMadhav16/RAG-Lab": {
+    "path": "corpus/real_world/_repos/suryaMadhav16__RAG-Lab",
+    "sha": "987bc8aec7c3b63169c6ce02cd0852c49fcf1545",
+    "stars": 2
+  },
+  "dforwardfeed/memo_generator": {
+    "path": "corpus/real_world/_repos/dforwardfeed__memo_generator",
+    "sha": "b02cb185013c7484565491cbcd16738e3b689d07",
+    "stars": 95
+  },
+  "krishnaik06/Crew-AI-Crash-course": {
+    "path": "corpus/real_world/_repos/krishnaik06__Crew-AI-Crash-course",
+    "sha": "c3be3196ed7d597f75b7bc6eb866db7270964bcd",
+    "stars": 61
+  },
+  "qaillc/Phi2Hackathon": {
+    "path": "corpus/real_world/_repos/qaillc__Phi2Hackathon",
+    "sha": "66b0ad3e17fc4a525dae2d40dda999fe03a00c04",
+    "stars": 10
+  },
+  "tushar2704/BloggerCrew": {
+    "path": "corpus/real_world/_repos/tushar2704__BloggerCrew",
+    "sha": "1ad215b8e10207cf4a6619bc682ae74f199964d3",
+    "stars": 4
+  },
+  "A-Atta/Procurement_System_Using_AI": {
+    "path": "corpus/real_world/_repos/A-Atta__Procurement_System_Using_AI",
+    "sha": "815bc806b6da8eff2296e4db963be5681d95e8c7",
+    "stars": 0
+  },
+  "yuriwa/crewai-sheets-ui": {
+    "path": "corpus/real_world/_repos/yuriwa__crewai-sheets-ui",
+    "sha": "46ee39143ff99052c29d1dc9805133c2de81dd25",
+    "stars": 74
+  },
+  "AndresRoblesB/crewai-assistant-google-tools": {
+    "path": "corpus/real_world/_repos/AndresRoblesB__crewai-assistant-google-tools",
+    "sha": "07d24c37c86a99870c04102fee04f777edebbe39",
+    "stars": 1
+  },
+  "RAGA-LAB-1/stock_decision_MAS": {
+    "path": "corpus/real_world/_repos/RAGA-LAB-1__stock_decision_MAS",
+    "sha": "0ae090e7a183a09d6dda2492a84a0fa95494c3db",
+    "stars": 2
+  },
+  "Dhy4n-117/Wingify-Debug-challenge": {
+    "path": "corpus/real_world/_repos/Dhy4n-117__Wingify-Debug-challenge",
+    "sha": "45df12aad66cda9221d935e4c4e7a1e28dd475da",
+    "stars": 0
+  },
+  "muzifa-mubarak/crew_ai_practice": {
+    "path": "corpus/real_world/_repos/muzifa-mubarak__crew_ai_practice",
+    "sha": "8d3b39619a582d2f8ed5607fc14440bb5197678a",
+    "stars": 0
+  },
+  "colinmccrae/CrewAITest": {
+    "path": "corpus/real_world/_repos/colinmccrae__CrewAITest",
+    "sha": "ab679296f8a62aa01a73fd8a3b2d5364cdd75ce4",
+    "stars": 0
+  },
+  "neej4/worldline": {
+    "path": "corpus/real_world/_repos/neej4__worldline",
+    "sha": "1b73fb0a7a345fd59f41681649214b9e157ce20c",
+    "stars": 0
+  },
+  "VamshiKrishna660/BloodWise-AI": {
+    "path": "corpus/real_world/_repos/VamshiKrishna660__BloodWise-AI",
+    "sha": "140cbdc2a1fa096e033c7d3f2f127e5651305109",
+    "stars": 0
+  },
+  "prakhar1009/crediai": {
+    "path": "corpus/real_world/_repos/prakhar1009__crediai",
+    "sha": "d977b7d39d6ace81dc7e19856034b30283e307a6",
+    "stars": 1
+  },
+  "supritR21/Blog-writer-crewai": {
+    "path": "corpus/real_world/_repos/supritR21__Blog-writer-crewai",
+    "sha": "67f31440d714009107ec5898a08d6bac407ea18f",
+    "stars": 0
+  },
+  "noahkohrs/Autonomous-Agents-Demo": {
+    "path": "corpus/real_world/_repos/noahkohrs__Autonomous-Agents-Demo",
+    "sha": "669bcadbc474f04b3ecdab5b725bfac065d5a875",
+    "stars": 0
+  },
+  "aayu2003/agent_creation": {
+    "path": "corpus/real_world/_repos/aayu2003__agent_creation",
+    "sha": "930e3201842ab0a9011a345b36d9e2fe273725ab",
+    "stars": 1
+  },
+  "minhhuyng21/Muilti-Agent": {
+    "path": "corpus/real_world/_repos/minhhuyng21__Muilti-Agent",
+    "sha": "ebd21e9a9cb4051211165e86027bcb23f0352303",
+    "stars": 0
+  },
+  "NOOBPOOK/MumbaiHacks25": {
+    "path": "corpus/real_world/_repos/NOOBPOOK__MumbaiHacks25",
+    "sha": "da9aff23fcfefab0e29b83fdaa7a548d9c3c225b",
+    "stars": 0
+  },
+  "SivaAdeesh27/MRAG": {
+    "path": "corpus/real_world/_repos/SivaAdeesh27__MRAG",
+    "sha": "34c80592917f0f986d179f6693ccac5e3547d850",
+    "stars": 0
+  },
+  "Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page": {
+    "path": "corpus/real_world/_repos/Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page",
+    "sha": "025f8f1944dc9f78b3bbea95f46253bdd78d3553",
+    "stars": 0
+  },
+  "HAttarde/Multi-agent-System": {
+    "path": "corpus/real_world/_repos/HAttarde__Multi-agent-System",
+    "sha": "0aceaee2403bea6d0a8e6a194521604faeab21fb",
+    "stars": 0
+  },
+  "john-adeojo/crew_ai_tutorial": {
+    "path": "corpus/real_world/_repos/john-adeojo__crew_ai_tutorial",
+    "sha": "8067c36bde79dadf77a4679bdfff246aad6dfb94",
+    "stars": 23
+  },
+  "ai-in-pm/StorybooksCrewAI-Groq": {
+    "path": "corpus/real_world/_repos/ai-in-pm__StorybooksCrewAI-Groq",
+    "sha": "b5eedfa773e0c75ad129ceb845860f5580c7122b",
+    "stars": 18
+  },
+  "marquinvitor/Forja": {
+    "path": "corpus/real_world/_repos/marquinvitor__Forja",
+    "sha": "d424bc408e8de71c2e0392c6d4b316ba7683b092",
+    "stars": 0
+  },
+  "Shirmeen/Chatbot": {
+    "path": "corpus/real_world/_repos/Shirmeen__Chatbot",
+    "sha": "d9d7f8ba534951b81b0d4a2217bfb343ddff532e",
+    "stars": 0
+  },
+  "Alfiya-salam/Instagram-Post": {
+    "path": "corpus/real_world/_repos/Alfiya-salam__Instagram-Post",
+    "sha": "75d9cb6889c427bfe3e1c18dbd0695670eb1b573",
+    "stars": 0
+  },
+  "diya04b/ai_video_analyser": {
+    "path": "corpus/real_world/_repos/diya04b__ai_video_analyser",
+    "sha": "f4d8cea639b274c1d11cd3b883702b91874ab1b3",
+    "stars": 0
+  },
+  "SuyashMohanty/SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System": {
+    "path": "corpus/real_world/_repos/SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System",
+    "sha": "7b60b43f4b348589a4fb4a99f5ec58c9a25183e6",
+    "stars": 1
+  },
+  "gaurav-163/CavScan-Intelligent-Diagnostic-System": {
+    "path": "corpus/real_world/_repos/gaurav-163__CavScan-Intelligent-Diagnostic-System",
+    "sha": "6c30f3a555495a2104136b687b2883945d911481",
+    "stars": 0
+  },
+  "peterzervas/CodeSynthAI": {
+    "path": "corpus/real_world/_repos/peterzervas__CodeSynthAI",
+    "sha": "9d37d4df91c6fbf0aede5bb93554c3e4c1691b68",
+    "stars": 3
+  },
+  "SomanGaurav/Agentic_Research_Assistant": {
+    "path": "corpus/real_world/_repos/SomanGaurav__Agentic_Research_Assistant",
+    "sha": "08977f9ab588c218f0c0c851499f39800f33e036",
+    "stars": 0
+  },
+  "ShambhaviM19/Blog-Generation-System": {
+    "path": "corpus/real_world/_repos/ShambhaviM19__Blog-Generation-System",
+    "sha": "fcfda4f37660da4c446a4928323d2ab41e0e0e99",
+    "stars": 0
+  },
+  "venkatavinayvijjapu/New_Assignment": {
+    "path": "corpus/real_world/_repos/venkatavinayvijjapu__New_Assignment",
+    "sha": "95ffcdc315b7cd97e1108d5936d9188acffea43e",
+    "stars": 0
+  },
+  "Aakeeo/leadresearchcrew": {
+    "path": "corpus/real_world/_repos/Aakeeo__leadresearchcrew",
+    "sha": "08eb4c2c1da16fb142b1ec1091d0e98700f60907",
+    "stars": 0
+  },
+  "Tushar365/WebScript-AI-Powered-Research-Content-Creator": {
+    "path": "corpus/real_world/_repos/Tushar365__WebScript-AI-Powered-Research-Content-Creator",
+    "sha": "3e98e307c171349ec56ee11e53d86ea8d5bf450e",
+    "stars": 0
+  },
+  "ankitgmishra/legal-multiagent-system": {
+    "path": "corpus/real_world/_repos/ankitgmishra__legal-multiagent-system",
+    "sha": "8724614a3058cb1821d56488a07ab1b6abc5a44d",
+    "stars": 1
+  },
+  "AI4Good24/PsySafe": {
+    "path": "corpus/real_world/_repos/AI4Good24__PsySafe",
+    "sha": "a524585c1b05d02cfd095c41078fef50499a4459",
+    "stars": 53
+  }
+}

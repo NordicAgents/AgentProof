@@ -1,0 +1,62 @@
+{
+  "name": "Ankur2606__multiAgenticAgri__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "soil_analysis_agent",
+      "kind": "llm",
+      "label": "soil_analysis_agent",
+      "tools": []
+    },
+    {
+      "id": "climate_matcher_agent",
+      "kind": "llm",
+      "label": "climate_matcher_agent",
+      "tools": []
+    },
+    {
+      "id": "crop_recommender_agent",
+      "kind": "llm",
+      "label": "crop_recommender_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "soil_analysis_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "soil_analysis_agent",
+      "target": "climate_matcher_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "climate_matcher_agent",
+      "target": "crop_recommender_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "crop_recommender_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

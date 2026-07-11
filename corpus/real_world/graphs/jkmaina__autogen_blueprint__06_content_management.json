@@ -1,0 +1,106 @@
+{
+  "name": "jkmaina__autogen_blueprint__06_content_management",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyzer",
+      "kind": "llm",
+      "label": "analyzer",
+      "tools": []
+    },
+    {
+      "id": "auto_approver",
+      "kind": "llm",
+      "label": "auto_approver",
+      "tools": []
+    },
+    {
+      "id": "auto_rejector",
+      "kind": "llm",
+      "label": "auto_rejector",
+      "tools": []
+    },
+    {
+      "id": "human_coordinator",
+      "kind": "human",
+      "label": "human_coordinator",
+      "tools": []
+    },
+    {
+      "id": "human_moderator",
+      "kind": "human",
+      "label": "human_moderator",
+      "tools": []
+    },
+    {
+      "id": "final_approver",
+      "kind": "llm",
+      "label": "final_approver",
+      "tools": []
+    },
+    {
+      "id": "final_rejector",
+      "kind": "llm",
+      "label": "final_rejector",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyzer",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer",
+      "target": "auto_approver",
+      "kind": "direct"
+    },
+    {
+      "source": "auto_approver",
+      "target": "auto_rejector",
+      "kind": "direct"
+    },
+    {
+      "source": "auto_rejector",
+      "target": "human_coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "human_coordinator",
+      "target": "human_moderator",
+      "kind": "direct"
+    },
+    {
+      "source": "human_moderator",
+      "target": "final_approver",
+      "kind": "direct"
+    },
+    {
+      "source": "final_approver",
+      "target": "final_rejector",
+      "kind": "direct"
+    },
+    {
+      "source": "final_rejector",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

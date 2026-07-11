@@ -1,0 +1,56 @@
+{
+  "name": "jkmaina__autogen_blueprint__04_handoff_workflow",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "creator",
+      "kind": "llm",
+      "label": "creator",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "creator",
+      "kind": "direct"
+    },
+    {
+      "source": "creator",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "creator",
+      "kind": "loop"
+    },
+    {
+      "source": "reviewer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

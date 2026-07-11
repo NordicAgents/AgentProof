@@ -1,0 +1,77 @@
+{
+  "name": "merdandt__SalesShortcut__outreach_email_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "specification_creator_agent",
+      "kind": "llm",
+      "label": "specification_creator_agent"
+    },
+    {
+      "id": "website_creator_agent",
+      "kind": "llm",
+      "label": "website_creator_agent"
+    },
+    {
+      "id": "offer_file_creator_agent",
+      "kind": "llm",
+      "label": "offer_file_creator_agent"
+    },
+    {
+      "id": "email_agent",
+      "kind": "llm",
+      "label": "email_agent"
+    },
+    {
+      "id": "engagement_saver_agent",
+      "kind": "llm",
+      "label": "engagement_saver_agent"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "specification_creator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "specification_creator_agent",
+      "target": "website_creator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "website_creator_agent",
+      "target": "offer_file_creator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "offer_file_creator_agent",
+      "target": "email_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "email_agent",
+      "target": "engagement_saver_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "engagement_saver_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

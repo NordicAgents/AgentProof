@@ -1,0 +1,95 @@
+{
+  "name": "ed-donner__agents__coach_graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "parse_user",
+      "kind": "llm",
+      "label": "parse_user",
+      "tools": []
+    },
+    {
+      "id": "diet",
+      "kind": "llm",
+      "label": "diet",
+      "tools": []
+    },
+    {
+      "id": "exercise",
+      "kind": "llm",
+      "label": "exercise",
+      "tools": []
+    },
+    {
+      "id": "study",
+      "kind": "llm",
+      "label": "study",
+      "tools": []
+    },
+    {
+      "id": "sleep",
+      "kind": "llm",
+      "label": "sleep",
+      "tools": []
+    },
+    {
+      "id": "finalize",
+      "kind": "llm",
+      "label": "finalize",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "parse_user",
+      "kind": "direct"
+    },
+    {
+      "source": "parse_user",
+      "target": "diet",
+      "kind": "direct"
+    },
+    {
+      "source": "diet",
+      "target": "exercise",
+      "kind": "direct"
+    },
+    {
+      "source": "exercise",
+      "target": "study",
+      "kind": "direct"
+    },
+    {
+      "source": "study",
+      "target": "sleep",
+      "kind": "direct"
+    },
+    {
+      "source": "sleep",
+      "target": "finalize",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

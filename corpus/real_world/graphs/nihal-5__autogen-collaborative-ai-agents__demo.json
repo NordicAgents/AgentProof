@@ -1,0 +1,56 @@
+{
+  "name": "nihal-5__autogen-collaborative-ai-agents__demo",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "critic",
+      "kind": "llm",
+      "label": "critic",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "critic",
+      "kind": "direct"
+    },
+    {
+      "source": "critic",
+      "target": "researcher",
+      "kind": "loop"
+    },
+    {
+      "source": "critic",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

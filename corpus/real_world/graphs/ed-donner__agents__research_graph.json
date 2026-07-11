@@ -1,0 +1,162 @@
+{
+  "name": "ed-donner__agents__research_graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "build_canonical",
+      "kind": "llm",
+      "label": "build_canonical",
+      "tools": []
+    },
+    {
+      "id": "triage",
+      "kind": "router",
+      "label": "triage",
+      "tools": []
+    },
+    {
+      "id": "abort_triage",
+      "kind": "llm",
+      "label": "abort_triage",
+      "tools": []
+    },
+    {
+      "id": "clarify_draft",
+      "kind": "llm",
+      "label": "clarify_draft",
+      "tools": []
+    },
+    {
+      "id": "clarify_ask",
+      "kind": "llm",
+      "label": "clarify_ask",
+      "tools": []
+    },
+    {
+      "id": "plan",
+      "kind": "llm",
+      "label": "plan",
+      "tools": []
+    },
+    {
+      "id": "research",
+      "kind": "llm",
+      "label": "research",
+      "tools": []
+    },
+    {
+      "id": "merge",
+      "kind": "llm",
+      "label": "merge",
+      "tools": []
+    },
+    {
+      "id": "report",
+      "kind": "llm",
+      "label": "report",
+      "tools": []
+    },
+    {
+      "id": "evaluate",
+      "kind": "router",
+      "label": "evaluate",
+      "tools": []
+    },
+    {
+      "id": "success",
+      "kind": "llm",
+      "label": "success",
+      "tools": []
+    },
+    {
+      "id": "fail_final",
+      "kind": "llm",
+      "label": "fail_final",
+      "tools": []
+    },
+    {
+      "id": "bump_round",
+      "kind": "llm",
+      "label": "bump_round",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "build_canonical",
+      "kind": "direct"
+    },
+    {
+      "source": "build_canonical",
+      "target": "triage",
+      "kind": "direct"
+    },
+    {
+      "source": "abort_triage",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "clarify_draft",
+      "target": "clarify_ask",
+      "kind": "direct"
+    },
+    {
+      "source": "clarify_ask",
+      "target": "build_canonical",
+      "kind": "direct"
+    },
+    {
+      "source": "plan",
+      "target": "research",
+      "kind": "direct"
+    },
+    {
+      "source": "research",
+      "target": "merge",
+      "kind": "direct"
+    },
+    {
+      "source": "merge",
+      "target": "report",
+      "kind": "direct"
+    },
+    {
+      "source": "report",
+      "target": "evaluate",
+      "kind": "direct"
+    },
+    {
+      "source": "success",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "fail_final",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "bump_round",
+      "target": "plan",
+      "kind": "direct"
+    }
+  ]
+}

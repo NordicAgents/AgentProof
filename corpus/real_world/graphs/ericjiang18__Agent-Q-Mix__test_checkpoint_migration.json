@@ -1,0 +1,79 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_checkpoint_migration",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "rewrite_query",
+      "kind": "router",
+      "label": "rewrite_query",
+      "tools": []
+    },
+    {
+      "id": "analyzer_one",
+      "kind": "llm",
+      "label": "analyzer_one",
+      "tools": []
+    },
+    {
+      "id": "retriever_one",
+      "kind": "llm",
+      "label": "retriever_one",
+      "tools": []
+    },
+    {
+      "id": "retriever_two",
+      "kind": "llm",
+      "label": "retriever_two",
+      "tools": []
+    },
+    {
+      "id": "qa",
+      "kind": "llm",
+      "label": "qa",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "rewrite_query",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite_query",
+      "target": "analyzer_one",
+      "kind": "direct"
+    },
+    {
+      "source": "analyzer_one",
+      "target": "retriever_one",
+      "kind": "direct"
+    },
+    {
+      "source": "retriever_one",
+      "target": "qa",
+      "kind": "direct"
+    },
+    {
+      "source": "qa",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

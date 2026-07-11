@@ -1,0 +1,1247 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_time_travel",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "node_b",
+      "kind": "llm",
+      "label": "node_b",
+      "tools": []
+    },
+    {
+      "id": "node_a",
+      "kind": "llm",
+      "label": "node_a",
+      "tools": []
+    },
+    {
+      "id": "ask_human",
+      "kind": "human",
+      "label": "ask_human",
+      "tools": []
+    },
+    {
+      "id": "interrupt_2",
+      "kind": "llm",
+      "label": "interrupt_2",
+      "tools": []
+    },
+    {
+      "id": "interrupt_1",
+      "kind": "llm",
+      "label": "interrupt_1",
+      "tools": []
+    },
+    {
+      "id": "after",
+      "kind": "llm",
+      "label": "after",
+      "tools": []
+    },
+    {
+      "id": "ask",
+      "kind": "llm",
+      "label": "ask",
+      "tools": []
+    },
+    {
+      "id": "step_b",
+      "kind": "llm",
+      "label": "step_b",
+      "tools": []
+    },
+    {
+      "id": "step_a",
+      "kind": "llm",
+      "label": "step_a",
+      "tools": []
+    },
+    {
+      "id": "post_process",
+      "kind": "llm",
+      "label": "post_process",
+      "tools": []
+    },
+    {
+      "id": "subgraph",
+      "kind": "llm",
+      "label": "subgraph",
+      "tools": []
+    },
+    {
+      "id": "parent_node",
+      "kind": "llm",
+      "label": "parent_node",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node",
+      "kind": "llm",
+      "label": "subgraph_node",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "sub_node",
+      "kind": "router",
+      "label": "sub_node",
+      "tools": []
+    },
+    {
+      "id": "ask_2",
+      "kind": "llm",
+      "label": "ask_2",
+      "tools": []
+    },
+    {
+      "id": "ask_1",
+      "kind": "llm",
+      "label": "ask_1",
+      "tools": []
+    },
+    {
+      "id": "executor",
+      "kind": "llm",
+      "label": "executor",
+      "tools": []
+    },
+    {
+      "id": "inner",
+      "kind": "llm",
+      "label": "inner",
+      "tools": []
+    },
+    {
+      "id": "outer",
+      "kind": "llm",
+      "label": "outer",
+      "tools": []
+    },
+    {
+      "id": "pre",
+      "kind": "llm",
+      "label": "pre",
+      "tools": []
+    },
+    {
+      "id": "process",
+      "kind": "llm",
+      "label": "process",
+      "tools": []
+    },
+    {
+      "id": "sub",
+      "kind": "llm",
+      "label": "sub",
+      "tools": []
+    },
+    {
+      "id": "sub_step",
+      "kind": "llm",
+      "label": "sub_step",
+      "tools": []
+    },
+    {
+      "id": "node_c",
+      "kind": "llm",
+      "label": "node_c",
+      "tools": []
+    },
+    {
+      "id": "parent_end",
+      "kind": "llm",
+      "label": "parent_end",
+      "tools": []
+    },
+    {
+      "id": "sub_graph",
+      "kind": "llm",
+      "label": "sub_graph",
+      "tools": []
+    },
+    {
+      "id": "parent_start",
+      "kind": "llm",
+      "label": "parent_start",
+      "tools": []
+    },
+    {
+      "id": "inner_step",
+      "kind": "llm",
+      "label": "inner_step",
+      "tools": []
+    },
+    {
+      "id": "inner_node",
+      "kind": "llm",
+      "label": "inner_node",
+      "tools": []
+    },
+    {
+      "id": "mid_step",
+      "kind": "llm",
+      "label": "mid_step",
+      "tools": []
+    },
+    {
+      "id": "mid_node",
+      "kind": "llm",
+      "label": "mid_node",
+      "tools": []
+    },
+    {
+      "id": "parent_step",
+      "kind": "llm",
+      "label": "parent_step",
+      "tools": []
+    },
+    {
+      "id": "sub_a_step",
+      "kind": "llm",
+      "label": "sub_a_step",
+      "tools": []
+    },
+    {
+      "id": "sub_b_step",
+      "kind": "llm",
+      "label": "sub_b_step",
+      "tools": []
+    },
+    {
+      "id": "sub_b_node",
+      "kind": "llm",
+      "label": "sub_b_node",
+      "tools": []
+    },
+    {
+      "id": "sub_a_node",
+      "kind": "llm",
+      "label": "sub_a_node",
+      "tools": []
+    },
+    {
+      "id": "inc",
+      "kind": "llm",
+      "label": "inc",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "interrupt_2",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "interrupt_1",
+      "target": "interrupt_2",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "interrupt_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask",
+      "target": "after",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "ask",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "subgraph_node",
+      "target": "post_process",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "ask",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_2",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "ask_2",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_1",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "ask_1",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "pre",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "pre",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "process",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "node_b",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_b",
+      "target": "node_c",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "sub_graph",
+      "target": "parent_end",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_start",
+      "target": "sub_graph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_start",
+      "kind": "direct"
+    },
+    {
+      "source": "node_b",
+      "target": "node_c",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "sub_graph",
+      "target": "parent_end",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_start",
+      "target": "sub_graph",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_start",
+      "kind": "direct"
+    },
+    {
+      "source": "step_a",
+      "target": "step_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "step_a",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_step",
+      "kind": "direct"
+    },
+    {
+      "source": "mid_step",
+      "target": "inner_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "mid_step",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_step",
+      "target": "mid_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_step",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_step",
+      "kind": "direct"
+    },
+    {
+      "source": "mid_step",
+      "target": "inner_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "mid_step",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_step",
+      "target": "mid_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_step",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_node",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_a_step",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_b_step",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_step",
+      "target": "sub_b_node",
+      "kind": "direct"
+    },
+    {
+      "source": "parent_step",
+      "target": "sub_a_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "parent_step",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_step",
+      "kind": "direct"
+    },
+    {
+      "source": "inc",
+      "target": "sub_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inc",
+      "kind": "direct"
+    }
+  ]
+}

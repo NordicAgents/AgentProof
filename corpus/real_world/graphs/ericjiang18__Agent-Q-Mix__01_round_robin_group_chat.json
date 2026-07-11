@@ -1,0 +1,67 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__01_round_robin_group_chat",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "editor",
+      "kind": "llm",
+      "label": "editor",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "editor",
+      "kind": "direct"
+    },
+    {
+      "source": "editor",
+      "target": "researcher",
+      "kind": "loop"
+    },
+    {
+      "source": "editor",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

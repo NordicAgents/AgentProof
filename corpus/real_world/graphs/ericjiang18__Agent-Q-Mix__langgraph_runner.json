@@ -1,0 +1,47 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__langgraph_runner",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "node_name",
+      "kind": "llm",
+      "label": "node_name",
+      "tools": []
+    },
+    {
+      "id": "round_gate",
+      "kind": "router",
+      "label": "round_gate",
+      "tools": []
+    },
+    {
+      "id": "decision",
+      "kind": "llm",
+      "label": "decision",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "decision",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

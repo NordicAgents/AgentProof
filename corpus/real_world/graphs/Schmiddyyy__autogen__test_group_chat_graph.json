@@ -1,0 +1,208 @@
+{
+  "name": "Schmiddyyy__autogen__test_group_chat_graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "llm",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "b",
+      "kind": "router",
+      "label": "b",
+      "tools": []
+    },
+    {
+      "id": "a",
+      "kind": "router",
+      "label": "a",
+      "tools": []
+    },
+    {
+      "id": "c",
+      "kind": "llm",
+      "label": "c",
+      "tools": []
+    },
+    {
+      "id": "agent_c",
+      "kind": "llm",
+      "label": "agent_c",
+      "tools": []
+    },
+    {
+      "id": "agent_b",
+      "kind": "llm",
+      "label": "agent_b",
+      "tools": []
+    },
+    {
+      "id": "agent_a",
+      "kind": "llm",
+      "label": "agent_a",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "conditional"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "B",
+      "target": "C",
+      "kind": "direct"
+    },
+    {
+      "source": "A",
+      "target": "B",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "A",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "a",
+      "kind": "conditional"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "conditional"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "conditional"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "agent_a",
+      "target": "agent_b",
+      "kind": "direct"
+    },
+    {
+      "source": "agent_a",
+      "target": "agent_c",
+      "kind": "direct"
+    }
+  ]
+}

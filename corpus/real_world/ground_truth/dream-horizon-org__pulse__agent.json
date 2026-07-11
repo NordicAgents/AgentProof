@@ -1,0 +1,47 @@
+{
+  "name": "dream-horizon-org__pulse__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "em_agent",
+      "kind": "llm",
+      "label": "EM Agent (data analysis)"
+    },
+    {
+      "id": "report_agent",
+      "kind": "llm",
+      "label": "Report Agent (visualization with charts and tables)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "em_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "em_agent",
+      "target": "report_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "report_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

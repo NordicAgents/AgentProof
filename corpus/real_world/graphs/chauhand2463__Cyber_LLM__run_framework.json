@@ -1,0 +1,73 @@
+{
+  "name": "chauhand2463__Cyber_LLM__run_framework",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "task_coordinator_agent",
+      "kind": "llm",
+      "label": "task_coordinator_agent",
+      "tools": []
+    },
+    {
+      "id": "text_analyst_agent",
+      "kind": "llm",
+      "label": "text_analyst_agent",
+      "tools": []
+    },
+    {
+      "id": "cmd_exec_agent",
+      "kind": "llm",
+      "label": "cmd_exec_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "task_coordinator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "task_coordinator_agent",
+      "target": "text_analyst_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "text_analyst_agent",
+      "target": "cmd_exec_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "cmd_exec_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

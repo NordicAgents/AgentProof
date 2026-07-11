@@ -1,0 +1,56 @@
+{
+  "name": "Damish-7__MOLYSIS__multi_agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "coder",
+      "kind": "llm",
+      "label": "coder",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "coder",
+      "kind": "direct"
+    },
+    {
+      "source": "coder",
+      "target": "planner",
+      "kind": "loop"
+    },
+    {
+      "source": "coder",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "gadha02__KLAW-APP-Internship__Travel_planner_system",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "planner_agent",
+      "kind": "llm",
+      "label": "planner_agent",
+      "tools": []
+    },
+    {
+      "id": "travel_summary_agent",
+      "kind": "llm",
+      "label": "travel_summary_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "planner_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "planner_agent",
+      "target": "travel_summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "travel_summary_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

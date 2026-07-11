@@ -1,0 +1,84 @@
+{
+  "name": "SakshiRaut674__Prana__autogen_main",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "coordinator",
+      "kind": "llm",
+      "label": "coordinator",
+      "tools": []
+    },
+    {
+      "id": "appointment_agent",
+      "kind": "llm",
+      "label": "appointment_agent",
+      "tools": []
+    },
+    {
+      "id": "emr_agent",
+      "kind": "llm",
+      "label": "emr_agent",
+      "tools": []
+    },
+    {
+      "id": "billing_agent",
+      "kind": "llm",
+      "label": "billing_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "coordinator",
+      "target": "appointment_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "appointment_agent",
+      "target": "emr_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "emr_agent",
+      "target": "billing_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "billing_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

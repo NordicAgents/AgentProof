@@ -1,0 +1,88 @@
+{
+  "name": "ed-donner__agents__content_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "research",
+      "kind": "router",
+      "label": "research",
+      "tools": []
+    },
+    {
+      "id": "blog_generator",
+      "kind": "llm",
+      "label": "blog_generator",
+      "tools": []
+    },
+    {
+      "id": "social_generator",
+      "kind": "llm",
+      "label": "social_generator",
+      "tools": []
+    },
+    {
+      "id": "seo_optimizer",
+      "kind": "llm",
+      "label": "seo_optimizer",
+      "tools": []
+    },
+    {
+      "id": "refiner",
+      "kind": "llm",
+      "label": "refiner",
+      "tools": []
+    },
+    {
+      "id": "evaluator",
+      "kind": "router",
+      "label": "evaluator",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "research",
+      "kind": "direct"
+    },
+    {
+      "source": "blog_generator",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "social_generator",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "seo_optimizer",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "refiner",
+      "target": "evaluator",
+      "kind": "direct"
+    }
+  ]
+}

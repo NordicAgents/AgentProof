@@ -1,0 +1,52 @@
+{
+  "name": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "primary_agent",
+      "kind": "llm",
+      "label": "primary (AssistantAgent, no tools)"
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic (AssistantAgent, no tools)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "primary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "primary_agent",
+      "target": "critic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "critic_agent",
+      "target": "primary_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "critic_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__04_human_in_the_loop",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "lazy_agent",
+      "kind": "llm",
+      "label": "lazy_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "lazy_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "lazy_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

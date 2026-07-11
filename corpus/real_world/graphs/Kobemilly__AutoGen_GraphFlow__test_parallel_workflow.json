@@ -1,0 +1,60 @@
+{
+  "name": "Kobemilly__AutoGen_GraphFlow__test_parallel_workflow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "final_reviewer",
+      "kind": "llm",
+      "label": "final_reviewer",
+      "tools": []
+    },
+    {
+      "id": "editor_style",
+      "kind": "llm",
+      "label": "editor_style",
+      "tools": []
+    },
+    {
+      "id": "editor_grammar",
+      "kind": "llm",
+      "label": "editor_grammar",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "writer",
+      "target": "editor_grammar",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "editor_style",
+      "kind": "direct"
+    },
+    {
+      "source": "editor_grammar",
+      "target": "final_reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "editor_style",
+      "target": "final_reviewer",
+      "kind": "direct"
+    }
+  ]
+}

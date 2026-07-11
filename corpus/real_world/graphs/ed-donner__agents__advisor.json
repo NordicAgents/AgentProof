@@ -1,0 +1,118 @@
+{
+  "name": "ed-donner__agents__advisor",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "clarifier",
+      "kind": "router",
+      "label": "clarifier",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "web_researcher",
+      "kind": "llm",
+      "label": "web_researcher",
+      "tools": []
+    },
+    {
+      "id": "wiki_researcher",
+      "kind": "llm",
+      "label": "wiki_researcher",
+      "tools": []
+    },
+    {
+      "id": "weather_fetcher",
+      "kind": "llm",
+      "label": "weather_fetcher",
+      "tools": []
+    },
+    {
+      "id": "aggregator",
+      "kind": "llm",
+      "label": "aggregator",
+      "tools": []
+    },
+    {
+      "id": "advisor",
+      "kind": "llm",
+      "label": "advisor",
+      "tools": []
+    },
+    {
+      "id": "evaluator",
+      "kind": "router",
+      "label": "evaluator",
+      "tools": []
+    },
+    {
+      "id": "report_sender",
+      "kind": "llm",
+      "label": "report_sender",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "clarifier",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "web_researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "web_researcher",
+      "target": "wiki_researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "wiki_researcher",
+      "target": "weather_fetcher",
+      "kind": "direct"
+    },
+    {
+      "source": "weather_fetcher",
+      "target": "aggregator",
+      "kind": "direct"
+    },
+    {
+      "source": "aggregator",
+      "target": "advisor",
+      "kind": "direct"
+    },
+    {
+      "source": "advisor",
+      "target": "evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "report_sender",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

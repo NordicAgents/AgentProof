@@ -1,0 +1,313 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_stream_events_v3",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "node_a",
+      "kind": "llm",
+      "label": "node_a",
+      "tools": []
+    },
+    {
+      "id": "node_b",
+      "kind": "llm",
+      "label": "node_b",
+      "tools": []
+    },
+    {
+      "id": "call_model",
+      "kind": "llm",
+      "label": "call_model",
+      "tools": []
+    },
+    {
+      "id": "inner",
+      "kind": "llm",
+      "label": "inner",
+      "tools": []
+    },
+    {
+      "id": "first",
+      "kind": "llm",
+      "label": "first",
+      "tools": []
+    },
+    {
+      "id": "second",
+      "kind": "llm",
+      "label": "second",
+      "tools": []
+    },
+    {
+      "id": "my_node",
+      "kind": "llm",
+      "label": "my_node",
+      "tools": []
+    },
+    {
+      "id": "inner_node",
+      "kind": "llm",
+      "label": "inner_node",
+      "tools": []
+    },
+    {
+      "id": "outer_node",
+      "kind": "llm",
+      "label": "outer_node",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "node_b",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "first",
+      "kind": "direct"
+    },
+    {
+      "source": "first",
+      "target": "second",
+      "kind": "direct"
+    },
+    {
+      "source": "second",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "inner_node",
+      "kind": "direct"
+    },
+    {
+      "source": "inner_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "outer_node",
+      "kind": "direct"
+    },
+    {
+      "source": "outer_node",
+      "target": "inner",
+      "kind": "direct"
+    },
+    {
+      "source": "inner",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "node_a",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

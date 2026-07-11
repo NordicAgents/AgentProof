@@ -1,0 +1,73 @@
+{
+  "name": "ed-donner__agents__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "t",
+      "kind": "llm",
+      "label": "t",
+      "tools": []
+    },
+    {
+      "id": "integration_task",
+      "kind": "llm",
+      "label": "integration_task",
+      "tools": []
+    },
+    {
+      "id": "frontend_task",
+      "kind": "llm",
+      "label": "frontend_task",
+      "tools": []
+    },
+    {
+      "id": "test_task",
+      "kind": "llm",
+      "label": "test_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "t",
+      "kind": "direct"
+    },
+    {
+      "source": "t",
+      "target": "integration_task",
+      "kind": "direct"
+    },
+    {
+      "source": "integration_task",
+      "target": "frontend_task",
+      "kind": "direct"
+    },
+    {
+      "source": "frontend_task",
+      "target": "test_task",
+      "kind": "direct"
+    },
+    {
+      "source": "test_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

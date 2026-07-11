@@ -1,0 +1,62 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__12_knowledge",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "respond_to_the_question_about_the_user:_what_city_",
+      "kind": "llm",
+      "label": "Respond to the question about the user: What city ",
+      "tools": []
+    },
+    {
+      "id": "answer_the_question_about_llms:_what_is_the_reward",
+      "kind": "llm",
+      "label": "Answer the question about LLMs: What is the reward",
+      "tools": []
+    },
+    {
+      "id": "answer_the_general_question:_what_is_the_capital_o",
+      "kind": "llm",
+      "label": "Answer the general question: What is the capital o",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "respond_to_the_question_about_the_user:_what_city_",
+      "kind": "direct"
+    },
+    {
+      "source": "respond_to_the_question_about_the_user:_what_city_",
+      "target": "answer_the_question_about_llms:_what_is_the_reward",
+      "kind": "direct"
+    },
+    {
+      "source": "answer_the_question_about_llms:_what_is_the_reward",
+      "target": "answer_the_general_question:_what_is_the_capital_o",
+      "kind": "direct"
+    },
+    {
+      "source": "answer_the_general_question:_what_is_the_capital_o",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

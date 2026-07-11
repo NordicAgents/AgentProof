@@ -1,0 +1,62 @@
+{
+  "name": "AhsanAyaz__ai-agents-google-adk__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researchAgent",
+      "kind": "llm",
+      "label": "researchAgent",
+      "tools": []
+    },
+    {
+      "id": "postsAgent",
+      "kind": "llm",
+      "label": "postsAgent",
+      "tools": []
+    },
+    {
+      "id": "postsMergerAgent",
+      "kind": "llm",
+      "label": "postsMergerAgent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researchAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "researchAgent",
+      "target": "postsAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "postsAgent",
+      "target": "postsMergerAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "postsMergerAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

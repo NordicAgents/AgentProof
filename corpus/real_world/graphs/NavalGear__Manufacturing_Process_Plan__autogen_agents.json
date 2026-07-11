@@ -1,0 +1,106 @@
+{
+  "name": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "design_engineer",
+      "kind": "llm",
+      "label": "design_engineer",
+      "tools": []
+    },
+    {
+      "id": "materials_engineer",
+      "kind": "llm",
+      "label": "materials_engineer",
+      "tools": []
+    },
+    {
+      "id": "tooling_specialist",
+      "kind": "llm",
+      "label": "tooling_specialist",
+      "tools": []
+    },
+    {
+      "id": "manufacturing_engineer",
+      "kind": "llm",
+      "label": "manufacturing_engineer",
+      "tools": []
+    },
+    {
+      "id": "quality_engineer",
+      "kind": "llm",
+      "label": "quality_engineer",
+      "tools": []
+    },
+    {
+      "id": "project_manager",
+      "kind": "llm",
+      "label": "project_manager",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "design_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "design_engineer",
+      "target": "materials_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "materials_engineer",
+      "target": "tooling_specialist",
+      "kind": "direct"
+    },
+    {
+      "source": "tooling_specialist",
+      "target": "manufacturing_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "manufacturing_engineer",
+      "target": "quality_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "quality_engineer",
+      "target": "project_manager",
+      "kind": "direct"
+    },
+    {
+      "source": "project_manager",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

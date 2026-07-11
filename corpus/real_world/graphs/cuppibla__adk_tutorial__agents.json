@@ -1,0 +1,51 @@
+{
+  "name": "cuppibla__adk_tutorial__agents",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner_agent",
+      "kind": "llm",
+      "label": "planner_agent",
+      "tools": []
+    },
+    {
+      "id": "refinement_loop",
+      "kind": "llm",
+      "label": "refinement_loop",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "planner_agent",
+      "target": "refinement_loop",
+      "kind": "direct"
+    },
+    {
+      "source": "refinement_loop",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "name": "Mayank-Patel1015__The-Crucible__autogen_crucible",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "coordinator",
+      "kind": "llm",
+      "label": "coordinator",
+      "tools": []
+    },
+    {
+      "id": "architect",
+      "kind": "llm",
+      "label": "architect",
+      "tools": []
+    },
+    {
+      "id": "coder_1",
+      "kind": "llm",
+      "label": "coder_1",
+      "tools": []
+    },
+    {
+      "id": "coder_2",
+      "kind": "llm",
+      "label": "coder_2",
+      "tools": []
+    },
+    {
+      "id": "tester",
+      "kind": "llm",
+      "label": "tester",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "coordinator",
+      "target": "architect",
+      "kind": "direct"
+    },
+    {
+      "source": "architect",
+      "target": "coder_1",
+      "kind": "direct"
+    },
+    {
+      "source": "coder_1",
+      "target": "coder_2",
+      "kind": "direct"
+    },
+    {
+      "source": "coder_2",
+      "target": "tester",
+      "kind": "direct"
+    },
+    {
+      "source": "tester",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

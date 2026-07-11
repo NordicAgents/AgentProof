@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__06_conditional_tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyze_the_following_dataset_summary_and_determin",
+      "kind": "llm",
+      "label": "Analyze the following dataset summary and determin",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_following_dataset_summary_and_determin",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_following_dataset_summary_and_determin",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

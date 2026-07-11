@@ -1,0 +1,51 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__16_planning",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_the_current_state_of_ai_agents_in_2025,_f",
+      "kind": "llm",
+      "label": "Research the current state of AI agents in 2025, f",
+      "tools": []
+    },
+    {
+      "id": "write_a_short_blog_post_based_on_the_research_find",
+      "kind": "llm",
+      "label": "Write a short blog post based on the research find",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_the_current_state_of_ai_agents_in_2025,_f",
+      "kind": "direct"
+    },
+    {
+      "source": "research_the_current_state_of_ai_agents_in_2025,_f",
+      "target": "write_a_short_blog_post_based_on_the_research_find",
+      "kind": "direct"
+    },
+    {
+      "source": "write_a_short_blog_post_based_on_the_research_find",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

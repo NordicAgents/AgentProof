@@ -1,0 +1,67 @@
+{
+  "name": "SPZts__AutoModel__model12",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "model_12_selector",
+      "kind": "llm",
+      "label": "model_12_selector",
+      "tools": []
+    },
+    {
+      "id": "model_12_coder",
+      "kind": "llm",
+      "label": "model_12_coder",
+      "tools": []
+    },
+    {
+      "id": "model_12_summary",
+      "kind": "llm",
+      "label": "model_12_summary",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "model_12_selector",
+      "kind": "direct"
+    },
+    {
+      "source": "model_12_selector",
+      "target": "model_12_coder",
+      "kind": "direct"
+    },
+    {
+      "source": "model_12_coder",
+      "target": "model_12_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "model_12_summary",
+      "target": "model_12_selector",
+      "kind": "loop"
+    },
+    {
+      "source": "model_12_summary",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

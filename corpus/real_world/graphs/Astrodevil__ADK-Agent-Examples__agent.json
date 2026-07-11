@@ -1,0 +1,62 @@
+{
+  "name": "Astrodevil__ADK-Agent-Examples__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "exa_agent",
+      "kind": "llm",
+      "label": "exa_agent",
+      "tools": []
+    },
+    {
+      "id": "tavily_agent",
+      "kind": "llm",
+      "label": "tavily_agent",
+      "tools": []
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "exa_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "exa_agent",
+      "target": "tavily_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tavily_agent",
+      "target": "summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

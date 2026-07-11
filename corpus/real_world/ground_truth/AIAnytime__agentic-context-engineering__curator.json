@@ -1,0 +1,47 @@
+{
+  "name": "AIAnytime__agentic-context-engineering__curator",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "Curator",
+      "kind": "llm",
+      "label": "Curator (Agent) - curates playbook deltas via LLM, output_schema=DeltaBatch"
+    },
+    {
+      "id": "playbook_updater",
+      "kind": "passthrough",
+      "label": "PlaybookUpdater (BaseAgent) - applies delta to app:playbook state and emits event"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "Curator",
+      "kind": "direct"
+    },
+    {
+      "source": "Curator",
+      "target": "playbook_updater",
+      "kind": "direct"
+    },
+    {
+      "source": "playbook_updater",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

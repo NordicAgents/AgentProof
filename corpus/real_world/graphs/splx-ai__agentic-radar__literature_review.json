@@ -1,0 +1,67 @@
+{
+  "name": "splx-ai__agentic-radar__literature_review",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "google_search_agent",
+      "kind": "llm",
+      "label": "google_search_agent",
+      "tools": []
+    },
+    {
+      "id": "arxiv_search_agent",
+      "kind": "llm",
+      "label": "arxiv_search_agent",
+      "tools": []
+    },
+    {
+      "id": "report_agent",
+      "kind": "llm",
+      "label": "report_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "google_search_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "google_search_agent",
+      "target": "arxiv_search_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "arxiv_search_agent",
+      "target": "report_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "report_agent",
+      "target": "google_search_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "report_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

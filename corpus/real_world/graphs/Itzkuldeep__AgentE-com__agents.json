@@ -1,0 +1,117 @@
+{
+  "name": "Itzkuldeep__AgentE-com__agents",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "User",
+      "kind": "human",
+      "label": "User",
+      "tools": []
+    },
+    {
+      "id": "CallAgent",
+      "kind": "llm",
+      "label": "CallAgent",
+      "tools": []
+    },
+    {
+      "id": "MeetAgent",
+      "kind": "llm",
+      "label": "MeetAgent",
+      "tools": []
+    },
+    {
+      "id": "Mailgetter",
+      "kind": "llm",
+      "label": "Mailgetter",
+      "tools": []
+    },
+    {
+      "id": "RAGAgent",
+      "kind": "llm",
+      "label": "RAGAgent",
+      "tools": []
+    },
+    {
+      "id": "ConversationAgent",
+      "kind": "llm",
+      "label": "ConversationAgent",
+      "tools": []
+    },
+    {
+      "id": "SchedulerAgent",
+      "kind": "llm",
+      "label": "SchedulerAgent",
+      "tools": []
+    },
+    {
+      "id": "EmailSenderAgent",
+      "kind": "llm",
+      "label": "EmailSenderAgent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "User",
+      "kind": "direct"
+    },
+    {
+      "source": "User",
+      "target": "CallAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "CallAgent",
+      "target": "MeetAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "MeetAgent",
+      "target": "Mailgetter",
+      "kind": "direct"
+    },
+    {
+      "source": "Mailgetter",
+      "target": "RAGAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "RAGAgent",
+      "target": "ConversationAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "ConversationAgent",
+      "target": "SchedulerAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "SchedulerAgent",
+      "target": "EmailSenderAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "EmailSenderAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

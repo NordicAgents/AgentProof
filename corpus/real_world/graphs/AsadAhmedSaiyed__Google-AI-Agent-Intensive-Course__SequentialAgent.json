@@ -1,0 +1,62 @@
+{
+  "name": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__SequentialAgent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "outline_agent",
+      "kind": "llm",
+      "label": "outline_agent",
+      "tools": []
+    },
+    {
+      "id": "writer_agent",
+      "kind": "llm",
+      "label": "writer_agent",
+      "tools": []
+    },
+    {
+      "id": "editor_agent",
+      "kind": "llm",
+      "label": "editor_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "outline_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "outline_agent",
+      "target": "writer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "writer_agent",
+      "target": "editor_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "editor_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

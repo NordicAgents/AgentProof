@@ -1,0 +1,67 @@
+{
+  "name": "jkmaina__autogen_blueprint__06_complete_multi_agent_system",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "coordinator",
+      "kind": "llm",
+      "label": "coordinator",
+      "tools": []
+    },
+    {
+      "id": "math_specialist",
+      "kind": "llm",
+      "label": "math_specialist",
+      "tools": []
+    },
+    {
+      "id": "science_specialist",
+      "kind": "llm",
+      "label": "science_specialist",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "coordinator",
+      "target": "math_specialist",
+      "kind": "direct"
+    },
+    {
+      "source": "math_specialist",
+      "target": "science_specialist",
+      "kind": "direct"
+    },
+    {
+      "source": "science_specialist",
+      "target": "coordinator",
+      "kind": "loop"
+    },
+    {
+      "source": "science_specialist",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

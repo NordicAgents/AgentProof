@@ -1,0 +1,62 @@
+{
+  "name": "kasukanra__autogen_local_LLM__autogen_app",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "technical_engineer",
+      "kind": "llm",
+      "label": "technical_engineer",
+      "tools": []
+    },
+    {
+      "id": "prompt_engineer",
+      "kind": "llm",
+      "label": "prompt_engineer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "technical_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "technical_engineer",
+      "target": "prompt_engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "prompt_engineer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

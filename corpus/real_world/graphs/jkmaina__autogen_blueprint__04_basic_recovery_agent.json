@@ -1,0 +1,51 @@
+{
+  "name": "jkmaina__autogen_blueprint__04_basic_recovery_agent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "main_agent",
+      "kind": "llm",
+      "label": "main_agent",
+      "tools": []
+    },
+    {
+      "id": "error_handler",
+      "kind": "llm",
+      "label": "error_handler",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "main_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "main_agent",
+      "target": "error_handler",
+      "kind": "direct"
+    },
+    {
+      "source": "error_handler",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

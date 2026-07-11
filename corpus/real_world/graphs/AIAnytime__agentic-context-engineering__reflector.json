@@ -1,0 +1,51 @@
+{
+  "name": "AIAnytime__agentic-context-engineering__reflector",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "reflector_",
+      "kind": "llm",
+      "label": "reflector_",
+      "tools": []
+    },
+    {
+      "id": "tag_bullet",
+      "kind": "llm",
+      "label": "tag_bullet",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "reflector_",
+      "kind": "direct"
+    },
+    {
+      "source": "reflector_",
+      "target": "tag_bullet",
+      "kind": "direct"
+    },
+    {
+      "source": "tag_bullet",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

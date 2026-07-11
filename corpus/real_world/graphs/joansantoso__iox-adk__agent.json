@@ -1,0 +1,73 @@
+{
+  "name": "joansantoso__iox-adk__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "topic_requester_agent",
+      "kind": "llm",
+      "label": "topic_requester_agent",
+      "tools": []
+    },
+    {
+      "id": "initial_writer_agent",
+      "kind": "llm",
+      "label": "initial_writer_agent",
+      "tools": []
+    },
+    {
+      "id": "critic_agent",
+      "kind": "llm",
+      "label": "critic_agent",
+      "tools": []
+    },
+    {
+      "id": "refiner_agent",
+      "kind": "llm",
+      "label": "refiner_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "topic_requester_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "topic_requester_agent",
+      "target": "initial_writer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "initial_writer_agent",
+      "target": "critic_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "critic_agent",
+      "target": "refiner_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "refiner_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

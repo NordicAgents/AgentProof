@@ -1,0 +1,40 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__18_execution_hooks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "get_the_temperature_in_lisbon_and_write_a_brief_we",
+      "kind": "llm",
+      "label": "Get the temperature in Lisbon and write a brief we",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "get_the_temperature_in_lisbon_and_write_a_brief_we",
+      "kind": "direct"
+    },
+    {
+      "source": "get_the_temperature_in_lisbon_and_write_a_brief_we",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

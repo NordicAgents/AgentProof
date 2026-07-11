@@ -1,0 +1,68 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__01_state_and_reducers",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research",
+      "kind": "router",
+      "label": "research",
+      "tools": []
+    },
+    {
+      "id": "deep_dive",
+      "kind": "llm",
+      "label": "deep_dive",
+      "tools": []
+    },
+    {
+      "id": "quick_summary",
+      "kind": "llm",
+      "label": "quick_summary",
+      "tools": []
+    },
+    {
+      "id": "detailed_summary",
+      "kind": "llm",
+      "label": "detailed_summary",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research",
+      "kind": "direct"
+    },
+    {
+      "source": "deep_dive",
+      "target": "detailed_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "quick_summary",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "detailed_summary",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

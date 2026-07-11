@@ -1,0 +1,60 @@
+{
+  "name": "ed-donner__agents__long_time_memory_to_do_tracking_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "todo_worker",
+      "kind": "router",
+      "label": "todo_worker",
+      "tools": []
+    },
+    {
+      "id": "update_todos",
+      "kind": "llm",
+      "label": "update_todos",
+      "tools": []
+    },
+    {
+      "id": "update_profile",
+      "kind": "llm",
+      "label": "update_profile",
+      "tools": []
+    },
+    {
+      "id": "update_instructions",
+      "kind": "llm",
+      "label": "update_instructions",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "todo_worker",
+      "kind": "direct"
+    },
+    {
+      "source": "update_todos",
+      "target": "todo_worker",
+      "kind": "direct"
+    },
+    {
+      "source": "update_profile",
+      "target": "todo_worker",
+      "kind": "direct"
+    },
+    {
+      "source": "update_instructions",
+      "target": "todo_worker",
+      "kind": "direct"
+    }
+  ]
+}

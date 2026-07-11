@@ -1,0 +1,56 @@
+{
+  "name": "blueming333__aicraft-class-autogen__demo4",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "architect_agent",
+      "kind": "llm",
+      "label": "architect_agent",
+      "tools": []
+    },
+    {
+      "id": "director_agent",
+      "kind": "llm",
+      "label": "director_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "architect_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "architect_agent",
+      "target": "director_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "director_agent",
+      "target": "architect_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "director_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

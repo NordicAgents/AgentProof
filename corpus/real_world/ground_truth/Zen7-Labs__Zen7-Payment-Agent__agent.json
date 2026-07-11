@@ -1,0 +1,115 @@
+{
+  "name": "Zen7-Labs__Zen7-Payment-Agent__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "Start"
+    },
+    {
+      "id": "GeneralPaymentAgent",
+      "kind": "router",
+      "label": "GeneralPaymentAgent (host, LLM router via initialize_payment_or_query_orders)",
+      "tools": [
+        "initialize_payment_or_query_orders"
+      ]
+    },
+    {
+      "id": "PaymentAgentPipeline",
+      "kind": "subgraph",
+      "label": "PaymentAgentPipeline (SequentialAgent)"
+    },
+    {
+      "id": "payer_agent",
+      "kind": "llm",
+      "label": "Payer Agent"
+    },
+    {
+      "id": "settlement_agent",
+      "kind": "llm",
+      "label": "Settlement Agent"
+    },
+    {
+      "id": "payee_agent",
+      "kind": "llm",
+      "label": "Payee Agent"
+    },
+    {
+      "id": "order_agent",
+      "kind": "llm",
+      "label": "Order Agent (QueryOrderAgent)"
+    },
+    {
+      "id": "allowance_agent",
+      "kind": "llm",
+      "label": "Allowance Agent (QueryAllowanceAgent)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "GeneralPaymentAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "GeneralPaymentAgent",
+      "target": "PaymentAgentPipeline",
+      "kind": "conditional"
+    },
+    {
+      "source": "GeneralPaymentAgent",
+      "target": "order_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "GeneralPaymentAgent",
+      "target": "allowance_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "GeneralPaymentAgent",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "PaymentAgentPipeline",
+      "target": "payer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "payer_agent",
+      "target": "settlement_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "settlement_agent",
+      "target": "payee_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "payee_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "order_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "allowance_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

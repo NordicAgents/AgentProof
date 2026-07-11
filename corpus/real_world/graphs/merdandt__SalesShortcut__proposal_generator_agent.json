@@ -1,0 +1,51 @@
+{
+  "name": "merdandt__SalesShortcut__proposal_generator_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "draft_writer_agent",
+      "kind": "llm",
+      "label": "draft_writer_agent",
+      "tools": []
+    },
+    {
+      "id": "fact_checker_agent",
+      "kind": "llm",
+      "label": "fact_checker_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "draft_writer_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_writer_agent",
+      "target": "fact_checker_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "fact_checker_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

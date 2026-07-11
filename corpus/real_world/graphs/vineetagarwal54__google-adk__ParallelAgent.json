@@ -1,0 +1,51 @@
+{
+  "name": "vineetagarwal54__google-adk__ParallelAgent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "parallel_research_team",
+      "kind": "llm",
+      "label": "parallel_research_team",
+      "tools": []
+    },
+    {
+      "id": "aggregator_agent",
+      "kind": "llm",
+      "label": "aggregator_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "parallel_research_team",
+      "kind": "direct"
+    },
+    {
+      "source": "parallel_research_team",
+      "target": "aggregator_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "aggregator_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

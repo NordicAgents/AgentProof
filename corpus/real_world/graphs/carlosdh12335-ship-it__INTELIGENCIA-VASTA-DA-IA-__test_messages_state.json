@@ -1,0 +1,61 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_messages_state",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "foo",
+      "kind": "llm",
+      "label": "foo",
+      "tools": []
+    },
+    {
+      "id": "chat",
+      "kind": "llm",
+      "label": "chat",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "foo",
+      "kind": "direct"
+    },
+    {
+      "source": "foo",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "foo",
+      "kind": "direct"
+    },
+    {
+      "source": "foo",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "chat",
+      "kind": "direct"
+    }
+  ]
+}

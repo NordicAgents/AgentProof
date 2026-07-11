@@ -1,0 +1,97 @@
+{
+  "name": "microsoft__ACV__test_group_chat_endpoint",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant (AssistantAgent) \u2014 team 1",
+      "tools": []
+    },
+    {
+      "id": "critic",
+      "kind": "llm",
+      "label": "critic (AssistantAgent) \u2014 team 1",
+      "tools": []
+    },
+    {
+      "id": "developer",
+      "kind": "llm",
+      "label": "developer (AssistantAgent) \u2014 team 2",
+      "tools": []
+    },
+    {
+      "id": "tester",
+      "kind": "llm",
+      "label": "tester (AssistantAgent) \u2014 team 2",
+      "tools": []
+    },
+    {
+      "id": "project_manager",
+      "kind": "llm",
+      "label": "project_manager (AssistantAgent) \u2014 team 2; excluded by candidate_func",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "critic",
+      "kind": "conditional"
+    },
+    {
+      "source": "critic",
+      "target": "assistant",
+      "kind": "loop"
+    },
+    {
+      "source": "critic",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "developer",
+      "kind": "direct"
+    },
+    {
+      "source": "developer",
+      "target": "tester",
+      "kind": "conditional"
+    },
+    {
+      "source": "tester",
+      "target": "project_manager",
+      "kind": "conditional"
+    },
+    {
+      "source": "project_manager",
+      "target": "developer",
+      "kind": "loop"
+    },
+    {
+      "source": "tester",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

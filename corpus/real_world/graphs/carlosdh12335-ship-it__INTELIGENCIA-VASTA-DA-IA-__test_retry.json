@@ -1,0 +1,398 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_retry",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "other_node",
+      "kind": "llm",
+      "label": "other_node",
+      "tools": []
+    },
+    {
+      "id": "failing_node",
+      "kind": "llm",
+      "label": "failing_node",
+      "tools": []
+    },
+    {
+      "id": "node",
+      "kind": "llm",
+      "label": "node",
+      "tools": []
+    },
+    {
+      "id": "always_failing",
+      "kind": "llm",
+      "label": "always_failing",
+      "tools": []
+    },
+    {
+      "id": "slow",
+      "kind": "llm",
+      "label": "slow",
+      "tools": []
+    },
+    {
+      "id": "flaky",
+      "kind": "llm",
+      "label": "flaky",
+      "tools": []
+    },
+    {
+      "id": "call_model",
+      "kind": "llm",
+      "label": "call_model",
+      "tools": []
+    },
+    {
+      "id": "after_handler",
+      "kind": "llm",
+      "label": "after_handler",
+      "tools": []
+    },
+    {
+      "id": "next_node",
+      "kind": "llm",
+      "label": "next_node",
+      "tools": []
+    },
+    {
+      "id": "sub_fail_node",
+      "kind": "llm",
+      "label": "sub_fail_node",
+      "tools": []
+    },
+    {
+      "id": "subgraph_node",
+      "kind": "llm",
+      "label": "subgraph_node",
+      "tools": []
+    },
+    {
+      "id": "node_b",
+      "kind": "llm",
+      "label": "node_b",
+      "tools": []
+    },
+    {
+      "id": "node_a",
+      "kind": "llm",
+      "label": "node_a",
+      "tools": []
+    },
+    {
+      "id": "fail_b",
+      "kind": "llm",
+      "label": "fail_b",
+      "tools": []
+    },
+    {
+      "id": "fail_a",
+      "kind": "llm",
+      "label": "fail_a",
+      "tools": []
+    },
+    {
+      "id": "route_node",
+      "kind": "router",
+      "label": "route_node",
+      "tools": []
+    },
+    {
+      "id": "fail_without_handler",
+      "kind": "llm",
+      "label": "fail_without_handler",
+      "tools": []
+    },
+    {
+      "id": "__default_error_handler__",
+      "kind": "llm",
+      "label": "__default_error_handler__",
+      "tools": []
+    },
+    {
+      "id": "quick",
+      "kind": "llm",
+      "label": "quick",
+      "tools": []
+    },
+    {
+      "id": "a",
+      "kind": "llm",
+      "label": "a",
+      "tools": []
+    },
+    {
+      "id": "fail",
+      "kind": "llm",
+      "label": "fail",
+      "tools": []
+    },
+    {
+      "id": "b",
+      "kind": "llm",
+      "label": "b",
+      "tools": []
+    },
+    {
+      "id": "boom",
+      "kind": "llm",
+      "label": "boom",
+      "tools": []
+    },
+    {
+      "id": "ok",
+      "kind": "llm",
+      "label": "ok",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "failing_node",
+      "target": "other_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "failing_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "slow",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "slow",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "slow",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "flaky",
+      "kind": "direct"
+    },
+    {
+      "source": "flaky",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "call_model",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "sub_fail_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "subgraph_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "node_a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "route_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fail_without_handler",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "route_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "route_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "always_failing",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "__default_error_handler__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "flaky",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "flaky",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "slow",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "quick",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fail",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "fail",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "boom",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "ok",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "boom",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "ok",
+      "kind": "direct"
+    }
+  ]
+}

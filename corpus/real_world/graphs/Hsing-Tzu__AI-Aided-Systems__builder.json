@@ -1,0 +1,62 @@
+{
+  "name": "Hsing-Tzu__AI-Aided-Systems__builder",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_assistant",
+      "kind": "llm",
+      "label": "research_assistant",
+      "tools": []
+    },
+    {
+      "id": "verifier",
+      "kind": "llm",
+      "label": "verifier",
+      "tools": []
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "research_assistant",
+      "target": "verifier",
+      "kind": "direct"
+    },
+    {
+      "source": "verifier",
+      "target": "summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

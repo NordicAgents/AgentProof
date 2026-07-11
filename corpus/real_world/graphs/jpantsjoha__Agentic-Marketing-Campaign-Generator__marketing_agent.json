@@ -1,0 +1,73 @@
+{
+  "name": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "summary_agent",
+      "kind": "llm",
+      "label": "summary_agent",
+      "tools": []
+    },
+    {
+      "id": "idea_agent",
+      "kind": "llm",
+      "label": "idea_agent",
+      "tools": []
+    },
+    {
+      "id": "social_agent",
+      "kind": "llm",
+      "label": "social_agent",
+      "tools": []
+    },
+    {
+      "id": "video_agent",
+      "kind": "llm",
+      "label": "video_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "summary_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "summary_agent",
+      "target": "idea_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "idea_agent",
+      "target": "social_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "social_agent",
+      "target": "video_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "video_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "name": "NordicAgents__AgentProof__langgraph_incident_response",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "intake",
+      "kind": "llm",
+      "label": "intake",
+      "tools": []
+    },
+    {
+      "id": "triage_router",
+      "kind": "router",
+      "label": "triage_router",
+      "tools": []
+    },
+    {
+      "id": "auto_mitigate",
+      "kind": "llm",
+      "label": "auto_mitigate",
+      "tools": []
+    },
+    {
+      "id": "human_approval",
+      "kind": "human",
+      "label": "human_approval",
+      "tools": []
+    },
+    {
+      "id": "mitigate_tools",
+      "kind": "tool",
+      "label": "mitigate_tools",
+      "tools": []
+    },
+    {
+      "id": "postmortem_tools",
+      "kind": "tool",
+      "label": "postmortem_tools",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "intake",
+      "kind": "direct"
+    },
+    {
+      "source": "intake",
+      "target": "triage_router",
+      "kind": "direct"
+    },
+    {
+      "source": "auto_mitigate",
+      "target": "mitigate_tools",
+      "kind": "direct"
+    },
+    {
+      "source": "human_approval",
+      "target": "mitigate_tools",
+      "kind": "direct"
+    },
+    {
+      "source": "mitigate_tools",
+      "target": "postmortem_tools",
+      "kind": "direct"
+    },
+    {
+      "source": "postmortem_tools",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

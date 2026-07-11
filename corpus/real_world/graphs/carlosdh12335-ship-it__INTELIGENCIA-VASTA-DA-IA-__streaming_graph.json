@@ -1,0 +1,89 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__streaming_graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "sub",
+      "kind": "llm",
+      "label": "sub",
+      "tools": []
+    },
+    {
+      "id": "stream_message",
+      "kind": "llm",
+      "label": "stream_message",
+      "tools": []
+    },
+    {
+      "id": "call_tool",
+      "kind": "tool",
+      "label": "call_tool",
+      "tools": []
+    },
+    {
+      "id": "ask_human",
+      "kind": "human",
+      "label": "ask_human",
+      "tools": []
+    },
+    {
+      "id": "run_subgraph",
+      "kind": "llm",
+      "label": "run_subgraph",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "sub",
+      "kind": "direct"
+    },
+    {
+      "source": "sub",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "stream_message",
+      "kind": "direct"
+    },
+    {
+      "source": "stream_message",
+      "target": "call_tool",
+      "kind": "direct"
+    },
+    {
+      "source": "call_tool",
+      "target": "ask_human",
+      "kind": "direct"
+    },
+    {
+      "source": "ask_human",
+      "target": "run_subgraph",
+      "kind": "direct"
+    },
+    {
+      "source": "run_subgraph",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

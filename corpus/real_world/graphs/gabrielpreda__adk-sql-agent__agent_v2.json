@@ -1,0 +1,62 @@
+{
+  "name": "gabrielpreda__adk-sql-agent__agent_v2",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "safety_validator",
+      "kind": "llm",
+      "label": "safety_validator",
+      "tools": []
+    },
+    {
+      "id": "conditional_router",
+      "kind": "llm",
+      "label": "conditional_router",
+      "tools": []
+    },
+    {
+      "id": "refinement_loop",
+      "kind": "llm",
+      "label": "refinement_loop",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "safety_validator",
+      "kind": "direct"
+    },
+    {
+      "source": "safety_validator",
+      "target": "conditional_router",
+      "kind": "direct"
+    },
+    {
+      "source": "conditional_router",
+      "target": "refinement_loop",
+      "kind": "direct"
+    },
+    {
+      "source": "refinement_loop",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

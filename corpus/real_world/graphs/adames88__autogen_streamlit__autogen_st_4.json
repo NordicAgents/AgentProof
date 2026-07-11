@@ -1,0 +1,95 @@
+{
+  "name": "adames88__autogen_streamlit__autogen_st_4",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "critic",
+      "kind": "llm",
+      "label": "critic",
+      "tools": []
+    },
+    {
+      "id": "engineer",
+      "kind": "llm",
+      "label": "engineer",
+      "tools": []
+    },
+    {
+      "id": "executor",
+      "kind": "llm",
+      "label": "executor",
+      "tools": []
+    },
+    {
+      "id": "writer",
+      "kind": "llm",
+      "label": "writer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "critic",
+      "kind": "direct"
+    },
+    {
+      "source": "critic",
+      "target": "engineer",
+      "kind": "direct"
+    },
+    {
+      "source": "engineer",
+      "target": "executor",
+      "kind": "direct"
+    },
+    {
+      "source": "executor",
+      "target": "writer",
+      "kind": "direct"
+    },
+    {
+      "source": "writer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

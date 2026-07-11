@@ -1,0 +1,62 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__04_multi_agent_systems",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent_0",
+      "kind": "llm",
+      "label": "agent_0",
+      "tools": []
+    },
+    {
+      "id": "analysis_agent",
+      "kind": "llm",
+      "label": "analysis_agent",
+      "tools": []
+    },
+    {
+      "id": "report_agent",
+      "kind": "llm",
+      "label": "report_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent_0",
+      "kind": "direct"
+    },
+    {
+      "source": "agent_0",
+      "target": "analysis_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "analysis_agent",
+      "target": "report_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "report_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

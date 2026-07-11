@@ -1,0 +1,62 @@
+{
+  "name": "NordicAgents__AgentProof__test_extract_autogen",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "a",
+      "kind": "llm",
+      "label": "a",
+      "tools": []
+    },
+    {
+      "id": "b",
+      "kind": "llm",
+      "label": "b",
+      "tools": []
+    },
+    {
+      "id": "c",
+      "kind": "llm",
+      "label": "c",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "direct"
+    },
+    {
+      "source": "b",
+      "target": "c",
+      "kind": "direct"
+    },
+    {
+      "source": "c",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

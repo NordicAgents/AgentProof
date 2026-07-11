@@ -1,0 +1,86 @@
+{
+  "name": "ed-donner__agents__workflow_graph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "classify_small_talk",
+      "kind": "router",
+      "label": "classify_small_talk",
+      "tools": []
+    },
+    {
+      "id": "handle_small_talk",
+      "kind": "llm",
+      "label": "handle_small_talk",
+      "tools": []
+    },
+    {
+      "id": "clarifying_agent",
+      "kind": "router",
+      "label": "clarifying_agent",
+      "tools": []
+    },
+    {
+      "id": "planning_agent",
+      "kind": "llm",
+      "label": "planning_agent",
+      "tools": []
+    },
+    {
+      "id": "search_agent",
+      "kind": "router",
+      "label": "search_agent",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "evaluator",
+      "kind": "router",
+      "label": "evaluator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classify_small_talk",
+      "kind": "direct"
+    },
+    {
+      "source": "handle_small_talk",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "planning_agent",
+      "target": "search_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "search_agent",
+      "kind": "direct"
+    }
+  ]
+}

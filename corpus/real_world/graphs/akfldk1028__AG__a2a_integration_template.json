@@ -1,0 +1,51 @@
+{
+  "name": "akfldk1028__AG__a2a_integration_template",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "coordinator",
+      "kind": "llm",
+      "label": "coordinator",
+      "tools": []
+    },
+    {
+      "id": "remote_expert",
+      "kind": "llm",
+      "label": "remote_expert",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "coordinator",
+      "kind": "direct"
+    },
+    {
+      "source": "coordinator",
+      "target": "remote_expert",
+      "kind": "direct"
+    },
+    {
+      "source": "remote_expert",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "name": "NordicAgents__AgentProof__crewai_research_crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "collect_research_papers_and_datasets_from_academic",
+      "kind": "llm",
+      "label": "Collect research papers and datasets from academic",
+      "tools": []
+    },
+    {
+      "id": "run_statistical_analysis_on_gathered_data",
+      "kind": "llm",
+      "label": "Run statistical analysis on gathered data",
+      "tools": []
+    },
+    {
+      "id": "draft_the_research_report_from_analysis_results",
+      "kind": "llm",
+      "label": "Draft the research report from analysis results",
+      "tools": []
+    },
+    {
+      "id": "review_and_approve_the_final_report",
+      "kind": "llm",
+      "label": "Review and approve the final report",
+      "tools": []
+    },
+    {
+      "id": "survey_existing_literature_on_the_topic",
+      "kind": "llm",
+      "label": "Survey existing literature on the topic",
+      "tools": []
+    },
+    {
+      "id": "run_experiments_based_on_literature_gaps",
+      "kind": "llm",
+      "label": "Run experiments based on literature gaps",
+      "tools": []
+    },
+    {
+      "id": "synthesize_all_findings",
+      "kind": "llm",
+      "label": "Synthesize all findings",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "collect_research_papers_and_datasets_from_academic",
+      "kind": "direct"
+    },
+    {
+      "source": "collect_research_papers_and_datasets_from_academic",
+      "target": "run_statistical_analysis_on_gathered_data",
+      "kind": "direct"
+    },
+    {
+      "source": "run_statistical_analysis_on_gathered_data",
+      "target": "draft_the_research_report_from_analysis_results",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_the_research_report_from_analysis_results",
+      "target": "review_and_approve_the_final_report",
+      "kind": "direct"
+    },
+    {
+      "source": "review_and_approve_the_final_report",
+      "target": "survey_existing_literature_on_the_topic",
+      "kind": "direct"
+    },
+    {
+      "source": "survey_existing_literature_on_the_topic",
+      "target": "run_experiments_based_on_literature_gaps",
+      "kind": "direct"
+    },
+    {
+      "source": "run_experiments_based_on_literature_gaps",
+      "target": "synthesize_all_findings",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesize_all_findings",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

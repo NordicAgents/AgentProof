@@ -1,0 +1,67 @@
+{
+  "name": "splx-ai__agentic-radar__company_research",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "stock_analysis_agent",
+      "kind": "llm",
+      "label": "stock_analysis_agent",
+      "tools": []
+    },
+    {
+      "id": "search_agent",
+      "kind": "llm",
+      "label": "search_agent",
+      "tools": []
+    },
+    {
+      "id": "report_agent",
+      "kind": "llm",
+      "label": "report_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "stock_analysis_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "stock_analysis_agent",
+      "target": "search_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "search_agent",
+      "target": "report_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "report_agent",
+      "target": "stock_analysis_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "report_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

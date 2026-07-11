@@ -1,0 +1,129 @@
+{
+  "name": "ed-donner__agents__graph_builder",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "clarifier",
+      "kind": "llm",
+      "label": "clarifier",
+      "tools": []
+    },
+    {
+      "id": "topic_generator",
+      "kind": "llm",
+      "label": "topic_generator",
+      "tools": []
+    },
+    {
+      "id": "topic_evaluator",
+      "kind": "router",
+      "label": "topic_evaluator",
+      "tools": []
+    },
+    {
+      "id": "summarizer_agent",
+      "kind": "llm",
+      "label": "summarizer_agent",
+      "tools": []
+    },
+    {
+      "id": "report_writer",
+      "kind": "llm",
+      "label": "report_writer",
+      "tools": []
+    },
+    {
+      "id": "report_evaluator",
+      "kind": "router",
+      "label": "report_evaluator",
+      "tools": []
+    },
+    {
+      "id": "file_writer",
+      "kind": "llm",
+      "label": "file_writer",
+      "tools": []
+    },
+    {
+      "id": "html_converter",
+      "kind": "llm",
+      "label": "html_converter",
+      "tools": []
+    },
+    {
+      "id": "email",
+      "kind": "llm",
+      "label": "email",
+      "tools": []
+    },
+    {
+      "id": "push_notification",
+      "kind": "llm",
+      "label": "push_notification",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "clarifier",
+      "kind": "direct"
+    },
+    {
+      "source": "clarifier",
+      "target": "topic_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "topic_generator",
+      "target": "topic_evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "summarizer_agent",
+      "target": "report_writer",
+      "kind": "direct"
+    },
+    {
+      "source": "report_writer",
+      "target": "report_evaluator",
+      "kind": "direct"
+    },
+    {
+      "source": "file_writer",
+      "target": "html_converter",
+      "kind": "direct"
+    },
+    {
+      "source": "html_converter",
+      "target": "email",
+      "kind": "direct"
+    },
+    {
+      "source": "email",
+      "target": "push_notification",
+      "kind": "direct"
+    },
+    {
+      "source": "push_notification",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

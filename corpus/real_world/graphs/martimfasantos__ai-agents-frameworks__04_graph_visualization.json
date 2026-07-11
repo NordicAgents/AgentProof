@@ -1,0 +1,68 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__04_graph_visualization",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "classifier",
+      "kind": "router",
+      "label": "classifier",
+      "tools": []
+    },
+    {
+      "id": "technical",
+      "kind": "llm",
+      "label": "technical",
+      "tools": []
+    },
+    {
+      "id": "general",
+      "kind": "llm",
+      "label": "general",
+      "tools": []
+    },
+    {
+      "id": "review",
+      "kind": "llm",
+      "label": "review",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classifier",
+      "kind": "direct"
+    },
+    {
+      "source": "technical",
+      "target": "review",
+      "kind": "direct"
+    },
+    {
+      "source": "general",
+      "target": "review",
+      "kind": "direct"
+    },
+    {
+      "source": "review",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

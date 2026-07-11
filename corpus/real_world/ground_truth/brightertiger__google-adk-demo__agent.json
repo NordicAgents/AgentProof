@@ -1,0 +1,83 @@
+{
+  "name": "brightertiger__google-adk-demo__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "manager_agent",
+      "kind": "router",
+      "label": "manager_agent (coordinator LlmAgent, LLM-driven delegation to sub_agents; also has MCP tools bound)"
+    },
+    {
+      "id": "crawler_agent",
+      "kind": "tool",
+      "label": "crawler_agent (specialist with MCP filesystem toolset)",
+      "tools": [
+        "McpToolset(filesystem)"
+      ]
+    },
+    {
+      "id": "address_agent",
+      "kind": "llm",
+      "label": "address_agent (specialist, no tools / empty list)"
+    },
+    {
+      "id": "geocoding_agent",
+      "kind": "tool",
+      "label": "geocoding_agent (specialist with MCP filesystem toolset)",
+      "tools": [
+        "McpToolset(filesystem)"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "manager_agent",
+      "target": "crawler_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "manager_agent",
+      "target": "address_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "manager_agent",
+      "target": "geocoding_agent",
+      "kind": "conditional"
+    },
+    {
+      "source": "crawler_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "address_agent",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "geocoding_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

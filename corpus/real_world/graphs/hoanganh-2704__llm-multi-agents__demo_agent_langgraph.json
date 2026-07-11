@@ -1,0 +1,79 @@
+{
+  "name": "hoanganh-2704__llm-multi-agents__demo_agent_langgraph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "supervisor",
+      "kind": "router",
+      "label": "supervisor",
+      "tools": []
+    },
+    {
+      "id": "DocAgent",
+      "kind": "router",
+      "label": "DocAgent",
+      "tools": []
+    },
+    {
+      "id": "call_tool",
+      "kind": "tool",
+      "label": "call_tool",
+      "tools": []
+    },
+    {
+      "id": "PriceAgent",
+      "kind": "router",
+      "label": "PriceAgent",
+      "tools": []
+    },
+    {
+      "id": "search_tool",
+      "kind": "tool",
+      "label": "search_tool",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "supervisor",
+      "kind": "direct"
+    },
+    {
+      "source": "DocAgent",
+      "target": "supervisor",
+      "kind": "direct"
+    },
+    {
+      "source": "PriceAgent",
+      "target": "supervisor",
+      "kind": "direct"
+    },
+    {
+      "source": "search_tool",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "call_tool",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

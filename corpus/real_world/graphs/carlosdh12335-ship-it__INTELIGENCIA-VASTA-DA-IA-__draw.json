@@ -1,0 +1,43 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__draw",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "input",
+      "kind": "llm",
+      "label": "input",
+      "tools": []
+    },
+    {
+      "id": "output",
+      "kind": "llm",
+      "label": "output",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "inp",
+      "target": "outp",
+      "kind": "direct"
+    },
+    {
+      "source": "input",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "node",
+      "target": "output",
+      "kind": "direct"
+    }
+  ]
+}

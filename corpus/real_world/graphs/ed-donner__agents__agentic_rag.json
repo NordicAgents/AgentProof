@@ -1,0 +1,85 @@
+{
+  "name": "ed-donner__agents__agentic_rag",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "disease_qna_retriever",
+      "kind": "llm",
+      "label": "disease_qna_retriever",
+      "tools": []
+    },
+    {
+      "id": "device_manual_retriever",
+      "kind": "llm",
+      "label": "device_manual_retriever",
+      "tools": []
+    },
+    {
+      "id": "relevance_checker",
+      "kind": "router",
+      "label": "relevance_checker",
+      "tools": []
+    },
+    {
+      "id": "web_searcher",
+      "kind": "llm",
+      "label": "web_searcher",
+      "tools": []
+    },
+    {
+      "id": "generator",
+      "kind": "llm",
+      "label": "generator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "disease_qna_retriever",
+      "target": "relevance_checker",
+      "kind": "direct"
+    },
+    {
+      "source": "device_manual_retriever",
+      "target": "relevance_checker",
+      "kind": "direct"
+    },
+    {
+      "source": "web_searcher",
+      "target": "relevance_checker",
+      "kind": "direct"
+    },
+    {
+      "source": "generator",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    }
+  ]
+}

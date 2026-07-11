@@ -1,0 +1,51 @@
+{
+  "name": "surpradhan__agent-event-protocol__test_instrument_crewai",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_aep",
+      "kind": "llm",
+      "label": "research AEP",
+      "tools": []
+    },
+    {
+      "id": "research_the_topic",
+      "kind": "llm",
+      "label": "research the topic",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_aep",
+      "kind": "direct"
+    },
+    {
+      "source": "research_aep",
+      "target": "research_the_topic",
+      "kind": "direct"
+    },
+    {
+      "source": "research_the_topic",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

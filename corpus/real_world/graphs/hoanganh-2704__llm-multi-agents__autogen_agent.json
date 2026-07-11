@@ -1,0 +1,106 @@
+{
+  "name": "hoanganh-2704__llm-multi-agents__autogen_agent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "user_proxy",
+      "kind": "human",
+      "label": "user_proxy",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "history_assistant",
+      "kind": "llm",
+      "label": "history_assistant",
+      "tools": []
+    },
+    {
+      "id": "coder",
+      "kind": "llm",
+      "label": "coder",
+      "tools": []
+    },
+    {
+      "id": "math",
+      "kind": "llm",
+      "label": "math",
+      "tools": []
+    },
+    {
+      "id": "history",
+      "kind": "llm",
+      "label": "history",
+      "tools": []
+    },
+    {
+      "id": "whaler",
+      "kind": "llm",
+      "label": "whaler",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_proxy",
+      "kind": "direct"
+    },
+    {
+      "source": "user_proxy",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "history_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "history_assistant",
+      "target": "coder",
+      "kind": "direct"
+    },
+    {
+      "source": "coder",
+      "target": "math",
+      "kind": "direct"
+    },
+    {
+      "source": "math",
+      "target": "history",
+      "kind": "direct"
+    },
+    {
+      "source": "history",
+      "target": "whaler",
+      "kind": "direct"
+    },
+    {
+      "source": "whaler",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

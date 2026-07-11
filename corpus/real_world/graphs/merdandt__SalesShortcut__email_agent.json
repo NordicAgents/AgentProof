@@ -1,0 +1,51 @@
+{
+  "name": "merdandt__SalesShortcut__email_agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "email_crafter_agent",
+      "kind": "llm",
+      "label": "email_crafter_agent",
+      "tools": []
+    },
+    {
+      "id": "email_sender_agent",
+      "kind": "llm",
+      "label": "email_sender_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "email_crafter_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "email_crafter_agent",
+      "target": "email_sender_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "email_sender_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

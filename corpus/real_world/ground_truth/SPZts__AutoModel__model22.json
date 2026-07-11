@@ -1,0 +1,62 @@
+{
+  "name": "SPZts__AutoModel__model22",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "model_22_selector",
+      "kind": "llm",
+      "label": "Model_22_Selector: choose model name or 'skip'"
+    },
+    {
+      "id": "model_22_coder",
+      "kind": "llm",
+      "label": "Model_22_Coder: generate evaluate-API call code"
+    },
+    {
+      "id": "model_22_summary",
+      "kind": "llm",
+      "label": "Model_22_Summary: summarize execution result"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "model_22_selector",
+      "kind": "direct"
+    },
+    {
+      "source": "model_22_selector",
+      "target": "model_22_coder",
+      "kind": "direct"
+    },
+    {
+      "source": "model_22_coder",
+      "target": "model_22_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "model_22_summary",
+      "target": "model_22_selector",
+      "kind": "loop"
+    },
+    {
+      "source": "model_22_summary",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

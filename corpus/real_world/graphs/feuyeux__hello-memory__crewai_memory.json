@@ -1,0 +1,40 @@
+{
+  "name": "feuyeux__hello-memory__crewai_memory",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "your_task_is_to_answer_the_{question}_of_your_kid_",
+      "kind": "llm",
+      "label": "Your task is to answer the {question} of your kid ",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "your_task_is_to_answer_the_{question}_of_your_kid_",
+      "kind": "direct"
+    },
+    {
+      "source": "your_task_is_to_answer_the_{question}_of_your_kid_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

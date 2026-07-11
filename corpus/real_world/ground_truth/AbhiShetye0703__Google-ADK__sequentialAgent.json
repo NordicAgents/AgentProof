@@ -1,0 +1,55 @@
+{
+  "name": "AbhiShetye0703__Google-ADK__sequentialAgent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry"
+    },
+    {
+      "id": "OutlineAgent",
+      "kind": "llm",
+      "label": "OutlineAgent (Gemini, output_key=blog_outline)"
+    },
+    {
+      "id": "WriterAgent",
+      "kind": "llm",
+      "label": "WriterAgent (Gemini, output_key=blog_draft)"
+    },
+    {
+      "id": "EditorAgent",
+      "kind": "llm",
+      "label": "EditorAgent (Gemini, output_key=final_blog)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "OutlineAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "OutlineAgent",
+      "target": "WriterAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "WriterAgent",
+      "target": "EditorAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "EditorAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

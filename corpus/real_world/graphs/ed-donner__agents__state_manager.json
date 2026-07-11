@@ -1,0 +1,63 @@
+{
+  "name": "ed-donner__agents__state_manager",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "challenge_step",
+      "kind": "llm",
+      "label": "challenge_step",
+      "tools": []
+    },
+    {
+      "id": "plan_step",
+      "kind": "router",
+      "label": "plan_step",
+      "tools": []
+    },
+    {
+      "id": "build_step",
+      "kind": "llm",
+      "label": "build_step",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "challenge_step",
+      "target": "plan_step",
+      "kind": "direct"
+    },
+    {
+      "source": "build_step",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

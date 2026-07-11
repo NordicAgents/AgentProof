@@ -1,0 +1,62 @@
+{
+  "name": "MikhailMostWanted__Astra__graph_workflow",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "decompose",
+      "kind": "llm",
+      "label": "decompose",
+      "tools": []
+    },
+    {
+      "id": "implement",
+      "kind": "llm",
+      "label": "implement",
+      "tools": []
+    },
+    {
+      "id": "verify",
+      "kind": "llm",
+      "label": "verify",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "decompose",
+      "kind": "direct"
+    },
+    {
+      "source": "decompose",
+      "target": "implement",
+      "kind": "direct"
+    },
+    {
+      "source": "implement",
+      "target": "verify",
+      "kind": "direct"
+    },
+    {
+      "source": "verify",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

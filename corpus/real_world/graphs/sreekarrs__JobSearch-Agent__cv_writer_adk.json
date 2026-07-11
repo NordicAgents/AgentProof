@@ -1,0 +1,51 @@
+{
+  "name": "sreekarrs__JobSearch-Agent__cv_writer_adk",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "grammar_check",
+      "kind": "llm",
+      "label": "grammar_check",
+      "tools": []
+    },
+    {
+      "id": "final_draft",
+      "kind": "llm",
+      "label": "final_draft",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "grammar_check",
+      "kind": "direct"
+    },
+    {
+      "source": "grammar_check",
+      "target": "final_draft",
+      "kind": "direct"
+    },
+    {
+      "source": "final_draft",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

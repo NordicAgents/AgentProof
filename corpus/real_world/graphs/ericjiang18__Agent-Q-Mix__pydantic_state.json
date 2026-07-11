@@ -1,0 +1,77 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__pydantic_state",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "one",
+      "kind": "llm",
+      "label": "one",
+      "tools": []
+    },
+    {
+      "id": "two",
+      "kind": "llm",
+      "label": "two",
+      "tools": []
+    },
+    {
+      "id": "three",
+      "kind": "llm",
+      "label": "three",
+      "tools": []
+    },
+    {
+      "id": "four",
+      "kind": "llm",
+      "label": "four",
+      "tools": []
+    },
+    {
+      "id": "five",
+      "kind": "llm",
+      "label": "five",
+      "tools": []
+    },
+    {
+      "id": "six",
+      "kind": "router",
+      "label": "six",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "one",
+      "kind": "direct"
+    },
+    {
+      "source": "one",
+      "target": "two",
+      "kind": "direct"
+    },
+    {
+      "source": "two",
+      "target": "three",
+      "kind": "direct"
+    },
+    {
+      "source": "two",
+      "target": "four",
+      "kind": "direct"
+    },
+    {
+      "source": "five",
+      "target": "six",
+      "kind": "direct"
+    }
+  ]
+}

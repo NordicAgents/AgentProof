@@ -1,0 +1,211 @@
+{
+  "name": "splx-ai__agentic-radar__customer_service",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "fetch_user_info",
+      "kind": "router",
+      "label": "fetch_user_info",
+      "tools": []
+    },
+    {
+      "id": "enter_update_flight",
+      "kind": "llm",
+      "label": "enter_update_flight",
+      "tools": []
+    },
+    {
+      "id": "update_flight",
+      "kind": "router",
+      "label": "update_flight",
+      "tools": []
+    },
+    {
+      "id": "update_flight_sensitive_tools",
+      "kind": "tool",
+      "label": "update_flight_sensitive_tools",
+      "tools": []
+    },
+    {
+      "id": "update_flight_safe_tools",
+      "kind": "tool",
+      "label": "update_flight_safe_tools",
+      "tools": []
+    },
+    {
+      "id": "leave_skill",
+      "kind": "llm",
+      "label": "leave_skill",
+      "tools": []
+    },
+    {
+      "id": "enter_book_car_rental",
+      "kind": "llm",
+      "label": "enter_book_car_rental",
+      "tools": []
+    },
+    {
+      "id": "book_car_rental",
+      "kind": "router",
+      "label": "book_car_rental",
+      "tools": []
+    },
+    {
+      "id": "book_car_rental_safe_tools",
+      "kind": "tool",
+      "label": "book_car_rental_safe_tools",
+      "tools": []
+    },
+    {
+      "id": "book_car_rental_sensitive_tools",
+      "kind": "tool",
+      "label": "book_car_rental_sensitive_tools",
+      "tools": []
+    },
+    {
+      "id": "enter_book_hotel",
+      "kind": "llm",
+      "label": "enter_book_hotel",
+      "tools": []
+    },
+    {
+      "id": "book_hotel",
+      "kind": "router",
+      "label": "book_hotel",
+      "tools": []
+    },
+    {
+      "id": "book_hotel_safe_tools",
+      "kind": "tool",
+      "label": "book_hotel_safe_tools",
+      "tools": []
+    },
+    {
+      "id": "book_hotel_sensitive_tools",
+      "kind": "tool",
+      "label": "book_hotel_sensitive_tools",
+      "tools": []
+    },
+    {
+      "id": "enter_book_excursion",
+      "kind": "llm",
+      "label": "enter_book_excursion",
+      "tools": []
+    },
+    {
+      "id": "book_excursion",
+      "kind": "router",
+      "label": "book_excursion",
+      "tools": []
+    },
+    {
+      "id": "book_excursion_safe_tools",
+      "kind": "tool",
+      "label": "book_excursion_safe_tools",
+      "tools": []
+    },
+    {
+      "id": "book_excursion_sensitive_tools",
+      "kind": "tool",
+      "label": "book_excursion_sensitive_tools",
+      "tools": []
+    },
+    {
+      "id": "primary_assistant",
+      "kind": "router",
+      "label": "primary_assistant",
+      "tools": []
+    },
+    {
+      "id": "primary_assistant_tools",
+      "kind": "tool",
+      "label": "primary_assistant_tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "fetch_user_info",
+      "kind": "direct"
+    },
+    {
+      "source": "enter_update_flight",
+      "target": "update_flight",
+      "kind": "direct"
+    },
+    {
+      "source": "update_flight_sensitive_tools",
+      "target": "update_flight",
+      "kind": "direct"
+    },
+    {
+      "source": "update_flight_safe_tools",
+      "target": "update_flight",
+      "kind": "direct"
+    },
+    {
+      "source": "leave_skill",
+      "target": "primary_assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "enter_book_car_rental",
+      "target": "book_car_rental",
+      "kind": "direct"
+    },
+    {
+      "source": "book_car_rental_sensitive_tools",
+      "target": "book_car_rental",
+      "kind": "direct"
+    },
+    {
+      "source": "book_car_rental_safe_tools",
+      "target": "book_car_rental",
+      "kind": "direct"
+    },
+    {
+      "source": "enter_book_hotel",
+      "target": "book_hotel",
+      "kind": "direct"
+    },
+    {
+      "source": "book_hotel_sensitive_tools",
+      "target": "book_hotel",
+      "kind": "direct"
+    },
+    {
+      "source": "book_hotel_safe_tools",
+      "target": "book_hotel",
+      "kind": "direct"
+    },
+    {
+      "source": "enter_book_excursion",
+      "target": "book_excursion",
+      "kind": "direct"
+    },
+    {
+      "source": "book_excursion_sensitive_tools",
+      "target": "book_excursion",
+      "kind": "direct"
+    },
+    {
+      "source": "book_excursion_safe_tools",
+      "target": "book_excursion",
+      "kind": "direct"
+    },
+    {
+      "source": "primary_assistant_tools",
+      "target": "primary_assistant",
+      "kind": "direct"
+    }
+  ]
+}

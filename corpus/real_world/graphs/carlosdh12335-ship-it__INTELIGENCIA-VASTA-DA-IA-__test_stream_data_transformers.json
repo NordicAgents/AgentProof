@@ -1,0 +1,60 @@
+{
+  "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_stream_data_transformers",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "my_node",
+      "kind": "llm",
+      "label": "my_node",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "my_node",
+      "kind": "direct"
+    },
+    {
+      "source": "my_node",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

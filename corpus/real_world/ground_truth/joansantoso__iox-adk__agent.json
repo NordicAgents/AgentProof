@@ -1,0 +1,67 @@
+{
+  "name": "joansantoso__iox-adk__agent",
+  "framework": "adk",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "TopicRequesterAgent",
+      "kind": "llm",
+      "label": "TopicRequesterAgent (captures user topic -> initial_topic)"
+    },
+    {
+      "id": "InitialWriterAgent",
+      "kind": "llm",
+      "label": "InitialWriterAgent (writes first draft -> current_document)"
+    },
+    {
+      "id": "CriticAgent",
+      "kind": "llm",
+      "label": "CriticAgent (reviews draft -> criticism)"
+    },
+    {
+      "id": "RefinerAgent",
+      "kind": "llm",
+      "label": "RefinerAgent (refines draft -> current_document)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "TopicRequesterAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "TopicRequesterAgent",
+      "target": "InitialWriterAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "InitialWriterAgent",
+      "target": "CriticAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "CriticAgent",
+      "target": "RefinerAgent",
+      "kind": "direct"
+    },
+    {
+      "source": "RefinerAgent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

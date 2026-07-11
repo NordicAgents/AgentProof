@@ -1,0 +1,56 @@
+{
+  "name": "Mehbinamal__WEEK-3__main",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "query_agent",
+      "kind": "llm",
+      "label": "query_agent",
+      "tools": []
+    },
+    {
+      "id": "rag_agent",
+      "kind": "llm",
+      "label": "rag_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "query_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "query_agent",
+      "target": "rag_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "rag_agent",
+      "target": "query_agent",
+      "kind": "loop"
+    },
+    {
+      "source": "rag_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

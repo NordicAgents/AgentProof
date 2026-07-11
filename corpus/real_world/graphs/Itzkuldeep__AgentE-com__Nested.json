@@ -1,0 +1,84 @@
+{
+  "name": "Itzkuldeep__AgentE-com__Nested",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "adder_agent",
+      "kind": "llm",
+      "label": "adder_agent",
+      "tools": []
+    },
+    {
+      "id": "multiplier_agent",
+      "kind": "llm",
+      "label": "multiplier_agent",
+      "tools": []
+    },
+    {
+      "id": "subtracter_agent",
+      "kind": "llm",
+      "label": "subtracter_agent",
+      "tools": []
+    },
+    {
+      "id": "divider_agent",
+      "kind": "llm",
+      "label": "divider_agent",
+      "tools": []
+    },
+    {
+      "id": "number_agent",
+      "kind": "llm",
+      "label": "number_agent",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "adder_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "adder_agent",
+      "target": "multiplier_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "multiplier_agent",
+      "target": "subtracter_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "subtracter_agent",
+      "target": "divider_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "divider_agent",
+      "target": "number_agent",
+      "kind": "direct"
+    },
+    {
+      "source": "number_agent",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

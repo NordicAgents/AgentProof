@@ -1,0 +1,78 @@
+{
+  "name": "nihal-5__autogen-collaborative-ai-agents__multi_agent",
+  "framework": "autogen",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "coder",
+      "kind": "llm",
+      "label": "coder",
+      "tools": []
+    },
+    {
+      "id": "reviewer",
+      "kind": "llm",
+      "label": "reviewer",
+      "tools": []
+    },
+    {
+      "id": "synthesizer",
+      "kind": "llm",
+      "label": "synthesizer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researcher",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "coder",
+      "kind": "direct"
+    },
+    {
+      "source": "coder",
+      "target": "reviewer",
+      "kind": "direct"
+    },
+    {
+      "source": "reviewer",
+      "target": "synthesizer",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesizer",
+      "target": "researcher",
+      "kind": "loop"
+    },
+    {
+      "source": "synthesizer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "martimfasantos__ai-agents-frameworks__crew-example",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "continuously_monitor_and_analyze_market_data_for_t",
+      "kind": "llm",
+      "label": "Continuously monitor and analyze market data for t",
+      "tools": []
+    },
+    {
+      "id": "develop_and_refine_trading_strategies_based_on_the",
+      "kind": "llm",
+      "label": "Develop and refine trading strategies based on the",
+      "tools": []
+    },
+    {
+      "id": "analyze_approved_trading_strategies_to_determine_t",
+      "kind": "llm",
+      "label": "Analyze approved trading strategies to determine t",
+      "tools": []
+    },
+    {
+      "id": "evaluate_the_risks_associated_with_the_proposed_tr",
+      "kind": "llm",
+      "label": "Evaluate the risks associated with the proposed tr",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "continuously_monitor_and_analyze_market_data_for_t",
+      "kind": "direct"
+    },
+    {
+      "source": "continuously_monitor_and_analyze_market_data_for_t",
+      "target": "develop_and_refine_trading_strategies_based_on_the",
+      "kind": "direct"
+    },
+    {
+      "source": "develop_and_refine_trading_strategies_based_on_the",
+      "target": "analyze_approved_trading_strategies_to_determine_t",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_approved_trading_strategies_to_determine_t",
+      "target": "evaluate_the_risks_associated_with_the_proposed_tr",
+      "kind": "direct"
+    },
+    {
+      "source": "evaluate_the_risks_associated_with_the_proposed_tr",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

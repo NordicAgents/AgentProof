@@ -1,0 +1,98 @@
+{
+  "name": "ericjiang18__Agent-Q-Mix__test_deprecation",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "test_node",
+      "kind": "llm",
+      "label": "test_node",
+      "tools": []
+    },
+    {
+      "id": "plain_node",
+      "kind": "llm",
+      "label": "plain_node",
+      "tools": []
+    },
+    {
+      "id": "sync_node_with_dict_config",
+      "kind": "llm",
+      "label": "sync_node_with_dict_config",
+      "tools": []
+    },
+    {
+      "id": "async_node_with_dict_config",
+      "kind": "llm",
+      "label": "async_node_with_dict_config",
+      "tools": []
+    },
+    {
+      "id": "sync_node_with_any_config",
+      "kind": "llm",
+      "label": "sync_node_with_any_config",
+      "tools": []
+    },
+    {
+      "id": "async_node_with_any_config",
+      "kind": "llm",
+      "label": "async_node_with_any_config",
+      "tools": []
+    },
+    {
+      "id": "node_with_correct_config",
+      "kind": "llm",
+      "label": "node_with_correct_config",
+      "tools": []
+    },
+    {
+      "id": "node_with_optional_config",
+      "kind": "llm",
+      "label": "node_with_optional_config",
+      "tools": []
+    },
+    {
+      "id": "node_with_untyped_config",
+      "kind": "llm",
+      "label": "node_with_untyped_config",
+      "tools": []
+    },
+    {
+      "id": "async_node_with_correct_config",
+      "kind": "llm",
+      "label": "async_node_with_correct_config",
+      "tools": []
+    },
+    {
+      "id": "async_node_with_optional_config",
+      "kind": "llm",
+      "label": "async_node_with_optional_config",
+      "tools": []
+    },
+    {
+      "id": "async_node_with_untyped_config",
+      "kind": "llm",
+      "label": "async_node_with_untyped_config",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "test_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "plain_node",
+      "kind": "direct"
+    }
+  ]
+}
