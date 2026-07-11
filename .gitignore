@@ -31,3 +31,4 @@ htmlcov/
 # not redistributed here.
 corpus/real_world/_repos/
 corpus/real_world/sources/
+corpus/real_world/*.log

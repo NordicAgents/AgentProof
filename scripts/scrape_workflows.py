@@ -44,8 +44,10 @@ SEARCH_QUERIES = [
 FRAMEWORK_FILE_PATTERNS: dict[str, list[str]] = {
     "langgraph": ["StateGraph", "add_node", "add_edge"],
     "crewai": ["Crew(", "Task(", "from crewai"],
-    "autogen": ["GroupChat", "RoundRobinGroupChat", "SelectorGroupChat"],
-    "adk": ["SequentialAgent", "ParallelAgent", "LoopAgent", "from google.adk"],
+    # "GroupChat" is a substring of RoundRobin/SelectorGroupChat, so it catches
+    # both the old pyautogen and new autogen-agentchat APIs with one token.
+    "autogen": ["autogen", "GroupChat", "Swarm(", "GraphFlow("],
+    "adk": ["google.adk", "SequentialAgent", "ParallelAgent", "LoopAgent", "sub_agents"],
 }
 
 
