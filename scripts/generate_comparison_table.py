@@ -2,7 +2,7 @@
 """Generate LaTeX comparison table: Agentproof vs general-purpose model checkers.
 
 Usage:
-    python scripts/generate_comparison_table.py [--output paper/generated/comparison_table.tex]
+    python scripts/generate_comparison_table.py [--output papers/paper1/generated/comparison_table.tex]
 """
 
 from __future__ import annotations
@@ -88,7 +88,7 @@ def generate_latex_table() -> str:
 def main():
     parser = argparse.ArgumentParser(description="Generate model checker comparison table")
     parser.add_argument("--output", type=str,
-                        default="paper/generated/comparison_table.tex")
+                        default="papers/paper1/generated/comparison_table.tex")
     args = parser.parse_args()
 
     table = generate_latex_table()

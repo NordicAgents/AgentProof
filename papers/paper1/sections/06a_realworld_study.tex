@@ -1,0 +1,110 @@
+\subsection{Real-world validation study}
+\label{sec:realworld}
+
+The curated corpus (Section~\ref{sec:evaluation}) was designed to contain
+representative defects, so its defect rates measure detection capability rather
+than prevalence. To estimate \emph{base rates} on independently authored
+workflows, and to measure extractor fidelity on code the authors did not write,
+we mined public GitHub repositories.
+
+\paragraph{Mining pipeline.}
+Using GitHub code search over the four frameworks, we identified 318 candidate
+repositories. We shallow-cloned a 180-repository sample, scanned 383 candidate
+files, and extracted 277 workflow graphs from 149 distinct repositories
+(LangGraph~206, CrewAI~76).\footnote{AutoGen and ADK repositories ranked later in
+the candidate list and fell past the sample cap; balancing all four frameworks is
+in progress.} Extraction used the static AST fallback
+(\texttt{scripts/ast\_extractor.py}); the runtime extractors of
+Section~\ref{sec:graph_model} read the compiled graph object and are expected to
+be more faithful, but require per-repository dependency installation that is
+infeasible at this scale. Mined workflows are small: a median of 2~non-sentinel
+nodes (mean~3.1, max~35), and are predominantly static linear pipelines.
+
+\paragraph{Validation protocol.}
+On a stratified 60-workflow sample (40~LangGraph, 20~CrewAI) we ran two
+independent LLM-agent passes. First, an agent reconstructed a \emph{ground-truth}
+graph from source alone (blind to the extractor output), following the
+extractor's node-identifier conventions so the two align; we then computed
+node/edge precision--recall and node-kind accuracy against the AST extraction.
+Second, for each of the 131 flagged defects, one agent labelled it
+\textsc{real}, \textsc{extraction-artifact}, or \textsc{intentional} from source,
+and an adversarial verifier independently attempted to overturn each label;
+disagreements were recorded as \textsc{arguable}. The verifier overturned only
+4.6\% of labels, always toward \textsc{arguable}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{AST-extractor fidelity on real GitHub workflows ($n=60$ ground-truth
+graphs). Stub-based validation (Section~\ref{sec:accuracy}) reported perfect
+precision/recall; real code is substantially harder, chiefly in edge recovery
+and node-kind classification.}
+\label{tab:realworld_fidelity}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Metric} & \textbf{Overall} & \textbf{LangGraph} & \textbf{CrewAI} \\
+\midrule
+Node precision      & 0.934 & --    & --    \\
+Node recall         & 0.896 & --    & --    \\
+Edge precision      & 0.871 & 0.956 & 0.700 \\
+Edge recall         & 0.685 & 0.682 & 0.692 \\
+Node-kind accuracy  & 0.741 & 0.647 & 0.929 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Extractor fidelity.}
+Table~\ref{tab:realworld_fidelity} reports the result. Node detection remains
+strong (P~$=0.93$, R~$=0.90$), but edge recall falls to 0.685 and node-kind
+accuracy to 0.741---far below the perfect scores on programmatic stubs. The
+dominant kind error is \texttt{tool}$\rightarrow$\texttt{llm} (35 nodes that
+invoke tools inside their body without declared bindings), followed by
+\texttt{passthrough}$\rightarrow$\texttt{llm} (21) and misclassification of
+conditional-edge nodes as routers. Human nodes were misclassified 11~times,
+quantifying on real code the naming-heuristic brittleness noted in
+Section~\ref{sec:accuracy}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Adversarial triage of 131 defects flagged on real workflows. Every
+structural flag is an extraction artifact; the human-gate policy flag is
+predominantly an intentional design choice.}
+\label{tab:realworld_triage}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Check} & \textbf{Real} & \textbf{Artifact} & \textbf{Intentional} & \textbf{Arguable} \\
+\midrule
+exit\_reachability     & 0 & 14 & 0  & 0 \\
+reverse\_reachability  & 0 & 25 & 0  & 0 \\
+dead\_ends             & 0 & 24 & 0  & 1 \\
+router\_shape          & 0 & 2  & 0  & 0 \\
+tool\_declarations     & 0 & 5  & 0  & 0 \\
+human\_presence        & 1 & 3  & 50 & 6 \\
+\midrule
+\textbf{Total}         & \textbf{1} & \textbf{73} & \textbf{50} & \textbf{7} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Defect prevalence.}
+Table~\ref{tab:realworld_triage} gives the sobering result: of 131 flagged
+defects, only~1 (0.8\%) is a genuine workflow bug. All 65~structural flags are
+extraction artifacts---the static checks are only as sound as the recovered
+topology, and where the extractor misses edges it reports spurious dead-ends,
+unreachable exits, and livelocks. A direct cross-check supports this: mean AST
+edge recall was 0.51 for workflows carrying an artifact-labelled defect versus
+1.0 for the single real defect. The \texttt{human\_presence} policy check fires
+on 98\% of workflows, but 91\% of those firings are intentional (genuinely
+low-risk tasks), validating the context-dependence argued in
+Section~\ref{sec:evaluation} and motivating a risk-aware variant.
+
+\paragraph{Takeaway.}
+Topology-level defects are \emph{rare} in publicly available agent workflows,
+which are mostly small static pipelines, and the curated-benchmark rates do not
+transfer to production prevalence. The practical determinants of static-analysis
+utility are therefore extraction fidelity and policy applicability rather than
+the check algorithms themselves. We read this as redirecting the research agenda:
+toward higher-fidelity extraction (sandboxed runtime extraction; AST/runtime
+cross-validation) and risk-aware policy specification, and away from cataloguing
+topology checks whose real-world firing is dominated by extraction noise.

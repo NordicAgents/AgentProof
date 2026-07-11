@@ -56,7 +56,7 @@ echo "  scripts/defect_results.json"
 echo "  corpus/traces/"
 echo "  scripts/policy_evaluation_results.json"
 echo "  scripts/scaling_results.json"
-echo "  paper/generated/comparison_table.tex"
+echo "  papers/paper1/generated/comparison_table.tex"
 echo "========================================"
 
 # Optional: real-world corpus (requires GITHUB_TOKEN)

@@ -2,7 +2,7 @@
 """Generate scaling plots from benchmark results.
 
 Usage:
-    python scripts/plot_scaling.py [--input scripts/scaling_results.json] [--output paper/figures/scaling_plot.pdf]
+    python scripts/plot_scaling.py [--input scripts/scaling_results.json] [--output papers/paper1/figures/scaling_plot.pdf]
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ except ImportError:
 def main():
     parser = argparse.ArgumentParser(description="Plot AgentProof scaling results")
     parser.add_argument("--input", type=str, default="scripts/scaling_results.json")
-    parser.add_argument("--output", type=str, default="paper/figures/scaling_plot.pdf")
+    parser.add_argument("--output", type=str, default="papers/paper1/figures/scaling_plot.pdf")
     args = parser.parse_args()
 
     data = json.loads(Path(args.input).read_text())

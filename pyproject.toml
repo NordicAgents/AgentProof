@@ -47,7 +47,7 @@ Repository = "https://github.com/NordicAgents/agentproof"
 packages = ["src/agentproof"]
 
 [tool.hatch.build.targets.sdist]
-exclude = ["paper/", "corpus/", "scripts/"]
+exclude = ["papers/", "corpus/", "scripts/"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
