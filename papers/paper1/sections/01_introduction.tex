@@ -110,9 +110,12 @@ modeling effort.
   frameworks' extractors impose a connected topology by construction.
   \item \textbf{A defect-independent job} for the static machinery: the
   graph\,$\times$\,DFA product proves which temporal policies can never
-  reach a violation on a given workflow, so their runtime monitors can be
-  provably pruned at enforcement time---positioning static verification
-  as a monitor-selection layer that bridges to leaner runtime shields.
+  reach a violation on a given workflow, so their runtime monitors are
+  provably inert and can be pruned before deployment (a mean 14 of 15
+  monitors skipped per workflow; Section~\ref{sec:pruning}). This
+  positions static verification as a sound monitor-selection layer that
+  bridges to leaner runtime shields---though on today's small workflows
+  its leverage is predominantly alphabet-level.
 \end{itemize}
 
 \paragraph{Scope.}

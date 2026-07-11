@@ -1,0 +1,105 @@
+{
+  "n_workflows": 930,
+  "n_policies": 15,
+  "n_monitor_instances": 13950,
+  "prunable": 13020,
+  "prunable_pct": 93.3,
+  "trivially_inert": 13020,
+  "reachability_proven_inert": 0,
+  "must_keep": 930,
+  "must_keep_pct": 6.7,
+  "reach_proven_pct_of_atoms_present": 0.0,
+  "mean_monitors_pruned_per_workflow": 14.0,
+  "per_policy": {
+    "no_delete_production": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "no_drop_table": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "no_rm_rf": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "email_requires_review": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "pii_anonymize_bounded": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "deploy_requires_approval": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "sql_query_then_review": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "no_destructive_ops": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "draft_then_review_then_send": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "classify_then_route": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "fetch_data_then_validate": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "payment_requires_human": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "no_send_without_review_or_block": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    },
+    "analyze_until_decision": {
+      "pairs": 930,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 930
+    },
+    "either_log_or_audit": {
+      "pairs": 930,
+      "prunable": 930,
+      "reach_proven": 0,
+      "keep": 0
+    }
+  }
+}

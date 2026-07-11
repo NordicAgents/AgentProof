@@ -206,6 +206,38 @@ constitute an exhaustive requirements survey. The policies were
 deliberately selected from six distinct domains and ensured all seven
 DSL forms were exercised.
 
+\subsection{Monitor selection via static pruning}
+\label{sec:pruning}
+
+Because the graph\,$\times$\,DFA product explores a superset of a workflow's
+runtime paths, a policy whose product reaches no violation state can never be
+violated at runtime on that workflow: its monitor is \emph{provably inert} and
+need not be deployed. This turns pre-deployment verification into a sound
+\emph{monitor-selection} step---given a policy library, deploy per workflow only
+the monitors that can actually fire---and is the defect-independent job the
+static machinery performs even when topology defects are absent.
+
+Running all 15 policies against each curated workflow, 252 of 270 monitor
+instances (93.3\%) are provably inert, a mean of 14 of 15 monitors skipped per
+workflow, so runtime enforcement need evaluate only the remaining 6.7\%. The
+selection is sound---no monitor that could fire is removed---and multi-tool nodes
+are split into single-tool chains beforehand so the analysis never
+under-approximates a node's events.
+
+Two caveats bound this result honestly. First, on today's workflows almost all
+inert monitors are inert \emph{trivially} (the policy's atoms never appear); the
+reachability product proves inertness in only one further case, because the
+small, mostly linear workflows of Section~\ref{sec:realworld} rarely branch in a
+way that lets a policy's antecedent be reachable while its violation is not. The
+product construction's value over a plain symbol-set check therefore grows with
+branching structure and is slight at present scale. Second, the fixed policy
+vocabulary does not match real code: none of the 930 mined workflows invokes any
+of the 15 policies' tools (they call \texttt{calculator}, \texttt{tavily}, and
+retrieval tools, not \texttt{drop\_table}), so measuring pruning on real
+workflows requires instantiating policy templates against each workflow's own
+tools---which we leave to future work. Static monitor selection is thus a sound
+and cheap optimization whose leverage today is predominantly alphabet-level.
+
 \subsection{Scalability}
 
 Synthetic graphs were generated at seven sizes (50--5{,}000 nodes) with
