@@ -79,22 +79,40 @@ modeling effort.
 
 \paragraph{Contributions.}
 \begin{itemize}
-  \item A cross-framework extraction pipeline: extractors for four major
-  agent frameworks (LangGraph, CrewAI, AutoGen, Google ADK) automatically
-  bridge heterogeneous representations---each with different entry/exit
-  conventions, edge semantics, and hierarchy models---into a unified
-  abstract workflow model with typed nodes and edges, eliminating the
-  manual modeling step required by general-purpose model
-  checkers~(Section~\ref{sec:graph_model}).
-  \item A pre-deployment verification pipeline comprising six
-  structural checks with \emph{witness trace generation} and a temporal
-  policy DSL covering the safety fragment of LTL, compiled to
-  deterministic finite automata~(Section~\ref{sec:verification_methods}).
-  \item An empirical evaluation on 18 curated workflows demonstrating
-  that structural defects (dead-end nodes, unreachable exits) and
-  policy violations (missing human gates) are common, with sub-second
-  verification for graphs up to 5{,}000
-  nodes~(Section~\ref{sec:evaluation}).
+  \item \textbf{The first real-world base-rate study} of structural
+  (topology) defects in agent workflows: 930 workflows mined from 253
+  public GitHub repositories across all four frameworks (LangGraph,
+  AutoGen, CrewAI, ADK), with a 120-workflow subsample validated against
+  independent LLM-reconstructed ground-truth graphs and adversarial defect
+  triage (Section~\ref{sec:realworld}). The finding is negative, and
+  because nobody had measured it the rarity is itself the contribution:
+  the validated topology-defect rate is ${\approx}0\%$ (2 of 187 flags
+  genuine; 43\% extraction artifacts, 50\% intentional design), and real
+  workflows are predominantly small static linear pipelines (median two
+  non-sentinel nodes).
+  \item \textbf{\textsc{Agentproof}}, the measurement instrument that made
+  the study possible: automatic extraction of a unified abstract graph
+  model from four heterogeneous agent frameworks with no hand-written
+  formal model (unlike SPIN/NuSMV, which require Promela/SMV), six
+  structural checks with witness-trace generation, and a seven-form
+  temporal policy DSL over the safety fragment of LTL, compiled to DFAs
+  and evaluated both statically and at
+  runtime~(Sections~\ref{sec:graph_model}--\ref{sec:verification_methods}).
+  \item \textbf{A quantified diagnosis} with an actionable failure-mode
+  taxonomy: extraction fidelity, not the check algorithms, is the binding
+  constraint on static-analysis utility. On real code node
+  precision/recall stays high (${\sim}0.91/0.85$) but edge recall drops
+  to 0.64 and node-kind accuracy to 0.83 (both near-perfect on stubs),
+  and fidelity is strongly framework-dependent---from 0.77 edge recall on
+  AutoGen down to 0.37 on ADK, whose topology is most implicit. Every
+  structural flag we triaged is an extraction artifact, and such flags
+  arise only on LangGraph (78\% of its workflows) because the other
+  frameworks' extractors impose a connected topology by construction.
+  \item \textbf{A defect-independent job} for the static machinery: the
+  graph\,$\times$\,DFA product proves which temporal policies can never
+  reach a violation on a given workflow, so their runtime monitors can be
+  provably pruned at enforcement time---positioning static verification
+  as a monitor-selection layer that bridges to leaner runtime shields.
 \end{itemize}
 
 \paragraph{Scope.}

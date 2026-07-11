@@ -1,33 +1,36 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Agent frameworks already encode behavior as explicit workflow graphs.
-Agentproof leverages this structure to enable pre-deployment verification of
-safety properties without adding runtime overhead.
+Agent frameworks encode behavior as explicit workflow graphs, and
+\textsc{Agentproof} turns that structure into an analyzable,
+cross-framework graph model with six structural checks, witness traces,
+and a safety-fragment-LTL policy DSL evaluated both statically (via a
+graph\,$\times$\,DFA product) and at runtime. Used as a measurement
+instrument, it enabled the first base-rate study of topology defects in
+publicly available agent workflows---930 mined across all four
+frameworks---and the finding is deflationary but genuine: real workflows
+are mostly small static pipelines, and only 2 of 187 flagged defects are
+real bugs, with the rest extraction artifacts or intentional design
+choices. We therefore retire the earlier framing in
+which curated-benchmark defect rates stood in for prevalence; the
+18-workflow corpus remains a controlled test that the checks fire when
+defects are present, not evidence that they are common.
 
-Agentproof provides a unified graph model with six structural
-checks and witness traces, a temporal policy DSL covering the safety
-fragment of LTL with both static and runtime evaluation modes, and
-automatic extractors for four major agent frameworks---eliminating the
-manual modeling effort required by general-purpose model checkers. In the 18-workflow curated benchmark, 5 contain
-structural defects (dead ends, unreachable exits) and 10 lack a
-human gate when the policy is enforced. All 15 temporal safety policies
-evaluated fit within the seven-form DSL fragment, with verification
-completing in sub-second time even for graphs of 5{,}000 nodes.
-
-The primary technical contribution is not the graph algorithms
-themselves---which are standard---but rather: (i)~the identification of
-a practical new domain where these algorithms apply directly,
-(ii)~the engineering of extractors that normalize four heterogeneous
-framework APIs into a single analyzable representation, and (iii)~the
-empirical finding that real-world agent workflow patterns contain
-structural defects detectable by these methods.
-
-Static verification does not replace runtime guardrails; the two
-approaches are complementary. By catching topology-level defects
-exhaustively before deployment, static analysis reduces the safety
-surface that runtime enforcement must cover, making both layers more
-effective.
+The contribution survives the rarity of defects and is threefold. First,
+a measurement instrument and the first real-world base rates for
+agent-workflow topology defects---a number nobody had put down. Second, a
+quantified diagnosis the field can act on directly: extraction fidelity,
+not the check algorithms, is the binding constraint (edge recall 0.64 on
+real code, collapsing to 0.37 on implicit-topology frameworks like ADK,
+with every triaged structural flag an extraction artifact). Third, a
+defect-independent use for the static machinery: the
+graph\,$\times$\,DFA product proves which runtime monitors can be soundly
+pruned, making pre-deployment analysis a monitor-selection layer within a
+static-plus-runtime safety stack rather than a standalone bug detector.
+We read the negative prevalence result not as a null result but as a
+redirection---toward higher-fidelity extraction and risk-aware policy
+specification, the direction we pursue in follow-up work on runtime
+shields.
 
 \paragraph{Artifact availability.}
 The Agentproof tool, curated corpus, temporal policies, and
