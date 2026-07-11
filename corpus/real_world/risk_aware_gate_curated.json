@@ -1,0 +1,106 @@
+{
+  "corpus": "corpus/curated",
+  "n_workflows": 18,
+  "naive_human_gate_flags": 10,
+  "naive_flag_pct": 55.6,
+  "workflows_with_sensitive_tool": 8,
+  "risk_aware_flags": 8,
+  "risk_aware_flag_pct": 44.4,
+  "sensitive_gated_ok": 0,
+  "reduction_factor": 1.2,
+  "sensitive_by_category": {
+    "financial": 4,
+    "write": 1,
+    "destructive": 2,
+    "comms": 3,
+    "exec": 2
+  },
+  "flagged_examples": [
+    {
+      "workflow": "adk_customer_onboarding",
+      "framework": "adk",
+      "sensitive_tools": [
+        "core_banking_api",
+        "credit_bureau_api"
+      ],
+      "ungated": [
+        "account_create",
+        "credit_check"
+      ]
+    },
+    {
+      "workflow": "adk_document_processing",
+      "framework": "adk",
+      "sensitive_tools": [
+        "postgres_insert"
+      ],
+      "ungated": [
+        "store"
+      ]
+    },
+    {
+      "workflow": "adk_incident_response",
+      "framework": "adk",
+      "sensitive_tools": [
+        "config_rollback",
+        "kubectl_restart"
+      ],
+      "ungated": [
+        "auto_remediate"
+      ]
+    },
+    {
+      "workflow": "crewai_content_pipeline",
+      "framework": "crewai",
+      "sensitive_tools": [
+        "cms_api"
+      ],
+      "ungated": [
+        "publish"
+      ]
+    },
+    {
+      "workflow": "crewai_marketing_campaign",
+      "framework": "crewai",
+      "sensitive_tools": [
+        "social_media_api"
+      ],
+      "ungated": [
+        "publish"
+      ]
+    },
+    {
+      "workflow": "lg_code_assistant",
+      "framework": "langgraph",
+      "sensitive_tools": [
+        "execute_code",
+        "run_pytest"
+      ],
+      "ungated": [
+        "run_tests"
+      ]
+    },
+    {
+      "workflow": "lg_email_triage",
+      "framework": "langgraph",
+      "sensitive_tools": [
+        "smtp_send"
+      ],
+      "ungated": [
+        "send"
+      ]
+    },
+    {
+      "workflow": "lg_financial_advisor",
+      "framework": "langgraph",
+      "sensitive_tools": [
+        "brokerage_api",
+        "trading_api"
+      ],
+      "ungated": [
+        "execute_trades",
+        "portfolio_fetch"
+      ]
+    }
+  ]
+}

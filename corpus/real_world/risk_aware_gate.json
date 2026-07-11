@@ -1,0 +1,13 @@
+{
+  "corpus": "corpus/real_world/graphs",
+  "n_workflows": 930,
+  "naive_human_gate_flags": 846,
+  "naive_flag_pct": 91.0,
+  "workflows_with_sensitive_tool": 0,
+  "risk_aware_flags": 0,
+  "risk_aware_flag_pct": 0.0,
+  "sensitive_gated_ok": 0,
+  "reduction_factor": null,
+  "sensitive_by_category": {},
+  "flagged_examples": []
+}

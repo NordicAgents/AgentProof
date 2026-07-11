@@ -103,6 +103,28 @@ policy check fires on 91\% of workflows, but on the validated sample only 2 of
 reinforcing the context-dependence argued in Section~\ref{sec:evaluation} and
 motivating a risk-aware variant.
 
+\paragraph{Risk-aware gating.}
+The human-gate check above is deliberately blunt---it asks only whether a
+\textsc{human} node exists. A risk-aware variant instead flags a workflow only
+when a \emph{sensitive} tool (destructive, write, exec, external-communication,
+or financial, by a keyword lexicon grounded in the observed tool names) is
+reachable from entry without passing a \textsc{human} node, reusing the sound
+coverage check of Section~\ref{sec:verification_methods}. On the curated corpus
+this sharpens the signal: flags drop from 10 to 8, declining to flag two
+workflows that lack a human node but perform no sensitive action, and pinpointing
+the offending operation (e.g.\ \texttt{account\_create}, \texttt{publish}, or
+\texttt{auto\_remediate} reachable ungated) rather than merely reporting an absent
+gate. On the 930 mined workflows the effect is starker: the naive check fires on
+846 (91\%), but the risk-aware check fires on \emph{zero}---none of the mined
+workflows declares a sensitive tool, as they are read-only retrieval and
+summarisation pipelines that legitimately need no human review. The variant thus
+removes the false-positive deluge, but its recall is itself bounded by extraction
+fidelity: a sensitive operation invoked inside a node body with no declared tool
+binding---the dominant \texttt{tool}$\rightarrow$\texttt{llm} error of
+Table~\ref{tab:realworld_fidelity}---is invisible to it. A sound sensitivity
+signal therefore depends on the very higher-fidelity extraction this study
+identifies as the binding constraint.
+
 \paragraph{Takeaway.}
 Topology-level defects are \emph{rare} in publicly available agent workflows,
 which are mostly small static pipelines, and the curated-benchmark rates do not
