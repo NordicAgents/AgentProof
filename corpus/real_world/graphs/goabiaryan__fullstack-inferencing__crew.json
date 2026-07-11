@@ -1,0 +1,51 @@
+{
+  "name": "goabiaryan__fullstack-inferencing__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+      "kind": "llm",
+      "label": "Topic: benefits of chunked prefill in LLM serving.",
+      "tools": []
+    },
+    {
+      "id": "using_the_research_only,_write_one_short_paragraph",
+      "kind": "llm",
+      "label": "Using the research only, write one short paragraph",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+      "kind": "direct"
+    },
+    {
+      "source": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+      "target": "using_the_research_only,_write_one_short_paragraph",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_research_only,_write_one_short_paragraph",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

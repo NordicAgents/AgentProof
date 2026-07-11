@@ -1,0 +1,51 @@
+{
+  "name": "opengles3d__ollama_rag__10",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "generate_sql",
+      "kind": "llm",
+      "label": "generate_sql",
+      "tools": []
+    },
+    {
+      "id": "explain_sql",
+      "kind": "llm",
+      "label": "explain_sql",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generate_sql",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_sql",
+      "target": "explain_sql",
+      "kind": "direct"
+    },
+    {
+      "source": "explain_sql",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

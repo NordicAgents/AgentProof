@@ -1,0 +1,62 @@
+{
+  "name": "ferdaousbouzaiene__yourcoach__app",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "data_task",
+      "kind": "llm",
+      "label": "data_task",
+      "tools": []
+    },
+    {
+      "id": "workout_task",
+      "kind": "llm",
+      "label": "workout_task",
+      "tools": []
+    },
+    {
+      "id": "nutrition_task",
+      "kind": "llm",
+      "label": "nutrition_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "data_task",
+      "kind": "direct"
+    },
+    {
+      "source": "data_task",
+      "target": "workout_task",
+      "kind": "direct"
+    },
+    {
+      "source": "workout_task",
+      "target": "nutrition_task",
+      "kind": "direct"
+    },
+    {
+      "source": "nutrition_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

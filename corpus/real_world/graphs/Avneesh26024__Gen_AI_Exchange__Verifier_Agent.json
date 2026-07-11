@@ -1,0 +1,62 @@
+{
+  "name": "Avneesh26024__Gen_AI_Exchange__Verifier_Agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "text_evidence_collection",
+      "kind": "llm",
+      "label": "text_evidence_collection",
+      "tools": []
+    },
+    {
+      "id": "image_analysis",
+      "kind": "llm",
+      "label": "image_analysis",
+      "tools": []
+    },
+    {
+      "id": "verify_claims",
+      "kind": "llm",
+      "label": "verify_claims",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "text_evidence_collection",
+      "target": "image_analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "image_analysis",
+      "target": "verify_claims",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "text_evidence_collection",
+      "kind": "direct"
+    },
+    {
+      "source": "verify_claims",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

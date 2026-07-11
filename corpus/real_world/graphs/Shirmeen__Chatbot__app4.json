@@ -1,0 +1,73 @@
+{
+  "name": "Shirmeen__Chatbot__app4",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "task1_analyze_requirements",
+      "kind": "llm",
+      "label": "task1_analyze_requirements",
+      "tools": []
+    },
+    {
+      "id": "task2_compare_skills",
+      "kind": "llm",
+      "label": "task2_compare_skills",
+      "tools": []
+    },
+    {
+      "id": "task3_assess_learning_difficulty",
+      "kind": "llm",
+      "label": "task3_assess_learning_difficulty",
+      "tools": []
+    },
+    {
+      "id": "task4_calculate_confidence",
+      "kind": "llm",
+      "label": "task4_calculate_confidence",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "task1_analyze_requirements",
+      "kind": "direct"
+    },
+    {
+      "source": "task1_analyze_requirements",
+      "target": "task2_compare_skills",
+      "kind": "direct"
+    },
+    {
+      "source": "task2_compare_skills",
+      "target": "task3_assess_learning_difficulty",
+      "kind": "direct"
+    },
+    {
+      "source": "task3_assess_learning_difficulty",
+      "target": "task4_calculate_confidence",
+      "kind": "direct"
+    },
+    {
+      "source": "task4_calculate_confidence",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

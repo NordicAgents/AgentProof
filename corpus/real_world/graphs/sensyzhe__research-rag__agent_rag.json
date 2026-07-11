@@ -1,0 +1,63 @@
+{
+  "name": "sensyzhe__research-rag__agent_rag",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "agent",
+      "kind": "router",
+      "label": "agent",
+      "tools": []
+    },
+    {
+      "id": "retrieve",
+      "kind": "router",
+      "label": "retrieve",
+      "tools": []
+    },
+    {
+      "id": "rewrite",
+      "kind": "llm",
+      "label": "rewrite",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "rewrite",
+      "target": "agent",
+      "kind": "direct"
+    }
+  ]
+}

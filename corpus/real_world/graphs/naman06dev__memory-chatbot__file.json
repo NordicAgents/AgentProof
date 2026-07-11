@@ -1,0 +1,27 @@
+{
+  "name": "naman06dev__memory-chatbot__file",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "chat",
+      "kind": "llm",
+      "label": "chat",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "chat",
+      "kind": "direct"
+    }
+  ]
+}

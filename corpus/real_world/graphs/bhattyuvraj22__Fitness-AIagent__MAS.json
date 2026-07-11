@@ -1,0 +1,93 @@
+{
+  "name": "bhattyuvraj22__Fitness-AIagent__MAS",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "orchestrator",
+      "kind": "llm",
+      "label": "orchestrator",
+      "tools": []
+    },
+    {
+      "id": "coach",
+      "kind": "router",
+      "label": "coach",
+      "tools": []
+    },
+    {
+      "id": "tavily",
+      "kind": "llm",
+      "label": "tavily",
+      "tools": []
+    },
+    {
+      "id": "dietitian",
+      "kind": "llm",
+      "label": "dietitian",
+      "tools": []
+    },
+    {
+      "id": "merge",
+      "kind": "llm",
+      "label": "merge",
+      "tools": []
+    },
+    {
+      "id": "present_plan",
+      "kind": "llm",
+      "label": "present_plan",
+      "tools": []
+    },
+    {
+      "id": "hitl",
+      "kind": "router",
+      "label": "hitl",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "orchestrator",
+      "kind": "direct"
+    },
+    {
+      "source": "orchestrator",
+      "target": "coach",
+      "kind": "direct"
+    },
+    {
+      "source": "orchestrator",
+      "target": "dietitian",
+      "kind": "direct"
+    },
+    {
+      "source": "tavily",
+      "target": "merge",
+      "kind": "direct"
+    },
+    {
+      "source": "dietitian",
+      "target": "merge",
+      "kind": "direct"
+    },
+    {
+      "source": "merge",
+      "target": "present_plan",
+      "kind": "direct"
+    },
+    {
+      "source": "present_plan",
+      "target": "hitl",
+      "kind": "direct"
+    }
+  ]
+}

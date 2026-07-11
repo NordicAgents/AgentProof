@@ -1,0 +1,40 @@
+{
+  "name": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "procurement_report_task",
+      "kind": "llm",
+      "label": "procurement_report_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "procurement_report_task",
+      "kind": "direct"
+    },
+    {
+      "source": "procurement_report_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

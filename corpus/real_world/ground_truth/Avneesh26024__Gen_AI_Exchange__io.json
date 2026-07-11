@@ -1,0 +1,80 @@
+{
+  "name": "Avneesh26024__Gen_AI_Exchange__io",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "condense_query",
+      "kind": "llm",
+      "label": "Condense chat history into standalone question (LLM); first decision point"
+    },
+    {
+      "id": "retrieve_context",
+      "kind": "tool",
+      "label": "Retrieve & format documents via retriever_agent",
+      "tools": [
+        "retriever_agent"
+      ]
+    },
+    {
+      "id": "synthesize_answer",
+      "kind": "llm",
+      "label": "Synthesize final answer from context (LLM)"
+    },
+    {
+      "id": "verifier",
+      "kind": "passthrough",
+      "label": "Static fallback stub: appends canned AIMessage, no LLM/tool call"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "condense_query",
+      "kind": "direct"
+    },
+    {
+      "source": "condense_query",
+      "target": "synthesize_answer",
+      "kind": "conditional"
+    },
+    {
+      "source": "condense_query",
+      "target": "retrieve_context",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve_context",
+      "target": "synthesize_answer",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve_context",
+      "target": "verifier",
+      "kind": "conditional"
+    },
+    {
+      "source": "synthesize_answer",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "verifier",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

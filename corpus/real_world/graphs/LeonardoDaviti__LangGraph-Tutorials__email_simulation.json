@@ -1,0 +1,79 @@
+{
+  "name": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "read_email",
+      "kind": "llm",
+      "label": "read_email",
+      "tools": []
+    },
+    {
+      "id": "classify_email",
+      "kind": "router",
+      "label": "classify_email",
+      "tools": []
+    },
+    {
+      "id": "handle_spam",
+      "kind": "llm",
+      "label": "handle_spam",
+      "tools": []
+    },
+    {
+      "id": "draft_response",
+      "kind": "llm",
+      "label": "draft_response",
+      "tools": []
+    },
+    {
+      "id": "notify_mr_hugg",
+      "kind": "llm",
+      "label": "notify_mr_hugg",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "read_email",
+      "kind": "direct"
+    },
+    {
+      "source": "read_email",
+      "target": "classify_email",
+      "kind": "direct"
+    },
+    {
+      "source": "handle_spam",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_response",
+      "target": "notify_mr_hugg",
+      "kind": "direct"
+    },
+    {
+      "source": "notify_mr_hugg",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "colinmccrae__CrewAITest__do1",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "classify_email",
+      "kind": "llm",
+      "label": "classify_email",
+      "tools": []
+    },
+    {
+      "id": "respond_to_email",
+      "kind": "llm",
+      "label": "respond_to_email",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classify_email",
+      "kind": "direct"
+    },
+    {
+      "source": "classify_email",
+      "target": "respond_to_email",
+      "kind": "direct"
+    },
+    {
+      "source": "respond_to_email",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

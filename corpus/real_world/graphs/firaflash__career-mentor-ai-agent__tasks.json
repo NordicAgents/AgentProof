@@ -1,0 +1,73 @@
+{
+  "name": "firaflash__career-mentor-ai-agent__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyze_the_user's_current_background_and_their_ta",
+      "kind": "llm",
+      "label": "Analyze the user's current background and their ta",
+      "tools": []
+    },
+    {
+      "id": "using_the_skill_gap_report_provided,_create_a_chro",
+      "kind": "llm",
+      "label": "Using the Skill Gap Report provided, create a chro",
+      "tools": []
+    },
+    {
+      "id": "using_the_learning_roadmap_provided,_find_and_reco",
+      "kind": "llm",
+      "label": "Using the Learning Roadmap provided, find and reco",
+      "tools": []
+    },
+    {
+      "id": "review_the_learning_roadmap_and_the_resource_guide",
+      "kind": "llm",
+      "label": "Review the Learning Roadmap and the Resource Guide",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_user's_current_background_and_their_ta",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_user's_current_background_and_their_ta",
+      "target": "using_the_skill_gap_report_provided,_create_a_chro",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_skill_gap_report_provided,_create_a_chro",
+      "target": "using_the_learning_roadmap_provided,_find_and_reco",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_learning_roadmap_provided,_find_and_reco",
+      "target": "review_the_learning_roadmap_and_the_resource_guide",
+      "kind": "direct"
+    },
+    {
+      "source": "review_the_learning_roadmap_and_the_resource_guide",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

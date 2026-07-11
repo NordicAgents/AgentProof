@@ -1,0 +1,84 @@
+{
+  "name": "cashilaa__Crew-AI-Research-Tool__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "search_brella.io_for_information_about_events_rela",
+      "kind": "llm",
+      "label": "Search Brella.io for information about events rela",
+      "tools": []
+    },
+    {
+      "id": "find_companies_on_brella.io_related_to_{search_ter",
+      "kind": "llm",
+      "label": "Find companies on Brella.io related to {search_ter",
+      "tools": []
+    },
+    {
+      "id": "analyze_networking_opportunities_on_brella.io_for_",
+      "kind": "llm",
+      "label": "Analyze networking opportunities on Brella.io for ",
+      "tools": []
+    },
+    {
+      "id": "search_for_startup_founders_and_entrepreneurs_at_b",
+      "kind": "llm",
+      "label": "Search for startup founders and entrepreneurs at B",
+      "tools": []
+    },
+    {
+      "id": "search_for_attendees_at_specific_brella_events_rel",
+      "kind": "llm",
+      "label": "Search for attendees at specific Brella events rel",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "search_brella.io_for_information_about_events_rela",
+      "kind": "direct"
+    },
+    {
+      "source": "search_brella.io_for_information_about_events_rela",
+      "target": "find_companies_on_brella.io_related_to_{search_ter",
+      "kind": "direct"
+    },
+    {
+      "source": "find_companies_on_brella.io_related_to_{search_ter",
+      "target": "analyze_networking_opportunities_on_brella.io_for_",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_networking_opportunities_on_brella.io_for_",
+      "target": "search_for_startup_founders_and_entrepreneurs_at_b",
+      "kind": "direct"
+    },
+    {
+      "source": "search_for_startup_founders_and_entrepreneurs_at_b",
+      "target": "search_for_attendees_at_specific_brella_events_rel",
+      "kind": "direct"
+    },
+    {
+      "source": "search_for_attendees_at_specific_brella_events_rel",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

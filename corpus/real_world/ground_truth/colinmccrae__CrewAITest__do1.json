@@ -1,0 +1,49 @@
+{
+  "name": "colinmccrae__CrewAITest__do1",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "classify_the_following_email_for_the_'email_respon",
+      "kind": "llm",
+      "label": "Classify email (classifier agent)",
+      "tools": []
+    },
+    {
+      "id": "based_on_the_importance_provided_by_the_'email_cla",
+      "kind": "llm",
+      "label": "Respond to email (responder agent)",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classify_the_following_email_for_the_'email_respon",
+      "kind": "direct"
+    },
+    {
+      "source": "classify_the_following_email_for_the_'email_respon",
+      "target": "based_on_the_importance_provided_by_the_'email_cla",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_the_importance_provided_by_the_'email_cla",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

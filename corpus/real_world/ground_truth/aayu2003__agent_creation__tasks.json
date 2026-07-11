@@ -1,0 +1,53 @@
+{
+  "name": "aayu2003__agent_creation__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "find_the_relavent_information_for_{query}_.divide_",
+      "kind": "tool",
+      "label": "plan_task",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "execute_the_subtasks_that_we_got_from_{query}_.get",
+      "kind": "tool",
+      "label": "tool_agent_task",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "find_the_relavent_information_for_{query}_.divide_",
+      "kind": "direct"
+    },
+    {
+      "source": "find_the_relavent_information_for_{query}_.divide_",
+      "target": "execute_the_subtasks_that_we_got_from_{query}_.get",
+      "kind": "direct"
+    },
+    {
+      "source": "execute_the_subtasks_that_we_got_from_{query}_.get",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

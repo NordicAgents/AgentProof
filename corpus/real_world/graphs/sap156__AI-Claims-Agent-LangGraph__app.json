@@ -1,0 +1,79 @@
+{
+  "name": "sap156__AI-Claims-Agent-LangGraph__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "evaluate_risk",
+      "kind": "llm",
+      "label": "evaluate_risk",
+      "tools": []
+    },
+    {
+      "id": "check_validity",
+      "kind": "router",
+      "label": "check_validity",
+      "tools": []
+    },
+    {
+      "id": "approve_claim",
+      "kind": "llm",
+      "label": "approve_claim",
+      "tools": []
+    },
+    {
+      "id": "reject_claim",
+      "kind": "llm",
+      "label": "reject_claim",
+      "tools": []
+    },
+    {
+      "id": "send_for_review",
+      "kind": "llm",
+      "label": "send_for_review",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "evaluate_risk",
+      "kind": "direct"
+    },
+    {
+      "source": "evaluate_risk",
+      "target": "check_validity",
+      "kind": "direct"
+    },
+    {
+      "source": "approve_claim",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "reject_claim",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "send_for_review",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

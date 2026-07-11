@@ -1,0 +1,71 @@
+{
+  "name": "Shashn-ai__YouTube-Blog-Generator__App",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "extract_transcript",
+      "kind": "llm",
+      "label": "extract_transcript",
+      "tools": []
+    },
+    {
+      "id": "summarize_transcript",
+      "kind": "llm",
+      "label": "summarize_transcript",
+      "tools": []
+    },
+    {
+      "id": "generate_blog",
+      "kind": "llm",
+      "label": "generate_blog",
+      "tools": []
+    },
+    {
+      "id": "human_review",
+      "kind": "router",
+      "label": "human_review",
+      "tools": []
+    },
+    {
+      "id": "revise_blog",
+      "kind": "llm",
+      "label": "revise_blog",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract_transcript",
+      "kind": "direct"
+    },
+    {
+      "source": "extract_transcript",
+      "target": "summarize_transcript",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize_transcript",
+      "target": "generate_blog",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_blog",
+      "target": "human_review",
+      "kind": "direct"
+    },
+    {
+      "source": "revise_blog",
+      "target": "human_review",
+      "kind": "direct"
+    }
+  ]
+}

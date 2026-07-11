@@ -1,0 +1,40 @@
+{
+  "name": "suryaMadhav16__RAG-Lab__CrewAI",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "create_a_detailed_review_for_the_following_product",
+      "kind": "llm",
+      "label": "Create a detailed review for the following product",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "create_a_detailed_review_for_the_following_product",
+      "kind": "direct"
+    },
+    {
+      "source": "create_a_detailed_review_for_the_following_product",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

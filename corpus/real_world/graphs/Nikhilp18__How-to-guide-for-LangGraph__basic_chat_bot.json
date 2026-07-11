@@ -1,0 +1,54 @@
+{
+  "name": "Nikhilp18__How-to-guide-for-LangGraph__basic_chat_bot",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "chat",
+      "kind": "llm",
+      "label": "chat",
+      "tools": []
+    },
+    {
+      "id": "continue_conversation",
+      "kind": "router",
+      "label": "continue_conversation",
+      "tools": []
+    },
+    {
+      "id": "user_speak",
+      "kind": "llm",
+      "label": "user_speak",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "user_speak",
+      "kind": "direct"
+    },
+    {
+      "source": "user_speak",
+      "target": "continue_conversation",
+      "kind": "direct"
+    },
+    {
+      "source": "chat",
+      "target": "user_speak",
+      "kind": "direct"
+    },
+    {
+      "source": "user_speak",
+      "target": "continue_conversation",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,433 @@
+{
+  "name": "SAMAR-CODE404__backend__Main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "generate_queries_a",
+      "kind": "llm",
+      "label": "Generate research queries (A)"
+    },
+    {
+      "id": "research_human_approval_a",
+      "kind": "human",
+      "label": "Research human approval (A)"
+    },
+    {
+      "id": "web_search_a",
+      "kind": "tool",
+      "label": "Web search (A)",
+      "tools": [
+        "web_search"
+      ]
+    },
+    {
+      "id": "DCF_modelling_a",
+      "kind": "llm",
+      "label": "DCF modelling (A)"
+    },
+    {
+      "id": "financial_ratio_a",
+      "kind": "llm",
+      "label": "Financial ratios (A)"
+    },
+    {
+      "id": "fin_human_approval_a",
+      "kind": "human",
+      "label": "Financial human approval (A)"
+    },
+    {
+      "id": "financial_reporting_a",
+      "kind": "llm",
+      "label": "Financial reporting (A)"
+    },
+    {
+      "id": "supply_chain_analysis_a",
+      "kind": "llm",
+      "label": "Supply chain analysis (A)"
+    },
+    {
+      "id": "industry_positioning_a",
+      "kind": "llm",
+      "label": "Industry positioning (A)"
+    },
+    {
+      "id": "ops_human_approval_a",
+      "kind": "human",
+      "label": "Operations human approval (A)"
+    },
+    {
+      "id": "operations_reporting_a",
+      "kind": "llm",
+      "label": "Operations reporting (A)"
+    },
+    {
+      "id": "assess_regulatory_compliance",
+      "kind": "llm",
+      "label": "Assess regulatory compliance"
+    },
+    {
+      "id": "conduct_legal_due_diligence",
+      "kind": "llm",
+      "label": "Conduct legal due diligence"
+    },
+    {
+      "id": "assess_potential_legal_risks",
+      "kind": "llm",
+      "label": "Assess potential legal risks"
+    },
+    {
+      "id": "finalize_legal_report",
+      "kind": "passthrough",
+      "label": "Finalize legal report (identity lambda)"
+    },
+    {
+      "id": "generate_queries_b",
+      "kind": "llm",
+      "label": "Generate research queries (B)"
+    },
+    {
+      "id": "research_human_approval_b",
+      "kind": "human",
+      "label": "Research human approval (B)"
+    },
+    {
+      "id": "web_search_b",
+      "kind": "tool",
+      "label": "Web search (B)",
+      "tools": [
+        "web_search"
+      ]
+    },
+    {
+      "id": "DCF_modelling_b",
+      "kind": "llm",
+      "label": "DCF modelling (B)"
+    },
+    {
+      "id": "financial_ratio_b",
+      "kind": "llm",
+      "label": "Financial ratios (B)"
+    },
+    {
+      "id": "fin_human_approval_b",
+      "kind": "human",
+      "label": "Financial human approval (B)"
+    },
+    {
+      "id": "financial_reporting_b",
+      "kind": "llm",
+      "label": "Financial reporting (B)"
+    },
+    {
+      "id": "supply_chain_analysis_b",
+      "kind": "llm",
+      "label": "Supply chain analysis (B)"
+    },
+    {
+      "id": "industry_positioning_b",
+      "kind": "llm",
+      "label": "Industry positioning (B)"
+    },
+    {
+      "id": "ops_human_approval_b",
+      "kind": "human",
+      "label": "Operations human approval (B)"
+    },
+    {
+      "id": "operations_reporting_b",
+      "kind": "llm",
+      "label": "Operations reporting (B)"
+    },
+    {
+      "id": "validate_merger_feasibility",
+      "kind": "llm",
+      "label": "Validate merger feasibility"
+    },
+    {
+      "id": "calculate_merger_valuation",
+      "kind": "llm",
+      "label": "Calculate merger valuation"
+    },
+    {
+      "id": "assess_integration_risks",
+      "kind": "llm",
+      "label": "Assess integration risks"
+    },
+    {
+      "id": "finalize_merger_report",
+      "kind": "passthrough",
+      "label": "Finalize merger report (identity lambda)"
+    },
+    {
+      "id": "report_structure_creator",
+      "kind": "llm",
+      "label": "Report structure creator"
+    },
+    {
+      "id": "section_template_generator",
+      "kind": "llm",
+      "label": "Section template generator"
+    },
+    {
+      "id": "rag_summary_generator",
+      "kind": "llm",
+      "label": "RAG summary generator"
+    },
+    {
+      "id": "consistency_checker",
+      "kind": "llm",
+      "label": "Consistency checker"
+    },
+    {
+      "id": "report_formatter",
+      "kind": "llm",
+      "label": "Report formatter"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generate_queries_a",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_queries_a",
+      "target": "research_human_approval_a",
+      "kind": "direct"
+    },
+    {
+      "source": "research_human_approval_a",
+      "target": "web_search_a",
+      "kind": "conditional"
+    },
+    {
+      "source": "research_human_approval_a",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "web_search_a",
+      "target": "web_search_a",
+      "kind": "loop"
+    },
+    {
+      "source": "web_search_a",
+      "target": "DCF_modelling_a",
+      "kind": "conditional"
+    },
+    {
+      "source": "web_search_a",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "DCF_modelling_a",
+      "target": "financial_ratio_a",
+      "kind": "direct"
+    },
+    {
+      "source": "financial_ratio_a",
+      "target": "fin_human_approval_a",
+      "kind": "direct"
+    },
+    {
+      "source": "fin_human_approval_a",
+      "target": "financial_reporting_a",
+      "kind": "conditional"
+    },
+    {
+      "source": "fin_human_approval_a",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "financial_reporting_a",
+      "target": "supply_chain_analysis_a",
+      "kind": "direct"
+    },
+    {
+      "source": "supply_chain_analysis_a",
+      "target": "industry_positioning_a",
+      "kind": "direct"
+    },
+    {
+      "source": "industry_positioning_a",
+      "target": "ops_human_approval_a",
+      "kind": "direct"
+    },
+    {
+      "source": "ops_human_approval_a",
+      "target": "operations_reporting_a",
+      "kind": "conditional"
+    },
+    {
+      "source": "ops_human_approval_a",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "operations_reporting_a",
+      "target": "generate_queries_b",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_queries_b",
+      "target": "research_human_approval_b",
+      "kind": "direct"
+    },
+    {
+      "source": "research_human_approval_b",
+      "target": "web_search_b",
+      "kind": "conditional"
+    },
+    {
+      "source": "research_human_approval_b",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "web_search_b",
+      "target": "web_search_b",
+      "kind": "loop"
+    },
+    {
+      "source": "web_search_b",
+      "target": "DCF_modelling_b",
+      "kind": "conditional"
+    },
+    {
+      "source": "web_search_b",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "DCF_modelling_b",
+      "target": "financial_ratio_b",
+      "kind": "direct"
+    },
+    {
+      "source": "financial_ratio_b",
+      "target": "fin_human_approval_b",
+      "kind": "direct"
+    },
+    {
+      "source": "fin_human_approval_b",
+      "target": "financial_reporting_b",
+      "kind": "conditional"
+    },
+    {
+      "source": "fin_human_approval_b",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "financial_reporting_b",
+      "target": "supply_chain_analysis_b",
+      "kind": "direct"
+    },
+    {
+      "source": "supply_chain_analysis_b",
+      "target": "industry_positioning_b",
+      "kind": "direct"
+    },
+    {
+      "source": "industry_positioning_b",
+      "target": "ops_human_approval_b",
+      "kind": "direct"
+    },
+    {
+      "source": "ops_human_approval_b",
+      "target": "operations_reporting_b",
+      "kind": "conditional"
+    },
+    {
+      "source": "ops_human_approval_b",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "operations_reporting_b",
+      "target": "validate_merger_feasibility",
+      "kind": "direct"
+    },
+    {
+      "source": "validate_merger_feasibility",
+      "target": "calculate_merger_valuation",
+      "kind": "direct"
+    },
+    {
+      "source": "calculate_merger_valuation",
+      "target": "assess_integration_risks",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_integration_risks",
+      "target": "finalize_merger_report",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize_merger_report",
+      "target": "assess_regulatory_compliance",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_regulatory_compliance",
+      "target": "conduct_legal_due_diligence",
+      "kind": "direct"
+    },
+    {
+      "source": "conduct_legal_due_diligence",
+      "target": "assess_potential_legal_risks",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_potential_legal_risks",
+      "target": "finalize_legal_report",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize_legal_report",
+      "target": "report_structure_creator",
+      "kind": "direct"
+    },
+    {
+      "source": "report_structure_creator",
+      "target": "section_template_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "section_template_generator",
+      "target": "rag_summary_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "rag_summary_generator",
+      "target": "consistency_checker",
+      "kind": "direct"
+    },
+    {
+      "source": "consistency_checker",
+      "target": "report_formatter",
+      "kind": "direct"
+    },
+    {
+      "source": "report_formatter",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

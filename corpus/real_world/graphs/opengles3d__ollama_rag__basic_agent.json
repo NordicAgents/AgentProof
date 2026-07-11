@@ -1,0 +1,38 @@
+{
+  "name": "opengles3d__ollama_rag__basic_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "model",
+      "kind": "router",
+      "label": "model",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "model",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "model",
+      "kind": "direct"
+    }
+  ]
+}

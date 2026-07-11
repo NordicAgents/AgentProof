@@ -1,0 +1,35 @@
+{
+  "name": "suryaMadhav16__RAG-Lab__CrewAI",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry"
+    },
+    {
+      "id": "create_a_detailed_review_for_the_following_product",
+      "kind": "llm",
+      "label": "Create detailed iPhone 14 Pro review (reviewer agent, Ollama LLM, ProductReview output)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "create_a_detailed_review_for_the_following_product",
+      "kind": "direct"
+    },
+    {
+      "source": "create_a_detailed_review_for_the_following_product",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

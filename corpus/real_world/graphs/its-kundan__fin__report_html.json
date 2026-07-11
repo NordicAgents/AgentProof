@@ -1,0 +1,106 @@
+{
+  "name": "its-kundan__fin__report_html",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "intent",
+      "kind": "llm",
+      "label": "intent",
+      "tools": []
+    },
+    {
+      "id": "sql_gen",
+      "kind": "llm",
+      "label": "sql_gen",
+      "tools": []
+    },
+    {
+      "id": "sql_exec",
+      "kind": "llm",
+      "label": "sql_exec",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "graph_gen",
+      "kind": "llm",
+      "label": "graph_gen",
+      "tools": []
+    },
+    {
+      "id": "insight",
+      "kind": "llm",
+      "label": "insight",
+      "tools": []
+    },
+    {
+      "id": "output",
+      "kind": "llm",
+      "label": "output",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "intent",
+      "kind": "direct"
+    },
+    {
+      "source": "intent",
+      "target": "sql_gen",
+      "kind": "direct"
+    },
+    {
+      "source": "sql_gen",
+      "target": "sql_exec",
+      "kind": "direct"
+    },
+    {
+      "source": "sql_exec",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "graph_gen",
+      "kind": "direct"
+    },
+    {
+      "source": "graph_gen",
+      "target": "insight",
+      "kind": "direct"
+    },
+    {
+      "source": "insight",
+      "target": "output",
+      "kind": "direct"
+    },
+    {
+      "source": "output",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

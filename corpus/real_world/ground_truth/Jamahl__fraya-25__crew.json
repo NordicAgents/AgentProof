@@ -1,0 +1,53 @@
+{
+  "name": "Jamahl__fraya-25__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "analyze_the_incoming_email_and_extract_scheduling_",
+      "kind": "tool",
+      "label": "Analyze incoming email / extract scheduling intent (analyzer_agent, mcp_tools bound)",
+      "tools": [
+        "mcp_tools"
+      ]
+    },
+    {
+      "id": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+      "kind": "tool",
+      "label": "Draft reply if scheduling intent (reply_agent, mcp_tools bound)",
+      "tools": [
+        "mcp_tools"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_incoming_email_and_extract_scheduling_",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_incoming_email_and_extract_scheduling_",
+      "target": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

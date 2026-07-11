@@ -1,0 +1,62 @@
+{
+  "name": "MdArshath2004__snowflakeoptimization__tes",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "recommend_warehouse",
+      "kind": "llm",
+      "label": "Recommend warehouse (Gemini LLM)",
+      "tools": []
+    },
+    {
+      "id": "optimize_query",
+      "kind": "llm",
+      "label": "Optimize SQL query (Gemini LLM)",
+      "tools": []
+    },
+    {
+      "id": "execute_query",
+      "kind": "tool",
+      "label": "Execute query in Snowflake",
+      "tools": [
+        "snowflake.connector"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "recommend_warehouse",
+      "kind": "direct"
+    },
+    {
+      "source": "recommend_warehouse",
+      "target": "optimize_query",
+      "kind": "direct"
+    },
+    {
+      "source": "optimize_query",
+      "target": "execute_query",
+      "kind": "direct"
+    },
+    {
+      "source": "execute_query",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

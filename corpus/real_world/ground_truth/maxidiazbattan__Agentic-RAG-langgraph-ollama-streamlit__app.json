@@ -1,0 +1,58 @@
+{
+  "name": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry"
+    },
+    {
+      "id": "assistant",
+      "kind": "router",
+      "label": "Assistant agent (LLM with bound tools, routes via tools_condition)",
+      "tools": [
+        "retrieve",
+        "web_search"
+      ]
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "ToolNode with fallback (executes retrieve / web_search)",
+      "tools": [
+        "retrieve",
+        "web_search"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "tools",
+      "kind": "conditional"
+    },
+    {
+      "source": "assistant",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "tools",
+      "target": "assistant",
+      "kind": "loop"
+    }
+  ]
+}

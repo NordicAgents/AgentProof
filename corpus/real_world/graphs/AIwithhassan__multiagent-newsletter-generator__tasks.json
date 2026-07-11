@@ -1,0 +1,68 @@
+{
+  "name": "AIwithhassan__multiagent-newsletter-generator__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+      "kind": "tool",
+      "label": "\n    Identify the next big trend in the topic: {to",
+      "tools": [
+        "google_search_tool"
+      ]
+    },
+    {
+      "id": "\n____compose_an_insightful_article_on_the_topic:_{",
+      "kind": "tool",
+      "label": "\n    Compose an insightful article on the topic: {",
+      "tools": [
+        "google_search_tool"
+      ]
+    },
+    {
+      "id": "\n____finalise_an_insightful_article_on_the_topic:_",
+      "kind": "tool",
+      "label": "\n    Finalise an insightful article on the topic: ",
+      "tools": [
+        "google_search_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+      "kind": "direct"
+    },
+    {
+      "source": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+      "target": "\n____compose_an_insightful_article_on_the_topic:_{",
+      "kind": "direct"
+    },
+    {
+      "source": "\n____compose_an_insightful_article_on_the_topic:_{",
+      "target": "\n____finalise_an_insightful_article_on_the_topic:_",
+      "kind": "direct"
+    },
+    {
+      "source": "\n____finalise_an_insightful_article_on_the_topic:_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

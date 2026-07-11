@@ -1,0 +1,50 @@
+{
+  "name": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "retrieve",
+      "kind": "tool",
+      "label": "retrieve (vectorstore retriever.invoke)",
+      "tools": [
+        "retriever"
+      ]
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate (rag_chain: prompt | llm | StrOutputParser)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "retrieve",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

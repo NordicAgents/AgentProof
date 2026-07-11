@@ -1,0 +1,55 @@
+{
+  "name": "Tusharbecoding__multi-youtube-agent__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "identify_the_video_{topic}.get_detailed_informatio",
+      "kind": "tool",
+      "label": "Identify the video {topic}.Get detailed informatio",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "get_detailed_information_from_the_youtube_channel_",
+      "kind": "tool",
+      "label": "Get detailed information from the youtube channel ",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_video_{topic}.get_detailed_informatio",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_video_{topic}.get_detailed_informatio",
+      "target": "get_detailed_information_from_the_youtube_channel_",
+      "kind": "direct"
+    },
+    {
+      "source": "get_detailed_information_from_the_youtube_channel_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

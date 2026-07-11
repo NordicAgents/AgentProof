@@ -108,6 +108,15 @@ class _LangGraphVisitor(ast.NodeVisitor):
         self.generic_visit(node)
 
     def build_graph(self) -> dict[str, Any]:
+        # Normalize sentinel references in edges FIRST so exit detection sees them.
+        # LangGraph code commonly writes add_edge(node, END) / add_edge(START, node),
+        # where END/START are imported names that stringify to "END"/"START".
+        for e in self.edges:
+            if e["target"] in ("END", "__end__"):
+                e["target"] = "__end__"
+            if e["source"] in ("START", "__start__"):
+                e["source"] = "__start__"
+
         # Add entry/exit sentinels
         all_ids = {n["id"] for n in self.nodes}
         edge_targets = {e["target"] for e in self.edges}
@@ -117,13 +126,6 @@ class _LangGraphVisitor(ast.NodeVisitor):
             self.nodes.insert(0, {"id": "__start__", "kind": "entry", "label": "start", "tools": []})
         if "__end__" not in all_ids and "__end__" in edge_targets:
             self.nodes.append({"id": "__end__", "kind": "exit", "label": "end", "tools": []})
-
-        # Handle END sentinel references in edges
-        for e in self.edges:
-            if e["target"] == "END":
-                e["target"] = "__end__"
-            if e["source"] == "START":
-                e["source"] = "__start__"
 
         exit_ids = [n["id"] for n in self.nodes if n["kind"] == "exit"]
         return {

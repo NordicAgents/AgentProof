@@ -1,0 +1,55 @@
+{
+  "name": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "identify_the_next_big_trend_in_{topic}._focus_on_a",
+      "kind": "tool",
+      "label": "Identify the next big trend in {topic}. Focus on a",
+      "tools": [
+        "tool"
+      ]
+    },
+    {
+      "id": "compose_an_insightful_and_engaging_youtube_script_",
+      "kind": "tool",
+      "label": "Compose an insightful and engaging YouTube script ",
+      "tools": [
+        "tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_next_big_trend_in_{topic}._focus_on_a",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_next_big_trend_in_{topic}._focus_on_a",
+      "target": "compose_an_insightful_and_engaging_youtube_script_",
+      "kind": "direct"
+    },
+    {
+      "source": "compose_an_insightful_and_engaging_youtube_script_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

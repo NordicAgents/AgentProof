@@ -1,0 +1,90 @@
+{
+  "name": "tweetlol__eve__eve",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "extract",
+      "kind": "llm",
+      "label": "extract",
+      "tools": []
+    },
+    {
+      "id": "summarize",
+      "kind": "llm",
+      "label": "summarize",
+      "tools": []
+    },
+    {
+      "id": "write",
+      "kind": "llm",
+      "label": "write",
+      "tools": []
+    },
+    {
+      "id": "review",
+      "kind": "router",
+      "label": "review",
+      "tools": []
+    },
+    {
+      "id": "revise",
+      "kind": "llm",
+      "label": "revise",
+      "tools": []
+    },
+    {
+      "id": "save",
+      "kind": "llm",
+      "label": "save",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract",
+      "kind": "direct"
+    },
+    {
+      "source": "extract",
+      "target": "summarize",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize",
+      "target": "write",
+      "kind": "direct"
+    },
+    {
+      "source": "write",
+      "target": "review",
+      "kind": "direct"
+    },
+    {
+      "source": "revise",
+      "target": "review",
+      "kind": "direct"
+    },
+    {
+      "source": "save",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

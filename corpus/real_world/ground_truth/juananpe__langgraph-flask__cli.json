@@ -1,0 +1,73 @@
+{
+  "name": "juananpe__langgraph-flask__cli",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "__start__"
+    },
+    {
+      "id": "generate_post",
+      "kind": "llm",
+      "label": "generate_post",
+      "tools": []
+    },
+    {
+      "id": "get_approval",
+      "kind": "human",
+      "label": "get_approval"
+    },
+    {
+      "id": "collect_feedback",
+      "kind": "human",
+      "label": "collect_feedback"
+    },
+    {
+      "id": "post",
+      "kind": "passthrough",
+      "label": "post"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "__end__"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generate_post",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_post",
+      "target": "get_approval",
+      "kind": "direct"
+    },
+    {
+      "source": "get_approval",
+      "target": "post",
+      "kind": "conditional"
+    },
+    {
+      "source": "get_approval",
+      "target": "collect_feedback",
+      "kind": "conditional"
+    },
+    {
+      "source": "post",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "collect_feedback",
+      "target": "generate_post",
+      "kind": "loop"
+    }
+  ]
+}

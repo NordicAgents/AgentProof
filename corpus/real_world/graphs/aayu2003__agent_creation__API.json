@@ -1,0 +1,81 @@
+{
+  "name": "aayu2003__agent_creation__API",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "find_the_relavent_information_for_{query}_.divide_",
+      "kind": "tool",
+      "label": "find the relavent information for {Query} .divide ",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "differentiate_the_{subtasks}_in_such_a_way_that_th",
+      "kind": "tool",
+      "label": "differentiate the {subtasks} in such a way that th",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "find_the_relavent_information_for_{subtasks}_and_a",
+      "kind": "tool",
+      "label": "find the relavent information for {subtasks} and a",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "find_weather_the_{response}_fully_answer_{query}_o",
+      "kind": "tool",
+      "label": "find weather the {response} fully answer {Query} o",
+      "tools": [
+        "url_extractor_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "find_the_relavent_information_for_{query}_.divide_",
+      "kind": "direct"
+    },
+    {
+      "source": "find_the_relavent_information_for_{query}_.divide_",
+      "target": "differentiate_the_{subtasks}_in_such_a_way_that_th",
+      "kind": "direct"
+    },
+    {
+      "source": "differentiate_the_{subtasks}_in_such_a_way_that_th",
+      "target": "find_the_relavent_information_for_{subtasks}_and_a",
+      "kind": "direct"
+    },
+    {
+      "source": "find_the_relavent_information_for_{subtasks}_and_a",
+      "target": "find_weather_the_{response}_fully_answer_{query}_o",
+      "kind": "direct"
+    },
+    {
+      "source": "find_weather_the_{response}_fully_answer_{query}_o",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

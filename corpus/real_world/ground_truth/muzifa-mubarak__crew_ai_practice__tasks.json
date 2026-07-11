@@ -1,0 +1,53 @@
+{
+  "name": "muzifa-mubarak__crew_ai_practice__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "identify_the_video_{topic}_and_get_detailed_inform",
+      "kind": "tool",
+      "label": "research_task: identify video and gather info",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "write_a_blog_on_the_youtube_video_{topic}",
+      "kind": "tool",
+      "label": "writer_task: write blog on the video",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_video_{topic}_and_get_detailed_inform",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_video_{topic}_and_get_detailed_inform",
+      "target": "write_a_blog_on_the_youtube_video_{topic}",
+      "kind": "direct"
+    },
+    {
+      "source": "write_a_blog_on_the_youtube_video_{topic}",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

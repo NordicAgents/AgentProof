@@ -1,0 +1,63 @@
+{
+  "name": "Avneesh26024__Gen_AI_Exchange__io",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "condense_query",
+      "kind": "router",
+      "label": "condense_query",
+      "tools": []
+    },
+    {
+      "id": "retrieve_context",
+      "kind": "router",
+      "label": "retrieve_context",
+      "tools": []
+    },
+    {
+      "id": "synthesize_answer",
+      "kind": "llm",
+      "label": "synthesize_answer",
+      "tools": []
+    },
+    {
+      "id": "verifier",
+      "kind": "llm",
+      "label": "verifier",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "condense_query",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesize_answer",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "verifier",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "vego147__AI_Research_Img_Assistance__Bot",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "process",
+      "kind": "llm",
+      "label": "process",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "process",
+      "kind": "direct"
+    },
+    {
+      "source": "process",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "GaoDalie__LangGraph_Example__scraper",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "RESEARCHER",
+      "kind": "llm",
+      "label": "RESEARCHER",
+      "tools": []
+    },
+    {
+      "id": "ANALYZER",
+      "kind": "llm",
+      "label": "ANALYZER",
+      "tools": []
+    },
+    {
+      "id": "EXPERT",
+      "kind": "llm",
+      "label": "EXPERT",
+      "tools": []
+    },
+    {
+      "id": "SUPERVISOR",
+      "kind": "router",
+      "label": "SUPERVISOR",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "RESEARCHER",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "ANALYZER",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "EXPERT",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "RESEARCHER",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "ANALYZER",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "EXPERT",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "SUPERVISOR",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "UniformSegue__24H-Du-Code-LeMans__IA",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "tool_node",
+      "kind": "tool",
+      "label": "tool_node",
+      "tools": []
+    },
+    {
+      "id": "prompt_node",
+      "kind": "router",
+      "label": "prompt_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "tool_node",
+      "target": "prompt_node",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "prompt_node",
+      "kind": "direct"
+    }
+  ]
+}

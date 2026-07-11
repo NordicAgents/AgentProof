@@ -1,0 +1,62 @@
+{
+  "name": "ramamoorthy07__Multi-Agent-Market-Research-and-Use-Case-Generation-System__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_and_analyze_the_company/industry:_{compan",
+      "kind": "llm",
+      "label": "Research and analyze the company/industry: {compan",
+      "tools": []
+    },
+    {
+      "id": "based_on_insights_from_the_industry_research_task,",
+      "kind": "llm",
+      "label": "Based on insights from the industry research task,",
+      "tools": []
+    },
+    {
+      "id": "for_each_generative_ai_or_ai/ml_use_case_identifie",
+      "kind": "llm",
+      "label": "For each Generative AI or AI/ML use case identifie",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_and_analyze_the_company/industry:_{compan",
+      "kind": "direct"
+    },
+    {
+      "source": "research_and_analyze_the_company/industry:_{compan",
+      "target": "based_on_insights_from_the_industry_research_task,",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_insights_from_the_industry_research_task,",
+      "target": "for_each_generative_ai_or_ai/ml_use_case_identifie",
+      "kind": "direct"
+    },
+    {
+      "source": "for_each_generative_ai_or_ai/ml_use_case_identifie",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

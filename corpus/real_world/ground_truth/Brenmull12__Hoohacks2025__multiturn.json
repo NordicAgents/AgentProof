@@ -1,0 +1,106 @@
+{
+  "name": "Brenmull12__Hoohacks2025__multiturn",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "interactive_conversation",
+      "kind": "router",
+      "label": "interactive_conversation",
+      "tools": []
+    },
+    {
+      "id": "wait_for_user",
+      "kind": "human",
+      "label": "wait_for_user"
+    },
+    {
+      "id": "determine_research_needs",
+      "kind": "tool",
+      "label": "determine_research_needs",
+      "tools": [
+        "perplexity_research"
+      ]
+    },
+    {
+      "id": "generate_analysis",
+      "kind": "llm",
+      "label": "generate_analysis"
+    },
+    {
+      "id": "final_response",
+      "kind": "passthrough",
+      "label": "final_response"
+    },
+    {
+      "id": "reset_conversation",
+      "kind": "passthrough",
+      "label": "reset_conversation"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "interactive_conversation",
+      "kind": "direct"
+    },
+    {
+      "source": "interactive_conversation",
+      "target": "interactive_conversation",
+      "kind": "loop"
+    },
+    {
+      "source": "interactive_conversation",
+      "target": "wait_for_user",
+      "kind": "conditional"
+    },
+    {
+      "source": "interactive_conversation",
+      "target": "determine_research_needs",
+      "kind": "conditional"
+    },
+    {
+      "source": "interactive_conversation",
+      "target": "reset_conversation",
+      "kind": "conditional"
+    },
+    {
+      "source": "interactive_conversation",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "determine_research_needs",
+      "target": "generate_analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_analysis",
+      "target": "final_response",
+      "kind": "direct"
+    },
+    {
+      "source": "final_response",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "reset_conversation",
+      "target": "interactive_conversation",
+      "kind": "loop"
+    }
+  ]
+}

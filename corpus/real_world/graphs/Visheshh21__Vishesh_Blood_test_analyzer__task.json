@@ -1,0 +1,77 @@
+{
+  "name": "Visheshh21__Vishesh_Blood_test_analyzer__task",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "read_and_validate_the_blood_test_report_pdf_file._",
+      "kind": "tool",
+      "label": "Read and validate the blood test report PDF file. ",
+      "tools": [
+        "blood_test_tool"
+      ]
+    },
+    {
+      "id": "thoroughly_analyze_the_user's_blood_test_data_prov",
+      "kind": "tool",
+      "label": "Thoroughly analyze the user's blood test data prov",
+      "tools": [
+        "blood_test_tool"
+      ]
+    },
+    {
+      "id": "analyze_the_user's_blood_test_report_to_identify_a",
+      "kind": "llm",
+      "label": "Analyze the user's blood test report to identify a",
+      "tools": []
+    },
+    {
+      "id": "develop_a_customized_exercise_plan_based_on_the_us",
+      "kind": "llm",
+      "label": "Develop a customized exercise plan based on the us",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "read_and_validate_the_blood_test_report_pdf_file._",
+      "kind": "direct"
+    },
+    {
+      "source": "read_and_validate_the_blood_test_report_pdf_file._",
+      "target": "thoroughly_analyze_the_user's_blood_test_data_prov",
+      "kind": "direct"
+    },
+    {
+      "source": "thoroughly_analyze_the_user's_blood_test_data_prov",
+      "target": "analyze_the_user's_blood_test_report_to_identify_a",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_user's_blood_test_report_to_identify_a",
+      "target": "develop_a_customized_exercise_plan_based_on_the_us",
+      "kind": "direct"
+    },
+    {
+      "source": "develop_a_customized_exercise_plan_based_on_the_us",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

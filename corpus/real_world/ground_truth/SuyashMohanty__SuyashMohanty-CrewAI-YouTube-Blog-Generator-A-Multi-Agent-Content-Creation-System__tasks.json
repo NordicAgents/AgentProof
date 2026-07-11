@@ -1,0 +1,53 @@
+{
+  "name": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "identify_the_video_{topic}.get_detailed_informatio",
+      "kind": "tool",
+      "label": "research_task (blog_researcher, yt_tool)",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "get_the_info_from_the_youtube_channel_on_the_topic",
+      "kind": "tool",
+      "label": "write_task (blog_writer, yt_tool)",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_video_{topic}.get_detailed_informatio",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_video_{topic}.get_detailed_informatio",
+      "target": "get_the_info_from_the_youtube_channel_on_the_topic",
+      "kind": "direct"
+    },
+    {
+      "source": "get_the_info_from_the_youtube_channel_on_the_topic",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

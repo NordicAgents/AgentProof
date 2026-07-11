@@ -1,0 +1,73 @@
+{
+  "name": "A-Atta__Procurement_System_Using_AI__Tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "search_queries_recommendation_task",
+      "kind": "llm",
+      "label": "search_queries_recommendation_task",
+      "tools": []
+    },
+    {
+      "id": "search_engine_task",
+      "kind": "llm",
+      "label": "search_engine_task",
+      "tools": []
+    },
+    {
+      "id": "scraping_task",
+      "kind": "llm",
+      "label": "scraping_task",
+      "tools": []
+    },
+    {
+      "id": "procurement_report_author_task",
+      "kind": "llm",
+      "label": "procurement_report_author_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "search_queries_recommendation_task",
+      "kind": "direct"
+    },
+    {
+      "source": "search_queries_recommendation_task",
+      "target": "search_engine_task",
+      "kind": "direct"
+    },
+    {
+      "source": "search_engine_task",
+      "target": "scraping_task",
+      "kind": "direct"
+    },
+    {
+      "source": "scraping_task",
+      "target": "procurement_report_author_task",
+      "kind": "direct"
+    },
+    {
+      "source": "procurement_report_author_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

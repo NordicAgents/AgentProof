@@ -25,3 +25,9 @@ htmlcov/
 *.swo
 
 .DS_Store
+
+# Real-world GitHub mining: cloned third-party repos (3.7GB) and source snapshots.
+# Reproducible from corpus/real_world/metadata.json provenance (repo@sha + path);
+# not redistributed here.
+corpus/real_world/_repos/
+corpus/real_world/sources/

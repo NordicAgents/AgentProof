@@ -1,0 +1,68 @@
+{
+  "name": "timleow__gym-kfc-daddies__cli_ui",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "greeting",
+      "kind": "llm",
+      "label": "greeting",
+      "tools": []
+    },
+    {
+      "id": "get_user_prompt",
+      "kind": "router",
+      "label": "get_user_prompt",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "farewell",
+      "kind": "llm",
+      "label": "farewell",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "greeting",
+      "kind": "direct"
+    },
+    {
+      "source": "greeting",
+      "target": "get_user_prompt",
+      "kind": "direct"
+    },
+    {
+      "source": "assistant",
+      "target": "get_user_prompt",
+      "kind": "direct"
+    },
+    {
+      "source": "farewell",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

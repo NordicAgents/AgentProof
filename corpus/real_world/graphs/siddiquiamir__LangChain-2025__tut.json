@@ -1,0 +1,38 @@
+{
+  "name": "siddiquiamir__LangChain-2025__tut",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "llm_call",
+      "kind": "router",
+      "label": "llm_call",
+      "tools": []
+    },
+    {
+      "id": "tool_node",
+      "kind": "tool",
+      "label": "tool_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "llm_call",
+      "kind": "direct"
+    },
+    {
+      "source": "tool_node",
+      "target": "llm_call",
+      "kind": "direct"
+    }
+  ]
+}

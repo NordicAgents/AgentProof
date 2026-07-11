@@ -1,0 +1,83 @@
+{
+  "name": "kunallll17__Financial-doc-analyzer-crewai__task",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "\nanalyze_the_financial_document_located_at:_{file_",
+      "kind": "tool",
+      "label": "\nAnalyze the financial document located at: {file_",
+      "tools": [
+        "pdf_reader_tool"
+      ]
+    },
+    {
+      "id": "\nbased_on_the_financial_document_at:_{file_path}\n\n",
+      "kind": "tool",
+      "label": "\nBased on the financial document at: {file_path}\n\n",
+      "tools": [
+        "pdf_reader_tool",
+        "investment_tool"
+      ]
+    },
+    {
+      "id": "\nassess_financial_risks_from_the_document_at:_{fil",
+      "kind": "tool",
+      "label": "\nAssess financial risks from the document at: {fil",
+      "tools": [
+        "pdf_reader_tool",
+        "risk_tool"
+      ]
+    },
+    {
+      "id": "\nverify_and_synthesize_all_analysis_for_the_docume",
+      "kind": "tool",
+      "label": "\nVerify and synthesize all analysis for the docume",
+      "tools": [
+        "pdf_reader_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "\nanalyze_the_financial_document_located_at:_{file_",
+      "kind": "direct"
+    },
+    {
+      "source": "\nanalyze_the_financial_document_located_at:_{file_",
+      "target": "\nbased_on_the_financial_document_at:_{file_path}\n\n",
+      "kind": "direct"
+    },
+    {
+      "source": "\nbased_on_the_financial_document_at:_{file_path}\n\n",
+      "target": "\nassess_financial_risks_from_the_document_at:_{fil",
+      "kind": "direct"
+    },
+    {
+      "source": "\nassess_financial_risks_from_the_document_at:_{fil",
+      "target": "\nverify_and_synthesize_all_analysis_for_the_docume",
+      "kind": "direct"
+    },
+    {
+      "source": "\nverify_and_synthesize_all_analysis_for_the_docume",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

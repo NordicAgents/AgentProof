@@ -1,0 +1,84 @@
+{
+  "name": "ai-in-pm__StorybooksCrewAI-Groq__app",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "create_an_outline_for_the_adult's_storybook_about_",
+      "kind": "llm",
+      "label": "Create an outline for the adult's storybook about ",
+      "tools": []
+    },
+    {
+      "id": "using_the_outline_provided,_write_the_full_story_c",
+      "kind": "llm",
+      "label": "Using the outline provided, write the full story c",
+      "tools": []
+    },
+    {
+      "id": "generate_5_images_that_captures_the_essence_of_the",
+      "kind": "llm",
+      "label": "Generate 5 images that captures the essence of the",
+      "tools": []
+    },
+    {
+      "id": "format_the_story_content_in_markdown,_including_an",
+      "kind": "llm",
+      "label": "Format the story content in markdown, including an",
+      "tools": []
+    },
+    {
+      "id": "convert_a_markdown_file_to_a_pdf_document,_ensurin",
+      "kind": "llm",
+      "label": "Convert a Markdown file to a PDF document, ensurin",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "create_an_outline_for_the_adult's_storybook_about_",
+      "kind": "direct"
+    },
+    {
+      "source": "create_an_outline_for_the_adult's_storybook_about_",
+      "target": "using_the_outline_provided,_write_the_full_story_c",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_outline_provided,_write_the_full_story_c",
+      "target": "generate_5_images_that_captures_the_essence_of_the",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_5_images_that_captures_the_essence_of_the",
+      "target": "format_the_story_content_in_markdown,_including_an",
+      "kind": "direct"
+    },
+    {
+      "source": "format_the_story_content_in_markdown,_including_an",
+      "target": "convert_a_markdown_file_to_a_pdf_document,_ensurin",
+      "kind": "direct"
+    },
+    {
+      "source": "convert_a_markdown_file_to_a_pdf_document,_ensurin",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

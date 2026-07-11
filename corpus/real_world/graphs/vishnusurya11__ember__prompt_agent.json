@@ -1,0 +1,60 @@
+{
+  "name": "vishnusurya11__ember__prompt_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "IMAGE_PROMPT_GENERATE",
+      "kind": "router",
+      "label": "IMAGE_PROMPT_GENERATE",
+      "tools": []
+    },
+    {
+      "id": "IMAGE_PROMPT_REFLECT",
+      "kind": "llm",
+      "label": "IMAGE_PROMPT_REFLECT",
+      "tools": []
+    },
+    {
+      "id": "YOUTUBE_THUMBNAIL_GENERATE",
+      "kind": "router",
+      "label": "YOUTUBE_THUMBNAIL_GENERATE",
+      "tools": []
+    },
+    {
+      "id": "YOUTUBE_THUMBNAIL_PROMPT_REFLECT",
+      "kind": "llm",
+      "label": "YOUTUBE_THUMBNAIL_PROMPT_REFLECT",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "IMAGE_PROMPT_GENERATE",
+      "kind": "direct"
+    },
+    {
+      "source": "IMAGE_PROMPT_REFLECT",
+      "target": "IMAGE_PROMPT_GENERATE",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "YOUTUBE_THUMBNAIL_GENERATE",
+      "kind": "direct"
+    },
+    {
+      "source": "YOUTUBE_THUMBNAIL_PROMPT_REFLECT",
+      "target": "YOUTUBE_THUMBNAIL_GENERATE",
+      "kind": "direct"
+    }
+  ]
+}

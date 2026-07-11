@@ -1,0 +1,55 @@
+{
+  "name": "ShambhaviM19__Blog-Generation-System__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "research_the_topic_'{topic}'_using_the_youtube_cha",
+      "kind": "tool",
+      "label": "Research the topic '{topic}' using the YouTube cha",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "using_the_research_provided,_create_a_blog_post_ab",
+      "kind": "tool",
+      "label": "Using the research provided, create a blog post ab",
+      "tools": [
+        "yt_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "research_the_topic_'{topic}'_using_the_youtube_cha",
+      "kind": "direct"
+    },
+    {
+      "source": "research_the_topic_'{topic}'_using_the_youtube_cha",
+      "target": "using_the_research_provided,_create_a_blog_post_ab",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_research_provided,_create_a_blog_post_ab",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

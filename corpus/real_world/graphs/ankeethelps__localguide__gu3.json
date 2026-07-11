@@ -1,0 +1,62 @@
+{
+  "name": "ankeethelps__localguide__gu3",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "parse",
+      "kind": "llm",
+      "label": "parse",
+      "tools": []
+    },
+    {
+      "id": "search",
+      "kind": "llm",
+      "label": "search",
+      "tools": []
+    },
+    {
+      "id": "plan",
+      "kind": "llm",
+      "label": "plan",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "parse",
+      "kind": "direct"
+    },
+    {
+      "source": "parse",
+      "target": "search",
+      "kind": "direct"
+    },
+    {
+      "source": "search",
+      "target": "plan",
+      "kind": "direct"
+    },
+    {
+      "source": "plan",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -99,6 +99,13 @@ def main():
                 if check["check_id"] == "exit_reachability":
                     defect["detail"] = f"unreachable exits: {check['missing_exits']}"
                     defect["severity"] = "critical"
+                elif check["check_id"] == "reverse_reachability":
+                    defect["detail"] = f"livelock nodes: {check['livelock_nodes']}"
+                    defect["severity"] = "high"
+                    if "witnesses" in check:
+                        defect["witnesses"] = {
+                            k: v for k, v in check["witnesses"].items() if v is not None
+                        }
                 elif check["check_id"] == "dead_ends":
                     defect["detail"] = f"dead-end nodes: {check['dead_ends']}"
                     defect["severity"] = "high"

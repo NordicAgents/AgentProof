@@ -1,0 +1,68 @@
+{
+  "name": "juananpe__langgraph-flask__web",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "generate_post",
+      "kind": "llm",
+      "label": "generate_post",
+      "tools": []
+    },
+    {
+      "id": "get_approval",
+      "kind": "router",
+      "label": "get_approval",
+      "tools": []
+    },
+    {
+      "id": "post",
+      "kind": "llm",
+      "label": "post",
+      "tools": []
+    },
+    {
+      "id": "collect_feedback",
+      "kind": "llm",
+      "label": "collect_feedback",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "generate_post",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_post",
+      "target": "get_approval",
+      "kind": "direct"
+    },
+    {
+      "source": "post",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "collect_feedback",
+      "target": "generate_post",
+      "kind": "direct"
+    }
+  ]
+}

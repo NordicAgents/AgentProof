@@ -1,0 +1,68 @@
+{
+  "name": "houyongsheng__local_rag__rag",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "Start"
+    },
+    {
+      "id": "query_or_respond",
+      "kind": "router",
+      "label": "query_or_respond (LLM w/ retrieve tool bound; routes via tools_condition)",
+      "tools": [
+        "retrieve"
+      ]
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools (ToolNode running retrieve)",
+      "tools": [
+        "retrieve"
+      ]
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate (LLM final answer from context+history)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "query_or_respond",
+      "kind": "direct"
+    },
+    {
+      "source": "query_or_respond",
+      "target": "tools",
+      "kind": "conditional"
+    },
+    {
+      "source": "query_or_respond",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "tools",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

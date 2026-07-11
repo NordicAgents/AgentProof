@@ -1,0 +1,84 @@
+{
+  "name": "shivam682__codiing__langgraph",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "IndexCRs",
+      "kind": "llm",
+      "label": "IndexCRs",
+      "tools": []
+    },
+    {
+      "id": "IndexDump",
+      "kind": "llm",
+      "label": "IndexDump",
+      "tools": []
+    },
+    {
+      "id": "GetJiraText",
+      "kind": "llm",
+      "label": "GetJiraText",
+      "tools": []
+    },
+    {
+      "id": "FindCRs",
+      "kind": "llm",
+      "label": "FindCRs",
+      "tools": []
+    },
+    {
+      "id": "Compare",
+      "kind": "llm",
+      "label": "Compare",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "IndexCRs",
+      "kind": "direct"
+    },
+    {
+      "source": "IndexCRs",
+      "target": "IndexDump",
+      "kind": "direct"
+    },
+    {
+      "source": "IndexDump",
+      "target": "GetJiraText",
+      "kind": "direct"
+    },
+    {
+      "source": "GetJiraText",
+      "target": "FindCRs",
+      "kind": "direct"
+    },
+    {
+      "source": "FindCRs",
+      "target": "Compare",
+      "kind": "direct"
+    },
+    {
+      "source": "Compare",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

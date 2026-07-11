@@ -1,0 +1,100 @@
+{
+  "name": "ZhangJinHaHaHa__FinchainAgent__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyst_a",
+      "kind": "llm",
+      "label": "analyst_a",
+      "tools": []
+    },
+    {
+      "id": "analyst_b",
+      "kind": "llm",
+      "label": "analyst_b",
+      "tools": []
+    },
+    {
+      "id": "analyst_c",
+      "kind": "llm",
+      "label": "analyst_c",
+      "tools": []
+    },
+    {
+      "id": "auditor",
+      "kind": "router",
+      "label": "auditor",
+      "tools": []
+    },
+    {
+      "id": "blockchain",
+      "kind": "llm",
+      "label": "blockchain",
+      "tools": []
+    },
+    {
+      "id": "dispatcher",
+      "kind": "llm",
+      "label": "dispatcher",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "dispatcher",
+      "kind": "direct"
+    },
+    {
+      "source": "dispatcher",
+      "target": "analyst_a",
+      "kind": "direct"
+    },
+    {
+      "source": "dispatcher",
+      "target": "analyst_b",
+      "kind": "direct"
+    },
+    {
+      "source": "dispatcher",
+      "target": "analyst_c",
+      "kind": "direct"
+    },
+    {
+      "source": "analyst_a",
+      "target": "auditor",
+      "kind": "direct"
+    },
+    {
+      "source": "analyst_b",
+      "target": "auditor",
+      "kind": "direct"
+    },
+    {
+      "source": "analyst_c",
+      "target": "auditor",
+      "kind": "direct"
+    },
+    {
+      "source": "blockchain",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

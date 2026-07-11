@@ -1,0 +1,115 @@
+{
+  "name": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__4",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "get_failures",
+      "kind": "llm",
+      "label": "get_failures",
+      "tools": []
+    },
+    {
+      "id": "generate_summary",
+      "kind": "llm",
+      "label": "generate_summary",
+      "tools": []
+    },
+    {
+      "id": "send_to_slack",
+      "kind": "llm",
+      "label": "send_to_slack",
+      "tools": []
+    },
+    {
+      "id": "clean_logs",
+      "kind": "llm",
+      "label": "clean_logs",
+      "tools": []
+    },
+    {
+      "id": "question_summarization",
+      "kind": "llm",
+      "label": "question_summarization",
+      "tools": []
+    },
+    {
+      "id": "failure_analysis",
+      "kind": "llm",
+      "label": "failure_analysis",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "get_failures",
+      "kind": "direct"
+    },
+    {
+      "source": "get_failures",
+      "target": "generate_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_summary",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "generate_summary",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_summary",
+      "target": "send_to_slack",
+      "kind": "direct"
+    },
+    {
+      "source": "send_to_slack",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "clean_logs",
+      "kind": "direct"
+    },
+    {
+      "source": "clean_logs",
+      "target": "question_summarization",
+      "kind": "direct"
+    },
+    {
+      "source": "clean_logs",
+      "target": "failure_analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "question_summarization",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "failure_analysis",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

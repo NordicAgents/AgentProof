@@ -1,0 +1,63 @@
+{
+  "name": "vishnusurya11__ember__dev",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "start",
+      "kind": "tool",
+      "label": "generate_initial_response",
+      "tools": [
+        "tavily_tool"
+      ]
+    },
+    {
+      "id": "expand",
+      "kind": "tool",
+      "label": "expand",
+      "tools": [
+        "tavily_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "start",
+      "kind": "direct"
+    },
+    {
+      "source": "start",
+      "target": "expand",
+      "kind": "conditional"
+    },
+    {
+      "source": "start",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "expand",
+      "target": "expand",
+      "kind": "loop"
+    },
+    {
+      "source": "expand",
+      "target": "__end__",
+      "kind": "conditional"
+    }
+  ]
+}

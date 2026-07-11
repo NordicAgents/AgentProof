@@ -1,0 +1,84 @@
+{
+  "name": "shivam682__codiing__updated",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "index_crs",
+      "kind": "llm",
+      "label": "index_crs",
+      "tools": []
+    },
+    {
+      "id": "index_jira",
+      "kind": "llm",
+      "label": "index_jira",
+      "tools": []
+    },
+    {
+      "id": "read_jira",
+      "kind": "llm",
+      "label": "read_jira",
+      "tools": []
+    },
+    {
+      "id": "find_similar",
+      "kind": "llm",
+      "label": "find_similar",
+      "tools": []
+    },
+    {
+      "id": "compare",
+      "kind": "llm",
+      "label": "compare",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "index_crs",
+      "kind": "direct"
+    },
+    {
+      "source": "index_crs",
+      "target": "index_jira",
+      "kind": "direct"
+    },
+    {
+      "source": "index_jira",
+      "target": "read_jira",
+      "kind": "direct"
+    },
+    {
+      "source": "read_jira",
+      "target": "find_similar",
+      "kind": "direct"
+    },
+    {
+      "source": "find_similar",
+      "target": "compare",
+      "kind": "direct"
+    },
+    {
+      "source": "compare",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

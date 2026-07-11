@@ -1,0 +1,62 @@
+{
+  "name": "foxyglue__faq-db-chat__app2",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "retrieve_faq",
+      "kind": "llm",
+      "label": "retrieve_faq",
+      "tools": []
+    },
+    {
+      "id": "retrieve_complaint",
+      "kind": "llm",
+      "label": "retrieve_complaint",
+      "tools": []
+    },
+    {
+      "id": "generate_answer",
+      "kind": "llm",
+      "label": "generate_answer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "retrieve_faq",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve_faq",
+      "target": "retrieve_complaint",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve_complaint",
+      "target": "generate_answer",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_answer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

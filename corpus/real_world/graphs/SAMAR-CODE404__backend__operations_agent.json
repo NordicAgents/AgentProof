@@ -1,0 +1,68 @@
+{
+  "name": "SAMAR-CODE404__backend__operations_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "supply_chain_analysis",
+      "kind": "llm",
+      "label": "supply_chain_analysis",
+      "tools": []
+    },
+    {
+      "id": "human_approval",
+      "kind": "router",
+      "label": "human_approval",
+      "tools": []
+    },
+    {
+      "id": "industry_positioning",
+      "kind": "llm",
+      "label": "industry_positioning",
+      "tools": []
+    },
+    {
+      "id": "operations_reporting",
+      "kind": "llm",
+      "label": "operations_reporting",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "supply_chain_analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "supply_chain_analysis",
+      "target": "industry_positioning",
+      "kind": "direct"
+    },
+    {
+      "source": "industry_positioning",
+      "target": "human_approval",
+      "kind": "direct"
+    },
+    {
+      "source": "operations_reporting",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

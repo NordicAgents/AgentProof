@@ -1,0 +1,53 @@
+{
+  "name": "ankitgmishra__legal-multiagent-system__task",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "based_on_the_user_query:_'{user_input}',_retrieve_",
+      "kind": "tool",
+      "label": "Based on the user query: '{user_input}', retrieve ",
+      "tools": [
+        "legal_retrieval_tool"
+      ]
+    },
+    {
+      "id": "based_on_the_retrieved_legal_information,_provide_",
+      "kind": "llm",
+      "label": "Based on the retrieved legal information, provide ",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "based_on_the_user_query:_'{user_input}',_retrieve_",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_the_user_query:_'{user_input}',_retrieve_",
+      "target": "based_on_the_retrieved_legal_information,_provide_",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_the_retrieved_legal_information,_provide_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

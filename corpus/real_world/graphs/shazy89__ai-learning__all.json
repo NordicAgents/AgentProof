@@ -1,0 +1,38 @@
+{
+  "name": "shazy89__ai-learning__all",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "llm",
+      "kind": "router",
+      "label": "llm",
+      "tools": []
+    },
+    {
+      "id": "action",
+      "kind": "llm",
+      "label": "action",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "action",
+      "target": "llm",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "llm",
+      "kind": "direct"
+    }
+  ]
+}

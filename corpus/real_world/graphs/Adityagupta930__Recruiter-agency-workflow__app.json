@@ -1,0 +1,79 @@
+{
+  "name": "Adityagupta930__Recruiter-agency-workflow__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "categorize_experience",
+      "kind": "llm",
+      "label": "categorize_experience",
+      "tools": []
+    },
+    {
+      "id": "assess_skill_set",
+      "kind": "router",
+      "label": "assess_skill_set",
+      "tools": []
+    },
+    {
+      "id": "schedule_interview",
+      "kind": "llm",
+      "label": "schedule_interview",
+      "tools": []
+    },
+    {
+      "id": "escalate_to_recruiter",
+      "kind": "llm",
+      "label": "escalate_to_recruiter",
+      "tools": []
+    },
+    {
+      "id": "reject_application",
+      "kind": "llm",
+      "label": "reject_application",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "categorize_experience",
+      "kind": "direct"
+    },
+    {
+      "source": "categorize_experience",
+      "target": "assess_skill_set",
+      "kind": "direct"
+    },
+    {
+      "source": "schedule_interview",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "escalate_to_recruiter",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "reject_application",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "AllwynJesu__langgraph-simple-chatbot__bot",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "USER_INPUT_NODE",
+      "kind": "router",
+      "label": "USER_INPUT_NODE",
+      "tools": []
+    },
+    {
+      "id": "BOT_NODE",
+      "kind": "llm",
+      "label": "BOT_NODE",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "USER_INPUT_NODE",
+      "kind": "direct"
+    },
+    {
+      "source": "BOT_NODE",
+      "target": "USER_INPUT_NODE",
+      "kind": "direct"
+    }
+  ]
+}

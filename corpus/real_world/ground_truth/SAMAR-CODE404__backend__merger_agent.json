@@ -1,0 +1,76 @@
+{
+  "name": "SAMAR-CODE404__backend__merger_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "validate_merger_feasibility",
+      "kind": "tool",
+      "label": "Validate merger feasibility (RAG query + report write)",
+      "tools": [
+        "RAG"
+      ]
+    },
+    {
+      "id": "calculate_merger_valuation",
+      "kind": "tool",
+      "label": "Calculate merger valuation (RAG query + report write)",
+      "tools": [
+        "RAG"
+      ]
+    },
+    {
+      "id": "assess_integration_risks",
+      "kind": "tool",
+      "label": "Assess integration risks (RAG query + report write)",
+      "tools": [
+        "RAG"
+      ]
+    },
+    {
+      "id": "finalize_merger_report",
+      "kind": "passthrough",
+      "label": "Finalize merger report (lambda state: state)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "validate_merger_feasibility",
+      "kind": "direct"
+    },
+    {
+      "source": "validate_merger_feasibility",
+      "target": "calculate_merger_valuation",
+      "kind": "direct"
+    },
+    {
+      "source": "calculate_merger_valuation",
+      "target": "assess_integration_risks",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_integration_risks",
+      "target": "finalize_merger_report",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize_merger_report",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

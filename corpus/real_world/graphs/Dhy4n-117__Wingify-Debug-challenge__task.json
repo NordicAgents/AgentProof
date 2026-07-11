@@ -1,0 +1,84 @@
+{
+  "name": "Dhy4n-117__Wingify-Debug-challenge__task",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "verify_that_the_uploaded_document_is_a_valid_finan",
+      "kind": "tool",
+      "label": "Verify that the uploaded document is a valid finan",
+      "tools": [
+        "read_financial_document"
+      ]
+    },
+    {
+      "id": "perform_a_comprehensive_financial_analysis_based_o",
+      "kind": "tool",
+      "label": "Perform a comprehensive financial analysis based o",
+      "tools": [
+        "read_financial_document",
+        "search_tool"
+      ]
+    },
+    {
+      "id": "based_on_the_financial_analysis_results,_provide_i",
+      "kind": "tool",
+      "label": "Based on the financial analysis results, provide i",
+      "tools": [
+        "read_financial_document",
+        "search_tool"
+      ]
+    },
+    {
+      "id": "conduct_a_comprehensive_risk_assessment_based_on_t",
+      "kind": "tool",
+      "label": "Conduct a comprehensive risk assessment based on t",
+      "tools": [
+        "read_financial_document",
+        "search_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "verify_that_the_uploaded_document_is_a_valid_finan",
+      "kind": "direct"
+    },
+    {
+      "source": "verify_that_the_uploaded_document_is_a_valid_finan",
+      "target": "perform_a_comprehensive_financial_analysis_based_o",
+      "kind": "direct"
+    },
+    {
+      "source": "perform_a_comprehensive_financial_analysis_based_o",
+      "target": "based_on_the_financial_analysis_results,_provide_i",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_the_financial_analysis_results,_provide_i",
+      "target": "conduct_a_comprehensive_risk_assessment_based_on_t",
+      "kind": "direct"
+    },
+    {
+      "source": "conduct_a_comprehensive_risk_assessment_based_on_t",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

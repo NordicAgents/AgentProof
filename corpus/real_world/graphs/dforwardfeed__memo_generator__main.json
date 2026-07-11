@@ -1,0 +1,51 @@
+{
+  "name": "dforwardfeed__memo_generator__main",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "market_task",
+      "kind": "llm",
+      "label": "market_task",
+      "tools": []
+    },
+    {
+      "id": "competitor_task",
+      "kind": "llm",
+      "label": "competitor_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "market_task",
+      "kind": "direct"
+    },
+    {
+      "source": "market_task",
+      "target": "competitor_task",
+      "kind": "direct"
+    },
+    {
+      "source": "competitor_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

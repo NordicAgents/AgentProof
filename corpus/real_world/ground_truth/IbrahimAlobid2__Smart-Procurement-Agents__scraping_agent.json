@@ -1,0 +1,41 @@
+{
+  "name": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "you_are_given_a_list_of_product_page_urls_stored_i",
+      "kind": "tool",
+      "label": "Scraping task (Expert E-commerce Scraping Agent)",
+      "tools": [
+        "web_scraping_tool",
+        "read_json"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "you_are_given_a_list_of_product_page_urls_stored_i",
+      "kind": "direct"
+    },
+    {
+      "source": "you_are_given_a_list_of_product_page_urls_stored_i",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Shirmeen__Chatbot__app3",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "task1",
+      "kind": "llm",
+      "label": "task1",
+      "tools": []
+    },
+    {
+      "id": "task2",
+      "kind": "llm",
+      "label": "task2",
+      "tools": []
+    },
+    {
+      "id": "task3",
+      "kind": "llm",
+      "label": "task3",
+      "tools": []
+    },
+    {
+      "id": "task4",
+      "kind": "llm",
+      "label": "task4",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "task1",
+      "kind": "direct"
+    },
+    {
+      "source": "task1",
+      "target": "task2",
+      "kind": "direct"
+    },
+    {
+      "source": "task2",
+      "target": "task3",
+      "kind": "direct"
+    },
+    {
+      "source": "task3",
+      "target": "task4",
+      "kind": "direct"
+    },
+    {
+      "source": "task4",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

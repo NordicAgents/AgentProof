@@ -1,0 +1,52 @@
+{
+  "name": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "agent",
+      "kind": "llm",
+      "label": "agent_node (ChatOpenAI gpt-4.1-mini, MCP tools bound; also routes via tools_condition)"
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "ToolNode (executes MCP canvas tools)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "agent",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "tools",
+      "kind": "conditional"
+    },
+    {
+      "source": "agent",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "tools",
+      "target": "agent",
+      "kind": "loop"
+    }
+  ]
+}

@@ -1,0 +1,3213 @@
+{
+  "extractor_fidelity_real_code": {
+    "n": 60,
+    "overall": {
+      "node_precision": 0.934,
+      "node_recall": 0.896,
+      "edge_precision": 0.871,
+      "edge_recall": 0.685,
+      "kind_accuracy": 0.741
+    },
+    "per_framework": {
+      "langgraph": {
+        "n": 40,
+        "node_precision": 0.968,
+        "node_recall": 0.91,
+        "edge_precision": 0.956,
+        "edge_recall": 0.682,
+        "kind_accuracy": 0.647
+      },
+      "crewai": {
+        "n": 20,
+        "node_precision": 0.867,
+        "node_recall": 0.867,
+        "edge_precision": 0.7,
+        "edge_recall": 0.692,
+        "kind_accuracy": 0.929
+      }
+    }
+  },
+  "triage": {
+    "n_workflows_triaged": 60,
+    "n_defects_triaged": 131,
+    "label_distribution": {
+      "intentional": 50,
+      "extraction_artifact": 73,
+      "arguable": 7,
+      "real_defect": 1
+    },
+    "label_fractions": {
+      "intentional": 0.382,
+      "extraction_artifact": 0.557,
+      "arguable": 0.053,
+      "real_defect": 0.008
+    },
+    "by_check": {
+      "human_presence": {
+        "intentional": 50,
+        "arguable": 6,
+        "extraction_artifact": 3,
+        "real_defect": 1
+      },
+      "reverse_reachability": {
+        "extraction_artifact": 25
+      },
+      "dead_ends": {
+        "extraction_artifact": 24,
+        "arguable": 1
+      },
+      "exit_reachability": {
+        "extraction_artifact": 14
+      },
+      "router_shape": {
+        "extraction_artifact": 2
+      },
+      "tool_declarations": {
+        "extraction_artifact": 5
+      }
+    },
+    "validated_rates_on_sample": {
+      "workflows_with_real_structural_defect": 0,
+      "workflows_with_real_policy_gap": 1,
+      "pct_real_structural": 0.0,
+      "pct_real_policy": 1.7
+    },
+    "flag_precision_real_over_all": 0.008,
+    "per_check_real_fraction": {
+      "human_presence": 0.017,
+      "reverse_reachability": 0.0,
+      "dead_ends": 0.0,
+      "exit_reachability": 0.0,
+      "router_shape": 0.0,
+      "tool_declarations": 0.0
+    }
+  },
+  "crosscheck_edge_recall_vs_artifact": {
+    "mean_edge_recall_workflows_with_artifact_label": 0.51,
+    "mean_edge_recall_workflows_with_real_label": 1.0
+  },
+  "fidelity_details": [
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.286,
+      "kind_correct": 2,
+      "kind_total": 7,
+      "kind_mismatches": [
+        {
+          "node_id": "consistency_checker",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "rag_summary_generator",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "report_formatter",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "report_structure_creator",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "section_template_generator",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SAMAR-CODE404__backend__report_agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "vego147__AI_Research_Img_Assistance__Bot",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.6,
+      "kind_correct": 3,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "retrieve_complaint",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "retrieve_faq",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "foxyglue__faq-db-chat__app2",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.333,
+      "kind_correct": 1,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "expand",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "start",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "tp": 1,
+        "fp": 0,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "vishnusurya11__ember__dev",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "huangdihd__ProjectAI__main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.333,
+      "kind_correct": 1,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "action",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "agent",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "jakenolan__langgraph-custom-tools__main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 6,
+      "kind_total": 8,
+      "kind_mismatches": [
+        {
+          "node_id": "router",
+          "expected": "passthrough",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "verify_claim",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 5,
+        "fp": 0,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.833,
+        "tp": 5,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.4,
+      "kind_correct": 2,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "generate",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "retrieve",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "websearch",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.222,
+        "tp": 2,
+        "fp": 0,
+        "fn": 7
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "0evja__LangGraph-Agent__demo",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.333,
+      "kind_correct": 2,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "assess_integration_risks",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "calculate_merger_valuation",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "finalize_merger_report",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "validate_merger_feasibility",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SAMAR-CODE404__backend__merger_agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.8,
+      "kind_correct": 4,
+      "kind_total": 5,
+      "kind_mismatches": [
+        {
+          "node_id": "execute_query",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "MdArshath2004__snowflakeoptimization__tes",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.714,
+      "kind_correct": 5,
+      "kind_total": 7,
+      "kind_mismatches": [
+        {
+          "node_id": "retrieve",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "web_search",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.333,
+      "kind_correct": 1,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "action",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "llm",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "shazy89__ai-learning__research_agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.571,
+      "kind_correct": 4,
+      "kind_total": 7,
+      "kind_mismatches": [
+        {
+          "node_id": "confirmation",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "execute_query",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "spell_check",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.444,
+        "tp": 4,
+        "fp": 0,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "opengles3d__ollama_rag__state_graph",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.333,
+      "kind_correct": 1,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "action",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "llm",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "shazy89__ai-learning__agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "node",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Mhijazi16__LanggraphExercise__one",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.286,
+      "kind_correct": 2,
+      "kind_total": 7,
+      "kind_mismatches": [
+        {
+          "node_id": "a",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "b",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "b2",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "c",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "d",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "agent",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Harsh1210__llm-opsbot__main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "chatbot",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AdaptiveBProcess__bpm_agent__main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "agent",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 4,
+      "kind_total": 8,
+      "kind_mismatches": [
+        {
+          "node_id": "determine_research_needs",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "final_response",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "reset_conversation",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "wait_for_user",
+          "expected": "human",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 5,
+        "fp": 0,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "chatbot",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "leewow03__llm__10",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 3,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "farewell",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "get_user_prompt",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "greeting",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 4,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 1,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 3,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "chunk_and_embed",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "process_query",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "retrieve_chunks",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "node",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Mhijazi16__LanggraphExercise__two",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 5,
+      "kind_total": 5,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "tp": 3,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "houyongsheng__local_rag__rag",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "chatbot",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "AdaptiveBProcess__bpm_agent__template",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.4,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 3,
+        "fn": 4
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 1,
+      "kind_total": 2,
+      "kind_mismatches": [
+        {
+          "node_id": "YOUTUBE_THUMBNAIL_GENERATE",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 0.25,
+        "recall": 0.125,
+        "tp": 1,
+        "fp": 3,
+        "fn": 7
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "vishnusurya11__ember__prompt_agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.571,
+      "kind_correct": 4,
+      "kind_total": 7,
+      "kind_mismatches": [
+        {
+          "node_id": "handle_spam",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "notify_mr_hugg",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "read_email",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 3,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "collect_feedback",
+          "expected": "human",
+          "actual": "llm",
+          "failure_mode": "naming_heuristic_failure"
+        },
+        {
+          "node_id": "get_approval",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "post",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 4,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 2,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "juananpe__langgraph-flask__cli",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 3,
+      "kind_total": 6,
+      "kind_mismatches": [
+        {
+          "node_id": "condense_query",
+          "expected": "llm",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "retrieve_context",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "verifier",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.429,
+        "tp": 3,
+        "fp": 0,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__chat",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "input",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "opengles3d__ollama_rag__18",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "retrieve",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 37,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.73,
+      "kind_correct": 27,
+      "kind_total": 37,
+      "kind_mismatches": [
+        {
+          "node_id": "fin_human_approval_a",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "fin_human_approval_b",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "finalize_legal_report",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "finalize_merger_report",
+          "expected": "passthrough",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "ops_human_approval_a",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "ops_human_approval_b",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "research_human_approval_a",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "research_human_approval_b",
+          "expected": "human",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "web_search_a",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "web_search_b",
+          "expected": "tool",
+          "actual": "router",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.609,
+        "tp": 28,
+        "fp": 0,
+        "fn": 18
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 6,
+        "fp": 0,
+        "recall": 0.0
+      },
+      "failure_modes": {},
+      "slug": "SAMAR-CODE404__backend__Main",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.333,
+        "recall": 0.25,
+        "tp": 1,
+        "fp": 2,
+        "fn": 3
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 1,
+      "kind_total": 1,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 4
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "vishnusurya11__ember__reflection_agent",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 2,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "retrieve",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "wiki_search",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 6,
+      "kind_total": 8,
+      "kind_mismatches": [
+        {
+          "node_id": "extract",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "save",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "tp": 6,
+        "fp": 0,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "tweetlol__eve__eve",
+      "framework": "langgraph",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 6,
+      "kind_total": 6,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 0.833,
+        "tp": 5,
+        "fp": 0,
+        "fn": 1
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "firaflash__career-mentor-ai-agent__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.667,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 1,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.75,
+      "kind_correct": 3,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "investigate_linkedin_for_the_latest_android_job_of",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "matttbates__job-search-assistant__crew",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "muzifa-mubarak__crew_ai_practice__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "analyze_and_return_the_information_in_the_form_of_",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 7,
+      "kind_total": 7,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.333,
+        "recall": 0.333,
+        "tp": 2,
+        "fp": 4,
+        "fn": 4
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 5,
+        "fn": 5
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Shirmeen__Chatbot__app3",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.5,
+      "kind_correct": 2,
+      "kind_total": 4,
+      "kind_mismatches": [
+        {
+          "node_id": "analyze_the_incoming_email_and_extract_scheduling_",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        },
+        {
+          "node_id": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Jamahl__fraya-25__crew",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 0.667,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 1,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "venkatavinayvijjapu__New_Assignment__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.667,
+        "recall": 0.667,
+        "tp": 2,
+        "fp": 1,
+        "fn": 1
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 2,
+        "fn": 2
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+      "framework": "crewai",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 2,
+        "fn": 2
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 3
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "colinmccrae__CrewAITest__do1",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "suryaMadhav16__RAG-Lab__CrewAI",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 0.667,
+      "kind_correct": 2,
+      "kind_total": 3,
+      "kind_mismatches": [
+        {
+          "node_id": "analyze_and_return_the_information_in_the_form_of_",
+          "expected": "tool",
+          "actual": "llm",
+          "failure_mode": "custom_node_type"
+        }
+      ],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+      "framework": "crewai",
+      "gt_confidence": "high"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "tp": 2,
+        "fp": 2,
+        "fn": 2
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 2,
+      "kind_total": 2,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0,
+        "fp": 3,
+        "fn": 3
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "dforwardfeed__memo_generator__main",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 3,
+      "kind_total": 3,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+      "framework": "crewai",
+      "gt_confidence": "low"
+    },
+    {
+      "node_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "node_kind_accuracy": 1.0,
+      "kind_correct": 4,
+      "kind_total": 4,
+      "kind_mismatches": [],
+      "edge_detection": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "human_detection": {
+        "tp": 0,
+        "fn": 0,
+        "fp": 0,
+        "recall": null
+      },
+      "failure_modes": {},
+      "slug": "aayu2003__agent_creation__tasks",
+      "framework": "crewai",
+      "gt_confidence": "medium"
+    }
+  ],
+  "triage_details": [
+    {
+      "slug": "SAMAR-CODE404__backend__report_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "vego147__AI_Research_Img_Assistance__Bot",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "foxyglue__faq-db-chat__app2",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__dev",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__dev",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__dev",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "huangdihd__ProjectAI__main",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "huangdihd__ProjectAI__main",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "huangdihd__ProjectAI__main",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "jakenolan__langgraph-custom-tools__main",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "jakenolan__langgraph-custom-tools__main",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "jakenolan__langgraph-custom-tools__main",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "check": "router_shape",
+      "label": "extraction_artifact",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "0evja__LangGraph-Agent__demo",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "0evja__LangGraph-Agent__demo",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "0evja__LangGraph-Agent__demo",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__merger_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "MdArshath2004__snowflakeoptimization__tes",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "shazy89__ai-learning__research_agent",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "shazy89__ai-learning__research_agent",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "shazy89__ai-learning__research_agent",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "medium"
+    },
+    {
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "check": "tool_declarations",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "opengles3d__ollama_rag__state_graph",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "shazy89__ai-learning__agent",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "shazy89__ai-learning__agent",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "shazy89__ai-learning__agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Mhijazi16__LanggraphExercise__one",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "check": "tool_declarations",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "AdaptiveBProcess__bpm_agent__main",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "check": "tool_declarations",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check": "dead_ends",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+      "check": "router_shape",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+      "check": "tool_declarations",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "leewow03__llm__10",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Mhijazi16__LanggraphExercise__two",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "check": "tool_declarations",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "AdaptiveBProcess__bpm_agent__template",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__prompt_agent",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__prompt_agent",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__prompt_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "medium"
+    },
+    {
+      "slug": "juananpe__langgraph-flask__cli",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "juananpe__langgraph-flask__cli",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "juananpe__langgraph-flask__cli",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "juananpe__langgraph-flask__cli",
+      "check": "human_presence",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__chat",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "opengles3d__ollama_rag__18",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__Main",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__Main",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__Main",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__Main",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__reflection_agent",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__reflection_agent",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "vishnusurya11__ember__reflection_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "check": "exit_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "check": "reverse_reachability",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "check": "dead_ends",
+      "label": "extraction_artifact",
+      "confidence": "high"
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "firaflash__career-mentor-ai-agent__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "matttbates__job-search-assistant__crew",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "muzifa-mubarak__crew_ai_practice__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "medium"
+    },
+    {
+      "slug": "Shirmeen__Chatbot__app3",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Jamahl__fraya-25__crew",
+      "check": "human_presence",
+      "label": "real_defect",
+      "confidence": "medium"
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "venkatavinayvijjapu__New_Assignment__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "colinmccrae__CrewAITest__do1",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "suryaMadhav16__RAG-Lab__CrewAI",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "dforwardfeed__memo_generator__main",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    },
+    {
+      "slug": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+      "check": "human_presence",
+      "label": "arguable",
+      "confidence": "high"
+    },
+    {
+      "slug": "aayu2003__agent_creation__tasks",
+      "check": "human_presence",
+      "label": "intentional",
+      "confidence": "high"
+    }
+  ]
+}

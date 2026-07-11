@@ -1,0 +1,38 @@
+{
+  "name": "phillippbertram__langgraph-agent__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "AGENT_REASON",
+      "kind": "router",
+      "label": "AGENT_REASON",
+      "tools": []
+    },
+    {
+      "id": "ACT",
+      "kind": "llm",
+      "label": "ACT",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "AGENT_REASON",
+      "kind": "direct"
+    },
+    {
+      "source": "ACT",
+      "target": "AGENT_REASON",
+      "kind": "direct"
+    }
+  ]
+}

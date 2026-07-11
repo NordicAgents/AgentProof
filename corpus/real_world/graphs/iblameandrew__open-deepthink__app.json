@@ -1,0 +1,132 @@
+{
+  "name": "iblameandrew__open-deepthink__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "node_id",
+      "kind": "llm",
+      "label": "node_id",
+      "tools": []
+    },
+    {
+      "id": "synthesis",
+      "kind": "llm",
+      "label": "synthesis",
+      "tools": []
+    },
+    {
+      "id": "code_execution",
+      "kind": "llm",
+      "label": "code_execution",
+      "tools": []
+    },
+    {
+      "id": "archive_epoch",
+      "kind": "llm",
+      "label": "archive_epoch",
+      "tools": []
+    },
+    {
+      "id": "update_rag_index",
+      "kind": "llm",
+      "label": "update_rag_index",
+      "tools": []
+    },
+    {
+      "id": "metrics",
+      "kind": "router",
+      "label": "metrics",
+      "tools": []
+    },
+    {
+      "id": "reframe_and_decompose",
+      "kind": "llm",
+      "label": "reframe_and_decompose",
+      "tools": []
+    },
+    {
+      "id": "update_prompts",
+      "kind": "llm",
+      "label": "update_prompts",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "current_node",
+      "target": "next_node",
+      "kind": "direct"
+    },
+    {
+      "source": "node",
+      "target": "synthesis",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesis",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "n",
+      "kind": "direct"
+    },
+    {
+      "source": "curr",
+      "target": "nxt",
+      "kind": "direct"
+    },
+    {
+      "source": "n",
+      "target": "synthesis",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesis",
+      "target": "code_execution",
+      "kind": "direct"
+    },
+    {
+      "source": "code_execution",
+      "target": "archive_epoch",
+      "kind": "direct"
+    },
+    {
+      "source": "archive_epoch",
+      "target": "update_rag_index",
+      "kind": "direct"
+    },
+    {
+      "source": "update_rag_index",
+      "target": "metrics",
+      "kind": "direct"
+    },
+    {
+      "source": "reframe_and_decompose",
+      "target": "update_prompts",
+      "kind": "direct"
+    },
+    {
+      "source": "update_prompts",
+      "target": "n",
+      "kind": "direct"
+    }
+  ]
+}

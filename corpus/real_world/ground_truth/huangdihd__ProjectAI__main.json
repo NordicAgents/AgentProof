@@ -1,0 +1,52 @@
+{
+  "name": "huangdihd__ProjectAI__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "manager",
+      "kind": "router",
+      "label": "manager (analyze_and_route)"
+    },
+    {
+      "id": "executor",
+      "kind": "llm",
+      "label": "executor (ExpertAgent.execute)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager",
+      "kind": "direct"
+    },
+    {
+      "source": "manager",
+      "target": "executor",
+      "kind": "conditional"
+    },
+    {
+      "source": "manager",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "executor",
+      "target": "manager",
+      "kind": "loop"
+    }
+  ]
+}

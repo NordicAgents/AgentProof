@@ -1,0 +1,67 @@
+{
+  "name": "Shirmeen__Chatbot__app3",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "extract_the_technical_skills,_libraries,_framework",
+      "kind": "llm",
+      "label": "Task1: Requirement Analyzer (extract required skills)"
+    },
+    {
+      "id": "you_are_given:\n1._a_list_of_developer's_skills:\n['",
+      "kind": "llm",
+      "label": "Task2: Skill Comparer (matched vs missing skills)"
+    },
+    {
+      "id": "given_the_developer's_skills:\n['python',_'react',_",
+      "kind": "llm",
+      "label": "Task3: Learning Difficulty Assessor"
+    },
+    {
+      "id": "you_are_given:\n_______________matched_skills__extr",
+      "kind": "llm",
+      "label": "Task4: Confidence Scorer"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract_the_technical_skills,_libraries,_framework",
+      "kind": "direct"
+    },
+    {
+      "source": "extract_the_technical_skills,_libraries,_framework",
+      "target": "you_are_given:\n1._a_list_of_developer's_skills:\n['",
+      "kind": "direct"
+    },
+    {
+      "source": "you_are_given:\n1._a_list_of_developer's_skills:\n['",
+      "target": "given_the_developer's_skills:\n['python',_'react',_",
+      "kind": "direct"
+    },
+    {
+      "source": "given_the_developer's_skills:\n['python',_'react',_",
+      "target": "you_are_given:\n_______________matched_skills__extr",
+      "kind": "direct"
+    },
+    {
+      "source": "you_are_given:\n_______________matched_skills__extr",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

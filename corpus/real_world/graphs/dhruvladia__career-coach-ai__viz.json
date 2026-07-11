@@ -1,0 +1,98 @@
+{
+  "name": "dhruvladia__career-coach-ai__viz",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "router",
+      "kind": "router",
+      "label": "router",
+      "tools": []
+    },
+    {
+      "id": "profile_updater",
+      "kind": "llm",
+      "label": "profile_updater",
+      "tools": []
+    },
+    {
+      "id": "job_fit_analyst",
+      "kind": "llm",
+      "label": "job_fit_analyst",
+      "tools": []
+    },
+    {
+      "id": "career_path",
+      "kind": "llm",
+      "label": "career_path",
+      "tools": []
+    },
+    {
+      "id": "content_enhancement",
+      "kind": "llm",
+      "label": "content_enhancement",
+      "tools": []
+    },
+    {
+      "id": "human_interaction",
+      "kind": "router",
+      "label": "human_interaction",
+      "tools": []
+    },
+    {
+      "id": "resume_after_human",
+      "kind": "human",
+      "label": "resume_after_human",
+      "tools": []
+    },
+    {
+      "id": "router_confirmation",
+      "kind": "router",
+      "label": "router_confirmation",
+      "tools": []
+    },
+    {
+      "id": "finalize_response",
+      "kind": "llm",
+      "label": "finalize_response",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "agent",
+      "target": "router_confirmation",
+      "kind": "direct"
+    },
+    {
+      "source": "resume_after_human",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize_response",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

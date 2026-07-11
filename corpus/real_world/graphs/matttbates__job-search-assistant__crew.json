@@ -1,0 +1,51 @@
+{
+  "name": "matttbates__job-search-assistant__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "investigate_linkedin_for_the_latest_android_job_of",
+      "kind": "llm",
+      "label": "Investigate LinkedIn for the latest Android job of",
+      "tools": []
+    },
+    {
+      "id": "write_a_compelling_cover_letter_to_land_a_job_inte",
+      "kind": "llm",
+      "label": "Write a compelling cover letter to land a job inte",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "investigate_linkedin_for_the_latest_android_job_of",
+      "kind": "direct"
+    },
+    {
+      "source": "investigate_linkedin_for_the_latest_android_job_of",
+      "target": "write_a_compelling_cover_letter_to_land_a_job_inte",
+      "kind": "direct"
+    },
+    {
+      "source": "write_a_compelling_cover_letter_to_land_a_job_inte",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

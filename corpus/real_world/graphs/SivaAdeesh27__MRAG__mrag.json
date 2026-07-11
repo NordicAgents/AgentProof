@@ -1,0 +1,51 @@
+{
+  "name": "SivaAdeesh27__MRAG__mrag",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyze_the_content_of_the_uploaded_file_and_provi",
+      "kind": "llm",
+      "label": "Analyze the content of the uploaded file and provi",
+      "tools": []
+    },
+    {
+      "id": "modify_the_retrieved_content_from_fileuploadagent_",
+      "kind": "llm",
+      "label": "Modify the retrieved content from FileUploadAgent ",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_content_of_the_uploaded_file_and_provi",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_content_of_the_uploaded_file_and_provi",
+      "target": "modify_the_retrieved_content_from_fileuploadagent_",
+      "kind": "direct"
+    },
+    {
+      "source": "modify_the_retrieved_content_from_fileuploadagent_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

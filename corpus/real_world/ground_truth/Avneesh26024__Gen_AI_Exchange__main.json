@@ -1,0 +1,107 @@
+{
+  "name": "Avneesh26024__Gen_AI_Exchange__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry"
+    },
+    {
+      "id": "router",
+      "kind": "passthrough",
+      "label": "router_entry_node (no-op start)"
+    },
+    {
+      "id": "condense_query",
+      "kind": "router",
+      "label": "condense_query + decide_route (3-way classify)"
+    },
+    {
+      "id": "retrieve_context",
+      "kind": "router",
+      "label": "retrieve_context + check_relevance",
+      "tools": [
+        "retriever_agent"
+      ]
+    },
+    {
+      "id": "synthesize_answer",
+      "kind": "llm",
+      "label": "synthesize_answer"
+    },
+    {
+      "id": "verify_claim",
+      "kind": "tool",
+      "label": "verify_and_respond (ReAct agent)",
+      "tools": [
+        "verifier_tool",
+        "human_response"
+      ]
+    },
+    {
+      "id": "handle_conversation",
+      "kind": "llm",
+      "label": "handle_conversation"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "router",
+      "kind": "direct"
+    },
+    {
+      "source": "router",
+      "target": "condense_query",
+      "kind": "direct"
+    },
+    {
+      "source": "condense_query",
+      "target": "retrieve_context",
+      "kind": "conditional"
+    },
+    {
+      "source": "condense_query",
+      "target": "verify_claim",
+      "kind": "conditional"
+    },
+    {
+      "source": "condense_query",
+      "target": "handle_conversation",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve_context",
+      "target": "synthesize_answer",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve_context",
+      "target": "verify_claim",
+      "kind": "conditional"
+    },
+    {
+      "source": "synthesize_answer",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "verify_claim",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "handle_conversation",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

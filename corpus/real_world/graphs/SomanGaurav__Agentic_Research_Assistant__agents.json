@@ -1,0 +1,97 @@
+{
+  "name": "SomanGaurav__Agentic_Research_Assistant__agents",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "hypothesis_task",
+      "kind": "llm",
+      "label": "hypothesis_task",
+      "tools": []
+    },
+    {
+      "id": "search_task",
+      "kind": "tool",
+      "label": "search_task",
+      "tools": [
+        "linkup_search"
+      ]
+    },
+    {
+      "id": "analyze_the_search_results,_verify_facts,_resolve_",
+      "kind": "llm",
+      "label": "Analyze the search results, verify facts, resolve ",
+      "tools": []
+    },
+    {
+      "id": "based_on_the_research_analysis,_write_any_necessar",
+      "kind": "llm",
+      "label": "Based on the research analysis, write any necessar",
+      "tools": []
+    },
+    {
+      "id": "review_the_verified_insights_from_the_research_ana",
+      "kind": "llm",
+      "label": "Review the verified insights from the Research Ana",
+      "tools": []
+    },
+    {
+      "id": "create_a_comprehensive,_well-organized_markdown_re",
+      "kind": "llm",
+      "label": "Create a comprehensive, well-organized markdown re",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "hypothesis_task",
+      "kind": "direct"
+    },
+    {
+      "source": "hypothesis_task",
+      "target": "search_task",
+      "kind": "direct"
+    },
+    {
+      "source": "search_task",
+      "target": "analyze_the_search_results,_verify_facts,_resolve_",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_search_results,_verify_facts,_resolve_",
+      "target": "based_on_the_research_analysis,_write_any_necessar",
+      "kind": "direct"
+    },
+    {
+      "source": "based_on_the_research_analysis,_write_any_necessar",
+      "target": "review_the_verified_insights_from_the_research_ana",
+      "kind": "direct"
+    },
+    {
+      "source": "review_the_verified_insights_from_the_research_ana",
+      "target": "create_a_comprehensive,_well-organized_markdown_re",
+      "kind": "direct"
+    },
+    {
+      "source": "create_a_comprehensive,_well-organized_markdown_re",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

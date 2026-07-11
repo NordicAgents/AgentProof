@@ -1,0 +1,62 @@
+{
+  "name": "neej4__worldline__crew_orchestrator",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "task1",
+      "kind": "llm",
+      "label": "task1",
+      "tools": []
+    },
+    {
+      "id": "use_the_search_keywords_provided_in_the_previous_s",
+      "kind": "llm",
+      "label": "Use the search keywords provided in the previous s",
+      "tools": []
+    },
+    {
+      "id": "read_the_scraped_content_and_target_regions.\nfor_e",
+      "kind": "llm",
+      "label": "Read the scraped content and target regions.\nFor e",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "task1",
+      "kind": "direct"
+    },
+    {
+      "source": "task1",
+      "target": "use_the_search_keywords_provided_in_the_previous_s",
+      "kind": "direct"
+    },
+    {
+      "source": "use_the_search_keywords_provided_in_the_previous_s",
+      "target": "read_the_scraped_content_and_target_regions.\nfor_e",
+      "kind": "direct"
+    },
+    {
+      "source": "read_the_scraped_content_and_target_regions.\nfor_e",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

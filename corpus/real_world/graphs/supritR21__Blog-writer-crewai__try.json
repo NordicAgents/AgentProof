@@ -1,0 +1,51 @@
+{
+  "name": "supritR21__Blog-writer-crewai__try",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "find_and_analyze_youtube_videos_about_{topic}",
+      "kind": "llm",
+      "label": "Find and analyze YouTube videos about {topic}",
+      "tools": []
+    },
+    {
+      "id": "write_blog_post_about_{topic}_using_research",
+      "kind": "llm",
+      "label": "Write blog post about {topic} using research",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "find_and_analyze_youtube_videos_about_{topic}",
+      "kind": "direct"
+    },
+    {
+      "source": "find_and_analyze_youtube_videos_about_{topic}",
+      "target": "write_blog_post_about_{topic}_using_research",
+      "kind": "direct"
+    },
+    {
+      "source": "write_blog_post_about_{topic}_using_research",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

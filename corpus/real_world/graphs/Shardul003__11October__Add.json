@@ -1,0 +1,79 @@
+{
+  "name": "Shardul003__11October__Add",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "retrieve",
+      "kind": "llm",
+      "label": "retrieve",
+      "tools": []
+    },
+    {
+      "id": "score",
+      "kind": "router",
+      "label": "score",
+      "tools": []
+    },
+    {
+      "id": "compress",
+      "kind": "llm",
+      "label": "compress",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "no_docs",
+      "kind": "llm",
+      "label": "no_docs",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "retrieve",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve",
+      "target": "score",
+      "kind": "direct"
+    },
+    {
+      "source": "compress",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "no_docs",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

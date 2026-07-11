@@ -1,0 +1,55 @@
+{
+  "name": "colinmccrae__CrewAITest__crewaih2g",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "kind": "tool",
+      "label": "Identify the next big trend in {topic}.Focus on id",
+      "tools": [
+        "search_tool"
+      ]
+    },
+    {
+      "id": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "kind": "tool",
+      "label": "Compose an insightful article on {topic}.Focus on ",
+      "tools": [
+        "search_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "target": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "kind": "direct"
+    },
+    {
+      "source": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

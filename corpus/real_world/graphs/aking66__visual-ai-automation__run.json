@@ -1,0 +1,27 @@
+{
+  "name": "aking66__visual-ai-automation__run",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "node_id",
+      "kind": "router",
+      "label": "node_id",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "start_node_id_actual",
+      "kind": "direct"
+    }
+  ]
+}

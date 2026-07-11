@@ -1,0 +1,2389 @@
+[
+  {
+    "framework": "langgraph",
+    "repo": "aking66/visual-ai-automation",
+    "file_path": "run.py",
+    "url": "https://github.com/aking66/visual-ai-automation/blob/64bbdc68a16b6218ac161f70d1c29a15a5cdb494/run.py",
+    "sha": "89b5b58866fb9c8b19d6b55ba5b2fa120c04d79c"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "ZhangJinHaHaHa/FinchainAgent",
+    "file_path": "main.py",
+    "url": "https://github.com/ZhangJinHaHaHa/FinchainAgent/blob/f6f04ed5605ea7875b3cb8c91faa5bd54bbc4d40/main.py",
+    "sha": "6c2bd634428504a0e2134140abaa72d442980897"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Nagi-ovo/CRAG-Ollama-Chat",
+    "file_path": "app.py",
+    "url": "https://github.com/Nagi-ovo/CRAG-Ollama-Chat/blob/61530aaa8deb3425a86b3fe53666cd3c9bd0d4c9/app.py",
+    "sha": "1c89399c59ec022e3774372c79e33cba0c4c9d57"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "FinAgent-Lab/FinAgent_Investment_Agent",
+    "file_path": "api.py",
+    "url": "https://github.com/FinAgent-Lab/FinAgent_Investment_Agent/blob/9f104486754dc00f98354eda5fba9fb94f082a49/api.py",
+    "sha": "f613974f29fde7130a7a3d87d187f0c2cbf8473f"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "houyongsheng/local_rag",
+    "file_path": "rag.py",
+    "url": "https://github.com/houyongsheng/local_rag/blob/f4263b9b5301fa03904242b40413c667989bcf9a/rag.py",
+    "sha": "004092a337cc4be29766605f86d494ff0c1f2f75"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "vego147/AI_Research_Img_Assistance",
+    "file_path": "Bot.py",
+    "url": "https://github.com/vego147/AI_Research_Img_Assistance/blob/42fb97c91e9017d0eaa2da9330ebbded3d101a8e/Bot.py",
+    "sha": "acc038e7b28b1cfea1203e8d0e8302125e11aa53"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "naman06dev/memory-chatbot",
+    "file_path": "file.py",
+    "url": "https://github.com/naman06dev/memory-chatbot/blob/0b1836f288d09eacd608fd9c87def80cf3126740/file.py",
+    "sha": "4f83b986489a7f67bbb1cde369fbf47198a69599"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "AllwynJesu/langgraph-simple-chatbot",
+    "file_path": "bot.py",
+    "url": "https://github.com/AllwynJesu/langgraph-simple-chatbot/blob/b70d1011865fa847a550eff2080ab84254ffafc2/bot.py",
+    "sha": "866df24a902d49104d01668f0823666f0a0c5ffa"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Brenmull12/Hoohacks2025",
+    "file_path": "llm.py",
+    "url": "https://github.com/Brenmull12/Hoohacks2025/blob/f65c81457248b552151a3d6a4c108e518d4a87ff/llm.py",
+    "sha": "409089b6fab7f427fb29361d5a04479135ac368b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "noriyukitakei/sf6-ai-analysis",
+    "file_path": "magi.py",
+    "url": "https://github.com/noriyukitakei/sf6-ai-analysis/blob/c3986fe8462c61039f5cb49810037b082fc2d344/magi.py",
+    "sha": "f5fff40fb34f0c6f992f00d041b241f32495b980"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "miranda-santos-ricardo/langgraph_academy_own_agent_exercise",
+    "file_path": "3.py",
+    "url": "https://github.com/miranda-santos-ricardo/langgraph_academy_own_agent_exercise/blob/94615696b81c913e9d9ad014a99b5ed0de15bac9/3.py",
+    "sha": "68151511f922d82691d53d86a90568a5fc947fc2"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "leewow03/llm",
+    "file_path": "9.py",
+    "url": "https://github.com/leewow03/llm/blob/49141bfda30393fab348d54b47980b898b8b8811/9.py",
+    "sha": "508d023bd491d86089a0a81e43b3f6be8dd97a25"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "d-hackmt/Research-Paper-agent",
+    "file_path": "rp.py",
+    "url": "https://github.com/d-hackmt/Research-Paper-agent/blob/8e177e5fa01a388694e72bff1dcf7a7fe9f430a4/rp.py",
+    "sha": "0e7e4a1391b778115d0213d59ac9a57af0b52921"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "shivam682/codiing",
+    "file_path": "all.py",
+    "url": "https://github.com/shivam682/codiing/blob/048556b21890f8a830c335013916a7edfd07389b/all.py",
+    "sha": "9b828c68cd7e4aab507eec40657cb1d26a8bf1e7"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "opengles3d/ollama_rag",
+    "file_path": "18.py",
+    "url": "https://github.com/opengles3d/ollama_rag/blob/716890de8f9189080bffcb0371caf26fbfb592b1/18.py",
+    "sha": "dd6eefbeed4dfeeb2a23536d42a9dd189cc5c18f"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Anashwar00/agentic_ai",
+    "file_path": "sec.py",
+    "url": "https://github.com/Anashwar00/agentic_ai/blob/cfd97b1426d72273a4c95cb648457bfda914b896/sec.py",
+    "sha": "e6f292e356cc569d5b179de4ee31afb4d242d430"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Yaseen1109/course-outline-generaror",
+    "file_path": "2.py",
+    "url": "https://github.com/Yaseen1109/course-outline-generaror/blob/2c86f9c40f1e716749a94b47c51e1178741140d3/2.py",
+    "sha": "81abd758408c9c324ed348eec825641f2dc4405a"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Shardul003/11October",
+    "file_path": "Add.py",
+    "url": "https://github.com/Shardul003/11October/blob/98f560722ee5dc3d47ad7d70fa13f4c4d5f03543/Add.py",
+    "sha": "39f407de4306f79f870f1d6ad41a6318551e90e2"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "abhishekCS0024/LangGraph",
+    "file_path": "Rag.py",
+    "url": "https://github.com/abhishekCS0024/LangGraph/blob/fd370530ddd7b2292103de81cb717751b312f779/Rag.py",
+    "sha": "aca39a48a2a95fd87656f13903a619d0cb3d7303"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Mhijazi16/LanggraphExercise",
+    "file_path": "one.py",
+    "url": "https://github.com/Mhijazi16/LanggraphExercise/blob/8c0e11424b200c7423a274b82511262d6de5d4fc/one.py",
+    "sha": "2ee369400db8e0745a85c20dfb078b5af714a44c"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "arnavvag/task2model",
+    "file_path": "dag.py",
+    "url": "https://github.com/arnavvag/task2model/blob/c80092cb2aa6eabfd8b3a2b912c34d8706931067/dag.py",
+    "sha": "c588287a60a5fea63aa9f0d9fbdc3b3139fc5e94"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Snehal377/AI_Portfolio_Recommendation_System",
+    "file_path": "ag.py",
+    "url": "https://github.com/Snehal377/AI_Portfolio_Recommendation_System/blob/753e8b7d8dc34193ce3c57817ddc2d3cd1dd899d/ag.py",
+    "sha": "5d1e55e531aa0d4a0503f1488a516ebdcd4d224b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Nikhilp18/How-to-guide-for-LangGraph",
+    "file_path": "RAG.py",
+    "url": "https://github.com/Nikhilp18/How-to-guide-for-LangGraph/blob/5ef86975c3d2adb75c7f1e336e4c5cfe407cc869/RAG.py",
+    "sha": "0ca3f00a7ac24fd57938bd4db5d7f162641e3494"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "timleow/gym-kfc-daddies",
+    "file_path": "ui.py",
+    "url": "https://github.com/timleow/gym-kfc-daddies/blob/561f4029e4edb59c610905132e547a9b697965ac/ui.py",
+    "sha": "d079de5a682e0ee269f0cddf39b9c362c97c1e48"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "icyzh/Quillgraph",
+    "file_path": "ai.py",
+    "url": "https://github.com/icyzh/Quillgraph/blob/a437825901ea4e1f868881b69e28313e59ab6d1b/ai.py",
+    "sha": "0b6bac2e36dd07180ccbd41eb94463e8433a63d0"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Sarfaraz021/WhatsApp-data-Assistant-Using-Qdrant-VectorDB",
+    "file_path": "new.py",
+    "url": "https://github.com/Sarfaraz021/WhatsApp-data-Assistant-Using-Qdrant-VectorDB/blob/efe35d816f1ccc31f847c8a1904fd1386faa6c10/new.py",
+    "sha": "285fdd0cdfcbfae1dad802dfc2cb12aabbd1c385"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "peytonrivers/AI-Agentic-System-using-Canvas-LMS-API",
+    "file_path": "my.py",
+    "url": "https://github.com/peytonrivers/AI-Agentic-System-using-Canvas-LMS-API/blob/a529fdad22102d55d13fd082f65d7c9ea3f835e2/my.py",
+    "sha": "ec21780bda2386724829879e673664c2fa55a4b7"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "CaioLessaSimao/LangGraph-teste",
+    "file_path": "pdf.py",
+    "url": "https://github.com/CaioLessaSimao/LangGraph-teste/blob/f906c19b82e1db63ae1e56276c706ac32aab636e/pdf.py",
+    "sha": "14ec3cb3c8483e95025d37da2eb92d4c24f3a61a"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "giribeans29/ml_project",
+    "file_path": "ai.py",
+    "url": "https://github.com/giribeans29/ml_project/blob/a83d62d62ea0a128a36ac8c0aea6ac7cefe4e918/ai.py",
+    "sha": "8f0ed38072156ab56fb81e565fadf8e77455f710"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "thisyanthpolice/Local-Agentic-Research-Assistant-LARA-",
+    "file_path": "Main.py",
+    "url": "https://github.com/thisyanthpolice/Local-Agentic-Research-Assistant-LARA-/blob/0d8545161c9a5ec4e69b9ad74c48258f69bd2fc2/Main.py",
+    "sha": "809eb6d31a6f238a3783270536a6b3c6e6df3761"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "bhattyuvraj22/Fitness-AIagent",
+    "file_path": "MAS.py",
+    "url": "https://github.com/bhattyuvraj22/Fitness-AIagent/blob/3c8994d45fb7ce26a8eef2ef42b8cc26249e162e/MAS.py",
+    "sha": "a4e8c921cebd2da26f006d248198c851cb1d88a8"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "ankeethelps/localguide",
+    "file_path": "gu3.py",
+    "url": "https://github.com/ankeethelps/localguide/blob/edf0e84bfa4291f70228e94d8bd47c4b168d710d/gu3.py",
+    "sha": "fb848a05974fc40b788d7f37995ed86832d64dd8"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "dhruvladia/career-coach-ai",
+    "file_path": "viz.py",
+    "url": "https://github.com/dhruvladia/career-coach-ai/blob/204aea0283ce478732a7d923e9528539ba76b15d/viz.py",
+    "sha": "4e9a324d8b4bedd99d65562b5813531e83d8bd5d"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "tweetlol/eve",
+    "file_path": "eve.py",
+    "url": "https://github.com/tweetlol/eve/blob/1a3ebe2089805a5b6a1d279facc1a8d22e0cc990/eve.py",
+    "sha": "23636138d042b1703264295ae2783f2be1817015"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Avneesh26024/Gen_AI_Exchange",
+    "file_path": "io.py",
+    "url": "https://github.com/Avneesh26024/Gen_AI_Exchange/blob/73b68d7ed3bca375eb3c815241f0d2c958d95e89/io.py",
+    "sha": "144f138752300cdf5e1626190661adbdb2dde96c"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Sujas-Aggarwal/langraph-chatbot",
+    "file_path": "v4.py",
+    "url": "https://github.com/Sujas-Aggarwal/langraph-chatbot/blob/1e5cc6bd1ea8875de5058289fab6d3ad71138a5a/v4.py",
+    "sha": "0fb1dd76a244f6d39f974b1c53044fc03eb17433"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "its-kundan/fin",
+    "file_path": "ui.py",
+    "url": "https://github.com/its-kundan/fin/blob/a47f4a7604a4961cb88f2ebe85b745b2c7efc4a1/ui.py",
+    "sha": "67830044019a444803de0db7988e91139400123b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "AdaptiveBProcess/bpm_agent",
+    "file_path": "old.py",
+    "url": "https://github.com/AdaptiveBProcess/bpm_agent/blob/8ca648be0b7b69ec9c7a39cb7ef59696f2569086/old.py",
+    "sha": "45cf07a29bc32302410b4528ed19ee1d819f690a"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "kaustubha-chaturvedi/CRAG-BNS",
+    "file_path": "bns.py",
+    "url": "https://github.com/kaustubha-chaturvedi/CRAG-BNS/blob/ec1fd35ab252ed16b6b1d4ba13ee3b3e4f94cf02/bns.py",
+    "sha": "948bf32e922f6b8a5c3d182951aee9bf6f701e09"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "siddiquiamir/LangChain-2025",
+    "file_path": "tut.py",
+    "url": "https://github.com/siddiquiamir/LangChain-2025/blob/4b0e18020d0d6a56d0522f3de646093b0d59955f/tut.py",
+    "sha": "74ea382a2712f03bbec6ba0d2fcca1de84798279"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "AliHShahid/agentic_ai_langgraph",
+    "file_path": "main.py",
+    "url": "https://github.com/AliHShahid/agentic_ai_langgraph/blob/114d24d21b075390fefa91f42a85d6c4b5efdde5/main.py",
+    "sha": "3191b1bc0fded134f59166f89e2ff9f225f7cc56"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Harshit-Malhotra/Visual-AI-Automation-Builder",
+    "file_path": "app.py",
+    "url": "https://github.com/Harshit-Malhotra/Visual-AI-Automation-Builder/blob/4370924321d395e8958cc9366db9ce5af196495f/app.py",
+    "sha": "585af7a032619dc8eb7bc716c12fc43aae3dd0bd"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "USC-FORTIS/AD-AGENT",
+    "file_path": "main.py",
+    "url": "https://github.com/USC-FORTIS/AD-AGENT/blob/f14a9c065ca84e21dd78abf95db7d96b9460c2ba/main.py",
+    "sha": "22c23a7f9be6126e1e8e67bd51db0621c5f07ac1"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "GaoDalie/LangGraph_Example",
+    "file_path": "loop.py",
+    "url": "https://github.com/GaoDalie/LangGraph_Example/blob/4965e27a1a29bee9029ff17bb05aff1bdef56fd4/loop.py",
+    "sha": "b8303e9c75b9429bc721b3aea80df00483c38bf1"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "botextractai/ai-langgraph-multi-agent",
+    "file_path": "main.py",
+    "url": "https://github.com/botextractai/ai-langgraph-multi-agent/blob/502d21711b0f4335f18017402083c99a7aab825c/main.py",
+    "sha": "2242aaead64f2866b766bbb0620117542c73d91a"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "nicknochnack/LanggraphCrashCourse",
+    "file_path": "flow.py",
+    "url": "https://github.com/nicknochnack/LanggraphCrashCourse/blob/f51a7dd8e1fae41586757bf88b3160e6a7dca189/flow.py",
+    "sha": "7253f6b427460b42dfe59276d569fd5ab673fcbb"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "raj-2005/Langgraph-RAG",
+    "file_path": "Rag.py",
+    "url": "https://github.com/raj-2005/Langgraph-RAG/blob/76aaa34b92c2a3da6a7735fd3831fa0837023da4/Rag.py",
+    "sha": "8bd939a36e1f66bea9d8f2364de082e9a5125e3b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "TirendazAcademy/Build-Smarter-AI-Agents",
+    "file_path": "main.py",
+    "url": "https://github.com/TirendazAcademy/Build-Smarter-AI-Agents/blob/efcb55ee2195f43ef21c2a43759083f3621df68b/main.py",
+    "sha": "06c97122fc62fdf3e1ea65c71420310bf83cb3e4"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "PovedaAqui/cybertrace-ai",
+    "file_path": "app.py",
+    "url": "https://github.com/PovedaAqui/cybertrace-ai/blob/82843b1b6665cb52600a615c6d8af31758def66f/app.py",
+    "sha": "d071b5b7c0b747a1b6483a9faa56968e0b7ee159"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "huangdihd/ProjectAI",
+    "file_path": "main.py",
+    "url": "https://github.com/huangdihd/ProjectAI/blob/76d35404844caf1e10e9cd714963f08fd6dec86f/main.py",
+    "sha": "56164addbbccfa6b452871f1423a8c93fd0ac0ef"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "RidaNaz/Chatbot",
+    "file_path": "app.py",
+    "url": "https://github.com/RidaNaz/Chatbot/blob/c0637eaddfb2a9929ce454bf5de5a4452b3e89be/app.py",
+    "sha": "8e1c102f4640dcb6debd3dbda381e85c154fc138"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "aniket-work/How-To-Build-AI-Agents-To-Decompose-Tasks-Execute-Parallel-via-Map-Reduce",
+    "file_path": "app.py",
+    "url": "https://github.com/aniket-work/How-To-Build-AI-Agents-To-Decompose-Tasks-Execute-Parallel-via-Map-Reduce/blob/b4e19dfcb169d64a883ddb2dfc02025d1325189b/app.py",
+    "sha": "a0146a6dc28133ec0172e8e1660a5de7c8bc216e"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Adityagupta930/Recruiter-agency-workflow",
+    "file_path": "app.py",
+    "url": "https://github.com/Adityagupta930/Recruiter-agency-workflow/blob/b87e1f1dc566b826f253632428e03b5b19e5ac1d/app.py",
+    "sha": "6fe44901fc2e236a76fb4a6c487ae06705cb3a38"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "samkerr4coding/music_store_assistant_langGraph",
+    "file_path": "app.py",
+    "url": "https://github.com/samkerr4coding/music_store_assistant_langGraph/blob/76698c75c8e935571aa2b10f9115762b8655e671/app.py",
+    "sha": "8abe68ae2b93029db67310b805e90d97241af8dd"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "maxidiazbattan/Agentic-RAG-langgraph-ollama-streamlit",
+    "file_path": "app.py",
+    "url": "https://github.com/maxidiazbattan/Agentic-RAG-langgraph-ollama-streamlit/blob/fde35006d862b46b4a3edfd3dfa3543b388f71a1/app.py",
+    "sha": "e37386346bfd846708289900a76c49232f38b4e2"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Harsh1210/llm-opsbot",
+    "file_path": "main.py",
+    "url": "https://github.com/Harsh1210/llm-opsbot/blob/f6350041cd29182a257ba91fb82f5e436363d75a/main.py",
+    "sha": "5b60b36f5a5eb637c00338853a68b76463ecc552"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "iblameandrew/open-deepthink",
+    "file_path": "app.py",
+    "url": "https://github.com/iblameandrew/open-deepthink/blob/9ea7a966dad491e72db390796c81b63b5b61912e/app.py",
+    "sha": "33f8328825fcc6a8483403554a5a184d72c70035"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "mozaloom/event-rag-agent",
+    "file_path": "app.py",
+    "url": "https://github.com/mozaloom/event-rag-agent/blob/010f17bc2fc4f50419ebdd2bdb77cd505041fa44/app.py",
+    "sha": "79557336f486b1e2f3b26d13aa0054741f5be09d"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Chrisolande/MedReportAI",
+    "file_path": "app.py",
+    "url": "https://github.com/Chrisolande/MedReportAI/blob/157f8f6118288e26ec99a862f85cbe4b83aad38d/app.py",
+    "sha": "8ef617ff71673e975cd68d8c2fc8e9d79c23f10e"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "jakenolan/langgraph-custom-tools",
+    "file_path": "main.py",
+    "url": "https://github.com/jakenolan/langgraph-custom-tools/blob/9894baaca6b11a2dadffee092c127bc722b42577/main.py",
+    "sha": "ce4f0a27472469e628e80009555ef8fb7dc2fc88"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "DipeshDhote/RAG_Based_Chatbot",
+    "file_path": "app.py",
+    "url": "https://github.com/DipeshDhote/RAG_Based_Chatbot/blob/41db0d8b6f1fd06b3bc62cdadd5e2bf871e6875b/app.py",
+    "sha": "04a4db4c1c0ea135e61b3eb63931514fb12fd9fd"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "KomachiZ/BICO",
+    "file_path": "app.py",
+    "url": "https://github.com/KomachiZ/BICO/blob/8bfc1b6dd254bff3a5969baa467efca28d7a6c46/app.py",
+    "sha": "94491f40a77b9602ee7cc73b947a2e017d10f1f4"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "sap156/AI-Claims-Agent-LangGraph",
+    "file_path": "app.py",
+    "url": "https://github.com/sap156/AI-Claims-Agent-LangGraph/blob/8e62e03905fe767fc2cd57cc98c8f141149e37df/app.py",
+    "sha": "ed9b73aae687e9166891a3c112ddcdeb52c01c22"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Kasun-Tharaka/Multi-Agent-AI-RAG",
+    "file_path": "app.py",
+    "url": "https://github.com/Kasun-Tharaka/Multi-Agent-AI-RAG/blob/566e6d9110e5ba39d65f9a61f54dd2476daba5ba/app.py",
+    "sha": "31cbbc49a75a4ea21146f07f4a1626fb47c68976"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "anmol091192/NewsGenie-AI-News-Search-Assistant",
+    "file_path": "main.py",
+    "url": "https://github.com/anmol091192/NewsGenie-AI-News-Search-Assistant/blob/88519450ffb69127682143ad1cc3151e4465d899/main.py",
+    "sha": "f253b233df377ac53cef639c095dae22c7bea414"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "hargurjeet/Langraph",
+    "file_path": "app.py",
+    "url": "https://github.com/hargurjeet/Langraph/blob/c6e1c18ab050e9231ecff5e94db47d711835894d/app.py",
+    "sha": "9c49af229f53813568c03d5c4e341ccbfe8b40d4"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Md-Emon-Hasan/LangGraph",
+    "file_path": "app.py",
+    "url": "https://github.com/Md-Emon-Hasan/LangGraph/blob/edce49945e89927a05fe63eaadeadd1a55c80315/app.py",
+    "sha": "f9478efb450761699c8abdffd20af7fc8bcb78dd"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Pai1403/Single-Agent_LLM",
+    "file_path": "app.py",
+    "url": "https://github.com/Pai1403/Single-Agent_LLM/blob/69223a8693a07ace79c9cbef7f93759495fb58ad/app.py",
+    "sha": "a1ce79bd2b28b799aa55ddcd48768de3dd183311"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Dhanush-Kumar-007/LangGraph-Begginer-Chatbot-project",
+    "file_path": "app.py",
+    "url": "https://github.com/Dhanush-Kumar-007/LangGraph-Begginer-Chatbot-project/blob/8ea72f5a88e61065e9a69263fe7fbd9e3f094bbd/app.py",
+    "sha": "b74ea7206342b8ef792c3e874758cb564b5bd4d3"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "musashimiyomoto/langgraph-agent",
+    "file_path": "app.py",
+    "url": "https://github.com/musashimiyomoto/langgraph-agent/blob/b8bec6bffcc9c9b6fa80f9ce0426defb195ce87f/app.py",
+    "sha": "cf6fb3cd1a1dbd9fed47a0bf454b776e089a4633"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "vansh-khaneja/RAG-using-LangGraph-Agents",
+    "file_path": "main.py",
+    "url": "https://github.com/vansh-khaneja/RAG-using-LangGraph-Agents/blob/f37458a9465f7fa8a588004a8742663795921272/main.py",
+    "sha": "d2ac7cdf1929e80e098195d35407479d19ce71cd"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "mvdiogo/Langgraph-langchain-Ollama-and-DuckDuckGo",
+    "file_path": "app.py",
+    "url": "https://github.com/mvdiogo/Langgraph-langchain-Ollama-and-DuckDuckGo/blob/51649e0d497668c940f05ab4c11e9cc62ddb4a9b/app.py",
+    "sha": "4fc1d6d67d57977603ee69a4cfafab42d2816e3a"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Elcano20241021/ReAct-Function-Calling",
+    "file_path": "main.py",
+    "url": "https://github.com/Elcano20241021/ReAct-Function-Calling/blob/256ef6b57944670c87ad77d5e70b281b87491182/main.py",
+    "sha": "fd69fe214965d97a5ee66c498f896edee34cee49"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "nahcol10/Perplexity2.0",
+    "file_path": "app.py",
+    "url": "https://github.com/nahcol10/Perplexity2.0/blob/a3301efc9d33b98d6341ed3f35fa453cfb718839/app.py",
+    "sha": "650750a6c6a766988b7d5cbcc6772528ae06d724"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "SAMAR-CODE404/backend",
+    "file_path": "Main.py",
+    "url": "https://github.com/SAMAR-CODE404/backend/blob/3047d819697ba78d78938a13606bf81821995b12/Main.py",
+    "sha": "b386b91e7d7069f8019b307f32fd89c476e5c56f"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "phillippbertram/langgraph-agent",
+    "file_path": "main.py",
+    "url": "https://github.com/phillippbertram/langgraph-agent/blob/66eaa498ef94891379eae25cb533a3e3c3cce6eb/main.py",
+    "sha": "6474369729cb3199492d4dc608c42a7cbc8e4109"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "lakshaykaushik5/Personal_AI_Assistant",
+    "file_path": "main.py",
+    "url": "https://github.com/lakshaykaushik5/Personal_AI_Assistant/blob/2575b897a8091af96c5d82980b3258d92a0cd0a1/main.py",
+    "sha": "e73049e9a86aa7068f98f37b9738b10ab2abf7ab"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "srmadani/ev-charging-tg-bot",
+    "file_path": "llm.py",
+    "url": "https://github.com/srmadani/ev-charging-tg-bot/blob/ee7b5da0c7b76534c164210ec4542e7b5255ce74/llm.py",
+    "sha": "8f9442e6202d4d4b8e9ac54b8bf986bb446ec990"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "vlecuye/mesop_gemini",
+    "file_path": "bot.py",
+    "url": "https://github.com/vlecuye/mesop_gemini/blob/f72f0846380a97a34a1a159ec58617b7922f6b7c/bot.py",
+    "sha": "0b9dc78b1699b419e7630128b259e04e4ec31f04"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Krishan098/AgenticRAG",
+    "file_path": "rag.py",
+    "url": "https://github.com/Krishan098/AgenticRAG/blob/2ced881ae4ab2d0d846feb0a4bcb608bebbc734f/rag.py",
+    "sha": "84bbb8b7340931b0b7d20ca7bb2025c62b8f4c99"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "miranda-santos-ricardo/langgraph_academy_own_agent_exercise",
+    "file_path": "1.py",
+    "url": "https://github.com/miranda-santos-ricardo/langgraph_academy_own_agent_exercise/blob/94615696b81c913e9d9ad014a99b5ed0de15bac9/1.py",
+    "sha": "3615f752a498b28918977cb72da81ceea5c8eb80"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "UniformSegue/24H-Du-Code-LeMans",
+    "file_path": "IA.py",
+    "url": "https://github.com/UniformSegue/24H-Du-Code-LeMans/blob/29083dc276c9eb873fc10cf3f0c0daeaa5bd3718/IA.py",
+    "sha": "3ab390e1ba7d23fb49532085c66c2220747c2fae"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "0evja/LangGraph-Agent",
+    "file_path": "demo.py",
+    "url": "https://github.com/0evja/LangGraph-Agent/blob/2112ded2cb149f178f69fadcca4d20890156de49/demo.py",
+    "sha": "7cee64744b63624d8fec6fee6bc80281b51f9b40"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "opengles3d/ollama_rag",
+    "file_path": "7.py",
+    "url": "https://github.com/opengles3d/ollama_rag/blob/716890de8f9189080bffcb0371caf26fbfb592b1/7.py",
+    "sha": "bcbdf693af52a53dfa57eb6562c799cf5864b7f9"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "ferrerallan/ai-react-agent",
+    "file_path": "run.py",
+    "url": "https://github.com/ferrerallan/ai-react-agent/blob/4fc3fd31b6ae71a41e385ac5f8c700a6137c26cd/run.py",
+    "sha": "c1c5314fd02d4dc0400483e4eeae7c3c44c52be9"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "LeonardoDaviti/LangGraph-Tutorials",
+    "file_path": "chat.py",
+    "url": "https://github.com/LeonardoDaviti/LangGraph-Tutorials/blob/898ff1fc6186a25a74e5d7568842944aa7d3a043/chat.py",
+    "sha": "0631ebc3f11de37c376b338f416826bd174cae12"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "gokul-1998/lang_chain_basics",
+    "file_path": "aa.py",
+    "url": "https://github.com/gokul-1998/lang_chain_basics/blob/8b433d76d396699ab602f5f22828c174860831dc/aa.py",
+    "sha": "d8ac70f4ab771f7a2b44f7deb141a2b4f9a41583"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "eigsi/chatdoc-extractor",
+    "file_path": "qa.py",
+    "url": "https://github.com/eigsi/chatdoc-extractor/blob/48a352de110c668a5262d0fe572ee57c9c5f0a75/qa.py",
+    "sha": "fc8e7e7958a5804e562c25e0137d55b3bfb94554"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "shazy89/ai-learning",
+    "file_path": "all.py",
+    "url": "https://github.com/shazy89/ai-learning/blob/fe853004b8417c56ad44052394c350df8fad0690/all.py",
+    "sha": "6dca83ad8714fab8a8bfe2dae21175f4aea6d54e"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "RagibShahriyear/LLM_Project",
+    "file_path": "lgph.py",
+    "url": "https://github.com/RagibShahriyear/LLM_Project/blob/8f681ab4de3738743ba43ad767438eebd8e69789/lgph.py",
+    "sha": "0e208f9b0e080b5c4b2138631ed01119aa6a9cb4"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "foxyglue/faq-db-chat",
+    "file_path": "v1.py",
+    "url": "https://github.com/foxyglue/faq-db-chat/blob/d91013a67cb63ecd15c0cb74b5682ce9c3a512b2/v1.py",
+    "sha": "1209176f8b8448327a5ec667dd5154baf5b3f368"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "PasinduDN/travel_agent_backend",
+    "file_path": "App.py",
+    "url": "https://github.com/PasinduDN/travel_agent_backend/blob/dd77d633743a80c4eb0c94dfe494edbf6e2618f5/App.py",
+    "sha": "2118fa9576f082edb8988740d4fd3703d8eca5b9"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "nkigen/langgraph",
+    "file_path": "m3.py",
+    "url": "https://github.com/nkigen/langgraph/blob/79c2ab99641933d0c307d55a8cb5072d2de6024f/m3.py",
+    "sha": "de6da671bd8ae4d23060311e0a0a4ef008845194"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "juananpe/langgraph-flask",
+    "file_path": "web.py",
+    "url": "https://github.com/juananpe/langgraph-flask/blob/351fa829d79e911e2e3ccfcd54e27c6adde3c93f/web.py",
+    "sha": "f2c67f4d14295f5aab81fce195258f63b29d6180"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "anthony-ism/riz-mAIstro-react-agent",
+    "file_path": "web.py",
+    "url": "https://github.com/anthony-ism/riz-mAIstro-react-agent/blob/e45ecd3a632cb9113104ef9b260d1a7ad8c2a314/web.py",
+    "sha": "a72bcef85dbbb1b97642f84ed33b65b376736bde"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "MdArshath2004/snowflakeoptimization",
+    "file_path": "tes.py",
+    "url": "https://github.com/MdArshath2004/snowflakeoptimization/blob/49cbdde22691d7be480997853930f2341e2ad4d2/tes.py",
+    "sha": "07010773058b3e8c8e02c39437d1328081fd69c9"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "winstonbartlegod/enhanced-multimodal-rag",
+    "file_path": "v1.py",
+    "url": "https://github.com/winstonbartlegod/enhanced-multimodal-rag/blob/11f520efbcddd7011482124d4b3856d901cb59d9/v1.py",
+    "sha": "d7be660f8e63a7d3a64220c6dfaf1b0ae6249179"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "vishnusurya11/ember",
+    "file_path": "dev.py",
+    "url": "https://github.com/vishnusurya11/ember/blob/a992997e7737fdeebc305932c4e9a96b896be025/dev.py",
+    "sha": "00919a7be70250a03cdce6e833fff3e09f49702b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "haipham05/PDF_QA_Chatbot",
+    "file_path": "PDF.py",
+    "url": "https://github.com/haipham05/PDF_QA_Chatbot/blob/8fe526955204fc55ae2a8b3cd16abfd49bee52cb/PDF.py",
+    "sha": "4cacc05a1d4013f203028d66fbdd3517136b8cc6"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "Shashn-ai/YouTube-Blog-Generator",
+    "file_path": "App.py",
+    "url": "https://github.com/Shashn-ai/YouTube-Blog-Generator/blob/75ab7f4b0c69902bde5d85bac37ead950704950c/App.py",
+    "sha": "60c471385de7bd45c2572af3e34730826df3c9dc"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "sensyzhe/research-rag",
+    "file_path": "LLM.py",
+    "url": "https://github.com/sensyzhe/research-rag/blob/335197111f18a394376d162114517d32ad287cc4/LLM.py",
+    "sha": "e5d0d65eb1cfb3cd3017650036d19e0cd0deb267"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "codemaker2015/langgraph-demos",
+    "file_path": "app.py",
+    "url": "https://github.com/codemaker2015/langgraph-demos/blob/98ba5985faed789cd8171dcb5eef541a1d6c5d21/app.py",
+    "sha": "24378d6e422b1fe4f7fb8b4d27c2bdb31a7a006b"
+  },
+  {
+    "framework": "langgraph",
+    "repo": "devananda6200/stockbuy-chatbot-langgraph",
+    "file_path": "HITL.py",
+    "url": "https://github.com/devananda6200/stockbuy-chatbot-langgraph/blob/7a3d0481b108bd3441234ed3989ea65dcb3b43ea/HITL.py",
+    "sha": "24e85e68d648e84ce29ec65ca1243d9cf5423639"
+  },
+  {
+    "framework": "crewai",
+    "repo": "junison17/CREWAI-3",
+    "file_path": "task.py",
+    "url": "https://github.com/junison17/CREWAI-3/blob/e0755bb02de7b54b621c8a4f9ac3b516db1c6d6c/task.py",
+    "sha": "6f72608c8edaf4d0f5135c117552fbd5249fbeb1"
+  },
+  {
+    "framework": "crewai",
+    "repo": "cashilaa/Crew-AI-Research-Tool",
+    "file_path": "crew.py",
+    "url": "https://github.com/cashilaa/Crew-AI-Research-Tool/blob/170ee3fde5b32cb0f5e2954bc2cb491e6b61e892/crew.py",
+    "sha": "6a923153cd94676445eb97c55fca4e5ada8d10e2"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ferdaousbouzaiene/yourcoach",
+    "file_path": "app.py",
+    "url": "https://github.com/ferdaousbouzaiene/yourcoach/blob/0041f05a1305a55ddeef7b020cc73a903999936f/app.py",
+    "sha": "dbcf391435dda1ac71927af4bb36598005201398"
+  },
+  {
+    "framework": "crewai",
+    "repo": "pa-git/Snowflake-notes",
+    "file_path": "c.py",
+    "url": "https://github.com/pa-git/Snowflake-notes/blob/eb7c0c75db83d5f8f62833189a44244b03608d7a/c.py",
+    "sha": "b031acf3a393e9a1c2dc8e02eee4769e62c5f1ee"
+  },
+  {
+    "framework": "crewai",
+    "repo": "alippo-com/mattermost-flutter",
+    "file_path": "crew.py",
+    "url": "https://github.com/alippo-com/mattermost-flutter/blob/0a237e9c98c0af32a383f7f09e8864810e82ad4c/crew.py",
+    "sha": "1951be17934c0d3aaccc1893d800522cb649f5f8"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Tusharbecoding/multi-youtube-agent",
+    "file_path": "crew.py",
+    "url": "https://github.com/Tusharbecoding/multi-youtube-agent/blob/26ab0feb7c9931539c96a9ad68008e8770a127cd/crew.py",
+    "sha": "6339298f78f749677ae5a3bcd7b6de3f9df467f6"
+  },
+  {
+    "framework": "crewai",
+    "repo": "aniket-work/How_I_Trained_AI_Agents",
+    "file_path": "crew.py",
+    "url": "https://github.com/aniket-work/How_I_Trained_AI_Agents/blob/b1c30866d24a2c0336c8e44ddabe60709fb76a4b/crew.py",
+    "sha": "452585d1e2268742edc7faddf0e35e1242433491"
+  },
+  {
+    "framework": "crewai",
+    "repo": "allysonbarros/crewai_linkedin_post_pipeline",
+    "file_path": "crew.py",
+    "url": "https://github.com/allysonbarros/crewai_linkedin_post_pipeline/blob/fdb49994fdf4cf8fa99936f17aa025897ba33474/crew.py",
+    "sha": "8876f61735f8144e1131583d89b16f6bfe7e098d"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Lucky-akash321/News-Reporter-AI-using-CrewAI",
+    "file_path": "crew.py",
+    "url": "https://github.com/Lucky-akash321/News-Reporter-AI-using-CrewAI/blob/b8601979b4418d9cbd498f9c4ab816ea7b4c27ae/crew.py",
+    "sha": "2d5d1b8fabb3c324844d4c4c35306ca7ab4b0359"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ahmadmustafa02/AI-Powered-Marketing-Automation-Marketing-Agentic-AI",
+    "file_path": "crew.py",
+    "url": "https://github.com/ahmadmustafa02/AI-Powered-Marketing-Automation-Marketing-Agentic-AI/blob/69838168482bb3ee718efc749cf0a925143d56e7/crew.py",
+    "sha": "6911d6328c4e47e9445b07b559dcfec8ace6126c"
+  },
+  {
+    "framework": "crewai",
+    "repo": "peytoncasper/swarm-recipe-scraping-agent",
+    "file_path": "crew.py",
+    "url": "https://github.com/peytoncasper/swarm-recipe-scraping-agent/blob/5cdac2f5a9e52797695ff4156a71bab8b99b72f0/crew.py",
+    "sha": "90fd51a487a1da3a84d1a2ddb09fc06b6f1b0c63"
+  },
+  {
+    "framework": "crewai",
+    "repo": "areibman/HackReporter",
+    "file_path": "crew.py",
+    "url": "https://github.com/areibman/HackReporter/blob/fc6c0f41668692150b0e882dd87022cf3fa8d425/crew.py",
+    "sha": "5d66d7f219d75dd3120546f7c4d8fe381afaea58"
+  },
+  {
+    "framework": "crewai",
+    "repo": "YUGESHKARAN/Mentor-Consulting-Crew",
+    "file_path": "crew.py",
+    "url": "https://github.com/YUGESHKARAN/Mentor-Consulting-Crew/blob/c9bb5ff269f57bee46e619f57697cbe3973b6fe0/crew.py",
+    "sha": "40bf116b501394da08e5867a97501b3c6c86ee73"
+  },
+  {
+    "framework": "crewai",
+    "repo": "AIWalaBro/CrewAI_Youtube_Video_Summarizer",
+    "file_path": "crew.py",
+    "url": "https://github.com/AIWalaBro/CrewAI_Youtube_Video_Summarizer/blob/580f4cc99f0e7d940fa2fc08fdf125bf4de9c458/crew.py",
+    "sha": "2bd8264c3446ca197744e34bc64bebc0fb95b871"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ramamoorthy07/Multi-Agent-Market-Research-and-Use-Case-Generation-System",
+    "file_path": "crew.py",
+    "url": "https://github.com/ramamoorthy07/Multi-Agent-Market-Research-and-Use-Case-Generation-System/blob/0cb0c1705f2d253c0ee8e74dd819d34788cf3c3d/crew.py",
+    "sha": "b0f2a61ad86ba0df0af691b98b6fad699783e8e3"
+  },
+  {
+    "framework": "crewai",
+    "repo": "yrd2612/chatbot",
+    "file_path": "crew.py",
+    "url": "https://github.com/yrd2612/chatbot/blob/597be5ae420f866b513a554420ed3f99100b2a1f/crew.py",
+    "sha": "1e62e83546cee77238a6be030eb7c7fa9039cec3"
+  },
+  {
+    "framework": "crewai",
+    "repo": "matttbates/job-search-assistant",
+    "file_path": "crew.py",
+    "url": "https://github.com/matttbates/job-search-assistant/blob/32339b5b83576211ec65b27b588f2017d9e662e4/crew.py",
+    "sha": "e05ff600af9bf86a7fa066d1b90279494cbff637"
+  },
+  {
+    "framework": "crewai",
+    "repo": "deetrees/NexStoryKids",
+    "file_path": "crew.py",
+    "url": "https://github.com/deetrees/NexStoryKids/blob/3ef324dc2fe28baff4b746831ae8f67e4956c705/crew.py",
+    "sha": "a81251e3814e57b35257330b65d1b76f37fa08b6"
+  },
+  {
+    "framework": "crewai",
+    "repo": "aryannair876/findlead-intelligence-platform",
+    "file_path": "crew.py",
+    "url": "https://github.com/aryannair876/findlead-intelligence-platform/blob/e3dc353ae037a5073289b0fb9df1124687708f02/crew.py",
+    "sha": "470ae8e7680a22817f4f19f9b0e34793e22db2f0"
+  },
+  {
+    "framework": "crewai",
+    "repo": "firaflash/career-mentor-ai-agent",
+    "file_path": "crew.py",
+    "url": "https://github.com/firaflash/career-mentor-ai-agent/blob/b1a8cca802589c77d8591a44c776aa348bcc48ba/crew.py",
+    "sha": "b24a7456ce25ce523ff0bb3312f4ea0bac3f2757"
+  },
+  {
+    "framework": "crewai",
+    "repo": "AIwithhassan/multiagent-newsletter-generator",
+    "file_path": "crew.py",
+    "url": "https://github.com/AIwithhassan/multiagent-newsletter-generator/blob/c3858e9f34027b6e9795a097bf1436841149175e/crew.py",
+    "sha": "ff3a613aaa7bca762de3ddd7bf6a3471c768d613"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Godson90/ai_agents",
+    "file_path": "Task.py",
+    "url": "https://github.com/Godson90/ai_agents/blob/ff6bb6b9822ff49ec62820720180c90ed9a64e3a/Task.py",
+    "sha": "9e6bd178c82ba96330240aa7662179e03d0be0d7"
+  },
+  {
+    "framework": "crewai",
+    "repo": "sidharthdk/CrewAi",
+    "file_path": "crew.py",
+    "url": "https://github.com/sidharthdk/CrewAi/blob/a32844ecb237ac85fc8ddf154a4e6207c8fe4c07/crew.py",
+    "sha": "8f78d6c3e3881d89a83130e88dac131ee0ba386b"
+  },
+  {
+    "framework": "crewai",
+    "repo": "deysanjeeb/clipGen",
+    "file_path": "crew.py",
+    "url": "https://github.com/deysanjeeb/clipGen/blob/9b001141b2522e012e7d035ec50cf7b2090b76c7/crew.py",
+    "sha": "35b8b385691b49667aceb53cd2f96aa0813d2099"
+  },
+  {
+    "framework": "crewai",
+    "repo": "sanncchhezz/agent_test",
+    "file_path": "crew.py",
+    "url": "https://github.com/sanncchhezz/agent_test/blob/ff902a4dc5f354e0beb4feba282818547f739955/crew.py",
+    "sha": "5fd9d89ea12bcb804ee3b1c4e25e3047920e2f9f"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Visheshh21/Vishesh_Blood_test_analyzer",
+    "file_path": "task.py",
+    "url": "https://github.com/Visheshh21/Vishesh_Blood_test_analyzer/blob/0cd52bc3877ea43e3b9b59ca2d40639530e78646/task.py",
+    "sha": "2e6fca78a69f745ddeb27a94706ee3274c8d4bba"
+  },
+  {
+    "framework": "crewai",
+    "repo": "goabiaryan/fullstack-inferencing",
+    "file_path": "crew.py",
+    "url": "https://github.com/goabiaryan/fullstack-inferencing/blob/d0ee65c2ba4764818e4d993b6eb5111d21f593cf/crew.py",
+    "sha": "fabc257a03babecdb2d21344191ed00f03208082"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ich-youness/Cybersecurity-AI-Agents",
+    "file_path": "crew.py",
+    "url": "https://github.com/ich-youness/Cybersecurity-AI-Agents/blob/5fe79531778e2199bb9dd4576a65bbdc257c431c/crew.py",
+    "sha": "d76973a59f4806dc730979515e4b4ca17e0f0567"
+  },
+  {
+    "framework": "crewai",
+    "repo": "lmaoitsjerry/crispy-fiesta",
+    "file_path": "crew.py",
+    "url": "https://github.com/lmaoitsjerry/crispy-fiesta/blob/ccf2e887e7cc56a9171c6817dba5d1e927358c83/crew.py",
+    "sha": "40367dc07c57a8012ac5526d5ef81832c7dc8245"
+  },
+  {
+    "framework": "crewai",
+    "repo": "CaioVictor3/CREW_AI-PDF",
+    "file_path": "crew.py",
+    "url": "https://github.com/CaioVictor3/CREW_AI-PDF/blob/5ed474962dd1f6b4c63dfa7577f294a67633a76d/crew.py",
+    "sha": "3de5268ca40c78e4604e9327a22dcfd7a208dea6"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Abdulla-alk/crewai",
+    "file_path": "crew.py",
+    "url": "https://github.com/Abdulla-alk/crewai/blob/dc288dd6a2737bd2bfa878429f9b374f1e1bb838/crew.py",
+    "sha": "14626fe95791504fe6252a6ff71276a32a17bc36"
+  },
+  {
+    "framework": "crewai",
+    "repo": "shubhamkathar/AI-NEWS-AGNET-",
+    "file_path": "crew.py",
+    "url": "https://github.com/shubhamkathar/AI-NEWS-AGNET-/blob/22cbc6c15f98ffd4f2ea863f2db95feda871ef5d/crew.py",
+    "sha": "0c4be2713b392a19c8bbab23200b2143867d2574"
+  },
+  {
+    "framework": "crewai",
+    "repo": "divyansh-tripathi7/AutoMated_LinkedinCrew",
+    "file_path": "crew.py",
+    "url": "https://github.com/divyansh-tripathi7/AutoMated_LinkedinCrew/blob/8c02f5172bc7a7dc56e913385af2c221b98811fb/crew.py",
+    "sha": "9b5a5ef6d57b2d18d45a931ce35b0a76927f7650"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Karan-Baid-19/darwixai_hackathon",
+    "file_path": "crew.py",
+    "url": "https://github.com/Karan-Baid-19/darwixai_hackathon/blob/d7a10f9ab8c9d41a2840fde029ef3abad6c3640b/crew.py",
+    "sha": "6424f618a16bc19d5df65c01f4a5ba5a8c4b1cc9"
+  },
+  {
+    "framework": "crewai",
+    "repo": "garvit5555/transportation_service_chatbot_using_agent",
+    "file_path": "crew.py",
+    "url": "https://github.com/garvit5555/transportation_service_chatbot_using_agent/blob/70e6448626a10fe7f4c96d15c6b6e48d058b0333/crew.py",
+    "sha": "637e988604969172404285f6a57331fe97b72279"
+  },
+  {
+    "framework": "crewai",
+    "repo": "IbrahimAlobid2/Smart-Procurement-Agents",
+    "file_path": "crew.py",
+    "url": "https://github.com/IbrahimAlobid2/Smart-Procurement-Agents/blob/b29b530a4ec295e6963ffd709d4aaca2337f1d58/crew.py",
+    "sha": "ee10288cc361f3493722c140181ba734a0e25881"
+  },
+  {
+    "framework": "crewai",
+    "repo": "puravky/yt_analyzer",
+    "file_path": "crew.py",
+    "url": "https://github.com/puravky/yt_analyzer/blob/82f5e8010b0dfbac4fbdbb1ebab2386ddc688962/crew.py",
+    "sha": "ddbf19bf015c3aa4413b3d66c127a2ab38b202fc"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Jamahl/fraya-25",
+    "file_path": "crew.py",
+    "url": "https://github.com/Jamahl/fraya-25/blob/8da54c34951398cf66e0bba1144dfba40f240c3c/crew.py",
+    "sha": "0f564d750f921777756d885a288425716d261356"
+  },
+  {
+    "framework": "crewai",
+    "repo": "kunallll17/Financial-doc-analyzer-crewai",
+    "file_path": "task.py",
+    "url": "https://github.com/kunallll17/Financial-doc-analyzer-crewai/blob/a3b0bc38d51aa6a4d074bd49f239c936d28fe6bc/task.py",
+    "sha": "e319997f86e8592b89a620766c6d038764d17b27"
+  },
+  {
+    "framework": "crewai",
+    "repo": "phasetherapper/jobstride",
+    "file_path": "crew.py",
+    "url": "https://github.com/phasetherapper/jobstride/blob/62d0e90ba5f093d977fbe34374d74ad8194642ea/crew.py",
+    "sha": "81266977c66a1dd95ab0f280830eafda837da260"
+  },
+  {
+    "framework": "crewai",
+    "repo": "suryaMadhav16/RAG-Lab",
+    "file_path": "CrewAI.py",
+    "url": "https://github.com/suryaMadhav16/RAG-Lab/blob/987bc8aec7c3b63169c6ce02cd0852c49fcf1545/CrewAI.py",
+    "sha": "ad61d1039bed4f3c6810fd594077706a00176a91"
+  },
+  {
+    "framework": "crewai",
+    "repo": "dforwardfeed/memo_generator",
+    "file_path": "main.py",
+    "url": "https://github.com/dforwardfeed/memo_generator/blob/b02cb185013c7484565491cbcd16738e3b689d07/main.py",
+    "sha": "3ab0f1e7ce8858805360f30b846820115b296790"
+  },
+  {
+    "framework": "crewai",
+    "repo": "krishnaik06/Crew-AI-Crash-course",
+    "file_path": "crew.py",
+    "url": "https://github.com/krishnaik06/Crew-AI-Crash-course/blob/c3be3196ed7d597f75b7bc6eb866db7270964bcd/crew.py",
+    "sha": "fc0516e0506f0085e878a2314d475156c84d6733"
+  },
+  {
+    "framework": "crewai",
+    "repo": "qaillc/Phi2Hackathon",
+    "file_path": "app.py",
+    "url": "https://github.com/qaillc/Phi2Hackathon/blob/66b0ad3e17fc4a525dae2d40dda999fe03a00c04/app.py",
+    "sha": "ba4eea005d062c7bd0c6929de338553454d81e7d"
+  },
+  {
+    "framework": "crewai",
+    "repo": "tushar2704/BloggerCrew",
+    "file_path": "Home.py",
+    "url": "https://github.com/tushar2704/BloggerCrew/blob/1ad215b8e10207cf4a6619bc682ae74f199964d3/Home.py",
+    "sha": "68d85897b2998bb0d565c049e94ae2956fcac209"
+  },
+  {
+    "framework": "crewai",
+    "repo": "A-Atta/Procurement_System_Using_AI",
+    "file_path": "gui.py",
+    "url": "https://github.com/A-Atta/Procurement_System_Using_AI/blob/815bc806b6da8eff2296e4db963be5681d95e8c7/gui.py",
+    "sha": "3ed6fca6bee6ffe115e2db55e321d4dfbcc46171"
+  },
+  {
+    "framework": "crewai",
+    "repo": "yuriwa/crewai-sheets-ui",
+    "file_path": "main.py",
+    "url": "https://github.com/yuriwa/crewai-sheets-ui/blob/46ee39143ff99052c29d1dc9805133c2de81dd25/main.py",
+    "sha": "fefa9192f6421f69fe7853c6b4e467e33e56ebe4"
+  },
+  {
+    "framework": "crewai",
+    "repo": "AndresRoblesB/crewai-assistant-google-tools",
+    "file_path": "bot.py",
+    "url": "https://github.com/AndresRoblesB/crewai-assistant-google-tools/blob/07d24c37c86a99870c04102fee04f777edebbe39/bot.py",
+    "sha": "df7be640043757a32b35dd5de38abc2d29f08177"
+  },
+  {
+    "framework": "crewai",
+    "repo": "RAGA-LAB-1/stock_decision_MAS",
+    "file_path": "run.py",
+    "url": "https://github.com/RAGA-LAB-1/stock_decision_MAS/blob/0ae090e7a183a09d6dda2492a84a0fa95494c3db/run.py",
+    "sha": "f4dce8c8d50dec06dc2baa0347255579f653fb3e"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Dhy4n-117/Wingify-Debug-challenge",
+    "file_path": "worker.py",
+    "url": "https://github.com/Dhy4n-117/Wingify-Debug-challenge/blob/45df12aad66cda9221d935e4c4e7a1e28dd475da/worker.py",
+    "sha": "714eeff7cec570244e4fe479f44b7fab39668d74"
+  },
+  {
+    "framework": "crewai",
+    "repo": "muzifa-mubarak/crew_ai_practice",
+    "file_path": "cre.py",
+    "url": "https://github.com/muzifa-mubarak/crew_ai_practice/blob/8d3b39619a582d2f8ed5607fc14440bb5197678a/cre.py",
+    "sha": "f68f5db000f300f0a4800943ff3a688b220c479a"
+  },
+  {
+    "framework": "crewai",
+    "repo": "colinmccrae/CrewAITest",
+    "file_path": "do1.py",
+    "url": "https://github.com/colinmccrae/CrewAITest/blob/ab679296f8a62aa01a73fd8a3b2d5364cdd75ce4/do1.py",
+    "sha": "db3817a37f81106ade42aff71a9f83e3d61b0086"
+  },
+  {
+    "framework": "crewai",
+    "repo": "neej4/worldline",
+    "file_path": "api.py",
+    "url": "https://github.com/neej4/worldline/blob/1b73fb0a7a345fd59f41681649214b9e157ce20c/api.py",
+    "sha": "a18c4a03292f670dbc161d731d54f9c9fe40b0d5"
+  },
+  {
+    "framework": "crewai",
+    "repo": "VamshiKrishna660/BloodWise-AI",
+    "file_path": "tasks.py",
+    "url": "https://github.com/VamshiKrishna660/BloodWise-AI/blob/140cbdc2a1fa096e033c7d3f2f127e5651305109/tasks.py",
+    "sha": "2e84cb8641c35d799e9e140ec1aed34b073e2ffc"
+  },
+  {
+    "framework": "crewai",
+    "repo": "prakhar1009/crediai",
+    "file_path": "flow.py",
+    "url": "https://github.com/prakhar1009/crediai/blob/d977b7d39d6ace81dc7e19856034b30283e307a6/flow.py",
+    "sha": "0e7666a06c883cf0b432ac81ca9a052ae917537b"
+  },
+  {
+    "framework": "crewai",
+    "repo": "supritR21/Blog-writer-crewai",
+    "file_path": "try.py",
+    "url": "https://github.com/supritR21/Blog-writer-crewai/blob/67f31440d714009107ec5898a08d6bac407ea18f/try.py",
+    "sha": "191c2994389c9a8bfe9cb5479c5b70f00cb03005"
+  },
+  {
+    "framework": "crewai",
+    "repo": "noahkohrs/Autonomous-Agents-Demo",
+    "file_path": "demo.py",
+    "url": "https://github.com/noahkohrs/Autonomous-Agents-Demo/blob/669bcadbc474f04b3ecdab5b725bfac065d5a875/demo.py",
+    "sha": "fa22222388310209b943c72ba6840148a51f111f"
+  },
+  {
+    "framework": "crewai",
+    "repo": "aayu2003/agent_creation",
+    "file_path": "API.py",
+    "url": "https://github.com/aayu2003/agent_creation/blob/930e3201842ab0a9011a345b36d9e2fe273725ab/API.py",
+    "sha": "16b36601e769553d66832f3bc42fe1633f5109e2"
+  },
+  {
+    "framework": "crewai",
+    "repo": "minhhuyng21/Muilti-Agent",
+    "file_path": "agent.py",
+    "url": "https://github.com/minhhuyng21/Muilti-Agent/blob/ebd21e9a9cb4051211165e86027bcb23f0352303/agent.py",
+    "sha": "f829253c386a0133b08d1ec357ba946fb912ba6d"
+  },
+  {
+    "framework": "crewai",
+    "repo": "NOOBPOOK/MumbaiHacks25",
+    "file_path": "final.py",
+    "url": "https://github.com/NOOBPOOK/MumbaiHacks25/blob/da9aff23fcfefab0e29b83fdaa7a548d9c3c225b/final.py",
+    "sha": "eb1c14415b520f675ae0de6ac9d8a060d102e27e"
+  },
+  {
+    "framework": "crewai",
+    "repo": "SivaAdeesh27/MRAG",
+    "file_path": "mrag.py",
+    "url": "https://github.com/SivaAdeesh27/MRAG/blob/34c80592917f0f986d179f6693ccac5e3547d850/mrag.py",
+    "sha": "a5f62b4b855cc45241937a17c712259c58b2f2d4"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page",
+    "file_path": "raj.py",
+    "url": "https://github.com/Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page/blob/025f8f1944dc9f78b3bbea95f46253bdd78d3553/raj.py",
+    "sha": "169687f135399fbe9af1434e492d4f8194c19633"
+  },
+  {
+    "framework": "crewai",
+    "repo": "HAttarde/Multi-agent-System",
+    "file_path": "app1.py",
+    "url": "https://github.com/HAttarde/Multi-agent-System/blob/0aceaee2403bea6d0a8e6a194521604faeab21fb/app1.py",
+    "sha": "639b7801d27d95bdd01ac7bd99cfdbb3003cb354"
+  },
+  {
+    "framework": "crewai",
+    "repo": "john-adeojo/crew_ai_tutorial",
+    "file_path": "app.py",
+    "url": "https://github.com/john-adeojo/crew_ai_tutorial/blob/8067c36bde79dadf77a4679bdfff246aad6dfb94/app.py",
+    "sha": "527e1fe605b005da18cea6104f0b4478b392e316"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ai-in-pm/StorybooksCrewAI-Groq",
+    "file_path": "app.py",
+    "url": "https://github.com/ai-in-pm/StorybooksCrewAI-Groq/blob/b5eedfa773e0c75ad129ceb845860f5580c7122b/app.py",
+    "sha": "37cb9f6c794d451655246950557250024d378783"
+  },
+  {
+    "framework": "crewai",
+    "repo": "marquinvitor/Forja",
+    "file_path": "Forja.py",
+    "url": "https://github.com/marquinvitor/Forja/blob/d424bc408e8de71c2e0392c6d4b316ba7683b092/Forja.py",
+    "sha": "4fc5d826b510cb2f611870f50370b777fa5dfad6"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Shirmeen/Chatbot",
+    "file_path": "app4.py",
+    "url": "https://github.com/Shirmeen/Chatbot/blob/d9d7f8ba534951b81b0d4a2217bfb343ddff532e/app4.py",
+    "sha": "6c5c20b8b7241262451824a1e44e20435f282ad2"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Alfiya-salam/Instagram-Post",
+    "file_path": "app4.py",
+    "url": "https://github.com/Alfiya-salam/Instagram-Post/blob/75d9cb6889c427bfe3e1c18dbd0695670eb1b573/app4.py",
+    "sha": "d4a11036520ccfdd2cfde1eda84fc5364adb7e8a"
+  },
+  {
+    "framework": "crewai",
+    "repo": "diya04b/ai_video_analyser",
+    "file_path": "crew.py",
+    "url": "https://github.com/diya04b/ai_video_analyser/blob/f4d8cea639b274c1d11cd3b883702b91874ab1b3/crew.py",
+    "sha": "9e08e08230901b0afbc47c2b304636d75a1b1c50"
+  },
+  {
+    "framework": "crewai",
+    "repo": "SuyashMohanty/SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System",
+    "file_path": "crew.py",
+    "url": "https://github.com/SuyashMohanty/SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System/blob/7b60b43f4b348589a4fb4a99f5ec58c9a25183e6/crew.py",
+    "sha": "b91d7d70b7c21b269d635f12b128b395b934e194"
+  },
+  {
+    "framework": "crewai",
+    "repo": "gaurav-163/CavScan-Intelligent-Diagnostic-System",
+    "file_path": "bk.py",
+    "url": "https://github.com/gaurav-163/CavScan-Intelligent-Diagnostic-System/blob/6c30f3a555495a2104136b687b2883945d911481/bk.py",
+    "sha": "a961c2adac835313690cf791f8aafca588097ffa"
+  },
+  {
+    "framework": "crewai",
+    "repo": "peterzervas/CodeSynthAI",
+    "file_path": "app.py",
+    "url": "https://github.com/peterzervas/CodeSynthAI/blob/9d37d4df91c6fbf0aede5bb93554c3e4c1691b68/app.py",
+    "sha": "235c8fa94f7774fde030ade1ce63a627c30bdc3d"
+  },
+  {
+    "framework": "crewai",
+    "repo": "SomanGaurav/Agentic_Research_Assistant",
+    "file_path": "agents.py",
+    "url": "https://github.com/SomanGaurav/Agentic_Research_Assistant/blob/08977f9ab588c218f0c0c851499f39800f33e036/agents.py",
+    "sha": "d03923685ca93054e4235d69a7629d2c5c0d9a46"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ShambhaviM19/Blog-Generation-System",
+    "file_path": "crew.py",
+    "url": "https://github.com/ShambhaviM19/Blog-Generation-System/blob/fcfda4f37660da4c446a4928323d2ab41e0e0e99/crew.py",
+    "sha": "07b5449b688f9a96a25a646de0dd003542f310ae"
+  },
+  {
+    "framework": "crewai",
+    "repo": "venkatavinayvijjapu/New_Assignment",
+    "file_path": "app.py",
+    "url": "https://github.com/venkatavinayvijjapu/New_Assignment/blob/95ffcdc315b7cd97e1108d5936d9188acffea43e/app.py",
+    "sha": "1141a5b3c502ee1d6fd53dd9ccfedb92a8b8cce0"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Aakeeo/leadresearchcrew",
+    "file_path": "crew.py",
+    "url": "https://github.com/Aakeeo/leadresearchcrew/blob/08eb4c2c1da16fb142b1ec1091d0e98700f60907/crew.py",
+    "sha": "4ee13c4755abf1571d9032c8282024c5a84fb4df"
+  },
+  {
+    "framework": "crewai",
+    "repo": "Tushar365/WebScript-AI-Powered-Research-Content-Creator",
+    "file_path": "crew.py",
+    "url": "https://github.com/Tushar365/WebScript-AI-Powered-Research-Content-Creator/blob/3e98e307c171349ec56ee11e53d86ea8d5bf450e/crew.py",
+    "sha": "79b19d4cf7403df44ab1b637581f5636caeba26f"
+  },
+  {
+    "framework": "crewai",
+    "repo": "ankitgmishra/legal-multiagent-system",
+    "file_path": "crew.py",
+    "url": "https://github.com/ankitgmishra/legal-multiagent-system/blob/8724614a3058cb1821d56488a07ab1b6abc5a44d/crew.py",
+    "sha": "8706d0773addcca31eae52d1919c0235e8ac3b85"
+  },
+  {
+    "framework": "autogen",
+    "repo": "AI4Good24/PsySafe",
+    "file_path": "groupchat.py",
+    "url": "https://github.com/AI4Good24/PsySafe/blob/a524585c1b05d02cfd095c41078fef50499a4459/groupchat.py",
+    "sha": "c0c047199f7e256dc7bc9151784054dd9877afd6"
+  },
+  {
+    "framework": "autogen",
+    "repo": "AvniMittal13/litmus_plus_plus",
+    "file_path": "agents/groupchat.py",
+    "url": "https://github.com/AvniMittal13/litmus_plus_plus/blob/8376467eaed1638356f992ef42a58dc7cd98c239/agents/groupchat.py",
+    "sha": "54d2c10b07ed800f062921e9715d25d27843b949"
+  },
+  {
+    "framework": "autogen",
+    "repo": "ihsanyassin2/autogen_deepseek",
+    "file_path": "custom_groupchat.py",
+    "url": "https://github.com/ihsanyassin2/autogen_deepseek/blob/50e1c7d316b8ab7c98f97d910860326f3f8f8cb5/custom_groupchat.py",
+    "sha": "1c2c7cdde732c395686a4a772b703cca09822017"
+  },
+  {
+    "framework": "autogen",
+    "repo": "atcelen/IDesign",
+    "file_path": "chats.py",
+    "url": "https://github.com/atcelen/IDesign/blob/7bc891c72e45f36f6461f5848c3c052723faede4/chats.py",
+    "sha": "86345da9cae916e862bfeaba51ffc5879006d950"
+  },
+  {
+    "framework": "autogen",
+    "repo": "hiShujie/IDesign-scale",
+    "file_path": "scripts/chats.py",
+    "url": "https://github.com/hiShujie/IDesign-scale/blob/677fddc0ae3c932ddf5e366e67096273c9a3f2b1/scripts/chats.py",
+    "sha": "86345da9cae916e862bfeaba51ffc5879006d950"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Poly186-AI-DAO/PolyGPT-alpha",
+    "file_path": "agents/agent_repo.py",
+    "url": "https://github.com/Poly186-AI-DAO/PolyGPT-alpha/blob/796e0ce5afc0a9041ca5b8ca4269f8d3735453de/agents/agent_repo.py",
+    "sha": "232a4daf5e355c82bfd93f8aca639066e32c3d4a"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Sujallsh/Multi-agent-fraud-detection",
+    "file_path": "agent_framework.py",
+    "url": "https://github.com/Sujallsh/Multi-agent-fraud-detection/blob/610705451eaa8f72bf036bbd83cc3d71fad0bebd/agent_framework.py",
+    "sha": "091e2f73978a17a241a76081fa0f648f5fd24b32"
+  },
+  {
+    "framework": "autogen",
+    "repo": "JapiKredi/autogen_huggingface_any_llm",
+    "file_path": "app.py",
+    "url": "https://github.com/JapiKredi/autogen_huggingface_any_llm/blob/459b7ad8310c985a02c22638365ae3915d48aac3/app.py",
+    "sha": "2b842e35b300383204b39aaf3fd6b12ce476660c"
+  },
+  {
+    "framework": "autogen",
+    "repo": "JapiKredi/autogen_huggingface_any_llm",
+    "file_path": "app2.py",
+    "url": "https://github.com/JapiKredi/autogen_huggingface_any_llm/blob/459b7ad8310c985a02c22638365ae3915d48aac3/app2.py",
+    "sha": "a355fdb1e0d799b91b9e6bcacc3e6dfca7f4e150"
+  },
+  {
+    "framework": "autogen",
+    "repo": "kasukanra/autogen_local_LLM",
+    "file_path": "autogen_app.py",
+    "url": "https://github.com/kasukanra/autogen_local_LLM/blob/841c58aba7986a64d39cdf949606fb83951d2725/autogen_app.py",
+    "sha": "35e9123b26a386501aea4ba3bac7c3106dff4f9a"
+  },
+  {
+    "framework": "autogen",
+    "repo": "jwang-580/ASCO_guideline_agents",
+    "file_path": "claude_autogen.py",
+    "url": "https://github.com/jwang-580/ASCO_guideline_agents/blob/dfe0ba91ba0e40ed5b7b479a27ea1a842c927233/claude_autogen.py",
+    "sha": "5e2cd83aeaf7af193f516d5519c6ccb97bb5131c"
+  },
+  {
+    "framework": "autogen",
+    "repo": "norrisaftcc/ce_usingllms101_24su",
+    "file_path": "m2/autogen_panel.py",
+    "url": "https://github.com/norrisaftcc/ce_usingllms101_24su/blob/39682c5de866dcb4057a8063e704f3038929eee8/m2/autogen_panel.py",
+    "sha": "a23c6ce8e83bd06cdc4d031d871c7c715d3dfc3e"
+  },
+  {
+    "framework": "autogen",
+    "repo": "mdfahad999/Autogen_sqlite",
+    "file_path": "Autogen_sqlite.py",
+    "url": "https://github.com/mdfahad999/Autogen_sqlite/blob/290ef3458e49d5a9fd73fb23b37ef917eccd272f/Autogen_sqlite.py",
+    "sha": "a8e55e89d31f6b939ae8eaf916018e7321e257d4"
+  },
+  {
+    "framework": "autogen",
+    "repo": "awellis/reflection-mentor",
+    "file_path": "app-autogen.py",
+    "url": "https://github.com/awellis/reflection-mentor/blob/cff1581f6a436da3c275e173ff33c791f729dc18/app-autogen.py",
+    "sha": "04f2d29936542f6cc4fba1e01b9c63a100b5c402"
+  },
+  {
+    "framework": "autogen",
+    "repo": "MathildaSu/PipelineAgent",
+    "file_path": "groupchat.py",
+    "url": "https://github.com/MathildaSu/PipelineAgent/blob/7562c85e8f7c0c2b8068dd15e29bcf028fbe7b07/groupchat.py",
+    "sha": "c91fe327c747569555980e536d203475ce34df79"
+  },
+  {
+    "framework": "autogen",
+    "repo": "microsoft/TAMAS",
+    "file_path": "autogen_run.py",
+    "url": "https://github.com/microsoft/TAMAS/blob/545c112af9aab93b7ef2b0b60831d93c81c365c3/autogen_run.py",
+    "sha": "ce67de53a3cbc0f106b51ceb7e606c73a0afe5cf"
+  },
+  {
+    "framework": "autogen",
+    "repo": "yuyanislearning/bio_sc_auto",
+    "file_path": "src/groupchat.py",
+    "url": "https://github.com/yuyanislearning/bio_sc_auto/blob/5b57cfd6274ef45f169d9999e1de6f9a973e44e5/src/groupchat.py",
+    "sha": "b1106b72ab42f5d87b542386be95db7baa923433"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Mustorpha/nexus",
+    "file_path": "chat/autogen_chat.py",
+    "url": "https://github.com/Mustorpha/nexus/blob/6ab4a1eae313ee223ac7af215a7202e264e1a4e0/chat/autogen_chat.py",
+    "sha": "145756f4299728ba2a4cd7a58f4395daf8ba5222"
+  },
+  {
+    "framework": "autogen",
+    "repo": "adames88/autogen_streamlit",
+    "file_path": "autogen_st.py",
+    "url": "https://github.com/adames88/autogen_streamlit/blob/93893e9a21ad8ab6687cf68f98783a627ad229ca/autogen_st.py",
+    "sha": "18c0ce55505b1429aebbdb8ce164c2c2fc9a0037"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Yega-Noragami/Fin-Agent",
+    "file_path": "autogen-rag.py",
+    "url": "https://github.com/Yega-Noragami/Fin-Agent/blob/e2bdc7ebbb627f1f5573e4a47d4ca082c00fc61e/autogen-rag.py",
+    "sha": "0be3995522e9171efe0d5c9ead0111d91b1b58c4"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Itzkuldeep/AgentE-com",
+    "file_path": "groupchat.py",
+    "url": "https://github.com/Itzkuldeep/AgentE-com/blob/ed0bf312318e4c1975d9c9c860f43a2a216e7382/groupchat.py",
+    "sha": "35f751185371425ee630fadafa3d370d9fe1e610"
+  },
+  {
+    "framework": "autogen",
+    "repo": "adames88/autogen_streamlit",
+    "file_path": "autogen_st_2.py",
+    "url": "https://github.com/adames88/autogen_streamlit/blob/93893e9a21ad8ab6687cf68f98783a627ad229ca/autogen_st_2.py",
+    "sha": "a12e0e8199676017d56f749d31c2e0aed4649b33"
+  },
+  {
+    "framework": "autogen",
+    "repo": "adames88/autogen_streamlit",
+    "file_path": "autogen_st_4.py",
+    "url": "https://github.com/adames88/autogen_streamlit/blob/93893e9a21ad8ab6687cf68f98783a627ad229ca/autogen_st_4.py",
+    "sha": "0f2ecb0bea6119841bc41867d12883bc56800bf4"
+  },
+  {
+    "framework": "autogen",
+    "repo": "saisuryateja055/Autogen-agent",
+    "file_path": "autogen_chat.py",
+    "url": "https://github.com/saisuryateja055/Autogen-agent/blob/9c42d40643eef22718a004580bd2b15165a8d756/autogen_chat.py",
+    "sha": "be0e5e7d9efdce1164a5a6f0217605fccdd823aa"
+  },
+  {
+    "framework": "autogen",
+    "repo": "hoanganh-2704/llm-multi-agents",
+    "file_path": "autogen_agent.py",
+    "url": "https://github.com/hoanganh-2704/llm-multi-agents/blob/3827587d68734cd48e42abf9216edab4e80307cf/autogen_agent.py",
+    "sha": "c589c34686e1a4f01ff4a0a3d784b6f517015988"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Arhamirfan/Snake-Agents",
+    "file_path": "snake_autogen.py",
+    "url": "https://github.com/Arhamirfan/Snake-Agents/blob/d3e2e06d32afe61cae2a2370064258828e7b680c/snake_autogen.py",
+    "sha": "7de2ed85450c668a6f437f4808297aab89d5a5ae"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Deepakumar/autogen_panelui",
+    "file_path": "panel_autogen.py",
+    "url": "https://github.com/Deepakumar/autogen_panelui/blob/8aa3895522972c60776ca1905f77956dc92ec500/panel_autogen.py",
+    "sha": "badfe918add23004903991d946889d84276cc628"
+  },
+  {
+    "framework": "autogen",
+    "repo": "adames88/autogen_streamlit",
+    "file_path": "autogen_panel.py",
+    "url": "https://github.com/adames88/autogen_streamlit/blob/93893e9a21ad8ab6687cf68f98783a627ad229ca/autogen_panel.py",
+    "sha": "23b03dc9e031343e9bcc9e7401b5b3432f977ca7"
+  },
+  {
+    "framework": "autogen",
+    "repo": "NavalGear/Manufacturing_Process_Plan",
+    "file_path": "autogen_agents.py",
+    "url": "https://github.com/NavalGear/Manufacturing_Process_Plan/blob/54d5be97282252a8004f08b6a65fbd4b8c6ae7cc/autogen_agents.py",
+    "sha": "06508c18dc483dec31199b2e7946d075c68246f5"
+  },
+  {
+    "framework": "autogen",
+    "repo": "feuyeux/hello-memory",
+    "file_path": "memgpt_autogen.py",
+    "url": "https://github.com/feuyeux/hello-memory/blob/90f2d41486a0054c846240f86a50d97ba2ec8e2a/memgpt_autogen.py",
+    "sha": "f9579925a53d9f66f00a22f9538a5a044ff1c7ae"
+  },
+  {
+    "framework": "autogen",
+    "repo": "OGGEE61/autogen_tests",
+    "file_path": "autogen_2phase.py",
+    "url": "https://github.com/OGGEE61/autogen_tests/blob/f686a66218aebf2637c82b105047fc957daec553/autogen_2phase.py",
+    "sha": "85af5003ff84fc849e3c97552b7298f60832b672"
+  },
+  {
+    "framework": "autogen",
+    "repo": "SakshiRaut674/Prana",
+    "file_path": "autogen_main.py",
+    "url": "https://github.com/SakshiRaut674/Prana/blob/2648a01c372156ce6244e6efad8eef04eb695f3d/autogen_main.py",
+    "sha": "f8fc05cd6f50d065b6380d6494de21f8aebc9dfc"
+  },
+  {
+    "framework": "autogen",
+    "repo": "adames88/autogen_streamlit",
+    "file_path": "autogen_panel_2.py",
+    "url": "https://github.com/adames88/autogen_streamlit/blob/93893e9a21ad8ab6687cf68f98783a627ad229ca/autogen_panel_2.py",
+    "sha": "ed86745b091de304597547f20783e5c5deaf5210"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Mayank-Patel1015/The-Crucible",
+    "file_path": "autogen_crucible.py",
+    "url": "https://github.com/Mayank-Patel1015/The-Crucible/blob/1619a4348d49387621983d97955e9f98d881cfe5/autogen_crucible.py",
+    "sha": "482dd79e620ba45660e8746e46ba24f4bc44a01a"
+  },
+  {
+    "framework": "autogen",
+    "repo": "rijumarwah/Procurement-Agent-System",
+    "file_path": "main_groupchat.py",
+    "url": "https://github.com/rijumarwah/Procurement-Agent-System/blob/aba3a8c6a9ce616cef43dcd7b86ec24b9eae873c/main_groupchat.py",
+    "sha": "b5b59e57b7b63bb49bcc0e4371cef8a89b374797"
+  },
+  {
+    "framework": "autogen",
+    "repo": "chauhand2463/Cyber_LLM",
+    "file_path": "autogen_compat.py",
+    "url": "https://github.com/chauhand2463/Cyber_LLM/blob/f57101e385bc8c91188902ada32f0afde05f4a3e/autogen_compat.py",
+    "sha": "58630d3467d6e02a55d3099297d70e02278be532"
+  },
+  {
+    "framework": "autogen",
+    "repo": "karthikvenkatesan-eaton/Autogen_GraphRAG_Ollama",
+    "file_path": "appUI.py",
+    "url": "https://github.com/karthikvenkatesan-eaton/Autogen_GraphRAG_Ollama/blob/dc31844ac87c313e1c8631e97cc893e4e70ef397/appUI.py",
+    "sha": "0de4afbe849dc15d5ee19fc9df0fb3c30bbeebf4"
+  },
+  {
+    "framework": "autogen",
+    "repo": "CLEILI/LLMPaperReview",
+    "file_path": "groupchat.py",
+    "url": "https://github.com/CLEILI/LLMPaperReview/blob/51d291870f0801c7afe8cfba145c280f9087500b/groupchat.py",
+    "sha": "1fadf4dffbf93fcbedb8746a296f7754e0828556"
+  },
+  {
+    "framework": "autogen",
+    "repo": "lumetra-io/engram-autogen",
+    "file_path": "engram_autogen.py",
+    "url": "https://github.com/lumetra-io/engram-autogen/blob/af3c0c4c569a267e39a90286bbbbdbdee60b7ce9/engram_autogen.py",
+    "sha": "b1fd5fd58155519cb24f1cac5e62b9d4c3ce9746"
+  },
+  {
+    "framework": "autogen",
+    "repo": "project194-cognitivellm/cognitivellm",
+    "file_path": "run_autogen.py",
+    "url": "https://github.com/project194-cognitivellm/cognitivellm/blob/b141b732e5713554ccd067900cb3e631bf74d54d/run_autogen.py",
+    "sha": "cfa5ce2d984825dc1dbb205d9813c19e01f4c8e8"
+  },
+  {
+    "framework": "autogen",
+    "repo": "nehavc49/NewWeek-3",
+    "file_path": "faq_chatbot.py",
+    "url": "https://github.com/nehavc49/NewWeek-3/blob/8e9925231de9b46875fe5051c6f9a947715ac540/faq_chatbot.py",
+    "sha": "c0b5df43343034a9dd83eaf9127164d9f0f52dcf"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Saimoguloju/AI-Agents",
+    "file_path": "AutoGen/sample_agent.py",
+    "url": "https://github.com/Saimoguloju/AI-Agents/blob/4cdedda2cbf75393a3fd9b47bf2eea26806100e1/AutoGen/sample_agent.py",
+    "sha": "8bfd2e84ceca4c0b4ae2e4a440d48be352fb5dcf"
+  },
+  {
+    "framework": "autogen",
+    "repo": "minnubenny/week-3",
+    "file_path": "may 19/1.py",
+    "url": "https://github.com/minnubenny/week-3/blob/6146284c857a9662ede09f31fc1348d86f6860a0/may%2019/1.py",
+    "sha": "eea4ff23f666f8a2ee0040403a1714da8666f7d7"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Punnyapraveen/week-3",
+    "file_path": "may-21/analysis.py",
+    "url": "https://github.com/Punnyapraveen/week-3/blob/04784cab015d9cd27ee0b8c152bdeb9e2e92e8dd/may-21/analysis.py",
+    "sha": "1f242dcc6ed6fd64630eeb2a21c711a5918fc88b"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Punnyapraveen/week-4",
+    "file_path": "may-28/solver1.py",
+    "url": "https://github.com/Punnyapraveen/week-4/blob/66d941995cc3da42fdcbcc83ed87980416921d52/may-28/solver1.py",
+    "sha": "3b5b221cd27ecef53769e64f3a8c13f5d8846a8d"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Azure/mcp-kubernetes",
+    "file_path": "example/clients/autogen/main.py",
+    "url": "https://github.com/Azure/mcp-kubernetes/blob/5e79fb2fcbabbdbe748af2f45f1f674c996486c9/example/clients/autogen/main.py",
+    "sha": "251d710e0999effd0ea98145883c45a1d0a1ce07"
+  },
+  {
+    "framework": "autogen",
+    "repo": "splx-ai/agentic-radar",
+    "file_path": "agentic_radar/analysis/autogen/agentchat/parse.py",
+    "url": "https://github.com/splx-ai/agentic-radar/blob/65a7e4bd01e2034c7cb52e9620eeed287688cc53/agentic_radar/analysis/autogen/agentchat/parse.py",
+    "sha": "4e2e12348c6f6f41595d268f7f3ebcf590bd1901"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Santhra-gif/Week-3",
+    "file_path": "May 22/FAQ_Chatbot_RAG.py",
+    "url": "https://github.com/Santhra-gif/Week-3/blob/84277ec189968d6bda8db661148f06119af2a60f/May%2022/FAQ_Chatbot_RAG.py",
+    "sha": "b847aae0cb6d986c2ad692499a24e525fc8d3ef3"
+  },
+  {
+    "framework": "autogen",
+    "repo": "nokia/mcp-redfish",
+    "file_path": "examples/agent.py",
+    "url": "https://github.com/nokia/mcp-redfish/blob/9bf04b31744cc0da9c883324dddb8b9774dd681c/examples/agent.py",
+    "sha": "b122956314556431d54f2292e4d1c316ef2eef57"
+  },
+  {
+    "framework": "autogen",
+    "repo": "entbappy/Automated-Candidate-Interview-Evaluation-System",
+    "file_path": "app.py",
+    "url": "https://github.com/entbappy/Automated-Candidate-Interview-Evaluation-System/blob/e3a9c55274449f8775b996be1af3be519c85fe55/app.py",
+    "sha": "1d704baa5453b0e2045b5f3d404035d9ec05bd46"
+  },
+  {
+    "framework": "autogen",
+    "repo": "NanGePlus/AutoGenV04Test",
+    "file_path": "BasicTest/6_RunTeamDeepSeek.py",
+    "url": "https://github.com/NanGePlus/AutoGenV04Test/blob/4f1dc1368cbd18f0d411b2850df6a9b2a9bfdc7a/BasicTest/6_RunTeamDeepSeek.py",
+    "sha": "b6181bf55ec76510d7997d7e2378141b9e37d919"
+  },
+  {
+    "framework": "autogen",
+    "repo": "LxYuan0420/nlp",
+    "file_path": "scripts/funny_counting_example.py",
+    "url": "https://github.com/LxYuan0420/nlp/blob/b9fb2d8b2ce4f65ec9fb0dd8048f51d9376d3c75/scripts/funny_counting_example.py",
+    "sha": "4328b277dc4e4bff747c60f67734da1ac03f6c37"
+  },
+  {
+    "framework": "autogen",
+    "repo": "jkmaina/autogen_blueprint",
+    "file_path": "chapter12/05_human_interaction.py",
+    "url": "https://github.com/jkmaina/autogen_blueprint/blob/cdc7e303c4f3d68b06c71da87138d646879a774c/chapter12/05_human_interaction.py",
+    "sha": "19852165b9843fe49da40a877f98b2660d3929a7"
+  },
+  {
+    "framework": "autogen",
+    "repo": "SPZts/AutoModel",
+    "file_path": "modelTeam/model17.py",
+    "url": "https://github.com/SPZts/AutoModel/blob/2d02ffee5d735c037ceb2b45d1490cee23c48aba/modelTeam/model17.py",
+    "sha": "5e33808fec8d3fe179eb1f6be08dd310bcafd869"
+  },
+  {
+    "framework": "autogen",
+    "repo": "tsilva/sandbox-autogen",
+    "file_path": "team.py",
+    "url": "https://github.com/tsilva/sandbox-autogen/blob/13c017985951d4164eb0634b7c27e9b1afd534d0/team.py",
+    "sha": "958ef076a28b28163e375ecd9b6d76a6d81b0ca6"
+  },
+  {
+    "framework": "autogen",
+    "repo": "olileger/py-autogen",
+    "file_path": "expA.py",
+    "url": "https://github.com/olileger/py-autogen/blob/5da342cab521d56679f7bec3e2d448a79e16c310/expA.py",
+    "sha": "67b715311ee37317a29767a8fb7f615226dcafa1"
+  },
+  {
+    "framework": "autogen",
+    "repo": "hnuGraph/LLM4DBdesign",
+    "file_path": "agent/agent_chat.py",
+    "url": "https://github.com/hnuGraph/LLM4DBdesign/blob/5eda099db3d9b768e5b532b5abc9f8fe117be85f/agent/agent_chat.py",
+    "sha": "80616c56e2e8cd14d2876f3cb334a04f4feb2738"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Igor3407/Chat-bot",
+    "file_path": "autogen.py",
+    "url": "https://github.com/Igor3407/Chat-bot/blob/ab65458377df7e3129668c5725824f4fc16b2bdf/autogen.py",
+    "sha": "9a23008b5e0651a98152ee89c4b9753c8aef5d93"
+  },
+  {
+    "framework": "autogen",
+    "repo": "paskl-ai/lintai",
+    "file_path": "lintai/engine/frameworks.py",
+    "url": "https://github.com/paskl-ai/lintai/blob/b32710af37a11e890ab64bdbd554658a4d4bfe13/lintai/engine/frameworks.py",
+    "sha": "ab480c293495e5348ada234b696f601bd966ffa8"
+  },
+  {
+    "framework": "autogen",
+    "repo": "RubyJiu/data-structure",
+    "file_path": "multiAgent.py",
+    "url": "https://github.com/RubyJiu/data-structure/blob/f3bded4527f4507c00ea59da38ccffe891a0b130/multiAgent.py",
+    "sha": "64b0e896f4d980b1d3c8cffd46c168dd844933c7"
+  },
+  {
+    "framework": "autogen",
+    "repo": "blueming333/aicraft-class-autogen",
+    "file_path": "demo4.py",
+    "url": "https://github.com/blueming333/aicraft-class-autogen/blob/c29822a0f02473f127c9ccfe128e0444e69bea2d/demo4.py",
+    "sha": "da67bf01c735cbfdee4300ff96412c16075ab218"
+  },
+  {
+    "framework": "autogen",
+    "repo": "hepai-lab/hepai",
+    "file_path": "examples/agents/oai_client/roundgroup_oai_thread.py",
+    "url": "https://github.com/hepai-lab/hepai/blob/e550f3069d0d3a24b2943159a6883ca736be6ace/examples/agents/oai_client/roundgroup_oai_thread.py",
+    "sha": "0cea67026c1e353c78f9c16fd05924f06a09a892"
+  },
+  {
+    "framework": "autogen",
+    "repo": "M-H-Amini/PerGent-Agentic-Persona-Generation",
+    "file_path": "Code/pergent.py",
+    "url": "https://github.com/M-H-Amini/PerGent-Agentic-Persona-Generation/blob/f9f94e6cd70508a4ff68a063af6a810571cc6e46/Code/pergent.py",
+    "sha": "c6b2e7f0723adf898543c44f2342de070e5b3087"
+  },
+  {
+    "framework": "autogen",
+    "repo": "chepyle/multiagent-demo",
+    "file_path": "src/MCP_demo.py",
+    "url": "https://github.com/chepyle/multiagent-demo/blob/6051e305969000506fbdd5db22a8c37396ae82ce/src/MCP_demo.py",
+    "sha": "cb8f7c614c870a9a2547ad9c68b84b6688566d6d"
+  },
+  {
+    "framework": "autogen",
+    "repo": "htried/multi-agent-jailbreak",
+    "file_path": "multiagents/round_robin.py",
+    "url": "https://github.com/htried/multi-agent-jailbreak/blob/fb78bb81a5f2af875544ca3ac83aa4a76105fce1/multiagents/round_robin.py",
+    "sha": "96e353ceacf6471a4e41415262637e29a477a897"
+  },
+  {
+    "framework": "autogen",
+    "repo": "kunalmishravitb/ArxivAgent",
+    "file_path": "agent_backend.py",
+    "url": "https://github.com/kunalmishravitb/ArxivAgent/blob/455d9a3da92f303360b3f55d30a73228bfee5d6a/agent_backend.py",
+    "sha": "375c28ebb2b932a2733515d9b1c7eb9ec90d6a28"
+  },
+  {
+    "framework": "autogen",
+    "repo": "AliciaSJF/autogen",
+    "file_path": "hip.py",
+    "url": "https://github.com/AliciaSJF/autogen/blob/36013821bce25d6d3cf05260dd890ba0c973d0d1/hip.py",
+    "sha": "50fc78aa1865787a15e2ccfd8a195a81aed75735"
+  },
+  {
+    "framework": "autogen",
+    "repo": "win4r/mytest",
+    "file_path": "cc-codex.py",
+    "url": "https://github.com/win4r/mytest/blob/d9dbc8f5c1e66f284d748c80e591c88a88c24c7e/cc-codex.py",
+    "sha": "5dc10e5d965bac4ca8b725d4d265f7c8145d4662"
+  },
+  {
+    "framework": "autogen",
+    "repo": "niels-meyer/llms-council",
+    "file_path": "scripts/runner.py",
+    "url": "https://github.com/niels-meyer/llms-council/blob/10c018f288e82f7844606dd114f5f0d7bcddae42/scripts/runner.py",
+    "sha": "3c4de3f29b2f92aac032cb3e628a3a7ba3902079"
+  },
+  {
+    "framework": "autogen",
+    "repo": "shafqat-a/rungen",
+    "file_path": "simple_example.py",
+    "url": "https://github.com/shafqat-a/rungen/blob/522e4a120680c7d67e9053ae370bef681676ebdd/simple_example.py",
+    "sha": "c34dbe438139e6fd333f5c2f554e276c614c4387"
+  },
+  {
+    "framework": "autogen",
+    "repo": "nihal-5/autogen-collaborative-ai-agents",
+    "file_path": "demo.py",
+    "url": "https://github.com/nihal-5/autogen-collaborative-ai-agents/blob/9072f081d72ec171d9a8dd3b212db90ca9486a93/demo.py",
+    "sha": "c265e6860c863615933fa3e43f6e27a311cfe1fb"
+  },
+  {
+    "framework": "autogen",
+    "repo": "hosseinzahed/multi-agent-cloud-architect",
+    "file_path": "ag_multi_agent.py",
+    "url": "https://github.com/hosseinzahed/multi-agent-cloud-architect/blob/a537d0bdc64df97fd8d0a9c112ea9a451e74ef3a/ag_multi_agent.py",
+    "sha": "123ab353e1ddfb8afe19a20f278d73765be34335"
+  },
+  {
+    "framework": "autogen",
+    "repo": "KrishnendhuVinod/WEEK-3",
+    "file_path": "May 22/faq.py",
+    "url": "https://github.com/KrishnendhuVinod/WEEK-3/blob/e078b90861b1bdb7e3446dd1d80bd2371f580626/May%2022/faq.py",
+    "sha": "9b1e934f57fc496cfb55060e8ca780b03014f78a"
+  },
+  {
+    "framework": "autogen",
+    "repo": "a171232886/example_autogen",
+    "file_path": "TE1_group_quick_start.py",
+    "url": "https://github.com/a171232886/example_autogen/blob/910287f6344d96223ac65b2f2121b13aad3c36e3/TE1_group_quick_start.py",
+    "sha": "1de6510bfcf4ba8962857212e0ad49432ceb8f10"
+  },
+  {
+    "framework": "autogen",
+    "repo": "arunacarunac/MultiAgentSamples",
+    "file_path": "App.py",
+    "url": "https://github.com/arunacarunac/MultiAgentSamples/blob/e8327c652ce7e8579ca6953a676595caa1c3e67b/App.py",
+    "sha": "10b991c17b78417d457a206720a41465c17e5e44"
+  },
+  {
+    "framework": "autogen",
+    "repo": "feixiao/ai",
+    "file_path": "AgenticDesignPatterns/autogen/chap07.py",
+    "url": "https://github.com/feixiao/ai/blob/8d7cd95783b3e6829583c42383c318cd432e0659/AgenticDesignPatterns/autogen/chap07.py",
+    "sha": "e232e5d9a4e495e84c8dfd384690d4020723d46d"
+  },
+  {
+    "framework": "autogen",
+    "repo": "NordicAgents/AgentProof",
+    "file_path": "examples/autogen_debate.py",
+    "url": "https://github.com/NordicAgents/AgentProof/blob/30c6b5acaf835c7e1d6988c0c79ddbcae394215c/examples/autogen_debate.py",
+    "sha": "821abdf92c3a1b9e6ead8260218d400e0f880948"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Narwhal-Lab/MagicSkills",
+    "file_path": "autogen_example/model.py",
+    "url": "https://github.com/Narwhal-Lab/MagicSkills/blob/00f3e8640445b0d91682a670b8ba7cc4465151cb/autogen_example/model.py",
+    "sha": "a9acec7543d83d962fd9023dcd84068f47ce3efa"
+  },
+  {
+    "framework": "autogen",
+    "repo": "surpradhan/agent-event-protocol",
+    "file_path": "sdks/python/demos/autogen_multiagent.py",
+    "url": "https://github.com/surpradhan/agent-event-protocol/blob/41b88393e2bcbb447c5b436e4ad621cf7b3de5c3/sdks/python/demos/autogen_multiagent.py",
+    "sha": "f2480b767103eb29041109f83c01043feb5e1b2d"
+  },
+  {
+    "framework": "autogen",
+    "repo": "asbhosekar/agentic-neuropatient-tracker",
+    "file_path": "src/orchestrator.py",
+    "url": "https://github.com/asbhosekar/agentic-neuropatient-tracker/blob/f50cc6f3ac81ed15aadb5390fab078f9173083c7/src/orchestrator.py",
+    "sha": "9f7ce6f9c80dc53dfb1c9f340de02d5ac0d95f38"
+  },
+  {
+    "framework": "autogen",
+    "repo": "rsmillersf/working_agents",
+    "file_path": "startup.py",
+    "url": "https://github.com/rsmillersf/working_agents/blob/596167f371b6adc6e37c4357337e41406c902c95/startup.py",
+    "sha": "68d65cc0bb675169b2a887fa9c69d4ab1be9153c"
+  },
+  {
+    "framework": "autogen",
+    "repo": "rsmillersf/working_agents",
+    "file_path": "existing.py",
+    "url": "https://github.com/rsmillersf/working_agents/blob/596167f371b6adc6e37c4357337e41406c902c95/existing.py",
+    "sha": "431902c43285a5d56bea8ddb892af8008cc3bce1"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Mehbinamal/WEEK-3",
+    "file_path": "MAY-19/group_chat.py",
+    "url": "https://github.com/Mehbinamal/WEEK-3/blob/1794ea981766232159f5fd7202e3980259e9de72/MAY-19/group_chat.py",
+    "sha": "b2f0bdf0af601051b905892bbc8dbac31d876c90"
+  },
+  {
+    "framework": "autogen",
+    "repo": "microsoft/ACV",
+    "file_path": "misc/DoVer/src/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/microsoft/ACV/blob/994ac15db6fff8a5131bbf5a26e84e352e676796/misc/DoVer/src/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "gadha02/KLAW-APP-Internship",
+    "file_path": "Week 3/May 22/Chatbot.py",
+    "url": "https://github.com/gadha02/KLAW-APP-Internship/blob/6d0dd2750977fef1ee712362d2897c0febc8ee05/Week 3/May 22/Chatbot.py",
+    "sha": "826d2f1a0396778baa41f1fbda4e9601e9a38252"
+  },
+  {
+    "framework": "autogen",
+    "repo": "viswalakshmipvinodkumar/KLAW-APP-Internship-",
+    "file_path": "Week3/may 22/main.py",
+    "url": "https://github.com/viswalakshmipvinodkumar/KLAW-APP-Internship-/blob/275b639d31d148934e95b963baabd5c337c9fc82/Week3/may 22/main.py",
+    "sha": "3be5fe324b99cc45955c7e01777f72037f189389"
+  },
+  {
+    "framework": "autogen",
+    "repo": "viswalakshmipvinodkumar/KLAW-APP-Internship-",
+    "file_path": "weeek 3/may 19/utils/group_chat.py",
+    "url": "https://github.com/viswalakshmipvinodkumar/KLAW-APP-Internship-/blob/275b639d31d148934e95b963baabd5c337c9fc82/weeek 3/may 19/utils/group_chat.py",
+    "sha": "73a8d98f8fce41ba669ada6bfacc9fb57f99de2f"
+  },
+  {
+    "framework": "autogen",
+    "repo": "viswalakshmipvinodkumar/KLAW-APP-Internship-",
+    "file_path": "Week3/may 22/group_chat.py",
+    "url": "https://github.com/viswalakshmipvinodkumar/KLAW-APP-Internship-/blob/275b639d31d148934e95b963baabd5c337c9fc82/Week3/may 22/group_chat.py",
+    "sha": "4366920730037cacc96a8246daf509b6ce0c0a85"
+  },
+  {
+    "framework": "autogen",
+    "repo": "viswalakshmipvinodkumar/KLAW-APP-Internship-",
+    "file_path": "Week3/may 22/rag_chatbot.py",
+    "url": "https://github.com/viswalakshmipvinodkumar/KLAW-APP-Internship-/blob/275b639d31d148934e95b963baabd5c337c9fc82/Week3/may 22/rag_chatbot.py",
+    "sha": "451878f5c957ab3b142cd52acf9e8549b8b65a4a"
+  },
+  {
+    "framework": "autogen",
+    "repo": "oimiragieo/vibe1337",
+    "file_path": "core/autogen_chat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/oimiragieo/vibe1337/blob/83a047587ea3469a0412e096d24daeb9a41420f5/core/autogen_chat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "thedigitalworkplace/Autogen",
+    "file_path": "python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/thedigitalworkplace/Autogen/blob/a87f27b86bae5d4357fdca2d2087e261ca4d5013/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "ac9c82e31143dd04bfd15a24d7802a67f2217351"
+  },
+  {
+    "framework": "autogen",
+    "repo": "CodeDevKyle/autogen_DevKyle",
+    "file_path": "python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/CodeDevKyle/autogen_DevKyle/blob/12becdddb1c21376c40869a2de1d7e25512bc23d/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "7e8f35832a62448269b0c9bf8638ed4edb93e9fe"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Lianin1/113_2_DS_Final",
+    "file_path": "venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Lianin1/113_2_DS_Final/blob/2f16cc4763248890fd09b61425b2c55365e2799d/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "0403025dec69ccf6a51692a2e6241e9ddb55bb57"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Hsing-Tzu/AI-Aided-Systems",
+    "file_path": "AAS-venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Hsing-Tzu/AI-Aided-Systems/blob/ca2b2c5e81b7862493fe11a88630fb027499826d/AAS-venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "547910ce18982edf47fcf1c1cac9a3bf6c259a04"
+  },
+  {
+    "framework": "autogen",
+    "repo": "41071119H-Irene/diary-agent",
+    "file_path": ".venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/41071119H-Irene/diary-agent/blob/eea4538743230fe4b49a1251a3594e107d40ffa3/.venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "2a7b15889ec3c2797cec0af08fb1e757652769f3"
+  },
+  {
+    "framework": "autogen",
+    "repo": "DigiJLinux/DarkHal_2.0",
+    "file_path": "agent_dhal/agentdhal_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/DigiJLinux/DarkHal_2.0/blob/d790ed9f35d423a41e321855aa6155b30d707523/agent_dhal/agentdhal_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "c7ffe3cd5ee7c97d760336499edb680ba4a4f86b"
+  },
+  {
+    "framework": "autogen",
+    "repo": "ericjiang18/Agent-Q-Mix",
+    "file_path": "agent_baseline/autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/ericjiang18/Agent-Q-Mix/blob/c1154769f9ab27707a35d331f3727c52a5c05ec8/agent_baseline/autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "1132DatabaseProject/DatabaseProject",
+    "file_path": "venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/1132DatabaseProject/DatabaseProject/blob/5f8ab31eea71d41458f4c38a48f663a4e64807f6/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "c43ab85b8bcae16c95fbb31325f752b0177d6f88"
+  },
+  {
+    "framework": "autogen",
+    "repo": "aryank09/UWB-Hacks-25",
+    "file_path": ".venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/aryank09/UWB-Hacks-25/blob/1355b979cf2892c228ee94d0a895980c0242c9f2/.venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "c43ab85b8bcae16c95fbb31325f752b0177d6f88"
+  },
+  {
+    "framework": "autogen",
+    "repo": "faresrafat3/ai-earth",
+    "file_path": "ai_earth/lego/autogen_src/agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/faresrafat3/ai-earth/blob/a3b94466d7ebe21f93f40bb148a840b7ad0e0b37/ai_earth/lego/autogen_src/agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Kobemilly/AutoGen_GraphFlow",
+    "file_path": "venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Kobemilly/AutoGen_GraphFlow/blob/367fc8f8792cf0ddb0649c0747bf0382607c6cd7/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "d54b7aea298f33e79c40c290f8218bdea0d42ee6"
+  },
+  {
+    "framework": "autogen",
+    "repo": "pranteshdahikar/multi-agent-system",
+    "file_path": "venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/pranteshdahikar/multi-agent-system/blob/4a93560a0d74a3879c0948041484f95b7d5574e7/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Idk507/Data_Science_Agent_With_autogen",
+    "file_path": ".venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Idk507/Data_Science_Agent_With_autogen/blob/4f50d14ade785b33e1e7977b8baeca1d66fbaf94/.venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Schmiddyyy/autogen",
+    "file_path": "python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Schmiddyyy/autogen/blob/9a3242f04d786e176a04a489fffa4aa9474a30d2/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "eaa3c320dab35a8bf4058b39da3a5e73c8508af2"
+  },
+  {
+    "framework": "autogen",
+    "repo": "discohead/autogen-enhanced-docs",
+    "file_path": "python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/discohead/autogen-enhanced-docs/blob/a53a16714bd09a5113a7344b28a52350242212fa/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Damish-7/MOLYSIS",
+    "file_path": "autogen_env/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Damish-7/MOLYSIS/blob/b0209b08a17c4a103ac2521f749d2aca000851d1/autogen_env/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Code-ve/Logistic-Optimization-Systen",
+    "file_path": "backend/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Code-ve/Logistic-Optimization-Systen/blob/17ecaf52f6e689ab78c7872ec4b45126700efa50/backend/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "waqasniazi9/voice-agent",
+    "file_path": "packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/waqasniazi9/voice-agent/blob/ceb18e20f7d47a8c40facf9647011b18d96bd452/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "file_path": "8.agents-towards-production/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Sidreyas/The_Grand_AI_Repo/blob/61bb48c610bae5e30167a71875d9bf5f779b1294/8.agents-towards-production/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "eaa3c320dab35a8bf4058b39da3a5e73c8508af2"
+  },
+  {
+    "framework": "autogen",
+    "repo": "Impulsive-Coder/Analyzer-GPT-Autogen",
+    "file_path": "venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/Impulsive-Coder/Analyzer-GPT-Autogen/blob/fca378907113cb94292b53a33d474b3c1c3abc81/venv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "eaa3c320dab35a8bf4058b39da3a5e73c8508af2"
+  },
+  {
+    "framework": "autogen",
+    "repo": "AkshatKumar12/AutoGen_Learning",
+    "file_path": "agenv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/AkshatKumar12/AutoGen_Learning/blob/1daf84c8bd7ee2d5da32becc403277b439a83bee/agenv/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "d54b7aea298f33e79c40c290f8218bdea0d42ee6"
+  },
+  {
+    "framework": "autogen",
+    "repo": "LtRusty1/AI-LAB",
+    "file_path": "AutoGen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/LtRusty1/AI-LAB/blob/8c4ab3f50cd052761b3eeb8ec884c4ff8b830e8c/AutoGen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "eaa3c320dab35a8bf4058b39da3a5e73c8508af2"
+  },
+  {
+    "framework": "autogen",
+    "repo": "LightningGod7/prometheus",
+    "file_path": "autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/LightningGod7/prometheus/blob/9d1dd708ce2814ac3723f49e22f2daf89f32a5a8/autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "NeelGandhi24295/DSA-Agent",
+    "file_path": "project_AG/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/NeelGandhi24295/DSA-Agent/blob/89fd12de9c19fa13b46c19285337154f32bf1794/project_AG/Lib/site-packages/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "eaa3c320dab35a8bf4058b39da3a5e73c8508af2"
+  },
+  {
+    "framework": "autogen",
+    "repo": "carlosdh12335-ship-it/INTELIGENCIA-VASTA-DA-IA-",
+    "file_path": "external_sources/autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/carlosdh12335-ship-it/INTELIGENCIA-VASTA-DA-IA-/blob/7be0cb05a56df6ad86d48b0d2bf4049bdcb17008/external_sources/autogen/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "MikhailMostWanted/Astra",
+    "file_path": "tmp/autogen_code/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/MikhailMostWanted/Astra/blob/38f97249c7a8576ee3f9dd91d5d095c5ad0e81d9/tmp/autogen_code/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "akfldk1028/AG",
+    "file_path": "autogen_a2a_kit/autogen_source/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "url": "https://github.com/akfldk1028/AG/blob/179fe49607a33e2eca5337bb099cde78be96055b/autogen_a2a_kit/autogen_source/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_selector_group_chat.py",
+    "sha": "480dc6b71641b99deaf81781a3f7302e08131603"
+  },
+  {
+    "framework": "autogen",
+    "repo": "ed-donner/agents",
+    "file_path": "5_agent_frameworks/community_contributions/a3_igniters_sodiq/main.py",
+    "url": "https://github.com/ed-donner/agents/blob/031f65e7e181dba5094a15c5bb195c1bdf461f49/5_agent_frameworks/community_contributions/a3_igniters_sodiq/main.py",
+    "sha": "7cdd08442862a0d4c71d330512860e9ff4d9c985"
+  },
+  {
+    "framework": "autogen",
+    "repo": "victordibia/autogen-ui",
+    "file_path": "autogenui/provider.py",
+    "url": "https://github.com/victordibia/autogen-ui/blob/b5dba5a53e123e0e6eeab8ea9c3655d4ff92432d/autogenui/provider.py",
+    "sha": "be73ac4696d4b4db67852dafee552c17a0d32fea"
+  },
+  {
+    "framework": "autogen",
+    "repo": "victordibia/autogen-ui",
+    "file_path": "autogenui/datamodel/app.py",
+    "url": "https://github.com/victordibia/autogen-ui/blob/b5dba5a53e123e0e6eeab8ea9c3655d4ff92432d/autogenui/datamodel/app.py",
+    "sha": "9a9cbda8ad808ba0fa80b9cbe5018d5fa07cf154"
+  },
+  {
+    "framework": "adk",
+    "repo": "pedapallisuresh/Data-Pipeline-Agent",
+    "file_path": "agent.py",
+    "url": "https://github.com/pedapallisuresh/Data-Pipeline-Agent/blob/6944f549cfcb30685dbf2038bc5ba1ccab08299a/agent.py",
+    "sha": "649c01f736789881087ad5461c85b9dd281a9f73"
+  },
+  {
+    "framework": "adk",
+    "repo": "lordpython/multi-agent-video-system",
+    "file_path": "video_system/agent.py",
+    "url": "https://github.com/lordpython/multi-agent-video-system/blob/424ad45aafb188c9795599c2f8f9289039ef6fb4/video_system/agent.py",
+    "sha": "8352a4c88b7b5db3af71d13a4dbdbb7f186047e6"
+  },
+  {
+    "framework": "adk",
+    "repo": "NEU-Bio-Research-Team/tox-agent",
+    "file_path": "agents/adk_compat.py",
+    "url": "https://github.com/NEU-Bio-Research-Team/tox-agent/blob/7dd69e7b3d44eb7674fa792e5d6dd837b10eac0b/agents/adk_compat.py",
+    "sha": "6f4c4efd0bde598d926c173beea6bea529624387"
+  },
+  {
+    "framework": "adk",
+    "repo": "Ankur2606/multiAgenticAgri",
+    "file_path": "mock_google_adk.py",
+    "url": "https://github.com/Ankur2606/multiAgenticAgri/blob/23246013e12c2a9f41ab533ed18ca1725c213c0d/mock_google_adk.py",
+    "sha": "18bd8f55b01adbe37bca2a56a0f64955ffb4480a"
+  },
+  {
+    "framework": "adk",
+    "repo": "docker/compose-for-agents",
+    "file_path": "adk/agents/agent.py",
+    "url": "https://github.com/docker/compose-for-agents/blob/630b35e72cb3bd2f67f086a663b276a25f30edc7/adk/agents/agent.py",
+    "sha": "159b7146ba02a3e63a2a1b8822f2e5704bbceeee"
+  },
+  {
+    "framework": "adk",
+    "repo": "svpino/ml.school",
+    "file_path": "src/agents/rag/agent.py",
+    "url": "https://github.com/svpino/ml.school/blob/7390072a1f965c826dd4a7dd82f881fff374da6a/src/agents/rag/agent.py",
+    "sha": "4fc1affce9527415119849df2186340d758aa15e"
+  },
+  {
+    "framework": "adk",
+    "repo": "AbhiShetye0703/Google-ADK",
+    "file_path": "Day 1/sequentialAgent.py",
+    "url": "https://github.com/AbhiShetye0703/Google-ADK/blob/6e26a40efffa53c5fed10c3bef5a9e92ff69aa6e/Day 1/sequentialAgent.py",
+    "sha": "d26b524e4bea8668194a1150b4fc488fb98a707a"
+  },
+  {
+    "framework": "adk",
+    "repo": "AsadAhmedSaiyed/Google-AI-Agent-Intensive-Course",
+    "file_path": "SequentialAgent.py",
+    "url": "https://github.com/AsadAhmedSaiyed/Google-AI-Agent-Intensive-Course/blob/ba646f451ec69f0f785d2865b6b5b44c5230ba22/SequentialAgent.py",
+    "sha": "d3326d6a768b3623f89fb1dc9f43f11cde45bf56"
+  },
+  {
+    "framework": "adk",
+    "repo": "martimfasantos/ai-agents-frameworks",
+    "file_path": "google-adk/utils.py",
+    "url": "https://github.com/martimfasantos/ai-agents-frameworks/blob/d6f7d0887449d9b2bea8c69676dee2332ed50cdf/google-adk/utils.py",
+    "sha": "ebe6fcf30b995f25680f10d1fadb0f2cb1013e39"
+  },
+  {
+    "framework": "adk",
+    "repo": "Zen7-Labs/Zen7-Payment-Agent",
+    "file_path": "host_agent/agent.py",
+    "url": "https://github.com/Zen7-Labs/Zen7-Payment-Agent/blob/a1546be076c14d1f270b1109c1e055fd53b685c8/host_agent/agent.py",
+    "sha": "e3e53a291ed69e0474f20d0225a6b32117544a75"
+  },
+  {
+    "framework": "adk",
+    "repo": "RubensZimbres/Multi-Agent-System-A2A-ADK-MCP",
+    "file_path": "agents/agent.py",
+    "url": "https://github.com/RubensZimbres/Multi-Agent-System-A2A-ADK-MCP/blob/82cbb770303ade91a5c78df3ef93406f1e95a1d2/agents/agent.py",
+    "sha": "d531109ead1de98ea504034d25933771b7b8e49e"
+  },
+  {
+    "framework": "adk",
+    "repo": "esk000/AIAgentsIntensive",
+    "file_path": " SequentialAgents.py",
+    "url": "https://github.com/esk000/AIAgentsIntensive/blob/66d8482ec96818243706925ac811b72d2dfa3dd1/ SequentialAgents.py",
+    "sha": "b8c718cbfb32f7f4170f5be89658dc94b7250db6"
+  },
+  {
+    "framework": "adk",
+    "repo": "poseljacob/agentic-video-editor",
+    "file_path": "src/agents/reviewer.py",
+    "url": "https://github.com/poseljacob/agentic-video-editor/blob/47248b577046b0563e57e78edad86a3106c6faab/src/agents/reviewer.py",
+    "sha": "3d5087897708ff5faec1a049264b591b920e3418"
+  },
+  {
+    "framework": "adk",
+    "repo": "AhsanAyaz/ai-agents-google-adk",
+    "file_path": "multi_model/agent.py",
+    "url": "https://github.com/AhsanAyaz/ai-agents-google-adk/blob/d9543491ed0605b4e91b6ff0e7617db7ed708087/multi_model/agent.py",
+    "sha": "cc0cfb647b848d255ef1c79905772f1b20d417b0"
+  },
+  {
+    "framework": "adk",
+    "repo": "poseljacob/agentic-video-editor",
+    "file_path": "src/agents/director.py",
+    "url": "https://github.com/poseljacob/agentic-video-editor/blob/47248b577046b0563e57e78edad86a3106c6faab/src/agents/director.py",
+    "sha": "38f09b3a8c8328fb492ad9e95e7cad822771b5b2"
+  },
+  {
+    "framework": "adk",
+    "repo": "sreekarrs/JobSearch-Agent",
+    "file_path": "archive/cv_writer.py",
+    "url": "https://github.com/sreekarrs/JobSearch-Agent/blob/1b52cafe923b8b2bd925b0c7a5bf3af75d8518f1/archive/cv_writer.py",
+    "sha": "2b2376e031f78ee3fea561954db3c6b71c1f9ee8"
+  },
+  {
+    "framework": "adk",
+    "repo": "cuppibla/adk_tutorial",
+    "file_path": "c_custom_agent/agents.py",
+    "url": "https://github.com/cuppibla/adk_tutorial/blob/0481791c9669a6104ada005c3647885dcef64f3d/c_custom_agent/agents.py",
+    "sha": "eaeee192879d457693959a8bd20b3322f4bf2783"
+  },
+  {
+    "framework": "adk",
+    "repo": "Astrodevil/ADK-Agent-Examples",
+    "file_path": "seq_adk_agent/agent.py",
+    "url": "https://github.com/Astrodevil/ADK-Agent-Examples/blob/e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c/seq_adk_agent/agent.py",
+    "sha": "e3244e9f83e0efc51be9e3a0014a54e12fe5c208"
+  },
+  {
+    "framework": "adk",
+    "repo": "volcengine/veadk-python",
+    "file_path": "veadk/cli/cli_web.py",
+    "url": "https://github.com/volcengine/veadk-python/blob/3b2615926b13eee842ecf14170d1d80c7d58414c/veadk/cli/cli_web.py",
+    "sha": "7719e6244966b12c545988f21d31d28d67012a0d"
+  },
+  {
+    "framework": "adk",
+    "repo": "Astrodevil/ADK-Agent-Examples",
+    "file_path": "analyzer_agent/agent.py",
+    "url": "https://github.com/Astrodevil/ADK-Agent-Examples/blob/e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c/analyzer_agent/agent.py",
+    "sha": "15c6ef4b6cb333018db4d69b96c09faed246bce4"
+  },
+  {
+    "framework": "adk",
+    "repo": "AhsanAyaz/ai-agents-google-adk",
+    "file_path": "agentspan_demo/agent.py",
+    "url": "https://github.com/AhsanAyaz/ai-agents-google-adk/blob/d9543491ed0605b4e91b6ff0e7617db7ed708087/agentspan_demo/agent.py",
+    "sha": "1e6f07380d33a726e40b237eb25ab6049f38682d"
+  },
+  {
+    "framework": "adk",
+    "repo": "merdandt/SalesShortcut",
+    "file_path": "sdr/sdr/agent.py",
+    "url": "https://github.com/merdandt/SalesShortcut/blob/599998f2629de69368af15178c8d8ae1c820cdf4/sdr/sdr/agent.py",
+    "sha": "433ed1eaa890f21d54d218a8d84d8a170fb72059"
+  },
+  {
+    "framework": "adk",
+    "repo": "dream-horizon-org/pulse",
+    "file_path": "pulse_ai/agent.py",
+    "url": "https://github.com/dream-horizon-org/pulse/blob/df0025c4c11c75febf1ca0ea06fdd8802a8c9669/pulse_ai/agent.py",
+    "sha": "c458bbf424c3955180348a68e5f1062e15ba2160"
+  },
+  {
+    "framework": "adk",
+    "repo": "cuppibla/adk_tutorial",
+    "file_path": "d_routing_agent/agents.py",
+    "url": "https://github.com/cuppibla/adk_tutorial/blob/0481791c9669a6104ada005c3647885dcef64f3d/d_routing_agent/agents.py",
+    "sha": "3460ce09507fbc156422e5eac03836b45304bc06"
+  },
+  {
+    "framework": "adk",
+    "repo": "jpantsjoha/Agentic-Marketing-Campaign-Generator",
+    "file_path": "backend/api/main.py",
+    "url": "https://github.com/jpantsjoha/Agentic-Marketing-Campaign-Generator/blob/7e06c42c1b6202f283670b63aa7d40b2757f6e02/backend/api/main.py",
+    "sha": "7ab8b835b041332a3c532de2dc0e93b410627611"
+  },
+  {
+    "framework": "adk",
+    "repo": "volcengine/veadk-python",
+    "file_path": "veadk/agent_builder.py",
+    "url": "https://github.com/volcengine/veadk-python/blob/3b2615926b13eee842ecf14170d1d80c7d58414c/veadk/agent_builder.py",
+    "sha": "352d84e92f5e539b74fd42186cdcaa13b5b3c4e2"
+  },
+  {
+    "framework": "adk",
+    "repo": "brightertiger/google-adk-demo",
+    "file_path": "src/agents/agent.py",
+    "url": "https://github.com/brightertiger/google-adk-demo/blob/b2fe46c7f43781451db9f5192ecda88a281bbbae/src/agents/agent.py",
+    "sha": "dd7712cecf54a405a3dc878d44f4a0458c006f5c"
+  },
+  {
+    "framework": "adk",
+    "repo": "joansantoso/iox-adk",
+    "file_path": "agent04/agent.py",
+    "url": "https://github.com/joansantoso/iox-adk/blob/4e81d594bf67d696fbdfdb34741fd0facdbe1c66/agent04/agent.py",
+    "sha": "cf87c289bafb3cf613b143176bcc46e6d047a425"
+  },
+  {
+    "framework": "adk",
+    "repo": "cuppibla/adk_tutorial",
+    "file_path": "e_agent_as_tool/agents.py",
+    "url": "https://github.com/cuppibla/adk_tutorial/blob/0481791c9669a6104ada005c3647885dcef64f3d/e_agent_as_tool/agents.py",
+    "sha": "2d19fa5b84bd3b7190c47caf114a80aff0869b19"
+  },
+  {
+    "framework": "adk",
+    "repo": "jpantsjoha/Agentic-Marketing-Campaign-Generator",
+    "file_path": "backend/agents/agent.py",
+    "url": "https://github.com/jpantsjoha/Agentic-Marketing-Campaign-Generator/blob/7e06c42c1b6202f283670b63aa7d40b2757f6e02/backend/agents/agent.py",
+    "sha": "f9a4653b1935fdbdb2f990e8a1822320a4362a03"
+  },
+  {
+    "framework": "adk",
+    "repo": "proflead/how-to-build-ai-agent",
+    "file_path": "agent.py",
+    "url": "https://github.com/proflead/how-to-build-ai-agent/blob/6dba7692cf4fa2c41944c6b327af2be78b1ab793/agent.py",
+    "sha": "11653d728b7a90ba2809178dc5a0505bf685b66e"
+  },
+  {
+    "framework": "adk",
+    "repo": "vineetagarwal54/google-adk",
+    "file_path": "SequentialAgents.py",
+    "url": "https://github.com/vineetagarwal54/google-adk/blob/f8f8caa3b4abcea123c198917628a1ff48d197f6/SequentialAgents.py",
+    "sha": "b56f62c8aff0c6680cbd44564ad0aee49388d6a5"
+  },
+  {
+    "framework": "adk",
+    "repo": "gabrielpreda/adk-sql-agent",
+    "file_path": "sql_agent/agent.py",
+    "url": "https://github.com/gabrielpreda/adk-sql-agent/blob/ef9206ea3d5c4a89b956481043a1508ff433a0fc/sql_agent/agent.py",
+    "sha": "1533a42a01822888aab453684aed3d8b9ae3308d"
+  },
+  {
+    "framework": "adk",
+    "repo": "ExploitsLabs/aihacking",
+    "file_path": "agent/agent.py",
+    "url": "https://github.com/ExploitsLabs/aihacking/blob/a8291b0f2cdd4140524e08f3d81b32d7d2496dfc/agent/agent.py",
+    "sha": "d55a5871b3de17119fa4c40d4cceaf334aa23e7c"
+  },
+  {
+    "framework": "adk",
+    "repo": "jpantsjoha/Agentic-Marketing-Campaign-Generator",
+    "file_path": "backend/marketing_agent.py",
+    "url": "https://github.com/jpantsjoha/Agentic-Marketing-Campaign-Generator/blob/7e06c42c1b6202f283670b63aa7d40b2757f6e02/backend/marketing_agent.py",
+    "sha": "ec2450cd2657510c02378e4d0aae49c8c14d361e"
+  },
+  {
+    "framework": "adk",
+    "repo": "joansantoso/iox-adk",
+    "file_path": "agent03/agent.py",
+    "url": "https://github.com/joansantoso/iox-adk/blob/4e81d594bf67d696fbdfdb34741fd0facdbe1c66/agent03/agent.py",
+    "sha": "24716850b106b1c46f0babae1059d47ccffa7f6f"
+  },
+  {
+    "framework": "adk",
+    "repo": "volcengine/veadk-python",
+    "file_path": "veadk/runner.py",
+    "url": "https://github.com/volcengine/veadk-python/blob/3b2615926b13eee842ecf14170d1d80c7d58414c/veadk/runner.py",
+    "sha": "55cce3b410ce1921078e0128b19e5522625f9ff0"
+  },
+  {
+    "framework": "adk",
+    "repo": "KrishGaur1354/yt-short-generator-adk",
+    "file_path": "video_generator.py",
+    "url": "https://github.com/KrishGaur1354/yt-short-generator-adk/blob/0d72e270da2c3e47ba8d11d0a5219e8869ac191b/video_generator.py",
+    "sha": "30623b4cb05b9c5d55909ffd3c3740ce829faf71"
+  },
+  {
+    "framework": "adk",
+    "repo": "AIAnytime/agentic-context-engineering",
+    "file_path": "agents/ace_agent/agent.py",
+    "url": "https://github.com/AIAnytime/agentic-context-engineering/blob/250943998261e1c9a833f38908a017b642cc1a9e/agents/ace_agent/agent.py",
+    "sha": "486c05fdc8d76cff0f601b40ffca323c81375930"
+  },
+  {
+    "framework": "adk",
+    "repo": "gabrielpreda/adk-sql-agent",
+    "file_path": "sql_agent/agent_v2.py",
+    "url": "https://github.com/gabrielpreda/adk-sql-agent/blob/ef9206ea3d5c4a89b956481043a1508ff433a0fc/sql_agent/agent_v2.py",
+    "sha": "e9d010115e3afcb46817cde6bb7c24599be827b9"
+  }
+]

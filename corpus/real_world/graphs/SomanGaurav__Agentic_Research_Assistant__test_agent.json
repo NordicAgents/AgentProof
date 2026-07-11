@@ -1,0 +1,40 @@
+{
+  "name": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "query",
+      "kind": "llm",
+      "label": "query",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "query",
+      "kind": "direct"
+    },
+    {
+      "source": "query",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

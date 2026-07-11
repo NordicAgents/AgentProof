@@ -1,0 +1,38 @@
+{
+  "name": "nahcol10__Perplexity2.0__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "model",
+      "kind": "router",
+      "label": "model",
+      "tools": []
+    },
+    {
+      "id": "tool_node",
+      "kind": "tool",
+      "label": "tool_node",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "model",
+      "kind": "direct"
+    },
+    {
+      "source": "tool_node",
+      "target": "model",
+      "kind": "direct"
+    }
+  ]
+}

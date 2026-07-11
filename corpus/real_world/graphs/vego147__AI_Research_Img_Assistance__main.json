@@ -1,0 +1,90 @@
+{
+  "name": "vego147__AI_Research_Img_Assistance__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "classify_query",
+      "kind": "router",
+      "label": "classify_query",
+      "tools": []
+    },
+    {
+      "id": "split_topic",
+      "kind": "llm",
+      "label": "split_topic",
+      "tools": []
+    },
+    {
+      "id": "search_node",
+      "kind": "llm",
+      "label": "search_node",
+      "tools": []
+    },
+    {
+      "id": "summarize_node",
+      "kind": "llm",
+      "label": "summarize_node",
+      "tools": []
+    },
+    {
+      "id": "img_prompter",
+      "kind": "llm",
+      "label": "img_prompter",
+      "tools": []
+    },
+    {
+      "id": "img_generator",
+      "kind": "llm",
+      "label": "img_generator",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "classify_query",
+      "kind": "direct"
+    },
+    {
+      "source": "split_topic",
+      "target": "search_node",
+      "kind": "direct"
+    },
+    {
+      "source": "search_node",
+      "target": "summarize_node",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize_node",
+      "target": "img_prompter",
+      "kind": "direct"
+    },
+    {
+      "source": "img_prompter",
+      "target": "img_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "img_generator",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

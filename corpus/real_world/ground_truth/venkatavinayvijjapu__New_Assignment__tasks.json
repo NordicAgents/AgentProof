@@ -1,0 +1,56 @@
+{
+  "name": "venkatavinayvijjapu__New_Assignment__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "analyze_the_query_'{topic}',_break_it_down_into_su",
+      "kind": "tool",
+      "label": "research_task",
+      "tools": [
+        "web_search_tool",
+        "web_scraper_tool",
+        "content_analyzer_tool",
+        "news_aggregator_tool"
+      ]
+    },
+    {
+      "id": "using_the_analyzed_research_on_'{topic}',_generate",
+      "kind": "tool",
+      "label": "write_task",
+      "tools": [
+        "content_analyzer_tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_query_'{topic}',_break_it_down_into_su",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_query_'{topic}',_break_it_down_into_su",
+      "target": "using_the_analyzed_research_on_'{topic}',_generate",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_analyzed_research_on_'{topic}',_generate",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

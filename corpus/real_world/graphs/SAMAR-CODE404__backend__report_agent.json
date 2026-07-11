@@ -1,0 +1,84 @@
+{
+  "name": "SAMAR-CODE404__backend__report_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "report_structure_creator",
+      "kind": "llm",
+      "label": "report_structure_creator",
+      "tools": []
+    },
+    {
+      "id": "section_template_generator",
+      "kind": "llm",
+      "label": "section_template_generator",
+      "tools": []
+    },
+    {
+      "id": "rag_summary_generator",
+      "kind": "llm",
+      "label": "rag_summary_generator",
+      "tools": []
+    },
+    {
+      "id": "consistency_checker",
+      "kind": "llm",
+      "label": "consistency_checker",
+      "tools": []
+    },
+    {
+      "id": "report_formatter",
+      "kind": "llm",
+      "label": "report_formatter",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "report_structure_creator",
+      "kind": "direct"
+    },
+    {
+      "source": "report_structure_creator",
+      "target": "section_template_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "section_template_generator",
+      "target": "rag_summary_generator",
+      "kind": "direct"
+    },
+    {
+      "source": "rag_summary_generator",
+      "target": "consistency_checker",
+      "kind": "direct"
+    },
+    {
+      "source": "consistency_checker",
+      "target": "report_formatter",
+      "kind": "direct"
+    },
+    {
+      "source": "report_formatter",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

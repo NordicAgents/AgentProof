@@ -1,0 +1,57 @@
+{
+  "name": "FinAgent-Lab__FinAgent_Investment_Agent__api",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "guardrail",
+      "kind": "router",
+      "label": "guardrail",
+      "tools": []
+    },
+    {
+      "id": "condition",
+      "kind": "llm",
+      "label": "condition",
+      "tools": []
+    },
+    {
+      "id": "user_chat",
+      "kind": "llm",
+      "label": "user_chat",
+      "tools": []
+    },
+    {
+      "id": "retriever",
+      "kind": "llm",
+      "label": "retriever",
+      "tools": []
+    },
+    {
+      "id": "debate",
+      "kind": "llm",
+      "label": "debate",
+      "tools": []
+    },
+    {
+      "id": "finance",
+      "kind": "llm",
+      "label": "finance",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "guardrail",
+      "kind": "direct"
+    }
+  ]
+}

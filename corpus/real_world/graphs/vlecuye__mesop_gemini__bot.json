@@ -1,0 +1,33 @@
+{
+  "name": "vlecuye__mesop_gemini__bot",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "calculator",
+      "kind": "llm",
+      "label": "calculator",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "researcher",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "name": "Chrisolande__MedReportAI__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "write_sections",
+      "kind": "router",
+      "label": "write_sections",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    },
+    {
+      "id": "generate_report_plan",
+      "kind": "router",
+      "label": "generate_report_plan",
+      "tools": []
+    },
+    {
+      "id": "build_section_with_tools",
+      "kind": "tool",
+      "label": "build_section_with_tools",
+      "tools": []
+    },
+    {
+      "id": "gather_sections",
+      "kind": "router",
+      "label": "gather_sections",
+      "tools": []
+    },
+    {
+      "id": "write_final_sections",
+      "kind": "llm",
+      "label": "write_final_sections",
+      "tools": []
+    },
+    {
+      "id": "compile_final_report",
+      "kind": "llm",
+      "label": "compile_final_report",
+      "tools": []
+    },
+    {
+      "id": "validate_report_quality",
+      "kind": "llm",
+      "label": "validate_report_quality",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "tools",
+      "target": "write_sections",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "write_sections",
+      "kind": "direct"
+    },
+    {
+      "source": "build_section_with_tools",
+      "target": "gather_sections",
+      "kind": "direct"
+    },
+    {
+      "source": "write_final_sections",
+      "target": "compile_final_report",
+      "kind": "direct"
+    },
+    {
+      "source": "compile_final_report",
+      "target": "validate_report_quality",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "generate_report_plan",
+      "kind": "direct"
+    }
+  ]
+}

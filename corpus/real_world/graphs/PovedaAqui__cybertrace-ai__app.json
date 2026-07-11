@@ -1,0 +1,49 @@
+{
+  "name": "PovedaAqui__cybertrace-ai__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "select_tools",
+      "kind": "tool",
+      "label": "select_tools",
+      "tools": []
+    },
+    {
+      "id": "assistant",
+      "kind": "router",
+      "label": "assistant",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "select_tools",
+      "kind": "direct"
+    },
+    {
+      "source": "select_tools",
+      "target": "assistant",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "select_tools",
+      "kind": "direct"
+    }
+  ]
+}

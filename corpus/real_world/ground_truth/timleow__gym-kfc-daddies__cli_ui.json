@@ -1,0 +1,81 @@
+{
+  "name": "timleow__gym-kfc-daddies__cli_ui",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "greeting",
+      "kind": "tool",
+      "label": "greeting",
+      "tools": [
+        "browser.browser"
+      ]
+    },
+    {
+      "id": "get_user_prompt",
+      "kind": "human",
+      "label": "get_user_prompt"
+    },
+    {
+      "id": "assistant",
+      "kind": "llm",
+      "label": "assistant",
+      "tools": [
+        "orchestrator"
+      ]
+    },
+    {
+      "id": "farewell",
+      "kind": "tool",
+      "label": "farewell",
+      "tools": [
+        "browser.browser"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "greeting",
+      "kind": "direct"
+    },
+    {
+      "source": "greeting",
+      "target": "get_user_prompt",
+      "kind": "direct"
+    },
+    {
+      "source": "get_user_prompt",
+      "target": "assistant",
+      "kind": "conditional"
+    },
+    {
+      "source": "get_user_prompt",
+      "target": "farewell",
+      "kind": "conditional"
+    },
+    {
+      "source": "assistant",
+      "target": "get_user_prompt",
+      "kind": "loop"
+    },
+    {
+      "source": "farewell",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

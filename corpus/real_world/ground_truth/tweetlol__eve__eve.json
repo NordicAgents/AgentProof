@@ -1,0 +1,110 @@
+{
+  "name": "tweetlol__eve__eve",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "extract",
+      "kind": "tool",
+      "label": "extract",
+      "tools": [
+        "extract_text"
+      ]
+    },
+    {
+      "id": "summarize",
+      "kind": "llm",
+      "label": "summarize",
+      "tools": [
+        "summarize_paper"
+      ]
+    },
+    {
+      "id": "write",
+      "kind": "llm",
+      "label": "write",
+      "tools": [
+        "write_article_czech"
+      ]
+    },
+    {
+      "id": "review",
+      "kind": "router",
+      "label": "review",
+      "tools": [
+        "review_article"
+      ]
+    },
+    {
+      "id": "revise",
+      "kind": "llm",
+      "label": "revise",
+      "tools": [
+        "revise_article"
+      ]
+    },
+    {
+      "id": "save",
+      "kind": "tool",
+      "label": "save",
+      "tools": [
+        "save_article"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract",
+      "kind": "direct"
+    },
+    {
+      "source": "extract",
+      "target": "summarize",
+      "kind": "direct"
+    },
+    {
+      "source": "summarize",
+      "target": "write",
+      "kind": "direct"
+    },
+    {
+      "source": "write",
+      "target": "review",
+      "kind": "direct"
+    },
+    {
+      "source": "review",
+      "target": "revise",
+      "kind": "conditional"
+    },
+    {
+      "source": "review",
+      "target": "save",
+      "kind": "conditional"
+    },
+    {
+      "source": "revise",
+      "target": "review",
+      "kind": "loop"
+    },
+    {
+      "source": "save",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

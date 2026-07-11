@@ -1,0 +1,38 @@
+{
+  "name": "abhishekCS0024__LangGraph__Rag",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "chat_node",
+      "kind": "router",
+      "label": "chat_node",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "chat_node",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "chat_node",
+      "kind": "direct"
+    }
+  ]
+}

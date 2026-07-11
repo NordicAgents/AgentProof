@@ -1,0 +1,40 @@
+{
+  "name": "giribeans29__ml_project__ai_test",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "mock_llm",
+      "kind": "llm",
+      "label": "mock_llm",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "mock_llm",
+      "kind": "direct"
+    },
+    {
+      "source": "mock_llm",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "neej4__worldline__persona_spawner",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "fact_task",
+      "kind": "llm",
+      "label": "fact_task",
+      "tools": []
+    },
+    {
+      "id": "task_consensus",
+      "kind": "llm",
+      "label": "task_consensus",
+      "tools": []
+    },
+    {
+      "id": "injection_desc",
+      "kind": "llm",
+      "label": "injection_desc",
+      "tools": []
+    },
+    {
+      "id": "synthesis_desc",
+      "kind": "llm",
+      "label": "synthesis_desc",
+      "tools": []
+    },
+    {
+      "id": "task_quant",
+      "kind": "llm",
+      "label": "task_quant",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "fact_task",
+      "kind": "direct"
+    },
+    {
+      "source": "fact_task",
+      "target": "task_consensus",
+      "kind": "direct"
+    },
+    {
+      "source": "task_consensus",
+      "target": "injection_desc",
+      "kind": "direct"
+    },
+    {
+      "source": "injection_desc",
+      "target": "synthesis_desc",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesis_desc",
+      "target": "task_quant",
+      "kind": "direct"
+    },
+    {
+      "source": "task_quant",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

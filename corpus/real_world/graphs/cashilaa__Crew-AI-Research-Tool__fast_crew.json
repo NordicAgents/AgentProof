@@ -1,0 +1,40 @@
+{
+  "name": "cashilaa__Crew-AI-Research-Tool__fast_crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "search_brella.io_for_all_information_about_{search",
+      "kind": "llm",
+      "label": "Search Brella.io for ALL information about {search",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "search_brella.io_for_all_information_about_{search",
+      "kind": "direct"
+    },
+    {
+      "source": "search_brella.io_for_all_information_about_{search",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

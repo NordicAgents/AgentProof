@@ -1,0 +1,94 @@
+{
+  "name": "noriyukitakei__sf6-ai-analysis__magi",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "prepare",
+      "kind": "llm",
+      "label": "prepare",
+      "tools": []
+    },
+    {
+      "id": "offense",
+      "kind": "llm",
+      "label": "offense",
+      "tools": []
+    },
+    {
+      "id": "defense",
+      "kind": "llm",
+      "label": "defense",
+      "tools": []
+    },
+    {
+      "id": "strategy",
+      "kind": "llm",
+      "label": "strategy",
+      "tools": []
+    },
+    {
+      "id": "finalize",
+      "kind": "llm",
+      "label": "finalize",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "prepare",
+      "kind": "direct"
+    },
+    {
+      "source": "prepare",
+      "target": "offense",
+      "kind": "direct"
+    },
+    {
+      "source": "prepare",
+      "target": "defense",
+      "kind": "direct"
+    },
+    {
+      "source": "prepare",
+      "target": "strategy",
+      "kind": "direct"
+    },
+    {
+      "source": "offense",
+      "target": "finalize",
+      "kind": "direct"
+    },
+    {
+      "source": "defense",
+      "target": "finalize",
+      "kind": "direct"
+    },
+    {
+      "source": "strategy",
+      "target": "finalize",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

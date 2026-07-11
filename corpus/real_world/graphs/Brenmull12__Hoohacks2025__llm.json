@@ -1,0 +1,63 @@
+{
+  "name": "Brenmull12__Hoohacks2025__llm",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "intake_conversation",
+      "kind": "router",
+      "label": "intake_conversation",
+      "tools": []
+    },
+    {
+      "id": "determine_research_needs",
+      "kind": "llm",
+      "label": "determine_research_needs",
+      "tools": []
+    },
+    {
+      "id": "generate_analysis",
+      "kind": "router",
+      "label": "generate_analysis",
+      "tools": []
+    },
+    {
+      "id": "final_response",
+      "kind": "llm",
+      "label": "final_response",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "intake_conversation",
+      "kind": "direct"
+    },
+    {
+      "source": "determine_research_needs",
+      "target": "generate_analysis",
+      "kind": "direct"
+    },
+    {
+      "source": "final_response",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

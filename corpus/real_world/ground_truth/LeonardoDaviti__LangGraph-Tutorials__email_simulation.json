@@ -1,0 +1,82 @@
+{
+  "name": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "read_email",
+      "kind": "passthrough",
+      "label": "read_email (preprocess/print, no LLM or tool)"
+    },
+    {
+      "id": "classify_email",
+      "kind": "router",
+      "label": "classify_email (LLM spam/legit classify, conditional out)"
+    },
+    {
+      "id": "handle_spam",
+      "kind": "passthrough",
+      "label": "handle_spam (discard/print, no LLM)"
+    },
+    {
+      "id": "draft_response",
+      "kind": "llm",
+      "label": "draft_response (LLM drafts reply)"
+    },
+    {
+      "id": "notify_mr_hugg",
+      "kind": "passthrough",
+      "label": "notify_mr_hugg (print draft for review, no input/interrupt)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "read_email",
+      "kind": "direct"
+    },
+    {
+      "source": "read_email",
+      "target": "classify_email",
+      "kind": "direct"
+    },
+    {
+      "source": "classify_email",
+      "target": "handle_spam",
+      "kind": "conditional"
+    },
+    {
+      "source": "classify_email",
+      "target": "draft_response",
+      "kind": "conditional"
+    },
+    {
+      "source": "handle_spam",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "draft_response",
+      "target": "notify_mr_hugg",
+      "kind": "direct"
+    },
+    {
+      "source": "notify_mr_hugg",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

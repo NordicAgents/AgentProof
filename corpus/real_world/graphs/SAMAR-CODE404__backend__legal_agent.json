@@ -1,0 +1,73 @@
+{
+  "name": "SAMAR-CODE404__backend__legal_agent",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "assess_regulatory_compliance",
+      "kind": "llm",
+      "label": "assess_regulatory_compliance",
+      "tools": []
+    },
+    {
+      "id": "conduct_legal_due_diligence",
+      "kind": "llm",
+      "label": "conduct_legal_due_diligence",
+      "tools": []
+    },
+    {
+      "id": "assess_potential_legal_risks",
+      "kind": "llm",
+      "label": "assess_potential_legal_risks",
+      "tools": []
+    },
+    {
+      "id": "finalize_legal_report",
+      "kind": "llm",
+      "label": "finalize_legal_report",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "assess_regulatory_compliance",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_regulatory_compliance",
+      "target": "conduct_legal_due_diligence",
+      "kind": "direct"
+    },
+    {
+      "source": "conduct_legal_due_diligence",
+      "target": "assess_potential_legal_risks",
+      "kind": "direct"
+    },
+    {
+      "source": "assess_potential_legal_risks",
+      "target": "finalize_legal_report",
+      "kind": "direct"
+    },
+    {
+      "source": "finalize_legal_report",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

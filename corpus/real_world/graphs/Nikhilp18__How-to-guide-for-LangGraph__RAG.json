@@ -1,0 +1,68 @@
+{
+  "name": "Nikhilp18__How-to-guide-for-LangGraph__RAG",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "check_db_exists",
+      "kind": "router",
+      "label": "check_db_exists",
+      "tools": []
+    },
+    {
+      "id": "emded_documents",
+      "kind": "llm",
+      "label": "emded_documents",
+      "tools": []
+    },
+    {
+      "id": "retrieve",
+      "kind": "llm",
+      "label": "retrieve",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "check_db_exists",
+      "kind": "direct"
+    },
+    {
+      "source": "emded_documents",
+      "target": "retrieve",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

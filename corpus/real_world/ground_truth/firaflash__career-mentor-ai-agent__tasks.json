@@ -1,0 +1,72 @@
+{
+  "name": "firaflash__career-mentor-ai-agent__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "analyze_the_user's_current_background_and_their_ta",
+      "kind": "llm",
+      "label": "assessment_task (skill_assessment_agent)"
+    },
+    {
+      "id": "using_the_skill_gap_report_provided,_create_a_chro",
+      "kind": "llm",
+      "label": "roadmap_task (roadmap_planner_agent)"
+    },
+    {
+      "id": "using_the_learning_roadmap_provided,_find_and_reco",
+      "kind": "llm",
+      "label": "resource_task (resource_agent)"
+    },
+    {
+      "id": "review_the_learning_roadmap_and_the_resource_guide",
+      "kind": "llm",
+      "label": "review_task (reviewer_agent)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_user's_current_background_and_their_ta",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_user's_current_background_and_their_ta",
+      "target": "using_the_skill_gap_report_provided,_create_a_chro",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_skill_gap_report_provided,_create_a_chro",
+      "target": "using_the_learning_roadmap_provided,_find_and_reco",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_learning_roadmap_provided,_find_and_reco",
+      "target": "review_the_learning_roadmap_and_the_resource_guide",
+      "kind": "direct"
+    },
+    {
+      "source": "using_the_skill_gap_report_provided,_create_a_chro",
+      "target": "review_the_learning_roadmap_and_the_resource_guide",
+      "kind": "direct"
+    },
+    {
+      "source": "review_the_learning_roadmap_and_the_resource_guide",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

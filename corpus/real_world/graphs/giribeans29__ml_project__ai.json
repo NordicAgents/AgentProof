@@ -1,0 +1,56 @@
+{
+  "name": "giribeans29__ml_project__ai",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "chatbot",
+      "kind": "llm",
+      "label": "chatbot",
+      "tools": []
+    },
+    {
+      "id": "determine_duration",
+      "kind": "llm",
+      "label": "determine_duration",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "chatbot",
+      "kind": "direct"
+    },
+    {
+      "source": "chatbot",
+      "target": "determine_duration",
+      "kind": "direct"
+    },
+    {
+      "source": "determine_duration",
+      "target": "chatbot",
+      "kind": "direct"
+    },
+    {
+      "source": "chatbot",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

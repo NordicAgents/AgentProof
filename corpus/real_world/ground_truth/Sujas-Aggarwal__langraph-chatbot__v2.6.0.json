@@ -1,0 +1,98 @@
+{
+  "name": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "extract_location",
+      "kind": "llm",
+      "label": "Extract location from user query (LLM)"
+    },
+    {
+      "id": "spell_check",
+      "kind": "tool",
+      "label": "Vector similarity spell-check of location",
+      "tools": [
+        "spell_check_location"
+      ]
+    },
+    {
+      "id": "confirmation",
+      "kind": "human",
+      "label": "Confirm location spelling (approval gate)"
+    },
+    {
+      "id": "generate_sql",
+      "kind": "llm",
+      "label": "Generate SQL query (LLM)"
+    },
+    {
+      "id": "execute_query",
+      "kind": "tool",
+      "label": "Execute SQL query against database",
+      "tools": [
+        "execute_sql_query"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract_location",
+      "kind": "direct"
+    },
+    {
+      "source": "extract_location",
+      "target": "spell_check",
+      "kind": "direct"
+    },
+    {
+      "source": "spell_check",
+      "target": "confirmation",
+      "kind": "conditional"
+    },
+    {
+      "source": "spell_check",
+      "target": "generate_sql",
+      "kind": "conditional"
+    },
+    {
+      "source": "spell_check",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "confirmation",
+      "target": "generate_sql",
+      "kind": "conditional"
+    },
+    {
+      "source": "confirmation",
+      "target": "__end__",
+      "kind": "conditional"
+    },
+    {
+      "source": "generate_sql",
+      "target": "execute_query",
+      "kind": "direct"
+    },
+    {
+      "source": "execute_query",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

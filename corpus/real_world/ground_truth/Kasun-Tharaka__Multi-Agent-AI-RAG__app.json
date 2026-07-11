@@ -1,0 +1,58 @@
+{
+  "name": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "wiki_search",
+      "kind": "tool",
+      "label": "wiki_search",
+      "tools": [
+        "WikipediaQueryRun"
+      ]
+    },
+    {
+      "id": "retrieve",
+      "kind": "tool",
+      "label": "retrieve",
+      "tools": [
+        "Cassandra vector store retriever"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "wiki_search",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "retrieve",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "wiki_search",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

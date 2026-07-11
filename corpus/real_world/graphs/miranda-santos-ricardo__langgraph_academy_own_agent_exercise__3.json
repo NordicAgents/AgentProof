@@ -1,0 +1,67 @@
+{
+  "name": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__3",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "search_web",
+      "kind": "llm",
+      "label": "search_web",
+      "tools": []
+    },
+    {
+      "id": "search_wikipedia",
+      "kind": "llm",
+      "label": "search_wikipedia",
+      "tools": []
+    },
+    {
+      "id": "generate_answer",
+      "kind": "llm",
+      "label": "generate_answer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "search_wikipedia",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "search_web",
+      "kind": "direct"
+    },
+    {
+      "source": "search_wikipedia",
+      "target": "generate_answer",
+      "kind": "direct"
+    },
+    {
+      "source": "search_web",
+      "target": "generate_answer",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_answer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

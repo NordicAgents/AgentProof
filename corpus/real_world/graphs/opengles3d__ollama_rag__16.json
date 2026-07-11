@@ -1,0 +1,49 @@
+{
+  "name": "opengles3d__ollama_rag__16",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "supervisor",
+      "kind": "router",
+      "label": "supervisor",
+      "tools": []
+    },
+    {
+      "id": "researcher",
+      "kind": "llm",
+      "label": "researcher",
+      "tools": []
+    },
+    {
+      "id": "coder",
+      "kind": "llm",
+      "label": "coder",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "supervisor",
+      "kind": "direct"
+    },
+    {
+      "source": "researcher",
+      "target": "supervisor",
+      "kind": "direct"
+    },
+    {
+      "source": "coder",
+      "target": "supervisor",
+      "kind": "direct"
+    }
+  ]
+}

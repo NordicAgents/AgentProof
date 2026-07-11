@@ -1,0 +1,68 @@
+{
+  "name": "AliHShahid__agentic_ai_langgraph__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "classify",
+      "kind": "llm",
+      "label": "classify",
+      "tools": []
+    },
+    {
+      "id": "retrieve",
+      "kind": "llm",
+      "label": "retrieve",
+      "tools": []
+    },
+    {
+      "id": "human_gate",
+      "kind": "human",
+      "label": "human_gate",
+      "tools": []
+    },
+    {
+      "id": "send",
+      "kind": "llm",
+      "label": "send",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "classify",
+      "target": "retrieve",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve",
+      "target": "human_gate",
+      "kind": "direct"
+    },
+    {
+      "source": "human_gate",
+      "target": "send",
+      "kind": "direct"
+    },
+    {
+      "source": "send",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

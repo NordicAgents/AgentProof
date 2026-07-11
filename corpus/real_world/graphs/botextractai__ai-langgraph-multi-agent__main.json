@@ -1,0 +1,71 @@
+{
+  "name": "botextractai__ai-langgraph-multi-agent__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planner",
+      "kind": "llm",
+      "label": "planner",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "router",
+      "label": "generate",
+      "tools": []
+    },
+    {
+      "id": "reflect",
+      "kind": "llm",
+      "label": "reflect",
+      "tools": []
+    },
+    {
+      "id": "research_plan",
+      "kind": "llm",
+      "label": "research_plan",
+      "tools": []
+    },
+    {
+      "id": "research_critique",
+      "kind": "llm",
+      "label": "research_critique",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planner",
+      "kind": "direct"
+    },
+    {
+      "source": "planner",
+      "target": "research_plan",
+      "kind": "direct"
+    },
+    {
+      "source": "research_plan",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "reflect",
+      "target": "research_critique",
+      "kind": "direct"
+    },
+    {
+      "source": "research_critique",
+      "target": "generate",
+      "kind": "direct"
+    }
+  ]
+}

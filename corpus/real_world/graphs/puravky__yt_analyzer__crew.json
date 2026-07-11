@@ -1,0 +1,40 @@
+{
+  "name": "puravky__yt_analyzer__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "get_the_transcript_of_the_youtube_video_at_{youtub",
+      "kind": "llm",
+      "label": "Get the transcript of the YouTube video at {youtub",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "get_the_transcript_of_the_youtube_video_at_{youtub",
+      "kind": "direct"
+    },
+    {
+      "source": "get_the_transcript_of_the_youtube_video_at_{youtub",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "d-hackmt__Research-Paper-agent__rp",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "orchestrator",
+      "kind": "router",
+      "label": "orchestrator",
+      "tools": []
+    },
+    {
+      "id": "llm_call",
+      "kind": "llm",
+      "label": "llm_call",
+      "tools": []
+    },
+    {
+      "id": "synthesizer",
+      "kind": "llm",
+      "label": "synthesizer",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "orchestrator",
+      "kind": "direct"
+    },
+    {
+      "source": "llm_call",
+      "target": "synthesizer",
+      "kind": "direct"
+    },
+    {
+      "source": "synthesizer",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

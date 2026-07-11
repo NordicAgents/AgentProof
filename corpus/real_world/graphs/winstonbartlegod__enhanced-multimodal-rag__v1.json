@@ -1,0 +1,73 @@
+{
+  "name": "winstonbartlegod__enhanced-multimodal-rag__v1",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "process_query",
+      "kind": "llm",
+      "label": "process_query",
+      "tools": []
+    },
+    {
+      "id": "chunk_and_embed",
+      "kind": "llm",
+      "label": "chunk_and_embed",
+      "tools": []
+    },
+    {
+      "id": "retrieve_chunks",
+      "kind": "llm",
+      "label": "retrieve_chunks",
+      "tools": []
+    },
+    {
+      "id": "generate_response",
+      "kind": "llm",
+      "label": "generate_response",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "process_query",
+      "target": "chunk_and_embed",
+      "kind": "direct"
+    },
+    {
+      "source": "chunk_and_embed",
+      "target": "retrieve_chunks",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve_chunks",
+      "target": "generate_response",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_response",
+      "target": "__end__",
+      "kind": "direct"
+    },
+    {
+      "source": "__start__",
+      "target": "process_query",
+      "kind": "direct"
+    }
+  ]
+}

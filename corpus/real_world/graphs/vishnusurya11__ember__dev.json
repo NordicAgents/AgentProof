@@ -1,0 +1,33 @@
+{
+  "name": "vishnusurya11__ember__dev",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "start",
+      "kind": "router",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "expand",
+      "kind": "router",
+      "label": "expand",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "start",
+      "kind": "direct"
+    }
+  ]
+}

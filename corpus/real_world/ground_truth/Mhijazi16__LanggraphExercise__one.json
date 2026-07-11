@@ -1,0 +1,37 @@
+{
+  "name": "Mhijazi16__LanggraphExercise__one",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "node",
+      "kind": "passthrough",
+      "label": "node"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "node",
+      "kind": "direct"
+    },
+    {
+      "source": "node",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

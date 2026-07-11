@@ -1,0 +1,53 @@
+{
+  "name": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "kind": "tool",
+      "label": "Research task (news_researcher, tools=[tool])",
+      "tools": [
+        "tool"
+      ]
+    },
+    {
+      "id": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "kind": "tool",
+      "label": "Write task (news_writer, tools=[tool])",
+      "tools": [
+        "tool"
+      ]
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "kind": "direct"
+    },
+    {
+      "source": "identify_the_next_big_trend_in_{topic}.focus_on_id",
+      "target": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "kind": "direct"
+    },
+    {
+      "source": "compose_an_insightful_article_on_{topic}.focus_on_",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

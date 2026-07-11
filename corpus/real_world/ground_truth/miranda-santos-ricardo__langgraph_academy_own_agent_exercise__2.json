@@ -1,0 +1,82 @@
+{
+  "name": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "START"
+    },
+    {
+      "id": "a",
+      "kind": "passthrough",
+      "label": "a (ReturnNodeValue 'I'm A')"
+    },
+    {
+      "id": "b",
+      "kind": "passthrough",
+      "label": "b (ReturnNodeValue 'I'm B')"
+    },
+    {
+      "id": "b2",
+      "kind": "passthrough",
+      "label": "b2 (ReturnNodeValue 'I'm B2')"
+    },
+    {
+      "id": "c",
+      "kind": "passthrough",
+      "label": "c (ReturnNodeValue 'I'm C')"
+    },
+    {
+      "id": "d",
+      "kind": "passthrough",
+      "label": "d (ReturnNodeValue 'I'm D')"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "END"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "a",
+      "kind": "direct"
+    },
+    {
+      "source": "a",
+      "target": "b",
+      "kind": "parallel"
+    },
+    {
+      "source": "a",
+      "target": "c",
+      "kind": "parallel"
+    },
+    {
+      "source": "b",
+      "target": "b2",
+      "kind": "direct"
+    },
+    {
+      "source": "b2",
+      "target": "d",
+      "kind": "direct"
+    },
+    {
+      "source": "c",
+      "target": "d",
+      "kind": "direct"
+    },
+    {
+      "source": "d",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

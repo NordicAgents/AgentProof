@@ -1,0 +1,75 @@
+{
+  "name": "VamshiKrishna660__BloodWise-AI__task",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+      "kind": "tool",
+      "label": "Analyze the user's query: \"{query}\" and the blood ",
+      "tools": [
+        "search_tool"
+      ]
+    },
+    {
+      "id": "review_the_patient's_blood_test_report_located_at_",
+      "kind": "llm",
+      "label": "Review the patient's blood test report located at ",
+      "tools": []
+    },
+    {
+      "id": "design_a_safe,_effective_exercise_plan_based_on_th",
+      "kind": "llm",
+      "label": "Design a safe, effective exercise plan based on th",
+      "tools": []
+    },
+    {
+      "id": "carefully_verify_the_uploaded_document_at_\"{file_p",
+      "kind": "llm",
+      "label": "Carefully verify the uploaded document at \"{file_p",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+      "target": "review_the_patient's_blood_test_report_located_at_",
+      "kind": "direct"
+    },
+    {
+      "source": "review_the_patient's_blood_test_report_located_at_",
+      "target": "design_a_safe,_effective_exercise_plan_based_on_th",
+      "kind": "direct"
+    },
+    {
+      "source": "design_a_safe,_effective_exercise_plan_based_on_th",
+      "target": "carefully_verify_the_uploaded_document_at_\"{file_p",
+      "kind": "direct"
+    },
+    {
+      "source": "carefully_verify_the_uploaded_document_at_\"{file_p",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

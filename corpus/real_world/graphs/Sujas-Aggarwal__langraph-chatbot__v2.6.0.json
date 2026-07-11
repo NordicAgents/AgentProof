@@ -1,0 +1,74 @@
+{
+  "name": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "extract_location",
+      "kind": "llm",
+      "label": "extract_location",
+      "tools": []
+    },
+    {
+      "id": "spell_check",
+      "kind": "router",
+      "label": "spell_check",
+      "tools": []
+    },
+    {
+      "id": "confirmation",
+      "kind": "router",
+      "label": "confirmation",
+      "tools": []
+    },
+    {
+      "id": "generate_sql",
+      "kind": "llm",
+      "label": "generate_sql",
+      "tools": []
+    },
+    {
+      "id": "execute_query",
+      "kind": "llm",
+      "label": "execute_query",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "extract_location",
+      "kind": "direct"
+    },
+    {
+      "source": "extract_location",
+      "target": "spell_check",
+      "kind": "direct"
+    },
+    {
+      "source": "generate_sql",
+      "target": "execute_query",
+      "kind": "direct"
+    },
+    {
+      "source": "execute_query",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

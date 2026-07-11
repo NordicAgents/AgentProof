@@ -1,0 +1,38 @@
+{
+  "name": "anthony-ism__riz-mAIstro-react-agent__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "call_model",
+      "kind": "router",
+      "label": "call_model",
+      "tools": []
+    },
+    {
+      "id": "tools",
+      "kind": "tool",
+      "label": "tools",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "call_model",
+      "kind": "direct"
+    },
+    {
+      "source": "tools",
+      "target": "call_model",
+      "kind": "direct"
+    }
+  ]
+}

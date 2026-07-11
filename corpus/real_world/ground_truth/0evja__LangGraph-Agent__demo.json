@@ -1,0 +1,93 @@
+{
+  "name": "0evja__LangGraph-Agent__demo",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "retrieve",
+      "kind": "tool",
+      "label": "retrieve",
+      "tools": [
+        "vectorstore_retriever"
+      ]
+    },
+    {
+      "id": "websearch",
+      "kind": "tool",
+      "label": "web_search",
+      "tools": [
+        "TavilySearchResults"
+      ]
+    },
+    {
+      "id": "grade_documents",
+      "kind": "router",
+      "label": "grade_documents"
+    },
+    {
+      "id": "generate",
+      "kind": "llm",
+      "label": "generate"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "websearch",
+      "kind": "conditional"
+    },
+    {
+      "source": "__start__",
+      "target": "retrieve",
+      "kind": "conditional"
+    },
+    {
+      "source": "retrieve",
+      "target": "grade_documents",
+      "kind": "direct"
+    },
+    {
+      "source": "websearch",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "grade_documents",
+      "target": "websearch",
+      "kind": "conditional"
+    },
+    {
+      "source": "grade_documents",
+      "target": "generate",
+      "kind": "conditional"
+    },
+    {
+      "source": "generate",
+      "target": "generate",
+      "kind": "loop"
+    },
+    {
+      "source": "generate",
+      "target": "websearch",
+      "kind": "loop"
+    },
+    {
+      "source": "generate",
+      "target": "__end__",
+      "kind": "conditional"
+    }
+  ]
+}

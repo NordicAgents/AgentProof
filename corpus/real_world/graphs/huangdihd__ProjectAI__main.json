@@ -1,0 +1,38 @@
+{
+  "name": "huangdihd__ProjectAI__main",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "manager",
+      "kind": "router",
+      "label": "manager",
+      "tools": []
+    },
+    {
+      "id": "executor",
+      "kind": "llm",
+      "label": "executor",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "manager",
+      "kind": "direct"
+    },
+    {
+      "source": "executor",
+      "target": "manager",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "populate_the_`contentformatinfo`_model_with_struct",
+      "kind": "tool",
+      "label": "Populate the `ContentFormatInfo` model with struct",
+      "tools": [
+        "pdf_search_tool",
+        "fire_crawl_search_tool"
+      ]
+    },
+    {
+      "id": "create_a_linkedin_post_using_the_populated_`conten",
+      "kind": "llm",
+      "label": "Create a LinkedIn post using the populated `Conten",
+      "tools": []
+    },
+    {
+      "id": "enhance_the_linkedin_post_for_seo_by_adding_keywor",
+      "kind": "llm",
+      "label": "Enhance the LinkedIn post for SEO by adding keywor",
+      "tools": []
+    },
+    {
+      "id": "adjust_the_linkedin_post's_tone_and_style_for_prof",
+      "kind": "llm",
+      "label": "Adjust the LinkedIn post's tone and style for prof",
+      "tools": []
+    },
+    {
+      "id": "verify_that_the_linkedin_post_adheres_to_the_`cont",
+      "kind": "llm",
+      "label": "Verify that the LinkedIn post adheres to the `Cont",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "populate_the_`contentformatinfo`_model_with_struct",
+      "kind": "direct"
+    },
+    {
+      "source": "populate_the_`contentformatinfo`_model_with_struct",
+      "target": "create_a_linkedin_post_using_the_populated_`conten",
+      "kind": "direct"
+    },
+    {
+      "source": "create_a_linkedin_post_using_the_populated_`conten",
+      "target": "enhance_the_linkedin_post_for_seo_by_adding_keywor",
+      "kind": "direct"
+    },
+    {
+      "source": "enhance_the_linkedin_post_for_seo_by_adding_keywor",
+      "target": "adjust_the_linkedin_post's_tone_and_style_for_prof",
+      "kind": "direct"
+    },
+    {
+      "source": "adjust_the_linkedin_post's_tone_and_style_for_prof",
+      "target": "verify_that_the_linkedin_post_adheres_to_the_`cont",
+      "kind": "direct"
+    },
+    {
+      "source": "verify_that_the_linkedin_post_adheres_to_the_`cont",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

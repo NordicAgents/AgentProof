@@ -1,0 +1,47 @@
+{
+  "name": "dforwardfeed__memo_generator__main",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start"
+    },
+    {
+      "id": "analyze_the_market_size_and_expected_growth_rate_f",
+      "kind": "llm",
+      "label": "Market analysis task (market_analyst)"
+    },
+    {
+      "id": "find_the_main_ai_startup_player's_for_{market_oppo",
+      "kind": "llm",
+      "label": "Competitor analysis task (competitor_analyst, async)"
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "analyze_the_market_size_and_expected_growth_rate_f",
+      "kind": "direct"
+    },
+    {
+      "source": "analyze_the_market_size_and_expected_growth_rate_f",
+      "target": "find_the_main_ai_startup_player's_for_{market_oppo",
+      "kind": "direct"
+    },
+    {
+      "source": "find_the_main_ai_startup_player's_for_{market_oppo",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "0evja__LangGraph-Agent__Adaptive_RAG",
+  "framework": "langgraph",
+  "entry_id": "__start__",
+  "exit_ids": [],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "websearch",
+      "kind": "llm",
+      "label": "websearch",
+      "tools": []
+    },
+    {
+      "id": "retrieve",
+      "kind": "llm",
+      "label": "retrieve",
+      "tools": []
+    },
+    {
+      "id": "grade_documents",
+      "kind": "router",
+      "label": "grade_documents",
+      "tools": []
+    },
+    {
+      "id": "generate",
+      "kind": "router",
+      "label": "generate",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "websearch",
+      "target": "generate",
+      "kind": "direct"
+    },
+    {
+      "source": "retrieve",
+      "target": "grade_documents",
+      "kind": "direct"
+    }
+  ]
+}

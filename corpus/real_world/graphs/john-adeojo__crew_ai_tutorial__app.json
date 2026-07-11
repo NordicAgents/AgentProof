@@ -1,0 +1,76 @@
+{
+  "name": "john-adeojo__crew_ai_tutorial__app",
+  "framework": "crewai",
+  "entry_id": "__start__",
+  "exit_ids": [
+    "__end__"
+  ],
+  "nodes": [
+    {
+      "id": "__start__",
+      "kind": "entry",
+      "label": "start",
+      "tools": []
+    },
+    {
+      "id": "planning_task",
+      "kind": "llm",
+      "label": "planning_task",
+      "tools": []
+    },
+    {
+      "id": "search_task",
+      "kind": "tool",
+      "label": "search_task",
+      "tools": [
+        "serper_tool",
+        "website_search_tool"
+      ]
+    },
+    {
+      "id": "integration_task",
+      "kind": "llm",
+      "label": "integration_task",
+      "tools": []
+    },
+    {
+      "id": "reporting_task",
+      "kind": "llm",
+      "label": "reporting_task",
+      "tools": []
+    },
+    {
+      "id": "__end__",
+      "kind": "exit",
+      "label": "end",
+      "tools": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "planning_task",
+      "kind": "direct"
+    },
+    {
+      "source": "planning_task",
+      "target": "search_task",
+      "kind": "direct"
+    },
+    {
+      "source": "search_task",
+      "target": "integration_task",
+      "kind": "direct"
+    },
+    {
+      "source": "integration_task",
+      "target": "reporting_task",
+      "kind": "direct"
+    },
+    {
+      "source": "reporting_task",
+      "target": "__end__",
+      "kind": "direct"
+    }
+  ]
+}
