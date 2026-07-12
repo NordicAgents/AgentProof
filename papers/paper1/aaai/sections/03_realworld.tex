@@ -1,0 +1,99 @@
+\section{Real-World Base-Rate Study}
+\label{sec:realworld}
+
+To estimate defect \emph{base rates} on independently authored workflows---and to
+measure extractor fidelity on code we did not write---we mined public GitHub
+repositories across all four frameworks.
+
+\paragraph{Mining.}
+Using GitHub code search we streamed each candidate repository through clone,
+extraction, and cleanup, yielding 930 workflow graphs from 253 distinct
+repositories (LangGraph~402, AutoGen~361, CrewAI~114, ADK~53). Extraction used the
+static AST fallback. Mined workflows are small: a median of 2 non-sentinel nodes
+(mean~3.9), predominantly static linear pipelines.
+
+\paragraph{Validation.}
+On a stratified 120-workflow sample (40 LangGraph, 20 CrewAI, 35 AutoGen, 25 ADK)
+we ran two independent LLM-agent passes. First, an agent reconstructed a
+ground-truth graph from source alone (blind to the extractor, following its
+node-id conventions), against which we scored node/edge precision--recall and
+node-kind accuracy. Second, for each of the 187 flagged defects one agent labelled
+it \textsc{real}, \textsc{extraction-artifact}, or \textsc{intentional} from
+source, and an adversarial verifier attempted to overturn each label
+(disagreements recorded as \textsc{arguable}).
+
+\begin{table}[t]
+\centering\small
+\caption{AST-extractor fidelity on real workflows ($n{=}120$). Perfect on stubs;
+on real code fidelity is lower and strongly framework-dependent.}
+\label{tab:realworld_fidelity}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Framework} & \textbf{$n$} & \textbf{Edge P} & \textbf{Edge R} & \textbf{Kind acc} \\
+\midrule
+LangGraph & 40 & 0.956 & 0.682 & 0.647 \\
+CrewAI    & 20 & 0.700 & 0.692 & 0.929 \\
+AutoGen   & 35 & 0.957 & 0.770 & 0.900 \\
+ADK       & 25 & 0.403 & 0.367 & 0.943 \\
+\midrule
+\textbf{Overall} & \textbf{120} & \textbf{0.798} & \textbf{0.644} & \textbf{0.829} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Extraction fidelity is the bottleneck.}
+Node detection stays strong (overall $P{=}0.91$, $R{=}0.85$), but edge recall
+falls to 0.644 and node-kind accuracy to 0.829, ranging from 0.37 edge recall on
+ADK to 0.77 on AutoGen (Table~\ref{tab:realworld_fidelity}). The frameworks that
+encode topology \emph{implicitly}---ADK's nested \texttt{SequentialAgent}/
+\texttt{ParallelAgent} composition, AutoGen's participant lists with dynamic
+speaker selection---are hardest: the extractor must guess an edge set the source
+never states, and for ADK it is wrong more often than right. On LangGraph, whose
+edges are explicit, the dominant error is instead node-kind
+(\texttt{tool}$\rightarrow$\texttt{llm}: nodes invoking tools in their body with
+no declared binding).
+
+\begin{table}[t]
+\centering\small
+\caption{Adversarial triage of 187 flagged defects. Every structural flag is an
+extraction artifact; the human-gate flag is predominantly intentional.}
+\label{tab:realworld_triage}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Check} & \textbf{Real} & \textbf{Artifact} & \textbf{Intent.} & \textbf{Arg.} \\
+\midrule
+exit\_reachability    & 0 & 14 & 0  & 0 \\
+reverse\_reachability & 0 & 25 & 0  & 0 \\
+dead\_ends            & 0 & 24 & 0  & 1 \\
+router\_shape         & 0 & 3  & 0  & 0 \\
+tool\_declarations    & 0 & 5  & 0  & 0 \\
+human\_presence       & 2 & 9  & 93 & 11 \\
+\midrule
+\textbf{Total}        & \textbf{2} & \textbf{80} & \textbf{93} & \textbf{12} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Defects are rare.}
+Of 187 flagged defects, only 2 (1.1\%) are genuine bugs---both missing human
+gates---while 43\% are extraction artifacts and 50\% intentional design
+(Table~\ref{tab:realworld_triage}). \emph{Every one of the 71 structural flags is
+an extraction artifact}, and structural flags are entirely a LangGraph phenomenon:
+in the raw study they fire on 78\% of LangGraph workflows but 0\% of AutoGen,
+CrewAI, and ADK, whose extractors build a connected topology by construction and
+cannot emit a dead end or unreachable exit. The structural signal is thus an
+artifact of the one extractor that recovers real edges, not a property of the
+workflows.
+
+\paragraph{Risk-aware gating.}
+The human-gate check fires on 91\% of workflows, but only 2 of 115 firings are
+genuine---the rest are intentional low-risk tasks. A risk-aware variant flags a
+workflow only when a \emph{sensitive} tool (destructive/write/exec/communication/
+financial, by a keyword lexicon) is reachable without a \textsc{human} gate,
+reusing the sound coverage check of Section~\ref{sec:verification_methods}. On the
+930 mined workflows it fires on \emph{zero}: none declares a sensitive tool, as
+they are read-only retrieval pipelines that need no review. But its recall is
+itself bounded by extraction fidelity---an in-body sensitive call with no declared
+binding (the \texttt{tool}$\rightarrow$\texttt{llm} error above) is invisible---so
+a sound sensitivity signal depends on the same higher-fidelity extraction we
+identify as the binding constraint.

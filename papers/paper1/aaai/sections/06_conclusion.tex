@@ -1,0 +1,29 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Agent frameworks encode behavior as explicit workflow graphs, and
+\textsc{Agentproof} turns that structure into an analyzable, cross-framework
+model with six structural checks, witness traces, and a safety-fragment-LTL policy
+DSL evaluated both statically (via a graph\,$\times$\,DFA product) and at runtime.
+Used as a measurement instrument on 930 workflows from 253 repositories across
+four frameworks, it yields a deflationary but genuine finding: real workflows are
+mostly small static pipelines, and only 2 of 187 flagged defects are real bugs,
+the rest extraction artifacts or intentional design. Curated-benchmark defect
+rates do not stand in for prevalence.
+
+The contribution survives the rarity of defects. First, a measurement instrument
+and the first real-world base rates for agent-workflow topology defects. Second, a
+quantified diagnosis: extraction fidelity, not the check algorithms, is the
+binding constraint---edge recall 0.64, collapsing to 0.37 on implicit-topology
+frameworks like ADK, with every triaged structural flag an extraction artifact.
+Third, a defect-independent use for the static machinery: the
+graph\,$\times$\,DFA product soundly prunes provably-inert runtime monitors,
+making pre-deployment analysis a monitor-selection layer within a
+static-plus-runtime safety stack. We read the negative prevalence result not as a
+null result but as a redirection---toward higher-fidelity extraction and
+risk-aware policy specification, the direction we pursue in follow-up work on
+runtime shields.
+
+\paragraph{Artifact.}
+The tool, corpora, mining and validation pipeline, and all evaluation scripts
+will be released under the MIT license.

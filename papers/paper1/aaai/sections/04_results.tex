@@ -1,0 +1,39 @@
+\section{Controlled Evaluation and Monitor Selection}
+\label{sec:results}
+\label{sec:pruning}
+
+\paragraph{Controlled detection test.}
+A curated corpus of 18 workflows spanning all four frameworks, seeded with known
+anti-patterns, confirms the checks fire when defects are genuinely present:
+Agentproof detects every injected structural defect and, with a risk-aware
+sensitive-tool set, flags 8 workflows whose sensitive path (e.g.
+\texttt{account\_create}, \texttt{publish}, \texttt{auto\_remediate}) is reachable
+without a human gate, versus 10 for the blunt human-presence check---declining to
+flag two workflows that lack a human node but perform no sensitive action. This
+corpus is a controlled test that the algorithms work, not evidence of prevalence.
+Verification is sub-second even for synthetic graphs of 5{,}000 nodes (far larger
+than any observed workflow); details, per-framework extractor accuracy on stubs,
+and a Promela/SMV modeling-effort comparison are in the appendix.
+
+\paragraph{Monitor selection via static pruning.}
+The graph\,$\times$\,DFA product gives the static machinery a job that does not
+depend on defects existing. Because the product explores a superset of runtime
+paths, a policy whose product reaches no violation state can never fire at runtime
+on that workflow: its monitor is provably inert and need not be deployed. This is
+a sound \emph{monitor-selection} step---deploy per workflow only the monitors that
+can actually fire. Across the curated corpus and 15 policies, 252 of 270 monitor
+instances (93.3\%) are provably inert, a mean of 14 of 15 monitors skipped per
+workflow, so runtime enforcement evaluates only the remaining 6.7\%; multi-tool
+nodes are first split into single-tool chains so the analysis never
+under-approximates a node's events.
+
+We report two honest limits. First, on today's small, mostly linear workflows
+almost all inertness is \emph{alphabet-level} (the policy's atoms never appear);
+the reachability product proves only one further case, and its advantage over a
+plain symbol-set check grows with branching structure. Second, the fixed policy
+vocabulary does not match real code---none of the 930 mined workflows invokes any
+of the 15 policies' tools---so measuring pruning on real workflows requires
+instantiating policy templates against each workflow's own tools, which we leave
+to future work. Static monitor selection is thus a sound, cheap optimization whose
+leverage today is predominantly alphabet-level, and it is the concrete bridge to
+runtime enforcement.

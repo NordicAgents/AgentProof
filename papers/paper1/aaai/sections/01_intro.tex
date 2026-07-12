@@ -1,0 +1,66 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Large language models are increasingly deployed as autonomous agents that call
+external tools and APIs~\citep{schick2024toolformer, yao2023react}. Several
+orchestration frameworks structure this behavior as explicit \emph{workflow
+graphs}: LangGraph~\citep{langgraph_docs}, CrewAI~\citep{crewai_docs},
+AutoGen~\citep{wu2023autogen}, and Google ADK~\citep{google_adk_docs} each
+represent computation steps as nodes and allowable transitions as edges. Yet
+safety enforcement in these systems remains almost entirely a \emph{runtime}
+concern: tools such as NeMo Guardrails~\citep{nemo_guardrails} and
+LlamaGuard~\citep{llamaguard} filter individual calls at execution time, detecting
+a violation only when the offending path is exercised.
+
+Some defects, however, are topological. Consider an email-triage agent whose
+developer adds a \texttt{draft\_response} node but forgets to connect it to
+\texttt{send}: normal-priority emails silently halt at a dead end. A content-level
+runtime guardrail cannot catch this unless that path runs, but a static analysis
+of the graph flags the dead end and emits a witness trace. In principle classical
+model checkers~\citep{clarke1999modelchecking, holzmann1997spin,
+cimatti2002nusmv} verify such properties, but they require hand-translating the
+system into Promela or SMV---prohibitive for developers iterating on workflows.
+
+This raises a question nobody has answered empirically: \emph{do real agent
+workflows actually contain the structural defects that static verification
+targets?} We build \textsc{Agentproof} to find out. It extracts a unified graph
+model directly from four frameworks' APIs (no manual modeling), runs six
+structural checks with witness traces, and compiles a temporal policy DSL to DFAs
+checked statically via a graph\,$\times$\,DFA product and at runtime. We then use
+it as a \emph{measurement instrument} on 930 workflows mined from 253 public
+GitHub repositories.
+
+The answer is deflationary, and that is the point. Topology defects are rare;
+what limits static verification in practice is not the check algorithms but
+\emph{extraction fidelity}, which we quantify and which turns out to be strongly
+framework-dependent. The static machinery still earns a defect-independent job:
+proving which runtime monitors can never fire, so they can be soundly pruned.
+
+\paragraph{Contributions.}
+\begin{itemize}\itemsep2pt
+  \item \textbf{The first real-world base-rate study} of structural (topology)
+  defects in agent workflows: 930 workflows from 253 public GitHub repositories
+  across all four frameworks, with a 120-workflow subsample validated against
+  independent LLM-reconstructed ground-truth graphs and adversarial triage
+  (Section~\ref{sec:realworld}). Because nobody had measured it, the rarity is
+  itself the contribution: the validated topology-defect rate is
+  ${\approx}0\%$ (2 of 187 flags genuine; 43\% extraction artifacts, 50\%
+  intentional design), and real workflows are mostly small static pipelines
+  (median two non-sentinel nodes).
+  \item \textbf{\textsc{Agentproof}}, the measurement instrument: automatic
+  extraction of a unified graph model from four heterogeneous frameworks with no
+  hand-written formal model, six structural checks with witness traces, and a
+  seven-form temporal DSL over the safety fragment of LTL compiled to DFAs and
+  evaluated statically and at runtime (Section~\ref{sec:system}).
+  \item \textbf{A quantified diagnosis}: extraction fidelity, not the checks, is
+  the binding constraint. Edge recall drops to 0.64 on real code (0.37 on ADK,
+  0.77 on AutoGen) and node-kind accuracy to 0.83, both near-perfect on stubs;
+  every triaged structural flag is an extraction artifact, and such flags arise
+  only on LangGraph because the other extractors impose connected topologies by
+  construction.
+  \item \textbf{A defect-independent job} for the static machinery: the
+  graph\,$\times$\,DFA product proves which policies can never reach a violation,
+  so their runtime monitors are provably inert and can be pruned (a mean 14 of 15
+  per workflow; Section~\ref{sec:results}), positioning static verification as a
+  sound monitor-selection layer that bridges to leaner runtime shields.
+\end{itemize}

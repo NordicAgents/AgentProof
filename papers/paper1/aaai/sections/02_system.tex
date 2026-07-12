@@ -1,0 +1,59 @@
+\section{The Agentproof System}
+\label{sec:system}
+\label{sec:graph_model}
+\label{sec:verification_methods}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{pipeline.pdf}
+\caption{Agentproof extracts a unified graph model from four frameworks, runs
+structural checks and DFA-compiled temporal policies statically (and at runtime),
+and emits witness traces.}
+\label{fig:pipeline}
+\end{figure}
+
+\paragraph{Unified graph model.}
+Agentproof represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with a
+distinguished entry $v_0$ and exit set $V_f$. Each node carries a kind
+$\kappa_V(v)\in\{\textsc{entry},\textsc{exit},\textsc{tool},\textsc{llm},
+\textsc{router},\textsc{human},\textsc{subgraph}\}$ and, for tool nodes, a set of
+bound tool names; each edge is \textsc{direct}, \textsc{conditional},
+\textsc{parallel}, or \textsc{loop}. Framework-specific extractors bridge four
+heterogeneous representations---each with different entry/exit conventions, edge
+semantics, and hierarchy models---into this single typed model, eliminating the
+manual translation that SPIN or NuSMV require. Extraction has two paths: a runtime
+extractor that reads the compiled graph object, and a static AST fallback (used
+for large-scale mining, where installing every repository's dependencies is
+infeasible).
+
+\paragraph{Structural checks.}
+Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
+\emph{witness trace} on failure. \emph{Exit reachability} verifies
+$V_f\subseteq\mathrm{Reach}(v_0)$; \emph{reverse reachability} flags livelock
+nodes reachable from $v_0$ that cannot reach any exit; \emph{dead-end detection}
+flags non-exit nodes with no successor; \emph{router shape} requires router
+outgoing edges to be conditional; \emph{human-gate coverage} checks that no path
+from $v_0$ to a sensitive tool avoids every \textsc{human} node; and \emph{tool
+declaration} flags tool nodes with an empty tool set. Witness traces follow
+standard model-checking practice~\citep{clarke1999modelchecking} and pinpoint the
+offending path.
+
+\paragraph{Temporal policies.}
+Beyond topology, Agentproof supports a policy DSL covering the safety fragment of
+LTL~\citep{pnueli1977temporal}, compiled to deterministic finite automata. The
+DSL has seven forms: forbidden (\texttt{G\,!a}), implication-future
+(\texttt{a\,->\,F\,b}), until, bounded response (\texttt{a\,->\,F[<=k]\,b}),
+response chain, conjunction, and disjunction. Each node emits an event symbol
+$\sigma(v)$ from its kind and tool bindings; base patterns compile to 2--3 state
+DFAs and bounded response to $k{+}2$ states (full grammar in the appendix).
+
+\paragraph{Static temporal verification.}
+Policies are checked \emph{statically} via a graph\,$\times$\,DFA product: BFS
+from $(v_0,q_0)$ advances the DFA at each node and follows graph edges, and a
+reachable product state in the DFA violation set witnesses a violation. Because
+the product explores a superset of a workflow's runtime paths, if no violation
+state is reachable the property holds on \emph{every} runtime execution---a sound
+guarantee we exploit in Section~\ref{sec:results}. Explored states are bounded by
+$|V|\cdot|Q|$, so verification is linear in graph size for fixed-size DFAs; the
+same monitors also run at runtime over an event stream with $O(1)$ per-event
+overhead.

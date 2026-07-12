@@ -1,0 +1,29 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Runtime agent safety.}
+NeMo Guardrails~\citep{nemo_guardrails}, Guardrails AI~\citep{guardrails_ai},
+LlamaGuard~\citep{llamaguard}, and Rebuff~\citep{rebuff} enforce safety at the
+point of LLM output or tool call, catching content-level violations only when the
+offending path runs. Agentproof is complementary: it verifies structural
+properties of the topology before deployment, and its monitor-selection layer
+(Section~\ref{sec:pruning}) decides which of these runtime monitors are even
+needed.
+
+\paragraph{Model checking and workflow soundness.}
+Classical model checkers---SPIN~\citep{holzmann1997spin},
+NuSMV~\citep{cimatti2002nusmv}, CBMC~\citep{cbmc}---verify the same class of
+properties but require manual translation into Promela/SMV/annotated~C; Agentproof
+extracts the model automatically. Business-process soundness for Petri
+nets~\citep{vanderaalst2011bpm} and BPMN~\citep{dijkman2008bpmn} studies
+analogous reachability properties, but targets visual notations rather than the
+programmatic API objects agent frameworks expose. Runtime-verification frameworks
+such as JavaMOP~\citep{javamop} and three-valued LTL
+monitoring~\citep{bauer2011ltl3} inform our lightweight DFA monitors.
+
+\paragraph{Agent safety and evaluation.}
+Work on agent safety emphasizes alignment, capability evaluation, and
+governance~\citep{anthropic_rsp, metr, gabriel2024ethics}. Our contribution is
+orthogonal and empirical: the first base-rate measurement of a specific,
+checkable defect class in deployed workflows, and a diagnosis of what actually
+limits static verification for them.

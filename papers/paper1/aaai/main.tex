@@ -1,0 +1,70 @@
+\pdfoutput=1
+% AAAI-27 submission (condensed 7-page version).
+% NOTE: this uses a 2-column density APPROXIMATION so page count can be measured.
+% For submission, replace the preamble with the official aaai2027.sty from the
+% author kit (\documentclass[letterpaper]{article}\usepackage{aaai2027}...).
+\documentclass[twocolumn,10pt,letterpaper]{article}
+
+\usepackage[margin=0.75in,columnsep=0.25in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{../figures/}{../generated/}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\setlength{\parskip}{0pt}
+\frenchspacing
+
+\title{\bfseries Agentproof: A Real-World Base-Rate Study of Static
+Verification for Agent Workflow Graphs}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Agent frameworks increasingly encode tool-using behavior as explicit workflow
+graphs whose topology can be analyzed before deployment---yet whether such graphs
+actually contain the structural defects static verification targets has never
+been measured. We build \textsc{Agentproof}, which automatically extracts a
+unified abstract graph model from four agent frameworks (LangGraph, CrewAI,
+AutoGen, Google ADK) with no hand-written model, applies six structural checks
+with witness traces, and compiles a temporal policy DSL (a safety fragment of
+LTL) to DFAs evaluated both statically, via a graph\,$\times$\,DFA product, and at
+runtime. Used as a measurement instrument, it enables the first base-rate study
+of topology defects in real agent workflows: 930 mined from 253 GitHub
+repositories across all four frameworks, a 120-workflow sample validated against
+independent LLM-reconstructed ground-truth graphs and adversarial triage. The
+result is negative: real workflows are tiny (median two non-sentinel nodes) static
+pipelines, and of 187 flagged defects only two are genuine---43\% are extraction
+artifacts, 50\% intentional design. We diagnose extraction fidelity (edge recall
+0.64 on real code versus near-perfect on stubs, and as low as 0.37 for
+implicit-topology frameworks like ADK), not the check algorithms, as the binding
+constraint, and give the static machinery a defect-independent job: the product
+construction proves which runtime monitors can never fire, so they can be soundly
+pruned.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_system}
+\input{sections/03_realworld}
+\input{sections/04_results}
+\input{sections/05_related}
+\input{sections/06_conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{../references}
+
+\end{document}
