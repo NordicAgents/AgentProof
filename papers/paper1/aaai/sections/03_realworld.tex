@@ -25,7 +25,9 @@ one ground-truth reconstruction, one triage pass, and one adversarial
 verification pass (the verifier overturned 4.6\% of primary labels). All
 structural and temporal analyses run in pure Python~3.12 on a commodity laptop
 (no GPU); the ground-truth and triage agents were Claude Opus~4.8 orchestrated by
-a multi-agent workflow harness, and all agent outputs are released.
+a multi-agent workflow harness, and all agent outputs are released. We report
+Wilson 95\% confidence intervals for proportions and bootstrap intervals (10{,}000
+resamples over workflows) for fidelity means.
 
 \begin{table}[t]
 \centering\small
@@ -48,8 +50,10 @@ ADK       & 25 & 0.403 & 0.367 & 0.943 \\
 
 \paragraph{Extraction fidelity is the bottleneck.}
 Node detection stays strong (overall $P{=}0.91$, $R{=}0.85$), but edge recall
-falls to 0.644 and node-kind accuracy to 0.829, ranging from 0.37 edge recall on
-ADK to 0.77 on AutoGen (Table~\ref{tab:realworld_fidelity}). The frameworks that
+falls to 0.644 (95\% CI $[0.57,0.71]$) and node-kind accuracy to 0.829, ranging
+from 0.37 $[0.20,0.55]$ edge recall on ADK to 0.77 $[0.68,0.86]$ on AutoGen
+(Table~\ref{tab:realworld_fidelity}); the small per-framework samples give wide
+intervals, but ADK is the worst case even at its upper bound. The frameworks that
 encode topology \emph{implicitly}---ADK's nested \texttt{SequentialAgent}/
 \texttt{ParallelAgent} composition, AutoGen's participant lists with dynamic
 speaker selection---are hardest: the extractor must guess an edge set the source
@@ -80,10 +84,11 @@ human\_presence       & 2 & 9  & 93 & 11 \\
 \end{table}
 
 \paragraph{Defects are rare.}
-Of 187 flagged defects, only 2 (1.1\%) are genuine bugs---both missing human
-gates---while 43\% are extraction artifacts and 50\% intentional design
-(Table~\ref{tab:realworld_triage}). \emph{Every one of the 71 structural flags is
-an extraction artifact}, and structural flags are entirely a LangGraph phenomenon:
+Of 187 flagged defects, only 2 (1.1\%, 95\% CI $[0.3,3.8]\%$) are genuine
+bugs---both missing human gates---while 43\% are extraction artifacts and 50\%
+intentional design (Table~\ref{tab:realworld_triage}). \emph{Every one of the 72
+structural flags is an extraction artifact} (0 genuine; 95\% CI $[0,5.1]\%$), and
+structural flags are entirely a LangGraph phenomenon:
 in the raw study they fire on 78\% of LangGraph workflows but 0\% of AutoGen,
 CrewAI, and ADK, whose extractors build a connected topology by construction and
 cannot emit a dead end or unreachable exit. The structural signal is thus an

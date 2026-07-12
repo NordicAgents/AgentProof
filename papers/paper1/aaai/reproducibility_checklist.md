@@ -54,7 +54,7 @@ to the paper (drafted at the bottom) to move from `partial` → `yes`.
 | 4.6 | Computing infrastructure specified (HW/SW, versions) | **yes** | §Real-World Study, Validation: pure Python 3.12 on a commodity laptop (no GPU); ground-truth/triage agents were Claude Opus 4.8 via a workflow harness. |
 | 4.7 | Evaluation metrics formally described + motivated | **yes** | Node/edge precision–recall, node-kind accuracy, triage label distribution, and monitor-pruning rate are defined and motivated. |
 | 4.8 | Number of algorithm runs per result stated | **yes** | §Real-World Study, Validation: 1 ground-truth + 1 triage + 1 adversarial-verify pass per workflow; scalability timings are the median of 10 trials. |
-| 4.9 | Analysis beyond single-dimensional summaries | **partial** | Per-framework and per-check distributional breakdowns are reported; confidence intervals are **not** (explicitly flagged as future work — scaling the sample). |
+| 4.9 | Analysis beyond single-dimensional summaries | **yes** | Per-framework/per-check distributional breakdowns plus 95% CIs on every headline number: bootstrap (10k) for fidelity means, Wilson for prevalence proportions (`scripts/compute_cis.py`; e.g., edge recall 0.64 [0.57,0.71]; structural genuine 0/72, [0,5.1]%). |
 | 4.10 | Statistical significance tests | **NA** | Descriptive base-rate study; no trained-model performance comparison for which a significance test applies. |
 | 4.11 | Final (hyper-)parameters listed | **yes** | No trained models. All experimental parameters are listed: sample sizes (120 / 60+60), seeds, the sensitive-tool keyword lexicon, and the 15 policy DSL strings. |
 | 4.12 | Number/range of values tried per hyper-parameter | **NA** | No hyper-parameter search. |
@@ -67,13 +67,11 @@ to the paper (drafted at the bottom) to move from `partial` → `yes`.
 - **3.2** — derived graphs + provenance are released; raw third-party source is not
   redistributed (licensing).
 - **4.4** — code is commented but not every step back-references a paper section.
-- **4.9** — distributional breakdowns are reported but **confidence intervals are
-  not** (flagged in the paper as future work: scale the 120-workflow sample and
-  add a second human annotator for Cohen's κ). This is the one worth closing before
-  a camera-ready.
 
-*(4.6 and 4.8 were upgraded to `yes` by adding the infrastructure + run-count
-sentences to §Real-World Study, Validation.)*
+*(4.6, 4.8, and 4.9 were upgraded to `yes`: infrastructure + run-count sentences
+and 95% confidence intervals were added to §Real-World Study. A second human
+annotator for Cohen's κ remains a nice-to-have for camera-ready but is not a
+checklist item.)*
 
 ## Note on responsible data use (for the ethics/impact statement, not the checklist)
 

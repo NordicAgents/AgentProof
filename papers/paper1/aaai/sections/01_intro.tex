@@ -44,9 +44,9 @@ proving which runtime monitors can never fire, so they can be soundly pruned.
   independent LLM-reconstructed ground-truth graphs and adversarial triage
   (Section~\ref{sec:realworld}). Because nobody had measured it, the rarity is
   itself the contribution: the validated topology-defect rate is
-  ${\approx}0\%$ (2 of 187 flags genuine; 43\% extraction artifacts, 50\%
-  intentional design), and real workflows are mostly small static pipelines
-  (median two non-sentinel nodes).
+  ${\approx}0\%$ (2 of 187 flags genuine, 95\% CI $[0.3,3.8]\%$; 43\%
+  extraction artifacts, 50\% intentional design), and real workflows are mostly
+  small static pipelines (median two non-sentinel nodes).
   \item \textbf{\textsc{Agentproof}}, the measurement instrument: automatic
   extraction of a unified graph model from four heterogeneous frameworks with no
   hand-written formal model, six structural checks with witness traces, and a
@@ -55,9 +55,9 @@ proving which runtime monitors can never fire, so they can be soundly pruned.
   \item \textbf{A quantified diagnosis}: extraction fidelity, not the checks, is
   the binding constraint. Edge recall drops to 0.64 on real code (0.37 on ADK,
   0.77 on AutoGen) and node-kind accuracy to 0.83, both near-perfect on stubs;
-  every triaged structural flag is an extraction artifact, and such flags arise
-  only on LangGraph because the other extractors impose connected topologies by
-  construction.
+  every triaged structural flag is an extraction artifact (0 of 72; 95\% CI
+  $[0,5.1]\%$), and such flags arise only on LangGraph because the other
+  extractors impose connected topologies by construction.
   \item \textbf{A defect-independent job} for the static machinery: the
   graph\,$\times$\,DFA product proves which policies can never reach a violation,
   so their runtime monitors are provably inert and can be pruned (a mean 14 of 15

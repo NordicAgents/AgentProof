@@ -54,7 +54,8 @@ ADK       & 25  & 0.403 & 0.367 & 0.943 \\
 
 \paragraph{Extractor fidelity.}
 Table~\ref{tab:realworld_fidelity} reports the result. Node detection stays
-strong (overall precision~0.91, recall~0.85), but edge recall falls to 0.644 and
+strong (overall precision~0.91, recall~0.85), but edge recall falls to 0.644
+(95\% CI $[0.57,0.71]$, bootstrap over workflows) and
 node-kind accuracy to 0.829---far below the perfect scores on programmatic
 stubs---and edge recall ranges from 0.37 (ADK) to 0.77 (AutoGen). The frameworks
 that encode topology \emph{implicitly} (ADK's nested \texttt{SequentialAgent}/
@@ -90,9 +91,10 @@ human\_presence        & 2 & 9  & 93 & 11 \\
 
 \paragraph{Defect prevalence.}
 Table~\ref{tab:realworld_triage} gives the result: of 187 flagged defects, only
-2 (1.1\%) are genuine bugs---both missing human gates---while 43\% are extraction
-artifacts and 50\% are intentional design choices. \emph{Every one of the 71
-structural flags is an extraction artifact}, and structural flags are entirely a
+2 (1.1\%, 95\% CI $[0.3,3.8]\%$) are genuine bugs---both missing human
+gates---while 43\% are extraction artifacts and 50\% are intentional design
+choices. \emph{Every one of the 72 structural flags is an extraction artifact}
+(0 genuine; 95\% CI $[0,5.1]\%$), and structural flags are entirely a
 LangGraph phenomenon: in the raw study they fire on 78\% of LangGraph workflows
 but on 0\% of AutoGen, CrewAI, and ADK workflows, because those extractors build
 a connected topology by construction and cannot emit a dead end or unreachable
