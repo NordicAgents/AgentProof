@@ -20,7 +20,12 @@ node-id conventions), against which we scored node/edge precision--recall and
 node-kind accuracy. Second, for each of the 187 flagged defects one agent labelled
 it \textsc{real}, \textsc{extraction-artifact}, or \textsc{intentional} from
 source, and an adversarial verifier attempted to overturn each label
-(disagreements recorded as \textsc{arguable}).
+(disagreements recorded as \textsc{arguable}). Each validated workflow received
+one ground-truth reconstruction, one triage pass, and one adversarial
+verification pass (the verifier overturned 4.6\% of primary labels). All
+structural and temporal analyses run in pure Python~3.12 on a commodity laptop
+(no GPU); the ground-truth and triage agents were Claude Opus~4.8 orchestrated by
+a multi-agent workflow harness, and all agent outputs are released.
 
 \begin{table}[t]
 \centering\small
