@@ -62,6 +62,18 @@ edges are explicit, the dominant error is instead node-kind
 (\texttt{tool}$\rightarrow$\texttt{llm}: nodes invoking tools in their body with
 no declared binding).
 
+\paragraph{The fallback, not the ceiling.}
+This 0.64 is a property of the static AST fallback used for scale, not of the
+runtime extractors, which read the compiled framework object and are faithful by
+construction. On the (trusted) runnable examples, the fallback recovers 0.71 of
+the runtime extractor's LangGraph edges---closely matching its 0.68 on mined
+LangGraph code---missing chiefly the conditional edges it cannot resolve
+statically; for ADK the runtime graph is far richer (16 vs.\ ${\sim}5$ edges).
+Realising this higher-fidelity ceiling at scale would require executing untrusted
+repository code in a sandbox, which we do not attempt---and that gap between the
+faithful-but-unscalable and scalable-but-lossy extraction paths is exactly why
+extraction fidelity, not the check algorithms, is the binding constraint.
+
 \begin{table}[t]
 \centering\small
 \caption{Adversarial triage of 187 flagged defects. Every structural flag is an

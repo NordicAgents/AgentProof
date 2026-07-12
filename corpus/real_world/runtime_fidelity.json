@@ -1,0 +1,83 @@
+{
+  "n_runnable": 5,
+  "n_id_aligned": 2,
+  "runtime_is_reference": "runtime extractor reads the compiled object; fidelity 1.0 by construction",
+  "ast_vs_runtime_aligned": {
+    "edge_recall": 0.709,
+    "edge_precision": 1.0,
+    "node_recall": 1.0,
+    "kind_accuracy": 0.916
+  },
+  "rows": [
+    {
+      "workflow": "langgraph_incident_response",
+      "framework": "langgraph",
+      "runtime_nodes": 8,
+      "runtime_edges": 8,
+      "ast_nodes": 8,
+      "ast_edges": 6,
+      "node_id_overlap": 8,
+      "node_id_union": 8,
+      "ast_edge_recall": 0.75,
+      "ast_edge_precision": 1.0,
+      "ast_node_recall": 1.0,
+      "ast_kind_acc": 1.0
+    },
+    {
+      "workflow": "langgraph_customer_support",
+      "framework": "langgraph",
+      "runtime_nodes": 6,
+      "runtime_edges": 6,
+      "ast_nodes": 6,
+      "ast_edges": 4,
+      "node_id_overlap": 6,
+      "node_id_union": 6,
+      "ast_edge_recall": 0.667,
+      "ast_edge_precision": 1.0,
+      "ast_node_recall": 1.0,
+      "ast_kind_acc": 0.833
+    },
+    {
+      "workflow": "crewai_research_crew",
+      "framework": "crewai",
+      "runtime_nodes": 6,
+      "runtime_edges": 6,
+      "ast_nodes": 9,
+      "ast_edges": 8,
+      "node_id_overlap": 0,
+      "node_id_union": 15,
+      "ast_edge_recall": 0.0,
+      "ast_edge_precision": 0.0,
+      "ast_node_recall": 0.0,
+      "ast_kind_acc": 0.0
+    },
+    {
+      "workflow": "adk_compliance_pipeline",
+      "framework": "adk",
+      "runtime_nodes": 13,
+      "runtime_edges": 16,
+      "ast_nodes": 7,
+      "ast_edges": 6,
+      "node_id_overlap": 5,
+      "node_id_union": 15,
+      "ast_edge_recall": 0.25,
+      "ast_edge_precision": 0.667,
+      "ast_node_recall": 0.385,
+      "ast_kind_acc": 0.0
+    },
+    {
+      "workflow": "adk_pipeline",
+      "framework": "adk",
+      "runtime_nodes": 11,
+      "runtime_edges": 13,
+      "ast_nodes": 6,
+      "ast_edges": 5,
+      "node_id_overlap": 4,
+      "node_id_union": 13,
+      "ast_edge_recall": 0.231,
+      "ast_edge_precision": 0.6,
+      "ast_node_recall": 0.364,
+      "ast_kind_acc": 0.25
+    }
+  ]
+}

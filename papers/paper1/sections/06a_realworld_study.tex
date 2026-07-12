@@ -66,6 +66,23 @@ LangGraph, whose edges are explicit, the dominant error is instead node-kind
 (\texttt{tool}$\rightarrow$\texttt{llm}: nodes that invoke tools inside their
 body without declared bindings).
 
+\paragraph{The fallback, not the ceiling.}
+The 0.64 figure is a property of the static AST fallback used for large-scale
+mining, not of the runtime extractors (Section~\ref{sec:graph_model}), which read
+the compiled framework object and are therefore faithful by construction. On the
+repository's own runnable example workflows---the only code we execute, as running
+untrusted mined code would require a sandbox we do not deploy---the AST fallback
+recovers 0.71 of the runtime extractor's LangGraph edges, closely matching its
+0.68 on mined LangGraph code; the edges it misses are chiefly the conditional
+targets of \texttt{add\_conditional\_edges} maps that a static reader cannot
+resolve. For ADK the two extractors name nodes differently, so a direct edge
+recall is not meaningful, but the runtime graph is markedly richer (16 versus
+${\sim}5$ edges), consistent with ADK's implicit topology being the AST fallback's
+worst case. The higher-fidelity runtime path thus exists but does not scale to
+untrusted code; this gap between the faithful-but-unscalable and
+scalable-but-lossy extraction paths is precisely why extraction fidelity, rather
+than the check algorithms, is the binding constraint.
+
 \begin{table}[t]
 \centering
 \small
