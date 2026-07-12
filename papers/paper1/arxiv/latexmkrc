@@ -1,0 +1,10 @@
+$pdf_mode = 1;
+$bibtex_use = 1;
+$pdflatex = 'pdflatex -interaction=nonstopmode -halt-on-error %O %S';
+$bibtex = 'bibtex %O %B';
+
+# Shared assets (figures/, generated/, references.bib) live one level up at
+# papers/paper1/. Sources reference them as figures/... etc. so the tree
+# matches the self-contained arXiv tarball; resolve them via search paths.
+$ENV{'TEXINPUTS'} = '.:..:' . ($ENV{'TEXINPUTS'} // '');
+$ENV{'BIBINPUTS'} = '.:..:' . ($ENV{'BIBINPUTS'} // '');

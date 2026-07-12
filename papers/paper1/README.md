@@ -1,39 +1,50 @@
-# Agentproof arXiv preprint
+# Agentproof paper 1
 
-This folder contains an arXiv-compatible LaTeX source tree for an Agentproof
-preprint, plus helper scripts to regenerate evaluation tables.
+LaTeX sources for the Agentproof paper in two versions, sharing figures,
+generated tables, and the bibliography:
+
+```
+paper1/
+├── arxiv/           # full-length arXiv preprint (main.tex, arxiv.sty, sections/, appendices)
+├── aaai/            # condensed AAAI-27 submission (main.tex, sections/, reproducibility checklist)
+├── figures/         # shared figures (d3 sources + rendered PDFs/SVGs, TikZ sources)
+├── generated/       # shared auto-generated tables and stats (see scripts/)
+├── scripts/         # regenerate generated/ from evaluation outputs
+└── references.bib   # shared bibliography
+```
+
+Both versions resolve shared assets from the parent directory: `aaai/` uses
+explicit `../` paths, `arxiv/` uses `TEXINPUTS`/`BIBINPUTS` (set in its
+`latexmkrc`) so its sources match the self-contained arXiv tarball layout.
 
 ## Prerequisites
 
 - TeX Live (or equivalent) with `pdflatex`, `bibtex`, and `latexmk`
 - Python 3 (for optional table regeneration)
 
-## Build the PDF
+## Build the PDFs
 
 ```bash
-cd paper
-make pdf
+cd arxiv && make pdf   # -> arxiv/main.pdf
+cd aaai  && make pdf   # -> aaai/main.pdf
 ```
-
-Output: `paper/main.pdf`
 
 ## Build an arXiv submission bundle
 
 ```bash
-cd paper
+cd arxiv
 make arxiv
 ```
 
-Output: `paper/dist/agentproof-arxiv.tar.gz`
-
-Upload the tarball to arXiv as a **TeX/LaTeX** submission (pdflatex + bibtex).
+Output: `arxiv/dist/agentproof-arxiv.tar.gz` — a self-contained bundle
+(sources, `main.bbl`, figures, generated tables). Upload to arXiv as a
+**TeX/LaTeX** submission (pdflatex).
 
 ## Regenerate evaluation tables (optional)
 
 ```bash
-cd paper
 python3 scripts/collect_case_study_stats.py
 python3 scripts/render_tables.py
-make pdf
 ```
 
+Then rebuild the PDFs.

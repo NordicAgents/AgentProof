@@ -2,4 +2,3 @@ $pdf_mode = 1;
 $bibtex_use = 1;
 $pdflatex = 'pdflatex -interaction=nonstopmode -halt-on-error %O %S';
 $bibtex = 'bibtex %O %B';
-

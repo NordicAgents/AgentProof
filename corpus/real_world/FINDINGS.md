@@ -71,7 +71,7 @@ in the wild, topology defects are rare and most "missing human gate" flags are
 intentional. The real bottleneck to static-verification utility is **extraction
 fidelity + policy applicability**, not the check algorithms. This is an honest,
 defensible, and more interesting story than "defects are common" — but it changes
-the paper's framing (see draft `papers/paper1/sections/06a_realworld_study.tex`).
+the paper's framing (see draft `papers/paper1/arxiv/sections/06a_realworld_study.tex`).
 
 ## Next steps to make this ICLR-strong
 
