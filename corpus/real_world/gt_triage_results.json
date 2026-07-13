@@ -1,0 +1,990 @@
+{
+  "triage": [
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check_id": "reverse_reachability",
+      "framework": "langgraph",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The GT graph faithfully mirrors the source: wait_for_user (added line 401, targeted by the conditional edge at line 416) has no outgoing edge in lines 407-428, so it truly cannot reach __end__. But this is the deliberate pre-interrupt() multi-turn LangGraph pattern, stated in the node's own docstring (lines 240-243: \"used when waiting for user input\"). Each graph.invoke() (lines 447, 463) is one conversational turn that ends either at END (final report) or by halting at wait_for_user after asking a follow-up question; the outer drivers continue_medical_chat (452-466), run_command_line (504-514), and run_web_prompt (522-555) then append the user's reply and re-invoke the graph from START with the accumulated state. I empirically verified in langgraph that a dead-end node compiles fine and invoke() returns the state there \u2014 behaviorally identical to an explicit edge to END \u2014 so there is no hang, livelock, or safety gap, just an intended per-invocation stopping point.",
+        "summary": "wait_for_user is a deliberate turn-boundary halt node in a multi-turn chat loop: each invoke() intentionally stops there so the outer driver can collect user input and re-invoke the graph, so the unreachable-exit flag reflects intended design, not a defect."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "Independently reproduced the primary's verification on langgraph 1.0.9 with the exact topology from source lines 397-432: the graph compiles with dead-end wait_for_user, each invoke() halts there gracefully (node sequence ['interactive_conversation','wait_for_user']) and returns state, and the outer drivers (continue_medical_chat 452-466, run_command_line 504-514, run_web_prompt 522-555) re-invoke from START until the research branch reaches __end__ \u2014 no hang or livelock is possible. The docstring (lines 240-243) states the wait-for-user intent; this is the standard pre-interrupt() multi-turn halt-and-resume pattern. Adversarial gt_error angle also fails: langgraph's get_graph() does add an implicit ('wait_for_user','__end__') edge at runtime (a fact the primary missed), but the corpus GT convention mirrors declared source wiring (no add_edge from wait_for_user exists in lines 407-428), extractor_accuracy.py scores against declared edges, and structural.py (~lines 93-102) explicitly provides an 'intentional_halt' dead-end suppression \u2014 the pipeline expects these flags to be adjudicated as intentional at triage. The implicit-END runtime semantics strengthens rather than undermines the intentional label, since the node behaviorally is an exit. A separate latent bug exists (determine_next_stage can return 'final_response'/line 339 which is absent from the conditional map at lines 414-420, and an unbound last_user_message at line 366), but it is unrelated to this flag."
+      }
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check_id": "dead_ends",
+      "framework": "langgraph",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The GT graph faithfully reflects the source: `wait_for_user` (added line 401, targeted by the conditional edge at line 416) has no outgoing edge anywhere in lines 407-428, so the flag is not a gt_error. But the dead end is deliberate: the node's docstring (lines 240-243) states it is a pass-through \"used when waiting for user input\", and LangGraph (verified on the installed version) compiles and gracefully halts at a no-outgoing-edge node, returning state to the caller \u2014 semantically identical to the END the same router reaches at line 419. The surrounding driver loop depends on this halt: start_medical_chat/continue_medical_chat (lines 435-466) re-invoke the graph from START after each user message, and determine_next_stage (lines 336-369) resumes via \"continue_conversation\". This is the standard pre-interrupt() multi-turn pause pattern (file is named \"multiturn\"), not a silent livelock a developer would fix.",
+        "summary": "The dead-end `wait_for_user` node is a deliberate graceful-halt used to yield control to the external multi-turn driver loop, which re-invokes the graph after collecting user input."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "Adversarial verification failed to overturn. (1) Not gt_error: the GT edge set matches the source exactly \u2014 wait_for_user is added at line 401, targeted only by the conditional map at line 416, and no add_edge from it exists in lines 407-428. (2) Not real_defect: I empirically reproduced the graph wiring and confirmed on both langgraph 0.3.34 (era-appropriate for a spring-2025 hackathon repo) and 1.2.9 that compile() accepts the no-outgoing-edge node and invoke() halts there gracefully, returning full state \u2014 no livelock or hang. (3) The dead end is the designed pause mechanism, exercised every turn: determine_next_stage's default (line 369) routes to wait_for_user after each assistant question, and the drivers start_medical_chat/continue_medical_chat (435-466) plus the run loops (504-514, 522-555) depend on invoke() returning at that point, re-invoking from START on the next user message (\"continue_conversation\", line 347). The docstring (241) states the waiting intent, and the developer's GraphRecursionError handlers (448, 464) show they deliberately avoided looping edges. Routing \"wait_for_user\" to END instead would be behaviorally identical, so at most this is a style cleanup, not a defect a developer would need to fix."
+      }
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "check_id": "router_shape",
+      "framework": "langgraph",
+      "primary": {
+        "label": "gt_error",
+        "confidence": "high",
+        "justification": "In the source, all five outgoing routes of the router node `interactive_conversation` are created by one `add_conditional_edges` call (lines 411-421 of corpus/real_world/sources/Brenmull12__Hoohacks2025__multiturn.py); the flagged self-edge is the `\"continue_conversation\": \"interactive_conversation\"` branch on line 415 of that conditional mapping, and no unconditional `add_edge` exists with `interactive_conversation` as source (the only add_edge calls are lines 408, 424, 425, 427, 428). The ground-truth graph, however, records that self-edge with kind \"loop\" instead of \"conditional\" (ground_truth/Brenmull12__Hoohacks2025__multiturn.json lines 60-64), using \"loop\" for any back-edge regardless of conditionality (it also uses it for the genuinely direct reset_conversation->interactive_conversation edge, lines 100-104). The router_shape checker treats the non-\"conditional\" kind as a violation, so the flag is produced by the reconstruction's edge-kind labeling, not by any non-conditional edge in the code.",
+        "summary": "The router's self-loop is part of add_conditional_edges in the source (line 415), but the GT graph relabels it kind \"loop\" instead of \"conditional\", so the router_shape flag is caused by the reconstruction, not the code."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "gt_error",
+        "reason": "The flagged self-edge is conditional in the source: it is the \"continue_conversation\": \"interactive_conversation\" branch (line 415) of the single add_conditional_edges call (lines 411-421) that creates all five outgoing routes of the router; no add_edge has interactive_conversation as source (only lines 408, 424, 425, 427, 428 exist, with line 428 targeting it), and there is no dynamic Command/Send routing. The ground-truth graph records this edge as kind \"loop\" (JSON lines 60-64), a corpus-wide convention (88 \"loop\" edges) applied to back-edges regardless of conditionality \u2014 it also labels the genuinely direct reset_conversation->interactive_conversation edge \"loop\" (JSON lines 100-104, source line 428). The router_shape checker reads any non-\"conditional\" kind as a violation, so the flag is produced entirely by the GT's edge-kind encoding misrepresenting the source's conditionality, not by any defect or design choice in the code. Attempts to relabel as real_defect (no non-conditional router edge exists in code), intentional (nothing deliberate is being flagged), or arguable (the encoding demonstrably loses the tested property) all fail."
+      }
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "check_id": "tool_declarations",
+      "framework": "langgraph",
+      "primary": {
+        "label": "gt_error",
+        "confidence": "high",
+        "justification": "The source explicitly declares the tool set: line 34 defines `tools = [list_instances, start_instance, stop_instance, describe_instance]`, line 35 binds them via `model.bind_tools(tools)`, and line 38 constructs `ToolNode(tools=tools)`, which is wired in as the \"tools\" node at line 64. So the code's tool node has a fully declared, non-empty tools set. The ground-truth JSON (Harsh1210__llm-opsbot__main.json) even lists all four tool names in the node's label (line 22) but omits the structured \"tools\" field on the node \u2014 a field the GT schema supports and other GT graphs in the same corpus populate (e.g. jakenolan__langgraph-custom-tools__main.json node \"action\" has \"tools\": [\"notes_toolkit\"]). The tool_declarations check reads that structured field, so the empty declared-tools set is an artifact of the expert reconstruction, not of the source code.",
+        "summary": "The flag is a ground-truth reconstruction artifact: the source declares four tools on the ToolNode (lines 34-38), but the GT graph only records them in the node label and leaves the structured declared-tools field empty."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "gt_error",
+        "reason": "Verified adversarially and could not overturn. Source unambiguously declares four tools (main.py lines 34-38: tools list, bind_tools, ToolNode(tools=tools)) wired as the \"tools\" node (line 64), so no empty tool set exists in the code \u2014 ruling out real_defect and intentional. The GT JSON lists the four tool names only in the node label (line 22) and omits the structured \"tools\" field the check reads. Corpus audit confirms this is an annotation lapse, not a convention: 38 of 41 langgraph tool-kind nodes in ground_truth/ populate the structured field; this graph is one of only 3 that don't. The flag is an artifact of the expert reconstruction."
+      }
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "check_id": "human_gate_coverage",
+      "framework": "langgraph",
+      "primary": {
+        "label": "real_defect",
+        "confidence": "high",
+        "justification": "The GT graph faithfully mirrors the source, so this is not a gt_error: route_after_spell_check (lines 492-496) skips the confirmation node whenever needs_confirmation is false (similarity >= 0.6, line 272), and generate_sql feeds execute_query directly (line 519). On that witness path, LLM-generated SQL is executed verbatim with no human review: execute_query_node (lines 459-472) calls db_manager.execute_query (lines 166-174), which runs any statement \u2014 no SELECT-only restriction, no sanitization \u2014 against a superuser connection (postgresql://postgres:admin@..., line 674), and the generation prompt (lines 419-432) embeds the raw user_query without constraining output to read-only SQL, making prompt-injected destructive statements executable. The bypass of confirmation is deliberate only for location-spelling UX; the confirmation node (lines 384-397) never reviews the SQL, so even the \"gated\" path leaves the sql-class tool unapproved (the chat-loop resume at lines 619-627 likewise executes immediately after a spelling \"yes\"). Unrestricted text-to-SQL execution without any approval or read-only enforcement is a genuine safety gap a developer would want to fix, not a legitimately low-risk ungated pipeline.",
+        "summary": "Genuine ungated-SQL defect: the graph correctly shows a mainline path (high-confidence spelling match) where unconstrained LLM-generated SQL is executed against a superuser Postgres connection with no human approval of the SQL on any path."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "real_defect",
+        "reason": "GT graph verified edge-by-edge against source (edges 515-520, routers 492-502): faithful, even charitably marking `confirmation` as human though it never interrupts (actual input happens outside the graph, chat_loop 614-631) \u2014 so gt_error fails. The intentional defense also fails: the deliberate bypass (492-496, similarity >= 0.6 at line 272) is a spelling-UX decision; the confirmation node's text (385-389) reviews only location spelling, and even the resume path (619-627) executes SQL immediately after a spelling \"yes\" \u2014 no code path ever reviews the SQL. The sink is genuinely dangerous: execute_query (166-174) has no SELECT-only restriction on a hardcoded superuser connection (line 674), and the generation prompt (419-432, 439) embeds raw user_query with no read-only constraint. One nuance the primary missed \u2014 line 166-174 never commits, so plain DML rolls back on close \u2014 is accidental, not a safeguard, and superuser side-channels (COPY TO PROGRAM, pg_read_file, injected COMMIT) survive it. Unreviewed superuser text-to-SQL execution is a gap a developer would fix; primary label stands."
+      }
+    },
+    {
+      "slug": "ed-donner__agents__sequential_agents",
+      "check_id": "dead_ends",
+      "framework": "adk",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The flagged dead-end node is order_form_agent_v1. In the source (sources/ed-donner__agents__sequential_agents.py), order_form_agent is deliberately excluded from the SequentialAgent pipeline (lines 84-88, whose sub_agents list contains only the five query-pipeline agents) and is instead constructed as a self-contained conversational order-taking agent (lines 90-149) and returned separately from the factory for the caller to wire into a larger app (line 9 signature, line 151 return). In ADK, a standalone Agent needs no explicit outgoing edge: it terminates the turn implicitly when it finishes responding, and its instruction even scripts a terminal success path (lines 138-141: save order, confirm, clear state). The GT graph represents this faithfully \u2014 the node is labeled \"standalone\" \u2014 so the flag is a mechanical consequence of a legitimate, deliberate design (an exported standalone agent / intended halt), not a silent-halt bug and not a reconstruction error.",
+        "summary": "order_form_agent_v1 is an intentionally standalone conversational agent returned by the factory (line 151) for external wiring, not part of the sequential pipeline (lines 84-88), so its lack of outgoing edges is deliberate ADK design (implicit turn termination), not a defect."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "The dead-end node order_form_agent_v1 is a deliberately standalone agent: the factory excludes it from the SequentialAgent pipeline (sources/...sequential_agents.py lines 84-88) and exports it separately (signature line 9, return line 151) because its instruction is a multi-turn conversational order protocol (state checks/re-prompt/'confirm' loop, lines 110-144) that cannot function as a one-shot sequential stage, and it scripts its own terminal success path (lines 138-141). As a root-level ADK Agent it ends the turn implicitly, so no silent halt exists. Attempts to overturn failed: it is not a real_defect (exclusion is provably by design and the node is not even reachable in the modeled workflow, so no run can strand there), and not a gt_error (the GT faithfully represents the file \u2014 the agent is genuinely unwired within this module, is labeled \"standalone\" at GT line 48, and the kind:\"tool\" convention matches other tool-bearing agents in the same graph). The flag is a mechanical true-positive of the zero-out-edges definition applied to a legitimate exported standalone agent."
+      }
+    },
+    {
+      "slug": "gabrielpreda__adk-sql-agent__agent",
+      "check_id": "router_shape",
+      "framework": "adk",
+      "primary": {
+        "label": "real_defect",
+        "confidence": "high",
+        "justification": "security_router_agent (agent.py lines 95-101) is named, described (\"exits on not secure, continues on secure\", line 98), and instructed (lines 73-87: \"NOT SECURE \u2192 Your message is the FINAL response, system exits\") as a security router, but it is a plain LlmAgent with no tools, callbacks, or escalation mechanism, embedded in a SequentialAgent (lines 134-142) that unconditionally executes all sub-agents in order. There is therefore no conditional exit path: after a rejection is emitted, the refinement_loop (SQL rewrite/generation/execution, lines 107-117) still runs on the insecure request. The developer's own comment (lines 130-132) concedes this fall-through and hopes the loop \"should handle it gracefully\" \u2014 prompt-level mitigation, not control flow. The GT graph faithfully encodes this (router node with a single unconditional edge to rewrite_prompt_agent), so the flag reflects the source, not a reconstruction artifact. The secondary routing_agent violation (loop/direct edges) is the ordinary ADK LoopAgent exit shape and is weaker, but the security_router_agent violation alone is a genuine safety gap a developer would fix (e.g., via a callback/escalation gate before the loop).",
+        "summary": "The \"security router\" cannot actually route: it is a tool-less LlmAgent inside a SequentialAgent, so insecure requests fall through unconditionally to the SQL generation/execution loop despite the instruction claiming the pipeline exits \u2014 a real safety defect the code's own comment admits."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "real_defect",
+        "reason": "Verified adversarially and could not overturn. security_router_agent (agent.py lines 95-101) is declared a security router by name, description (line 98: \"exits on not secure, continues on secure\"), and instruction (lines 77, 86: \"This is the END... system exits\"), yet it is a plain LlmAgent with no tools, callbacks, or escalation, inside a SequentialAgent (lines 134-142) that unconditionally runs the refinement_loop (SQL rewrite/generation, lines 107-117) after any rejection. gt_error fails: the GT's router kind reflects the source's own declared role and its single direct edge reflects actual control flow \u2014 the mismatch is the source's, not the graph's. intentional fails: the comment at lines 130-132 is a concession-plus-hope, and the unused CallbackContext import (line 11) plus the v2 file's log-only loop_termination_callback (agent_v2.py lines 16-19, never wired to end_invocation/escalate) prove the developer attempted and failed to implement the exit \u2014 an unresolved implementation gap in a security control, not deliberate design. The secondary routing_agent violation (standard LoopAgent loop/exit edges) is weak, but the security_router_agent violation alone sustains real_defect."
+      }
+    },
+    {
+      "slug": "merdandt__SalesShortcut__email_agent",
+      "check_id": "tool_declarations",
+      "framework": "adk",
+      "primary": {
+        "label": "intentional",
+        "confidence": "medium",
+        "justification": "The flagged file (sources/merdandt__SalesShortcut__email_agent.py) is a pure composition module: lines 7-8 import email_crafter_agent and email_sender_agent from sibling modules, and lines 10-17 wrap them in an ADK SequentialAgent, which has no tools parameter \u2014 in ADK, tools are bound on the LlmAgent sub-agents in their own modules. The docstring (lines 2-3, \"Now includes service account email sending\") confirms the send tool exists but is implemented inside the imported .email_sender_agent module, outside this file. The GT graph reasonably models email_sender_agent as a tool-kind node (ground_truth JSON lines 19-23) but cannot list its tools because the binding lives elsewhere, so the empty declared-tools set is a file-scope artifact of ADK's modular design, not a missing binding: the pipeline (entry -> crafter -> sender -> end) is complete and functional. This is exactly the \"undeclared tool bindings because the framework attaches tools elsewhere\" pattern, so it is intentional rather than a real defect; it is not a gt_error because the reconstruction faithfully reflects what the source file contains. Confidence is medium because the sub-agent module is not in the corpus to directly confirm its tool list, and one could alternatively argue the node kind itself (tool vs llm) is a GT modeling choice.",
+        "summary": "The tool_declarations flag fires because email_sender_agent's tool bindings are deliberately declared in its own imported sub-agent module rather than in this SequentialAgent composition file \u2014 a legitimate modular ADK design, not a defect."
+      },
+      "verify": {
+        "agree": false,
+        "final_label": "gt_error",
+        "reason": "The GT graph misrepresents the source on the exact attribute the check keys on. In the source (sources/merdandt__SalesShortcut__email_agent.py lines 10-17), email_sender_agent is passed via SequentialAgent(sub_agents=[...]), which in ADK accepts only BaseAgent instances \u2014 it is an agent in this file, and the upstream repo confirms it is an LlmAgent with tools=[send_email_with_attachment_tool] (sdr/sdr/sub_agents/outreach_email_agent/sub_agents/email_sender/email_sender_agent.py). The GT (ground_truth/merdandt__SalesShortcut__email_agent.json lines 19-23) nonetheless labels it kind \"tool\" with no tools list; tool_declarations fires only on tool-kind nodes, so the flag exists solely because of this annotation. The primary's claim that the empty tool set is a \"file-scope artifact of ADK's modular design\" is refuted by the annotator's own convention: in the sibling GT for the same repo (merdandt__SalesShortcut__outreach_email_agent.json), all identically out-of-file imported sub-agents \u2014 including email_agent itself and the action-like engagement_saver_agent \u2014 are modeled as kind \"llm\" with no tools, producing no flag. Corpus-wide, 95/101 tool-kind nodes list their tools, and agents collapsed into tool-kind nodes elsewhere always carry the tool name (e.g., ExaAgent -> ['exa_search_ipl']). Either the node kind is wrong or the tools list is missing; both repairs are edits to the GT, not the source. The source design is legitimate, but \"intentional\" mischaracterizes a flag whose root cause is an annotation inconsistency, not deliberate source design."
+      }
+    },
+    {
+      "slug": "microsoft__ACV__test_cache_agent",
+      "check_id": "tool_declarations",
+      "framework": "autogen",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The flagged \"tool\" node is the UserProxyAgent \"user\" (source lines 144-159 and 190-204). Its execution capability is attached via autogen's code_execution_config (lines 149-153 and 195-199: work_dir, use_docker \"python:3\", timeout 60), which makes the agent execute code blocks from messages without any declared tool schema. The file contains no register_for_llm/register_for_execution/function_map/tools declarations at all, so an empty declared-tools set is accurate to the source, and the ground-truth graph correctly reflects this (it even labels the node \"code executor\"), ruling out gt_error. The workflow runs correctly \u2014 termination via the TERMINATE predicate (line 193), max_consecutive_auto_reply=5 (line 194), and GroupChat max_round=4 (line 209) \u2014 and it is a pytest cache test, so there is no missing-binding bug. This is the standard autogen pattern where the framework attaches the executor implicitly rather than through declared tool bindings.",
+        "summary": "The empty declared-tools set on the \"user\" node is standard autogen design: the UserProxyAgent's code executor is attached implicitly via code_execution_config (lines 195-199), not via declared tool bindings, so the flag reflects an intentional framework pattern rather than a defect or reconstruction error."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "The \"user\" node's execution capability comes solely from autogen's code_execution_config (source lines 149-153 and 195-199), which executes message code blocks with no declared tool schema; grep confirms the file has zero register_for_llm/register_for_execution/function_map/register_function constructs, so the empty declared-tools set faithfully reflects the source. The GT graph is not misrepresenting anything \u2014 it explicitly labels the node \"user (UserProxyAgent, code executor)\" and its topology matches the round-robin GroupChat (lines 206-211), ruling out gt_error. Nor is it a real_defect: the workflow is a functioning ag2 cache test with termination predicate (lines 147, 193), max_consecutive_auto_reply=5 (lines 148, 194), and max_round=4 (line 209); the only genuine smells found ([-0] at line 217, duplicate decorator at lines 21-22) are unrelated to the tool_declarations check. This is the standard, deliberate autogen implicit-executor pattern, so the primary label stands."
+      }
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "check_id": "tool_declarations",
+      "framework": "langgraph",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The ToolNode is constructed with a non-empty tool list at runtime: tools are fetched dynamically from an MCP server via `tools = await client.get_tools()` (source line 57, client defined lines 46-54), passed into `create_canvas_graph(tools)` (line 14), bound to the LLM with `bind_tools(tools)` (line 16), and given to `ToolNode(tools)` (line 26). The tool identities live in the external `canvas_mcp.py` MCP server and are inherently not statically declarable in this file, so the GT graph's empty declared-tools set on node \"tools\" is a faithful reflection of a deliberate dynamic-tool-loading design, not a bug (the node does execute tools) and not a reconstruction error (the GT label even notes \"executes MCP canvas tools\").",
+        "summary": "The empty declared-tools set is intentional: the ToolNode's tools are loaded dynamically from an MCP server at runtime (lines 26, 57), so no static tool declarations exist in the source by design."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "The empty declared-tools set on node \"tools\" is a faithful consequence of deliberate dynamic MCP tool loading, not a source defect or GT misrepresentation. Tools are fetched at runtime via MultiServerMCPClient.get_tools() (source lines 46-57), bound with bind_tools(tools) (line 16), and executed by ToolNode(tools) (line 26); the graph wiring (lines 34-39) matches the GT exactly. The tool identities live in the external canvas_mcp.py MCP server, which is not part of the corpus (verified: only this single .py in sources/), so they are inherently not statically declarable. The check itself is not vacuous \u2014 95/101 tool nodes in the GT corpus do declare tools \u2014 this node is legitimately empty by design. Minor nit: the primary cited line 14 for the create_canvas_graph(tools) call; that is the function definition, the call is at line 60. Substance unaffected."
+      }
+    },
+    {
+      "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+      "check_id": "router_shape",
+      "framework": "autogen",
+      "primary": {
+        "label": "gt_error",
+        "confidence": "high",
+        "justification": "The router_shape flag fires on the single edge global_workspace_agent -> __end__ marked kind \"direct\" in the GT graph (ground_truth json lines 107-111), while the four worker-agent edges are marked conditional. In the source, termination is not unconditional: the group chat ends only when is_termination_msg matches \"SUCCESS\" or \"FAILURE\" in the coordinator's message (source line 75, repeated at 101, 119, 143, 155, 168), which the coordinator emits via its mandated \"TASK STATUS: IN PROGRESS or SUCCESS or FAILURE\" format (lines 65-66); otherwise routing continues under allowed_transitions (lines 176-183) up to max_round=100 (line 190). The transition to end is therefore predicate-gated, i.e. conditional, and the flag is caused purely by the reconstruction's edge-kind label, not by anything in the code.",
+        "summary": "The GT graph mislabels the coordinator's is_termination_msg-gated exit edge as \"direct\" instead of \"conditional\", so the router_shape violation is an artifact of the reconstruction, not the source."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "gt_error",
+        "reason": "The router_shape flag fires solely because the GT graph labels the global_workspace_agent -> __end__ edge \"direct\" (ground_truth json lines 107-111). In the source, reaching end is predicate-gated: every agent terminates only when a message contains SUCCESS or FAILURE (is_termination_msg at lines 75, 101, 119, 143, 155, 168), which the coordinator emits via its mandated \"TASK STATUS: IN PROGRESS or SUCCESS or FAILURE\" format (lines 65-66); otherwise routing continues under allowed_transitions (lines 176-183) up to max_round=100 (line 190). Adversarial checks failed to overturn: (1) an unconditional end edge would contradict the graph's own four conditional worker edges \u2014 the coordinator could never dispatch work; (2) a corpus survey shows router->exit edges are labeled \"conditional\" in 5 of 7 GT graphs, so \"direct\" is not a deliberate convention; (3) the GT even self-contradicts, labeling the __end__ node \"end (SUCCESS/FAILURE termination)\" (json line 53) while marking the edge direct. No source defect exists and no intentional unconditional end path exists; the ground-truth edge-kind misrepresents the source."
+      }
+    },
+    {
+      "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+      "check_id": "human_gate_coverage",
+      "framework": "autogen",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The GT graph is a faithful reconstruction of the source (allowed_transitions at lines 176-183 match the edges; register_function at lines 239-245 binds execute_function to execution_agent/environment_proxy), so this is not a gt_error, and the flag is literally true: no human gate exists anywhere. However, the lack of a gate is a deliberate design choice for an unattended benchmark harness: every agent is constructed with human_input_mode=\"NEVER\" (lines 74, 100, 118, 142, 154, 167), and main() (lines 197-277) autonomously loops over num_games ALFWorld episodes writing SUCCESS/FAILURE results to CSV. The \"sensitive exec-class\" tool is only exec-class by name heuristic \u2014 execute_action (lines 24-32) merely calls env.step([action]) on a sandboxed ALFWorld simulation, so the worst-case effect of an ungated call is a wrong move in a game. A human approval gate on each simulated env step would defeat the purpose of the eval; no developer would consider this a safety gap to fix.",
+        "summary": "The ungated \"execute_function\" only steps a sandboxed ALFWorld simulation inside an intentionally autonomous benchmark-eval loop (all agents human_input_mode=\"NEVER\"), so the absence of a human gate is deliberate and low-risk."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "Could not overturn. The GT graph is faithful: edges match allowed_transitions (source lines 176-183), execute_function binding matches register_function (lines 239-245, caller=execution_agent, executor=environment_proxy), and the flag's witness paths are real, so gt_error fails. The no-gate design is affirmatively deliberate, not an oversight: every agent explicitly sets human_input_mode=\"NEVER\" (lines 74, 100, 118, 142, 154, 167), overriding autogen's default, and main() (lines 197-277) is an unattended ALFWorld benchmark loop over ~54 game episodes with max_round=100 per game, CSV result logging (265-270), and per-game sleeps (275) \u2014 gating each simulated step would require hundreds of approvals and defeat the eval. The \"sensitive\" tool is exec-class only by name heuristic: execute_action (lines 24-32) BLEU-matches against admissible_commands and calls env.step([action]) on a sandboxed ALFWorld simulator, so worst case is a wrong game move with no real-world side effects; real_defect fails. No coherent counter-position exists, so it is not arguable either. Primary label intentional is correct."
+      }
+    },
+    {
+      "slug": "shazy89__ai-learning__agent",
+      "check_id": "tool_declarations",
+      "framework": "langgraph",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The \"action\" node is a deliberately generic tool executor: tools are supplied by a dependency-injected ToolRegistry (agent.py line 35, imported from .tools at line 11), bound to the LLM dynamically via model.bind_tools(self._registry.all()) (line 60), and dispatched by name through the registry in _execute_tools (lines 93-124) with explicit unknown-tool (lines 100-105) and exception handling (lines 108-114). No static per-node tool list exists in this file to declare, so the empty declared-tools set reflects an intentional registry-based architecture, not a defect; the GT graph (node \"action\", kind \"tool\", no tools field) faithfully represents the source, so it is not a gt_error either.",
+        "summary": "Empty declared-tools set on the \"action\" node is intentional: the agent binds and executes tools through an injected ToolRegistry defined outside this file, so no static tool declaration exists at the node."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "All primary citations verified against the source: ToolRegistry is dependency-injected (lines 11, 35), tools are bound dynamically via model.bind_tools(self._registry.all()) (line 60), and the \"action\" node (_execute_tools, lines 93-124) dispatches by name through the registry with explicit unknown-tool (lines 100-105) and exception (lines 108-114) handling. No static tool list exists in the file, so the empty declared-tools set on the \"action\" node reflects a deliberate generic-executor architecture documented in the class docstring (lines 16-30). Not real_defect: a developer would not hardcode tools into this intentionally registry-agnostic node. Not gt_error: the GT graph's nodes/edges match set_entry_point (line 72), add_conditional_edges (lines 66-70), and add_edge (line 71) exactly, and omitting a tools field is faithful since the tools live in the external .tools module outside the analyzed file. The only residual complaint (registry patterns blind downstream checks like human_gate_coverage) is a methodology limitation, not a source or GT problem, so it does not rise to arguable."
+      }
+    },
+    {
+      "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+      "check_id": "router_shape",
+      "framework": "adk",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The flagged \"non-conditional\" edge is the loop back-edge (ExitConditionChecker \u2192 Critic, kind=loop) of an ADK LoopAgent defined at cv_writer.py lines 82\u201386: LoopAgent(sub_agents=[critic, fact_check, reviser, ExitConditionAgent()], max_iterations=MAX_LOOP_ITERATIONS), with MAX_LOOP_ITERATIONS=5 (line 44). This is the canonical ADK escalation-based critique-revise loop: the ExitConditionAgent (imported line 25) either escalates to exit the loop into the SequentialAgent post-processors (lines 87\u201390, 124\u2013126) or lets the loop repeat, and the max_iterations bound guarantees termination regardless. Both outgoing edges are mutually exclusive conditional outcomes in reality; the graph merely uses the corpus-wide convention of marking LoopAgent back-edges as kind=\"loop\" (identically encoded in AsadAhmedSaiyed__...__LoopAgent.json and esk000__...__LoopAgent.json, which did not flag only because their back-edge source is not a router node). The graph faithfully represents the source, and the source has no control-flow bug \u2014 the router_shape rule simply does not account for loop-kind edges on a deliberate bounded-loop design.",
+        "summary": "The flag fires on the loop back-edge of a deliberate, bounded ADK LoopAgent critique-revise pattern (max_iterations=5 with an escalation-based exit agent), which is legitimate design, not a control-flow defect."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "Verified against source and corpus; could not overturn. The flagged edge (ExitConditionChecker \u2192 Critic, kind=loop) is the back-edge of a deliberately bounded ADK LoopAgent (cv_writer.py:82-86, max_iterations=MAX_LOOP_ITERATIONS=5 at line 44) \u2014 the canonical ADK critique/fact-check/revise/exit-check pattern from the official tutorial. Termination is guaranteed regardless of ExitConditionAgent behavior (escalation exits early; the iteration cap exits otherwise), and both exit causes correctly converge on GrammarChecker, after which _run_async_impl (lines 119-126) unconditionally runs the PostProcessors SequentialAgent to __end__. Not a gt_error: I empirically confirmed the corpus-wide convention \u2014 all ~60 ground-truth graphs encode loop back-edges as kind=\"loop\", including the two other ADK LoopAgent graphs (AsadAhmedSaiyed, esk000), which escaped the flag only because their back-edge source is a tool node rather than a router; classifying ExitConditionChecker as a router is the most faithful choice since it is a dedicated escalate-vs-repeat decision agent. The router_shape rule simply lacks an exemption for loop-kind edges on bounded-loop routers."
+      }
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "check_id": "human_gate_coverage",
+      "framework": "langgraph",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The ground-truth graph faithfully mirrors the source (nodes lines 138-143, edges lines 146-152 of tweetlol__eve__eve.py), so this is not a reconstruction error. The flagged \"sensitive\" tool is save_article (save_article_node, lines 109-118), which merely writes the generated Czech article to a local file \u2014 the same class of side effect the pipeline already performs at every node via write_to_file (lines 30, 45, 61, 78, 98, 114). The workflow is deliberately unattended: should_revise (lines 122-130) auto-approves after MAX_REVISIONS with the explicit comment \"Max revisions reached, save anyway\", and the whole graph runs end-to-end via agent.invoke (line 168). There is no payment, exec, SQL, or external send anywhere; adding a human gate before a local text-file save would defeat the pipeline's purpose. The flag is a lexical over-trigger of the \"save\" sensitive class on a benign local persistence step.",
+        "summary": "The ungated \"save\" node only persists the pipeline's own generated article to a local file in a deliberately unattended write-review-save loop, so the missing human gate is legitimate design, not a safety gap."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "Verified against both the corpus source and the upstream repo: save_article writes a local markdown file to a hardcoded path and returns the path (corpus lines 110-111, 118; state field article_czech_path line 21) \u2014 no payment/exec/sql/send surface. The identical side-effect class occurs ungated at every node via write_to_file (lines 30, 45, 61, 78, 98, 114), and the author explicitly designed unattended persistence: should_revise returns \"save\" even for unapproved articles with the comment \"Max revisions reached, save anyway\" (lines 126-128), and the graph runs end-to-end via agent.invoke (line 168) with no checkpointer or interrupt where a HIL gate could operate. The GT graph is a faithful one-to-one mapping of nodes (138-143) and edges (146-152), including the conditional review branches, so gt_error does not apply. The flag is a lexical over-trigger of the \"save\" sensitive class on benign local persistence in a deliberately unattended batch pipeline; the primary label stands."
+      }
+    },
+    {
+      "slug": "waqasniazi9__voice-agent__builder",
+      "check_id": "tool_declarations",
+      "framework": "autogen",
+      "primary": {
+        "label": "intentional",
+        "confidence": "high",
+        "justification": "The flagged node websurfer_agent corresponds to the MultimodalWebSurfer instantiation at source lines 349-354, which takes no tools= argument because the autogen_ext MultimodalWebSurfer class attaches its browsing toolset (Playwright visit/click/type actions) internally; the framework, not the call site, binds the tools. The GT graph faithfully reflects the source (no explicit declaration exists to record), so it is not a gt_error, and the agent is fully functional at runtime, so it is not a real defect. Contrast with calc_assistant (line 222) and research_assistant (line 448) where explicit tools= lists exist and are correctly captured in the GT. This matches the canonical intentional pattern of undeclared tool bindings supplied by the framework elsewhere.",
+        "summary": "Empty declared-tools set on websurfer_agent is intentional: MultimodalWebSurfer bundles its browsing tools internally, so no call-site tool declaration exists or is needed (source lines 349-354)."
+      },
+      "verify": {
+        "agree": true,
+        "final_label": "intentional",
+        "reason": "MultimodalWebSurfer (source lines 349-354) accepts no tools= parameter; its Playwright browsing toolset is bound internally by the autogen_ext class, so no source-level declaration exists to record. The GT's consistent convention is to record only source-declared tools= lists (calc_assistant line 222, research_assistant line 448, assistant line 613 \u2014 all correctly captured), so the empty declared-tools set on websurfer_agent faithfully represents the source, ruling out gt_error. The agent is fully functional at runtime and wired into websurfer_team (lines 396-401), ruling out real_defect. This is the canonical intentional pattern of framework-supplied undeclared tool bindings; no factual error in the primary's reasoning was found."
+      }
+    }
+  ],
+  "reverify": [
+    {
+      "slug": "Jamahl__fraya-25__crew",
+      "check": "human_presence",
+      "verdict": "confirmed_real",
+      "reason": "The missing human gate is real and consequential. (1) Extraction is faithful: the crew is a sequential 2-task pipeline (Crew at lines 65-70, kickoff at line 72) and neither Task sets human_input=True (lines 54-63); step_callback=print (line 69) is logging, not a gate. (2) The \"it only drafts\" defense fails: the crew's result is merely printed/logged and discarded (lines 73-74, bare return at line 77), so no human could ever review or send a draft downstream \u2014 the only path to real-world effect is agents calling tools themselves during kickoff, which line 76 explicitly states is the design (\"agents will call tools themselves\"). (3) Capability is real: both agents carry the full mcp_tools list (lines 43, 50) from Composio Gmail + GoogleCalendar MCP servers (lines 108-109), which include message-send and calendar write/delete; the docstring states the crew's purpose is \"action (e.g., booking meetings, drafting/sending replies)\" (line 5) and the reply task covers \"rearranging a meeting or cancelling a meeting\" (line 60). (4) Not a toy: process_email is the entry point for polling scripts (line 12) \u2014 autonomous per-email triggering \u2014 with a real user's email and Supabase user_id hardcoded (lines 30-36). (5) Not overturned as intentional: autonomy is the product concept, but ungated autonomy over irreversible third-party-visible actions (sending mail as the user's assistant, cancelling meetings) with no checkpoint anywhere is exactly the defect class. One correction to the original justification without effect on the verdict: the local destructive calendar helpers (lines 87-102) are dead code never bound to any agent and should not be cited as agent capability; the equivalent capability comes from the bound Composio calendar MCP tools instead."
+    },
+    {
+      "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+      "check": "human_presence",
+      "reason": "Confirmed, with one citation correction: the justification's quoted lines 19/22/23/29 sit in a commented-out block (lines 9-57 of the snapshot), but the defect stands on active code. Line 94 (live host instruction) says \"DO NOT make any confirmation\"; lines 66-69 auto-transfer to PaymentAgentPipeline on keyword match; lines 60-64 hard-wire SequentialAgent payer->settlement->payee with no pause. The identical anti-confirmation directives are live in the repo's sub-agents (SHA a1546be0): settlement_agent instruction \"IF ANYTHING NEED TO CONFIRM, DO NOT ASK TO CONFIRM, INSTEAD, IMMEDIATELY PROCEED THE SETTLEMENT\"; payer_agent \"DO NOT give any confirmation, CONTINUE to invoke settlement agent\". Harm is real: settle_payment -> execute_permit_and_transfer performs actual web3 EIP-2612 permit + transferFrom of USDC/DAI, and the permit signature is self-generated by the agent using PAYER_PRIVATE_KEY from env (services/execute_sign.py; PaymentService.sign_for_payment falls back to \"Self-sign\"), so no human wallet signature gates the transfer. The only guard compares two LLM-supplied numbers (spend_amount > budget). No approval flow exists anywhere in the settlement path. The graph faithfully represents the source. The bypass is deliberate, but it is a deliberate removal of human oversight from an irreversible financial action with prompt-engineering to override model hesitation \u2014 exactly what the human_presence check targets. Testnet-only chain configs are deployment config, not a code-level control.",
+      "verdict": "confirmed_real"
+    }
+  ],
+  "classification": [
+    {
+      "slug": "0evja__LangGraph-Agent__demo",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Re-implementation of the official LangGraph adaptive-RAG tutorial (same Lilian Weng blog URLs and grader prompts) annotated with Chinese walkthrough comments and a toy main() with sample queries; only tools are a retriever and Tavily web search (read-only)."
+    },
+    {
+      "slug": "AIAnytime__agentic-context-engineering__curator",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Module in a larger package (imports agents.ace_agent.schemas and a Config class), with a custom BaseAgent subclass applying structured delta operations to a playbook via ADK state events and no toy data; no external tools are bound, only internal session-state updates."
+    },
+    {
+      "slug": "AbhiShetye0703__Google-ADK__parallelAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Heavily commented walkthrough of the ADK ParallelAgent+SequentialAgent pattern (the standard 'daily executive briefing' course example) with explanatory comments on every block; the only bound tool is google_search, which is retrieval-only."
+    },
+    {
+      "slug": "AbhiShetye0703__Google-ADK__sequentialAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Commented walkthrough of the ADK SequentialAgent blog-pipeline example (outline -> writer -> editor) with a single hardcoded demo prompt and no tools bound at all."
+    },
+    {
+      "slug": "AdaptiveBProcess__bpm_agent__main",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Streamlit chatbot wired to a real business-process-simulation CLI with st.secrets config, subprocess error/timeout handling, and tool dispatch; the run_pipeline/list_logs tools execute shell subprocesses (conda activation + Python CLI), which is side-effecting execution."
+    },
+    {
+      "slug": "AdaptiveBProcess__bpm_agent__template",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Toy calculator/birthday chatbot template with hardcoded personal data (USER_NAME='David', fixed birthday) and pure arithmetic tools, serving as scaffolding rather than a real integration; all tools are pure computation with no writes, sends, or execution."
+    },
+    {
+      "slug": "AkshatKumar12__AutoGen_Learning__teams",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Tiny learning-repo module that just wires a RoundRobinGroupChat with a text-mention termination condition for a mock-interview exercise; no tools are bound in this file."
+    },
+    {
+      "slug": "AkshatKumar12__AutoGen_Learning__test",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Despite the test.py name it contains no pytest/unittest/asserts; it is a scratch learning script running a hardcoded mock-interview RoundRobinGroupChat (with a pasted API key) from an AutoGen learning repo, and binds no side-effecting tools (UserProxyAgent only takes console input)."
+    },
+    {
+      "slug": "Arhamirfan__Snake-Agents__snake_autogen",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": true,
+      "reason": "Proof-of-concept AutoGen group chat (admin/engineer/QA/planner) whose single hardcoded task is to build a snake game; the UserProxyAgent has code_execution_config (use_docker=False) so it executes generated code and writes files to disk."
+    },
+    {
+      "slug": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Google AI Agent Intensive course exercise following the standard ADK LoopAgent story-refinement lesson, complete with step-by-step checkmark print statements after each block; the only bound tool is a pure exit_loop control-flow function."
+    },
+    {
+      "slug": "Astrodevil__ADK-Agent-Examples__agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Framework showcase example with hardcoded demo queries (IPL 2025 news, Hacker News AI news), emoji-styled summary output, and an unimported `types` reference; tools are Exa/Tavily search only (retrieval)."
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__io",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Prototype LangGraph RAG variant ('CLAIM BRUTEFORCE RETRIEVER') whose verifier node is a stub returning a placeholder message, with 'Assume these are your pre-built agents/tools' comment and commented-out main loop; no tools are LLM-bound (retriever runs as a plain graph node)."
+    },
+    {
+      "slug": "Avneesh26024__Gen_AI_Exchange__main",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Multi-module misinformation-classifier graph with real Vertex AI integration, three-way routing, checkpointing, and a ReAct verifier importing tools/prompts from a larger codebase; bound tools (verifier_tool, human_response) are fact-check/read oriented, not write/send/execute."
+    },
+    {
+      "slug": "Brenmull12__Hoohacks2025__multiturn",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Hackathon proof-of-concept medical chatbot: real Perplexity/Gemini API calls but a CLI loop explicitly labeled 'interactive demo', DEBUG prints, and a global-state hack for web use; only tool is perplexity_research (retrieval)."
+    },
+    {
+      "slug": "Damish-7__MOLYSIS__health_agents",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Toy AutoGen round-robin of health 'specialist' agents on a local Ollama llama3, gathering patient data via input() and printing the report to console; no tools bound at all."
+    },
+    {
+      "slug": "Damish-7__MOLYSIS__multi_agents",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "38-line planner/coder round-robin toy on local Ollama with the hardcoded task 'Create a Python sorting algorithm' and a bare print of the result; no tools bound."
+    },
+    {
+      "slug": "Harsh1210__llm-opsbot__main",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "FastAPI WhatsApp webhook service with Meta API verification, dotenv config, background task processing, and error handling that binds EC2 tools including start_instance and stop_instance, which execute state-changing cloud operations."
+    },
+    {
+      "slug": "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Course-style exercise (Chinese walkthrough comments) that batch-processes travel_reviews.csv through an AutoGen team with a MultimodalWebSurfer and logs token usage to a CSV; the web surfer only browses/reads."
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "CrewAI report-author agent that is one step of a larger pipeline (imports shared providers/tools from src/, writes step_4 output for downstream use); its only bound tool is read_json (read-only)."
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "CrewAI scraping agent in the same multi-step procurement pipeline with pydantic schema-validated output and error-tolerance instructions; bound tools web_scraping_tool and read_json are retrieval/read-only."
+    },
+    {
+      "slug": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "One module of a larger multi-file procurement pipeline (imports src.providers/src.models/src.tools, structured JSON handoff to a later price-comparison step); only binds a search/retrieval tool."
+    },
+    {
+      "slug": "Itzkuldeep__AgentE-com__main",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Full FastAPI/WebSocket server with CORS, logging, state/history persistence and uvicorn entry running an AutoGen team that includes EmailSenderAgent, SchedulerAgent, and CallAgent (send/act-capable)."
+    },
+    {
+      "slug": "Jamahl__fraya-25__crew",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Entry point of a personal AI executive-assistant service referencing architecture.md and a packages/ layout, binding Composio Gmail/Calendar MCP tools and calendar create/delete/reschedule REST calls (sends replies, books meetings)."
+    },
+    {
+      "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Notebook-converted proof-of-concept with hardcoded Astra token, groq_api_key='pass', the standard Lilian Weng tutorial URLs, and leftover scratch calls; graph nodes only do retrieval (vectorstore/Wikipedia)."
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__chat",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Verbatim LangGraph quickstart chatbot exercise (single LLM node, REPL loop, walkthrough comments) from a tutorials repo, with no tools bound at all."
+    },
+    {
+      "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "The Hugging Face Agents course 'Alfred the butler' email-classification walkthrough with hardcoded example legitimate/spam emails; nodes only call the LLM and print drafts, nothing is actually sent."
+    },
+    {
+      "slug": "LightningGod7__prometheus__test_agent",
+      "category": "test",
+      "has_side_effecting_tools": true,
+      "reason": "Pytest file of parametrized serialize/deserialize assertions (lifted from AutoGen's own test suite); it does bind a CodeExecutorAgent with LocalCommandLineCodeExecutor (execute-capable), though nothing is ever run."
+    },
+    {
+      "slug": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Tasks file from the widely copied CrewAI news-reporter tutorial, including the 'Example of output customization' comment; the single bound tool is a web-search (retrieval) tool."
+    },
+    {
+      "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": true,
+      "reason": "Numbered lesson script (7_human_in_the_loop) with a hardcoded toy stock-price dict, but the graph binds a buy_stocks purchase tool (mock pay/transaction action gated by interrupt)."
+    },
+    {
+      "slug": "MdArshath2004__snowflakeoptimization__tes",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Multi-page Streamlit + LangGraph app wired to a live Snowflake account (real hardcoded credentials) whose execute node runs ALTER WAREHOUSE and LLM-rewritten SQL against the warehouse, with error handling throughout, though secrets hygiene is student-grade."
+    },
+    {
+      "slug": "Mhijazi16__LanggraphExercise__one",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Minimal LangGraph learning exercise: one hello-world node with hardcoded name 'Bob', no LLM or tools, just prints the result."
+    },
+    {
+      "slug": "Mhijazi16__LanggraphExercise__two",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Second step of the same exercise series: a single node applying a hardcoded multiply operation to toy values [1,2,5], no tools."
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__app_team",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Verbatim AutoGen chainlit sample (assistant+critic RoundRobin with APPROVE termination and canned 'Poem Writing' starters); agents bind no tools at all."
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__mcp_session_host_example",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Self-described 'Interactive MCP Host Capabilities Demo' from AutoGen's examples showcasing sampling/elicitation/roots; the MCP workbench exposes only demo capabilities (LLM sampling, user-input elicitation, root listing), not write/execute tools."
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__test_group_chat_endpoint",
+      "category": "test",
+      "has_side_effecting_tools": false,
+      "reason": "pytest file with @pytest.mark.asyncio tests, asserts, and env-key skips exercising SelectorGroupChat; agents bind no tools."
+    },
+    {
+      "slug": "MikhailMostWanted__Astra__test_team_manager",
+      "category": "test",
+      "has_side_effecting_tools": false,
+      "reason": "pytest suite with fixtures, tmp_path, and unittest.mock (AsyncMock/MagicMock/patch) testing autogenstudio TeamManager; no tools bound."
+    },
+    {
+      "slug": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Package module of a real toxicity-screening pipeline with env-var config, ThreadPoolExecutor orchestration, error handling, and ADK Sequential/Parallel agent wiring; the only tool bound here is read-only validate_smiles."
+    },
+    {
+      "slug": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Numbered lesson from a Chinese AutoGen course ('\u5357\u54e5AGI\u7814\u4e60\u793e') with walkthrough comments explaining each step and commented-out alternatives; no tools bound."
+    },
+    {
+      "slug": "NanGePlus__AutoGenV04Test__CacheTeam",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Same course series, a step-by-step commented demo of ChatCompletionCache/DiskCacheStore with a single toy task; no tools bound."
+    },
+    {
+      "slug": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Module of a larger manufacturing-planning app (imports project config and utils, logging, file I/O, GroupChat result extraction) whose UserProxyAgent has code_execution_config executing LLM-generated Python locally (use_docker=False) and writing result files."
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__Main",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Orchestrates a multi-module LangGraph M&A backend (agents/, RAG/, utils/prompts.yaml, logging, human-approval gates) with real web-search/RAG integrations, and its composed reporting nodes plus graph-PNG export write files to disk."
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__merger_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Module of the same larger backend with YAML prompt config, logging, and error handling around real RAG queries, and each workflow node writes feasibility/valuation/risk reports to merger_reports/*.txt on disk."
+    },
+    {
+      "slug": "SAMAR-CODE404__backend__report_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Report-generation module in the same backend package with encoding-fallback config loading, per-node error handling, and RAG-driven summarization whose report_formatter node writes legal_report.txt to disk."
+    },
+    {
+      "slug": "SPZts__AutoModel__model22",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "One of many indicator modules (model22/model32/...) for a Chinese chemical-park safety compliance platform targeting a real internal API (http://2.93.4.30:8765/evaluate), but its CodeExecutorAgent is commented out so only chat agents (no write/execute tools) are bound."
+    },
+    {
+      "slug": "SPZts__AutoModel__model32",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Sibling indicator module of the same safety-compliance system with the same internal evaluate-API target, and likewise its Docker code-executor agent is commented out, leaving only selector/coder/summary chat agents with no bound side-effecting tools."
+    },
+    {
+      "slug": "Saimoguloju__AI-Agents__sample_agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Self-described 'CONCEPTUAL & self-contained' learning file that mocks AutoGen's AssistantAgent/RoundRobinGroupChat with a canned mock_client (no API key), including a commented-out 'Real version' appendix showing the actual library calls."
+    },
+    {
+      "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "A functioning Streamlit RAG assistant with env/config plumbing (.env, LangSmith tracing), real OpenAI embeddings/LLM, FAISS retrieval, encoding-fallback error handling, and chat-history download; its LangGraph nodes are retrieval and generation only, with no write/send/execute tools bound."
+    },
+    {
+      "slug": "Shirmeen__Chatbot__app3",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "CrewAI skill-matching proof-of-concept driven entirely by a hardcoded toy client description and developer-skills list that just prints the result (app3.py in a series of experiments), with pure LLM agents and no tools bound at all."
+    },
+    {
+      "slug": "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Verbatim copy of the official AutoGen agentchat-chainlit sample (assistant/critic/user-proxy round-robin with APPROVE termination) collected into a grab-bag repo, and none of the agents bind any tools."
+    },
+    {
+      "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Copy of AutoGen Studio's internal gallery/builder.py (imports autogenstudio.datamodel and package-relative tools), i.e. real product code, and it binds side-effecting tools including PythonCodeExecutionTool backed by LocalCommandLineCodeExecutor and a DALL-E image-generation tool."
+    },
+    {
+      "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+      "category": "test",
+      "has_side_effecting_tools": false,
+      "reason": "Pytest/pytest-asyncio suite with fixtures, monkeypatch, and asserts testing AutoGen SocietyOfMindAgent against a ReplayChatCompletionClient; no tools are bound."
+    },
+    {
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Single-file Streamlit proof-of-concept with a hardcoded HF token, API key entered via sidebar, and commented-out debug st.write lines; only a read-only retriever tool is bound."
+    },
+    {
+      "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Flask web service version with env-based GROQ_API_KEY loading, routes, error handling, and template rendering implying a larger codebase; the only bound tool is a read-only retriever."
+    },
+    {
+      "slug": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Not an automated test despite the name: an interactive CLI harness (input()/print, no asserts) for exercising agents imported from a larger multi-module research-assistant codebase, with only retrieval-style tools (web search, arxiv) visible."
+    },
+    {
+      "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Substantial LangGraph workflow with real Postgres/pgvector integration, logging, and error handling for a location-data chatbot, and it binds an execute_sql_query tool that runs arbitrary LLM-generated SQL against the database (write/execute capable)."
+    },
+    {
+      "slug": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Near-verbatim copy of the well-known CrewAI YouTube-blog-generator course tutorial, complete with walkthrough comments like '# Example of output customization'; the only bound tool is a YouTube search/retrieval tool."
+    },
+    {
+      "slug": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Learning-exercise variant of the same CrewAI tutorial task file (generic tools=[tool], output_file toy name), binding only a search/retrieval tool."
+    },
+    {
+      "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": true,
+      "reason": "Prototype-grade Google ADK payment-agent pipeline (keyword substring intent routing, large commented-out prompt, typo-laden instructions demanding no confirmations) whose bound tool routes into payer/settlement sub-agents that create and settle USDC/DAI payments \u2014 a pay-class side effect."
+    },
+    {
+      "slug": "aayu2003__agent_creation__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Another CrewAI tutorial-pattern tasks file (walkthrough comments, output_file='aayush.txt', typos) from a learning project, binding only a URL-extraction/retrieval tool."
+    },
+    {
+      "slug": "arunacarunac__MultiAgentSamples__App",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "AutoGen+Chainlit framework sample in a 'MultiAgentSamples' repo featuring the canonical hardcoded mock get_weather tool ('73 degrees and Sunny') plus a Bing search tool \u2014 retrieval-only tools."
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__2_RunTeam",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Numbered Chinese course lesson with step-by-step walkthrough comments and a toy task (write an autumn poem); no tools are bound to the agents at all."
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Same numbered course series with didactic comments and commented-out alternative exercises; only binds a local MCP fetch server, which is retrieval-only."
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": true,
+      "reason": "Course example walking through the official GitHub MCP server with a menu of sample tasks, but it binds the full GitHub toolset whose capabilities (per the system prompt itself) include creating/updating files and opening pull requests."
+    },
+    {
+      "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": true,
+      "reason": "Course lesson demonstrating LangChainToolAdapter on the toy titanic.csv dataset, but the bound PythonAstREPLTool executes arbitrary Python code."
+    },
+    {
+      "slug": "brightertiger__google-adk-demo__agent",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Well-plumbed (yaml config, dotenv, logging, cleanup) but a one-shot ADK proof-of-concept that crawls a single hardcoded blog URL and dumps output.json; its crawler/geocoding MCP tools are retrieval-only."
+    },
+    {
+      "slug": "colinmccrae__CrewAITest__do1",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Learning exercise full of walkthrough comments explaining every parameter and model option, with a hardcoded joke email ('Nigerian prince'); the SerperDevTool is instantiated but never bound to any agent."
+    },
+    {
+      "slug": "dforwardfeed__memo_generator__main",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "CLI entry point of a larger codebase (agents imported from a sibling module) that takes market_opportunity and a trace_id argument implying an upstream observability/service integration; only research/search agents, no write/send/execute tools in this file."
+    },
+    {
+      "slug": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Standalone personal proof-of-concept driven by interactive input() prompts with a leftover local dev path in a comment; it drafts (never posts) LinkedIn content using only PDFSearchTool and FirecrawlSearchTool, both retrieval/search."
+    },
+    {
+      "slug": "docker__compose-for-agents__agent",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Sub-agent composition for the fictitious 'Sock Store' supplier-review scenario from Docker's compose-for-agents showcase; this file only wires imported sub-agents and binds no tools itself."
+    },
+    {
+      "slug": "dream-horizon-org__pulse__agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Minimal root-agent module of an organization's larger 'Pulse AI' package that composes imported em_agent and report_agent into a pipeline; no tools are bound in this file."
+    },
+    {
+      "slug": "ed-donner__agents__sequential_agents",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Factory building a multi-stage ADK pipeline for a specific e-commerce store (Muallim), importing tools from a larger modules.tools package and wiring order collection to a real Google Sheets writer (save_order_to_sheet), which is a write/side-effecting tool."
+    },
+    {
+      "slug": "ericjiang18__Agent-Q-Mix__test_agent",
+      "category": "test",
+      "has_side_effecting_tools": true,
+      "reason": "Pure pytest file (parametrize, asserts) exercising AutoGen agent serialize/deserialize round-trips, but one agent under test binds LocalCommandLineCodeExecutor, an execute-class tool."
+    },
+    {
+      "slug": "esk000__AIAgentsIntensive__LoopAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Course-style walkthrough (step-by-step '\u2705 ... created.' prints, toy story-writing task, InMemoryRunner.run_debug) from an AI-agents intensive; the only bound tool is a pure exit_loop control function."
+    },
+    {
+      "slug": "esk000__AIAgentsIntensive__parallelAgent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Same course-walkthrough style ('\u2705' progress prints, run_debug demo prompt) illustrating ParallelAgent+SequentialAgent; only tool bound is google_search, which is read-only retrieval."
+    },
+    {
+      "slug": "feixiao__ai__ex03",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Numbered exercise with bilingual explanatory comments describing group-chat strategies and the stock AutoGen primary/critic poem example run on a local Ollama model; no tools are bound at all."
+    },
+    {
+      "slug": "firaflash__career-mentor-ai-agent__tasks",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Hobby CrewAI career-mentor pipeline with walkthrough '<--- MAGIC' comments and a hacky pause_for_groq sleep (comments say 1 min/15 s, code sleeps 30 s) to dodge free-tier rate limits; this file binds no tools, only chained text tasks."
+    },
+    {
+      "slug": "foxyglue__faq-db-chat__app2",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Standalone CLI proof-of-concept RAG over a local Chroma FAQ/complaints store with a nonexistent google.generativeai embeddings API (genai.embedding_models.get_model), suggesting an untested prototype; all operations are retrieval plus LLM generation."
+    },
+    {
+      "slug": "gabrielpreda__adk-sql-agent__agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Structured multi-module ADK pipeline (imported subagents package, pydantic schemas, logging) implementing a security-checked SQL agent whose refinement loop generates and executes SQL against a database, with read-only enforcement only at the prompt level."
+    },
+    {
+      "slug": "houyongsheng__local_rag__rag",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "A FastAPI service (chat/update_docs/summary endpoints, HTTPException error handling, uvicorn entrypoint, persistent Chroma store, Ollama models) that is a real if personal RAG service; the only bound tool is a similarity-search retriever."
+    },
+    {
+      "slug": "huangdihd__ProjectAI__main",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "An interactive 'Sandbox & Projection System' that simulates a project team via manager/executor LangGraph nodes producing only printed text contributions; despite config plumbing for the SiliconFlow API, agents bind no external tools and act on toy user-typed ideas."
+    },
+    {
+      "slug": "jakenolan__langgraph-custom-tools__main",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": true,
+      "reason": "Walkthrough-style comments on nearly every line and a single hardcoded query ('What drink does Jake like?') mark this as example code demonstrating custom LangGraph tools, and the bound NotesToolkit manages (creates/writes) note files under ./notes/."
+    },
+    {
+      "slug": "jkmaina__autogen_blueprint__03_model_based_selector",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Docstring explicitly labels it 'Chapter 8: Advanced Orchestration Patterns, Example 3' book material with expected output and key concepts, and the agents bind no tools at all."
+    },
+    {
+      "slug": "joansantoso__iox-adk__agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "An adapted ADK-docs iterative-writing example with 'STEP 1/2a/2b' walkthrough comments and leftover references to an exit_loop tool that is never implemented; the pipeline is pure LLM text with no tools bound."
+    },
+    {
+      "slug": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Real application plumbing (env-var config, logging, ADR-020 schema enforcement, multi-fallback JSON parsing, package-relative imports, exception handling) inside a larger codebase; bound tool functions are pass-through, but the workflow invokes a visual orchestrator that generates and persists image/video media (write side effects)."
+    },
+    {
+      "slug": "juananpe__langgraph-flask__cli",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "A human-in-the-loop interrupt proof-of-concept where the 'post' node merely prints 'now live on Twitter/X!' with no real Twitter integration and a hardcoded tweet-writing task; no tools are bound."
+    },
+    {
+      "slug": "leewow03__llm__10",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Sequentially numbered learning-exercise file with Korean walkthrough comments ('this part is the key!'), a hardcoded API key, and canned test conversations; the only tool is read-only DuckDuckGo search."
+    },
+    {
+      "slug": "lordpython__multi-agent-video-system__agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Part of a larger packaged system (Apache license header, video_system.agents.* imports, graceful fallback when ADK is unavailable) whose orchestrated sub-agents include image generation, audio, and video assembly that produce and write media artifacts."
+    },
+    {
+      "slug": "matttbates__job-search-assistant__crew",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "A minimal 45-line CrewAI script with hardcoded tasks and a local Ollama model, a personal toy experiment; the only tool is read-only DuckDuckGo search."
+    },
+    {
+      "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "A functioning Streamlit chat application with a modular utils package, session-state and async handling, and real Ollama/LangGraph wiring, but its bound tools (retrieve, web_search) are retrieval-only."
+    },
+    {
+      "slug": "merdandt__SalesShortcut__email_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "A module within the larger SalesShortcut product that composes crafter and sender sub-agents to send real personalized outreach emails via a service account (send side effect)."
+    },
+    {
+      "slug": "merdandt__SalesShortcut__outreach_email_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Composes package-relative sub-agents (specification creator, website creator, offer file creator, email sender, engagement saver) into a Google ADK SequentialAgent as part of a larger multi-agent sales codebase, and the bound email-sender/file-creator/data-saver sub-agents send and write."
+    },
+    {
+      "slug": "merdandt__SalesShortcut__potential_lead_finder_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Part of the same structured ADK codebase, wrapping a google_maps_agent in a ParallelAgent for lead search, which is retrieval-only (no write/send/execute tools bound here)."
+    },
+    {
+      "slug": "merdandt__SalesShortcut__websiter_creator_agent",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Package-integrated ADK SequentialAgent whose purpose is producing demo prototype websites via prompt-prepare, human-creation-request, and decision sub-agents, i.e. it drives creation of external artifacts rather than just reading."
+    },
+    {
+      "slug": "microsoft__ACV__test_agent",
+      "category": "test",
+      "has_side_effecting_tools": true,
+      "reason": "Pure pytest file with parametrized fixtures and asserts checking serialize/deserialize of autogen agents, but it binds a CodeExecutorAgent with LocalCommandLineCodeExecutor, an execute-capable tool."
+    },
+    {
+      "slug": "microsoft__ACV__test_cache_agent",
+      "category": "test",
+      "has_side_effecting_tools": true,
+      "reason": "AG2/autogen pytest suite (skip markers, timing asserts) for disk/redis LLM caching whose conversations run a UserProxyAgent with Docker code_execution_config that writes hello.txt, i.e. code execution is bound."
+    },
+    {
+      "slug": "microsoft__ACV__test_group_chat_endpoint",
+      "category": "test",
+      "has_side_effecting_tools": false,
+      "reason": "pytest.mark.asyncio tests of SelectorGroupChat against Gemini/OpenAI endpoints (skipped without API keys) where agents only converse and no tools are bound."
+    },
+    {
+      "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "LangGraph Academy course exercise wiring toy nodes that print and append strings like \"I'm A\"/\"I'm B2\" to demonstrate fan-out/fan-in reducers, with no tools at all."
+    },
+    {
+      "slug": "muzifa-mubarak__crew_ai_practice__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Standard CrewAI practice-tutorial task definitions (YouTube-video-to-blog exercise) binding only a retrieval yt_tool; the blog-post.md output_file is framework config, not a write tool."
+    },
+    {
+      "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": false,
+      "reason": "Proof-of-concept corrective-RAG graph with a single hardcoded URL and question, walkthrough-style print banners at every node, and only retrieval tools (web loader, Chroma, DuckDuckGo search)."
+    },
+    {
+      "slug": "nokia__mcp-redfish__agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Documentation-style example client for the repo's Redfish MCP server \u2014 a \"demo_agent\" with empty placeholder REDFISH_HOSTS/credentials and a canned task \u2014 using read-only tools (list_endpoints, get_endpoint_data)."
+    },
+    {
+      "slug": "opengles3d__ollama_rag__18",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Hello-world LangGraph script with Chinese walkthrough comments and a hardcoded '\u4f60\u597d\uff0clanggraph!' prompt against a local Ollama model; no tools are bound at all."
+    },
+    {
+      "slug": "opengles3d__ollama_rag__state_graph",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Minimal single-chatbot-node StateGraph example with hardcoded 'hi!' input and dummy api_key '123' pointing at local Ollama; a learning exercise with no tools."
+    },
+    {
+      "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Headed '# LangGraph coding project' with numbered step-by-step walkthrough comments and a '---- THIS IS THE FIX ----' note, marking it as a learning exercise; tools are loaded dynamically from a Canvas MCP server but no write/send tools are visible in this file."
+    },
+    {
+      "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "Research evaluation harness in a larger codebase that runs AutoGen agents on the real ALFWorld environment with config plumbing and CSV logging, and it registers an execute_function tool that executes agent-chosen actions via env.step (execute-class, though into a simulator)."
+    },
+    {
+      "slug": "shazy89__ai-learning__agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Modularized refactor of the same course-derived ResearchAgent as its sibling file (DeepLearning.AI LangGraph course material in an 'ai-learning' repo); tools come from a registry whose only observed tool is DuckDuckGo search (read-only)."
+    },
+    {
+      "slug": "shazy89__ai-learning__research_agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Contains the DeepLearning.AI LangGraph course's verbatim 'smart research assistant' system prompt and its SF/LA-weather HITL and time-travel demo queries in main(); the only bound tool is DuckDuckGoSearchRun (search/read only)."
+    },
+    {
+      "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "Part of a larger src/ package with YAML config, dotenv, docx template plumbing, and layered error handling with a fallback path \u2014 plausibly a real app module; the LlmAgents bind no tools (file writing happens in surrounding code, not via bound tools)."
+    },
+    {
+      "slug": "suryaMadhav16__RAG-Lab__CrewAI",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Marimo notebook with numbered walkthrough steps (1-7) demonstrating CrewAI Pydantic structured output on a hardcoded 'iPhone 14 Pro' review task \u2014 lab/learning material with no tools bound."
+    },
+    {
+      "slug": "svpino__ml.school__agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "Course material from the ml.school program with teaching-style comments ('Let's start by initializing...'); its tools are FAISS similarity search (retrieval) and a pure markdown-to-HTML transform, neither side-effecting."
+    },
+    {
+      "slug": "timleow__gym-kfc-daddies__cli_ui",
+      "category": "demo_or_toy",
+      "has_side_effecting_tools": true,
+      "reason": "Docstring 'cli version of the UI - for testing without furhat' with hardcoded 'demo-session'/'Example session' marks it as a hackathon-style demo harness, but its graph nodes directly invoke a browser automation tool (init_session/close) and an orchestrator that drives the browser \u2014 execute-class side effects."
+    },
+    {
+      "slug": "tweetlol__eve__eve",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "A multi-node LangGraph pipeline (extract/summarize/write/review/revise/save) that is part of a larger codebase with separate parameters.py and tools.py modules, .env config, and revision-limit logic, whose save node writes the finished Czech article to disk."
+    },
+    {
+      "slug": "vego147__AI_Research_Img_Assistance__Bot",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "A minimal single-node LangGraph chatbot with an input() REPL loop matching the standard beginner LangGraph course exercise, binding no tools at all (just a raw Gemini invoke)."
+    },
+    {
+      "slug": "venkatavinayvijjapu__New_Assignment__tasks",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "A boilerplate CrewAI tasks definition (research task + writer task) in a repo literally named 'New_Assignment', binding only retrieval-style tools (web search, scraper, content analyzer, news aggregator)."
+    },
+    {
+      "slug": "vishnusurya11__ember__dev",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "A near-verbatim copy of the LangGraph LATS (Language Agent Tree Search) tutorial notebook, with walkthrough-style ##### section separators, hardcoded example questions, debug prints ('hello .. .all good!!!'), and only the read-only Tavily search tool bound."
+    },
+    {
+      "slug": "vishnusurya11__ember__prompt_agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "A reflection-loop MessageGraph adapted from the well-known LangGraph reflection-agent course exercise, retaining the verbatim 'Make this tweet better: @langchainAI' example input and binding no tools (pure generate/reflect LLM chains)."
+    },
+    {
+      "slug": "vishnusurya11__ember__reflection_agent",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "The classic reflection-agent LangGraph course exercise almost verbatim, including the same typo-laden 'Make this tweet better' hardcoded tweet, with no tools bound (generate/reflect chains only)."
+    },
+    {
+      "slug": "volcengine__veadk-python__main",
+      "category": "tutorial_or_example",
+      "has_side_effecting_tools": false,
+      "reason": "An official SDK documentation example (Apache license header plus an explanatory docstring teaching the SequentialAgent outliner->writer->editor pattern, app_name 'multi_agent_demo') with no tools bound to any sub-agent."
+    },
+    {
+      "slug": "waqasniazi9__voice-agent__builder",
+      "category": "application_like",
+      "has_side_effecting_tools": true,
+      "reason": "This is AutoGen Studio's gallery builder module (imports autogenstudio.datamodel, relative 'from . import tools', env-var plumbing) \u2014 part of a real application \u2014 and it binds side-effecting tools including PythonCodeExecutionTool with a LocalCommandLineCodeExecutor, a DALL-E image generation tool, and an MCP filesystem workbench with write access."
+    },
+    {
+      "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+      "category": "application_like",
+      "has_side_effecting_tools": false,
+      "reason": "A full Streamlit document-OCR-and-RAG application with real Mistral/Gemini API integrations, env-var and API-key management, graceful import fallbacks, session state, and extensive error handling, whose LangGraph workflow nodes are all retrieval/embedding/generation with no write/execute tools bound to the LLM."
+    }
+  ]
+}

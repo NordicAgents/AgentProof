@@ -20,47 +20,60 @@ of the graph flags the dead end and emits a witness trace. In principle classica
 model checkers~\citep{clarke1999modelchecking, holzmann1997spin,
 cimatti2002nusmv} verify such properties, but they require hand-translating the
 system into Promela or SMV---prohibitive for developers iterating on workflows.
+For conventional static analyzers, decades of deployment experience show that
+what decides adoption is not detection power but the rate of genuine, actionable
+findings~\citep{bessey2010coverity, johnson2013static, sadowski2018lessons}. No
+analogous measurement exists for agent workflows.
 
-This raises a question nobody has answered empirically: \emph{do real agent
-workflows actually contain the structural defects that static verification
-targets?} We build \textsc{Agentproof} to find out. It extracts a unified graph
-model directly from four frameworks' APIs (no manual modeling), runs six
-structural checks with witness traces, and compiles a temporal policy DSL to DFAs
-checked statically via a graph\,$\times$\,DFA product and at runtime. We then use
-it as a \emph{measurement instrument} on 930 workflows mined from 253 public
-GitHub repositories.
+We build \textsc{Agentproof} to make that measurement. It extracts a unified
+graph model from four frameworks' APIs with no per-workflow manual modeling,
+runs six structural checks with witness traces, and compiles a temporal policy
+DSL with LTL$_f$ (finite-trace) semantics~\citep{degiacomo2013ltlf} to DFAs
+checked statically via a graph\,$\times$\,DFA product and enforced at runtime.
+We then use it as a measurement instrument on 922 workflow graphs mined from
+252 public GitHub repositories, with a stratified 119-workflow sample validated
+against independently reconstructed ground-truth graphs and adversarial triage.
 
-The answer is deflationary, and that is the point. Topology defects are rare;
-what limits static verification in practice is not the check algorithms but
-\emph{extraction fidelity}, which we quantify and which turns out to be strongly
-framework-dependent. The static machinery still earns a defect-independent job:
-proving which runtime monitors can never fire, so they can be soundly pruned.
+Because a lossy extractor both \emph{manufactures} false flags and \emph{hides}
+true defects, we report two estimands separately: the \emph{precision} of the
+instrument's flags (what fraction of raised flags are genuine) and the
+\emph{prevalence} of defects per workflow, estimated by re-running every check
+on the reconstructed ground-truth graphs so that defects the extractor missed
+are counted. The distinction matters: flag precision is 1.1\% (2 of 186), but
+prevalence is roughly twice what the extractor sees---4 of 119 workflows
+(3.4\%)---because two genuine defects, including a payment-adjacent
+missing-human-gate, were invisible to the lossy extraction. Both are small;
+neither is the ${\approx}0$ a na\"ive reading of flag counts would suggest, and
+the defects concentrate exactly where they matter: in application-like
+workflows binding side-effecting tools (3 of 39, versus 1 of 80 among
+tutorials, demos, and tests).
 
 \paragraph{Contributions.}
 \begin{itemize}\itemsep2pt
-  \item \textbf{The first real-world base-rate study} of structural (topology)
-  defects in agent workflows: 930 workflows from 253 public GitHub repositories
-  across all four frameworks, with a 120-workflow subsample validated against
-  independent LLM-reconstructed ground-truth graphs and adversarial triage
-  (Section~\ref{sec:realworld}). Because nobody had measured it, the rarity is
-  itself the contribution: the validated topology-defect rate is
-  ${\approx}0\%$ (2 of 187 flags genuine, 95\% CI $[0.3,3.8]\%$; 43\%
-  extraction artifacts, 50\% intentional design), and real workflows are mostly
-  small static pipelines (median two non-sentinel nodes).
+  \item \textbf{A base-rate study of topology defects in public agent
+  workflows}, with the estimands kept honest: flag precision \emph{and}
+  workflow-level prevalence including false negatives, measured against
+  independent graph reconstructions, with repository-clustered uncertainty and
+  a source-level census of the corpus (one third application-like, two thirds
+  tutorials/demos/tests; Section~\ref{sec:realworld}).
   \item \textbf{\textsc{Agentproof}}, the measurement instrument: automatic
-  extraction of a unified graph model from four heterogeneous frameworks with no
-  hand-written formal model, six structural checks with witness traces, and a
-  seven-form temporal DSL over the safety fragment of LTL compiled to DFAs and
-  evaluated statically and at runtime (Section~\ref{sec:system}).
-  \item \textbf{A quantified diagnosis}: extraction fidelity, not the checks, is
-  the binding constraint. Edge recall drops to 0.64 on real code (0.37 on ADK,
-  0.77 on AutoGen) and node-kind accuracy to 0.83, both near-perfect on stubs;
-  every triaged structural flag is an extraction artifact (0 of 72; 95\% CI
-  $[0,5.1]\%$), and such flags arise only on LangGraph because the other
-  extractors impose connected topologies by construction.
-  \item \textbf{A defect-independent job} for the static machinery: the
-  graph\,$\times$\,DFA product proves which policies can never reach a violation,
-  so their runtime monitors are provably inert and can be pruned (a mean 14 of 15
-  per workflow; Section~\ref{sec:results}), positioning static verification as a
-  sound monitor-selection layer that bridges to leaner runtime shields.
+  extraction of a unified graph model from four heterogeneous frameworks, six
+  structural checks with witness traces, and a seven-form policy DSL with
+  precise LTL$_f$ semantics whose static product covers bad prefixes,
+  end-of-trace obligations, and divergent (never-satisfiable) obligations
+  (Section~\ref{sec:system}).
+  \item \textbf{A quantified diagnosis}: extraction fidelity, not the check
+  algorithms, is the binding constraint. Edge recall is 0.65 on real code
+  (0.38 on ADK) versus near-perfect on stubs; every structural flag on
+  extracted graphs is an extraction artifact, and structural flags arise only
+  for the one extractor that does not impose connected topologies---so
+  extractor-level structural conclusions are meaningful for LangGraph only
+  (Section~\ref{sec:realworld}).
+  \item \textbf{A defect-independent job} for the static machinery, stated
+  with its premise: given a graph that over-approximates runtime traces, the
+  product proves which policy monitors can never fire, so they can be soundly
+  pruned. On the curated corpus 251 of 270 monitor instances (93\%) are
+  provably inert---though on today's small workflows every proven case is
+  alphabet-level, so the product's value there is soundness on branching
+  topologies, not extra pruning (Section~\ref{sec:results}).
 \end{itemize}

@@ -1,0 +1,1618 @@
+{
+  "prevalence_gt": {
+    "n_gt_workflows": 119,
+    "sensitive_tools_in_gt": [
+      "execute_function",
+      "execute_sql_query",
+      "initialize_payment_or_query_orders",
+      "save_article",
+      "save_order_to_sheet",
+      "write_article_czech"
+    ],
+    "workflows_with_structural_flags": 11,
+    "workflows_with_structural_flags_ci": [
+      0.05240003349104728,
+      0.15796518480633737
+    ],
+    "workflows_with_risk_aware_gate_flags": 3,
+    "workflows_with_risk_aware_gate_flags_ci": [
+      0.008610075311511797,
+      0.07150610682874037
+    ],
+    "workflows_with_human_presence_flags": 106,
+    "structural_flag_counts": {
+      "reverse_reachability": 1,
+      "dead_ends": 2,
+      "router_shape": 4,
+      "tool_declarations": 6
+    },
+    "per_workflow": [
+      {
+        "slug": "0evja__LangGraph-Agent__demo",
+        "repo": "0evja/LangGraph-Agent",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AIAnytime__agentic-context-engineering__curator",
+        "repo": "AIAnytime/agentic-context-engineering",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AbhiShetye0703__Google-ADK__parallelAgent",
+        "repo": "AbhiShetye0703/Google-ADK",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AbhiShetye0703__Google-ADK__sequentialAgent",
+        "repo": "AbhiShetye0703/Google-ADK",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AdaptiveBProcess__bpm_agent__main",
+        "repo": "AdaptiveBProcess/bpm_agent",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AdaptiveBProcess__bpm_agent__template",
+        "repo": "AdaptiveBProcess/bpm_agent",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AkshatKumar12__AutoGen_Learning__teams",
+        "repo": "AkshatKumar12/AutoGen_Learning",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "AkshatKumar12__AutoGen_Learning__test",
+        "repo": "AkshatKumar12/AutoGen_Learning",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "Arhamirfan__Snake-Agents__snake_autogen",
+        "repo": "Arhamirfan/Snake-Agents",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+        "repo": "AsadAhmedSaiyed/Google-AI-Agent-Intensive-Course",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Astrodevil__ADK-Agent-Examples__agent",
+        "repo": "Astrodevil/ADK-Agent-Examples",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__io",
+        "repo": "Avneesh26024/Gen_AI_Exchange",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "repo": "Avneesh26024/Gen_AI_Exchange",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Brenmull12__Hoohacks2025__multiturn",
+        "repo": "Brenmull12/Hoohacks2025",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "reverse_reachability",
+          "dead_ends",
+          "router_shape"
+        ],
+        "failed_structural": [
+          "reverse_reachability",
+          "dead_ends",
+          "router_shape"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "Damish-7__MOLYSIS__health_agents",
+        "repo": "Damish-7/MOLYSIS",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Damish-7__MOLYSIS__multi_agents",
+        "repo": "Damish-7/MOLYSIS",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Harsh1210__llm-opsbot__main",
+        "repo": "Harsh1210/llm-opsbot",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence",
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+        "repo": "Hsing-Tzu/AI-Aided-Systems",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+        "repo": "IbrahimAlobid2/Smart-Procurement-Agents",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+        "repo": "IbrahimAlobid2/Smart-Procurement-Agents",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+        "repo": "IbrahimAlobid2/Smart-Procurement-Agents",
+        "framework": "crewai",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Itzkuldeep__AgentE-com__main",
+        "repo": "Itzkuldeep/AgentE-com",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "Jamahl__fraya-25__crew",
+        "repo": "Jamahl/fraya-25",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "repo": "Kasun-Tharaka/Multi-Agent-AI-RAG",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__chat",
+        "repo": "LeonardoDaviti/LangGraph-Tutorials",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "repo": "LeonardoDaviti/LangGraph-Tutorials",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "LightningGod7__prometheus__test_agent",
+        "repo": "LightningGod7/prometheus",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+        "repo": "Lucky-akash321/News-Reporter-AI-using-CrewAI",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+        "repo": "Md-Emon-Hasan/LangGraph",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "MdArshath2004__snowflakeoptimization__tes",
+        "repo": "MdArshath2004/snowflakeoptimization",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Mhijazi16__LanggraphExercise__one",
+        "repo": "Mhijazi16/LanggraphExercise",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Mhijazi16__LanggraphExercise__two",
+        "repo": "Mhijazi16/LanggraphExercise",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__app_team",
+        "repo": "MikhailMostWanted/Astra",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__mcp_session_host_example",
+        "repo": "MikhailMostWanted/Astra",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__test_group_chat_endpoint",
+        "repo": "MikhailMostWanted/Astra",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__test_team_manager",
+        "repo": "MikhailMostWanted/Astra",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+        "repo": "NEU-Bio-Research-Team/tox-agent",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+        "repo": "NanGePlus/AutoGenV04Test",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "NanGePlus__AutoGenV04Test__CacheTeam",
+        "repo": "NanGePlus/AutoGenV04Test",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+        "repo": "NavalGear/Manufacturing_Process_Plan",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__Main",
+        "repo": "SAMAR-CODE404/backend",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__merger_agent",
+        "repo": "SAMAR-CODE404/backend",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__report_agent",
+        "repo": "SAMAR-CODE404/backend",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "SPZts__AutoModel__model22",
+        "repo": "SPZts/AutoModel",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "SPZts__AutoModel__model32",
+        "repo": "SPZts/AutoModel",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Saimoguloju__AI-Agents__sample_agent",
+        "repo": "Saimoguloju/AI-Agents",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+        "repo": "Sarfaraz021/WhatsApp-data-Assistant-Using-Qdrant-VectorDB",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Shirmeen__Chatbot__app3",
+        "repo": "Shirmeen/Chatbot",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+        "repo": "Sidreyas/The_Grand_AI_Repo",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+        "repo": "Sidreyas/The_Grand_AI_Repo",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+        "repo": "Sidreyas/The_Grand_AI_Repo",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app",
+        "repo": "Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+        "repo": "Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+        "repo": "SomanGaurav/Agentic_Research_Assistant",
+        "framework": "crewai",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "repo": "Sujas-Aggarwal/langraph-chatbot",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_gate_coverage"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": true,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+        "repo": "SuyashMohanty/SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+        "repo": "Tushar365/WebScript-AI-Powered-Research-Content-Creator",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+        "repo": "Zen7-Labs/Zen7-Payment-Agent",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "aayu2003__agent_creation__tasks",
+        "repo": "aayu2003/agent_creation",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "arunacarunac__MultiAgentSamples__App",
+        "repo": "arunacarunac/MultiAgentSamples",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__2_RunTeam",
+        "repo": "blueming333/aicraft-class-autogen",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+        "repo": "blueming333/aicraft-class-autogen",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+        "repo": "blueming333/aicraft-class-autogen",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+        "repo": "blueming333/aicraft-class-autogen",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "brightertiger__google-adk-demo__agent",
+        "repo": "brightertiger/google-adk-demo",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "colinmccrae__CrewAITest__do1",
+        "repo": "colinmccrae/CrewAITest",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "dforwardfeed__memo_generator__main",
+        "repo": "dforwardfeed/memo_generator",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+        "repo": "divyansh-tripathi7/AutoMated_LinkedinCrew",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "docker__compose-for-agents__agent",
+        "repo": "docker/compose-for-agents",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "dream-horizon-org__pulse__agent",
+        "repo": "dream-horizon-org/pulse",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "ed-donner__agents__sequential_agents",
+        "repo": "ed-donner/agents",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "dead_ends",
+          "human_presence"
+        ],
+        "failed_structural": [
+          "dead_ends"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "ericjiang18__Agent-Q-Mix__test_agent",
+        "repo": "ericjiang18/Agent-Q-Mix",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "esk000__AIAgentsIntensive__LoopAgent",
+        "repo": "esk000/AIAgentsIntensive",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "esk000__AIAgentsIntensive__parallelAgent",
+        "repo": "esk000/AIAgentsIntensive",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "feixiao__ai__ex03",
+        "repo": "feixiao/ai",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "firaflash__career-mentor-ai-agent__tasks",
+        "repo": "firaflash/career-mentor-ai-agent",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "foxyglue__faq-db-chat__app2",
+        "repo": "foxyglue/faq-db-chat",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "gabrielpreda__adk-sql-agent__agent",
+        "repo": "gabrielpreda/adk-sql-agent",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "router_shape",
+          "human_presence"
+        ],
+        "failed_structural": [
+          "router_shape"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "repo": "houyongsheng/local_rag",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "huangdihd__ProjectAI__main",
+        "repo": "huangdihd/ProjectAI",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "jakenolan__langgraph-custom-tools__main",
+        "repo": "jakenolan/langgraph-custom-tools",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "jkmaina__autogen_blueprint__03_model_based_selector",
+        "repo": "jkmaina/autogen_blueprint",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "joansantoso__iox-adk__agent",
+        "repo": "joansantoso/iox-adk",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+        "repo": "jpantsjoha/Agentic-Marketing-Campaign-Generator",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "juananpe__langgraph-flask__cli",
+        "repo": "juananpe/langgraph-flask",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "leewow03__llm__10",
+        "repo": "leewow03/llm",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "lordpython__multi-agent-video-system__agent",
+        "repo": "lordpython/multi-agent-video-system",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "matttbates__job-search-assistant__crew",
+        "repo": "matttbates/job-search-assistant",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+        "repo": "maxidiazbattan/Agentic-RAG-langgraph-ollama-streamlit",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "merdandt__SalesShortcut__email_agent",
+        "repo": "merdandt/SalesShortcut",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence",
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "merdandt__SalesShortcut__outreach_email_agent",
+        "repo": "merdandt/SalesShortcut",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "merdandt__SalesShortcut__potential_lead_finder_agent",
+        "repo": "merdandt/SalesShortcut",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "merdandt__SalesShortcut__websiter_creator_agent",
+        "repo": "merdandt/SalesShortcut",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "microsoft__ACV__test_agent",
+        "repo": "microsoft/ACV",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "microsoft__ACV__test_cache_agent",
+        "repo": "microsoft/ACV",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "human_presence",
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "microsoft__ACV__test_group_chat_endpoint",
+        "repo": "microsoft/ACV",
+        "framework": "autogen",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+        "repo": "miranda-santos-ricardo/langgraph_academy_own_agent_exercise",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "muzifa-mubarak__crew_ai_practice__tasks",
+        "repo": "muzifa-mubarak/crew_ai_practice",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+        "repo": "mvdiogo/Langgraph-langchain-Ollama-and-DuckDuckGo",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "nokia__mcp-redfish__agent",
+        "repo": "nokia/mcp-redfish",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "opengles3d__ollama_rag__18",
+        "repo": "opengles3d/ollama_rag",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "opengles3d__ollama_rag__state_graph",
+        "repo": "opengles3d/ollama_rag",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+        "repo": "peytonrivers/AI-Agentic-System-using-Canvas-LMS-API",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence",
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+        "repo": "project194-cognitivellm/cognitivellm",
+        "framework": "autogen",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "router_shape",
+          "human_presence",
+          "human_gate_coverage"
+        ],
+        "failed_structural": [
+          "router_shape"
+        ],
+        "human_gate_coverage_failed": true,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "shazy89__ai-learning__agent",
+        "repo": "shazy89/ai-learning",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence",
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "shazy89__ai-learning__research_agent",
+        "repo": "shazy89/ai-learning",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+        "repo": "sreekarrs/JobSearch-Agent",
+        "framework": "adk",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "router_shape",
+          "human_presence"
+        ],
+        "failed_structural": [
+          "router_shape"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "suryaMadhav16__RAG-Lab__CrewAI",
+        "repo": "suryaMadhav16/RAG-Lab",
+        "framework": "crewai",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "svpino__ml.school__agent",
+        "repo": "svpino/ml.school",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "timleow__gym-kfc-daddies__cli_ui",
+        "repo": "timleow/gym-kfc-daddies",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "tweetlol__eve__eve",
+        "repo": "tweetlol/eve",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence",
+          "human_gate_coverage"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": true,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "vego147__AI_Research_Img_Assistance__Bot",
+        "repo": "vego147/AI_Research_Img_Assistance",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "venkatavinayvijjapu__New_Assignment__tasks",
+        "repo": "venkatavinayvijjapu/New_Assignment",
+        "framework": "crewai",
+        "gt_confidence": "medium",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "vishnusurya11__ember__dev",
+        "repo": "vishnusurya11/ember",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "vishnusurya11__ember__prompt_agent",
+        "repo": "vishnusurya11/ember",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "vishnusurya11__ember__reflection_agent",
+        "repo": "vishnusurya11/ember",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "volcengine__veadk-python__main",
+        "repo": "volcengine/veadk-python",
+        "framework": "adk",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      },
+      {
+        "slug": "waqasniazi9__voice-agent__builder",
+        "repo": "waqasniazi9/voice-agent",
+        "framework": "autogen",
+        "gt_confidence": "low",
+        "failed_checks": [
+          "tool_declarations"
+        ],
+        "failed_structural": [
+          "tool_declarations"
+        ],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": false
+      },
+      {
+        "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+        "repo": "winstonbartlegod/enhanced-multimodal-rag",
+        "framework": "langgraph",
+        "gt_confidence": "high",
+        "failed_checks": [
+          "human_presence"
+        ],
+        "failed_structural": [],
+        "human_gate_coverage_failed": false,
+        "human_presence_failed": true
+      }
+    ]
+  },
+  "composition": {
+    "excluded_self_repo_workflows": [
+      "NordicAgents__AgentProof__adk_compliance_pipeline",
+      "NordicAgents__AgentProof__adk_pipeline",
+      "NordicAgents__AgentProof__autogen_debate",
+      "NordicAgents__AgentProof__crewai_research_crew",
+      "NordicAgents__AgentProof__langgraph_customer_support",
+      "NordicAgents__AgentProof__langgraph_incident_response",
+      "NordicAgents__AgentProof__test_extract_adk",
+      "NordicAgents__AgentProof__test_extract_autogen"
+    ],
+    "excluded_self_repo_in_sample": [
+      "NordicAgents__AgentProof__test_extract_adk"
+    ],
+    "mined": {
+      "n_workflows": 922,
+      "n_repos": 252,
+      "tutorial_test_named": 298,
+      "tutorial_test_named_pct": 32.3
+    },
+    "sample": {
+      "n_workflows": 119,
+      "n_repos": 87,
+      "tutorial_test_named": 30,
+      "tutorial_test_named_pct": 25.2
+    },
+    "mined_nonsentinel_median": 2,
+    "mined_nonsentinel_mean": 3.88,
+    "duplicate_topology_groups_gt3_nodes": 48,
+    "duplicate_topology_extra_workflows": 170
+  },
+  "confidence": {
+    "gt_confidence_distribution": {
+      "high": 77,
+      "medium": 33,
+      "low": 9
+    },
+    "fidelity_all": {
+      "n": 119,
+      "edge_recall": 0.649,
+      "edge_precision": 0.805,
+      "kind_accuracy": 0.828
+    },
+    "fidelity_high_confidence_only": {
+      "n": 77,
+      "edge_recall": 0.674,
+      "edge_precision": 0.844,
+      "kind_accuracy": 0.759
+    },
+    "fidelity_high_confidence_by_framework": {
+      "adk": {
+        "n": 13,
+        "edge_recall": 0.333,
+        "edge_precision": 0.333,
+        "kind_accuracy": 0.974
+      },
+      "autogen": {
+        "n": 17,
+        "edge_recall": 0.84,
+        "edge_precision": 0.966,
+        "kind_accuracy": 0.844
+      },
+      "crewai": {
+        "n": 7,
+        "edge_recall": 0.857,
+        "edge_precision": 0.857,
+        "kind_accuracy": 0.798
+      },
+      "langgraph": {
+        "n": 40,
+        "edge_recall": 0.682,
+        "edge_precision": 0.956,
+        "kind_accuracy": 0.647
+      }
+    }
+  },
+  "cluster_cis": {
+    "edge_recall": {
+      "mean": 0.649,
+      "ci95": [
+        0.562,
+        0.731
+      ]
+    },
+    "edge_precision": {
+      "mean": 0.805,
+      "ci95": [
+        0.716,
+        0.886
+      ]
+    },
+    "kind_accuracy": {
+      "mean": 0.828,
+      "ci95": [
+        0.781,
+        0.872
+      ]
+    },
+    "prevalence_per_workflow": {
+      "k": 2,
+      "n": 119,
+      "mean": 0.0168,
+      "ci95_cluster": [
+        0.0,
+        0.0439
+      ],
+      "wilson_ci_unclustered": [
+        0.0046,
+        0.0592
+      ]
+    },
+    "prevalence_per_repo": {
+      "k": 2,
+      "n": 87,
+      "wilson_ci": [
+        0.0063,
+        0.08
+      ]
+    },
+    "flag_ppv_after_exclusion": {
+      "genuine": 2,
+      "total_flags": 186,
+      "artifact": 79,
+      "intentional": 93,
+      "arguable": 12
+    },
+    "arguable_slugs": [
+      "Avneesh26024__Gen_AI_Exchange__main",
+      "Brenmull12__Hoohacks2025__multiturn",
+      "Harsh1210__llm-opsbot__main",
+      "Itzkuldeep__AgentE-com__main",
+      "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+      "SAMAR-CODE404__backend__Main",
+      "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+      "SomanGaurav__Agentic_Research_Assistant__test_agent",
+      "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+      "brightertiger__google-adk-demo__agent",
+      "merdandt__SalesShortcut__email_agent"
+    ]
+  }
+}

@@ -17,23 +17,35 @@ and a Promela/SMV modeling-effort comparison are in the supplementary material.
 
 \paragraph{Monitor selection via static pruning.}
 The graph\,$\times$\,DFA product gives the static machinery a job that does not
-depend on defects existing. Because the product explores a superset of runtime
-paths, a policy whose product reaches no violation state can never fire at runtime
-on that workflow: its monitor is provably inert and need not be deployed. This is
-a sound \emph{monitor-selection} step---deploy per workflow only the monitors that
-can actually fire. Across the curated corpus and 15 policies, 252 of 270 monitor
-instances (93.3\%) are provably inert, a mean of 14 of 15 monitors skipped per
-workflow, so runtime enforcement evaluates only the remaining 6.7\%; multi-tool
-nodes are first split into single-tool chains so the analysis never
-under-approximates a node's events.
+depend on defects existing: deciding which runtime monitors to deploy. The
+soundness premise of Section~\ref{sec:system} is required and we restrict the
+claim accordingly---pruning applies to graphs whose paths over-approximate
+runtime traces (here, the curated corpus; in deployment, runtime-extracted
+graphs), \emph{never} to lossy AST-extracted graphs, whose missing edges could
+make a live monitor look inert. Under that premise, a policy whose product
+reaches no violation---by bad prefix, by termination, or by divergent
+obligation---can never fire at runtime on that workflow, so its monitor need
+not be deployed. Multi-tool nodes are first expanded into a complete digraph
+of single-tool nodes (admitting every invocation order and subset), so the
+expansion over-approximates rather than fixing one arbitrary tool order.
+
+Across the curated corpus and 15 policies, 251 of 270 monitor instances
+(93.0\%) are provably inert---a mean of 13.9 of 15 monitors skipped per
+workflow, leaving runtime enforcement to evaluate only the remaining 7\%.
 
 We report two honest limits. First, on today's small, mostly linear workflows
-almost all inertness is \emph{alphabet-level} (the policy's atoms never appear);
-the reachability product proves only one further case, and its advantage over a
-plain symbol-set check grows with branching structure. Second, the fixed policy
-vocabulary does not match real code---none of the 930 mined workflows invokes any
-of the 15 policies' tools---so measuring pruning on real workflows requires
-instantiating policy templates against each workflow's own tools, which we leave
-to future work. Static monitor selection is thus a sound, cheap optimization whose
-leverage today is predominantly alphabet-level, and it is the concrete bridge to
-runtime enforcement.
+\emph{every} proven-inert case is alphabet-level (the policy's atoms never
+appear in the workflow); under the corrected LTL$_f$ semantics the product
+proves no additional case on this corpus---the single case the reachability
+product ``won'' under our earlier, incorrect semantics was in fact a live
+termination-obligation monitor. The product's value over a plain symbol-set
+check is therefore soundness, not extra pruning: on branching and looping
+topologies a symbol-set check cannot certify inertness while the product can,
+and the product is what licenses the guarantee at all. Second, the fixed
+policy vocabulary does not match real code---none of the 922 mined workflows
+invokes any of the 15 policies' tools---so measuring pruning on mined
+workflows requires instantiating policy templates against each workflow's own
+tools, which we leave to future work. Static monitor selection is thus a
+sound, cheap optimization whose measured leverage today is alphabet-level, and
+it is the concrete bridge between pre-deployment analysis and leaner runtime
+enforcement.

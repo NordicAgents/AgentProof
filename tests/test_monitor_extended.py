@@ -9,6 +9,7 @@ from agentproof.monitor.ltl import (
     MonitorRuleSpec,
     compile_monitor_rule,
     evaluate_monitors,
+    finalize_monitors,
 )
 
 
@@ -20,6 +21,18 @@ def _eval_trace(rule: CompiledMonitorRule, events: list[dict]) -> list[bool]:
         state, snapshots, _ = evaluate_monitors((rule,), state, event)
         violations.append(snapshots[0].violation)
     return violations
+
+
+def _eval_trace_final(rule: CompiledMonitorRule, events: list[dict]) -> tuple[list[bool], bool]:
+    """Evaluate a complete (terminating) trace: per-step violations plus the
+    LTLf end-of-trace check for unfulfilled obligations."""
+    state: dict[str, int] = {}
+    violations = []
+    for event in events:
+        state, snapshots, _ = evaluate_monitors((rule,), state, event)
+        violations.append(snapshots[0].violation)
+    final_snapshots, _ = finalize_monitors((rule,), state)
+    return violations, final_snapshots[0].violation
 
 
 # ---------------------------------------------------------------------------
@@ -47,30 +60,45 @@ class TestForbiddenRegression:
 class TestImplFutureRegression:
     def test_no_violation(self):
         rule = compile_monitor_rule(MonitorRuleSpec("r", "decision:deploy -> F action:approve"))
-        violations = _eval_trace(rule, [
+        violations, final = _eval_trace_final(rule, [
             {"decision": "deploy"},
             {"action_type": "approve"},
         ])
         assert violations == [False, False]
+        assert final is False
 
-    def test_violation(self):
+    def test_pending_obligation_at_termination(self):
+        # LTLf G(a -> F b): no finite prefix is bad (b may still arrive), so
+        # violations surface only when the trace ends with the obligation open.
         rule = compile_monitor_rule(MonitorRuleSpec("r", "decision:deploy -> F action:approve"))
-        violations = _eval_trace(rule, [
+        violations, final = _eval_trace_final(rule, [
             {"decision": "deploy"},
             {},
             {"decision": "deploy"},
         ])
-        assert violations == [False, False, True]
+        assert violations == [False, False, False]
+        assert final is True
+
+    def test_obligations_merge_and_discharge(self):
+        rule = compile_monitor_rule(MonitorRuleSpec("r", "decision:deploy -> F action:approve"))
+        violations, final = _eval_trace_final(rule, [
+            {"decision": "deploy"},
+            {"decision": "deploy"},
+            {"action_type": "approve"},
+        ])
+        assert violations == [False, False, False]
+        assert final is False
 
 
 class TestUntilRegression:
     def test_satisfied(self):
         rule = compile_monitor_rule(MonitorRuleSpec("r", "read_only U action:signoff"))
-        violations = _eval_trace(rule, [
+        violations, final = _eval_trace_final(rule, [
             {"tags": ["read_only"]},
             {"action_type": "signoff"},
         ])
         assert violations == [False, False]
+        assert final is False
 
     def test_violation(self):
         rule = compile_monitor_rule(MonitorRuleSpec("r", "read_only U action:signoff"))
@@ -78,6 +106,17 @@ class TestUntilRegression:
             {},
         ])
         assert violations == [True]
+
+    def test_strong_until_never_satisfied(self):
+        # a U b with a holding forever but b never occurring: no bad prefix,
+        # but a finite trace ending without b violates strong until.
+        rule = compile_monitor_rule(MonitorRuleSpec("r", "read_only U action:signoff"))
+        violations, final = _eval_trace_final(rule, [
+            {"tags": ["read_only"]},
+            {"tags": ["read_only"]},
+        ])
+        assert violations == [False, False]
+        assert final is True
 
 
 # ---------------------------------------------------------------------------
@@ -253,15 +292,29 @@ class TestResponseChain:
         ])
         assert all(v is False for v in violations)
 
-    def test_first_repeated_before_second(self):
+    def test_chain_incomplete_at_termination(self):
+        # LTLf G(a -> F(b AND F c)): repeats of a merge into the pending
+        # obligation; an incomplete chain is flagged when the trace ends.
         rule = compile_monitor_rule(
             MonitorRuleSpec("r", "decision:submit -> F action:review -> F action:approve")
         )
-        violations = _eval_trace(rule, [
+        violations, final = _eval_trace_final(rule, [
             {"decision": "submit"},
-            {"decision": "submit"},  # Repeat before review — violation
+            {"decision": "submit"},
         ])
-        assert violations[-1] is True
+        assert all(v is False for v in violations)
+        assert final is True
+
+    def test_chain_mid_step_at_termination(self):
+        rule = compile_monitor_rule(
+            MonitorRuleSpec("r", "decision:submit -> F action:review -> F action:approve")
+        )
+        violations, final = _eval_trace_final(rule, [
+            {"decision": "submit"},
+            {"action_type": "review"},
+        ])
+        assert all(v is False for v in violations)
+        assert final is True
 
     def test_no_trigger(self):
         rule = compile_monitor_rule(

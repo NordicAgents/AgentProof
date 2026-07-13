@@ -2,19 +2,27 @@
 """Monitor-pruning result: how many runtime monitors are provably inert?
 
 For each (workflow, policy) pair we run the graph x DFA product construction
-(agentproof.verify.temporal.check_temporal_property). Because the product
-explores a *superset* of runtime paths, if it reaches no violation state the
-policy can never be violated on that workflow at runtime -- so its monitor is
-provably inert and can be pruned (skipped) before deployment. This is sound:
-pruning never removes a monitor that could fire.
+(agentproof.verify.temporal.check_temporal_property), which covers both LTLf
+violation mechanisms (bad prefixes and non-accepting termination at exits).
 
-We report the overall pruning rate over the corpus x policies, split into
+SOUNDNESS PREMISE (trace containment): pruning is sound only relative to a
+graph whose paths OVER-approximate the workflow's runtime traces. That holds
+for the curated corpus (graphs authored with the code) and for
+runtime-extracted graphs under a no-dynamic-modification assumption; it does
+NOT hold for the lossy AST-extracted mined graphs (edge recall 0.64), which
+under-approximate. Do not use this script's verdicts to prune monitors for
+AST-extracted graphs.
+
+Given that premise: if the product reaches no violation, the policy can never
+be violated on that workflow at runtime, so its monitor is provably inert and
+can be pruned. We report the overall pruning rate over corpus x policies,
+split into
   - trivially inert: the policy's atoms never appear in the workflow, and
   - reachability-proven inert: atoms appear, yet the product proves no violation
     path exists (the case where the product construction does real work).
 
-Multi-tool nodes are split into a chain of single-tool nodes first, so the
-default (tools[0]) event mapper stays sound.
+Multi-tool nodes are expanded into a complete digraph of single-tool nodes
+first (all orders/subsets), so the default (tools[0]) event mapper stays sound.
 
 Usage:
     python scripts/monitor_pruning.py --corpus corpus/real_world/graphs \
@@ -34,11 +42,18 @@ from agentproof.verify.temporal import check_temporal_property
 
 
 def expand_multitool(g: dict) -> dict:
-    """Split each tool node with >1 tool into a linear chain of single-tool
-    nodes, preserving incoming/outgoing edges. Sound over-approximation of a
-    node that invokes several tools in sequence."""
-    remap_in: dict[str, str] = {}
-    remap_out: dict[str, str] = {}
+    """Split each tool node with >1 bound tool into single-tool sub-nodes
+    forming a complete digraph, with every incoming edge fanning into every
+    sub-node and every sub-node fanning out to every successor.
+
+    A multi-tool node may invoke ANY subset of its tools in ANY order at
+    runtime, so the expansion must over-approximate all such sequences: the
+    complete digraph admits every ordering (and repetitions), and the full
+    in/out fan admits every nonempty subset. A fixed linear chain would
+    under-approximate orderings and could unsoundly prune order-sensitive
+    policies."""
+    remap_in: dict[str, list[str]] = {}
+    remap_out: dict[str, list[str]] = {}
     out_nodes: list[dict] = []
     out_edges: list[dict] = []
     for n in g["nodes"]:
@@ -49,18 +64,20 @@ def expand_multitool(g: dict) -> dict:
                 sid = f"{n['id']}__tool{i}"
                 out_nodes.append({**n, "id": sid, "tools": [t]})
                 subs.append(sid)
-            for a, b in zip(subs, subs[1:]):
-                out_edges.append({"source": a, "target": b, "kind": "direct"})
-            remap_in[n["id"]] = subs[0]
-            remap_out[n["id"]] = subs[-1]
+            for a in subs:
+                for b in subs:
+                    if a != b:
+                        out_edges.append({"source": a, "target": b, "kind": "direct"})
+            remap_in[n["id"]] = subs
+            remap_out[n["id"]] = subs
         else:
             out_nodes.append(n)
-            remap_in[n["id"]] = n["id"]
-            remap_out[n["id"]] = n["id"]
+            remap_in[n["id"]] = [n["id"]]
+            remap_out[n["id"]] = [n["id"]]
     for e in g["edges"]:
-        out_edges.append({**e,
-                          "source": remap_out.get(e["source"], e["source"]),
-                          "target": remap_in.get(e["target"], e["target"])})
+        for src in remap_out.get(e["source"], [e["source"]]):
+            for tgt in remap_in.get(e["target"], [e["target"]]):
+                out_edges.append({**e, "source": src, "target": tgt})
     return {**g, "nodes": out_nodes, "edges": out_edges}
 
 

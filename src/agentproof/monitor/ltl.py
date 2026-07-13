@@ -1,14 +1,38 @@
 """Temporal monitor compilation and runtime evaluation.
 
-Supported DSL patterns:
-  - G !atom                          (Forbidden)
-  - antecedent -> F consequent       (Implication-future)
-  - left U right                     (Until)
-  - (expr) AND (expr)                (Conjunction — product DFA)
-  - (expr) OR (expr)                 (Disjunction — product DFA)
-  - antecedent -> F[<=k] consequent  (Bounded response)
-  - a -> F b -> F c                  (Response chain)
-  - a U (b U c)                      (Nested until)
+Semantics are LTLf (LTL over finite traces, De Giacomo & Vardi 2013): a
+workflow execution is a finite event trace, and each DSL form denotes an LTLf
+formula. Violations surface through two disjoint mechanisms:
+
+  1. *Bad prefix* — a finite prefix no extension can repair drives the DFA
+     into an absorbing violation state; ``evaluate_monitors`` reports it on
+     the offending event.
+  2. *Unfulfilled obligation at termination* — the trace ends while the DFA
+     is in a non-accepting state (e.g. a pending ``F`` obligation);
+     ``finalize_monitors`` reports it when the trace ends.
+
+Supported DSL patterns and their LTLf semantics:
+  - G !atom                          Forbidden: globally never *atom*.
+                                     Pure safety; bad-prefix detectable.
+  - antecedent -> F consequent       Response, G(a -> F b): every *a* is
+                                     eventually followed by *b* before the
+                                     trace ends. Pure LTLf liveness: no finite
+                                     bad prefix exists, so violations are
+                                     reported only at termination.
+  - left U right                     Strong until, a U b: *a* holds until *b*
+                                     occurs, and *b* must occur. Bad prefix
+                                     (neither a nor b before b was seen) plus
+                                     termination check (b never occurred).
+  - antecedent -> F[<=k] consequent  Bounded response, G(a -> F[<=k] b):
+                                     co-safety; exceeding the bound is a bad
+                                     prefix, ending mid-count is a
+                                     termination violation.
+  - a -> F b -> F c                  Response chain, G(a -> F(b AND F c)):
+                                     like response, violations only at
+                                     termination.
+  - (expr) AND (expr)                Conjunction — product DFA.
+  - (expr) OR (expr)                 Disjunction — product DFA.
+  - a U (b U c)                      Nested until.
 """
 
 from __future__ import annotations
@@ -74,6 +98,9 @@ class _DFA:
     initial_state: int
     transition_table: dict[int, dict[int, int]]
     violation_states: frozenset[int]
+    # States in which a finite trace may validly END (LTLf acceptance).
+    # Non-accepting, non-violation states carry a pending obligation.
+    accepting_states: frozenset[int]
 
 
 # ---------------------------------------------------------------------------
@@ -96,6 +123,7 @@ class CompiledMonitorRule:
     initial_state: int
     transition_table: Mapping[int, Mapping[int, int]]
     violation_states: frozenset[int]
+    accepting_states: frozenset[int] = frozenset({0})
 
 
 @dataclass(frozen=True)
@@ -239,21 +267,36 @@ def _compile_forbidden(ast: _Forbidden) -> _DFA:
     predicates = (ast.atom,)
     table = _build_transition_table(predicates, 2, _forbidden_transition(ast.atom))
     return _DFA(predicates=predicates, num_states=2, initial_state=0,
-                transition_table=table, violation_states=frozenset({1}))
+                transition_table=table, violation_states=frozenset({1}),
+                accepting_states=frozenset({0}))
 
 
 def _compile_impl_future(ast: _ImplFuture) -> _DFA:
+    """G(a -> F b) under LTLf.
+
+    No finite prefix is a bad prefix (b may still arrive), so there is no
+    violation state; state 1 (obligation pending) is simply non-accepting,
+    and a trace ending there violates the property at termination.
+    """
     predicates = tuple(sorted({ast.antecedent, ast.consequent}))
-    table = _build_transition_table(predicates, 3, _implication_future_transition(ast.antecedent, ast.consequent))
-    return _DFA(predicates=predicates, num_states=3, initial_state=0,
-                transition_table=table, violation_states=frozenset({2}))
+    table = _build_transition_table(predicates, 2, _implication_future_transition(ast.antecedent, ast.consequent))
+    return _DFA(predicates=predicates, num_states=2, initial_state=0,
+                transition_table=table, violation_states=frozenset(),
+                accepting_states=frozenset({0}))
 
 
 def _compile_until(ast: _Until) -> _DFA:
+    """Strong until (a U b) under LTLf.
+
+    State 2 is the bad prefix (neither a nor b held before b was seen);
+    state 0 (b not yet seen) is non-accepting, so a trace that ends without
+    ever seeing b violates the property at termination.
+    """
     predicates = tuple(sorted({ast.left, ast.right}))
     table = _build_transition_table(predicates, 3, _until_transition(ast.left, ast.right))
     return _DFA(predicates=predicates, num_states=3, initial_state=0,
-                transition_table=table, violation_states=frozenset({2}))
+                transition_table=table, violation_states=frozenset({2}),
+                accepting_states=frozenset({1}))
 
 
 def _compile_bounded_response(ast: _BoundedResponse) -> _DFA:
@@ -284,28 +327,28 @@ def _compile_bounded_response(ast: _BoundedResponse) -> _DFA:
 
     table = _build_transition_table(predicates, num_states, transition)
     return _DFA(predicates=predicates, num_states=num_states, initial_state=0,
-                transition_table=table, violation_states=frozenset({violation_state}))
+                transition_table=table, violation_states=frozenset({violation_state}),
+                accepting_states=frozenset({0}))
 
 
 def _compile_response_chain(ast: _ResponseChain) -> _DFA:
-    """Compile a -> F b -> F c into a sequential chain DFA.
+    """Compile a -> F b -> F c, i.e. LTLf G(a -> F(b AND F c)).
 
     For chain (a, b, c) with n=3 steps:
-      State 0: idle (waiting for a)
-      State 1: saw a, waiting for b
-      State 2: saw b, waiting for c
-      State n: violation (a repeated before chain completed)
-    When we see the last step in state n-1, we reset to 0.
+      State 0: idle (accepting)
+      State i (1..n-1): saw steps[0..i-1], waiting for steps[i] (pending)
+    When we see the last step in state n-1, we reset to 0. A recurrence of
+    the first step mid-chain merges into the pending obligation (as in
+    G(a -> F b), obligations coalesce). Like the unbounded response form,
+    this is pure LTLf liveness: no bad prefix exists, and a trace ending
+    mid-chain violates the property at termination.
     """
     steps = ast.steps
     n = len(steps)
     predicates = tuple(sorted(set(steps)))
-    num_states = n + 1  # 0..n-1 for chain positions, n for violation
-    violation_state = n
+    num_states = n  # 0..n-1 chain positions
 
     def transition(state: int, valuation: Mapping[str, bool]) -> int:
-        if state == violation_state:
-            return violation_state
         if state == 0:
             if valuation.get(steps[0], False):
                 return 1
@@ -316,14 +359,12 @@ def _compile_response_chain(ast: _ResponseChain) -> _DFA:
             if state + 1 >= n:
                 return 0  # Chain completed, reset
             return state + 1
-        # Check if first step recurs before chain completes
-        if valuation.get(steps[0], False):
-            return violation_state
         return state
 
     table = _build_transition_table(predicates, num_states, transition)
     return _DFA(predicates=predicates, num_states=num_states, initial_state=0,
-                transition_table=table, violation_states=frozenset({violation_state}))
+                transition_table=table, violation_states=frozenset(),
+                accepting_states=frozenset({0}))
 
 
 def _compile_product(left_ast: _ASTNode, right_ast: _ASTNode, *, conj: bool) -> _DFA:
@@ -348,15 +389,25 @@ def _compile_product(left_ast: _ASTNode, right_ast: _ASTNode, *, conj: bool) -> 
     num_states = counter
     initial = state_map[(left_dfa.initial_state, right_dfa.initial_state)]
 
-    # Identify violation states
+    # Identify violation and accepting states.
+    # Conjunction: violated if either side is violated; a trace may end only
+    # when both sides accept. Disjunction: violated only if both sides are
+    # violated; a trace may end when either side accepts.
     violation_states: set[int] = set()
+    accepting_states: set[int] = set()
     for (ls, rs), sid in state_map.items():
         left_viol = ls in left_dfa.violation_states
         right_viol = rs in right_dfa.violation_states
+        left_acc = ls in left_dfa.accepting_states
+        right_acc = rs in right_dfa.accepting_states
         if conj and (left_viol or right_viol):
             violation_states.add(sid)
         elif not conj and (left_viol and right_viol):
             violation_states.add(sid)
+        elif conj and left_acc and right_acc:
+            accepting_states.add(sid)
+        elif not conj and (left_acc or right_acc):
+            accepting_states.add(sid)
 
     # Build transition table
     table: dict[int, dict[int, int]] = {}
@@ -371,7 +422,8 @@ def _compile_product(left_ast: _ASTNode, right_ast: _ASTNode, *, conj: bool) -> 
             table[sid][symbol] = state_map[(left_next, right_next)]
 
     return _DFA(predicates=all_preds, num_states=num_states, initial_state=initial,
-                transition_table=table, violation_states=frozenset(violation_states))
+                transition_table=table, violation_states=frozenset(violation_states),
+                accepting_states=frozenset(accepting_states))
 
 
 def _project_symbol(all_preds: tuple[str, ...], sub_preds: tuple[str, ...], symbol: int) -> int:
@@ -404,7 +456,35 @@ def compile_monitor_rule(rule: MonitorRuleSpec) -> CompiledMonitorRule:
         initial_state=dfa.initial_state,
         transition_table=dfa.transition_table,
         violation_states=dfa.violation_states,
+        accepting_states=dfa.accepting_states,
     )
+
+
+def finalize_monitors(
+    compiled_rules: tuple[CompiledMonitorRule, ...],
+    prior_state: Mapping[str, int],
+) -> tuple[list[MonitorSnapshot], MonitorDecision]:
+    """LTLf end-of-trace check: flag rules with unfulfilled obligations.
+
+    Must be called when the event trace ends (the workflow terminates). A
+    rule whose current DFA state is not accepting — e.g. a pending
+    ``a -> F b`` obligation or an ``a U b`` where *b* never occurred — is a
+    violation of the property on the finite trace, even though no single
+    event was a bad prefix.
+    """
+    snapshots: list[MonitorSnapshot] = []
+    level_counts = {"warn": 0, "block": 0, "halt": 0, "escalate": 0}
+    for rule in compiled_rules:
+        current = int(prior_state.get(rule.rule_id, rule.initial_state))
+        violation = current not in rule.accepting_states
+        handling: str | None = None
+        if violation:
+            handling = rule.on_violation
+            level_counts[rule.on_violation] += 1
+        snapshots.append(MonitorSnapshot(
+            rule_id=rule.rule_id, prior_state=current, next_state=current,
+            violation=violation, handling=handling))
+    return snapshots, map_violation_levels(level_counts)
 
 
 def evaluate_monitors(
@@ -468,21 +548,21 @@ def _forbidden_transition(atom: str):
 
 
 def _implication_future_transition(antecedent: str, consequent: str):
+    """G(a -> F b) on finite traces: 0 = no pending obligation, 1 = pending.
+
+    A repeated antecedent while pending merges into the existing obligation
+    (G(a -> F b) imposes one shared eventuality, not a queue).
+    """
     def transition(state: int, valuation: Mapping[str, bool]) -> int:
         antecedent_now = valuation.get(antecedent, False)
         consequent_now = valuation.get(consequent, False)
 
-        if state == 2:
-            return 2
         if state == 0:
             if antecedent_now and not consequent_now:
                 return 1
             return 0
-
         if consequent_now:
             return 0
-        if antecedent_now:
-            return 2
         return 1
 
     return transition

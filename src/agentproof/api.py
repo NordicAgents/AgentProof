@@ -17,6 +17,7 @@ from agentproof.monitor.ltl import (
     MonitorRuleSpec,
     compile_monitor_rule,
     evaluate_monitors,
+    finalize_monitors,
 )
 from agentproof.verify import check_temporal_property, run_structural_checks
 
@@ -87,6 +88,13 @@ def verify(
                 )
                 all_snapshots.append([s.to_trace_entry() for s in snapshots])
                 final_decision = decision
+
+            # LTLf end-of-trace check: the event trace is a complete run, so
+            # obligations still pending when it ends are violations.
+            end_snapshots, end_decision = finalize_monitors(tuple(compiled), state)
+            if any(s.violation for s in end_snapshots):
+                all_snapshots.append([s.to_trace_entry() for s in end_snapshots])
+                final_decision = end_decision
 
             report["monitor"]["trace_length"] = len(event_trace)
             report["monitor"]["final_decision"] = {

@@ -3,63 +3,63 @@
     "n_nodes": 50,
     "actual_nodes": 52,
     "actual_edges": 104,
-    "structural_check_ms": 0.0398,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 0.1101,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 100,
     "actual_nodes": 102,
     "actual_edges": 214,
-    "structural_check_ms": 0.0726,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 0.2779,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 200,
     "actual_nodes": 202,
     "actual_edges": 430,
-    "structural_check_ms": 0.2179,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 0.6702,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 500,
     "actual_nodes": 502,
     "actual_edges": 1074,
-    "structural_check_ms": 1.2365,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 3.3155,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 1000,
     "actual_nodes": 1002,
     "actual_edges": 2128,
-    "structural_check_ms": 4.021,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 10.7784,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 2000,
     "actual_nodes": 2002,
     "actual_edges": 4252,
-    "structural_check_ms": 21.2285,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 61.5531,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   },
   {
     "n_nodes": 5000,
     "actual_nodes": 5002,
     "actual_edges": 10713,
-    "structural_check_ms": 104.7238,
-    "monitor_compile_ms": 0.065,
-    "monitor_eval_ms": 4.0426,
-    "monitor_events_per_sec": 247367
+    "structural_check_ms": 345.2261,
+    "monitor_compile_ms": 0.1238,
+    "monitor_eval_ms": 11.9709,
+    "monitor_events_per_sec": 83536
   }
 ]

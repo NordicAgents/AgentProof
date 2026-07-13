@@ -3,37 +3,57 @@
 
 Agent frameworks encode behavior as explicit workflow graphs, and
 \textsc{Agentproof} turns that structure into an analyzable, cross-framework
-model with six structural checks, witness traces, and a safety-fragment-LTL policy
-DSL evaluated both statically (via a graph\,$\times$\,DFA product) and at runtime.
-Used as a measurement instrument on 930 workflows from 253 repositories across
-four frameworks, it yields a deflationary but genuine finding: real workflows are
-mostly small static pipelines, and only 2 of 187 flagged defects are real bugs,
-the rest extraction artifacts or intentional design. Curated-benchmark defect
-rates do not stand in for prevalence.
+model with structural checks, witness traces, and a policy DSL with precise
+LTL$_f$ semantics evaluated both statically (via a graph\,$\times$\,DFA
+product covering bad prefixes, termination obligations, and divergent
+obligations) and at runtime. Used as a measurement instrument on 922 workflows
+from 252 public GitHub repositories, it yields a finding more textured than a
+simple null: flags are almost never defects (precision 1.1\%), yet the
+instrument also \emph{hides} defects---measured prevalence doubles, to 3.4\%
+of workflows, when checks run on faithful reconstructions---and the genuine
+defects concentrate in application-like workflows that bind side-effecting
+tools (7.7\%, versus 1.3\% among the tutorials and demos that dominate public
+GitHub). Curated-benchmark defect rates do not stand in for prevalence, and
+flag counts do not stand in for either.
 
-The contribution survives the rarity of defects. First, a measurement instrument
-and the first real-world base rates for agent-workflow topology defects. Second, a
-quantified diagnosis: extraction fidelity, not the check algorithms, is the
-binding constraint---edge recall 0.64, collapsing to 0.37 on implicit-topology
-frameworks like ADK, with every triaged structural flag an extraction artifact.
-Third, a defect-independent use for the static machinery: the
-graph\,$\times$\,DFA product soundly prunes provably-inert runtime monitors,
-making pre-deployment analysis a monitor-selection layer within a
-static-plus-runtime safety stack. We read the negative prevalence result not as a
-null result but as a redirection---toward higher-fidelity extraction and
-risk-aware policy specification, the direction we pursue in follow-up work on
-runtime shields.
+The diagnosis is consistent across every cut: extraction fidelity, not the
+check algorithms, is the binding constraint. Edge recall is 0.65 on real code
+(0.38 on implicit-topology ADK); every structural flag on extracted graphs is
+an extraction artifact; three of four extractors cannot even express the
+defects the structural checks target; and the risk-aware gate misses real
+sensitive paths because tool bindings hide in node bodies. The static
+machinery keeps a defect-independent job---under an explicit trace-containment
+premise, the product soundly prunes provably-inert runtime monitors (93\% on
+the curated corpus, all of it alphabet-level today)---positioning
+pre-deployment analysis as a monitor-selection layer within a
+static-plus-runtime safety stack.
+
+\paragraph{Limitations.}
+The population is public GitHub, not production systems; two thirds of it is
+tutorial-grade, which we census and stratify but cannot fully correct.
+Ground-truth graphs and triage labels are LLM reconstructions with adversarial
+verification, not human annotations; confidence-stratified sensitivity checks
+and released per-label justifications mitigate but do not eliminate this, and
+human annotation of a subsample is the immediate next step. Prevalence CIs are
+wide at $n{=}119$; the estimates are best read as ``rare, but real and
+concentrated'', not as precise rates. We read these results as a
+redirection---toward higher-fidelity extraction and per-workflow policy
+instantiation, the direction we pursue in follow-up work on runtime shields.
 
 \paragraph{Artifact.}
-The tool, corpora, mining and validation pipeline, and all evaluation scripts
-will be released under the MIT license.
+The tool, corpora, mining and validation pipeline, ground-truth
+reconstructions, triage labels with justifications, and all evaluation
+scripts will be released under the MIT license.
 
 \section*{Ethical Statement}
 The study mines only \emph{public} GitHub repositories, records exact provenance
 (repository at commit SHA plus file path), and redistributes only the derived
 graph abstractions and analysis, never third-party source. No personal data is
-processed. The intended impact is defensive---helping developers catch
-topology-level safety defects before deployment and reason about which runtime
-safeguards a workflow needs; the honest finding that such defects are currently
-rare should temper, not inflate, claims about static verification's role in agent
-safety.
+processed. The four genuine defects we identify are reported without
+identifying maintainers in the paper; we will disclose them to the affected
+repositories before publication. The intended impact is defensive---helping
+developers catch topology-level safety defects before deployment and reason
+about which runtime safeguards a workflow needs; the honest finding that such
+defects are rare in public code, yet concentrated in side-effecting
+application-like workflows, should calibrate, not inflate, claims about static
+verification's role in agent safety.

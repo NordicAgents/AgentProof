@@ -18,43 +18,71 @@ distinguished entry $v_0$ and exit set $V_f$. Each node carries a kind
 $\kappa_V(v)\in\{\textsc{entry},\textsc{exit},\textsc{tool},\textsc{llm},
 \textsc{router},\textsc{human},\textsc{subgraph}\}$ and, for tool nodes, a set of
 bound tool names; each edge is \textsc{direct}, \textsc{conditional},
-\textsc{parallel}, or \textsc{loop}. Framework-specific extractors bridge four
+\textsc{parallel}, or \textsc{loop}. Per-framework extractors bridge four
 heterogeneous representations---each with different entry/exit conventions, edge
-semantics, and hierarchy models---into this single typed model, eliminating the
-manual translation that SPIN or NuSMV require. Extraction has two paths: a runtime
-extractor that reads the compiled graph object, and a static AST fallback (used
-for large-scale mining, where installing every repository's dependencies is
-infeasible).
+semantics, and hierarchy models---into this single typed model. The extractors
+themselves encode framework semantics and are hand-written once per framework;
+what is eliminated is the per-workflow manual translation that SPIN or NuSMV
+require. Extraction has two paths: a runtime extractor that reads the compiled
+graph object, and a static AST fallback (used for large-scale mining, where
+installing every repository's dependencies is infeasible).
 
 \paragraph{Structural checks.}
 Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
 \emph{witness trace} on failure. \emph{Exit reachability} verifies
-$V_f\subseteq\mathrm{Reach}(v_0)$; \emph{reverse reachability} flags livelock
-nodes reachable from $v_0$ that cannot reach any exit; \emph{dead-end detection}
-flags non-exit nodes with no successor; \emph{router shape} requires router
-outgoing edges to be conditional; \emph{human-gate coverage} checks that no path
-from $v_0$ to a sensitive tool avoids every \textsc{human} node; and \emph{tool
-declaration} flags tool nodes with an empty tool set. Witness traces follow
-standard model-checking practice~\citep{clarke1999modelchecking} and pinpoint the
-offending path.
+$V_f\subseteq\mathrm{Reach}(v_0)$; \emph{reverse reachability} flags reachable
+nodes with no path to any exit---executions entering such a node can never
+complete (passing this check does not guarantee termination, which depends on
+runtime routing); \emph{dead-end detection} flags non-exit nodes with no
+successor; \emph{router shape} is a framework-convention check requiring router
+outgoing edges to be conditional; \emph{human presence} flags workflows with no
+\textsc{human} node (a deliberately blunt policy check we evaluate against a
+risk-aware variant); and \emph{tool declaration} flags tool nodes with an empty
+tool set. A seventh, path-sensitive check, \emph{human-gate coverage}, is the
+risk-aware variant: it flags a workflow only if a \emph{sensitive} tool is
+reachable from $v_0$ without passing a \textsc{human} node
+(Section~\ref{sec:realworld}). Witness traces follow standard model-checking
+practice~\citep{clarke1999modelchecking} and pinpoint the offending path.
 
-\paragraph{Temporal policies.}
-Beyond topology, Agentproof supports a policy DSL covering the safety fragment of
-LTL~\citep{pnueli1977temporal}, compiled to deterministic finite automata. The
-DSL has seven forms: forbidden (\texttt{G\,!a}), implication-future
-(\texttt{a\,->\,F\,b}), until, bounded response (\texttt{a\,->\,F[<=k]\,b}),
-response chain, conjunction, and disjunction. Each node emits an event symbol
-$\sigma(v)$ from its kind and tool bindings; base patterns compile to 2--3 state
-DFAs and bounded response to $k{+}2$ states (full grammar in the supplementary
-material).
+\paragraph{Temporal policies with LTL$_f$ semantics.}
+Beyond topology, Agentproof supports a policy DSL over finite traces
+(LTL$_f$~\citep{degiacomo2013ltlf}): a workflow execution is a finite event
+sequence, and each of the seven DSL forms denotes an LTL$_f$ formula---forbidden
+($\mathbf{G}\,\neg a$), response ($\mathbf{G}(a \rightarrow \mathbf{F}\,b)$),
+strong until ($a\,\mathbf{U}\,b$), bounded response
+($\mathbf{G}(a \rightarrow \mathbf{F}_{\leq k}\,b)$), response chain
+($\mathbf{G}(a \rightarrow \mathbf{F}(b \wedge \mathbf{F}c))$), conjunction, and
+disjunction. Each form compiles to a DFA over node-event symbols $\sigma(v)$
+(2--3 states for base patterns, $k{+}2$ for bounded response), with two
+disjoint violation mechanisms: an absorbing \emph{violation state} entered on a
+bad prefix (for the safety and co-safety forms), and a set of \emph{accepting
+states} such that a trace ending in a non-accepting state---a pending
+$\mathbf{F}$-obligation---violates the property at termination. Runtime
+monitors evaluate events in $O(1)$ each and apply the end-of-trace acceptance
+check when the workflow terminates; obligations still open when a run is
+aborted are reported as inconclusive rather than violated, following
+three-valued runtime verification~\citep{bauer2011ltl3}.
 
 \paragraph{Static temporal verification.}
-Policies are checked \emph{statically} via a graph\,$\times$\,DFA product: BFS
-from $(v_0,q_0)$ advances the DFA at each node and follows graph edges, and a
-reachable product state in the DFA violation set witnesses a violation. Because
-the product explores a superset of a workflow's runtime paths, if no violation
-state is reachable the property holds on \emph{every} runtime execution---a sound
-guarantee we exploit in Section~\ref{sec:results}. Explored states are bounded by
-$|V|\cdot|Q|$, so verification is linear in graph size for fixed-size DFAs; the
-same monitors also run at runtime over an event stream with $O(1)$ per-event
-overhead.
+Policies are checked statically via a graph\,$\times$\,DFA product: BFS from
+$(v_0,q_0)$ advances the DFA at each node and follows graph edges. Executions
+are modeled as \emph{maximal} paths---finite ones ending at an exit, judged by
+LTL$_f$, and infinite ones that never leave the graph, judged by standard LTL.
+The product therefore reports a violation in three cases: a reachable DFA
+violation state (bad prefix), a reachable exit whose post-transition DFA state
+is non-accepting (unfulfilled obligation at termination), and a reachable
+product cycle that remains non-accepting throughout (an obligation postponable
+forever). Explored states are bounded by $|V|\cdot|Q|$, so verification is
+linear in graph size for fixed-size DFAs.
+
+\paragraph{Soundness and its premise.}
+If the analyzed graph's paths \emph{over-approximate} the workflow's runtime
+traces (trace containment), then ``no violation reachable'' implies the
+property holds on every runtime execution---the guarantee we exploit for
+monitor pruning in Section~\ref{sec:results}. Trace containment holds by
+construction for our curated corpus (graphs authored with the code) and for
+runtime-extracted graphs absent dynamic graph modification. It does
+\emph{not} hold for the lossy AST fallback used in mining, whose measured edge
+recall of 0.65 means extracted graphs \emph{under}-approximate real behavior
+(Section~\ref{sec:realworld}); we therefore never claim static guarantees on
+mined graphs, only measurements.

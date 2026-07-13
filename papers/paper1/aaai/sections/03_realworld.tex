@@ -1,38 +1,57 @@
-\section{Real-World Base-Rate Study}
+\section{Base-Rate Study on Public GitHub Workflows}
 \label{sec:realworld}
 
-To estimate defect \emph{base rates} on independently authored workflows---and to
+To estimate defect base rates on independently authored workflows---and to
 measure extractor fidelity on code we did not write---we mined public GitHub
-repositories across all four frameworks.
+repositories across all four frameworks. We state the population precisely:
+\emph{public GitHub files matching framework-specific code searches}, not
+production deployments; we census what that population contains below.
 
-\paragraph{Mining.}
-Using GitHub code search we streamed each candidate repository through clone,
-extraction, and cleanup, yielding 930 workflow graphs from 253 distinct
-repositories (LangGraph~402, AutoGen~361, CrewAI~114, ADK~53). Extraction used the
-static AST fallback. Mined workflows are small: a median of 2 non-sentinel nodes
-(mean~3.9), predominantly static linear pipelines.
+\paragraph{Mining and corpus census.}
+Using GitHub code search (via the \texttt{gh} CLI, February--March 2026, with
+per-framework query sets and per-repository caps) we streamed each candidate
+repository through clone, extraction, and cleanup. After removing one
+repository of our own test fixtures (8 files; a contamination we detected
+during revision and exclude from every number), the corpus is 922 workflow
+graphs from 252 distinct repositories (LangGraph~400, AutoGen~359, CrewAI~113,
+ADK~50), with provenance recorded as repository, commit SHA, and file path.
+Mined workflows are small---median 2 non-sentinel nodes (mean~3.9)---and
+predominantly static linear pipelines. The corpus is \emph{not} mostly
+applications: 32\% of files carry tutorial/test/demo-style names, 48 topology
+groups are byte-identical duplicates across repositories (170 redundant
+workflows, retained but reported), and a source-level classification of the
+validated sample (below) found 44\% tutorial or course material, 17\% toy
+demos, 7\% test files, and 33\% application-like code. We therefore report
+prevalence both pooled and stratified by this classification.
 
-\paragraph{Validation.}
-On a stratified 120-workflow sample (40 LangGraph, 20 CrewAI, 35 AutoGen, 25 ADK)
-we ran two independent LLM-agent passes. First, an agent reconstructed a
-ground-truth graph from source alone (blind to the extractor, following its
-node-id conventions), against which we scored node/edge precision--recall and
-node-kind accuracy. Second, for each of the 187 flagged defects one agent labelled
-it \textsc{real}, \textsc{extraction-artifact}, or \textsc{intentional} from
-source, and an adversarial verifier attempted to overturn each label
-(disagreements recorded as \textsc{arguable}). Each validated workflow received
-one ground-truth reconstruction, one triage pass, and one adversarial
-verification pass (the verifier overturned 4.6\% of primary labels). All
-structural and temporal analyses run in pure Python~3.12 on a commodity laptop
-(no GPU); the ground-truth and triage agents were Claude Opus~4.8 orchestrated by
-a multi-agent workflow harness, and all agent outputs are released. We report
-Wilson 95\% confidence intervals for proportions and bootstrap intervals (10{,}000
-resamples over workflows) for fidelity means.
+\paragraph{Validation sample and ground truth.}
+On a stratified 119-workflow sample from 87 repositories (40 LangGraph, 20
+CrewAI, 35 AutoGen, 24 ADK) we ran two independent LLM-agent passes
+(Claude Opus~4.8 orchestrated by a multi-agent harness; all outputs released).
+First, an agent reconstructed a ground-truth graph from source alone (blind to
+the extractor's output, following its node-id conventions), with a
+self-reported confidence (77 high, 33 medium, 9 low); we score node/edge
+precision--recall and node-kind accuracy against these reconstructions.
+Second, every flagged defect was triaged from source
+(\textsc{real}/\textsc{extraction-artifact}/\textsc{intentional}) and an
+adversarial verifier attempted to overturn each label (4.6\% overturned;
+unresolved disagreements recorded as \textsc{arguable}). We acknowledge the
+limitation squarely: the reference graphs are LLM reconstructions, not human
+annotations, and both passes share a model family. Three mitigations bound the
+risk: reconstruction confidence is reported and results are stable on the
+high-confidence subset (edge recall 0.67 vs.\ 0.65 overall); every triage label
+carries a source-line-cited justification that survived an independent
+adversarial pass; and the label pipeline was re-audited during revision (one
+label overturned of 16 re-examined). Human annotation of a subsample is the
+clear next step. We report Wilson 95\% CIs for proportions and
+repository-clustered bootstrap CIs (10{,}000 resamples) for means, since
+workflows from one repository are not independent.
 
 \begin{table}[t]
 \centering\small
-\caption{AST-extractor fidelity on real workflows ($n{=}120$). Perfect on stubs;
-on real code fidelity is lower and strongly framework-dependent.}
+\caption{AST-extractor fidelity on real workflows ($n{=}119$), with
+repository-clustered bootstrap 95\% CIs on the overall means. Perfect on
+stubs; on real code fidelity is lower and strongly framework-dependent.}
 \label{tab:realworld_fidelity}
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
@@ -41,43 +60,39 @@ on real code fidelity is lower and strongly framework-dependent.}
 LangGraph & 40 & 0.956 & 0.682 & 0.647 \\
 CrewAI    & 20 & 0.700 & 0.692 & 0.929 \\
 AutoGen   & 35 & 0.957 & 0.770 & 0.900 \\
-ADK       & 25 & 0.403 & 0.367 & 0.943 \\
+ADK       & 24 & 0.420 & 0.382 & 0.940 \\
 \midrule
-\textbf{Overall} & \textbf{120} & \textbf{0.798} & \textbf{0.644} & \textbf{0.829} \\
+\textbf{Overall} & \textbf{119} & \textbf{0.805} & \textbf{0.649} & \textbf{0.829} \\
+ & & [0.72,\,0.89] & [0.56,\,0.73] & [0.78,\,0.87] \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{Extraction fidelity is the bottleneck.}
 Node detection stays strong (overall $P{=}0.91$, $R{=}0.85$), but edge recall
-falls to 0.644 (95\% CI $[0.57,0.71]$) and node-kind accuracy to 0.829, ranging
-from 0.37 $[0.20,0.55]$ edge recall on ADK to 0.77 $[0.68,0.86]$ on AutoGen
-(Table~\ref{tab:realworld_fidelity}); the small per-framework samples give wide
-intervals, but ADK is the worst case even at its upper bound. The frameworks that
-encode topology \emph{implicitly}---ADK's nested \texttt{SequentialAgent}/
+falls to 0.649 and node-kind accuracy to 0.829, ranging from 0.38 edge recall
+on ADK (cluster CI $[0.14,0.62]$) to 0.77 on AutoGen
+(Table~\ref{tab:realworld_fidelity}). The frameworks that encode topology
+\emph{implicitly}---ADK's nested \texttt{SequentialAgent}/
 \texttt{ParallelAgent} composition, AutoGen's participant lists with dynamic
-speaker selection---are hardest: the extractor must guess an edge set the source
-never states, and for ADK it is wrong more often than right. On LangGraph, whose
-edges are explicit, the dominant error is instead node-kind
-(\texttt{tool}$\rightarrow$\texttt{llm}: nodes invoking tools in their body with
-no declared binding).
-
-\paragraph{The fallback, not the ceiling.}
-This 0.64 is a property of the static AST fallback used for scale, not of the
-runtime extractors, which read the compiled framework object and are faithful by
-construction. On the (trusted) runnable examples, the fallback recovers 0.71 of
-the runtime extractor's LangGraph edges---closely matching its 0.68 on mined
-LangGraph code---missing chiefly the conditional edges it cannot resolve
-statically; for ADK the runtime graph is far richer (16 vs.\ ${\sim}5$ edges).
-Realising this higher-fidelity ceiling at scale would require executing untrusted
-repository code in a sandbox, which we do not attempt---and that gap between the
-faithful-but-unscalable and scalable-but-lossy extraction paths is exactly why
-extraction fidelity, not the check algorithms, is the binding constraint.
+speaker selection---are hardest: the extractor must guess an edge set the
+source never states, and for ADK it is wrong more often than right. On
+LangGraph, whose edges are explicit, the dominant error is instead node-kind
+(\texttt{tool}$\rightarrow$\texttt{llm}: nodes invoking tools in their body
+with no declared binding). This 0.65 is a property of the static AST fallback
+used at scale, not of the runtime extractors, which read the compiled
+framework object: on trusted runnable examples the fallback recovers 0.71 of
+the runtime extractor's LangGraph edges (matching its 0.68 on mined code),
+and for ADK the runtime graph is far richer (16 vs.\ ${\sim}5$ edges).
+Realizing that ceiling at scale would require sandboxed execution of untrusted
+repository code, which we do not attempt.
 
 \begin{table}[t]
 \centering\small
-\caption{Adversarial triage of 187 flagged defects. Every structural flag is an
-extraction artifact; the human-gate flag is predominantly intentional.}
+\caption{Adversarial triage of the 186 flags the AST-extracted study raised.
+Every structural flag is an extraction artifact; the blunt human-presence flag
+is predominantly intentional. These rows measure flag \emph{precision}, not
+defect prevalence.}
 \label{tab:realworld_triage}
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
@@ -88,34 +103,80 @@ reverse\_reachability & 0 & 25 & 0  & 0 \\
 dead\_ends            & 0 & 24 & 0  & 1 \\
 router\_shape         & 0 & 3  & 0  & 0 \\
 tool\_declarations    & 0 & 5  & 0  & 0 \\
-human\_presence       & 2 & 9  & 93 & 11 \\
+human\_presence       & 2 & 8  & 93 & 10 \\
+human\_gate\_coverage & 0 & 0  & 0  & 1 \\
 \midrule
-\textbf{Total}        & \textbf{2} & \textbf{80} & \textbf{93} & \textbf{12} \\
+\textbf{Total}        & \textbf{2} & \textbf{79} & \textbf{93} & \textbf{12} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{Defects are rare.}
-Of 187 flagged defects, only 2 (1.1\%, 95\% CI $[0.3,3.8]\%$) are genuine
-bugs---both missing human gates---while 43\% are extraction artifacts and 50\%
-intentional design (Table~\ref{tab:realworld_triage}). \emph{Every one of the 72
-structural flags is an extraction artifact} (0 genuine; 95\% CI $[0,5.1]\%$), and
-structural flags are entirely a LangGraph phenomenon:
-in the raw study they fire on 78\% of LangGraph workflows but 0\% of AutoGen,
-CrewAI, and ADK, whose extractors build a connected topology by construction and
-cannot emit a dead end or unreachable exit. The structural signal is thus an
-artifact of the one extractor that recovers real edges, not a property of the
-workflows.
+\paragraph{Estimand 1: flag precision.}
+Of the 186 flags raised on extracted graphs, 2 (1.1\%, Wilson 95\% CI
+$[0.3,3.8]\%$) are genuine---both missing human gates on sensitive
+workflows---while 42\% are extraction artifacts and 50\% intentional design
+(Table~\ref{tab:realworld_triage}). \emph{Every one of the 72 structural flags
+is an extraction artifact or arguable} (0 genuine; CI $[0,5.1]\%$). Structural
+flags are also entirely a LangGraph phenomenon: they fire on 78\% of LangGraph
+workflows but 0\% of AutoGen, CrewAI, and ADK---and this is partly
+\emph{by construction}, since those three extractors emit connected topologies
+and cannot produce a dead end or unreachable exit. Extractor-level structural
+results are therefore evidence about LangGraph only; for the other frameworks
+the structural checks are vacuous on extracted graphs, which is exactly why
+the next estimand is measured on reconstructions instead.
+
+\paragraph{Estimand 2: prevalence, including what the extractor misses.}
+Flag triage cannot see false negatives: a defect the lossy extractor never
+surfaces is simply absent from Table~\ref{tab:realworld_triage}. We therefore
+re-ran every check on the 119 reconstructed ground-truth graphs---which can
+contain dead ends and unreachable exits for all four frameworks---and
+adversarially triaged all 16 resulting flags (labels: genuine, intentional, or
+reconstruction error). Ten are intentional (e.g.\ deliberate wait-for-input
+halt nodes in multi-turn chat loops), four are reconstruction errors, and
+\textbf{two are genuine defects the extracted study missed}: a router
+mis-wiring in an ADK SQL agent, and a chatbot whose SQL-executing tool is
+reachable with no human gate. Combining confirmed defects from both passes
+(the two originals were re-confirmed by a second adversarial pass) gives the
+prevalence estimates of Table~\ref{tab:prevalence}: 4 of 119 workflows
+(3.4\%), 4 of 87 repositories (4.6\%)---about \emph{twice} what flag triage
+alone shows, quantifying the false-negative rate of the lossy instrument. All
+four defective workflows bind side-effecting tools, and three of four are
+application-like: prevalence is 7.7\% among application-like workflows versus
+1.3\% among tutorials, demos, and tests. Topology defects are rare in this
+population, but not artifact-of-the-instrument rare, and they concentrate
+where the stakes are.
+
+\begin{table}[t]
+\centering\small
+\caption{Defect prevalence (workflows with $\geq$1 genuine defect), Wilson
+95\% CIs. The extractor-visible row is what flag triage alone supports; the
+ground-truth row adds defects found only on reconstructed graphs.}
+\label{tab:prevalence}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Estimate} & \textbf{Rate} & \textbf{95\% CI} \\
+\midrule
+Extractor-visible, per workflow      & 2/119 (1.7\%) & $[0.5, 5.9]\%$ \\
++ ground-truth graphs, per workflow  & 4/119 (3.4\%) & $[1.3, 8.3]\%$ \\
+\quad per repository                 & 4/87 (4.6\%)  & $[1.8, 11.2]\%$ \\
+\quad application-like only          & 3/39 (7.7\%)  & $[2.7, 20.3]\%$ \\
+\quad tutorials/demos/tests          & 1/80 (1.3\%)  & $[0.2, 6.8]\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{Risk-aware gating.}
-The human-gate check fires on 91\% of workflows, but only 2 of 115 firings are
-genuine---the rest are intentional low-risk tasks. A risk-aware variant flags a
-workflow only when a \emph{sensitive} tool (destructive/write/exec/communication/
-financial, by a keyword lexicon) is reachable without a \textsc{human} gate,
-reusing the sound coverage check of Section~\ref{sec:verification_methods}. On the
-930 mined workflows it fires on \emph{zero}: none declares a sensitive tool, as
-they are read-only retrieval pipelines that need no review. But its recall is
-itself bounded by extraction fidelity---an in-body sensitive call with no declared
-binding (the \texttt{tool}$\rightarrow$\texttt{llm} error above) is invisible---so
-a sound sensitivity signal depends on the same higher-fidelity extraction we
-identify as the binding constraint.
+The blunt human-presence check fires on 91\% of mined workflows with 2 of 113
+firings genuine---uninformative as a detector, which is why we evaluate the
+risk-aware \emph{human-gate coverage} check: flag only when a sensitive tool
+(destructive/write/exec/communication/financial, by a keyword lexicon over
+bound tool names) is reachable without a \textsc{human} gate. On the 922
+mined graphs it fires on zero---but this is a statement about extracted
+\emph{declarations}, not about the code: no mined graph declares a sensitive
+binding, while source-level classification finds side-effecting tools in 32 of
+119 sampled workflows, invisible to the extractor through the
+\texttt{tool}$\rightarrow$\texttt{llm} kind error. On the reconstructed
+graphs, where bindings are recovered from source, the same check fires three
+times and one firing is the genuine SQL-gate defect above. The check's logic
+is sound; its recall is bounded by extraction fidelity, which is the paper's
+central diagnosis.

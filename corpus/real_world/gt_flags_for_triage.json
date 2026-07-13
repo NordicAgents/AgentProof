@@ -1,0 +1,299 @@
+[
+  {
+    "slug": "Brenmull12__Hoohacks2025__multiturn",
+    "repo": "Brenmull12/Hoohacks2025",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "reverse_reachability",
+    "detail": {
+      "livelock_nodes": [
+        "wait_for_user"
+      ],
+      "witnesses": {
+        "wait_for_user": [
+          "__start__",
+          "interactive_conversation",
+          "wait_for_user"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "Brenmull12__Hoohacks2025__multiturn",
+    "repo": "Brenmull12/Hoohacks2025",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "dead_ends",
+    "detail": {
+      "dead_ends": [
+        "wait_for_user"
+      ],
+      "witnesses": {
+        "wait_for_user": [
+          "__start__",
+          "interactive_conversation",
+          "wait_for_user"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "Brenmull12__Hoohacks2025__multiturn",
+    "repo": "Brenmull12/Hoohacks2025",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "router_shape",
+    "detail": {
+      "router_count": 1,
+      "violations": [
+        {
+          "router": "interactive_conversation",
+          "bad_edges": [
+            {
+              "target": "interactive_conversation",
+              "kind": "loop"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "Harsh1210__llm-opsbot__main",
+    "repo": "Harsh1210/llm-opsbot",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 1,
+      "tool_nodes_missing_tools": [
+        "tools"
+      ]
+    }
+  },
+  {
+    "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+    "repo": "Sujas-Aggarwal/langraph-chatbot",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "human_gate_coverage",
+    "detail": {
+      "ungated_tools": [
+        "execute_query"
+      ],
+      "witnesses": {
+        "execute_query": [
+          "__start__",
+          "extract_location",
+          "spell_check",
+          "generate_sql",
+          "execute_query"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "ed-donner__agents__sequential_agents",
+    "repo": "ed-donner/agents",
+    "framework": "adk",
+    "gt_confidence": "medium",
+    "check_id": "dead_ends",
+    "detail": {
+      "dead_ends": [
+        "order_form_agent_v1"
+      ],
+      "witnesses": {
+        "order_form_agent_v1": null
+      }
+    }
+  },
+  {
+    "slug": "gabrielpreda__adk-sql-agent__agent",
+    "repo": "gabrielpreda/adk-sql-agent",
+    "framework": "adk",
+    "gt_confidence": "medium",
+    "check_id": "router_shape",
+    "detail": {
+      "router_count": 2,
+      "violations": [
+        {
+          "router": "routing_agent",
+          "bad_edges": [
+            {
+              "target": "rewrite_prompt_agent",
+              "kind": "loop"
+            },
+            {
+              "target": "__end__",
+              "kind": "direct"
+            }
+          ]
+        },
+        {
+          "router": "security_router_agent",
+          "bad_edges": [
+            {
+              "target": "rewrite_prompt_agent",
+              "kind": "direct"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "merdandt__SalesShortcut__email_agent",
+    "repo": "merdandt/SalesShortcut",
+    "framework": "adk",
+    "gt_confidence": "medium",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 1,
+      "tool_nodes_missing_tools": [
+        "email_sender_agent"
+      ]
+    }
+  },
+  {
+    "slug": "microsoft__ACV__test_cache_agent",
+    "repo": "microsoft/ACV",
+    "framework": "autogen",
+    "gt_confidence": "low",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 1,
+      "tool_nodes_missing_tools": [
+        "user"
+      ]
+    }
+  },
+  {
+    "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+    "repo": "peytonrivers/AI-Agentic-System-using-Canvas-LMS-API",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 1,
+      "tool_nodes_missing_tools": [
+        "tools"
+      ]
+    }
+  },
+  {
+    "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+    "repo": "project194-cognitivellm/cognitivellm",
+    "framework": "autogen",
+    "gt_confidence": "high",
+    "check_id": "router_shape",
+    "detail": {
+      "router_count": 1,
+      "violations": [
+        {
+          "router": "global_workspace_agent",
+          "bad_edges": [
+            {
+              "target": "__end__",
+              "kind": "direct"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+    "repo": "project194-cognitivellm/cognitivellm",
+    "framework": "autogen",
+    "gt_confidence": "high",
+    "check_id": "human_gate_coverage",
+    "detail": {
+      "ungated_tools": [
+        "environment_proxy",
+        "execution_agent"
+      ],
+      "witnesses": {
+        "environment_proxy": [
+          "__start__",
+          "global_workspace_agent",
+          "execution_agent",
+          "environment_proxy"
+        ],
+        "execution_agent": [
+          "__start__",
+          "global_workspace_agent",
+          "execution_agent"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "shazy89__ai-learning__agent",
+    "repo": "shazy89/ai-learning",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 1,
+      "tool_nodes_missing_tools": [
+        "action"
+      ]
+    }
+  },
+  {
+    "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+    "repo": "sreekarrs/JobSearch-Agent",
+    "framework": "adk",
+    "gt_confidence": "medium",
+    "check_id": "router_shape",
+    "detail": {
+      "router_count": 1,
+      "violations": [
+        {
+          "router": "ExitConditionChecker",
+          "bad_edges": [
+            {
+              "target": "Critic",
+              "kind": "loop"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "tweetlol__eve__eve",
+    "repo": "tweetlol/eve",
+    "framework": "langgraph",
+    "gt_confidence": "high",
+    "check_id": "human_gate_coverage",
+    "detail": {
+      "ungated_tools": [
+        "save"
+      ],
+      "witnesses": {
+        "save": [
+          "__start__",
+          "extract",
+          "summarize",
+          "write",
+          "review",
+          "save"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "waqasniazi9__voice-agent__builder",
+    "repo": "waqasniazi9/voice-agent",
+    "framework": "autogen",
+    "gt_confidence": "low",
+    "check_id": "tool_declarations",
+    "detail": {
+      "tool_node_count": 4,
+      "tool_nodes_missing_tools": [
+        "websurfer_agent"
+      ]
+    }
+  }
+]

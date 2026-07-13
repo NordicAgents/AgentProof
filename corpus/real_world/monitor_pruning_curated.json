@@ -2,14 +2,14 @@
   "n_workflows": 18,
   "n_policies": 15,
   "n_monitor_instances": 270,
-  "prunable": 252,
-  "prunable_pct": 93.3,
+  "prunable": 251,
+  "prunable_pct": 93.0,
   "trivially_inert": 251,
-  "reachability_proven_inert": 1,
-  "must_keep": 18,
-  "must_keep_pct": 6.7,
-  "reach_proven_pct_of_atoms_present": 5.3,
-  "mean_monitors_pruned_per_workflow": 14.0,
+  "reachability_proven_inert": 0,
+  "must_keep": 19,
+  "must_keep_pct": 7.0,
+  "reach_proven_pct_of_atoms_present": 0.0,
+  "mean_monitors_pruned_per_workflow": 13.94,
   "per_policy": {
     "no_delete_production": {
       "pairs": 18,
@@ -49,9 +49,9 @@
     },
     "sql_query_then_review": {
       "pairs": 18,
-      "prunable": 18,
-      "reach_proven": 1,
-      "keep": 0
+      "prunable": 17,
+      "reach_proven": 0,
+      "keep": 1
     },
     "no_destructive_ops": {
       "pairs": 18,
