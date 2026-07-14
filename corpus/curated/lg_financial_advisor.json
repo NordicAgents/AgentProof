@@ -12,9 +12,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     },
     {
       "id": "intake",
@@ -22,9 +24,13 @@
       "label": "client_intake",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "portfolio_fetch",
@@ -34,9 +40,15 @@
         "brokerage_api"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "market_analysis",
@@ -46,9 +58,15 @@
         "market_data_api"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "risk_model",
@@ -56,9 +74,13 @@
       "label": "risk_modeler",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "recommendation",
@@ -66,9 +88,13 @@
       "label": "recommendation_engine",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "compliance_check",
@@ -76,9 +102,13 @@
       "label": "compliance_checker",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "compliance_router",
@@ -86,9 +116,13 @@
       "label": "compliance_decision",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "routes"
+      ]
     },
     {
       "id": "advisor_review",
@@ -96,9 +130,13 @@
       "label": "human_advisor",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "human_pause"
+      ]
     },
     {
       "id": "execute_trades",
@@ -108,9 +146,15 @@
         "trading_api"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "financial"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "__end__",
@@ -118,9 +162,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     }
   ],
   "edges": [
@@ -129,99 +175,110 @@
       "target": "intake",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "intake",
       "target": "portfolio_fetch",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "portfolio_fetch",
       "target": "market_analysis",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "market_analysis",
       "target": "risk_model",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "risk_model",
       "target": "recommendation",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "recommendation",
       "target": "compliance_check",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "compliance_check",
       "target": "compliance_router",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "compliance_router",
       "target": "advisor_review",
       "kind": "conditional",
       "condition": "needs_review",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "compliance_router",
       "target": "execute_trades",
       "kind": "conditional",
       "condition": "auto_approved",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "advisor_review",
       "target": "execute_trades",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "execute_trades",
       "target": "__end__",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     }
   ]
 }

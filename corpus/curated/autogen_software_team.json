@@ -12,9 +12,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     },
     {
       "id": "pm",
@@ -22,9 +24,13 @@
       "label": "product_manager",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "developer",
@@ -32,9 +38,13 @@
       "label": "developer",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "tester",
@@ -42,9 +52,13 @@
       "label": "qa_tester",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "reviewer",
@@ -52,9 +66,13 @@
       "label": "code_reviewer",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "user",
@@ -62,9 +80,13 @@
       "label": "user_proxy",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "human_pause"
+      ]
     },
     {
       "id": "__end__",
@@ -72,9 +94,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     }
   ],
   "edges": [
@@ -83,63 +107,70 @@
       "target": "pm",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "pm",
       "target": "developer",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "developer",
       "target": "tester",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "tester",
       "target": "reviewer",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "reviewer",
       "target": "developer",
       "kind": "conditional",
       "condition": "needs_fix",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": true
     },
     {
       "source": "reviewer",
       "target": "user",
       "kind": "conditional",
       "condition": "approved",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "user",
       "target": "__end__",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     }
   ]
 }

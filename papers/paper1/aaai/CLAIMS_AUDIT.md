@@ -306,3 +306,110 @@ Open items from Section 5 now RESOLVED with evidence:
 | Hard gate 8 (anonymous artifact) | **Built.** `papers/paper1/aaai/artifact/agentproof-anonymized.zip` (1.77 MB). Independent anonymity audit: zero author-identity hits, zero live API keys, no `.git`/`.venv`; self-repo pseudonymized to `ANONYMIZED__SELFREPO`; bundle test suite 255/255; sensitivity/CI artifacts regenerate byte-identically inside the bundle. Third-party `sources/` excluded (contains third-party secrets; ethics statement forbids source redistribution) and is re-fetchable via `remine_pinned.py`. |
 
 Still OPEN: human annotation execution (protocol + samples + pinned source snapshots now all staged in `corpus/annotations/` and `corpus/real_world/sources/`); actually sending the four disclosures (needs user approval + identity); arXiv-variant sync (`papers/paper1/arxiv/` not updated this session).
+
+## 7. Reviewer-response revision — 2026-07-14
+
+The paper was rewritten to the repositioned thesis ("model extraction dominates
+static analysis of agent workflows"). This section maps every reviewer problem
+(#1–#12) and the smaller fixes to the paper location(s) that address it and to
+the committed artifact that generates each new number. Line numbers are the
+post-rewrite state of `papers/paper1/aaai/{main.tex,sections/*.tex}`.
+
+**Cross-reference integrity (this audit's own pass).** Grepped every
+`\label{}` and `\ref{}`/`\cref{}` across `main.tex` + `sections/*.tex`:
+17 labels defined, each exactly once; every `\ref` target resolves; no
+referenced-but-undefined and no defined-twice labels. `ReproducibilityChecklist.tex`
+contains no `\ref`/`\label`. Referenced labels: `sec:realworld`, `sec:results`,
+`sec:pruning`, `sec:system`, `tab:estimands`, `tab:realworld_fidelity`,
+`tab:related`, `tab:pruning`. Defined-but-unreferenced (harmless):
+`sec:graph_model`, `sec:verification_methods`, `fig:pipeline`, `par:ontology`,
+`thm:soundness`, `par:threats`, `sec:conclusion`, `sec:introduction`,
+`sec:related`.
+
+**New source artifacts (regenerable, committed under `corpus/real_world/`):**
+
+| artifact | supplies |
+|---|---|
+| `reviewer_analyses.json` | §1 estimands (k/n/Wilson), §2 post-stratification, §3 Fisher, §4 flag PPV/dedup/bounds, §5 v1↔v2 fidelity table |
+| `corrected_fidelity.json` | v1 as-mined vs v2 corrected per-framework fidelity; flag-volume delta (314→239 structural-flagged; exit 86→32) |
+| `pruning_experiment.json` | path-sensitive experiment: alphabet 1 / node-reach 3 / product 10 / runtime 0; +9 over alphabet, +7 over reachability; 5 curated + 4 synthetic; 50 executions, 0 false prunes |
+| `monitor_pruning_curated.json` | curated gate: 237/270 (87.8%) prunable, 14 `inconclusive`, 19 `may_violate`; 18 wf × 15 pol = 270 |
+| `monitor_pruning.json` | mined gate: 0/13950 certified-sound (all may-provenance, refused); 13950 alphabet-inert descriptively |
+
+### 7.1 Reviewer problems
+
+| # | Reviewer problem | Paper location(s) | New number(s) → source |
+|---|---|---|---|
+| 1 | Pooled 4/119 conflates distinct quantities — separate estimands | `03_realworld.tex:123–181` (Defining a defect; Three estimands; Table `tab:estimands`); `01_intro.tex:60–73`; `main.tex:44–48`; `06_conclusion.tex:19–26` | structural 1/119 (0.84%, Wilson [0.15,4.61]); policy 3/119 (2.52%, [0.86,7.15]); composite 4/119 (3.36%, [1.31,8.32]) → `reviewer_analyses.json` `1_separate_estimands.{structural,policy,composite_any}.{k,n,rate,wilson_ci}` |
+| 2 | Sample over-represents ADK — post-stratify to corpus mix | `03_realworld.tex:146–155` + Table `tab:estimands` Post-strat column (`:174–176`); `01_intro.tex:69–70`; `main.tex:47`; `06_conclusion.tex:25–26` | post-strat structural 0.23% [0.00,0.80], policy 1.92% [0.00,4.85], composite **2.15%** [0.20,5.12]; per-framework composite LG 1/40, CrewAI 1/20, AutoGen 0/35, ADK 2/24; ADK 5.4% of corpus (50/922) → `reviewer_analyses.json` `2_post_stratification.*.{post_stratified_point,post_stratified_cluster_bootstrap_ci,per_framework}` |
+| 3 | Undefined "workflow" unit | `03_realworld.tex:8–11` (unit = one source file → one *extracted file-level graph*; executable-workflow-root unit is future work); denominators renamed "extracted file-level graph" throughout; `06_conclusion.tex:42–43` | definitional; corpus size 922 extracted file-level graphs → `reviewer_analyses.json` `_meta.corpus_composition` |
+| 4 | "Ground truth"/human-validation overclaim | `main.tex:40–41`; `01_intro.tex:48–51`; `03_realworld.tex:12,31–51` ("LLM-reconstructed reference graphs"; "Two-annotator independent human validation was not performed… protocol and samples are staged"); `06_conclusion.tex:44–48`; `par:threats` `03_realworld.tex:211–214` | qualitative (no new number). Reconstruction-confidence 77/33/9 is pre-existing (`revision_analyses.json` `confidence.gt_confidence_distribution`); protocol staged in `corpus/annotations/` |
+| 5 | "Concentrate exactly where they matter" overreach | `03_realworld.tex:155–160`; `01_intro.tex:71–73`; `06_conclusion.tex:26–28` | app-like 3/39 (7.7%) vs 1/80 (1.3%); Fisher two-sided **p=0.10**; OR 6.58, Wald [0.66,65.5] (spans 1) → `reviewer_analyses.json` `3_fisher_exact.{table,two_sided_p,odds_ratio_sample}` |
+| 6 | Soundness stated over graph paths, not event traces; no gate against false `safe` | `02_system.tex:94–144` (Static temporal verification; Soundness gated on certified extraction, `thm:soundness`); `04_results.tex:22–35`; `01_intro.tex:93–97`; `main.tex:48–52` | qualitative theorem over labeled event traces; gate returns `inconclusive`/`uncertified_extraction`, stamps `certified` key → code `src/agentproof/verify/temporal.py`. Gate yields on lossy graphs: mined 0/13950 certified → `monitor_pruning.json` |
+| 7 | Exclusive NodeKind/EdgeKind ontology mislabels multi-faceted nodes; PASSTHROUGH omitted | `02_system.tex:36–51` (`par:ontology`: orthogonal effect/capability sets + edge back_edge flag; full vocabulary in supplement); `02_system.tex:19` (PASSTHROUGH added to kind list) | qualitative → code `src/agentproof/graph/model.py` |
+| 8 | Monitor pruning was zero-value (all alphabet-level / claimed 93% on graphs pruning can't apply to) | `04_results.tex:18–84` (three paragraphs + Table `tab:pruning`); `01_intro.tex:96–97`; `main.tex:48–52`; `06_conclusion.tex:33–36` | curated 237/270 (87.8%) certified-sound, 14 `inconclusive`, 19 `may_violate` → `monitor_pruning_curated.json`; mined 0/13950 certified (all may-provenance) → `monitor_pruning.json`; incremental experiment alphabet 1 / node-reach 3 / product 10 / runtime 0, +9 over alphabet (+7 over reachability), 5 curated + 4 synthetic, 50 executions / 0 false prunes → `pruning_experiment.json` `{strategies,incremental,false_pruning}` |
+| 9 | Fidelity numbers describe an uncorrected instrument | `03_realworld.tex:53–99` (Table `tab:realworld_fidelity` v2 primary + v1 ablation column; "Extraction fidelity is the bottleneck"); `main.tex:41–43`; `01_intro.tex:74–76,80–83`; `06_conclusion.tex:28–32` | v2 overall edge R **0.679** (v1 0.649), LangGraph edge R **0.682→0.819**, ADK 0.355; structural-flagged 314→239, exit flags 86→32 → `corrected_fidelity.json` `{fidelity_v1_asmined,fidelity_v2_corrected,flags_v1_asmined,flags_v2_corrected}` and `reviewer_analyses.json` `5_fidelity_v2_table` |
+| 10 | Flags treated as independent; single PPV point | `03_realworld.tex:101–121` (Flag precision); `01_intro.tex:84–85`; `06_conclusion.tex:19–21` | workflow-level PPV 2/114 (1.75%, [0.48,6.17], cluster [0.00,4.59]); confirmed flag PPV 2/186 (1.08%, [0.30,3.84]); root-cause dedup 186→161 (25 collapsed), 2/161 (1.24%); pessimistic 14/186 (7.53%, [4.54,12.24]), 14/161 (8.70%); identification range [1.08%,7.53%] → `reviewer_analyses.json` `4_flag_ppv.{workflow_level_ppv,root_cause_dedup,ppv_bounds}` |
+| 11 | "No analogous measurement exists"; missing related work + comparison | `05_related.tex:15–73` (Concurrent agent-policy systems; Empirical characterizations; comparison Table `tab:related`); `01_intro.tex:89–92` | cited counts ~1026 bugs / 9 root causes (`xue2025bugs`), 221 vulns / 14 types (`shen2025securitydebt`), 5399 programs (`wang2026agentflow`); also `ning2024agentable`, `wang2025agentspec`, `kamath2026agentc` → primary sources in `../references.bib` |
+| 12 | Threats to validity not stated | `03_realworld.tex:199–214` (`par:threats`: construct/internal/external/sampling/label-reliability) | qualitative synthesis of #1–#4, #9; no new number (facts block did not assign an explicit reviewer number to this ask) |
+
+### 7.2 Smaller fixes
+
+| Fix | Paper location | Source |
+|---|---|---|
+| Mining window corrected to "July 2026", newest pinned commit 2026-07-11 | `03_realworld.tex:15–16` | `corpus/real_world/MINING_DATE_FORENSICS.md`; `metadata_v2.json` `pinned_commit_date_max` |
+| AgentProof = prior, publicly available instrument (not the contribution) | `01_intro.tex:38–42` | qualitative repositioning |
+| "Finite-trace semantics cannot decide cycles" → decidable; `inconclusive` is an engineering-scope choice | `02_system.tex:108–111`; `04_results.tex:32–35` | qualitative |
+| `router_shape` complexity now genuinely O(\|V\|+\|E\|) | `02_system.tex:54` | code `src/agentproof/verify/structural.py` (edges grouped by source once) |
+| Keyword lexicon: "the check's logic is sound" → "correct relative to its declared-tool abstraction" | `03_realworld.tex:195–197` | qualitative |
+| "faithful reconstructions" → "LLM-reconstructed reference graphs" | `06_conclusion.tex:55` and throughout | label-language rule |
+| Abstract shortened to 208 words (target 180–220) | `main.tex:33–54` | word count |
+| **Cross-section unit mismatch (fixed this pass):** conclusion said "270 curated workflows" but §4 says 18 workflows / 270 monitor instances (18×15) | `06_conclusion.tex:35` → "270 curated monitor instances" | `monitor_pruning_curated.json` `{n_workflows:18,n_policies:15,n_monitor_instances:270}` |
+
+### 7.3 Consistency verification (headline numbers across sections)
+
+Every headline number was checked for cross-section agreement against the facts
+block; all match:
+
+- Estimands **1/119, 3/119, 4/119** — abstract (`main.tex:45–46`), intro
+  (`:65–68`), §3 prose (`03_realworld.tex:141–146`) and Table (`:174–176`),
+  conclusion (0.84% / 2.52% / composite, `:23–26`). ✓
+- Post-stratified composite **2.15%** — `main.tex:47`, `01_intro.tex:70`,
+  `03_realworld.tex:152,176`; conclusion rounds to 2.2% (`:26`). ✓
+- Fisher **p=0.10**, OR 6.58 [0.66,65.5] — `01_intro.tex:73`,
+  `03_realworld.tex:158`, `06_conclusion.tex:27–28`. ✓
+- PPV identification range **[1.08%, 7.53%]** — `03_realworld.tex:114–115`;
+  conclusion "1.1–7.5%" (`:20`). ✓
+- v2 edge recall **0.679** overall / **0.819** LangGraph — Table 1
+  (`03_realworld.tex:66,71`); abstract/intro "0.68 → 0.82"
+  (`main.tex:43`, `01_intro.tex:75,83`); conclusion "0.68 on real code, 0.36 on
+  ADK" (`:28–29`). ✓
+- Pruning **237/270** (87.8% → 88%) + incremental **9** — §4
+  (`04_results.tex:29,56`, Table `tab:pruning`); conclusion 237/270 (88%)
+  (`:35`); abstract/intro "nonzero gain over alphabet-only." ✓
+- Mining **July 2026** — `03_realworld.tex:15`. ✓
+- Corpus **922 / 252 repos**; sample **119** — abstract, intro, §3, conclusion
+  all agree. ✓
+
+### 7.4 Residual notes (not papered over)
+
+1. **Mined-instance denominator drift (facts-block-endorsed, not fixed).**
+   `04_results.tex:41–42` reports **13,950** mined (workflow, policy) instances
+   (= 930 workflows × 15 policies, `monitor_pruning.json` `n_monitor_instances`),
+   while the corpus census reports **922** workflows (`03_realworld.tex:19`).
+   13950/15 = 930 ≠ 922: the pruning artifact still includes the 8 self-repo
+   graphs the census excludes. The facts block explicitly sanctions both
+   "476/13950 (3.4%)" and "922", so I left it as-is; flagging for the freeze
+   pass in case the pruning artifact should be regenerated post-exclusion (would
+   become 922×15 = 13,830).
+2. **`04_results.tex:29–31` phrasing.** "certifies 237 of 270 (87.8%)… declines
+   14 as `inconclusive`, leaving the remaining 12.2% (19 that may fire)": the
+   12.2% (= 33/270) is the complement of 87.8% and correctly spans the 14
+   `inconclusive` **plus** the 19 `may_violate`; the parenthetical highlights
+   only the 19. Numerically self-consistent (237+14+19=270) but the dense
+   phrasing can read as "12.2% = 19" (which would be 7.0%). Within-section prose,
+   each constituent number matches the facts block, so not rewritten here.
+3. **`02_system.tex:141` cites "edge recall 0.65"** for the mining fallback —
+   this is the as-mined v1 instrument (0.649), correct for that context and not
+   in conflict with the v2-primary "0.68" used elsewhere (different instrument,
+   explicitly the "AST fallback used for mining"). No fix needed.

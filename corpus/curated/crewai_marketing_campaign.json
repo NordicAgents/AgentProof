@@ -12,9 +12,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     },
     {
       "id": "research",
@@ -25,9 +27,15 @@
         "competitor_analysis"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "strategist",
@@ -35,9 +43,13 @@
       "label": "campaign_strategist",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "copywriter",
@@ -45,9 +57,13 @@
       "label": "copywriter",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "designer",
@@ -58,9 +74,15 @@
         "canva_api"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "write"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "publish",
@@ -70,9 +92,15 @@
         "social_media_api"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "communicate"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "analytics",
@@ -82,9 +110,15 @@
         "google_analytics"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "__end__",
@@ -92,9 +126,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     }
   ],
   "edges": [
@@ -103,54 +139,60 @@
       "target": "research",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "research",
       "target": "strategist",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "strategist",
       "target": "copywriter",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "copywriter",
       "target": "designer",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "designer",
       "target": "publish",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "publish",
       "target": "__end__",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     }
   ]
 }

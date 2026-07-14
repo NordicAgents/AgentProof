@@ -12,9 +12,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     },
     {
       "id": "triage",
@@ -22,9 +24,13 @@
       "label": "incident_triage",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "severity_router",
@@ -32,9 +38,13 @@
       "label": "severity_router",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "routes"
+      ]
     },
     {
       "id": "parallel_investigation",
@@ -42,9 +52,13 @@
       "label": "investigation",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "subgraph"
+      ]
     },
     {
       "id": "log_analysis",
@@ -55,9 +69,15 @@
         "splunk_search"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "metric_check",
@@ -67,9 +87,15 @@
         "prometheus_query"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "trace_analysis",
@@ -79,9 +105,15 @@
         "jaeger_query"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "diagnose",
@@ -89,9 +121,13 @@
       "label": "root_cause_analysis",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "auto_remediate",
@@ -102,9 +138,15 @@
         "config_rollback"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "execute"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "human_escalation",
@@ -112,9 +154,13 @@
       "label": "oncall_engineer",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "human_pause"
+      ]
     },
     {
       "id": "postmortem",
@@ -122,9 +168,13 @@
       "label": "postmortem_generator",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "__end__",
@@ -132,9 +182,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     }
   ],
   "edges": [
@@ -143,126 +195,140 @@
       "target": "triage",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "triage",
       "target": "severity_router",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "severity_router",
       "target": "parallel_investigation",
       "kind": "conditional",
       "condition": "sev1_or_sev2",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "severity_router",
       "target": "log_analysis",
       "kind": "conditional",
       "condition": "sev3",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "parallel_investigation",
       "target": "log_analysis",
       "kind": "parallel",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "parallel_investigation",
       "target": "metric_check",
       "kind": "parallel",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "parallel_investigation",
       "target": "trace_analysis",
       "kind": "parallel",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "log_analysis",
       "target": "diagnose",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "metric_check",
       "target": "diagnose",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "trace_analysis",
       "target": "diagnose",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "diagnose",
       "target": "auto_remediate",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "auto_remediate",
       "target": "postmortem",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "human_escalation",
       "target": "postmortem",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "postmortem",
       "target": "__end__",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     }
   ]
 }

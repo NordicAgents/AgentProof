@@ -40,6 +40,8 @@ RESULT_KEYS = {
     "inconclusive_reason",
     "divergence_witness",
     "graph_warnings",
+    # Soundness gate (reviewer fix #6): certified trace-conservatism.
+    "certified",
 }
 
 
@@ -72,7 +74,13 @@ def test_forbidden_tool_detected_statically():
 
 def test_forbidden_tool_not_present_passes():
     """A forbidden-tool rule is safe when the tool is absent: every finite
-    maximal execution (entry -> step -> exit) keeps the DFA accepting."""
+    maximal execution (entry -> step -> exit) keeps the DFA accepting.
+
+    This graph is default (``"may"``) provenance, so the soundness gate
+    (fix #6) would downgrade it to inconclusive; the test isn't about the
+    certification axis, so it asserts conservatism to exercise the verdict
+    logic. The gate itself is covered by the certification tests below.
+    """
     graph = AgentGraph(
         name="g",
         framework="manual",
@@ -89,8 +97,11 @@ def test_forbidden_tool_not_present_passes():
         exit_ids=("exit",),
     )
 
-    result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    result = check_temporal_property(
+        graph, _rule("no_X", "G !tool:X"), assume_trace_conservative=True
+    )
     assert result["verdict"] == "safe"
+    assert result["certified"] is True
     assert result["violated"] is False
     assert result["violation_kind"] is None
     assert result["violation_path"] is None
@@ -198,8 +209,13 @@ def test_explicit_event_mapper_preserves_exact_single_event_semantics():
         graph,
         _rule("a_then_b", "tool:A -> F tool:B"),
         event_mapper=_default_event_mapper,
+        # An explicit mapper asserts exact EVENTS; trace-conservatism is a
+        # separate axis, asserted here so the (may-provenance) graph still
+        # reaches the safe verdict this test is about.
+        assume_trace_conservative=True,
     )
     assert result["verdict"] == "safe"
+    assert result["certified"] is True
     assert result["violated"] is False
     assert result["violation_kind"] is None
     assert result["inconclusive_reason"] is None
@@ -311,8 +327,14 @@ def test_dead_end_without_pending_obligation_is_safe():
     (G !tool:X, X absent) the same dead-end graph is certifiably safe —
     NOT inconclusive/no_exit_reachable — because a finite maximal run
     exists (entry -> tool_a -> dead) and it satisfies the policy."""
-    result = check_temporal_property(_dead_end_graph(), _rule("no_X", "G !tool:X"))
+    # Default-provenance graph: assume conservatism so the gate (fix #6)
+    # does not mask the dead-end-is-safe behavior under test.
+    result = check_temporal_property(
+        _dead_end_graph(), _rule("no_X", "G !tool:X"),
+        assume_trace_conservative=True,
+    )
     assert result["verdict"] == "safe"
+    assert result["certified"] is True
     assert result["violated"] is False
     assert result["inconclusive_reason"] is None
 
@@ -381,7 +403,9 @@ def test_product_state_count():
     )
 
     # G !tool:X compiles to a 2-state DFA; graph has 3 nodes => <=6 product states
-    result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    result = check_temporal_property(
+        graph, _rule("no_X", "G !tool:X"), assume_trace_conservative=True
+    )
     assert result["verdict"] == "safe"
     assert result["violated"] is False
     assert result["product_states_explored"] <= 3 * 2
@@ -439,7 +463,8 @@ def test_toolless_tool_node_bare_event_does_not_match_tool_predicates():
     flagged — the conservative expansion must not over-approximate beyond
     what api._event_for_node can emit."""
     result = check_temporal_property(
-        _toolless_tool_node_graph(), _rule("no_X", "G !tool:X")
+        _toolless_tool_node_graph(), _rule("no_X", "G !tool:X"),
+        assume_trace_conservative=True,
     )
     assert result["verdict"] == "safe"
     assert result["violated"] is False
@@ -494,7 +519,236 @@ def test_duplicate_node_ids_warning_is_verdict_independent():
     """graph_warnings reports duplicates even when the verdict is safe:
     it is metadata about graph well-formedness, not about the policy."""
     result = check_temporal_property(
-        _duplicate_id_graph(), _rule("no_X", "G !tool:X")
+        _duplicate_id_graph(), _rule("no_X", "G !tool:X"),
+        assume_trace_conservative=True,
     )
     assert result["verdict"] == "safe"
     assert result["graph_warnings"] == ["duplicate_node_ids: ['x']"]
+
+
+# ---------------------------------------------------------------------------
+# Certified trace-conservatism soundness gate (reviewer fix #6)
+#
+# The static checker must not emit a 'safe' certificate unless the EXPLORED
+# reachable subgraph is certified TRACE-CONSERVATIVE over labeled event
+# traces; otherwise it returns 'inconclusive' / 'uncertified_extraction'.
+# Certified iff assume_trace_conservative OR (every traversed edge is
+# confidence=='exact' AND every visited TOOL node has exact bindings).
+#
+# Precedence (highest wins), enforced in check_temporal_property:
+#   may_violate  >  divergent_obligation_possible  >  no_exit_reachable
+#                >  uncertified_extraction  >  safe
+# ---------------------------------------------------------------------------
+
+
+def _linear_tool_graph(tool: str, edge_conf: str, node_conf: str) -> AgentGraph:
+    """entry -> t(tool) -> exit, with the given edge/node confidence.
+
+    Certification consults EVERY visited node's confidence (a guessed kind or
+    a synthesized sentinel is a real uncertainty), so all three nodes carry
+    ``node_conf``; the region certifies iff both edges and all three nodes are
+    'exact'.
+    """
+    return AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY, origin="runtime", confidence=node_conf),
+            GraphNode(
+                "t", NodeKind.TOOL, tools=(tool,),
+                origin="runtime", confidence=node_conf,
+            ),
+            GraphNode("exit", NodeKind.EXIT, origin="runtime", confidence=node_conf),
+        ),
+        edges=(
+            GraphEdge("entry", "t", origin="runtime", confidence=edge_conf),
+            GraphEdge("t", "exit", origin="runtime", confidence=edge_conf),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+
+def test_gate_exact_provenance_alphabet_absent_is_safe_certified():
+    """(1) EXACT-provenance graph + alphabet-absent policy => safe, certified.
+
+    Policy 'G !tool:X'; the graph declares only tool A, so 'tool:X' never
+    appears in the event vocabulary and the DFA never leaves its initial
+    accepting state — a would-be 'safe' run. Every traversed edge
+    (entry->t, t->exit) and the visited TOOL node 't' are confidence
+    'exact', so the explored region certifies from PROVENANCE alone (no
+    assume flag). Derivation: no bad prefix, no unfulfilled obligation at
+    exit, no divergence, termination reachable, region certified => safe /
+    certified True. This is the intended soundness tightening: alphabet-
+    absence on an EXACT graph still yields 'safe'.
+    """
+    graph = _linear_tool_graph("A", edge_conf="exact", node_conf="exact")
+    result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    assert result["verdict"] == "safe"
+    assert result["certified"] is True
+    assert result["inconclusive_reason"] is None
+    assert result["violated"] is False
+
+
+def test_gate_one_may_edge_downgrades_safe_to_uncertified():
+    """(2) SAME safe scenario, but one traversed edge is 'may' =>
+    inconclusive / uncertified_extraction / certified False.
+
+    The t->exit edge is confidence 'may' (a possibly-lossy hop). The
+    product still finds no violation (alphabet-absent, as in test 1), so the
+    verdict WOULD be 'safe'; but the explored region is no longer certified
+    trace-conservative, so the gate downgrades it. Derivation: would-be safe
+    AND region not certified => inconclusive / uncertified_extraction. On a
+    lossy graph even alphabet-absence is not sound, so this is correct.
+    """
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY, origin="runtime", confidence="exact"),
+            GraphNode("t", NodeKind.TOOL, tools=("A",),
+                      origin="runtime", confidence="exact"),
+            GraphNode("exit", NodeKind.EXIT, origin="runtime", confidence="exact"),
+        ),
+        edges=(
+            GraphEdge("entry", "t", origin="runtime", confidence="exact"),
+            # One traversed edge is only 'may' provenance:
+            GraphEdge("t", "exit", origin="ast_inferred", confidence="may"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+    result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    assert result["verdict"] == "inconclusive"
+    assert result["inconclusive_reason"] == "uncertified_extraction"
+    assert result["certified"] is False
+    # The gate never turns a would-be-safe run into a violation.
+    assert result["violated"] is False
+    assert result["violation_path"] is None
+
+
+def test_gate_may_node_kind_downgrades_safe_to_uncertified():
+    """(2b) A guessed (\"may\") non-TOOL node KIND cannot certify a policy over
+    node-kind atoms, even with all-exact edges and tool bindings.
+
+    Policy 'tool:fetch_pii -> F human' is discharged by the reachable
+    \\textsc{human} node. But that node's kind is confidence 'may' (a name
+    heuristic could be wrong: the real node may be an ungated LLM step), so a
+    'safe' proof would be unsound. The certification predicate must therefore
+    consult NON-TOOL node confidence, not only TOOL bindings/edges. Derivation:
+    the obligation is met on the only path => would-be safe, but the human
+    node is uncertified => inconclusive / uncertified_extraction. If every
+    node is 'exact', the same graph certifies 'safe' (asserted below).
+    """
+    def build(human_conf: str) -> AgentGraph:
+        return AgentGraph(
+            name="g", framework="manual",
+            nodes=(
+                GraphNode("s", NodeKind.ENTRY, origin="runtime", confidence="exact"),
+                GraphNode("pii", NodeKind.TOOL, tools=("fetch_pii",),
+                          origin="runtime", confidence="exact"),
+                GraphNode("h", NodeKind.HUMAN, origin="runtime", confidence=human_conf),
+                GraphNode("e", NodeKind.EXIT, origin="runtime", confidence="exact"),
+            ),
+            edges=(
+                GraphEdge("s", "pii", origin="runtime", confidence="exact"),
+                GraphEdge("pii", "h", origin="runtime", confidence="exact"),
+                GraphEdge("h", "e", origin="runtime", confidence="exact"),
+            ),
+            entry_id="s", exit_ids=("e",),
+        )
+    rule = _rule("pii_gate", "tool:fetch_pii -> F human")
+    guessed = check_temporal_property(build("may"), rule)
+    assert guessed["verdict"] == "inconclusive"
+    assert guessed["inconclusive_reason"] == "uncertified_extraction"
+    assert guessed["certified"] is False
+    assert guessed["violated"] is False
+    certified = check_temporal_property(build("exact"), rule)
+    assert certified["verdict"] == "safe"
+    assert certified["certified"] is True
+
+
+def test_gate_does_not_suppress_reachable_violation():
+    """(3) MAY-provenance graph + genuinely violating policy => may_violate.
+
+    The graph declares tool X and the policy is 'G !tool:X', so the TOOL
+    node 't' drives the DFA into its absorbing FALSE state: a reachable bad
+    prefix. All provenance is 'may', so the region is uncertified — but the
+    gate applies ONLY to would-be-'safe' verdicts. A reachable violation
+    witness stands regardless of provenance (false alarms acceptable, false
+    proofs not). Derivation: bad prefix reached => may_violate, which
+    outranks uncertified_extraction. certified is reported (False here,
+    from the may edges) but is NOT load-bearing for this verdict.
+    """
+    graph = _linear_tool_graph("X", edge_conf="may", node_conf="may")
+    result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    assert result["verdict"] == "may_violate"
+    assert result["violated"] is True
+    assert result["violation_kind"] == "bad_prefix"
+    assert "t" in result["violation_path"]
+    assert result["certified"] is False  # descriptive only; did NOT suppress
+
+
+def test_gate_caller_assertion_certifies_may_graph():
+    """(4) assume_trace_conservative=True on a MAY graph + safe scenario =>
+    safe / certified True (the caller asserts conservatism).
+
+    Same may-provenance, alphabet-absent (tool A vs policy 'G !tool:X')
+    graph as would otherwise downgrade to uncertified (cf. test 2). The
+    caller asserts the extraction is trace-conservative, satisfying the gate
+    unconditionally. Derivation: would-be safe AND assume flag => certified
+    True => safe. This is the curated-corpus caller path (authored-with-code
+    graphs are conservative by construction).
+    """
+    graph = _linear_tool_graph("A", edge_conf="may", node_conf="may")
+    # Without the flag this same graph is uncertified:
+    baseline = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
+    assert baseline["verdict"] == "inconclusive"
+    assert baseline["certified"] is False
+
+    result = check_temporal_property(
+        graph, _rule("no_X", "G !tool:X"), assume_trace_conservative=True
+    )
+    assert result["verdict"] == "safe"
+    assert result["certified"] is True
+    assert result["inconclusive_reason"] is None
+
+
+def test_gate_precedence_divergence_beats_uncertified():
+    """(5) Precedence: a graph that is BOTH uncertified AND has a divergent
+    obligation cycle reports 'divergent_obligation_possible', NOT
+    'uncertified_extraction'.
+
+    entry -> t(A) with a self-loop and no reachable exit; policy
+    'tool:A -> F tool:B'. Once A fires, 'F tool:B' is a pending obligation
+    that the non-accepting product self-cycle can postpone forever -> the
+    divergence heuristic fires. All provenance is 'may', so the region is
+    also uncertified. Both conditions hold; the existing inconclusive
+    reasons keep precedence, and the certification gate only converts the
+    RESIDUAL would-be-'safe' verdict. Derivation: no reachable violation;
+    divergence core non-empty => divergent_obligation_possible (rank 2)
+    returns BEFORE the uncertified gate (rank 4). certified is still
+    reported (False) on that return path.
+    """
+    graph = AgentGraph(
+        name="g",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("t", NodeKind.TOOL, tools=("A",)),  # default 'may'
+        ),
+        edges=(
+            GraphEdge("entry", "t"),
+            GraphEdge("t", "t", kind=EdgeKind.LOOP),
+        ),
+        entry_id="entry",
+        exit_ids=(),
+    )
+    result = check_temporal_property(graph, _rule("a_then_b", "tool:A -> F tool:B"))
+    assert result["verdict"] == "inconclusive"
+    # Divergence (rank 2) wins over uncertified_extraction (rank 4):
+    assert result["inconclusive_reason"] == "divergent_obligation_possible"
+    assert result["divergence_witness"] is not None
+    assert "t" in result["divergence_witness"]
+    # certified is reported on the divergence path and reflects the may graph:
+    assert result["certified"] is False

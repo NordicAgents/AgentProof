@@ -1,4 +1,6 @@
 {
+  "corpus_kind": "real_world",
+  "assume_trace_conservative": false,
   "n_workflows": 18,
   "n_policies": 15,
   "n_monitor_instances": 270,
@@ -13,6 +15,15 @@
   "inconclusive_pct": 5.2,
   "reach_proven_pct_of_atoms_present": 0.0,
   "mean_monitors_pruned_per_workflow": 13.17,
+  "soundness_gate": {
+    "certified_safe": 237,
+    "alphabet_inert_descriptive": 269,
+    "alphabet_inert_not_certified": 32,
+    "uncertified_extraction": 0,
+    "note": "certified_safe = SOUND prunable set (gate returned certified 'safe'). alphabet_inert_descriptive = policy atoms absent from the declared graph vocabulary; DESCRIPTIVE ONLY, provenance-independent, and NOT a sound pruning guarantee on lossy graphs."
+  },
+  "certified_safe": 237,
+  "alphabet_inert_descriptive": 269,
   "per_policy": {
     "no_delete_production": {
       "pairs": 18,

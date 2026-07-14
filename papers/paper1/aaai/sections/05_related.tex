@@ -16,17 +16,62 @@ monitors are even needed.
 A concurrent line of work enforces policies at the tool-call boundary with
 formal machinery: Agent-C compiles temporal safety specifications to
 constraints checked at generation time with conformance
-guarantees~\citep{kamath2026agentc}; ClawGuard and SecureClaw interpose
-rule sets and authorization boundaries against prompt
-injection~\citep{zhao2026clawguard, ma2026secureclaw}; PolicyGuard trains a
-compact guardrail model for trajectory-level policy violation
-detection~\citep{wen2025policyguard}; and AgentFlow builds cross-framework
-agent dependency graphs for static security analysis at
+guarantees~\citep{kamath2026agentc}; AgentSpec provides a customizable
+runtime-enforcement DSL for safe agent execution~\citep{wang2025agentspec};
+ClawGuard and SecureClaw interpose rule sets and authorization boundaries
+against prompt injection~\citep{zhao2026clawguard, ma2026secureclaw};
+PolicyGuard trains a compact guardrail model for trajectory-level policy
+violation detection~\citep{wen2025policyguard}; and AgentFlow builds
+cross-framework agent dependency graphs for static security analysis at
 scale~\citep{wang2026agentflow}. These systems address \emph{how} to enforce
 or analyze; our study measures \emph{when} the static side of that stack pays
 off---the base rate of the defects such tools target in public code, and
 where the error budget actually sits (model extraction). That measurement is
 orthogonal to, and needed by, every system above.
+
+\paragraph{Empirical characterizations of agent defects.}
+Recent measurement studies catalogue where agent systems break. AgentAble
+derives a defect taxonomy and detector from developer
+discussions~\citep{ning2024agentable}; a characterization study of
+orchestration-framework bugs identifies nine root causes across roughly
+$1{,}026$ bugs~\citep{xue2025bugs}; and a security-debt study reports $221$
+vulnerabilities spanning fourteen types in agent
+applications~\citep{shen2025securitydebt}. These establish that defects exist
+and how they distribute by category. Our study is complementary but asks a
+different question: not \emph{which} defects occur, but \emph{how reliably a
+static analyzer can recover the behavioral model it needs to find them}, and
+what the base rate of a checkable topology-level defect class is once
+instrument error is separated from signal. Table~\ref{tab:related} places
+these efforts along six axes; the feature that distinguishes ours is a
+cross-framework measurement of extraction fidelity, an explicit separation of
+estimands, and a provenance-gated soundness guarantee.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Positioning against measurement and enforcement work for LLM agents.
+Prior measurement studies characterize \emph{which} defects occur; enforcement
+systems address \emph{how} to constrain agents at runtime. Ours measures the
+fidelity of the extracted model on which static checks depend, separates
+distinct prevalence estimands, and gates soundness on extraction provenance.}
+\label{tab:related}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+Work & Corpus & Frameworks & Model & Properties & Validation & Guarantees \\
+\midrule
+\citet{ning2024agentable}  & dev discussions & agnostic        & ---                & defect taxonomy       & manual        & none \\
+\citet{xue2025bugs}        & ${\sim}1{,}026$ bugs & orchestration & ---                & 9 root causes         & manual        & none \\
+\citet{shen2025securitydebt} & $221$ vulns   & agent apps      & ---                & 14 vuln.\ types       & manual        & none \\
+\citet{wang2026agentflow}  & $5{,}399$ progs & cross-framework & dep.\ graph        & security patterns     & ---           & none (unvalidated) \\
+\citet{wang2025agentspec}  & case studies    & runtime         & rule DSL           & safety rules          & case studies  & runtime enforcement \\
+\citet{kamath2026agentc}   & case studies    & generation-time & temporal aut.\     & temporal constraints  & conformance   & conformance (runtime) \\
+\midrule
+\textbf{Ours} & $922$ graphs, $252$ repos & $4$ (cross) & graph\,+\,LTL$_f$ & struct.\,+\,policy estimands & LLM-recon.; human staged & provenance-gated soundness \\
+\bottomrule
+\end{tabular}}
+\end{table*}
 
 \paragraph{Model checking and workflow soundness.}
 Classical model checkers---SPIN~\citep{holzmann1997spin},
@@ -48,7 +93,8 @@ studies of why warnings are ignored~\citep{johnson2013static}, and Google's
 Tricorder lessons~\citep{sadowski2018lessons}. Our study is the agent-workflow
 instance of that genre---and adds a failure mode those studies did not face:
 for agent frameworks the \emph{model extraction} step itself dominates the
-error budget, manufacturing 42\% of flags and hiding half the genuine defects.
+error budget, so that flag counts on extracted graphs track extractor fidelity
+more than any underlying defect rate (Section~\ref{sec:results}).
 
 \paragraph{Agent safety and evaluation.}
 Work on agent safety emphasizes alignment, capability evaluation, and

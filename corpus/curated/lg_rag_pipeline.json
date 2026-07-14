@@ -12,9 +12,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     },
     {
       "id": "rewrite",
@@ -22,9 +24,13 @@
       "label": "query_rewriter",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "retrieve",
@@ -34,9 +40,15 @@
         "vector_search"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "grade",
@@ -44,9 +56,13 @@
       "label": "relevance_grader",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "grade_router",
@@ -54,9 +70,13 @@
       "label": "grade_decision",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "routes"
+      ]
     },
     {
       "id": "generate",
@@ -64,9 +84,13 @@
       "label": "answer_generator",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "web_search",
@@ -76,9 +100,15 @@
         "tavily_search"
       ],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [
+        "read"
+      ],
+      "capabilities": [
+        "invokes_tool"
+      ]
     },
     {
       "id": "hallucination_check",
@@ -86,9 +116,13 @@
       "label": "hallucination_grader",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": [
+        "llm"
+      ]
     },
     {
       "id": "__end__",
@@ -96,9 +130,11 @@
       "label": "",
       "tools": [],
       "metadata": {},
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "effects": [],
+      "capabilities": []
     }
   ],
   "edges": [
@@ -107,81 +143,90 @@
       "target": "rewrite",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "rewrite",
       "target": "retrieve",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "retrieve",
       "target": "grade",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "grade",
       "target": "grade_router",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "grade_router",
       "target": "generate",
       "kind": "conditional",
       "condition": "relevant",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "grade_router",
       "target": "web_search",
       "kind": "conditional",
       "condition": "not_relevant",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "web_search",
       "target": "generate",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "generate",
       "target": "hallucination_check",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     },
     {
       "source": "hallucination_check",
       "target": "__end__",
       "kind": "direct",
       "condition": "",
-      "origin": "unknown",
-      "confidence": "may",
-      "source_span": ""
+      "origin": "ast_explicit",
+      "confidence": "exact",
+      "source_span": "",
+      "back_edge": false
     }
   ]
 }

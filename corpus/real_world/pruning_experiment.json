@@ -1,0 +1,641 @@
+{
+  "experiment": "monitor_pruning_path_sensitive",
+  "reviewer_demand": "#8 (path-sensitive pruning beyond alphabet-only) / min experiment #9",
+  "config": {
+    "policies_file": "corpus/policies/workflow_specific_policies.json",
+    "assume_trace_conservative": false,
+    "note": "Strategy (c) earns certification from provenance; curated graphs are all exact-provenance and synthetic fixtures are exact except the deliberate uncertified control.",
+    "soundness_bounds": {
+      "max_node_visits": 3,
+      "max_paths_per_graph": 20000,
+      "max_resolutions_per_path": 4096
+    }
+  },
+  "n_pairs": 18,
+  "n_curated_pairs": 9,
+  "n_synthetic_pairs": 9,
+  "strategies": {
+    "alphabet_only": {
+      "pruned": 1,
+      "kept": 17
+    },
+    "node_reachability": {
+      "pruned": 3,
+      "kept": 15
+    },
+    "path_sensitive_product": {
+      "pruned": 10,
+      "kept": 8
+    },
+    "runtime_only": {
+      "pruned": 0,
+      "kept": 18
+    }
+  },
+  "incremental": {
+    "product_over_alphabet": 9,
+    "product_over_reachability": 7,
+    "product_over_alphabet_curated": 5,
+    "product_over_alphabet_synthetic": 4,
+    "note": "product_over_alphabet is THE headline: monitors the product proves inert that an alphabet-only check keeps. product_over_reachability isolates the cases needing genuine DFA/ordering reasoning (satisfied response/bounded obligations over reachable atoms), excluding declared-but-unreachable forbidden tools that node-reachability already prunes."
+  },
+  "false_pruning": {
+    "product_pruned_pairs_checked": 10,
+    "concrete_executions_checked": 50,
+    "false_prunes": 0,
+    "sound": true,
+    "method": "exhaustive bounded enumeration of finite maximal executions x concrete tool resolutions, replayed through evaluate_monitors + finalize_monitors; the static conservative model is a superset of these runtime-representable traces."
+  },
+  "certification_gate": {
+    "controls": [
+      {
+        "policy_id": "ws_syn_uncertified_pii_then_human",
+        "target": "syn_uncertified",
+        "verdict_without_assertion": "inconclusive",
+        "inconclusive_reason": "uncertified_extraction",
+        "certified_without_assertion": false,
+        "verdict_with_conservatism_asserted": "safe",
+        "product_pruned_without_assertion": false,
+        "would_be_safe_if_asserted": true
+      }
+    ],
+    "refused_to_prune_uncertified": true,
+    "would_be_safe_if_asserted": true
+  },
+  "per_case_type": {
+    "atom_absent_trivial": {
+      "pairs": 1,
+      "product_pruned": 1,
+      "incr_over_alpha": 0
+    },
+    "bounded_response_branching": {
+      "pairs": 1,
+      "product_pruned": 1,
+      "incr_over_alpha": 1
+    },
+    "bounded_too_late": {
+      "pairs": 1,
+      "product_pruned": 0,
+      "incr_over_alpha": 0
+    },
+    "divergent_response": {
+      "pairs": 1,
+      "product_pruned": 0,
+      "incr_over_alpha": 0
+    },
+    "forbidden_reachable": {
+      "pairs": 2,
+      "product_pruned": 0,
+      "incr_over_alpha": 0
+    },
+    "forbidden_unreachable": {
+      "pairs": 1,
+      "product_pruned": 1,
+      "incr_over_alpha": 1
+    },
+    "forbidden_unreachable_loop": {
+      "pairs": 1,
+      "product_pruned": 1,
+      "incr_over_alpha": 1
+    },
+    "response_satisfied": {
+      "pairs": 5,
+      "product_pruned": 5,
+      "incr_over_alpha": 5
+    },
+    "response_satisfied_branching": {
+      "pairs": 1,
+      "product_pruned": 1,
+      "incr_over_alpha": 1
+    },
+    "response_violated_branch": {
+      "pairs": 3,
+      "product_pruned": 0,
+      "incr_over_alpha": 0
+    },
+    "uncertified_control": {
+      "pairs": 1,
+      "product_pruned": 0,
+      "incr_over_alpha": 0
+    }
+  },
+  "expected_verdict_mismatches": [],
+  "results_table": [
+    {
+      "policy_id": "ws_hiring_resume_then_human",
+      "target": "crewai_hiring_pipeline",
+      "synthetic": false,
+      "case_type": "response_satisfied",
+      "dsl": "tool:parse_resume -> F human",
+      "atoms": [
+        "human",
+        "tool:parse_resume"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:parse_resume"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:parse_resume"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 4
+    },
+    {
+      "policy_id": "ws_hiring_schedule_then_human",
+      "target": "crewai_hiring_pipeline",
+      "synthetic": false,
+      "case_type": "response_satisfied",
+      "dsl": "tool:calendar_api -> F human",
+      "atoms": [
+        "human",
+        "tool:calendar_api"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:calendar_api"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:calendar_api"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 4
+    },
+    {
+      "policy_id": "ws_invest_yahoo_then_human",
+      "target": "autogen_investment_team",
+      "synthetic": false,
+      "case_type": "response_satisfied",
+      "dsl": "tool:yahoo_finance -> F human",
+      "atoms": [
+        "human",
+        "tool:yahoo_finance"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:yahoo_finance"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:yahoo_finance"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 3
+    },
+    {
+      "policy_id": "ws_invest_bloomberg_then_human",
+      "target": "autogen_investment_team",
+      "synthetic": false,
+      "case_type": "response_satisfied",
+      "dsl": "tool:bloomberg_api -> F human",
+      "atoms": [
+        "human",
+        "tool:bloomberg_api"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:bloomberg_api"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:bloomberg_api"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 3
+    },
+    {
+      "policy_id": "ws_onboard_idverify_then_assess",
+      "target": "adk_customer_onboarding",
+      "synthetic": false,
+      "case_type": "response_satisfied",
+      "dsl": "tool:id_verify_api -> F llm_step",
+      "atoms": [
+        "llm_step",
+        "tool:id_verify_api"
+      ],
+      "atoms_in_vocabulary": [
+        "llm_step",
+        "tool:id_verify_api"
+      ],
+      "atoms_reachable": [
+        "llm_step",
+        "tool:id_verify_api"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 8
+    },
+    {
+      "policy_id": "ws_syn_unreachable_drop_table",
+      "target": "syn_unreachable_forbidden",
+      "synthetic": true,
+      "case_type": "forbidden_unreachable",
+      "dsl": "G !tool:drop_table",
+      "atoms": [
+        "tool:drop_table"
+      ],
+      "atoms_in_vocabulary": [
+        "tool:drop_table"
+      ],
+      "atoms_reachable": [],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": true,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 2
+    },
+    {
+      "policy_id": "ws_syn_pii_then_human",
+      "target": "syn_response_branch",
+      "synthetic": true,
+      "case_type": "response_satisfied_branching",
+      "dsl": "tool:fetch_pii -> F human",
+      "atoms": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 3
+    },
+    {
+      "policy_id": "ws_syn_bounded_router_human",
+      "target": "syn_bounded_branch",
+      "synthetic": true,
+      "case_type": "bounded_response_branching",
+      "dsl": "router -> F[<=1] human",
+      "atoms": [
+        "human",
+        "router"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "router"
+      ],
+      "atoms_reachable": [
+        "human",
+        "router"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": true,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 2
+    },
+    {
+      "policy_id": "ws_syn_loop_unreachable_drop_table",
+      "target": "syn_loop_safe",
+      "synthetic": true,
+      "case_type": "forbidden_unreachable_loop",
+      "dsl": "G !tool:drop_table",
+      "atoms": [
+        "tool:drop_table"
+      ],
+      "atoms_in_vocabulary": [
+        "tool:drop_table"
+      ],
+      "atoms_reachable": [],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": true,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": true,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 14
+    },
+    {
+      "policy_id": "ws_fin_forbid_trading",
+      "target": "lg_financial_advisor",
+      "synthetic": false,
+      "case_type": "forbidden_reachable",
+      "dsl": "G !tool:trading_api",
+      "atoms": [
+        "tool:trading_api"
+      ],
+      "atoms_in_vocabulary": [
+        "tool:trading_api"
+      ],
+      "atoms_reachable": [
+        "tool:trading_api"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_fin_trade_then_human",
+      "target": "lg_financial_advisor",
+      "synthetic": false,
+      "case_type": "response_violated_branch",
+      "dsl": "tool:trading_api -> F human",
+      "atoms": [
+        "human",
+        "tool:trading_api"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:trading_api"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:trading_api"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_research_search_then_human",
+      "target": "lg_multi_agent_research",
+      "synthetic": false,
+      "case_type": "response_violated_branch",
+      "dsl": "tool:tavily_search -> F human",
+      "atoms": [
+        "human",
+        "tool:tavily_search"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:tavily_search"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:tavily_search"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_syn_forbidden_reachable_drop_table",
+      "target": "syn_forbidden_reachable",
+      "synthetic": true,
+      "case_type": "forbidden_reachable",
+      "dsl": "G !tool:drop_table",
+      "atoms": [
+        "tool:drop_table"
+      ],
+      "atoms_in_vocabulary": [
+        "tool:drop_table"
+      ],
+      "atoms_reachable": [
+        "tool:drop_table"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_syn_pii_then_human_violated",
+      "target": "syn_response_violated",
+      "synthetic": true,
+      "case_type": "response_violated_branch",
+      "dsl": "tool:fetch_pii -> F human",
+      "atoms": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_reachable": [
+        "tool:fetch_pii"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_syn_bounded_too_late",
+      "target": "syn_bounded_late",
+      "synthetic": true,
+      "case_type": "bounded_too_late",
+      "dsl": "router -> F[<=1] human",
+      "atoms": [
+        "human",
+        "router"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "router"
+      ],
+      "atoms_reachable": [
+        "human",
+        "router"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "may_violate",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_syn_loop_divergent_response",
+      "target": "syn_loop_divergent",
+      "synthetic": true,
+      "case_type": "divergent_response",
+      "dsl": "tool:run_check -> F human",
+      "atoms": [
+        "human",
+        "tool:run_check"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:run_check"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:run_check"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "inconclusive",
+      "product_certified": true,
+      "product_inconclusive_reason": "divergent_obligation_possible",
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    },
+    {
+      "policy_id": "ws_debate_no_drop_table",
+      "target": "autogen_debate",
+      "synthetic": false,
+      "case_type": "atom_absent_trivial",
+      "dsl": "G !tool:drop_table",
+      "atoms": [
+        "tool:drop_table"
+      ],
+      "atoms_in_vocabulary": [],
+      "atoms_reachable": [],
+      "alphabet_only_prune": true,
+      "node_reachability_prune": true,
+      "product_verdict": "safe",
+      "product_certified": true,
+      "product_inconclusive_reason": null,
+      "path_sensitive_prune": true,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": true,
+      "concrete_executions_checked": 7
+    },
+    {
+      "policy_id": "ws_syn_uncertified_pii_then_human",
+      "target": "syn_uncertified",
+      "synthetic": true,
+      "case_type": "uncertified_control",
+      "dsl": "tool:fetch_pii -> F human",
+      "atoms": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_in_vocabulary": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "atoms_reachable": [
+        "human",
+        "tool:fetch_pii"
+      ],
+      "alphabet_only_prune": false,
+      "node_reachability_prune": false,
+      "product_verdict": "inconclusive",
+      "product_certified": false,
+      "product_inconclusive_reason": "uncertified_extraction",
+      "path_sensitive_prune": false,
+      "runtime_only_prune": false,
+      "incremental_over_alphabet": false,
+      "incremental_over_reachability": false,
+      "soundness_no_violation": null,
+      "concrete_executions_checked": 0
+    }
+  ]
+}

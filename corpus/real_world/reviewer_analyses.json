@@ -1,0 +1,670 @@
+{
+  "_meta": {
+    "generated_from": "existing offline artifacts only",
+    "corpus_composition": {
+      "langgraph": 400,
+      "crewai": 113,
+      "autogen": 359,
+      "adk": 50,
+      "total": 922
+    },
+    "sample_composition": {
+      "langgraph": 40,
+      "adk": 24,
+      "autogen": 35,
+      "crewai": 20
+    },
+    "bootstrap_B": 10000,
+    "seed": 20260714,
+    "z": 1.96
+  },
+  "1_separate_estimands": {
+    "note": "Three disjoint estimands. Structural = router/topology checks; policy = missing-human-gate normative judgments; composite = their union, heterogeneous, reported as SECONDARY only. Confirmed set = gt_triage real_defect labels (2) + reverify confirmed_real human_presence (2).",
+    "structural": {
+      "label": "confirmed_structural_defects",
+      "k": 1,
+      "n": 119,
+      "rate": 0.008403361344537815,
+      "wilson_ci": [
+        0.0014849048183694993,
+        0.04606901828259955
+      ],
+      "slugs": {
+        "gabrielpreda__adk-sql-agent__agent": {
+          "framework": "adk",
+          "check": "router_shape",
+          "category": "application_like",
+          "source": "gt_triage_results.triage(real_defect)"
+        }
+      }
+    },
+    "policy": {
+      "label": "confirmed_human_gate_policy_violations",
+      "k": 3,
+      "n": 119,
+      "rate": 0.025210084033613446,
+      "wilson_ci": [
+        0.008610075311511797,
+        0.07150610682874037
+      ],
+      "slugs": {
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+          "framework": "langgraph",
+          "check": "human_gate_coverage",
+          "category": "application_like",
+          "source": "gt_triage_results.triage(real_defect)"
+        },
+        "Jamahl__fraya-25__crew": {
+          "framework": "crewai",
+          "check": "human_presence",
+          "category": "application_like",
+          "source": "gt_triage_results.reverify(confirmed_real)"
+        },
+        "Zen7-Labs__Zen7-Payment-Agent__agent": {
+          "framework": "adk",
+          "check": "human_presence",
+          "category": "demo_or_toy",
+          "source": "gt_triage_results.reverify(confirmed_real)"
+        }
+      }
+    },
+    "composite_any": {
+      "label": "any_confirmed_finding_COMPOSITE_SECONDARY",
+      "k": 4,
+      "n": 119,
+      "rate": 0.03361344537815126,
+      "wilson_ci": [
+        0.013147540181404155,
+        0.08324977147848957
+      ],
+      "slugs": {
+        "gabrielpreda__adk-sql-agent__agent": {
+          "framework": "adk",
+          "check": "router_shape",
+          "category": "application_like",
+          "source": "gt_triage_results.triage(real_defect)"
+        },
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+          "framework": "langgraph",
+          "check": "human_gate_coverage",
+          "category": "application_like",
+          "source": "gt_triage_results.triage(real_defect)"
+        },
+        "Jamahl__fraya-25__crew": {
+          "framework": "crewai",
+          "check": "human_presence",
+          "category": "application_like",
+          "source": "gt_triage_results.reverify(confirmed_real)"
+        },
+        "Zen7-Labs__Zen7-Payment-Agent__agent": {
+          "framework": "adk",
+          "check": "human_presence",
+          "category": "demo_or_toy",
+          "source": "gt_triage_results.reverify(confirmed_real)"
+        }
+      }
+    },
+    "split_sums_to_composite": true,
+    "crosscheck": {
+      "gt_triage_real_defect_flags": [
+        [
+          "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+          "human_gate_coverage"
+        ],
+        [
+          "gabrielpreda__adk-sql-agent__agent",
+          "router_shape"
+        ]
+      ],
+      "reverify_confirmed_real": [
+        [
+          "Jamahl__fraya-25__crew",
+          "human_presence"
+        ],
+        [
+          "Zen7-Labs__Zen7-Payment-Agent__agent",
+          "human_presence"
+        ]
+      ],
+      "extractor_visible_human_presence_real_defects": [
+        "Jamahl__fraya-25__crew",
+        "Zen7-Labs__Zen7-Payment-Agent__agent"
+      ]
+    }
+  },
+  "2_post_stratification": {
+    "corpus_composition": {
+      "langgraph": 400,
+      "crewai": 113,
+      "autogen": 359,
+      "adk": 50,
+      "total": 922
+    },
+    "sample_composition": {
+      "langgraph": 40,
+      "adk": 24,
+      "autogen": 35,
+      "crewai": 20
+    },
+    "structural": {
+      "per_framework": {
+        "langgraph": {
+          "d": 0,
+          "n": 40,
+          "rate": 0.0,
+          "corpus_weight": 0.43383947939262474
+        },
+        "crewai": {
+          "d": 0,
+          "n": 20,
+          "rate": 0.0,
+          "corpus_weight": 0.12255965292841649
+        },
+        "autogen": {
+          "d": 0,
+          "n": 35,
+          "rate": 0.0,
+          "corpus_weight": 0.3893709327548807
+        },
+        "adk": {
+          "d": 1,
+          "n": 24,
+          "rate": 0.041666666666666664,
+          "corpus_weight": 0.05422993492407809
+        }
+      },
+      "unweighted_sample_rate": {
+        "k": 1,
+        "n": 119,
+        "rate": 0.008403361344537815,
+        "wilson_ci": [
+          0.0014849048183694993,
+          0.04606901828259955
+        ],
+        "note": "VALIDATION-SAMPLE rate only"
+      },
+      "post_stratified_point": 0.002259580621836587,
+      "post_stratified_survey_ci": {
+        "point": 0.002259580621836587,
+        "se": 0.0015950996162137994,
+        "normal_ci": [
+          0.0,
+          0.005385975869615634
+        ]
+      },
+      "post_stratified_cluster_bootstrap_ci": {
+        "point": 0.002259580621836587,
+        "ci95": [
+          0.0,
+          0.008034064433196753
+        ],
+        "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
+      }
+    },
+    "policy": {
+      "per_framework": {
+        "langgraph": {
+          "d": 1,
+          "n": 40,
+          "rate": 0.025,
+          "corpus_weight": 0.43383947939262474
+        },
+        "crewai": {
+          "d": 1,
+          "n": 20,
+          "rate": 0.05,
+          "corpus_weight": 0.12255965292841649
+        },
+        "autogen": {
+          "d": 0,
+          "n": 35,
+          "rate": 0.0,
+          "corpus_weight": 0.3893709327548807
+        },
+        "adk": {
+          "d": 1,
+          "n": 24,
+          "rate": 0.041666666666666664,
+          "corpus_weight": 0.05422993492407809
+        }
+      },
+      "unweighted_sample_rate": {
+        "k": 3,
+        "n": 119,
+        "rate": 0.025210084033613446,
+        "wilson_ci": [
+          0.008610075311511797,
+          0.07150610682874037
+        ],
+        "note": "VALIDATION-SAMPLE rate only"
+      },
+      "post_stratified_point": 0.01923355025307303,
+      "post_stratified_survey_ci": {
+        "point": 0.01923355025307303,
+        "se": 0.011624539418053179,
+        "normal_ci": [
+          0.0,
+          0.04201764751245726
+        ]
+      },
+      "post_stratified_cluster_bootstrap_ci": {
+        "point": 0.01923355025307303,
+        "ci95": [
+          0.0,
+          0.048527437005170836
+        ],
+        "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
+      }
+    },
+    "composite_any": {
+      "per_framework": {
+        "langgraph": {
+          "d": 1,
+          "n": 40,
+          "rate": 0.025,
+          "corpus_weight": 0.43383947939262474
+        },
+        "crewai": {
+          "d": 1,
+          "n": 20,
+          "rate": 0.05,
+          "corpus_weight": 0.12255965292841649
+        },
+        "autogen": {
+          "d": 0,
+          "n": 35,
+          "rate": 0.0,
+          "corpus_weight": 0.3893709327548807
+        },
+        "adk": {
+          "d": 2,
+          "n": 24,
+          "rate": 0.08333333333333333,
+          "corpus_weight": 0.05422993492407809
+        }
+      },
+      "unweighted_sample_rate": {
+        "k": 4,
+        "n": 119,
+        "rate": 0.03361344537815126,
+        "wilson_ci": [
+          0.013147540181404155,
+          0.08324977147848957
+        ],
+        "note": "VALIDATION-SAMPLE rate only"
+      },
+      "post_stratified_point": 0.021493130874909616,
+      "post_stratified_survey_ci": {
+        "point": 0.021493130874909616,
+        "se": 0.011724035664768586,
+        "normal_ci": [
+          0.0,
+          0.04447224077785605
+        ]
+      },
+      "post_stratified_cluster_bootstrap_ci": {
+        "point": 0.021493130874909616,
+        "ci95": [
+          0.0020085161082991883,
+          0.05124585384889073
+        ],
+        "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
+      }
+    },
+    "application_only_stratum": {
+      "n_app_like": 39,
+      "n_non_app": 80,
+      "structural": {
+        "app_like": {
+          "k": 1,
+          "n": 39,
+          "rate": 0.02564102564102564,
+          "wilson_ci": [
+            0.00454058606523737,
+            0.13181286478627147
+          ]
+        },
+        "non_app": {
+          "k": 0,
+          "n": 80,
+          "rate": 0.0,
+          "wilson_ci": [
+            0.0,
+            0.0458197362645751
+          ]
+        }
+      },
+      "policy": {
+        "app_like": {
+          "k": 2,
+          "n": 39,
+          "rate": 0.05128205128205128,
+          "wilson_ci": [
+            0.014177657646399527,
+            0.1688593904563791
+          ]
+        },
+        "non_app": {
+          "k": 1,
+          "n": 80,
+          "rate": 0.0125,
+          "wilson_ci": [
+            0.002209918618306224,
+            0.06746432423965451
+          ]
+        }
+      },
+      "composite_any": {
+        "app_like": {
+          "k": 3,
+          "n": 39,
+          "rate": 0.07692307692307693,
+          "wilson_ci": [
+            0.026506914073495688,
+            0.2032137312805527
+          ]
+        },
+        "non_app": {
+          "k": 1,
+          "n": 80,
+          "rate": 0.0125,
+          "wilson_ci": [
+            0.002209918618306224,
+            0.06746432423965451
+          ]
+        }
+      },
+      "note": "Framework post-stratification WITHIN the app-like stratum is NOT computable: no corpus-level app-vs-tutorial census exists in the artifacts. Only unweighted app-like vs non-app rates with Wilson CIs are reported."
+    }
+  },
+  "3_fisher_exact": {
+    "table": {
+      "app_like_defect": 3,
+      "app_like_clean": 36,
+      "other_defect": 1,
+      "other_clean": 79,
+      "app_rate": 0.07692307692307693,
+      "other_rate": 0.0125
+    },
+    "two_sided_p": 0.10242998426722569,
+    "odds_ratio_sample": {
+      "or": 6.583333333333333,
+      "wald_ci95": [
+        0.661838461716083,
+        65.48467682793871
+      ]
+    },
+    "odds_ratio_haldane": {
+      "or": 5.082191780821918,
+      "wald_ci95": [
+        0.721262086503051,
+        35.81038540689273
+      ]
+    },
+    "suggested_wording": "Confirmed defects were concentrated in application-like workflows (3/39, 7.7%) relative to tutorial, demo, and test workflows (1/80, 1.3%). The difference is suggestive but not statistically significant at this sample size (two-sided Fisher exact p = 0.10; odds ratio 6.6, 95% CI [0.7, 65], spanning 1). We therefore frame the application/tutorial gap as a hypothesis-generating association rather than a confirmed effect, and note the wide interval reflects the small number of confirmed defects."
+  },
+  "4_flag_ppv": {
+    "workflow_level_ppv": {
+      "definition": "fraction of FLAGGED workflows with >=1 genuine flag",
+      "n_flagged_workflows": 114,
+      "n_genuine_workflows": 2,
+      "confirmed": {
+        "ppv": 0.017543859649122806,
+        "wilson_ci": [
+          0.004824317682655357,
+          0.061719245880636375
+        ],
+        "repo_cluster_bootstrap_ci": [
+          0.0,
+          0.045871559633027525
+        ]
+      },
+      "pessimistic_genuine_or_arguable": {
+        "n": 14,
+        "ppv": 0.12280701754385964,
+        "repo_cluster_bootstrap_ci": [
+          0.06837606837606838,
+          0.1810344827586207
+        ]
+      }
+    },
+    "root_cause_dedup": {
+      "rule": "within a workflow, structural flags whose node clusters intersect collapse to one root-cause group (e.g. one missing edge firing exit_reachability + reverse_reachability + dead_ends counts once); non-structural policy flags are kept individually. Node clusters read from defect_results.json.",
+      "raw_flag_count": 186,
+      "deduplicated_flag_count": 161,
+      "flags_collapsed": 25,
+      "dedup_label_distribution": {
+        "intentional": 93,
+        "extraction_artifact": 54,
+        "arguable": 12,
+        "real_defect": 2
+      },
+      "structural_flags_without_node_detail_kept_standalone": 1,
+      "confirmed_ppv": {
+        "k": 2,
+        "n": 161,
+        "ppv": 0.012422360248447204,
+        "wilson_ci": [
+          0.0034132245933606656,
+          0.04415729158702098
+        ]
+      },
+      "pessimistic_ppv": {
+        "k": 14,
+        "n": 161,
+        "ppv": 0.08695652173913043,
+        "wilson_ci": [
+          0.0525035756984701,
+          0.14066125647981498
+        ]
+      }
+    },
+    "ppv_bounds": {
+      "flag_universe": "186 AS-MINED triage flags (self-repo excluded)",
+      "label_distribution": {
+        "intentional": 93,
+        "extraction_artifact": 79,
+        "arguable": 12,
+        "real_defect": 2
+      },
+      "confirmed_only": {
+        "k": 2,
+        "n": 186,
+        "ppv": 0.010752688172043012,
+        "wilson_ci": [
+          0.0029536830046733957,
+          0.038352332115300314
+        ]
+      },
+      "pessimistic_all_arguable_genuine": {
+        "k": 14,
+        "n": 186,
+        "ppv": 0.07526881720430108,
+        "wilson_ci": [
+          0.04536226942769034,
+          0.1223649305116275
+        ]
+      },
+      "identification_range_before_sampling_uncertainty": [
+        0.010752688172043012,
+        0.07526881720430108
+      ],
+      "note": "The 2 confirmed are both human_presence policy gaps found by the AS-MINED extractor; all 72 as-mined STRUCTURAL flags were extraction artifacts / gt_errors (0 genuine). The one confirmed STRUCTURAL defect (gabrielpreda router_shape, estimand #1) came from the corrected GT-graph re-run, a different flag universe."
+    }
+  },
+  "5_fidelity_v2_table": {
+    "note": "v1 = as-mined extractor (paper Table 1); v2 = corrected extractor (path_map 3-positional + LoopAgent fixes) re-run at identical pinned SHAs. Fidelity vs the same LLM reference graphs, self-repo excluded.",
+    "node_pr_per_framework_source": "present in corrected_fidelity.json (node_precision/node_recall per framework); no recomputation needed",
+    "overall": {
+      "n_v2": 115,
+      "n_v1": 119,
+      "node_precision": {
+        "v2_primary": 0.888,
+        "v1_asmined_ablation": 0.909,
+        "delta": -0.021
+      },
+      "node_recall": {
+        "v2_primary": 0.85,
+        "v1_asmined_ablation": 0.854,
+        "delta": -0.004
+      },
+      "edge_precision": {
+        "v2_primary": 0.777,
+        "v1_asmined_ablation": 0.805,
+        "delta": -0.028
+      },
+      "edge_recall": {
+        "v2_primary": 0.679,
+        "v1_asmined_ablation": 0.649,
+        "delta": 0.03
+      },
+      "kind_accuracy": {
+        "v2_primary": 0.833,
+        "v1_asmined_ablation": 0.828,
+        "delta": 0.005
+      }
+    },
+    "per_framework": {
+      "adk": {
+        "n_v2": 23,
+        "n_v1": 24,
+        "node_precision": {
+          "v2_primary": 0.697,
+          "v1_asmined_ablation": 0.711,
+          "delta": -0.014
+        },
+        "node_recall": {
+          "v2_primary": 0.606,
+          "v1_asmined_ablation": 0.622,
+          "delta": -0.016
+        },
+        "edge_precision": {
+          "v2_primary": 0.395,
+          "v1_asmined_ablation": 0.42,
+          "delta": -0.025
+        },
+        "edge_recall": {
+          "v2_primary": 0.355,
+          "v1_asmined_ablation": 0.382,
+          "delta": -0.027
+        },
+        "kind_accuracy": {
+          "v2_primary": 0.938,
+          "v1_asmined_ablation": 0.94,
+          "delta": -0.002
+        }
+      },
+      "autogen": {
+        "n_v2": 32,
+        "n_v1": 35,
+        "node_precision": {
+          "v2_primary": 0.963,
+          "v1_asmined_ablation": 1.0,
+          "delta": -0.037
+        },
+        "node_recall": {
+          "v2_primary": 0.927,
+          "v1_asmined_ablation": 0.942,
+          "delta": -0.015
+        },
+        "edge_precision": {
+          "v2_primary": 0.906,
+          "v1_asmined_ablation": 0.957,
+          "delta": -0.051
+        },
+        "edge_recall": {
+          "v2_primary": 0.73,
+          "v1_asmined_ablation": 0.77,
+          "delta": -0.04
+        },
+        "kind_accuracy": {
+          "v2_primary": 0.897,
+          "v1_asmined_ablation": 0.9,
+          "delta": -0.003
+        }
+      },
+      "crewai": {
+        "n_v2": 20,
+        "n_v1": 20,
+        "node_precision": {
+          "v2_primary": 0.867,
+          "v1_asmined_ablation": 0.867,
+          "delta": 0.0
+        },
+        "node_recall": {
+          "v2_primary": 0.867,
+          "v1_asmined_ablation": 0.867,
+          "delta": 0.0
+        },
+        "edge_precision": {
+          "v2_primary": 0.7,
+          "v1_asmined_ablation": 0.7,
+          "delta": 0.0
+        },
+        "edge_recall": {
+          "v2_primary": 0.692,
+          "v1_asmined_ablation": 0.692,
+          "delta": 0.0
+        },
+        "kind_accuracy": {
+          "v2_primary": 0.929,
+          "v1_asmined_ablation": 0.929,
+          "delta": 0.0
+        }
+      },
+      "langgraph": {
+        "n_v2": 40,
+        "n_v1": 40,
+        "node_precision": {
+          "v2_primary": 0.95,
+          "v1_asmined_ablation": 0.968,
+          "delta": -0.018
+        },
+        "node_recall": {
+          "v2_primary": 0.921,
+          "v1_asmined_ablation": 0.91,
+          "delta": 0.011
+        },
+        "edge_precision": {
+          "v2_primary": 0.931,
+          "v1_asmined_ablation": 0.956,
+          "delta": -0.025
+        },
+        "edge_recall": {
+          "v2_primary": 0.819,
+          "v1_asmined_ablation": 0.682,
+          "delta": 0.137
+        },
+        "kind_accuracy": {
+          "v2_primary": 0.674,
+          "v1_asmined_ablation": 0.647,
+          "delta": 0.027
+        }
+      }
+    },
+    "flag_volume": {
+      "v1_asmined": {
+        "n_graphs": 922,
+        "workflows_struct_flagged": 314,
+        "by_check": {
+          "reverse_reachability": 295,
+          "dead_ends": 301,
+          "tool_declarations": 84,
+          "exit_reachability": 86,
+          "router_shape": 36
+        }
+      },
+      "v2_corrected": {
+        "n_graphs": 904,
+        "workflows_struct_flagged": 239,
+        "by_check": {
+          "exit_reachability": 32,
+          "reverse_reachability": 201,
+          "dead_ends": 209,
+          "tool_declarations": 86,
+          "router_shape": 35
+        }
+      }
+    }
+  }
+}

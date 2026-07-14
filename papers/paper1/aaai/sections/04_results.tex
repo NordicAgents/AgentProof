@@ -15,42 +15,71 @@ Verification is sub-second even for synthetic graphs of 5{,}000 nodes (far large
 than any observed workflow); details, per-framework extractor accuracy on stubs,
 and a Promela/SMV modeling-effort comparison are in the supplementary material.
 
-\paragraph{Monitor selection via static pruning.}
+\paragraph{Static monitor selection is an optimization, not a headline.}
 The graph\,$\times$\,DFA product gives the static machinery a job that does not
-depend on defects existing: deciding which runtime monitors to deploy. The
-soundness premise of Section~\ref{sec:system} is required and we restrict the
-claim accordingly---pruning applies to graphs whose paths over-approximate
-runtime traces (here, the curated corpus; in deployment, runtime-extracted
-graphs), \emph{never} to lossy AST-extracted graphs, whose missing edges could
-make a live monitor look inert. Under that premise, a policy whose product is
-\emph{safe}---no resolution of the workflow's declared tool bindings reaches a
-bad prefix or a termination point with a pending obligation---can never fire
-at runtime on that workflow, so its monitor need not be deployed. The product
-natively explores every declared tool and the no-invocation case at each tool
-node, so unresolved tool choice over-approximates rather than fixing one
-arbitrary order; and it prunes only on \emph{safe}: a workflow whose cycles
-could postpone an obligation forever yields \emph{inconclusive}, and that
-monitor is kept.
+depend on defects existing: deciding which runtime monitors to deploy. Its value
+is \emph{soundness}, not scale, and we treat the pruning layer and its policy DSL
+as supporting infrastructure for the certification gate of
+Section~\ref{sec:system}, which returns \texttt{safe} for a monitor only when the
+traversed graph region is certified trace-conservative. A policy whose product is
+safe---no resolution of the workflow's declared tool bindings reaches a bad prefix
+or a termination point with a pending obligation---can never fire at runtime, so
+its monitor need not be deployed; violations (\texttt{may\_violate}) are never
+suppressed. On the curated corpus (exact-provenance authored graphs) the gate
+certifies 237 of 270 monitor instances (87.8\%) as provably inert and declines 14
+(all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving the
+remaining 12.2\% (19 that may fire) to runtime enforcement. Returning
+\texttt{inconclusive} on a workflow whose cycles could postpone an obligation
+forever is an engineering scope choice, not undecidability: universal satisfaction
+over finite terminating traces is decidable, and we simply do not bound the
+divergent case.
 
-Across the curated corpus and 15 policies, 237 of 270 monitor instances
-(87.8\%) are provably inert---a mean of 13.2 of 15 monitors skipped per
-workflow---while 19 may fire and 14 (all on one seeded livelock workflow) are
-declined as inconclusive, leaving runtime enforcement to evaluate the
-remaining 12.2\%.
+\paragraph{Descriptive vs.\ sound pruning on mined code.}
+This certified rate does not survive contact with lossy extraction, and stating so
+removes a latent contradiction. What an earlier draft reported as ${\sim}93\%$
+``pruning'' on mined graphs is really pure \emph{alphabet-inertness}: all 13{,}950
+mined (workflow, policy) instances are alphabet-inert (100\%) because no mined
+workflow invokes any of the 15 policies' tools---a descriptive property of a
+mismatched vocabulary, not a sound prune. On a may-provenance graph a missing edge
+could hide exactly the tool that makes a live monitor look inert. The sound gate
+therefore certifies \emph{none} of the 13{,}950 mined instances---every mined
+graph carries only \texttt{may}-provenance nodes and edges, so the gate refuses
+them all as uncertified extraction---reconciling this section with the paper's
+own claim that pruning cannot soundly apply to lossy graphs.
 
-We report two honest limits. First, on today's small, mostly linear workflows
-\emph{every} proven-inert case is alphabet-level (the policy's atoms never
-appear in the workflow); under the corrected LTL$_f$ semantics the product
-proves no additional case on this corpus---the single case the reachability
-product ``won'' under our earlier, incorrect semantics was in fact a live
-termination-obligation monitor. The product's value over a plain symbol-set
-check is therefore soundness, not extra pruning: on branching and looping
-topologies a symbol-set check cannot certify inertness while the product can,
-and the product is what licenses the guarantee at all. Second, the fixed
-policy vocabulary does not match real code---none of the 922 mined workflows
-invokes any of the 15 policies' tools---so measuring pruning on mined
-workflows requires instantiating policy templates against each workflow's own
-tools, which we leave to future work. Static monitor selection is thus a
-sound, cheap optimization whose measured leverage today is alphabet-level, and
-it is the concrete bridge between pre-deployment analysis and leaner runtime
-enforcement.
+\paragraph{Does path-sensitivity buy anything?}
+Alphabet-inertness needs no product; the product earns its keep only when a
+policy's atoms actually occur and inertness turns on \emph{which} paths reach them.
+We built 18 (workflow, policy) pairs of exactly this kind and compared four
+selection strategies (Table~\ref{tab:pruning}). A runtime-only strategy---prune a
+monitor if no observed execution triggers it---certifies 0, since one unobserved
+path forbids the claim. Alphabet-only prunes 1, node-reachability 3, and the
+path-sensitive product 10: 9 more inert monitors than the symbol-set check and 7
+more than node reachability, with \emph{no} false prunes across 50 concrete
+executions. We are deliberately conservative about what this shows. Five of the 9
+incremental cases are linear curated response-obligation pipelines in which the
+consequent trivially dominates every path; the genuine evidence of path-sensitivity
+on branching and looping topologies rests on the 4 purpose-built \emph{synthetic}
+fixtures (labeled synthetic, not sampled)---including a declared-but-unreachable
+forbidden tool and an obligation that is bounded across every branch. The
+contribution is thus a sound, cheap optimization with a small but real
+path-sensitive gain, not a scale result.
+
+\begin{table}[t]
+\centering\small
+\caption{Monitor pruning on 18 (workflow, policy) pairs whose policy atoms occur in
+the workflow. The path-sensitive product certifies 9 more inert monitors than a
+symbol-set check and 7 more than node reachability, with no false prunes across 50
+concrete executions.}
+\label{tab:pruning}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Strategy} & \textbf{Pruned (/18)} & \textbf{$\Delta$ vs.\ alphabet} \\
+\midrule
+Runtime-only (execution witness) & 0  & --- \\
+Alphabet-only (symbol set)       & 1  & --- \\
+Node-reachability                & 3  & $+2$ \\
+Path-sensitive product           & 10 & $+9$ \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,122 +1,133 @@
 {
+  "corpus_kind": "real_world",
+  "assume_trace_conservative": false,
   "n_workflows": 930,
   "n_policies": 15,
   "n_monitor_instances": 13950,
-  "prunable": 13020,
-  "prunable_pct": 93.3,
-  "trivially_inert": 13020,
+  "prunable": 0,
+  "prunable_pct": 0.0,
+  "trivially_inert": 0,
   "reachability_proven_inert": 0,
-  "must_keep": 930,
-  "must_keep_pct": 6.7,
+  "must_keep": 13950,
+  "must_keep_pct": 100.0,
   "may_violate": 930,
-  "inconclusive": 0,
-  "inconclusive_pct": 0.0,
+  "inconclusive": 13020,
+  "inconclusive_pct": 93.3,
   "reach_proven_pct_of_atoms_present": 0.0,
-  "mean_monitors_pruned_per_workflow": 14.0,
+  "mean_monitors_pruned_per_workflow": 0.0,
+  "soundness_gate": {
+    "certified_safe": 0,
+    "alphabet_inert_descriptive": 13950,
+    "alphabet_inert_not_certified": 13950,
+    "uncertified_extraction": 13020,
+    "note": "certified_safe = SOUND prunable set (gate returned certified 'safe'). alphabet_inert_descriptive = policy atoms absent from the declared graph vocabulary; DESCRIPTIVE ONLY, provenance-independent, and NOT a sound pruning guarantee on lossy graphs."
+  },
+  "certified_safe": 0,
+  "alphabet_inert_descriptive": 13950,
   "per_policy": {
     "no_delete_production": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "no_drop_table": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "no_rm_rf": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "email_requires_review": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "pii_anonymize_bounded": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "deploy_requires_approval": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "sql_query_then_review": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "no_destructive_ops": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "draft_then_review_then_send": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "classify_then_route": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "fetch_data_then_validate": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "payment_requires_human": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "no_send_without_review_or_block": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     },
     "analyze_until_decision": {
       "pairs": 930,
@@ -128,11 +139,11 @@
     },
     "either_log_or_audit": {
       "pairs": 930,
-      "prunable": 930,
+      "prunable": 0,
       "reach_proven": 0,
-      "keep": 0,
+      "keep": 930,
       "may_violate": 0,
-      "inconclusive": 0
+      "inconclusive": 930
     }
   }
 }

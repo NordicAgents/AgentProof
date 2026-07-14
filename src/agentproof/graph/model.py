@@ -8,6 +8,21 @@ from typing import Any
 
 
 class NodeKind(Enum):
+    """Primary compatibility view of a node's role.
+
+    The full vocabulary is: ENTRY, EXIT, TOOL, LLM, ROUTER, HUMAN, SUBGRAPH,
+    PASSTHROUGH.  PASSTHROUGH (a node that only forwards state, performing no
+    LLM call, tool invocation, or routing) is a first-class kind here even
+    though it was historically omitted from the paper's formal vocabulary.
+
+    NodeKind is a single mutually-exclusive label kept for backward
+    compatibility.  The reviewer notes these kinds overlap in practice (an LLM
+    node may also invoke tools and route), so the orthogonal ``effects`` and
+    ``capabilities`` descriptors on :class:`GraphNode` carry the more credible,
+    non-exclusive ontology; NodeKind remains the primary compat view and check
+    logic still keys off it.
+    """
+
     ENTRY = "entry"
     EXIT = "exit"
     TOOL = "tool"
@@ -19,6 +34,15 @@ class NodeKind(Enum):
 
 
 class EdgeKind(Enum):
+    """Primary compatibility view of an edge's control-flow role.
+
+    LOOP is retained for backward compatibility, but the orthogonal
+    ``back_edge`` flag on :class:`GraphEdge` is the credible way to express
+    loop membership: an edge may be BOTH conditional and a back edge, which
+    NodeKind's single label cannot capture.  A conditional back-edge is
+    therefore ``(kind=CONDITIONAL, back_edge=True)``.
+    """
+
     DIRECT = "direct"
     CONDITIONAL = "conditional"
     PARALLEL = "parallel"
@@ -64,6 +88,41 @@ VALID_ORIGINS = frozenset(
 VALID_CONFIDENCES = frozenset({"exact", "may", "heuristic"})
 
 
+# ---------------------------------------------------------------------------
+# Orthogonal ontology (reviewer #7)
+# ---------------------------------------------------------------------------
+# NodeKind / EdgeKind are single mutually-exclusive labels, but real workflow
+# elements overlap: an LLM node may invoke tools AND route; an edge may be
+# BOTH conditional and a loop back-edge.  These orthogonal descriptors capture
+# the more credible, non-exclusive ontology WITHOUT disturbing NodeKind /
+# EdgeKind or any check logic -- they are a purely additive descriptive layer.
+#
+# ``effects`` -- observable side effects a node's execution may have on the
+# world or shared state (a node may have several, or none):
+#   read        - reads external data / state (queries, retrieval, fetch)
+#   write       - writes/persists data (db insert, file write, state store)
+#   execute     - runs code / commands (code exec, shell, kubectl, restart)
+#   communicate - sends messages outward (email, chat, API notify, publish)
+#   financial   - moves money or places trades (trading/banking/payment)
+#   delete      - destroys/removes data or resources
+VALID_EFFECTS = frozenset(
+    {"read", "write", "execute", "communicate", "financial", "delete"}
+)
+
+# ``capabilities`` -- structural abilities a node possesses (orthogonal to
+# NodeKind; a single node may hold several, e.g. an LLM node that also invokes
+# tools and routes is capabilities=("llm", "invokes_tool", "routes")):
+#   llm          - performs an LLM/model inference call
+#   invokes_tool - invokes one or more bound tools
+#   human_pause  - pauses for human input / approval
+#   routes       - makes a branching/routing decision over successors
+#   state_update - mutates shared graph state
+#   subgraph     - delegates to / expands a nested subgraph
+VALID_CAPABILITIES = frozenset(
+    {"llm", "invokes_tool", "human_pause", "routes", "state_update", "subgraph"}
+)
+
+
 @dataclass(frozen=True)
 class GraphNode:
     id: str
@@ -76,6 +135,10 @@ class GraphNode:
     origin: str = "unknown"
     confidence: str = "may"
     source_span: str = ""  # "file:start_line:end_line" or "" when unavailable
+    # Orthogonal ontology (reviewer #7): additive descriptors that do NOT
+    # affect NodeKind or check logic.  Empty tuples on legacy data.
+    effects: tuple[str, ...] = ()  # subset of VALID_EFFECTS
+    capabilities: tuple[str, ...] = ()  # subset of VALID_CAPABILITIES
 
 
 @dataclass(frozen=True)
@@ -89,6 +152,10 @@ class GraphEdge:
     origin: str = "unknown"
     confidence: str = "may"
     source_span: str = ""  # "file:start_line:end_line" or "" when unavailable
+    # Orthogonal edge modality (reviewer #7): a loop/back edge.  EdgeKind.LOOP
+    # is kept for compat, but back_edge is the orthogonal flag, so a
+    # conditional loop is (kind=CONDITIONAL, back_edge=True).
+    back_edge: bool = False
 
 
 @dataclass(frozen=True)
@@ -144,6 +211,8 @@ def graph_to_dict(graph: AgentGraph) -> dict[str, Any]:
                 "origin": n.origin,
                 "confidence": n.confidence,
                 "source_span": n.source_span,
+                "effects": list(n.effects),
+                "capabilities": list(n.capabilities),
             }
             for n in graph.nodes
         ],
@@ -156,6 +225,7 @@ def graph_to_dict(graph: AgentGraph) -> dict[str, Any]:
                 "origin": e.origin,
                 "confidence": e.confidence,
                 "source_span": e.source_span,
+                "back_edge": e.back_edge,
             }
             for e in graph.edges
         ],
@@ -175,6 +245,9 @@ def graph_from_dict(data: dict[str, Any]) -> AgentGraph:
             origin=n.get("origin", "unknown"),
             confidence=n.get("confidence", "may"),
             source_span=n.get("source_span", ""),
+            # Orthogonal ontology; missing => () for legacy compat.
+            effects=tuple(n.get("effects", ())),
+            capabilities=tuple(n.get("capabilities", ())),
         )
         for n in data["nodes"]
     )
@@ -187,6 +260,8 @@ def graph_from_dict(data: dict[str, Any]) -> AgentGraph:
             origin=e.get("origin", "unknown"),
             confidence=e.get("confidence", "may"),
             source_span=e.get("source_span", ""),
+            # Orthogonal modality; missing => False for legacy compat.
+            back_edge=bool(e.get("back_edge", False)),
         )
         for e in data["edges"]
     )

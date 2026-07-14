@@ -15,10 +15,10 @@ and emits witness traces.}
 \paragraph{Unified graph model.}
 Agentproof represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with a
 distinguished entry $v_0$ and exit set $V_f$. Each node carries a kind
-$\kappa_V(v)\in\{\textsc{entry},\textsc{exit},\textsc{tool},\textsc{llm},
-\textsc{router},\textsc{human},\textsc{subgraph}\}$ and, for tool nodes, a set of
-bound tool names; each edge is \textsc{direct}, \textsc{conditional},
-\textsc{parallel}, or \textsc{loop}. Every node and edge additionally carries
+$\kappa_V(v)$ ranging over \textsc{entry}, \textsc{exit}, \textsc{tool},
+\textsc{llm}, \textsc{router}, \textsc{human}, \textsc{passthrough}, and
+\textsc{subgraph} and, for tool nodes, a set of bound tool names; each edge is
+\textsc{direct}, \textsc{conditional}, \textsc{parallel}, or \textsc{loop}. Every node and edge additionally carries
 extraction \emph{provenance}---an origin (runtime object, explicit AST,
 inferred, synthesized, unknown), a confidence (exact, may, heuristic), and a
 source span---so that structure read from a framework declaration is
@@ -31,6 +31,23 @@ what is eliminated is the per-workflow manual translation that SPIN or NuSMV
 require. Extraction has two paths: a runtime extractor that reads the compiled
 graph object, and a static AST fallback (used for large-scale mining, where
 installing every repository's dependencies is infeasible).
+
+\paragraph{An orthogonal attribute ontology.}
+\label{par:ontology}
+The single-label kinds above are a compatibility view for cross-framework
+comparison, but forcing each element into one bucket mislabels multi-faceted
+nodes---an \textsc{llm} node that also invokes a tool, or a conditional edge that
+also closes a loop---and was itself a source of extraction error (one reference
+graph recorded a conditional loop as a bare \textsc{loop}). We therefore layer a
+non-exclusive ontology over $\kappa_V/\kappa_E$: each node carries an
+\emph{effect} set (read, write, execute, communicate, financial, delete) and a
+\emph{capability} set (llm, invokes\_tool, human\_pause, routes, state\_update,
+subgraph), and each edge a \emph{back-edge} flag, so a conditional loop is
+represented as $(\textsc{conditional},\text{back\_edge})$ rather than collapsed to
+a single \textsc{loop} label. These descriptors are orthogonal---a node may read,
+write, and communicate at once---and are the ontology we treat as primary; the
+exclusive kinds are retained only for legacy checks and comparison. The full
+vocabulary and its per-framework mapping appear in the supplement.
 
 \paragraph{Structural checks.}
 Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
@@ -87,21 +104,40 @@ reaches a DFA violation state (bad prefix) or a termination point with a
 pending obligation; \emph{safe}, when no resolution does; and
 \emph{inconclusive}, when the only finding is a reachable product cycle on
 which an obligation could be postponed forever, or no termination point is
-reachable---cases a finite-trace semantics cannot decide, which we
-deliberately do not claim. Witness paths carry the provenance-derived
+reachable. Universal satisfaction over the finite terminating traces is itself
+decidable; treating a divergent cycle as inconclusive, rather than enumerating
+the terminating traces that thread it, is a deliberate engineering-scope choice,
+not a semantic limitation. Witness paths carry the provenance-derived
 confidence of the edges and bindings they traverse. Explored states are
 bounded by $|V|\cdot|Q|$, so verification is linear in graph size for
 fixed-size DFAs.
 
-\paragraph{Soundness and its premise.}
-If the analyzed graph's paths \emph{over-approximate} the workflow's runtime
-traces (trace containment), then a \emph{safe} verdict implies the property
-holds on every finite maximal runtime execution---the guarantee we exploit for
-monitor pruning in Section~\ref{sec:results}. Trace containment holds by
-construction for our curated corpus (graphs authored with the code) and for
-runtime-extracted graphs absent dynamic graph modification. It does
-\emph{not} hold for the lossy AST fallback used in mining, whose measured edge
-recall of 0.65 means extracted graphs \emph{under}-approximate real behavior
-(Section~\ref{sec:realworld}); we therefore never claim static guarantees on
-mined graphs, only measurements---and the provenance fields make the
-distinction machine-checkable in the tool's output.
+\paragraph{Soundness gated on certified extraction.}
+\label{thm:soundness}
+Soundness is a claim about \emph{event} traces, not graph paths. Let
+$\mathrm{Traces}_{\mathrm{ev}}(P)$ be the concrete finite terminating event traces
+a workflow $P$ can emit (tool identities and arguments, node-emitted events,
+termination), and let $\lambda$ label each event, inducing a graph event-language
+$\mathcal{L}(G,\lambda)$. If $\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq
+\mathcal{L}(G,\lambda)$ (\emph{event-trace conservatism}) and every trace in
+$\mathcal{L}(G,\lambda)$ is accepted by the policy DFA, then every concrete finite
+terminating execution of $P$ satisfies the policy---the guarantee we exploit for
+monitor pruning (Section~\ref{sec:results}); the full proof is in the supplement.
+Graph-\emph{path} containment alone does \emph{not} suffice: a node may issue tool
+calls the graph never records, so a path-conservative graph can still omit the
+events that decide the property. Because a lossy extractor cannot be assumed
+event-trace conservative, the checker gates on certification.
+\texttt{check\_temporal\_property} returns \texttt{safe} only when the traversed
+region is \emph{certified}---every traversed edge and every visited tool-node
+binding carries \texttt{exact} provenance, or the caller asserts an authored graph
+(\texttt{assume\_trace\_conservative})---and it stamps the result with a
+\texttt{certified} key; otherwise it downgrades to \texttt{inconclusive} with
+reason \texttt{uncertified\_extraction}. A \texttt{may\_violate} finding is
+\emph{never} suppressed by the gate. This is the may/must-lite discipline:
+provenance now gates soundness itself, not merely the confidence annotation on a
+witness. Authored corpus graphs and runtime-extracted graphs (absent dynamic
+graph modification) certify; the lossy AST fallback used for mining (edge recall
+0.65, Section~\ref{sec:realworld}) rarely does, so on mined graphs the gate
+withholds \texttt{safe} rather than emit a false proof, and we report only
+measurements---the \texttt{certified} field making the distinction
+machine-checkable.

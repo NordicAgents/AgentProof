@@ -1,60 +1,54 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Agent frameworks encode behavior as explicit workflow graphs, and
-\textsc{Agentproof} turns that structure into an analyzable, cross-framework
-model with structural checks, witness traces, extraction provenance, and a
-policy DSL with precise LTL$_f$ semantics evaluated both statically---via a
-conservative graph\,$\times$\,DFA product over finite maximal executions that
-covers bad prefixes and termination obligations and returns
-\emph{inconclusive} for behavior it cannot certify---and at runtime. Used as a measurement instrument on 922 workflows
-from 252 public GitHub repositories, it yields a finding more textured than a
-simple null: flags are almost never defects (precision 1.1\%), yet the
-instrument also \emph{hides} defects---measured prevalence doubles, to 3.4\%
-of workflows, when checks run on faithful reconstructions---and the genuine
-defects concentrate in application-like workflows that bind side-effecting
-tools (7.7\%, versus 1.3\% among the tutorials and demos that dominate public
-GitHub). Curated-benchmark defect rates do not stand in for prevalence, and
-flag counts do not stand in for either.
+Static checks on agent workflows are only as credible as the behavioral model
+they run on, and recovering that model from public agent code---not the check
+algorithms---is the binding constraint. On a cross-framework corpus of $922$
+extracted file-level graphs from $252$ public GitHub repositories, extraction
+error dominates check error and can reverse both apparent precision and
+apparent prevalence; the DSL and monitor-pruning layer are supporting
+infrastructure for that finding, not the headline.
 
-The diagnosis is consistent across every cut: extraction fidelity, not the
-check algorithms, is the binding constraint. Edge recall is 0.65 on real code
-(0.38 on implicit-topology ADK); every structural flag on extracted graphs is
-an extraction artifact; three of four extractors cannot even express the
-defects the structural checks target; and the risk-aware gate misses real
-sensitive paths because tool bindings hide in node bodies. The static
-machinery keeps a defect-independent job---under an explicit trace-containment
-premise, the product soundly prunes provably-inert runtime monitors (88\% on
-the curated corpus, all of it alphabet-level today)---positioning
-pre-deployment analysis as a monitor-selection layer within a
-static-plus-runtime safety stack.
+The estimates are textured, not a null. Read as distinct estimands rather than
+a pooled rate, LLM-assisted exploratory estimates put confirmed structural
+defects at $0.84\%$ and human-gate policy violations at $2.5\%$ of the
+validation sample (Table~\ref{tab:estimands}), with the composite
+post-stratifying to $2.2\%$; three of four observed cases occur in
+application-like files, too few to establish a stratum difference (Fisher exact
+$p{=}0.10$). Yet flag-level precision stays low (workflow-level PPV $1.8\%$),
+none of the structural flags on extracted graphs was a confirmed defect, and
+the diagnosis holds across every cut---edge recall $0.68$ on real code, $0.36$
+on implicit-topology ADK. The static machinery still keeps a defect-independent
+role: under certified event-trace containment the graph\,$\times$\,DFA product
+soundly prunes $237$ of $270$ curated monitor instances ($88\%$;
+Table~\ref{tab:pruning}), a monitor-selection layer in a static-plus-runtime
+safety stack rather than a scale result.
 
 \paragraph{Limitations.}
 The population is public GitHub, not production systems; two thirds of it is
-tutorial-grade, which we census and stratify but cannot fully correct.
-Reference graphs and triage labels are LLM reconstructions with adversarial
-verification, not human annotations; confidence-stratified sensitivity checks
-and released per-label justifications mitigate but do not eliminate this, and
-human annotation of a subsample is the immediate next step. Prevalence CIs are
-wide at $n{=}119$; the estimates are best read as ``rare, but real and
-concentrated'', not as precise rates. We read these results as a
-redirection---toward higher-fidelity extraction and per-workflow policy
-instantiation, the direction we pursue in follow-up work on runtime shields.
+tutorial-grade, which we census and stratify but cannot fully correct. The unit
+of analysis is one extracted file-level graph, not an executable workflow root;
+a root-level unit is future work. Reference graphs and triage labels are
+LLM reconstructions with adversarial verification, not human annotations;
+confidence-stratified sensitivity checks and released per-label justifications
+mitigate but do not eliminate this, and a two-human independent validation is
+staged (protocol and samples prepared) as the immediate next step. Prevalence
+CIs are wide at $n{=}119$; the estimates are best read as ``rare, but real'',
+not as precise rates. We read these results as a redirection---toward
+higher-fidelity extraction and per-workflow policy instantiation.
 
 \paragraph{Artifact.}
-The tool, corpora, mining and validation pipeline, reference-graph
-reconstructions, triage labels with justifications, and all evaluation
-scripts will be released under the MIT license.
+An anonymized artifact is submitted with this paper, not merely promised: the
+tool, both corpora, the mining and validation pipeline, the LLM-reconstructed
+reference graphs, triage labels with per-label justifications, and all
+evaluation scripts, packaged for double-blind review under the MIT license.
 
 \section*{Ethical Statement}
 The study mines only \emph{public} GitHub repositories, records exact provenance
-(repository at commit SHA plus file path), and redistributes only the derived
-graph abstractions and analysis, never third-party source. No personal data is
-processed. The four genuine defects we identify are reported without
-identifying maintainers in the paper; we will disclose them to the affected
-repositories before publication. The intended impact is defensive---helping
-developers catch topology-level safety defects before deployment and reason
-about which runtime safeguards a workflow needs; the honest finding that such
-defects are rare in public code, yet concentrated in side-effecting
-application-like workflows, should calibrate, not inflate, claims about static
-verification's role in agent safety.
+(repository at commit SHA plus file path), and redistributes only derived graph
+abstractions, never third-party source; no personal data is processed. Confirmed
+defects are reported without identifying maintainers, and we disclose them to
+the affected repositories before publication. The intended impact is
+defensive---the honest finding that such defects are rare in public code should
+calibrate, not inflate, claims about static verification's role in agent
+safety.

@@ -23,7 +23,7 @@
 \graphicspath{{../figures/}{../generated/}}
 
 % Title (Title Case, per AAAI rules).
-\title{When Can Static Verification Help Agent Workflows? A Base-Rate and Model-Fidelity Study}
+\title{Model Extraction Dominates Static Analysis of Agent Workflows: A Cross-Framework Measurement Study}
 \author{Anonymous Submission}
 \affiliations{}
 
@@ -31,36 +31,26 @@
 \maketitle
 
 \begin{abstract}
-Agent frameworks increasingly encode tool-using behavior as explicit workflow
-graphs whose topology can be analyzed before deployment---yet how often such
-graphs actually contain the structural defects static verification targets has
-not been measured. We build \textsc{Agentproof}, which automatically extracts a
-unified graph model with per-element extraction provenance from four agent
-frameworks (LangGraph, CrewAI, AutoGen, Google ADK) with no per-workflow manual
-modeling, applies six structural checks with witness traces, and compiles a
-temporal policy DSL with LTL$_f$ (finite-trace) semantics---differentially
-tested against an independent reference oracle---to DFAs evaluated at runtime
-and statically over finite maximal executions, via a conservative
-graph\,$\times$\,DFA product that explores every declared tool binding, covers
-bad prefixes and end-of-trace obligations, and returns an explicit
-\emph{inconclusive} verdict for behavior it cannot certify. We use it as a
-measurement instrument on 922 workflows from 252 public GitHub repositories,
-with a 119-workflow sample validated against independently reconstructed
-reference graphs (LLM-generated, adversarially cross-checked, not human
-annotations) and adversarial triage---reporting flag \emph{precision} and
-defect \emph{prevalence} as separate estimands, since a lossy extractor both
-manufactures false flags and hides true defects. Flags are almost never
-defects: 2 of 186 are genuine (1.1\%); every structural flag is an extraction
-artifact. But re-running the checks on the reference graphs reveals defects the
-extractor missed, doubling measured prevalence to 4 of 119 workflows (3.4\%,
-95\% CI $[1.3,8.3]\%$)---concentrated in application-like workflows binding
-side-effecting tools (7.7\%) rather than the tutorials and demos that dominate
-public GitHub (1.3\%). We diagnose extraction fidelity (edge recall 0.65 on
-real code, 0.38 on implicit-topology ADK), not the check algorithms, as the
-binding constraint, and give the static machinery a defect-independent job
-under an explicit trace-containment premise: proving which runtime monitors
-can never fire, so they can be soundly pruned (88\% on a curated corpus, all
-alphabet-level today).
+Static analysis of agent workflows is only as credible as the behavioral model
+an extractor recovers from source code: on public agent code, extraction error
+dominates check error and can reverse both apparent precision and apparent
+defect prevalence. We make this quantitative with a cross-framework measurement
+study spanning LangGraph, CrewAI, AutoGen, and Google ADK, mining 922 extracted
+file-level graphs from public GitHub and validating a 119-graph sample against
+LLM-reconstructed reference graphs (LLM-assisted exploratory labels, not
+human-validated ground truth). Measuring a corrected extraction instrument, we
+find fidelity is the binding constraint: fixing a single conditional-edge
+extractor bug lifts LangGraph edge recall from 0.68 to 0.82 while leaving the
+check algorithms untouched. We separate three estimands that a pooled rate
+conflates: structural-defect prevalence (1 of 119), human-gate policy-violation
+prevalence (3 of 119), and a heterogeneous composite (4 of 119, reported only
+as secondary), which post-stratifies to 2.15\% under the corpus's framework
+mix. We then give the static machinery two defect-independent jobs: a
+provenance-gated certification that returns \texttt{inconclusive} rather than a
+false \texttt{safe} on lossy graphs, and a path-sensitive graph\,$\times$\,DFA
+product that soundly prunes runtime monitors, yielding a small but nonzero gain
+over alphabet-only pruning. The lesson is methodological: report extraction
+fidelity alongside every static-analysis claim about agent workflows.
 \end{abstract}
 
 \input{sections/01_intro}

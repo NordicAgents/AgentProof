@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import deque
 from typing import Any
 
-from agentproof.graph.model import AgentGraph, EdgeKind, NodeKind, adjacency
+from agentproof.graph.model import AgentGraph, EdgeKind, GraphEdge, NodeKind, adjacency
 
 
 def _reverse_adj(graph: AgentGraph) -> dict[str, list[str]]:
@@ -189,14 +189,19 @@ def run_structural_checks(
         }
     )
 
-    # 4) Router shape checks
+    # 4) Router shape checks. Group edges by source in one pass so the whole
+    # check is O(|V|+|E|) rather than rescanning every edge per router.
     router_ids = sorted(n.id for n in graph.nodes if n.kind == NodeKind.ROUTER)
+    router_id_set = set(router_ids)
+    outgoing_by_router: dict[str, list[GraphEdge]] = {rid: [] for rid in router_ids}
+    for e in graph.edges:
+        if e.source in router_id_set:
+            outgoing_by_router[e.source].append(e)
     router_violations: list[dict[str, Any]] = []
     for rid in router_ids:
-        outgoing = [e for e in graph.edges if e.source == rid]
         bad_edges = [
             {"target": e.target, "kind": e.kind.value}
-            for e in outgoing
+            for e in outgoing_by_router[rid]
             if e.kind != EdgeKind.CONDITIONAL
         ]
         if bad_edges:

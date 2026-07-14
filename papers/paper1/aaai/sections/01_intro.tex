@@ -6,82 +6,93 @@ external tools and APIs~\citep{schick2024toolformer, yao2023react}. Several
 orchestration frameworks structure this behavior as explicit \emph{workflow
 graphs}: LangGraph~\citep{langgraph_docs}, CrewAI~\citep{crewai_docs},
 AutoGen~\citep{wu2023autogen}, and Google ADK~\citep{google_adk_docs} each
-represent computation steps as nodes and allowable transitions as edges. Yet
-safety enforcement in these systems remains almost entirely a \emph{runtime}
-concern: tools such as NeMo Guardrails~\citep{nemo_guardrails} and
-LlamaGuard~\citep{llamaguard} filter individual calls at execution time, detecting
-a violation only when the offending path is exercised.
+represent computation steps as nodes and allowable transitions as edges. Safety
+enforcement in these systems remains almost entirely a \emph{runtime} concern:
+tools such as NeMo Guardrails~\citep{nemo_guardrails} and
+LlamaGuard~\citep{llamaguard} filter individual calls at execution time,
+detecting a violation only when the offending path is exercised.
 
 Some defects, however, are topological. Consider an email-triage agent whose
 developer adds a \texttt{draft\_response} node but forgets to connect it to
-\texttt{send}: normal-priority emails silently halt at a dead end. A content-level
-runtime guardrail cannot catch this unless that path runs, but a static analysis
-of the graph flags the dead end and emits a witness trace. In principle classical
-model checkers~\citep{clarke1999modelchecking, holzmann1997spin,
-cimatti2002nusmv} verify such properties, but they require hand-translating the
-system into Promela or SMV---prohibitive for developers iterating on workflows.
-For conventional static analyzers, decades of deployment experience show that
-what decides adoption is not detection power but the rate of genuine, actionable
-findings~\citep{bessey2010coverity, johnson2013static, sadowski2018lessons}. No
-analogous measurement exists for agent workflows.
+\texttt{send}: normal-priority emails silently halt at a dead end. A
+content-level runtime guardrail cannot catch this unless that path runs, but a
+static analysis of the graph flags the dead end and emits a witness trace.
+Classical model checkers~\citep{clarke1999modelchecking, holzmann1997spin,
+cimatti2002nusmv} verify such properties in principle, but require
+hand-translating the system into Promela or SMV---prohibitive for developers
+iterating on workflows. For conventional static analyzers, decades of
+deployment experience show that what decides adoption is not detection power but
+the rate of genuine, actionable findings~\citep{bessey2010coverity,
+johnson2013static, sadowski2018lessons}. The analogous question for agent
+workflows---how often these graphs actually contain the defects static checks
+target, and whether the checks fire on real defects---has received far less
+measurement.
 
-We build \textsc{Agentproof} to make that measurement. It extracts a unified
-graph model from four frameworks' APIs with no per-workflow manual modeling,
-runs six structural checks with witness traces, and compiles a temporal policy
-DSL with LTL$_f$ (finite-trace) semantics~\citep{degiacomo2013ltlf} to DFAs
-checked statically via a graph\,$\times$\,DFA product and enforced at runtime.
-We then use it as a measurement instrument on 922 workflow graphs mined from
-252 public GitHub repositories, with a stratified 119-workflow sample validated
-against independently reconstructed reference graphs and adversarial triage.
-Four questions organize the study: how faithfully workflow behavior can be
-recovered from source (RQ1), what fraction of static findings is genuine
-(RQ2), what defect prevalence remains after auditing false negatives (RQ3),
-and when static analysis can soundly reduce runtime enforcement (RQ4).
+\paragraph{Thesis.}
+Answering it requires a prior question: \emph{can we trust the graph?} A static
+check is only as credible as the behavioral model an extractor recovers from
+source, and on public agent code that extraction is lossy---it manufactures
+false flags and hides true defects at once. Our central finding is that
+\textbf{extraction error dominates check error} and can reverse both apparent
+precision and apparent prevalence. We therefore treat static verification of
+agent workflows as a \emph{measurement} problem. The extraction-and-checking
+machinery we use, \textsc{AgentProof}, is prior, publicly available
+infrastructure; this paper's contribution is not that tool but the
+cross-framework fidelity measurement it enables and the limits that measurement
+exposes.
 
-Because a lossy extractor both \emph{manufactures} false flags and \emph{hides}
-true defects, we report two estimands separately: the \emph{precision} of the
-instrument's flags (what fraction of raised flags are genuine) and the
-\emph{prevalence} of defects per workflow, estimated by re-running every check
-on the reconstructed reference graphs so that defects the extractor missed
-are counted. The distinction matters: flag precision is 1.1\% (2 of 186), but
-prevalence is roughly twice what the extractor sees---4 of 119 workflows
-(3.4\%)---because two genuine defects, including an SQL-executing tool
-reachable with no human gate, were invisible to the lossy extraction. Both are small;
-neither is the ${\approx}0$ a na\"ive reading of flag counts would suggest, and
-the defects concentrate exactly where they matter: in application-like
-workflows binding side-effecting tools (3 of 39, versus 1 of 80 among
-tutorials, demos, and tests).
+\paragraph{Study.}
+We use \textsc{AgentProof} as a measurement instrument on 922 extracted
+file-level graphs mined from public GitHub repositories across the four
+frameworks, and validate a stratified 119-graph sample against
+\emph{LLM-reconstructed reference graphs} obtained by an independent,
+adversarially cross-checked LLM pass. These are \emph{LLM-assisted exploratory
+labels}, not human-validated ground truth; a two-human independent validation
+protocol (with samples staged) is required future work, and we bound our claims
+accordingly. Four questions organize the study: how faithfully workflow
+behavior can be recovered from source, and whether correcting the instrument
+changes the answer (RQ1); what fraction of raised flags is genuine (RQ2); what
+defect prevalence remains once false negatives are audited, and how distinct
+estimands differ (RQ3); and whether the static machinery can do a
+defect-independent job---certifying soundness and pruning runtime
+monitors---without trusting uncertain extraction (RQ4).
+
+\paragraph{Three estimands, not one prevalence.}
+Because a lossy extractor both manufactures false flags and hides true defects,
+a single pooled ``prevalence'' number conflates distinct quantities. We separate
+three (Section~\ref{sec:realworld}, Table~\ref{tab:estimands}): flag-level
+precision (what fraction of raised flags are genuine); \emph{structural-defect}
+prevalence, a topological property of the graph (1 of 119 sampled graphs); and
+\emph{human-gate policy-violation} prevalence, a normative judgment that a
+side-effecting tool is reachable with no human checkpoint (3 of 119). A
+heterogeneous composite (4 of 119) is reported only as a secondary,
+validation-sample rate; post-stratified to the corpus's framework mix it is
+2.15\%. All rates are small but not the ${\approx}0$ a na\"ive reading of flag
+counts suggests. Three of the four observed cases occur in application-like
+files, but the sample is too small to establish a stratum difference (Fisher
+exact $p=0.10$), so we make no claim that defects concentrate where they matter.
+Correcting a single conditional-edge extractor bug---not any check
+algorithm---lifts LangGraph edge recall from 0.68 to 0.82, which is the sense in
+which fidelity, not the checkers, is the binding constraint.
 
 \paragraph{Contributions.}
 \begin{itemize}\itemsep2pt
-  \item \textbf{A base-rate study of topology defects in public agent
-  workflows}, with the estimands kept honest: flag precision \emph{and}
-  workflow-level prevalence including false negatives, measured against
-  independent graph reconstructions, with repository-clustered uncertainty and
-  a source-level census of the corpus (one third application-like, two thirds
-  tutorials/demos/tests; Section~\ref{sec:realworld}).
-  \item \textbf{\textsc{Agentproof}}, the measurement instrument: automatic
-  extraction of a unified graph model with per-element provenance from four
-  heterogeneous frameworks, six structural checks with witness traces, and a
-  seven-form policy DSL with precise LTL$_f$ semantics---differentially tested
-  against an independent reference oracle---whose conservative static product
-  covers bad prefixes and end-of-trace obligations over finite maximal
-  executions, explores every declared tool binding, and returns
-  \emph{inconclusive} rather than a proof when a cycle could postpone an
-  obligation forever (Section~\ref{sec:system}).
-  \item \textbf{A quantified diagnosis}: extraction fidelity, not the check
-  algorithms, is the binding constraint. Edge recall is 0.65 on real code
-  (0.38 on ADK) versus near-perfect on stubs; every structural flag on
-  extracted graphs is an extraction artifact, and structural flags arise only
-  for the one extractor that does not impose connected topologies---so
-  extractor-level structural conclusions are meaningful for LangGraph only
-  (Section~\ref{sec:realworld}).
-  \item \textbf{A defect-independent job} for the static machinery, stated
-  with its premise: given a graph that over-approximates runtime traces, the
-  product proves which policy monitors can never fire, so they can be soundly
-  pruned. On the curated corpus 237 of 270 monitor instances (88\%) are
-  provably inert and 14 are declined as inconclusive---though on today's small
-  workflows every proven case is alphabet-level, so the product's value there
-  is soundness on branching topologies, not extra pruning
-  (Section~\ref{sec:results}).
+  \item \textbf{A cross-framework extraction-fidelity measurement} (LLM-assisted)
+  over four frameworks, with a corrected-instrument ablation that isolates
+  extraction error from check error and shows a single extractor fix lifting
+  LangGraph edge recall 0.68\,$\to$\,0.82 (Section~\ref{sec:realworld}).
+  \item \textbf{A separation of three estimands} the field tends to pool:
+  flag-level precision, structural-defect prevalence, and human-gate
+  policy-violation prevalence, each with repository-clustered uncertainty and
+  post-stratified to the corpus composition
+  (Section~\ref{sec:realworld}, Table~\ref{tab:estimands}).
+  \item \textbf{A taxonomy of extraction failures} and their downstream effect
+  on findings, diagnosing fidelity---not the check algorithms---as the binding
+  constraint and positioning the study against prior defect-mining work
+  (Section~\ref{sec:realworld}, Table~\ref{tab:related}).
+  \item \textbf{A conservative certification gate} that returns
+  \texttt{inconclusive} rather than a false \texttt{safe} whenever extraction is
+  not certified trace-conservative, plus a path-sensitive graph\,$\times$\,DFA
+  product that soundly prunes runtime monitors with a small but nonzero gain
+  over alphabet-only pruning (Section~\ref{sec:results}, Table~\ref{tab:pruning}).
 \end{itemize}

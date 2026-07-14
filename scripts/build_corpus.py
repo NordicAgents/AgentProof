@@ -13,9 +13,12 @@ Usage:
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 from pathlib import Path
 
 from agentproof.graph.model import (
+    VALID_CAPABILITIES,
+    VALID_EFFECTS,
     AgentGraph,
     EdgeKind,
     GraphEdge,
@@ -24,11 +27,158 @@ from agentproof.graph.model import (
     graph_to_dict,
 )
 
+# ---------------------------------------------------------------------------
+# Provenance / ontology tagging
+# ---------------------------------------------------------------------------
+# The curated corpus is hand-authored ground truth: each workflow is written
+# WITH its intended semantics, so every node and edge is authored/declared and
+# thus trace-conservative and EXACT.  We therefore tag every element with
+#   origin="ast_explicit"  (authored/declared, not inferred or fabricated)
+#   confidence="exact"      (the structural claim holds exactly)
+#   source_span=""          (no source file backs a hand-authored graph)
+# so a concurrent verifier's certification gate (which requires exact edges and
+# exact TOOL-node bindings on a witness path) can certify curated graphs.  The
+# __start__/__end__ sentinels are authored here too, so they are exact as well.
+_CURATED_ORIGIN = "ast_explicit"
+_CURATED_CONFIDENCE = "exact"
+
+# Base capability implied by each NodeKind (reviewer #7: the orthogonal,
+# non-exclusive ontology).  Curated nodes keep concerns separate (an LLM node
+# does not also bind tools), so a 1:1 base map is honest; nodes with richer
+# overlap would list several capabilities.
+_CAPABILITY_BY_KIND: dict[NodeKind, tuple[str, ...]] = {
+    NodeKind.LLM: ("llm",),
+    NodeKind.TOOL: ("invokes_tool",),
+    NodeKind.ROUTER: ("routes",),
+    NodeKind.HUMAN: ("human_pause",),
+    NodeKind.SUBGRAPH: ("subgraph",),
+    NodeKind.ENTRY: (),
+    NodeKind.EXIT: (),
+    NodeKind.PASSTHROUGH: (),
+}
+
+# Effect keywords matched against a node's *tool names* (unambiguous signals
+# only; genuinely ambiguous tools such as matplotlib_render / calendar_api are
+# left with no effect).  A tool may contribute several effects.
+_EFFECT_KEYWORDS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    # destructive
+    ("delete", ("delete",)),
+    ("remove", ("delete",)),
+    ("purge", ("delete",)),
+    ("drop", ("delete",)),
+    # money movement / trading
+    ("trading", ("financial",)),
+    ("banking", ("financial", "write")),
+    ("payment", ("financial",)),
+    # outbound communication
+    ("smtp", ("communicate",)),
+    ("email", ("communicate",)),
+    ("social_media", ("communicate",)),
+    ("notify", ("communicate",)),
+    # code / command execution
+    ("execute", ("execute",)),
+    ("pytest", ("execute",)),
+    ("kubectl", ("execute",)),
+    ("restart", ("execute",)),
+    ("rollback", ("execute",)),
+    # persistence / content creation
+    ("insert", ("write",)),
+    ("cms", ("write", "communicate")),
+    ("dall", ("write",)),
+    ("canva", ("write",)),
+    # reads / lookups
+    ("search", ("read",)),
+    ("query", ("read",)),
+    ("fetch", ("read",)),
+    ("retriev", ("read",)),
+    ("scrap", ("read",)),
+    ("parse", ("read",)),
+    ("vision", ("read",)),
+    ("finance", ("read",)),
+    ("bloomberg", ("read",)),
+    ("brokerage", ("read",)),
+    ("market_data", ("read",)),
+    ("bureau", ("read",)),
+    ("verify", ("read",)),
+    ("analytics", ("read",)),
+    ("survey", ("read",)),
+    ("competitor", ("read",)),
+    ("scan", ("read",)),
+    ("validator", ("read",)),
+)
+
+
+def _effects_for(node: GraphNode) -> tuple[str, ...]:
+    """Best-effort effect set derived unambiguously from a node's tool names."""
+    found: set[str] = set()
+    for tool in node.tools:
+        lowered = tool.lower()
+        for kw, effects in _EFFECT_KEYWORDS:
+            if kw in lowered:
+                found.update(effects)
+    assert found <= VALID_EFFECTS, f"unknown effect(s) for {node.id}: {found}"
+    return tuple(sorted(found))
+
+
+def _tag_node(node: GraphNode) -> GraphNode:
+    caps = _CAPABILITY_BY_KIND.get(node.kind, ())
+    assert set(caps) <= VALID_CAPABILITIES, f"bad caps for {node.id}: {caps}"
+    return replace(
+        node,
+        origin=_CURATED_ORIGIN,
+        confidence=_CURATED_CONFIDENCE,
+        source_span="",
+        effects=_effects_for(node),
+        capabilities=caps,
+    )
+
+
+def _back_edges(edges: list[GraphEdge], entry: str) -> set[tuple[str, str]]:
+    """Classic DFS back edges (edge to a node on the recursion stack).
+
+    These are exactly the loop-closing edges: a router returning to an earlier
+    node (a conditional loop) or an explicit EdgeKind.LOOP edge.
+    """
+    adj: dict[str, list[str]] = {}
+    for e in edges:
+        adj.setdefault(e.source, []).append(e.target)
+    back: set[tuple[str, str]] = set()
+    visited: set[str] = set()
+    on_stack: set[str] = set()
+
+    def dfs(u: str) -> None:
+        visited.add(u)
+        on_stack.add(u)
+        for v in adj.get(u, []):
+            if v in on_stack:
+                back.add((u, v))
+            elif v not in visited:
+                dfs(v)
+        on_stack.discard(u)
+
+    dfs(entry)
+    return back
+
+
+def _tag_edge(edge: GraphEdge, back: set[tuple[str, str]]) -> GraphEdge:
+    return replace(
+        edge,
+        origin=_CURATED_ORIGIN,
+        confidence=_CURATED_CONFIDENCE,
+        source_span="",
+        back_edge=(edge.source, edge.target) in back,
+    )
+
 
 def _g(name: str, framework: str, nodes: list[GraphNode], edges: list[GraphEdge],
         entry: str = "__start__", exits: tuple[str, ...] = ("__end__",)) -> AgentGraph:
-    return AgentGraph(name=name, framework=framework, nodes=tuple(nodes),
-                      edges=tuple(edges), entry_id=entry, exit_ids=exits)
+    # Tag every hand-authored node/edge as exact ast_explicit provenance and
+    # attach the orthogonal effect/capability/back_edge descriptors.
+    back = _back_edges(edges, entry)
+    tagged_nodes = tuple(_tag_node(n) for n in nodes)
+    tagged_edges = tuple(_tag_edge(e, back) for e in edges)
+    return AgentGraph(name=name, framework=framework, nodes=tagged_nodes,
+                      edges=tagged_edges, entry_id=entry, exit_ids=exits)
 
 
 # ---------------------------------------------------------------------------
