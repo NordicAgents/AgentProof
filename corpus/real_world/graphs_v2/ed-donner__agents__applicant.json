@@ -1,0 +1,87 @@
+{
+ "name": "ed-donner__agents__applicant",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "listing_worker",
+   "kind": "llm",
+   "label": "listing_worker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:42:42"
+  },
+  {
+   "id": "evaluate_job_postings",
+   "kind": "llm",
+   "label": "evaluate_job_postings",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:43:45"
+  },
+  {
+   "id": "notification_worker",
+   "kind": "llm",
+   "label": "notification_worker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:46:46"
+  },
+  {
+   "id": "notification_response",
+   "kind": "llm",
+   "label": "notification_response",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:47:49"
+  }
+ ],
+ "edges": [
+  {
+   "source": "listing_worker",
+   "target": "evaluate_job_postings",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:52:52"
+  },
+  {
+   "source": "evaluate_job_postings",
+   "target": "notification_worker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:53:53"
+  },
+  {
+   "source": "notification_worker",
+   "target": "notification_response",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:54:54"
+  },
+  {
+   "source": "__start__",
+   "target": "listing_worker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/denis_gathondu/applicant.py:55:55"
+  }
+ ]
+}

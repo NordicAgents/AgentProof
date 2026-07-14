@@ -1,0 +1,63 @@
+{
+ "name": "Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generate",
+   "kind": "router",
+   "label": "generate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project@8ea72f5/app.py:32:32"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "generate",
+   "target": "generate",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project@8ea72f5/app.py:33:40"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project@8ea72f5/app.py:33:40"
+  },
+  {
+   "source": "__start__",
+   "target": "generate",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project@8ea72f5/app.py:42:42"
+  }
+ ]
+}

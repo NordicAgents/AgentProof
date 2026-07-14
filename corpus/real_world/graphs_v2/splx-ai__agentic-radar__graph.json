@@ -1,0 +1,72 @@
+{
+ "name": "splx-ai__agentic-radar__graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "input_node",
+   "kind": "llm",
+   "label": "input_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:54:54"
+  },
+  {
+   "id": "researcher",
+   "kind": "llm",
+   "label": "researcher",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:55:55"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:56:56"
+  },
+  {
+   "id": "generator",
+   "kind": "llm",
+   "label": "generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:57:57"
+  },
+  {
+   "id": "output_node",
+   "kind": "llm",
+   "label": "output_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:58:58"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "input_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/Gladiator2/graph.py:71:71"
+  }
+ ]
+}

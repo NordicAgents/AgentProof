@@ -1,0 +1,76 @@
+{
+ "name": "ShambhaviM19__Blog-Generation-System__tasks",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_the_topic_'{topic}'_using_the_youtube_cha",
+   "kind": "tool",
+   "label": "Research the topic '{topic}' using the YouTube cha",
+   "tools": [
+    "yt_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ShambhaviM19__Blog-Generation-System@fcfda4f/tasks.py:5:14"
+  },
+  {
+   "id": "using_the_research_provided,_create_a_blog_post_ab",
+   "kind": "tool",
+   "label": "Using the research provided, create a blog post ab",
+   "tools": [
+    "yt_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ShambhaviM19__Blog-Generation-System@fcfda4f/tasks.py:16:26"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_the_topic_'{topic}'_using_the_youtube_cha",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "research_the_topic_'{topic}'_using_the_youtube_cha",
+   "target": "using_the_research_provided,_create_a_blog_post_ab",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_research_provided,_create_a_blog_post_ab",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -11,35 +11,50 @@
       "kind": "entry",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "idea_gen",
       "kind": "llm",
       "label": "idea_generator",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "critic",
       "kind": "llm",
       "label": "critic",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "refiner",
       "kind": "llm",
       "label": "refiner",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "__end__",
       "kind": "exit",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ],
   "edges": [
@@ -47,25 +62,37 @@
       "source": "__start__",
       "target": "idea_gen",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "idea_gen",
       "target": "critic",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "critic",
       "target": "refiner",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "refiner",
       "target": "idea_gen",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ]
 }

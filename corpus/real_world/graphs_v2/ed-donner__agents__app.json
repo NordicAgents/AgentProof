@@ -1,0 +1,158 @@
+{
+ "name": "ed-donner__agents__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "parse_job_description",
+   "kind": "llm",
+   "label": "parse_job_description",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:294:294"
+  },
+  {
+   "id": "classify_job_type",
+   "kind": "llm",
+   "label": "classify_job_type",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:295:295"
+  },
+  {
+   "id": "research_company",
+   "kind": "llm",
+   "label": "research_company",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:296:296"
+  },
+  {
+   "id": "tailor_cv",
+   "kind": "llm",
+   "label": "tailor_cv",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:297:297"
+  },
+  {
+   "id": "write_cover_letter",
+   "kind": "llm",
+   "label": "write_cover_letter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:298:298"
+  },
+  {
+   "id": "evaluate_quality",
+   "kind": "llm",
+   "label": "evaluate_quality",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:299:299"
+  },
+  {
+   "id": "human_review",
+   "kind": "human",
+   "label": "human_review",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:300:300"
+  },
+  {
+   "id": "send_application",
+   "kind": "llm",
+   "label": "send_application",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:301:301"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "parse_job_description",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:303:303"
+  },
+  {
+   "source": "parse_job_description",
+   "target": "classify_job_type",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:304:304"
+  },
+  {
+   "source": "classify_job_type",
+   "target": "research_company",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:305:305"
+  },
+  {
+   "source": "research_company",
+   "target": "tailor_cv",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:306:306"
+  },
+  {
+   "source": "tailor_cv",
+   "target": "write_cover_letter",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:307:307"
+  },
+  {
+   "source": "write_cover_letter",
+   "target": "evaluate_quality",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:308:308"
+  },
+  {
+   "source": "send_application",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py:309:309"
+  }
+ ]
+}

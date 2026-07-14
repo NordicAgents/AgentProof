@@ -1,0 +1,80 @@
+{
+ "name": "blueming333__aicraft-class-autogen__6_RunTeamDeepSeek",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "primary_agent",
+   "kind": "llm",
+   "label": "primary_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/blueming333__aicraft-class-autogen@c29822a/AiCraftTest/6_RunTeamDeepSeek.py:68:72"
+  },
+  {
+   "id": "critic_agent",
+   "kind": "llm",
+   "label": "critic_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/blueming333__aicraft-class-autogen@c29822a/AiCraftTest/6_RunTeamDeepSeek.py:68:72"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "primary_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "primary_agent",
+   "target": "critic_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "critic_agent",
+   "target": "primary_agent",
+   "kind": "loop",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "critic_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

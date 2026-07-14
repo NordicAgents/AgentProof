@@ -1,0 +1,97 @@
+{
+ "name": "splx-ai__agentic-radar__literature_review",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "google_search_agent",
+   "kind": "llm",
+   "label": "google_search_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/autogen/agentchat/literature_review/literature_review.py:125:127"
+  },
+  {
+   "id": "arxiv_search_agent",
+   "kind": "llm",
+   "label": "arxiv_search_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/autogen/agentchat/literature_review/literature_review.py:125:127"
+  },
+  {
+   "id": "report_agent",
+   "kind": "llm",
+   "label": "report_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/autogen/agentchat/literature_review/literature_review.py:125:127"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "google_search_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "google_search_agent",
+   "target": "arxiv_search_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "arxiv_search_agent",
+   "target": "report_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "report_agent",
+   "target": "google_search_agent",
+   "kind": "loop",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "report_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

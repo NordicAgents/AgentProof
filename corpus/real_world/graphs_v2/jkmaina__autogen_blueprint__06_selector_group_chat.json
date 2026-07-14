@@ -1,0 +1,123 @@
+{
+ "name": "jkmaina__autogen_blueprint__06_selector_group_chat",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "math_expert",
+   "kind": "llm",
+   "label": "math_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter3/06_selector_group_chat.py:129:134"
+  },
+  {
+   "id": "science_expert",
+   "kind": "llm",
+   "label": "science_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter3/06_selector_group_chat.py:129:134"
+  },
+  {
+   "id": "history_expert",
+   "kind": "llm",
+   "label": "history_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter3/06_selector_group_chat.py:129:134"
+  },
+  {
+   "id": "tech_expert",
+   "kind": "llm",
+   "label": "tech_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter3/06_selector_group_chat.py:129:134"
+  },
+  {
+   "id": "general_assistant",
+   "kind": "llm",
+   "label": "general_assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter3/06_selector_group_chat.py:129:134"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "math_expert",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "math_expert",
+   "target": "science_expert",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "science_expert",
+   "target": "history_expert",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "history_expert",
+   "target": "tech_expert",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "tech_expert",
+   "target": "general_assistant",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "general_assistant",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

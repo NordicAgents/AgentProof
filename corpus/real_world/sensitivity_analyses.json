@@ -1,0 +1,1003 @@
+{
+  "meta": {
+    "script": "scripts/sensitivity_analyses.py",
+    "purpose": "Research-plan \u00a73.5 sensitivity analyses (items 1, 2, 3, 5) from existing artifacts only",
+    "self_repo_exclusion": "NordicAgents__AgentProof",
+    "n_mined_workflows_after_exclusion": 922,
+    "n_sample_workflows_after_exclusion": 119,
+    "ci_method": "Wilson score, z=1.96 (as compute_cis.py)",
+    "consistency_checks": {
+      "duplicate_census_matches_revision_analyses": true,
+      "recomputed_groups": 48,
+      "recomputed_redundant_workflows": 170,
+      "human_presence_pct_on_930_matches_defect_results": true,
+      "no_sensitive_tool_in_mined_graphs_matches_risk_aware_gate": true,
+      "extractor_visible_genuine_k": 2,
+      "combined_genuine_k": 4,
+      "paper_table3_rows_reproduced": {
+        "combined_per_workflow_4_of_119": true,
+        "per_repository_4_of_87": true,
+        "application_like_3_of_39": true,
+        "tutorials_demos_tests_1_of_80": true
+      }
+    }
+  },
+  "dedup_sensitivity": {
+    "duplicate_definition": "Identical canonical topology (sorted (node id, kind) + (source, target, kind) edge triples) shared across >1 repository, graphs with >3 nodes; one lexicographically smallest representative kept per group. Matches revision_analyses.py.",
+    "n_duplicate_groups": 48,
+    "n_redundant_workflows_dropped": 170,
+    "n_repos_losing_all_workflows": 12,
+    "corpus_rates": {
+      "original": {
+        "n_workflows": 922,
+        "n_repos": 252,
+        "total_flags": 1642,
+        "flags_per_workflow": 1.781,
+        "any_flag": {
+          "k": 852,
+          "n": 922,
+          "pct": 92.41,
+          "ci95_pct": [
+            90.52,
+            93.95
+          ]
+        },
+        "structural_flag": {
+          "k": 314,
+          "n": 922,
+          "pct": 34.06,
+          "ci95_pct": [
+            31.07,
+            37.18
+          ]
+        },
+        "human_presence_flag": {
+          "k": 840,
+          "n": 922,
+          "pct": 91.11,
+          "ci95_pct": [
+            89.09,
+            92.78
+          ]
+        },
+        "workflows_with_sensitive_tool_binding": 0,
+        "risk_aware_gate_flag": {
+          "k": 0,
+          "n": 922,
+          "pct": 0.0,
+          "ci95_pct": [
+            0.0,
+            0.41
+          ]
+        },
+        "flags_by_check": {
+          "dead_ends": 301,
+          "exit_reachability": 86,
+          "human_presence": 840,
+          "reverse_reachability": 295,
+          "router_shape": 36,
+          "tool_declarations": 84
+        }
+      },
+      "deduplicated": {
+        "n_workflows": 752,
+        "n_repos": 240,
+        "total_flags": 1396,
+        "flags_per_workflow": 1.856,
+        "any_flag": {
+          "k": 698,
+          "n": 752,
+          "pct": 92.82,
+          "ci95_pct": [
+            90.75,
+            94.45
+          ]
+        },
+        "structural_flag": {
+          "k": 279,
+          "n": 752,
+          "pct": 37.1,
+          "ci95_pct": [
+            33.72,
+            40.61
+          ]
+        },
+        "human_presence_flag": {
+          "k": 686,
+          "n": 752,
+          "pct": 91.22,
+          "ci95_pct": [
+            88.99,
+            93.04
+          ]
+        },
+        "workflows_with_sensitive_tool_binding": 0,
+        "risk_aware_gate_flag": {
+          "k": 0,
+          "n": 752,
+          "pct": 0.0,
+          "ci95_pct": [
+            0.0,
+            0.51
+          ]
+        },
+        "flags_by_check": {
+          "dead_ends": 268,
+          "exit_reachability": 80,
+          "human_presence": 686,
+          "reverse_reachability": 263,
+          "router_shape": 21,
+          "tool_declarations": 78
+        }
+      }
+    },
+    "duplicate_groups": [
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_react_agent",
+        "ericjiang18__Agent-Q-Mix__test_react_agent"
+      ],
+      [
+        "AliciaSJF__autogen__agnte_que_cuenta",
+        "arunacarunac__MultiAgentSamples__PlannerAgent"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_large_cases",
+        "ericjiang18__Agent-Q-Mix__test_large_cases"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_large_cases_async",
+        "ericjiang18__Agent-Q-Mix__test_large_cases_async"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_remote_graph",
+        "ericjiang18__Agent-Q-Mix__test_remote_graph"
+      ],
+      [
+        "CodeDevKyle__autogen_DevKyle__test_society_of_mind_agent",
+        "LightningGod7__prometheus__test_agent",
+        "LightningGod7__prometheus__test_society_of_mind_agent",
+        "LightningGod7__prometheus__test_task_runner_tool",
+        "LtRusty1__AI-LAB__test_agent",
+        "LtRusty1__AI-LAB__test_society_of_mind_agent",
+        "LtRusty1__AI-LAB__test_task_runner_tool",
+        "MikhailMostWanted__Astra__test_agent",
+        "MikhailMostWanted__Astra__test_society_of_mind_agent",
+        "MikhailMostWanted__Astra__test_task_runner_tool",
+        "Schmiddyyy__autogen__test_agent",
+        "Schmiddyyy__autogen__test_society_of_mind_agent",
+        "Schmiddyyy__autogen__test_task_runner_tool",
+        "Sidreyas__The_Grand_AI_Repo__test_agent",
+        "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+        "Sidreyas__The_Grand_AI_Repo__test_task_runner_tool",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_agent",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_society_of_mind_agent",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_task_runner_tool",
+        "discohead__autogen-enhanced-docs__test_agent",
+        "discohead__autogen-enhanced-docs__test_society_of_mind_agent",
+        "discohead__autogen-enhanced-docs__test_task_runner_tool",
+        "ericjiang18__Agent-Q-Mix__test_agent",
+        "ericjiang18__Agent-Q-Mix__test_society_of_mind_agent",
+        "ericjiang18__Agent-Q-Mix__test_task_runner_tool",
+        "jkmaina__autogen_blueprint__09_basic_termination_condition",
+        "microsoft__ACV__scenario",
+        "microsoft__ACV__test_agent",
+        "microsoft__ACV__test_backend",
+        "microsoft__ACV__test_society_of_mind_agent",
+        "microsoft__ACV__test_task_runner_tool",
+        "thedigitalworkplace__Autogen__test_society_of_mind_agent",
+        "waqasniazi9__voice-agent__test_agent",
+        "waqasniazi9__voice-agent__test_society_of_mind_agent",
+        "waqasniazi9__voice-agent__test_task_runner_tool"
+      ],
+      [
+        "LightningGod7__prometheus__test_group_chat",
+        "LtRusty1__AI-LAB__test_group_chat",
+        "MikhailMostWanted__Astra__test_group_chat",
+        "Schmiddyyy__autogen__test_group_chat",
+        "Sidreyas__The_Grand_AI_Repo__test_group_chat",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_group_chat",
+        "discohead__autogen-enhanced-docs__test_group_chat",
+        "ericjiang18__Agent-Q-Mix__test_group_chat",
+        "microsoft__ACV__test_group_chat",
+        "waqasniazi9__voice-agent__test_group_chat"
+      ],
+      [
+        "LightningGod7__prometheus__test_group_chat_nested",
+        "MikhailMostWanted__Astra__test_group_chat_nested",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_group_chat_nested",
+        "discohead__autogen-enhanced-docs__test_group_chat_nested",
+        "ericjiang18__Agent-Q-Mix__test_group_chat_nested",
+        "microsoft__ACV__test_group_chat_nested",
+        "waqasniazi9__voice-agent__test_group_chat_nested"
+      ],
+      [
+        "AbhiShetye0703__Google-ADK__parallelAgent",
+        "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__ParallelAgent",
+        "esk000__AIAgentsIntensive__parallelAgent",
+        "vineetagarwal54__google-adk__ParallelAgent"
+      ],
+      [
+        "icyzh__Quillgraph__ai",
+        "jkmaina__autogen_blueprint__07_basic_selector"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_checkpoint_migration",
+        "ericjiang18__Agent-Q-Mix__test_checkpoint_migration"
+      ],
+      [
+        "LightningGod7__prometheus__app_team_user_proxy",
+        "LtRusty1__AI-LAB__app_team_user_proxy",
+        "MikhailMostWanted__Astra__app_team_user_proxy",
+        "Schmiddyyy__autogen__app_team_user_proxy",
+        "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+        "akfldk1028__AG__app_team_user_proxy",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__app_team_user_proxy",
+        "discohead__autogen-enhanced-docs__app_team_user_proxy",
+        "ericjiang18__Agent-Q-Mix__app_team_user_proxy",
+        "waqasniazi9__voice-agent__app_team_user_proxy"
+      ],
+      [
+        "LightningGod7__prometheus__app_team",
+        "LtRusty1__AI-LAB__app_team",
+        "MikhailMostWanted__Astra__app_team",
+        "Schmiddyyy__autogen__app_team",
+        "Sidreyas__The_Grand_AI_Repo__app_team",
+        "akfldk1028__AG__app_team",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__app_team",
+        "discohead__autogen-enhanced-docs__app_team",
+        "ericjiang18__Agent-Q-Mix__app_team",
+        "olileger__py-autogen__chainlit_autogen",
+        "waqasniazi9__voice-agent__app_team"
+      ],
+      [
+        "LightningGod7__prometheus__mcp_session_host_example",
+        "MikhailMostWanted__Astra__mcp_session_host_example",
+        "akfldk1028__AG__mcp_session_host_example",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__mcp_session_host_example",
+        "ericjiang18__Agent-Q-Mix__mcp_session_host_example",
+        "waqasniazi9__voice-agent__mcp_session_host_example"
+      ],
+      [
+        "RubyJiu__data-structure__multiAgent",
+        "RubyJiu__data-structure__multiDataAgent",
+        "tsilva__sandbox-autogen__team"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__fanout_to_subgraph",
+        "ericjiang18__Agent-Q-Mix__fanout_to_subgraph"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_messages_state",
+        "ericjiang18__Agent-Q-Mix__test_messages_state"
+      ],
+      [
+        "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+        "devananda6200__stockbuy-chatbot-langgraph__HITL",
+        "lakshaykaushik5__Personal_AI_Assistant__main"
+      ],
+      [
+        "LightningGod7__prometheus__scenario",
+        "LtRusty1__AI-LAB__scenario",
+        "MikhailMostWanted__Astra__scenario",
+        "Schmiddyyy__autogen__scenario",
+        "Sidreyas__The_Grand_AI_Repo__scenario",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__scenario",
+        "discohead__autogen-enhanced-docs__scenario",
+        "ericjiang18__Agent-Q-Mix__scenario",
+        "waqasniazi9__voice-agent__scenario"
+      ],
+      [
+        "Saimoguloju__AI-Agents__sample_agent",
+        "nihal-5__autogen-collaborative-ai-agents__app"
+      ],
+      [
+        "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+        "colinmccrae__CrewAITest__crewaih2g",
+        "feuyeux__hello-memory__crewai_memory_"
+      ],
+      [
+        "Deepakumar__autogen_panelui__panel_autogen",
+        "norrisaftcc__ce_usingllms101_24su__autogen_panel"
+      ],
+      [
+        "M-H-Amini__PerGent-Agentic-Persona-Generation__pergent",
+        "M-H-Amini__PerGent-Agentic-Persona-Generation__pergent_no_res",
+        "akfldk1028__AG__cohub_gallery_builder",
+        "akfldk1028__AG__cohub_loader"
+      ],
+      [
+        "NanGePlus__AutoGenV04Test__2_RunTeam",
+        "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+        "NanGePlus__AutoGenV04Test__6_RunTeamDeepSeek",
+        "NanGePlus__AutoGenV04Test__7_RunTeamDeepSeekOllama",
+        "a171232886__example_autogen__TE1_group_quick_start",
+        "blueming333__aicraft-class-autogen__2_RunTeam",
+        "blueming333__aicraft-class-autogen__5_RunTeamStream",
+        "blueming333__aicraft-class-autogen__6_RunTeamDeepSeek",
+        "blueming333__aicraft-class-autogen__7_RunTeamDeepSeekOllama",
+        "feixiao__ai__ex03",
+        "hepai-lab__hepai__roundgroup",
+        "hepai-lab__hepai__roundgroup_oai",
+        "jkmaina__autogen_blueprint__13_custom_termination_message"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__02_selector_group_chat",
+        "ericjiang18__Agent-Q-Mix__02_selector_group_chat"
+      ],
+      [
+        "LightningGod7__prometheus__test_group_chat_endpoint",
+        "LtRusty1__AI-LAB__test_group_chat_endpoint",
+        "MikhailMostWanted__Astra__test_group_chat_endpoint",
+        "Schmiddyyy__autogen__test_group_chat_endpoint",
+        "Sidreyas__The_Grand_AI_Repo__test_group_chat_endpoint",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_group_chat_endpoint",
+        "discohead__autogen-enhanced-docs__test_group_chat_endpoint",
+        "ericjiang18__Agent-Q-Mix__test_group_chat_endpoint",
+        "microsoft__ACV__test_group_chat_endpoint",
+        "waqasniazi9__voice-agent__test_group_chat_endpoint"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__01_round_robin_group_chat",
+        "ericjiang18__Agent-Q-Mix__01_round_robin_group_chat"
+      ],
+      [
+        "AbhiShetye0703__Google-ADK__sequentialAgent",
+        "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__SequentialAgent",
+        "esk000__AIAgentsIntensive__ SequentialAgents",
+        "vineetagarwal54__google-adk__SequentialAgents"
+      ],
+      [
+        "Nagi-ovo__CRAG-Ollama-Chat__app",
+        "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app"
+      ],
+      [
+        "Krishan098__AgenticRAG__rag",
+        "houyongsheng__local_rag__rag"
+      ],
+      [
+        "AIWalaBro__CrewAI_Youtube_Video_Summarizer__task",
+        "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+        "krishnaik06__Crew-AI-Crash-course__tasks"
+      ],
+      [
+        "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+        "esk000__AIAgentsIntensive__LoopAgent"
+      ],
+      [
+        "atcelen__IDesign__IDesign",
+        "hiShujie__IDesign-scale__IDesign"
+      ],
+      [
+        "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+        "RubyJiu__data-structure__dataAgent"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_parent_command",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_parent_command_async",
+        "ericjiang18__Agent-Q-Mix__test_parent_command",
+        "ericjiang18__Agent-Q-Mix__test_parent_command_async"
+      ],
+      [
+        "AkshatKumar12__AutoGen_Learning__builder",
+        "Hsing-Tzu__AI-Aided-Systems__builder",
+        "LtRusty1__AI-LAB__builder",
+        "Schmiddyyy__autogen__builder",
+        "Sidreyas__The_Grand_AI_Repo__builder"
+      ],
+      [
+        "feixiao__ai__chap07",
+        "surpradhan__agent-event-protocol__autogen_multiagent",
+        "surpradhan__agent-event-protocol__test_instrument_autogen"
+      ],
+      [
+        "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "Md-Emon-Hasan__LangGraph__app"
+      ],
+      [
+        "Igor3407__Chat-bot__appUI",
+        "karthikvenkatesan-eaton__Autogen_GraphRAG_Ollama__appUI"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_interruption",
+        "ericjiang18__Agent-Q-Mix__test_interruption"
+      ],
+      [
+        "NanGePlus__AutoGenV04Test__3_HumanFeedback",
+        "blueming333__aicraft-class-autogen__3_HumanFeedback"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_type_checking",
+        "ericjiang18__Agent-Q-Mix__test_type_checking"
+      ],
+      [
+        "LightningGod7__prometheus__test_group_chat_graph",
+        "LtRusty1__AI-LAB__test_group_chat_graph",
+        "MikhailMostWanted__Astra__test_group_chat_graph",
+        "Schmiddyyy__autogen__test_group_chat_graph",
+        "Sidreyas__The_Grand_AI_Repo__test_group_chat_graph",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_group_chat_graph",
+        "discohead__autogen-enhanced-docs__test_group_chat_graph",
+        "ericjiang18__Agent-Q-Mix__test_group_chat_graph",
+        "microsoft__ACV__test_group_chat_graph",
+        "waqasniazi9__voice-agent__test_group_chat_graph"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_state",
+        "ericjiang18__Agent-Q-Mix__test_state"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__chat_agent_executor",
+        "ericjiang18__Agent-Q-Mix__chat_agent_executor",
+        "faresrafat3__ai-earth__chat_agent_executor"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__storm",
+        "ericjiang18__Agent-Q-Mix__storm"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_deprecation",
+        "ericjiang18__Agent-Q-Mix__test_deprecation"
+      ],
+      [
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__pydantic_state",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__wide_dict",
+        "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__wide_state",
+        "ericjiang18__Agent-Q-Mix__pydantic_state",
+        "ericjiang18__Agent-Q-Mix__wide_dict",
+        "ericjiang18__Agent-Q-Mix__wide_state"
+      ]
+    ]
+  },
+  "repository_weighting": {
+    "note": "Workflow-weighted pooled rates are in dedup_sensitivity.corpus_rates; here each repository is weighted equally.",
+    "original_corpus": {
+      "n_repos": 252,
+      "any_flag": {
+        "repo_weighted_mean_pct": 89.96,
+        "repos_with_ge1_firing": {
+          "k": 231,
+          "n": 252,
+          "pct": 91.67,
+          "ci95_pct": [
+            87.6,
+            94.49
+          ]
+        }
+      },
+      "structural_flag": {
+        "repo_weighted_mean_pct": 33.81,
+        "repos_with_ge1_firing": {
+          "k": 102,
+          "n": 252,
+          "pct": 40.48,
+          "ci95_pct": [
+            34.6,
+            46.64
+          ]
+        }
+      },
+      "human_presence_flag": {
+        "repo_weighted_mean_pct": 89.32,
+        "repos_with_ge1_firing": {
+          "k": 230,
+          "n": 252,
+          "pct": 91.27,
+          "ci95_pct": [
+            87.14,
+            94.16
+          ]
+        }
+      },
+      "flags_per_workflow_repo_weighted": 1.795
+    },
+    "deduplicated_corpus": {
+      "n_repos": 240,
+      "any_flag": {
+        "repo_weighted_mean_pct": 91.03,
+        "repos_with_ge1_firing": {
+          "k": 222,
+          "n": 240,
+          "pct": 92.5,
+          "ci95_pct": [
+            88.46,
+            95.2
+          ]
+        }
+      },
+      "structural_flag": {
+        "repo_weighted_mean_pct": 33.84,
+        "repos_with_ge1_firing": {
+          "k": 92,
+          "n": 240,
+          "pct": 38.33,
+          "ci95_pct": [
+            32.41,
+            44.62
+          ]
+        }
+      },
+      "human_presence_flag": {
+        "repo_weighted_mean_pct": 90.3,
+        "repos_with_ge1_firing": {
+          "k": 221,
+          "n": 240,
+          "pct": 92.08,
+          "ci95_pct": [
+            87.97,
+            94.87
+          ]
+        }
+      },
+      "flags_per_workflow_repo_weighted": 1.799
+    }
+  },
+  "unknown_as_positive": {
+    "definition": "Pessimistic bound: every 'arguable' label in the extractor-flag triage and every unresolved ground-truth-pass flag (primary/verify disagreement) is counted as a genuine defect. Primary estimates count only 'real_defect' labels.",
+    "flag_level_ppv": {
+      "extractor_visible_flags": {
+        "primary": {
+          "k": 2,
+          "n": 186,
+          "pct": 1.08,
+          "ci95_pct": [
+            0.3,
+            3.84
+          ]
+        },
+        "upper_bound": {
+          "k": 14,
+          "n": 186,
+          "pct": 7.53,
+          "ci95_pct": [
+            4.54,
+            12.24
+          ]
+        },
+        "label_distribution": {
+          "arguable": 12,
+          "extraction_artifact": 79,
+          "intentional": 93,
+          "real_defect": 2
+        }
+      },
+      "ground_truth_pass_flags": {
+        "primary": {
+          "k": 2,
+          "n": 16,
+          "pct": 12.5,
+          "ci95_pct": [
+            3.5,
+            36.02
+          ]
+        },
+        "upper_bound": {
+          "k": 3,
+          "n": 16,
+          "pct": 18.75,
+          "ci95_pct": [
+            6.59,
+            43.01
+          ]
+        },
+        "final_label_distribution": {
+          "gt_error": 4,
+          "intentional": 10,
+          "real_defect": 2
+        },
+        "n_unresolved_disagreements": 1
+      }
+    },
+    "workflow_level_prevalence": {
+      "primary_extractor_visible": {
+        "k": 2,
+        "n": 119,
+        "pct": 1.68,
+        "ci95_pct": [
+          0.46,
+          5.92
+        ]
+      },
+      "upper_extractor_visible": {
+        "k": 14,
+        "n": 119,
+        "pct": 11.76,
+        "ci95_pct": [
+          7.14,
+          18.78
+        ]
+      },
+      "primary_combined": {
+        "k": 4,
+        "n": 119,
+        "pct": 3.36,
+        "ci95_pct": [
+          1.31,
+          8.32
+        ]
+      },
+      "upper_combined": {
+        "k": 15,
+        "n": 119,
+        "pct": 12.61,
+        "ci95_pct": [
+          7.79,
+          19.76
+        ]
+      },
+      "upper_combined_per_repository": {
+        "k": 15,
+        "n": 87,
+        "pct": 17.24,
+        "ci95_pct": [
+          10.74,
+          26.52
+        ]
+      },
+      "upper_combined_application_like_only": {
+        "k": 9,
+        "n": 39,
+        "pct": 23.08,
+        "ci95_pct": [
+          12.65,
+          38.34
+        ]
+      },
+      "upper_combined_tutorials_demos_tests": {
+        "k": 6,
+        "n": 80,
+        "pct": 7.5,
+        "ci95_pct": [
+          3.48,
+          15.41
+        ]
+      },
+      "upper_bound_slugs": [
+        "Avneesh26024__Gen_AI_Exchange__main",
+        "Brenmull12__Hoohacks2025__multiturn",
+        "Harsh1210__llm-opsbot__main",
+        "Itzkuldeep__AgentE-com__main",
+        "Jamahl__fraya-25__crew",
+        "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "SAMAR-CODE404__backend__Main",
+        "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+        "SomanGaurav__Agentic_Research_Assistant__test_agent",
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "Zen7-Labs__Zen7-Payment-Agent__agent",
+        "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+        "brightertiger__google-adk-demo__agent",
+        "gabrielpreda__adk-sql-agent__agent",
+        "merdandt__SalesShortcut__email_agent"
+      ]
+    }
+  },
+  "application_stratum": {
+    "classification_source": "gt_triage_results.json:classification (source-level, 119 sampled workflows)",
+    "category_counts": {
+      "application_like": 39,
+      "demo_or_toy": 20,
+      "test": 8,
+      "tutorial_or_example": 52
+    },
+    "primary": {
+      "per_workflow": {
+        "k": 4,
+        "n": 119,
+        "pct": 3.36,
+        "ci95_pct": [
+          1.31,
+          8.32
+        ]
+      },
+      "per_repository": {
+        "k": 4,
+        "n": 87,
+        "pct": 4.6,
+        "ci95_pct": [
+          1.8,
+          11.23
+        ]
+      },
+      "application_like_only": {
+        "k": 3,
+        "n": 39,
+        "pct": 7.69,
+        "ci95_pct": [
+          2.65,
+          20.32
+        ]
+      },
+      "tutorials_demos_tests": {
+        "k": 1,
+        "n": 80,
+        "pct": 1.25,
+        "ci95_pct": [
+          0.22,
+          6.75
+        ]
+      },
+      "genuine_slugs_in_scope": [
+        "Jamahl__fraya-25__crew",
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "Zen7-Labs__Zen7-Payment-Agent__agent",
+        "gabrielpreda__adk-sql-agent__agent"
+      ],
+      "extractor_visible_per_workflow": {
+        "k": 2,
+        "n": 119,
+        "pct": 1.68,
+        "ci95_pct": [
+          0.46,
+          5.92
+        ]
+      }
+    },
+    "dedup_variant": {
+      "rule": "same duplicate definition applied within the sample",
+      "n_groups": 5,
+      "n_dropped": 8,
+      "rates": {
+        "per_workflow": {
+          "k": 4,
+          "n": 111,
+          "pct": 3.6,
+          "ci95_pct": [
+            1.41,
+            8.9
+          ]
+        },
+        "per_repository": {
+          "k": 4,
+          "n": 84,
+          "pct": 4.76,
+          "ci95_pct": [
+            1.87,
+            11.61
+          ]
+        },
+        "application_like_only": {
+          "k": 3,
+          "n": 39,
+          "pct": 7.69,
+          "ci95_pct": [
+            2.65,
+            20.32
+          ]
+        },
+        "tutorials_demos_tests": {
+          "k": 1,
+          "n": 72,
+          "pct": 1.39,
+          "ci95_pct": [
+            0.25,
+            7.46
+          ]
+        },
+        "genuine_slugs_in_scope": [
+          "Jamahl__fraya-25__crew",
+          "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+          "Zen7-Labs__Zen7-Payment-Agent__agent",
+          "gabrielpreda__adk-sql-agent__agent"
+        ],
+        "extractor_visible_per_workflow": {
+          "k": 2,
+          "n": 111,
+          "pct": 1.8,
+          "ci95_pct": [
+            0.5,
+            6.33
+          ]
+        }
+      }
+    },
+    "strict_dedup_variant": {
+      "rule": "drop any within-sample topology duplicate (same-repo and <=3-node graphs included)",
+      "n_dropped": 21,
+      "rates": {
+        "per_workflow": {
+          "k": 4,
+          "n": 98,
+          "pct": 4.08,
+          "ci95_pct": [
+            1.6,
+            10.03
+          ]
+        },
+        "per_repository": {
+          "k": 4,
+          "n": 80,
+          "pct": 5.0,
+          "ci95_pct": [
+            1.96,
+            12.16
+          ]
+        },
+        "application_like_only": {
+          "k": 3,
+          "n": 37,
+          "pct": 8.11,
+          "ci95_pct": [
+            2.8,
+            21.3
+          ]
+        },
+        "tutorials_demos_tests": {
+          "k": 1,
+          "n": 61,
+          "pct": 1.64,
+          "ci95_pct": [
+            0.29,
+            8.72
+          ]
+        },
+        "genuine_slugs_in_scope": [
+          "Jamahl__fraya-25__crew",
+          "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+          "Zen7-Labs__Zen7-Payment-Agent__agent",
+          "gabrielpreda__adk-sql-agent__agent"
+        ]
+      }
+    },
+    "repo_weighted_variant": {
+      "pooled": {
+        "n_repos": 87,
+        "repo_weighted_mean_pct": 4.6
+      },
+      "application_like_only": {
+        "n_repos": 31,
+        "repo_weighted_mean_pct": 9.68
+      },
+      "tutorials_demos_tests": {
+        "n_repos": 60,
+        "repo_weighted_mean_pct": 1.67
+      }
+    },
+    "repo_weighted_dedup_variant": {
+      "pooled": {
+        "n_repos": 84,
+        "repo_weighted_mean_pct": 4.76
+      },
+      "application_like_only": {
+        "n_repos": 31,
+        "repo_weighted_mean_pct": 9.68
+      },
+      "tutorials_demos_tests": {
+        "n_repos": 57,
+        "repo_weighted_mean_pct": 1.75
+      }
+    },
+    "ground_truth_flag_rates": {
+      "original": {
+        "structural_flag": {
+          "k": 11,
+          "n": 119,
+          "pct": 9.24,
+          "ci95_pct": [
+            5.24,
+            15.8
+          ]
+        },
+        "risk_aware_gate_flag": {
+          "k": 3,
+          "n": 119,
+          "pct": 2.52,
+          "ci95_pct": [
+            0.86,
+            7.15
+          ]
+        },
+        "human_presence_flag": {
+          "k": 106,
+          "n": 119,
+          "pct": 89.08,
+          "ci95_pct": [
+            82.2,
+            93.5
+          ]
+        }
+      },
+      "dedup": {
+        "structural_flag": {
+          "k": 11,
+          "n": 111,
+          "pct": 9.91,
+          "ci95_pct": [
+            5.62,
+            16.88
+          ]
+        },
+        "risk_aware_gate_flag": {
+          "k": 3,
+          "n": 111,
+          "pct": 2.7,
+          "ci95_pct": [
+            0.92,
+            7.65
+          ]
+        },
+        "human_presence_flag": {
+          "k": 98,
+          "n": 111,
+          "pct": 88.29,
+          "ci95_pct": [
+            80.99,
+            93.03
+          ]
+        }
+      },
+      "repo_weighted": {
+        "n_repos": 87,
+        "structural_flag": {
+          "repo_weighted_mean_pct": 10.44
+        },
+        "risk_aware_gate_flag": {
+          "repo_weighted_mean_pct": 3.45
+        },
+        "human_presence_flag": {
+          "repo_weighted_mean_pct": 88.79
+        }
+      }
+    }
+  },
+  "material_change_assessment": {
+    "criterion": "'Material' = the alternative point estimate falls outside the primary estimate's Wilson 95% CI.",
+    "headline_estimates": {
+      "any_flag": {
+        "original_pct": 92.41,
+        "dedup_pct": 92.82,
+        "dedup_delta_pp": 0.41,
+        "dedup_material": false,
+        "repo_weighted_pct": 89.96,
+        "repo_weighted_delta_pp": -2.45,
+        "repo_weighted_material": true
+      },
+      "structural_flag": {
+        "original_pct": 34.06,
+        "dedup_pct": 37.1,
+        "dedup_delta_pp": 3.04,
+        "dedup_material": false,
+        "repo_weighted_pct": 33.81,
+        "repo_weighted_delta_pp": -0.25,
+        "repo_weighted_material": false
+      },
+      "human_presence_flag": {
+        "original_pct": 91.11,
+        "dedup_pct": 91.22,
+        "dedup_delta_pp": 0.11,
+        "dedup_material": false,
+        "repo_weighted_pct": 89.32,
+        "repo_weighted_delta_pp": -1.79,
+        "repo_weighted_material": false
+      },
+      "flags_per_workflow": {
+        "original": 1.781,
+        "dedup": 1.856,
+        "repo_weighted": 1.795
+      },
+      "genuine_prevalence_per_workflow": {
+        "original_pct": 3.36,
+        "dedup_pct": 3.6,
+        "dedup_delta_pp": 0.24,
+        "dedup_material": false,
+        "repo_weighted_pct": 4.6
+      }
+    }
+  },
+  "gaps": [
+    {
+      "item": "byte-identity definition",
+      "detail": "The paper calls the 48 duplicate groups 'byte-identical', but raw graph-JSON files are never byte-identical (each embeds its own slug in the 'name' field): byte-hashing the files yields 0 duplicate groups. The 48/170 census matches the canonical-topology identity computed in revision_analyses.py (sorted node id/kind + edge triples, cross-repository, >3 nodes), which is the definition reproduced here. The paper's wording should say 'topologically identical' (or byte-identical canonical serialization)."
+    },
+    {
+      "item": "dedup/upper-bound prevalence on the full mined corpus",
+      "detail": "Genuine/arguable labels exist only for the 119-workflow validated sample; corpus-wide (922) prevalence variants are not computable from existing artifacts."
+    },
+    {
+      "item": "plan \u00a73.5 item 4 (human-label-only sensitivity)",
+      "detail": "Not in scope of this script and not computable from these artifacts alone: triage labels in validated_results.json / gt_triage_results.json are LLM-adversarial labels without a parallel human-adjudicated label per flag (corpus/annotations/ holds worksheets, not per-flag adjudications)."
+    },
+    {
+      "item": "repo-weighted mean CIs",
+      "detail": "The equal-repo-weight mean of per-repo rates is not a binomial proportion, so no Wilson CI is attached; the repo-level '>=1 firing' proportion is reported with a Wilson CI as the CI-able repo-weighted variant. Cluster-bootstrap CIs for the pooled estimates already exist in revision_analyses.json."
+    }
+  ]
+}

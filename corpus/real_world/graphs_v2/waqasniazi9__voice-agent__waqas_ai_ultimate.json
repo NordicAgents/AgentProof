@@ -1,0 +1,114 @@
+{
+ "name": "waqasniazi9__voice-agent__waqas_ai_ultimate",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "coordinator",
+   "kind": "llm",
+   "label": "coordinator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/waqasniazi9__voice-agent@ceb18e2/waqas_ai_ultimate.py:828:831"
+  },
+  {
+   "id": "writer",
+   "kind": "llm",
+   "label": "writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/waqasniazi9__voice-agent@ceb18e2/waqas_ai_ultimate.py:828:831"
+  },
+  {
+   "id": "analyst",
+   "kind": "llm",
+   "label": "analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/waqasniazi9__voice-agent@ceb18e2/waqas_ai_ultimate.py:828:831"
+  },
+  {
+   "id": "technical",
+   "kind": "llm",
+   "label": "technical",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/waqasniazi9__voice-agent@ceb18e2/waqas_ai_ultimate.py:828:831"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "coordinator",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "coordinator",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "writer",
+   "target": "analyst",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analyst",
+   "target": "technical",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "technical",
+   "target": "coordinator",
+   "kind": "loop",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "technical",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

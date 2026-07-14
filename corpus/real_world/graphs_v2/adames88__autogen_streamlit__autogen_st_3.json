@@ -1,0 +1,140 @@
+{
+ "name": "adames88__autogen_streamlit__autogen_st_3",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "engineer",
+   "kind": "llm",
+   "label": "engineer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "writer",
+   "kind": "llm",
+   "label": "writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "planner",
+   "kind": "llm",
+   "label": "planner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "executor",
+   "kind": "llm",
+   "label": "executor",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "critic",
+   "kind": "llm",
+   "label": "critic",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/adames88__autogen_streamlit@93893e9/autogen_st_3.py:161:165"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "engineer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "engineer",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "writer",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "planner",
+   "target": "executor",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "executor",
+   "target": "critic",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "critic",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

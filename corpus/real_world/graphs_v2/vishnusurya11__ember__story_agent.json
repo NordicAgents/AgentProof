@@ -1,0 +1,87 @@
+{
+ "name": "vishnusurya11__ember__story_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "STORY_PROMPT_GENERATE",
+   "kind": "router",
+   "label": "STORY_PROMPT_GENERATE",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:44:44"
+  },
+  {
+   "id": "STORY_PROMPT_REFLECT",
+   "kind": "llm",
+   "label": "STORY_PROMPT_REFLECT",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:45:45"
+  },
+  {
+   "id": "STORY_BEAT_GENERATE",
+   "kind": "router",
+   "label": "STORY_BEAT_GENERATE",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:75:75"
+  },
+  {
+   "id": "STORY_BEAT_REFLECT",
+   "kind": "llm",
+   "label": "STORY_BEAT_REFLECT",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:76:76"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "STORY_PROMPT_GENERATE",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:46:46"
+  },
+  {
+   "source": "STORY_PROMPT_REFLECT",
+   "target": "STORY_PROMPT_GENERATE",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:55:55"
+  },
+  {
+   "source": "__start__",
+   "target": "STORY_BEAT_GENERATE",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:77:77"
+  },
+  {
+   "source": "STORY_BEAT_REFLECT",
+   "target": "STORY_BEAT_GENERATE",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vishnusurya11__ember@a992997/story_agent.py:86:86"
+  }
+ ]
+}

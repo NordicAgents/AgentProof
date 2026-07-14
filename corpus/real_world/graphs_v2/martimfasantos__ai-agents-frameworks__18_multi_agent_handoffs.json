@@ -1,0 +1,105 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__18_multi_agent_handoffs",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "coordinator",
+   "kind": "llm",
+   "label": "coordinator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:166:166"
+  },
+  {
+   "id": "coordinator_tools",
+   "kind": "tool",
+   "label": "coordinator_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:167:167"
+  },
+  {
+   "id": "sales_agent",
+   "kind": "llm",
+   "label": "sales_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:168:168"
+  },
+  {
+   "id": "sales_tools",
+   "kind": "tool",
+   "label": "sales_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:169:169"
+  },
+  {
+   "id": "support_agent",
+   "kind": "llm",
+   "label": "support_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:170:170"
+  },
+  {
+   "id": "support_tools",
+   "kind": "tool",
+   "label": "support_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:171:171"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "coordinator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:173:173"
+  },
+  {
+   "source": "coordinator_tools",
+   "target": "coordinator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:174:174"
+  },
+  {
+   "source": "sales_tools",
+   "target": "sales_agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:175:175"
+  },
+  {
+   "source": "support_tools",
+   "target": "support_agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/18_multi_agent_handoffs.py:176:176"
+  }
+ ]
+}

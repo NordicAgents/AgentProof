@@ -1,0 +1,148 @@
+{
+ "name": "vego147__AI_Research_Img_Assistance__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "classify_query",
+   "kind": "router",
+   "label": "classify_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:180:180"
+  },
+  {
+   "id": "split_topic",
+   "kind": "llm",
+   "label": "split_topic",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:181:181"
+  },
+  {
+   "id": "search_node",
+   "kind": "llm",
+   "label": "search_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:182:182"
+  },
+  {
+   "id": "summarize_node",
+   "kind": "llm",
+   "label": "summarize_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:183:183"
+  },
+  {
+   "id": "img_prompter",
+   "kind": "llm",
+   "label": "img_prompter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:184:184"
+  },
+  {
+   "id": "img_generator",
+   "kind": "llm",
+   "label": "img_generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:185:185"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "classify_query",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:187:187"
+  },
+  {
+   "source": "classify_query",
+   "target": "split_topic",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:188:191"
+  },
+  {
+   "source": "classify_query",
+   "target": "search_node",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:188:191"
+  },
+  {
+   "source": "split_topic",
+   "target": "search_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:193:193"
+  },
+  {
+   "source": "search_node",
+   "target": "summarize_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:194:194"
+  },
+  {
+   "source": "summarize_node",
+   "target": "img_prompter",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:195:195"
+  },
+  {
+   "source": "img_prompter",
+   "target": "img_generator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:196:196"
+  },
+  {
+   "source": "img_generator",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vego147__AI_Research_Img_Assistance@42fb97c/news7btc/main.py:197:197"
+  }
+ ]
+}

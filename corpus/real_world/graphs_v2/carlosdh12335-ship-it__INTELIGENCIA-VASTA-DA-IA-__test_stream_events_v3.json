@@ -1,0 +1,487 @@
+{
+ "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_stream_events_v3",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "node_a",
+   "kind": "llm",
+   "label": "node_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:72:72"
+  },
+  {
+   "id": "node_b",
+   "kind": "llm",
+   "label": "node_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:73:73"
+  },
+  {
+   "id": "call_model",
+   "kind": "llm",
+   "label": "call_model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:89:89"
+  },
+  {
+   "id": "inner",
+   "kind": "llm",
+   "label": "inner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:108:108"
+  },
+  {
+   "id": "first",
+   "kind": "llm",
+   "label": "first",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:249:249"
+  },
+  {
+   "id": "second",
+   "kind": "llm",
+   "label": "second",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:250:250"
+  },
+  {
+   "id": "my_node",
+   "kind": "llm",
+   "label": "my_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:381:381"
+  },
+  {
+   "id": "inner_node",
+   "kind": "llm",
+   "label": "inner_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1068:1068"
+  },
+  {
+   "id": "outer_node",
+   "kind": "llm",
+   "label": "outer_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1074:1074"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:74:74"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:75:75"
+  },
+  {
+   "source": "node_b",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:76:76"
+  },
+  {
+   "source": "__start__",
+   "target": "call_model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:90:90"
+  },
+  {
+   "source": "call_model",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:91:91"
+  },
+  {
+   "source": "__start__",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:109:109"
+  },
+  {
+   "source": "inner",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:110:110"
+  },
+  {
+   "source": "__start__",
+   "target": "first",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:251:251"
+  },
+  {
+   "source": "first",
+   "target": "second",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:252:252"
+  },
+  {
+   "source": "second",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:253:253"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:382:382"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:383:383"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:404:404"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:405:405"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:430:430"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:431:431"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:448:448"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:449:449"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:467:467"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:468:468"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:719:719"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:720:720"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:740:740"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:741:741"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:760:760"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:761:761"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:829:829"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:830:830"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:857:857"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:858:858"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:897:897"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:898:898"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:932:932"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:933:933"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:959:959"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:960:960"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:992:992"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:993:993"
+  },
+  {
+   "source": "__start__",
+   "target": "my_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1030:1030"
+  },
+  {
+   "source": "my_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1031:1031"
+  },
+  {
+   "source": "__start__",
+   "target": "inner_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1069:1069"
+  },
+  {
+   "source": "inner_node",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1070:1070"
+  },
+  {
+   "source": "__start__",
+   "target": "outer_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1076:1076"
+  },
+  {
+   "source": "outer_node",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1077:1077"
+  },
+  {
+   "source": "inner",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1078:1078"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1113:1113"
+  },
+  {
+   "source": "node_a",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_stream_events_v3.py:1114:1114"
+  }
+ ]
+}

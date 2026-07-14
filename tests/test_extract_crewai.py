@@ -123,3 +123,70 @@ class TestEntryExit:
         exit_n = node_by_id(graph, "__exit__")
         assert entry is not None and entry.kind == NodeKind.ENTRY
         assert exit_n is not None and exit_n.kind == NodeKind.EXIT
+
+
+class TestProvenance:
+    def test_task_nodes_are_runtime_exact(self):
+        t1 = _make_task("research")
+        t2 = _make_task("write")
+        graph = extract_crewai(_make_crew([t1, t2]))
+
+        for nid in ("research", "write"):
+            n = node_by_id(graph, nid)
+            assert n is not None
+            assert n.origin == "runtime"
+            assert n.confidence == "exact"
+
+    def test_sequential_chain_is_inferred(self):
+        t1 = _make_task("research")
+        t2 = _make_task("write")
+        graph = extract_crewai(_make_crew([t1, t2]))
+
+        chain = next(e for e in graph.edges if (e.source, e.target) == ("research", "write"))
+        # Inferred from the LIVE Crew's task list (no AST involved): origin is
+        # "runtime" (the information source), confidence stays non-exact.
+        assert chain.origin == "runtime"
+        assert chain.confidence == "may"
+
+    def test_synthesized_entry_exit_tagged_non_exact(self):
+        t = _make_task("task")
+        graph = extract_crewai(_make_crew([t]))
+
+        for nid in ("__entry__", "__exit__"):
+            n = node_by_id(graph, nid)
+            assert n is not None
+            assert n.origin == "synthesized"
+            assert n.confidence != "exact"
+        for e in graph.edges:
+            if "__entry__" in (e.source, e.target) or "__exit__" in (e.source, e.target):
+                assert e.origin == "synthesized"
+                assert e.confidence != "exact"
+
+    def test_hierarchical_manager_is_synthesized(self):
+        t1 = _make_task("task_a")
+        t2 = _make_task("task_b")
+        graph = extract_crewai(_make_crew([t1, t2], process="hierarchical"))
+
+        manager = node_by_id(graph, "__manager__")
+        assert manager is not None
+        assert manager.origin == "synthesized"
+        assert manager.confidence != "exact"
+
+        mgr_edges = [e for e in graph.edges if e.source == "__manager__"]
+        assert mgr_edges
+        assert all(e.origin == "synthesized" for e in mgr_edges)
+        assert all(e.confidence != "exact" for e in mgr_edges)
+
+        # Guessed connectivity: every task hooked to exit heuristically.
+        exit_edges = [e for e in graph.edges if e.target == "__exit__"]
+        assert all(e.confidence == "heuristic" for e in exit_edges)
+
+    def test_context_dependency_is_runtime_may(self):
+        t1 = _make_task("gather")
+        t2 = _make_task("analyze")
+        t3 = _make_task("report", context=[t1])
+        graph = extract_crewai(_make_crew([t1, t2, t3]))
+
+        dep = next(e for e in graph.edges if (e.source, e.target) == ("gather", "report"))
+        assert dep.origin == "runtime"
+        assert dep.confidence == "may"

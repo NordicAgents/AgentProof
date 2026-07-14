@@ -1,0 +1,164 @@
+{
+ "name": "Brenmull12__Hoohacks2025__multiturn",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "interactive_conversation",
+   "kind": "router",
+   "label": "interactive_conversation",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:400:400"
+  },
+  {
+   "id": "wait_for_user",
+   "kind": "llm",
+   "label": "wait_for_user",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:401:401"
+  },
+  {
+   "id": "determine_research_needs",
+   "kind": "llm",
+   "label": "determine_research_needs",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:402:402"
+  },
+  {
+   "id": "generate_analysis",
+   "kind": "llm",
+   "label": "generate_analysis",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:403:403"
+  },
+  {
+   "id": "final_response",
+   "kind": "llm",
+   "label": "final_response",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:404:404"
+  },
+  {
+   "id": "reset_conversation",
+   "kind": "llm",
+   "label": "reset_conversation",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:405:405"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "interactive_conversation",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:408:408"
+  },
+  {
+   "source": "interactive_conversation",
+   "target": "interactive_conversation",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:411:421"
+  },
+  {
+   "source": "interactive_conversation",
+   "target": "wait_for_user",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:411:421"
+  },
+  {
+   "source": "interactive_conversation",
+   "target": "determine_research_needs",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:411:421"
+  },
+  {
+   "source": "interactive_conversation",
+   "target": "reset_conversation",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:411:421"
+  },
+  {
+   "source": "interactive_conversation",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:411:421"
+  },
+  {
+   "source": "determine_research_needs",
+   "target": "generate_analysis",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:424:424"
+  },
+  {
+   "source": "generate_analysis",
+   "target": "final_response",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:425:425"
+  },
+  {
+   "source": "final_response",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:427:427"
+  },
+  {
+   "source": "reset_conversation",
+   "target": "interactive_conversation",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Brenmull12__Hoohacks2025@f65c814/multiturn.py:428:428"
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "name": "VamshiKrishna660__BloodWise-AI__task",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+   "kind": "tool",
+   "label": "Analyze the user's query: \"{query}\" and the blood ",
+   "tools": [
+    "search_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/VamshiKrishna660__BloodWise-AI@140cbdc/task.py:14:27"
+  },
+  {
+   "id": "review_the_patient's_blood_test_report_located_at_",
+   "kind": "llm",
+   "label": "Review the patient's blood test report located at ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/VamshiKrishna660__BloodWise-AI@140cbdc/task.py:30:42"
+  },
+  {
+   "id": "design_a_safe,_effective_exercise_plan_based_on_th",
+   "kind": "llm",
+   "label": "Design a safe, effective exercise plan based on th",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/VamshiKrishna660__BloodWise-AI@140cbdc/task.py:45:57"
+  },
+  {
+   "id": "carefully_verify_the_uploaded_document_at_\"{file_p",
+   "kind": "llm",
+   "label": "Carefully verify the uploaded document at \"{file_p",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/VamshiKrishna660__BloodWise-AI@140cbdc/task.py:60:72"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "analyze_the_user's_query:_\"{query}\"_and_the_blood_",
+   "target": "review_the_patient's_blood_test_report_located_at_",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "review_the_patient's_blood_test_report_located_at_",
+   "target": "design_a_safe,_effective_exercise_plan_based_on_th",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "design_a_safe,_effective_exercise_plan_based_on_th",
+   "target": "carefully_verify_the_uploaded_document_at_\"{file_p",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "carefully_verify_the_uploaded_document_at_\"{file_p",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

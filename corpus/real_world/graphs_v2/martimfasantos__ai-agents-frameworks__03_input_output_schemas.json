@@ -1,0 +1,89 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__03_input_output_schemas",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research",
+   "kind": "llm",
+   "label": "research",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:87:87"
+  },
+  {
+   "id": "analyze",
+   "kind": "llm",
+   "label": "analyze",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:88:88"
+  },
+  {
+   "id": "answer",
+   "kind": "llm",
+   "label": "answer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:89:89"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:91:91"
+  },
+  {
+   "source": "research",
+   "target": "analyze",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:92:92"
+  },
+  {
+   "source": "analyze",
+   "target": "answer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:93:93"
+  },
+  {
+   "source": "answer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/03_input_output_schemas.py:94:94"
+  }
+ ]
+}

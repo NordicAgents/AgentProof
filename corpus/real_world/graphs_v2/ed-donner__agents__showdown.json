@@ -1,0 +1,89 @@
+{
+ "name": "ed-donner__agents__showdown",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chelsea_agent",
+   "kind": "llm",
+   "label": "chelsea_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/a3_igniters_ebenhays/showdown.py:85:90"
+  },
+  {
+   "id": "city_agent",
+   "kind": "llm",
+   "label": "city_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/a3_igniters_ebenhays/showdown.py:85:90"
+  },
+  {
+   "id": "mediator",
+   "kind": "llm",
+   "label": "mediator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/a3_igniters_ebenhays/showdown.py:85:90"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "chelsea_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "chelsea_agent",
+   "target": "city_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "city_agent",
+   "target": "mediator",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "mediator",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

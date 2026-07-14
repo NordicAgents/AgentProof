@@ -1,0 +1,36 @@
+{
+ "name": "aking66__visual-ai-automation__run",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "node_id",
+   "kind": "router",
+   "label": "node_id",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/aking66__visual-ai-automation@64bbdc6/run.py:250:250"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "start_node_id_actual",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/aking66__visual-ai-automation@64bbdc6/run.py:251:251"
+  }
+ ]
+}

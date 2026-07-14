@@ -1,0 +1,105 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__20_evaluator_optimizer",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generator",
+   "kind": "llm",
+   "label": "generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:157:157"
+  },
+  {
+   "id": "evaluator",
+   "kind": "router",
+   "label": "evaluator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:158:158"
+  },
+  {
+   "id": "finalize",
+   "kind": "llm",
+   "label": "finalize",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:159:159"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "generator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:161:161"
+  },
+  {
+   "source": "generator",
+   "target": "evaluator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:162:162"
+  },
+  {
+   "source": "evaluator",
+   "target": "generator",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:163:171"
+  },
+  {
+   "source": "evaluator",
+   "target": "finalize",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:163:171"
+  },
+  {
+   "source": "evaluator",
+   "target": "finalize",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:163:171"
+  },
+  {
+   "source": "finalize",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/20_evaluator_optimizer.py:172:172"
+  }
+ ]
+}

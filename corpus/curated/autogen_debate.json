@@ -11,42 +11,60 @@
       "kind": "entry",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "moderator",
       "kind": "router",
       "label": "debate_moderator",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "pro",
       "kind": "llm",
       "label": "pro_debater",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "con",
       "kind": "llm",
       "label": "con_debater",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "judge",
       "kind": "llm",
       "label": "judge",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "__end__",
       "kind": "exit",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ],
   "edges": [
@@ -54,43 +72,64 @@
       "source": "__start__",
       "target": "moderator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "moderator",
       "target": "pro",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "moderator",
       "target": "con",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "pro",
       "target": "moderator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "con",
       "target": "moderator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "moderator",
       "target": "judge",
       "kind": "conditional",
-      "condition": "debate_complete"
+      "condition": "debate_complete",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "judge",
       "target": "__end__",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ]
 }

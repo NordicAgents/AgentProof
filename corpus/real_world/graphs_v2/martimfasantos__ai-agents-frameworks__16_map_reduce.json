@@ -1,0 +1,64 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__16_map_reduce",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyze",
+   "kind": "llm",
+   "label": "analyze",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/16_map_reduce.py:90:90"
+  },
+  {
+   "id": "synthesize",
+   "kind": "llm",
+   "label": "synthesize",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/16_map_reduce.py:91:91"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "analyze",
+   "target": "synthesize",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/16_map_reduce.py:96:96"
+  },
+  {
+   "source": "synthesize",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/langgraph/16_map_reduce.py:97:97"
+  }
+ ]
+}

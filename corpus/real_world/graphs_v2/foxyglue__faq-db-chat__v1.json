@@ -1,0 +1,81 @@
+{
+ "name": "foxyglue__faq-db-chat__v1",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "query_router",
+   "kind": "router",
+   "label": "query_router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:236:236"
+  },
+  {
+   "id": "faq_flow",
+   "kind": "llm",
+   "label": "faq_flow",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:237:237"
+  },
+  {
+   "id": "db_flow",
+   "kind": "llm",
+   "label": "db_flow",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:238:238"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "query_router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:250:250"
+  },
+  {
+   "source": "faq_flow",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:253:253"
+  },
+  {
+   "source": "db_flow",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/foxyglue__faq-db-chat@d91013a/v1.py:254:254"
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "name": "gadha02__KLAW-APP-Internship__Math_Tutor",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/gadha02__KLAW-APP-Internship@6d0dd27/Week 4/May 28/Math_Tutor.py:82:87"
+  },
+  {
+   "id": "problem_solver",
+   "kind": "llm",
+   "label": "problem_solver",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/gadha02__KLAW-APP-Internship@6d0dd27/Week 4/May 28/Math_Tutor.py:82:87"
+  },
+  {
+   "id": "verifier",
+   "kind": "llm",
+   "label": "verifier",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/gadha02__KLAW-APP-Internship@6d0dd27/Week 4/May 28/Math_Tutor.py:82:87"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "problem_solver",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "problem_solver",
+   "target": "verifier",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "verifier",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

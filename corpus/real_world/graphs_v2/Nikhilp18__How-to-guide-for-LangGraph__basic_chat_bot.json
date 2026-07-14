@@ -1,0 +1,105 @@
+{
+ "name": "Nikhilp18__How-to-guide-for-LangGraph__basic_chat_bot",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chat",
+   "kind": "llm",
+   "label": "chat",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:57:57"
+  },
+  {
+   "id": "continue_conversation",
+   "kind": "router",
+   "label": "continue_conversation",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:58:58"
+  },
+  {
+   "id": "user_speak",
+   "kind": "llm",
+   "label": "user_speak",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:59:59"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "user_speak",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:61:61"
+  },
+  {
+   "source": "user_speak",
+   "target": "continue_conversation",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:62:62"
+  },
+  {
+   "source": "continue_conversation",
+   "target": "chat",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:63:67"
+  },
+  {
+   "source": "continue_conversation",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:63:67"
+  },
+  {
+   "source": "chat",
+   "target": "user_speak",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:68:68"
+  },
+  {
+   "source": "user_speak",
+   "target": "continue_conversation",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/basic_chat_bot.py:69:69"
+  }
+ ]
+}

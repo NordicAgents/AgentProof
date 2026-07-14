@@ -1,0 +1,89 @@
+{
+ "name": "icyzh__Quillgraph__ai",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "researcher",
+   "kind": "llm",
+   "label": "researcher",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:101:101"
+  },
+  {
+   "id": "analyst",
+   "kind": "llm",
+   "label": "analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:102:102"
+  },
+  {
+   "id": "writer",
+   "kind": "llm",
+   "label": "writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:103:103"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "researcher",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:105:105"
+  },
+  {
+   "source": "researcher",
+   "target": "analyst",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:106:106"
+  },
+  {
+   "source": "analyst",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:107:107"
+  },
+  {
+   "source": "writer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/icyzh__Quillgraph@a437825/ai.py:108:108"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "name": "CaioLessaSimao__LangGraph-teste__pdf_ocr_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "assistant",
+   "kind": "router",
+   "label": "assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/CaioLessaSimao__LangGraph-teste@f906c19/pdf_ocr_agent.py:91:91"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/CaioLessaSimao__LangGraph-teste@f906c19/pdf_ocr_agent.py:92:92"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/CaioLessaSimao__LangGraph-teste@f906c19/pdf_ocr_agent.py:93:93"
+  },
+  {
+   "source": "tools",
+   "target": "assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/CaioLessaSimao__LangGraph-teste@f906c19/pdf_ocr_agent.py:95:95"
+  }
+ ]
+}

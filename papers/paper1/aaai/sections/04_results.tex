@@ -22,16 +22,21 @@ soundness premise of Section~\ref{sec:system} is required and we restrict the
 claim accordingly---pruning applies to graphs whose paths over-approximate
 runtime traces (here, the curated corpus; in deployment, runtime-extracted
 graphs), \emph{never} to lossy AST-extracted graphs, whose missing edges could
-make a live monitor look inert. Under that premise, a policy whose product
-reaches no violation---by bad prefix, by termination, or by divergent
-obligation---can never fire at runtime on that workflow, so its monitor need
-not be deployed. Multi-tool nodes are first expanded into a complete digraph
-of single-tool nodes (admitting every invocation order and subset), so the
-expansion over-approximates rather than fixing one arbitrary tool order.
+make a live monitor look inert. Under that premise, a policy whose product is
+\emph{safe}---no resolution of the workflow's declared tool bindings reaches a
+bad prefix or a termination point with a pending obligation---can never fire
+at runtime on that workflow, so its monitor need not be deployed. The product
+natively explores every declared tool and the no-invocation case at each tool
+node, so unresolved tool choice over-approximates rather than fixing one
+arbitrary order; and it prunes only on \emph{safe}: a workflow whose cycles
+could postpone an obligation forever yields \emph{inconclusive}, and that
+monitor is kept.
 
-Across the curated corpus and 15 policies, 251 of 270 monitor instances
-(93.0\%) are provably inert---a mean of 13.9 of 15 monitors skipped per
-workflow, leaving runtime enforcement to evaluate only the remaining 7\%.
+Across the curated corpus and 15 policies, 237 of 270 monitor instances
+(87.8\%) are provably inert---a mean of 13.2 of 15 monitors skipped per
+workflow---while 19 may fire and 14 (all on one seeded livelock workflow) are
+declined as inconclusive, leaving runtime enforcement to evaluate the
+remaining 12.2\%.
 
 We report two honest limits. First, on today's small, mostly linear workflows
 \emph{every} proven-inert case is alphabet-level (the policy's atoms never

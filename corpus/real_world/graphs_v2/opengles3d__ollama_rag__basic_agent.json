@@ -1,0 +1,53 @@
+{
+ "name": "opengles3d__ollama_rag__basic_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "model",
+   "kind": "router",
+   "label": "model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/basic_agent.py:38:38"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/basic_agent.py:39:39"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/basic_agent.py:40:40"
+  },
+  {
+   "source": "tools",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/basic_agent.py:42:42"
+  }
+ ]
+}

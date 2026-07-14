@@ -1,0 +1,106 @@
+{
+ "name": "chauhand2463__Cyber_LLM__run_framework",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/chauhand2463__Cyber_LLM@f57101e/run_framework.py:80:85"
+  },
+  {
+   "id": "task_coordinator_agent",
+   "kind": "llm",
+   "label": "task_coordinator_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/chauhand2463__Cyber_LLM@f57101e/run_framework.py:80:85"
+  },
+  {
+   "id": "text_analyst_agent",
+   "kind": "llm",
+   "label": "text_analyst_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/chauhand2463__Cyber_LLM@f57101e/run_framework.py:80:85"
+  },
+  {
+   "id": "cmd_exec_agent",
+   "kind": "llm",
+   "label": "cmd_exec_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/chauhand2463__Cyber_LLM@f57101e/run_framework.py:80:85"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "task_coordinator_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "task_coordinator_agent",
+   "target": "text_analyst_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "text_analyst_agent",
+   "target": "cmd_exec_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "cmd_exec_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

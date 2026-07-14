@@ -1,0 +1,72 @@
+{
+ "name": "pedapallisuresh__Data-Pipeline-Agent__agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "bronze_to_silver_agent",
+   "kind": "llm",
+   "label": "bronze_to_silver_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/pedapallisuresh__Data-Pipeline-Agent@6944f54/agent.py:82:82"
+  },
+  {
+   "id": "silver_to_gold_agent",
+   "kind": "llm",
+   "label": "silver_to_gold_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/pedapallisuresh__Data-Pipeline-Agent@6944f54/agent.py:83:83"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "bronze_to_silver_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "bronze_to_silver_agent",
+   "target": "silver_to_gold_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "silver_to_gold_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

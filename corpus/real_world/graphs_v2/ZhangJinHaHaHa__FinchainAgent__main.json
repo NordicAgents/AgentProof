@@ -1,0 +1,164 @@
+{
+ "name": "ZhangJinHaHaHa__FinchainAgent__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyst_a",
+   "kind": "llm",
+   "label": "analyst_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:259:259"
+  },
+  {
+   "id": "analyst_b",
+   "kind": "llm",
+   "label": "analyst_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:260:260"
+  },
+  {
+   "id": "analyst_c",
+   "kind": "llm",
+   "label": "analyst_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:261:261"
+  },
+  {
+   "id": "auditor",
+   "kind": "router",
+   "label": "auditor",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:262:262"
+  },
+  {
+   "id": "blockchain",
+   "kind": "llm",
+   "label": "blockchain",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:263:263"
+  },
+  {
+   "id": "dispatcher",
+   "kind": "llm",
+   "label": "dispatcher",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:269:269"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "dispatcher",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:270:270"
+  },
+  {
+   "source": "dispatcher",
+   "target": "analyst_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:273:273"
+  },
+  {
+   "source": "dispatcher",
+   "target": "analyst_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:274:274"
+  },
+  {
+   "source": "dispatcher",
+   "target": "analyst_c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:275:275"
+  },
+  {
+   "source": "analyst_a",
+   "target": "auditor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:278:278"
+  },
+  {
+   "source": "analyst_b",
+   "target": "auditor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:279:279"
+  },
+  {
+   "source": "analyst_c",
+   "target": "auditor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:280:280"
+  },
+  {
+   "source": "auditor",
+   "target": "dispatcher",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:283:290"
+  },
+  {
+   "source": "auditor",
+   "target": "blockchain",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:283:290"
+  },
+  {
+   "source": "blockchain",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ZhangJinHaHaHa__FinchainAgent@f6f04ed/main.py:292:292"
+  }
+ ]
+}

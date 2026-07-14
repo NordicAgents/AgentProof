@@ -1,0 +1,89 @@
+{
+ "name": "Poly186-AI-DAO__PolyGPT-alpha__agent_vision",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Poly186-AI-DAO__PolyGPT-alpha@796e0ce/agents/agent_vision.py:166:167"
+  },
+  {
+   "id": "img_gen_assistant",
+   "kind": "llm",
+   "label": "img_gen_assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Poly186-AI-DAO__PolyGPT-alpha@796e0ce/agents/agent_vision.py:166:167"
+  },
+  {
+   "id": "img_critic_assistant",
+   "kind": "llm",
+   "label": "img_critic_assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Poly186-AI-DAO__PolyGPT-alpha@796e0ce/agents/agent_vision.py:166:167"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "img_gen_assistant",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "img_gen_assistant",
+   "target": "img_critic_assistant",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "img_critic_assistant",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

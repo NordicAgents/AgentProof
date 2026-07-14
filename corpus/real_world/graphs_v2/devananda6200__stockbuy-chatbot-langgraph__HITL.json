@@ -1,0 +1,72 @@
+{
+ "name": "devananda6200__stockbuy-chatbot-langgraph__HITL",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chatbot",
+   "kind": "router",
+   "label": "chatbot",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/devananda6200__stockbuy-chatbot-langgraph@7a3d048/HITL.py:45:45"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/devananda6200__stockbuy-chatbot-langgraph@7a3d048/HITL.py:46:46"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/devananda6200__stockbuy-chatbot-langgraph@7a3d048/HITL.py:47:47"
+  },
+  {
+   "source": "tools",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/devananda6200__stockbuy-chatbot-langgraph@7a3d048/HITL.py:49:49"
+  },
+  {
+   "source": "chatbot",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/devananda6200__stockbuy-chatbot-langgraph@7a3d048/HITL.py:50:50"
+  }
+ ]
+}

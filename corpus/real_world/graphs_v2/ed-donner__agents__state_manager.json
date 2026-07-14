@@ -1,0 +1,130 @@
+{
+ "name": "ed-donner__agents__state_manager",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "router",
+   "kind": "router",
+   "label": "router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:165:165"
+  },
+  {
+   "id": "challenge_step",
+   "kind": "llm",
+   "label": "challenge_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:166:166"
+  },
+  {
+   "id": "plan_step",
+   "kind": "router",
+   "label": "plan_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:167:167"
+  },
+  {
+   "id": "build_step",
+   "kind": "llm",
+   "label": "build_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:168:168"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:170:170"
+  },
+  {
+   "source": "router",
+   "target": "challenge_step",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:172:180"
+  },
+  {
+   "source": "router",
+   "target": "build_step",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:172:180"
+  },
+  {
+   "source": "router",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:172:180"
+  },
+  {
+   "source": "challenge_step",
+   "target": "plan_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:182:182"
+  },
+  {
+   "source": "plan_step",
+   "target": "build_step",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:184:191"
+  },
+  {
+   "source": "plan_step",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:184:191"
+  },
+  {
+   "source": "build_step",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/kachaje-andela-genai-bootcamp/backend/state_manager.py:193:193"
+  }
+ ]
+}

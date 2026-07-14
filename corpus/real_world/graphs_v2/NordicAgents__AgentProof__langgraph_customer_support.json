@@ -1,0 +1,114 @@
+{
+ "name": "NordicAgents__AgentProof__langgraph_customer_support",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "router",
+   "kind": "router",
+   "label": "router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:89:89"
+  },
+  {
+   "id": "agent",
+   "kind": "llm",
+   "label": "agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:90:90"
+  },
+  {
+   "id": "escalate_human",
+   "kind": "human",
+   "label": "escalate_human",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:91:91"
+  },
+  {
+   "id": "tool_call",
+   "kind": "tool",
+   "label": "tool_call",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:92:92"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:94:94"
+  },
+  {
+   "source": "router",
+   "target": "agent",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:95:99"
+  },
+  {
+   "source": "router",
+   "target": "escalate_human",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:95:99"
+  },
+  {
+   "source": "agent",
+   "target": "tool_call",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:100:100"
+  },
+  {
+   "source": "escalate_human",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:101:101"
+  },
+  {
+   "source": "tool_call",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_customer_support.py:102:102"
+  }
+ ]
+}

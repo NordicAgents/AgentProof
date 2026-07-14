@@ -1,0 +1,105 @@
+{
+ "name": "SAMAR-CODE404__backend__research_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generate_queries",
+   "kind": "llm",
+   "label": "generate_queries",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:137:137"
+  },
+  {
+   "id": "human_approval",
+   "kind": "router",
+   "label": "human_approval",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:138:138"
+  },
+  {
+   "id": "web_search",
+   "kind": "router",
+   "label": "web_search",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:139:139"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "generate_queries",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:142:142"
+  },
+  {
+   "source": "generate_queries",
+   "target": "human_approval",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:143:143"
+  },
+  {
+   "source": "human_approval",
+   "target": "web_search",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:144:152"
+  },
+  {
+   "source": "human_approval",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:144:152"
+  },
+  {
+   "source": "web_search",
+   "target": "web_search",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:153:157"
+  },
+  {
+   "source": "web_search",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/research_agent.py:153:157"
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "name": "ed-donner__agents__agents",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyst",
+   "kind": "llm",
+   "label": "analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/ngahunj/agents.py:164:168"
+  },
+  {
+   "id": "cfo",
+   "kind": "llm",
+   "label": "cfo",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/ngahunj/agents.py:164:168"
+  },
+  {
+   "id": "risk_officer",
+   "kind": "llm",
+   "label": "risk_officer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/ngahunj/agents.py:164:168"
+  },
+  {
+   "id": "portfolio_manager",
+   "kind": "llm",
+   "label": "portfolio_manager",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/ngahunj/agents.py:164:168"
+  },
+  {
+   "id": "secretary",
+   "kind": "llm",
+   "label": "secretary",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/5_agent_frameworks/community_contributions/ngahunj/agents.py:164:168"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "analyst",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "analyst",
+   "target": "cfo",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "cfo",
+   "target": "risk_officer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "risk_officer",
+   "target": "portfolio_manager",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "portfolio_manager",
+   "target": "secretary",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "secretary",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

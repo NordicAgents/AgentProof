@@ -1,0 +1,80 @@
+{
+ "name": "Elcano20241021__ReAct-Function-Calling__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "AGENT_REASON",
+   "kind": "router",
+   "label": "AGENT_REASON",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:22:22"
+  },
+  {
+   "id": "ACT",
+   "kind": "llm",
+   "label": "ACT",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:24:24"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "AGENT_REASON",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:23:23"
+  },
+  {
+   "source": "AGENT_REASON",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:26:28"
+  },
+  {
+   "source": "AGENT_REASON",
+   "target": "ACT",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:26:28"
+  },
+  {
+   "source": "ACT",
+   "target": "AGENT_REASON",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Elcano20241021__ReAct-Function-Calling@256ef6b/main.py:30:30"
+  }
+ ]
+}

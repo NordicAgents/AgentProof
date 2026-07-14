@@ -1,11 +1,10 @@
 {
   "compile": [
     {
-      "compile_median_ms": 0.002540997229516506,
+      "compile_median_ms": 0.013059470802545547,
       "compiled_states": [
         0,
-        1,
-        2
+        1
       ],
       "dsl": "G !tool:rm_rf",
       "on_violation": "halt",
@@ -16,22 +15,19 @@
       ]
     },
     {
-      "compile_median_ms": 0.004959059879183769,
+      "compile_median_ms": 0.041639083065092564,
       "compiled_states": [
         0,
-        1,
-        2
+        1
       ],
       "dsl": "action:fetch -> F action:validate",
       "on_violation": "block",
       "predicate_count": 2,
       "rule_id": "interleave",
-      "violation_states": [
-        2
-      ]
+      "violation_states": []
     },
     {
-      "compile_median_ms": 0.005124951712787151,
+      "compile_median_ms": 0.02075941301882267,
       "compiled_states": [
         0,
         1,
@@ -42,13 +38,13 @@
       "predicate_count": 2,
       "rule_id": "until_like",
       "violation_states": [
-        2
+        1
       ]
     }
   ],
   "evaluate": {
     "event_count": 1000,
-    "median_events_per_sec": 327936.2418697322,
+    "median_events_per_sec": 182091.28258346918,
     "monitor_count": 3,
     "rules": [
       "forbidden_tool",

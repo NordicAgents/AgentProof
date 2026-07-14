@@ -18,7 +18,12 @@ distinguished entry $v_0$ and exit set $V_f$. Each node carries a kind
 $\kappa_V(v)\in\{\textsc{entry},\textsc{exit},\textsc{tool},\textsc{llm},
 \textsc{router},\textsc{human},\textsc{subgraph}\}$ and, for tool nodes, a set of
 bound tool names; each edge is \textsc{direct}, \textsc{conditional},
-\textsc{parallel}, or \textsc{loop}. Per-framework extractors bridge four
+\textsc{parallel}, or \textsc{loop}. Every node and edge additionally carries
+extraction \emph{provenance}---an origin (runtime object, explicit AST,
+inferred, synthesized, unknown), a confidence (exact, may, heuristic), and a
+source span---so that structure read from a framework declaration is
+distinguishable from structure the extractor guessed, and downstream witness
+traces inherit the weakest confidence they traverse. Per-framework extractors bridge four
 heterogeneous representations---each with different entry/exit conventions, edge
 semantics, and hierarchy models---into this single typed model. The extractors
 themselves encode framework semantics and are hand-written once per framework;
@@ -49,15 +54,20 @@ Beyond topology, Agentproof supports a policy DSL over finite traces
 (LTL$_f$~\citep{degiacomo2013ltlf}): a workflow execution is a finite event
 sequence, and each of the seven DSL forms denotes an LTL$_f$ formula---forbidden
 ($\mathbf{G}\,\neg a$), response ($\mathbf{G}(a \rightarrow \mathbf{F}\,b)$),
-strong until ($a\,\mathbf{U}\,b$), bounded response
+strong until ($a\,\mathbf{U}\,b$, including nested until), bounded response
 ($\mathbf{G}(a \rightarrow \mathbf{F}_{\leq k}\,b)$), response chain
 ($\mathbf{G}(a \rightarrow \mathbf{F}(b \wedge \mathbf{F}c))$), conjunction, and
-disjunction. Each form compiles to a DFA over node-event symbols $\sigma(v)$
-(2--3 states for base patterns, $k{+}2$ for bounded response), with two
-disjoint violation mechanisms: an absorbing \emph{violation state} entered on a
-bad prefix (for the safety and co-safety forms), and a set of \emph{accepting
-states} such that a trace ending in a non-accepting state---a pending
-$\mathbf{F}$-obligation---violates the property at termination. Runtime
+disjunction. Formulas are parsed into a typed recursive AST and compiled
+compositionally to a DFA by LTL$_f$ formula progression (2--3 states for base
+patterns, $k{+}2$ for bounded response), with two disjoint violation
+mechanisms: \emph{violation states} are exactly the doomed states---those from
+which no accepting state is reachable---so a bad prefix is flagged at the
+earliest event that makes every extension violating; and a trace ending in a
+non-accepting state---a pending $\mathbf{F}$-obligation---violates the
+property at termination. The compiler's verdicts are differentially tested
+against an independent, directly recursive reference evaluator, exhaustively
+over all traces up to length six for two-atom formulas and property-based
+beyond. Runtime
 monitors evaluate events in $O(1)$ each and apply the end-of-trace acceptance
 check when the workflow terminates; obligations still open when a run is
 aborted are reported as inconclusive rather than violated, following
@@ -66,23 +76,32 @@ three-valued runtime verification~\citep{bauer2011ltl3}.
 \paragraph{Static temporal verification.}
 Policies are checked statically via a graph\,$\times$\,DFA product: BFS from
 $(v_0,q_0)$ advances the DFA at each node and follows graph edges. Executions
-are modeled as \emph{maximal} paths---finite ones ending at an exit, judged by
-LTL$_f$, and infinite ones that never leave the graph, judged by standard LTL.
-The product therefore reports a violation in three cases: a reachable DFA
-violation state (bad prefix), a reachable exit whose post-transition DFA state
-is non-accepting (unfulfilled obligation at termination), and a reachable
-product cycle that remains non-accepting throughout (an obligation postponable
-forever). Explored states are bounded by $|V|\cdot|Q|$, so verification is
-linear in graph size for fixed-size DFAs.
+are modeled as finite \emph{maximal} paths, judged by LTL$_f$: paths ending at
+an exit node or at a dead end. Because static extraction cannot prove which of
+a tool node's declared tools will be invoked, or whether any will be, the
+product is \emph{conservative}: at each tool node it closes the DFA state over
+every finite invocation sequence drawn from the declared tools, including the
+empty one---a false alarm is acceptable, a false proof is not. The checker
+returns one of three verdicts: \emph{may-violate}, when some resolution
+reaches a DFA violation state (bad prefix) or a termination point with a
+pending obligation; \emph{safe}, when no resolution does; and
+\emph{inconclusive}, when the only finding is a reachable product cycle on
+which an obligation could be postponed forever, or no termination point is
+reachable---cases a finite-trace semantics cannot decide, which we
+deliberately do not claim. Witness paths carry the provenance-derived
+confidence of the edges and bindings they traverse. Explored states are
+bounded by $|V|\cdot|Q|$, so verification is linear in graph size for
+fixed-size DFAs.
 
 \paragraph{Soundness and its premise.}
 If the analyzed graph's paths \emph{over-approximate} the workflow's runtime
-traces (trace containment), then ``no violation reachable'' implies the
-property holds on every runtime execution---the guarantee we exploit for
+traces (trace containment), then a \emph{safe} verdict implies the property
+holds on every finite maximal runtime execution---the guarantee we exploit for
 monitor pruning in Section~\ref{sec:results}. Trace containment holds by
 construction for our curated corpus (graphs authored with the code) and for
 runtime-extracted graphs absent dynamic graph modification. It does
 \emph{not} hold for the lossy AST fallback used in mining, whose measured edge
 recall of 0.65 means extracted graphs \emph{under}-approximate real behavior
 (Section~\ref{sec:realworld}); we therefore never claim static guarantees on
-mined graphs, only measurements.
+mined graphs, only measurements---and the provenance fields make the
+distinction machine-checkable in the tool's output.

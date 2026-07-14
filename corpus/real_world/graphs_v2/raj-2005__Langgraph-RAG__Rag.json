@@ -1,0 +1,80 @@
+{
+ "name": "raj-2005__Langgraph-RAG__Rag",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "llm",
+   "kind": "router",
+   "label": "llm",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:165:165"
+  },
+  {
+   "id": "retriever_agent",
+   "kind": "llm",
+   "label": "retriever_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:166:166"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "llm",
+   "target": "retriever_agent",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:168:172"
+  },
+  {
+   "source": "llm",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:168:172"
+  },
+  {
+   "source": "retriever_agent",
+   "target": "llm",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:173:173"
+  },
+  {
+   "source": "__start__",
+   "target": "llm",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/raj-2005__Langgraph-RAG@76aaa34/Rag.py:174:174"
+  }
+ ]
+}

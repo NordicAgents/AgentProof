@@ -11,7 +11,10 @@
       "kind": "entry",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "research",
@@ -21,21 +24,30 @@
         "web_search",
         "scraper"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "write",
       "kind": "llm",
       "label": "writer",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "edit",
       "kind": "llm",
       "label": "editor",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "seo",
@@ -44,7 +56,10 @@
       "tools": [
         "keyword_analyzer"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "publish",
@@ -53,14 +68,20 @@
       "tools": [
         "cms_api"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "__end__",
       "kind": "exit",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ],
   "edges": [
@@ -68,37 +89,55 @@
       "source": "__start__",
       "target": "research",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "research",
       "target": "write",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "write",
       "target": "edit",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "edit",
       "target": "seo",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "seo",
       "target": "publish",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "publish",
       "target": "__end__",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ]
 }

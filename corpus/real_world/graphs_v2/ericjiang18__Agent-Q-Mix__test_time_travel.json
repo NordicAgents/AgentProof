@@ -1,0 +1,1740 @@
+{
+ "name": "ericjiang18__Agent-Q-Mix__test_time_travel",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "node_b",
+   "kind": "llm",
+   "label": "node_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:84:86"
+  },
+  {
+   "id": "node_a",
+   "kind": "llm",
+   "label": "node_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:84:85"
+  },
+  {
+   "id": "ask_human",
+   "kind": "human",
+   "label": "ask_human",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:246:248"
+  },
+  {
+   "id": "interrupt_2",
+   "kind": "llm",
+   "label": "interrupt_2",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:468"
+  },
+  {
+   "id": "interrupt_1",
+   "kind": "llm",
+   "label": "interrupt_1",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:467"
+  },
+  {
+   "id": "after",
+   "kind": "llm",
+   "label": "after",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:531:533"
+  },
+  {
+   "id": "ask",
+   "kind": "llm",
+   "label": "ask",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:531:532"
+  },
+  {
+   "id": "step_b",
+   "kind": "llm",
+   "label": "step_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:588:590"
+  },
+  {
+   "id": "step_a",
+   "kind": "llm",
+   "label": "step_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:588:589"
+  },
+  {
+   "id": "post_process",
+   "kind": "llm",
+   "label": "post_process",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:604"
+  },
+  {
+   "id": "subgraph",
+   "kind": "llm",
+   "label": "subgraph",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:603"
+  },
+  {
+   "id": "parent_node",
+   "kind": "llm",
+   "label": "parent_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:602"
+  },
+  {
+   "id": "subgraph_node",
+   "kind": "llm",
+   "label": "subgraph_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:737:739"
+  },
+  {
+   "id": "router",
+   "kind": "router",
+   "label": "router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:737:738"
+  },
+  {
+   "id": "ask_2",
+   "kind": "llm",
+   "label": "ask_2",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1153"
+  },
+  {
+   "id": "ask_1",
+   "kind": "llm",
+   "label": "ask_1",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1152"
+  },
+  {
+   "id": "executor",
+   "kind": "llm",
+   "label": "executor",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1162:1163"
+  },
+  {
+   "id": "inner",
+   "kind": "llm",
+   "label": "inner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1408:1409"
+  },
+  {
+   "id": "outer",
+   "kind": "llm",
+   "label": "outer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1415:1416"
+  },
+  {
+   "id": "pre",
+   "kind": "llm",
+   "label": "pre",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1667:1668"
+  },
+  {
+   "id": "process",
+   "kind": "llm",
+   "label": "process",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1902:1903"
+  },
+  {
+   "id": "sub",
+   "kind": "llm",
+   "label": "sub",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1912:1913"
+  },
+  {
+   "id": "sub_node",
+   "kind": "router",
+   "label": "sub_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2017:2019"
+  },
+  {
+   "id": "sub_step",
+   "kind": "llm",
+   "label": "sub_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2159:2160"
+  },
+  {
+   "id": "node_c",
+   "kind": "llm",
+   "label": "node_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2241:2244"
+  },
+  {
+   "id": "parent_end",
+   "kind": "llm",
+   "label": "parent_end",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2369"
+  },
+  {
+   "id": "sub_graph",
+   "kind": "llm",
+   "label": "sub_graph",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2368"
+  },
+  {
+   "id": "parent_start",
+   "kind": "llm",
+   "label": "parent_start",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2367"
+  },
+  {
+   "id": "inner_step",
+   "kind": "llm",
+   "label": "inner_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2815:2816"
+  },
+  {
+   "id": "inner_node",
+   "kind": "llm",
+   "label": "inner_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2822:2824"
+  },
+  {
+   "id": "mid_step",
+   "kind": "llm",
+   "label": "mid_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2822:2823"
+  },
+  {
+   "id": "mid_node",
+   "kind": "llm",
+   "label": "mid_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2831:2833"
+  },
+  {
+   "id": "parent_step",
+   "kind": "llm",
+   "label": "parent_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2831:2832"
+  },
+  {
+   "id": "sub_a_step",
+   "kind": "llm",
+   "label": "sub_a_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3032:3033"
+  },
+  {
+   "id": "sub_b_step",
+   "kind": "llm",
+   "label": "sub_b_step",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3039:3040"
+  },
+  {
+   "id": "sub_b_node",
+   "kind": "llm",
+   "label": "sub_b_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3046:3049"
+  },
+  {
+   "id": "sub_a_node",
+   "kind": "llm",
+   "label": "sub_a_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3046:3048"
+  },
+  {
+   "id": "inc",
+   "kind": "llm",
+   "label": "inc",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3129:3130"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:84:88"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:84:87"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:122:124"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:158:162"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:158:161"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:193:197"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:193:196"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:246:252"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:246:251"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:246:250"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:300:306"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:300:305"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:300:304"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:349:355"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:349:354"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:349:353"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:401:407"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:401:406"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:401:405"
+  },
+  {
+   "source": "interrupt_2",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:473"
+  },
+  {
+   "source": "interrupt_1",
+   "target": "interrupt_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:472"
+  },
+  {
+   "source": "node_a",
+   "target": "interrupt_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:471"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:465:470"
+  },
+  {
+   "source": "ask",
+   "target": "after",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:531:535"
+  },
+  {
+   "source": "__start__",
+   "target": "ask",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:531:534"
+  },
+  {
+   "source": "step_a",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:588:592"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:588:591"
+  },
+  {
+   "source": "subgraph",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:607"
+  },
+  {
+   "source": "parent_node",
+   "target": "subgraph",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:606"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:601:605"
+  },
+  {
+   "source": "step_a",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:650:654"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:650:653"
+  },
+  {
+   "source": "subgraph",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:663:669"
+  },
+  {
+   "source": "parent_node",
+   "target": "subgraph",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:663:668"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:663:667"
+  },
+  {
+   "source": "ask_human",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:722:728"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:722:727"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:722:726"
+  },
+  {
+   "source": "subgraph_node",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:737:743"
+  },
+  {
+   "source": "router",
+   "target": "subgraph_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:737:742"
+  },
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:737:741"
+  },
+  {
+   "source": "ask_human",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:799:805"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:799:804"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:799:803"
+  },
+  {
+   "source": "subgraph_node",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:814:820"
+  },
+  {
+   "source": "router",
+   "target": "subgraph_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:814:819"
+  },
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:814:818"
+  },
+  {
+   "source": "ask_human",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:888:894"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:888:893"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:888:892"
+  },
+  {
+   "source": "subgraph_node",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:903:909"
+  },
+  {
+   "source": "router",
+   "target": "subgraph_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:903:908"
+  },
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:903:907"
+  },
+  {
+   "source": "ask_human",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:977:983"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:977:982"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:977:981"
+  },
+  {
+   "source": "subgraph_node",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:992:998"
+  },
+  {
+   "source": "router",
+   "target": "subgraph_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:992:997"
+  },
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:992:996"
+  },
+  {
+   "source": "ask_human",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1064:1070"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1064:1069"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1064:1068"
+  },
+  {
+   "source": "subgraph_node",
+   "target": "post_process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1079:1085"
+  },
+  {
+   "source": "router",
+   "target": "subgraph_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1079:1084"
+  },
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1079:1083"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1157"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1156"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1155"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1150:1154"
+  },
+  {
+   "source": "__start__",
+   "target": "executor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1162:1164"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1238:1245"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1238:1244"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1238:1243"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1238:1242"
+  },
+  {
+   "source": "__start__",
+   "target": "executor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1250:1252"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1323:1330"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1323:1329"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1323:1328"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1323:1327"
+  },
+  {
+   "source": "__start__",
+   "target": "executor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1335:1337"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1396:1403"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1396:1402"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1396:1401"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1396:1400"
+  },
+  {
+   "source": "__start__",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1408:1410"
+  },
+  {
+   "source": "__start__",
+   "target": "outer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1415:1417"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1482:1489"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1482:1488"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1482:1487"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1482:1486"
+  },
+  {
+   "source": "__start__",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1494:1496"
+  },
+  {
+   "source": "__start__",
+   "target": "outer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1501:1503"
+  },
+  {
+   "source": "ask_2",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1574:1581"
+  },
+  {
+   "source": "ask_1",
+   "target": "ask_2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1574:1580"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1574:1579"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1574:1578"
+  },
+  {
+   "source": "__start__",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1586:1588"
+  },
+  {
+   "source": "__start__",
+   "target": "outer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1593:1595"
+  },
+  {
+   "source": "ask_1",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1657:1662"
+  },
+  {
+   "source": "step_a",
+   "target": "ask_1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1657:1661"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1657:1660"
+  },
+  {
+   "source": "inner",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1667:1672"
+  },
+  {
+   "source": "pre",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1667:1671"
+  },
+  {
+   "source": "__start__",
+   "target": "pre",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1667:1670"
+  },
+  {
+   "source": "__start__",
+   "target": "outer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1677:1679"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1772:1778"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1772:1777"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1772:1776"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1814:1818"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1814:1817"
+  },
+  {
+   "source": "ask_human",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1856:1862"
+  },
+  {
+   "source": "node_a",
+   "target": "ask_human",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1856:1861"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1856:1860"
+  },
+  {
+   "source": "__start__",
+   "target": "process",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1902:1904"
+  },
+  {
+   "source": "__start__",
+   "target": "sub",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1912:1914"
+  },
+  {
+   "source": "__start__",
+   "target": "inner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1949:1951"
+  },
+  {
+   "source": "__start__",
+   "target": "outer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:1959:1961"
+  },
+  {
+   "source": "step_a",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2008:2012"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2008:2011"
+  },
+  {
+   "source": "parent_node",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2017:2021"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2017:2020"
+  },
+  {
+   "source": "step_a",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2087:2091"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2087:2090"
+  },
+  {
+   "source": "parent_node",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2096:2100"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2096:2099"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2159:2161"
+  },
+  {
+   "source": "node_b",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2166:2172"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2166:2171"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2166:2170"
+  },
+  {
+   "source": "node_b",
+   "target": "node_c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2241:2247"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2241:2246"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2241:2245"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2359:2361"
+  },
+  {
+   "source": "sub_graph",
+   "target": "parent_end",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2372"
+  },
+  {
+   "source": "parent_start",
+   "target": "sub_graph",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2371"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_start",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2366:2370"
+  },
+  {
+   "source": "node_b",
+   "target": "node_c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2459:2465"
+  },
+  {
+   "source": "node_a",
+   "target": "node_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2459:2464"
+  },
+  {
+   "source": "__start__",
+   "target": "node_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2459:2463"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2577:2579"
+  },
+  {
+   "source": "sub_graph",
+   "target": "parent_end",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2584:2590"
+  },
+  {
+   "source": "parent_start",
+   "target": "sub_graph",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2584:2589"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_start",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2584:2588"
+  },
+  {
+   "source": "step_a",
+   "target": "step_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2674:2678"
+  },
+  {
+   "source": "__start__",
+   "target": "step_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2674:2677"
+  },
+  {
+   "source": "parent_node",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2683:2687"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2683:2686"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2746:2748"
+  },
+  {
+   "source": "parent_node",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2753:2757"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2753:2756"
+  },
+  {
+   "source": "__start__",
+   "target": "inner_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2815:2817"
+  },
+  {
+   "source": "mid_step",
+   "target": "inner_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2822:2826"
+  },
+  {
+   "source": "__start__",
+   "target": "mid_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2822:2825"
+  },
+  {
+   "source": "parent_step",
+   "target": "mid_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2831:2835"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2831:2834"
+  },
+  {
+   "source": "__start__",
+   "target": "inner_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2905:2907"
+  },
+  {
+   "source": "mid_step",
+   "target": "inner_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2912:2916"
+  },
+  {
+   "source": "__start__",
+   "target": "mid_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2912:2915"
+  },
+  {
+   "source": "parent_step",
+   "target": "mid_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2921:2925"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2921:2924"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2973:2975"
+  },
+  {
+   "source": "parent_node",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2980:2984"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:2980:2983"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_a_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3032:3034"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_b_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3039:3041"
+  },
+  {
+   "source": "parent_step",
+   "target": "sub_b_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3046:3053"
+  },
+  {
+   "source": "parent_step",
+   "target": "sub_a_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3046:3052"
+  },
+  {
+   "source": "__start__",
+   "target": "parent_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3046:3050"
+  },
+  {
+   "source": "__start__",
+   "target": "sub_step",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3122:3124"
+  },
+  {
+   "source": "inc",
+   "target": "sub_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3129:3133"
+  },
+  {
+   "source": "__start__",
+   "target": "inc",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_time_travel.py:3129:3132"
+  }
+ ]
+}

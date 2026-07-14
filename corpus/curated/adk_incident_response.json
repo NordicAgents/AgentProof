@@ -11,28 +11,40 @@
       "kind": "entry",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "triage",
       "kind": "llm",
       "label": "incident_triage",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "severity_router",
       "kind": "router",
       "label": "severity_router",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "parallel_investigation",
       "kind": "subgraph",
       "label": "investigation",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "log_analysis",
@@ -42,7 +54,10 @@
         "elk_query",
         "splunk_search"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "metric_check",
@@ -51,7 +66,10 @@
       "tools": [
         "prometheus_query"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "trace_analysis",
@@ -60,14 +78,20 @@
       "tools": [
         "jaeger_query"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "diagnose",
       "kind": "llm",
       "label": "root_cause_analysis",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "auto_remediate",
@@ -77,28 +101,40 @@
         "kubectl_restart",
         "config_rollback"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "human_escalation",
       "kind": "human",
       "label": "oncall_engineer",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "postmortem",
       "kind": "llm",
       "label": "postmortem_generator",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "__end__",
       "kind": "exit",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ],
   "edges": [
@@ -106,85 +142,127 @@
       "source": "__start__",
       "target": "triage",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "triage",
       "target": "severity_router",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "severity_router",
       "target": "parallel_investigation",
       "kind": "conditional",
-      "condition": "sev1_or_sev2"
+      "condition": "sev1_or_sev2",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "severity_router",
       "target": "log_analysis",
       "kind": "conditional",
-      "condition": "sev3"
+      "condition": "sev3",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_investigation",
       "target": "log_analysis",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_investigation",
       "target": "metric_check",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_investigation",
       "target": "trace_analysis",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "log_analysis",
       "target": "diagnose",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "metric_check",
       "target": "diagnose",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "trace_analysis",
       "target": "diagnose",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "diagnose",
       "target": "auto_remediate",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "auto_remediate",
       "target": "postmortem",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "human_escalation",
       "target": "postmortem",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "postmortem",
       "target": "__end__",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ]
 }

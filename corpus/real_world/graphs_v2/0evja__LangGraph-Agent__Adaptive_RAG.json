@@ -1,0 +1,130 @@
+{
+ "name": "0evja__LangGraph-Agent__Adaptive_RAG",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "websearch",
+   "kind": "llm",
+   "label": "websearch",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:340:340"
+  },
+  {
+   "id": "retrieve",
+   "kind": "llm",
+   "label": "retrieve",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:341:341"
+  },
+  {
+   "id": "grade_documents",
+   "kind": "router",
+   "label": "grade_documents",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:342:342"
+  },
+  {
+   "id": "generate",
+   "kind": "router",
+   "label": "generate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:343:343"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "websearch",
+   "target": "generate",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:353:353"
+  },
+  {
+   "source": "retrieve",
+   "target": "grade_documents",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:354:354"
+  },
+  {
+   "source": "grade_documents",
+   "target": "websearch",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:355:362"
+  },
+  {
+   "source": "grade_documents",
+   "target": "generate",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:355:362"
+  },
+  {
+   "source": "generate",
+   "target": "generate",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:364:373"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:364:373"
+  },
+  {
+   "source": "generate",
+   "target": "websearch",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:364:373"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Adaptive_RAG.py:364:373"
+  }
+ ]
+}

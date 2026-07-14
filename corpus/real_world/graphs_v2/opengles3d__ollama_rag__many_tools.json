@@ -1,0 +1,70 @@
+{
+ "name": "opengles3d__ollama_rag__many_tools",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "select_tools",
+   "kind": "tool",
+   "label": "select_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:58:58"
+  },
+  {
+   "id": "model",
+   "kind": "router",
+   "label": "model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:59:59"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:60:60"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "select_tools",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:61:61"
+  },
+  {
+   "source": "select_tools",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:62:62"
+  },
+  {
+   "source": "tools",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/many_tools.py:64:64"
+  }
+ ]
+}

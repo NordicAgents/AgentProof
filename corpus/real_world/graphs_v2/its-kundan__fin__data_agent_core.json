@@ -1,0 +1,123 @@
+{
+ "name": "its-kundan__fin__data_agent_core",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "intent",
+   "kind": "llm",
+   "label": "intent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:193:193"
+  },
+  {
+   "id": "sql_gen",
+   "kind": "llm",
+   "label": "sql_gen",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:194:194"
+  },
+  {
+   "id": "sql_exec",
+   "kind": "llm",
+   "label": "sql_exec",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:195:195"
+  },
+  {
+   "id": "insight",
+   "kind": "llm",
+   "label": "insight",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:196:196"
+  },
+  {
+   "id": "output",
+   "kind": "llm",
+   "label": "output",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:197:197"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "intent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:198:198"
+  },
+  {
+   "source": "intent",
+   "target": "sql_gen",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:199:199"
+  },
+  {
+   "source": "sql_gen",
+   "target": "sql_exec",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:200:200"
+  },
+  {
+   "source": "sql_exec",
+   "target": "insight",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:201:201"
+  },
+  {
+   "source": "insight",
+   "target": "output",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:202:202"
+  },
+  {
+   "source": "output",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/its-kundan__fin@a47f4a7/data_agent_core.py:203:203"
+  }
+ ]
+}

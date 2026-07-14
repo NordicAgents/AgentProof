@@ -1,0 +1,89 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__02_tools",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "get_the_current_weather_in_lisbon",
+   "kind": "llm",
+   "label": "Get the current weather in Lisbon",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/02_tools.py:101:105"
+  },
+  {
+   "id": "find_out_what_time_it_is_in_new_york",
+   "kind": "llm",
+   "label": "Find out what time it is in New York",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/02_tools.py:107:111"
+  },
+  {
+   "id": "scrape_the_crewai_website_to_find_out_what_service",
+   "kind": "llm",
+   "label": "Scrape the CrewAI website to find out what service",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/02_tools.py:113:117"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "get_the_current_weather_in_lisbon",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "get_the_current_weather_in_lisbon",
+   "target": "find_out_what_time_it_is_in_new_york",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "find_out_what_time_it_is_in_new_york",
+   "target": "scrape_the_crewai_website_to_find_out_what_service",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "scrape_the_crewai_website_to_find_out_what_service",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

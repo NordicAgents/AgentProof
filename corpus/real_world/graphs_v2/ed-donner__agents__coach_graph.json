@@ -1,0 +1,123 @@
+{
+ "name": "ed-donner__agents__coach_graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "parse_user",
+   "kind": "llm",
+   "label": "parse_user",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:124:124"
+  },
+  {
+   "id": "exercise",
+   "kind": "llm",
+   "label": "exercise",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:125:125"
+  },
+  {
+   "id": "nutrition",
+   "kind": "llm",
+   "label": "nutrition",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:126:126"
+  },
+  {
+   "id": "budget",
+   "kind": "llm",
+   "label": "budget",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:127:127"
+  },
+  {
+   "id": "finalize",
+   "kind": "llm",
+   "label": "finalize",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:128:128"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "parse_user",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:129:129"
+  },
+  {
+   "source": "parse_user",
+   "target": "exercise",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:130:130"
+  },
+  {
+   "source": "exercise",
+   "target": "nutrition",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:131:131"
+  },
+  {
+   "source": "nutrition",
+   "target": "budget",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:132:132"
+  },
+  {
+   "source": "budget",
+   "target": "finalize",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:133:133"
+  },
+  {
+   "source": "finalize",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py:134:134"
+  }
+ ]
+}

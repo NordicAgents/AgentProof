@@ -1,0 +1,70 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__12_multi_agent_graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "planner",
+   "kind": "llm",
+   "label": "planner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:68:68"
+  },
+  {
+   "id": "executor",
+   "kind": "llm",
+   "label": "executor",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:69:69"
+  },
+  {
+   "id": "reviewer",
+   "kind": "llm",
+   "label": "reviewer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:70:70"
+  }
+ ],
+ "edges": [
+  {
+   "source": "planner",
+   "target": "executor",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:73:73"
+  },
+  {
+   "source": "executor",
+   "target": "reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:74:74"
+  },
+  {
+   "source": "__start__",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/strands-agents-sdk/12_multi_agent_graph.py:76:76"
+  }
+ ]
+}

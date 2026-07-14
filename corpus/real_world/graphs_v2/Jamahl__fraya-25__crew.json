@@ -1,0 +1,72 @@
+{
+ "name": "Jamahl__fraya-25__crew",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyze_the_incoming_email_and_extract_scheduling_",
+   "kind": "llm",
+   "label": "Analyze the incoming email and extract scheduling ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Jamahl__fraya-25@8da54c3/crew.py:54:58"
+  },
+  {
+   "id": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+   "kind": "llm",
+   "label": "Draft a reply if the intent is scheduling, this in",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Jamahl__fraya-25@8da54c3/crew.py:59:63"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "analyze_the_incoming_email_and_extract_scheduling_",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "analyze_the_incoming_email_and_extract_scheduling_",
+   "target": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "draft_a_reply_if_the_intent_is_scheduling,_this_in",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

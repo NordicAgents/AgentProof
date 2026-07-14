@@ -1,0 +1,106 @@
+{
+ "name": "firaflash__career-mentor-ai-agent__tasks",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "analyze_the_user's_current_background_and_their_ta",
+   "kind": "llm",
+   "label": "Analyze the user's current background and their ta",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/firaflash__career-mentor-ai-agent@b1a8cca/tasks.py:19:29"
+  },
+  {
+   "id": "using_the_skill_gap_report_provided,_create_a_chro",
+   "kind": "llm",
+   "label": "Using the Skill Gap Report provided, create a chro",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/firaflash__career-mentor-ai-agent@b1a8cca/tasks.py:32:41"
+  },
+  {
+   "id": "using_the_learning_roadmap_provided,_find_and_reco",
+   "kind": "llm",
+   "label": "Using the Learning Roadmap provided, find and reco",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/firaflash__career-mentor-ai-agent@b1a8cca/tasks.py:44:52"
+  },
+  {
+   "id": "review_the_learning_roadmap_and_the_resource_guide",
+   "kind": "llm",
+   "label": "Review the Learning Roadmap and the Resource Guide",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/firaflash__career-mentor-ai-agent@b1a8cca/tasks.py:55:63"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "analyze_the_user's_current_background_and_their_ta",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "analyze_the_user's_current_background_and_their_ta",
+   "target": "using_the_skill_gap_report_provided,_create_a_chro",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_skill_gap_report_provided,_create_a_chro",
+   "target": "using_the_learning_roadmap_provided,_find_and_reco",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_learning_roadmap_provided,_find_and_reco",
+   "target": "review_the_learning_roadmap_and_the_resource_guide",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "review_the_learning_roadmap_and_the_resource_guide",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

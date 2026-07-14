@@ -1,0 +1,62 @@
+{
+ "name": "a171232886__example_autogen__TE5_graphflow_activation",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent_e",
+   "kind": "llm",
+   "label": "agent_e",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE5_graphflow_activation.py:59:59"
+  },
+  {
+   "id": "agent_d",
+   "kind": "llm",
+   "label": "agent_d",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE5_graphflow_activation.py:59:59"
+  },
+  {
+   "id": "agent_c",
+   "kind": "llm",
+   "label": "agent_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE5_graphflow_activation.py:59:59"
+  }
+ ],
+ "edges": [
+  {
+   "source": "agent_c",
+   "target": "agent_e",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE5_graphflow_activation.py:66:66"
+  },
+  {
+   "source": "agent_d",
+   "target": "agent_e",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE5_graphflow_activation.py:67:67"
+  }
+ ]
+}

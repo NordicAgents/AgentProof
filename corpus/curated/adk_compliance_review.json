@@ -11,7 +11,10 @@
       "kind": "entry",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "collector",
@@ -21,28 +24,40 @@
         "s3_fetch",
         "api_call"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "parallel_check",
       "kind": "subgraph",
       "label": "parallel_checks",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "legal_check",
       "kind": "llm",
       "label": "legal_compliance",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "financial_check",
       "kind": "llm",
       "label": "financial_compliance",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "security_check",
@@ -51,28 +66,40 @@
       "tools": [
         "vulnerability_scanner"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "aggregator",
       "kind": "llm",
       "label": "findings_aggregator",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "remediation_loop",
       "kind": "subgraph",
       "label": "remediation",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "fix",
       "kind": "llm",
       "label": "remediation_agent",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "recheck",
@@ -81,21 +108,30 @@
       "tools": [
         "compliance_validator"
       ],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "signoff",
       "kind": "human",
       "label": "compliance_officer_signoff",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "id": "__end__",
       "kind": "exit",
       "label": "",
       "tools": [],
-      "metadata": {}
+      "metadata": {},
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ],
   "edges": [
@@ -103,85 +139,127 @@
       "source": "__start__",
       "target": "collector",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "collector",
       "target": "parallel_check",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_check",
       "target": "legal_check",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_check",
       "target": "financial_check",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "parallel_check",
       "target": "security_check",
       "kind": "parallel",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "legal_check",
       "target": "aggregator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "financial_check",
       "target": "aggregator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "security_check",
       "target": "aggregator",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "aggregator",
       "target": "remediation_loop",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "remediation_loop",
       "target": "fix",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "fix",
       "target": "recheck",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "recheck",
       "target": "fix",
       "kind": "loop",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "recheck",
       "target": "signoff",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     },
     {
       "source": "signoff",
       "target": "__end__",
       "kind": "direct",
-      "condition": ""
+      "condition": "",
+      "origin": "unknown",
+      "confidence": "may",
+      "source_span": ""
     }
   ]
 }

@@ -1,0 +1,87 @@
+{
+ "name": "a171232886__example_autogen__TE6_graphflow_save_load",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "final_reviewer",
+   "kind": "llm",
+   "label": "final_reviewer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:38:38"
+  },
+  {
+   "id": "editor2",
+   "kind": "llm",
+   "label": "editor2",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:38:38"
+  },
+  {
+   "id": "editor1",
+   "kind": "llm",
+   "label": "editor1",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:38:38"
+  },
+  {
+   "id": "writer",
+   "kind": "llm",
+   "label": "writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:38:38"
+  }
+ ],
+ "edges": [
+  {
+   "source": "writer",
+   "target": "editor1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:41:41"
+  },
+  {
+   "source": "writer",
+   "target": "editor2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:42:42"
+  },
+  {
+   "source": "editor1",
+   "target": "final_reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:45:45"
+  },
+  {
+   "source": "editor2",
+   "target": "final_reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE6_graphflow_save_load.py:46:46"
+  }
+ ]
+}

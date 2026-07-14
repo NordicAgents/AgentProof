@@ -20,6 +20,7 @@ from agentproof.monitor.ltl import (
     finalize_monitors,
 )
 from agentproof.verify import check_temporal_property, run_structural_checks
+from agentproof.verify.temporal import node_visit_event
 
 
 def verify(
@@ -48,7 +49,12 @@ def verify(
         Simulated event trace for temporal monitoring.
     static_temporal : bool
         When *True* and *monitor_rules* is provided, run static temporal
-        verification via graph x DFA product construction.
+        verification via graph x DFA product construction.  Each entry of
+        ``report["static_temporal"]`` carries a ``verdict`` field
+        (``"safe"`` | ``"may_violate"`` | ``"inconclusive"``) alongside the
+        boolean ``violated`` (== ``verdict == "may_violate"``); the claim
+        covers finite maximal executions only — see
+        :func:`agentproof.verify.temporal.check_temporal_property`.
 
     Returns
     -------
@@ -119,22 +125,39 @@ def verify(
     return report
 
 
-def _event_for_node(node_id: str, graph: AgentGraph) -> dict[str, Any]:
-    """Generate a synthetic event dict for a graph node."""
+def _event_for_node(
+    node_id: str,
+    graph: AgentGraph,
+    rng: random.Random | None = None,
+) -> dict[str, Any]:
+    """Generate a synthetic event dict for a graph node.
+
+    Event construction is delegated to
+    :func:`agentproof.verify.temporal.node_visit_event`, the same
+    constructor the static checker's conservative closure uses — every
+    event this function can emit for a node is therefore, by construction,
+    inside the event set the static closure considers for that node (the
+    static/runtime invariant documented in
+    :mod:`agentproof.verify.temporal`).
+
+    For a TOOL node with multiple declared tools, the emitted ``tool_name``
+    is sampled uniformly among the declared tools using *rng* (one draw per
+    visit), so simulated traces exercise every declared binding rather than
+    always ``tools[0]``. With ``rng=None`` (or a single declared tool) the
+    first declared tool is used deterministically. A TOOL node with no
+    declared tools emits the bare visit event (``action_type`` ``"tool"``,
+    no ``tool_name``).
+    """
     node = node_by_id(graph, node_id)
     if node is None:
         return {"node_id": node_id, "action_type": "unknown"}
-    event: dict[str, Any] = {"node_id": node.id, "action_type": node.kind.value}
+    tool_name: str | None = None
     if node.kind == NodeKind.TOOL and node.tools:
-        event["tool_name"] = node.tools[0]
-        event["tags"] = ["tool"]
-    elif node.kind == NodeKind.LLM:
-        event["tags"] = ["llm_step"]
-    elif node.kind == NodeKind.HUMAN:
-        event["tags"] = ["human"]
-    elif node.kind == NodeKind.ROUTER:
-        event["tags"] = ["router"]
-    return event
+        if rng is not None and len(node.tools) > 1:
+            tool_name = rng.choice(node.tools)
+        else:
+            tool_name = node.tools[0]
+    return node_visit_event(node, tool_name)
 
 
 def generate_traces(
@@ -148,7 +171,10 @@ def generate_traces(
 
     Each trace is a list of event dicts, one per node visited.  The walk
     starts at ``graph.entry_id`` and follows random outgoing edges until
-    an exit node is reached or *max_steps* is exceeded.
+    an exit node is reached or *max_steps* is exceeded.  At each visit of a
+    TOOL node with multiple declared tools, the emitted ``tool_name`` is
+    sampled uniformly among the declared tools using the same seeded RNG,
+    so results are deterministic for a fixed *seed*.
     """
     rng = random.Random(seed)
     adj = adjacency(graph)
@@ -159,7 +185,7 @@ def generate_traces(
         trace: list[dict[str, Any]] = []
         current = graph.entry_id
         for _step in range(max_steps):
-            trace.append(_event_for_node(current, graph))
+            trace.append(_event_for_node(current, graph, rng))
             if current in exit_set:
                 break
             neighbors = adj.get(current, [])

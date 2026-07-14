@@ -15,17 +15,17 @@ to the paper (drafted at the bottom) to move from `partial` → `yes`.
 
 ## 2. Theoretical contributions
 
-**Does this paper make theoretical contributions?** **yes** (modest: soundness of the checks and of monitor pruning by over-approximation).
+**Does this paper make theoretical contributions?** **no.**
 
-| # | Item | Answer | Justification |
-|---|------|--------|---------------|
-| 2.1 | Assumptions/restrictions stated clearly and formally | **yes** | The event model σ(v), the static over-approximation (all conditional edges feasible), and fixed-size DFAs are stated. |
-| 2.2 | Novel claims stated formally | **partial** | Soundness of pruning ("no reachable violation state ⟹ inert on every runtime path") is argued precisely; not every claim is in theorem form. |
-| 2.3 | Proofs of novel claims included | **yes** | Appendix (proofs) — reachability/soundness arguments. |
-| 2.4 | Proof sketches / intuitions for complex results | **yes** | The over-approximation soundness intuition is given in the monitor-selection discussion. |
-| 2.5 | Citations to theoretical tools | **yes** | Clarke et al. (model checking), Pnueli (LTL), Vardi (automata product). |
-| 2.6 | Theoretical claims demonstrated empirically | **yes** | The pruning soundness is exercised on the corpus (monitor-selection result). |
-| 2.7 | Code to eliminate/disprove claims included | **NA** | No such claims. |
+This is a measurement paper. Its formal content — LTL$_f$ semantics (De Giacomo
+& Vardi), DFA compilation by formula progression, and the soundness of monitor
+pruning under an explicitly stated trace-containment premise — is an
+application of standard automata-theoretic results, not novel theory. The
+premise-conditioned soundness statement is stated precisely in the paper
+(Section 2), verified empirically by an independent differential reference
+oracle (exhaustive traces to length 6) and an adversarial no-false-safe search
+(~21,000 graph×policy pairs), and the artifact ships both test suites. All
+sub-items are therefore NA (matching `ReproducibilityChecklist.tex`).
 
 ## 3. Datasets
 

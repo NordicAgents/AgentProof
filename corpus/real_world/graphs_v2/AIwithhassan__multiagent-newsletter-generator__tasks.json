@@ -1,0 +1,95 @@
+{
+ "name": "AIwithhassan__multiagent-newsletter-generator__tasks",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+   "kind": "tool",
+   "label": "\n    Identify the next big trend in the topic: {to",
+   "tools": [
+    "google_search_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AIwithhassan__multiagent-newsletter-generator@c3858e9/tasks.py:7:16"
+  },
+  {
+   "id": "\n____compose_an_insightful_article_on_the_topic:_{",
+   "kind": "tool",
+   "label": "\n    Compose an insightful article on the topic: {",
+   "tools": [
+    "google_search_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AIwithhassan__multiagent-newsletter-generator@c3858e9/tasks.py:18:27"
+  },
+  {
+   "id": "\n____finalise_an_insightful_article_on_the_topic:_",
+   "kind": "tool",
+   "label": "\n    Finalise an insightful article on the topic: ",
+   "tools": [
+    "google_search_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AIwithhassan__multiagent-newsletter-generator@c3858e9/tasks.py:29:40"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "\n____identify_the_next_big_trend_in_the_topic:_{to",
+   "target": "\n____compose_an_insightful_article_on_the_topic:_{",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "\n____compose_an_insightful_article_on_the_topic:_{",
+   "target": "\n____finalise_an_insightful_article_on_the_topic:_",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "\n____finalise_an_insightful_article_on_the_topic:_",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

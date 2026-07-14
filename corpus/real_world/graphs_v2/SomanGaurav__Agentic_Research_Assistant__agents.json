@@ -1,0 +1,142 @@
+{
+ "name": "SomanGaurav__Agentic_Research_Assistant__agents",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "hypothesis_task",
+   "kind": "llm",
+   "label": "hypothesis_task",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:101:110"
+  },
+  {
+   "id": "search_task",
+   "kind": "tool",
+   "label": "search_task",
+   "tools": [
+    "linkup_search"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:112:118"
+  },
+  {
+   "id": "analyze_the_search_results,_verify_facts,_resolve_",
+   "kind": "llm",
+   "label": "Analyze the search results, verify facts, resolve ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:120:128"
+  },
+  {
+   "id": "based_on_the_research_analysis,_write_any_necessar",
+   "kind": "llm",
+   "label": "Based on the research analysis, write any necessar",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:130:138"
+  },
+  {
+   "id": "review_the_verified_insights_from_the_research_ana",
+   "kind": "llm",
+   "label": "Review the verified insights from the Research Ana",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:139:155"
+  },
+  {
+   "id": "create_a_comprehensive,_well-organized_markdown_re",
+   "kind": "llm",
+   "label": "Create a comprehensive, well-organized markdown re",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SomanGaurav__Agentic_Research_Assistant@08977f9/agents.py:167:177"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "hypothesis_task",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "hypothesis_task",
+   "target": "search_task",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "search_task",
+   "target": "analyze_the_search_results,_verify_facts,_resolve_",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analyze_the_search_results,_verify_facts,_resolve_",
+   "target": "based_on_the_research_analysis,_write_any_necessar",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "based_on_the_research_analysis,_write_any_necessar",
+   "target": "review_the_verified_insights_from_the_research_ana",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "review_the_verified_insights_from_the_research_ana",
+   "target": "create_a_comprehensive,_well-organized_markdown_re",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "create_a_comprehensive,_well-organized_markdown_re",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

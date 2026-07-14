@@ -1,0 +1,53 @@
+{
+ "name": "LeonardoDaviti__LangGraph-Tutorials__agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "assistant",
+   "kind": "router",
+   "label": "assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/LeonardoDaviti__LangGraph-Tutorials@898ff1f/agent.py:654:654"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/LeonardoDaviti__LangGraph-Tutorials@898ff1f/agent.py:655:655"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/LeonardoDaviti__LangGraph-Tutorials@898ff1f/agent.py:656:656"
+  },
+  {
+   "source": "tools",
+   "target": "assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/LeonardoDaviti__LangGraph-Tutorials@898ff1f/agent.py:661:661"
+  }
+ ]
+}

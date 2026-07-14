@@ -1,0 +1,131 @@
+{
+ "name": "botextractai__ai-langgraph-multi-agent__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "planner",
+   "kind": "llm",
+   "label": "planner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:122:122"
+  },
+  {
+   "id": "generate",
+   "kind": "router",
+   "label": "generate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:123:123"
+  },
+  {
+   "id": "reflect",
+   "kind": "llm",
+   "label": "reflect",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:124:124"
+  },
+  {
+   "id": "research_plan",
+   "kind": "llm",
+   "label": "research_plan",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:125:125"
+  },
+  {
+   "id": "research_critique",
+   "kind": "llm",
+   "label": "research_critique",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:126:126"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:129:129"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:133:137"
+  },
+  {
+   "source": "generate",
+   "target": "reflect",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:133:137"
+  },
+  {
+   "source": "planner",
+   "target": "research_plan",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:140:140"
+  },
+  {
+   "source": "research_plan",
+   "target": "generate",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:141:141"
+  },
+  {
+   "source": "reflect",
+   "target": "research_critique",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:143:143"
+  },
+  {
+   "source": "research_critique",
+   "target": "generate",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/botextractai__ai-langgraph-multi-agent@502d217/main.py:144:144"
+  }
+ ]
+}

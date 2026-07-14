@@ -1,0 +1,319 @@
+{
+ "name": "splx-ai__agentic-radar__customer_service",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "fetch_user_info",
+   "kind": "router",
+   "label": "fetch_user_info",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1140:1140"
+  },
+  {
+   "id": "enter_update_flight",
+   "kind": "llm",
+   "label": "enter_update_flight",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1145:1148"
+  },
+  {
+   "id": "update_flight",
+   "kind": "router",
+   "label": "update_flight",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1149:1149"
+  },
+  {
+   "id": "update_flight_sensitive_tools",
+   "kind": "tool",
+   "label": "update_flight_sensitive_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1151:1154"
+  },
+  {
+   "id": "update_flight_safe_tools",
+   "kind": "tool",
+   "label": "update_flight_safe_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1155:1158"
+  },
+  {
+   "id": "leave_skill",
+   "kind": "llm",
+   "label": "leave_skill",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1208:1208"
+  },
+  {
+   "id": "enter_book_car_rental",
+   "kind": "llm",
+   "label": "enter_book_car_rental",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1215:1218"
+  },
+  {
+   "id": "book_car_rental",
+   "kind": "router",
+   "label": "book_car_rental",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1219:1219"
+  },
+  {
+   "id": "book_car_rental_safe_tools",
+   "kind": "tool",
+   "label": "book_car_rental_safe_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1221:1224"
+  },
+  {
+   "id": "book_car_rental_sensitive_tools",
+   "kind": "tool",
+   "label": "book_car_rental_sensitive_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1225:1228"
+  },
+  {
+   "id": "enter_book_hotel",
+   "kind": "llm",
+   "label": "enter_book_hotel",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1263:1265"
+  },
+  {
+   "id": "book_hotel",
+   "kind": "router",
+   "label": "book_hotel",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1266:1266"
+  },
+  {
+   "id": "book_hotel_safe_tools",
+   "kind": "tool",
+   "label": "book_hotel_safe_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1268:1271"
+  },
+  {
+   "id": "book_hotel_sensitive_tools",
+   "kind": "tool",
+   "label": "book_hotel_sensitive_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1272:1275"
+  },
+  {
+   "id": "enter_book_excursion",
+   "kind": "llm",
+   "label": "enter_book_excursion",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1304:1307"
+  },
+  {
+   "id": "book_excursion",
+   "kind": "router",
+   "label": "book_excursion",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1308:1308"
+  },
+  {
+   "id": "book_excursion_safe_tools",
+   "kind": "tool",
+   "label": "book_excursion_safe_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1310:1313"
+  },
+  {
+   "id": "book_excursion_sensitive_tools",
+   "kind": "tool",
+   "label": "book_excursion_sensitive_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1314:1317"
+  },
+  {
+   "id": "primary_assistant",
+   "kind": "router",
+   "label": "primary_assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1345:1345"
+  },
+  {
+   "id": "primary_assistant_tools",
+   "kind": "tool",
+   "label": "primary_assistant_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1346:1348"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "fetch_user_info",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1141:1141"
+  },
+  {
+   "source": "enter_update_flight",
+   "target": "update_flight",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1150:1150"
+  },
+  {
+   "source": "update_flight_sensitive_tools",
+   "target": "update_flight",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1177:1177"
+  },
+  {
+   "source": "update_flight_safe_tools",
+   "target": "update_flight",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1178:1178"
+  },
+  {
+   "source": "leave_skill",
+   "target": "primary_assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1209:1209"
+  },
+  {
+   "source": "enter_book_car_rental",
+   "target": "book_car_rental",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1220:1220"
+  },
+  {
+   "source": "book_car_rental_sensitive_tools",
+   "target": "book_car_rental",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1247:1247"
+  },
+  {
+   "source": "book_car_rental_safe_tools",
+   "target": "book_car_rental",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1248:1248"
+  },
+  {
+   "source": "enter_book_hotel",
+   "target": "book_hotel",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1267:1267"
+  },
+  {
+   "source": "book_hotel_sensitive_tools",
+   "target": "book_hotel",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1294:1294"
+  },
+  {
+   "source": "book_hotel_safe_tools",
+   "target": "book_hotel",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1295:1295"
+  },
+  {
+   "source": "enter_book_excursion",
+   "target": "book_excursion",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1309:1309"
+  },
+  {
+   "source": "book_excursion_sensitive_tools",
+   "target": "book_excursion",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1336:1336"
+  },
+  {
+   "source": "book_excursion_safe_tools",
+   "target": "book_excursion",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1337:1337"
+  },
+  {
+   "source": "primary_assistant_tools",
+   "target": "primary_assistant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/splx-ai__agentic-radar@65a7e4b/examples/langgraph/customer_service/customer_service.py:1385:1385"
+  }
+ ]
+}

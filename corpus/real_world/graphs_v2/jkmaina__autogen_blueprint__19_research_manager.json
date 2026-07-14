@@ -1,0 +1,140 @@
+{
+ "name": "jkmaina__autogen_blueprint__19_research_manager",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_manager",
+   "kind": "llm",
+   "label": "research_manager",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "literature_reviewer",
+   "kind": "llm",
+   "label": "literature_reviewer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "data_analyst",
+   "kind": "llm",
+   "label": "data_analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "content_writer",
+   "kind": "llm",
+   "label": "content_writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "fact_checker",
+   "kind": "llm",
+   "label": "fact_checker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/19_research_manager.py:96:101"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "research_manager",
+   "target": "literature_reviewer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "literature_reviewer",
+   "target": "data_analyst",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "data_analyst",
+   "target": "content_writer",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "content_writer",
+   "target": "fact_checker",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "fact_checker",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

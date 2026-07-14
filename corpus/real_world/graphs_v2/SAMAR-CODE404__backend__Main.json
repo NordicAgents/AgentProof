@@ -1,0 +1,713 @@
+{
+ "name": "SAMAR-CODE404__backend__Main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generate_queries_a",
+   "kind": "llm",
+   "label": "generate_queries_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:49:49"
+  },
+  {
+   "id": "research_human_approval_a",
+   "kind": "router",
+   "label": "research_human_approval_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:50:50"
+  },
+  {
+   "id": "web_search_a",
+   "kind": "router",
+   "label": "web_search_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:51:51"
+  },
+  {
+   "id": "DCF_modelling_a",
+   "kind": "llm",
+   "label": "DCF_modelling_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:52:52"
+  },
+  {
+   "id": "financial_ratio_a",
+   "kind": "llm",
+   "label": "financial_ratio_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:53:53"
+  },
+  {
+   "id": "fin_human_approval_a",
+   "kind": "router",
+   "label": "fin_human_approval_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:54:54"
+  },
+  {
+   "id": "financial_reporting_a",
+   "kind": "llm",
+   "label": "financial_reporting_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:55:55"
+  },
+  {
+   "id": "supply_chain_analysis_a",
+   "kind": "llm",
+   "label": "supply_chain_analysis_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:56:56"
+  },
+  {
+   "id": "industry_positioning_a",
+   "kind": "llm",
+   "label": "industry_positioning_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:57:57"
+  },
+  {
+   "id": "ops_human_approval_a",
+   "kind": "router",
+   "label": "ops_human_approval_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:58:58"
+  },
+  {
+   "id": "operations_reporting_a",
+   "kind": "llm",
+   "label": "operations_reporting_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:59:59"
+  },
+  {
+   "id": "assess_regulatory_compliance",
+   "kind": "llm",
+   "label": "assess_regulatory_compliance",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:60:60"
+  },
+  {
+   "id": "conduct_legal_due_diligence",
+   "kind": "llm",
+   "label": "conduct_legal_due_diligence",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:61:61"
+  },
+  {
+   "id": "assess_potential_legal_risks",
+   "kind": "llm",
+   "label": "assess_potential_legal_risks",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:62:62"
+  },
+  {
+   "id": "finalize_legal_report",
+   "kind": "llm",
+   "label": "finalize_legal_report",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:63:63"
+  },
+  {
+   "id": "generate_queries_b",
+   "kind": "llm",
+   "label": "generate_queries_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:67:67"
+  },
+  {
+   "id": "research_human_approval_b",
+   "kind": "router",
+   "label": "research_human_approval_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:68:68"
+  },
+  {
+   "id": "web_search_b",
+   "kind": "router",
+   "label": "web_search_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:69:69"
+  },
+  {
+   "id": "DCF_modelling_b",
+   "kind": "llm",
+   "label": "DCF_modelling_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:70:70"
+  },
+  {
+   "id": "financial_ratio_b",
+   "kind": "llm",
+   "label": "financial_ratio_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:71:71"
+  },
+  {
+   "id": "fin_human_approval_b",
+   "kind": "router",
+   "label": "fin_human_approval_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:72:72"
+  },
+  {
+   "id": "financial_reporting_b",
+   "kind": "llm",
+   "label": "financial_reporting_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:73:73"
+  },
+  {
+   "id": "supply_chain_analysis_b",
+   "kind": "llm",
+   "label": "supply_chain_analysis_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:74:74"
+  },
+  {
+   "id": "industry_positioning_b",
+   "kind": "llm",
+   "label": "industry_positioning_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:75:75"
+  },
+  {
+   "id": "ops_human_approval_b",
+   "kind": "router",
+   "label": "ops_human_approval_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:76:76"
+  },
+  {
+   "id": "operations_reporting_b",
+   "kind": "llm",
+   "label": "operations_reporting_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:77:77"
+  },
+  {
+   "id": "validate_merger_feasibility",
+   "kind": "llm",
+   "label": "validate_merger_feasibility",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:80:80"
+  },
+  {
+   "id": "calculate_merger_valuation",
+   "kind": "llm",
+   "label": "calculate_merger_valuation",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:81:81"
+  },
+  {
+   "id": "assess_integration_risks",
+   "kind": "llm",
+   "label": "assess_integration_risks",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:82:82"
+  },
+  {
+   "id": "finalize_merger_report",
+   "kind": "llm",
+   "label": "finalize_merger_report",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:83:83"
+  },
+  {
+   "id": "report_structure_creator",
+   "kind": "llm",
+   "label": "report_structure_creator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:84:84"
+  },
+  {
+   "id": "section_template_generator",
+   "kind": "llm",
+   "label": "section_template_generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:85:85"
+  },
+  {
+   "id": "rag_summary_generator",
+   "kind": "llm",
+   "label": "rag_summary_generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:86:86"
+  },
+  {
+   "id": "consistency_checker",
+   "kind": "llm",
+   "label": "consistency_checker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:87:87"
+  },
+  {
+   "id": "report_formatter",
+   "kind": "llm",
+   "label": "report_formatter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:88:88"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "generate_queries_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:92:92"
+  },
+  {
+   "source": "generate_queries_a",
+   "target": "research_human_approval_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:95:95"
+  },
+  {
+   "source": "research_human_approval_a",
+   "target": "web_search_a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:97:104"
+  },
+  {
+   "source": "research_human_approval_a",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:97:104"
+  },
+  {
+   "source": "web_search_a",
+   "target": "web_search_a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:122:130"
+  },
+  {
+   "source": "web_search_a",
+   "target": "DCF_modelling_a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:122:130"
+  },
+  {
+   "source": "web_search_a",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:122:130"
+  },
+  {
+   "source": "DCF_modelling_a",
+   "target": "financial_ratio_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:133:133"
+  },
+  {
+   "source": "financial_ratio_a",
+   "target": "fin_human_approval_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:134:134"
+  },
+  {
+   "source": "fin_human_approval_a",
+   "target": "financial_reporting_a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:136:143"
+  },
+  {
+   "source": "fin_human_approval_a",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:136:143"
+  },
+  {
+   "source": "financial_reporting_a",
+   "target": "supply_chain_analysis_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:146:146"
+  },
+  {
+   "source": "supply_chain_analysis_a",
+   "target": "industry_positioning_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:147:147"
+  },
+  {
+   "source": "industry_positioning_a",
+   "target": "ops_human_approval_a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:148:148"
+  },
+  {
+   "source": "ops_human_approval_a",
+   "target": "operations_reporting_a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:150:157"
+  },
+  {
+   "source": "ops_human_approval_a",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:150:157"
+  },
+  {
+   "source": "operations_reporting_a",
+   "target": "generate_queries_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:160:160"
+  },
+  {
+   "source": "generate_queries_b",
+   "target": "research_human_approval_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:163:163"
+  },
+  {
+   "source": "research_human_approval_b",
+   "target": "web_search_b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:165:172"
+  },
+  {
+   "source": "research_human_approval_b",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:165:172"
+  },
+  {
+   "source": "web_search_b",
+   "target": "web_search_b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:190:198"
+  },
+  {
+   "source": "web_search_b",
+   "target": "DCF_modelling_b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:190:198"
+  },
+  {
+   "source": "web_search_b",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:190:198"
+  },
+  {
+   "source": "DCF_modelling_b",
+   "target": "financial_ratio_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:201:201"
+  },
+  {
+   "source": "financial_ratio_b",
+   "target": "fin_human_approval_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:202:202"
+  },
+  {
+   "source": "fin_human_approval_b",
+   "target": "financial_reporting_b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:204:211"
+  },
+  {
+   "source": "fin_human_approval_b",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:204:211"
+  },
+  {
+   "source": "financial_reporting_b",
+   "target": "supply_chain_analysis_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:214:214"
+  },
+  {
+   "source": "supply_chain_analysis_b",
+   "target": "industry_positioning_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:215:215"
+  },
+  {
+   "source": "industry_positioning_b",
+   "target": "ops_human_approval_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:216:216"
+  },
+  {
+   "source": "ops_human_approval_b",
+   "target": "operations_reporting_b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:218:225"
+  },
+  {
+   "source": "ops_human_approval_b",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:218:225"
+  },
+  {
+   "source": "operations_reporting_b",
+   "target": "validate_merger_feasibility",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:227:227"
+  },
+  {
+   "source": "validate_merger_feasibility",
+   "target": "calculate_merger_valuation",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:228:228"
+  },
+  {
+   "source": "calculate_merger_valuation",
+   "target": "assess_integration_risks",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:229:229"
+  },
+  {
+   "source": "assess_integration_risks",
+   "target": "finalize_merger_report",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:230:230"
+  },
+  {
+   "source": "finalize_merger_report",
+   "target": "assess_regulatory_compliance",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:231:231"
+  },
+  {
+   "source": "assess_regulatory_compliance",
+   "target": "conduct_legal_due_diligence",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:232:232"
+  },
+  {
+   "source": "conduct_legal_due_diligence",
+   "target": "assess_potential_legal_risks",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:233:233"
+  },
+  {
+   "source": "assess_potential_legal_risks",
+   "target": "finalize_legal_report",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:234:234"
+  },
+  {
+   "source": "finalize_legal_report",
+   "target": "report_structure_creator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:236:236"
+  },
+  {
+   "source": "report_structure_creator",
+   "target": "section_template_generator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:237:237"
+  },
+  {
+   "source": "section_template_generator",
+   "target": "rag_summary_generator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:238:238"
+  },
+  {
+   "source": "rag_summary_generator",
+   "target": "consistency_checker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:239:239"
+  },
+  {
+   "source": "consistency_checker",
+   "target": "report_formatter",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:240:240"
+  },
+  {
+   "source": "report_formatter",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/Main.py:241:241"
+  }
+ ]
+}

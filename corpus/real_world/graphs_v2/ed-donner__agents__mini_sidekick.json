@@ -1,0 +1,105 @@
+{
+ "name": "ed-donner__agents__mini_sidekick",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "worker",
+   "kind": "router",
+   "label": "worker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:182:182"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:183:183"
+  },
+  {
+   "id": "evaluator",
+   "kind": "router",
+   "label": "evaluator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:184:184"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "worker",
+   "target": "tools",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:185:189"
+  },
+  {
+   "source": "worker",
+   "target": "evaluator",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:185:189"
+  },
+  {
+   "source": "tools",
+   "target": "worker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:190:190"
+  },
+  {
+   "source": "evaluator",
+   "target": "worker",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:191:195"
+  },
+  {
+   "source": "evaluator",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:191:195"
+  },
+  {
+   "source": "__start__",
+   "target": "worker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/idumachika_week4/mini_sidekick.py:196:196"
+  }
+ ]
+}

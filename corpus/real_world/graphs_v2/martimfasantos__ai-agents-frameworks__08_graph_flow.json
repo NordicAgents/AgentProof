@@ -1,0 +1,180 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__08_graph_flow",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "reviewer",
+   "kind": "llm",
+   "label": "reviewer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:58:58"
+  },
+  {
+   "id": "writer",
+   "kind": "llm",
+   "label": "writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:58:58"
+  },
+  {
+   "id": "summarizer",
+   "kind": "llm",
+   "label": "summarizer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:99:101"
+  },
+  {
+   "id": "culture_expert",
+   "kind": "llm",
+   "label": "culture_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:99:99"
+  },
+  {
+   "id": "food_expert",
+   "kind": "llm",
+   "label": "food_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:99:99"
+  },
+  {
+   "id": "planner",
+   "kind": "llm",
+   "label": "planner",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:99:99"
+  },
+  {
+   "id": "negative_responder",
+   "kind": "llm",
+   "label": "negative_responder",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:145:147"
+  },
+  {
+   "id": "positive_responder",
+   "kind": "llm",
+   "label": "positive_responder",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:145:145"
+  },
+  {
+   "id": "classifier",
+   "kind": "llm",
+   "label": "classifier",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:145:145"
+  }
+ ],
+ "edges": [
+  {
+   "source": "writer",
+   "target": "reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:59:59"
+  },
+  {
+   "source": "__start__",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:60:60"
+  },
+  {
+   "source": "planner",
+   "target": "food_expert",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:103:103"
+  },
+  {
+   "source": "planner",
+   "target": "culture_expert",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:104:104"
+  },
+  {
+   "source": "food_expert",
+   "target": "summarizer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:106:106"
+  },
+  {
+   "source": "culture_expert",
+   "target": "summarizer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:107:107"
+  },
+  {
+   "source": "__start__",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:108:108"
+  },
+  {
+   "source": "classifier",
+   "target": "positive_responder",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:148:152"
+  },
+  {
+   "source": "classifier",
+   "target": "negative_responder",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:153:157"
+  },
+  {
+   "source": "__start__",
+   "target": "classifier",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/autogen/08_graph_flow.py:158:158"
+  }
+ ]
+}

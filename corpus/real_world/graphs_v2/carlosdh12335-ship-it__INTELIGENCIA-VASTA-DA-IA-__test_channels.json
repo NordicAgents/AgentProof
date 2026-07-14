@@ -1,0 +1,112 @@
+{
+ "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_channels",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "a",
+   "kind": "llm",
+   "label": "a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:329:329"
+  },
+  {
+   "id": "b",
+   "kind": "llm",
+   "label": "b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:330:330"
+  },
+  {
+   "id": "respond",
+   "kind": "llm",
+   "label": "respond",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:383:383"
+  },
+  {
+   "id": "write_file",
+   "kind": "llm",
+   "label": "write_file",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:573:573"
+  },
+  {
+   "id": "delete_file",
+   "kind": "llm",
+   "label": "delete_file",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:597:597"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:331:331"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:332:332"
+  },
+  {
+   "source": "__start__",
+   "target": "respond",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:384:384"
+  },
+  {
+   "source": "__start__",
+   "target": "write_file",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:574:574"
+  },
+  {
+   "source": "__start__",
+   "target": "write_file",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:598:598"
+  },
+  {
+   "source": "write_file",
+   "target": "delete_file",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/langgraph/libs/langgraph/tests/test_channels.py:599:599"
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "name": "Hsing-Tzu__AI-Aided-Systems__builder",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_assistant",
+   "kind": "llm",
+   "label": "research_assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Hsing-Tzu__AI-Aided-Systems@ca2b2c5/AAS-venv/Lib/site-packages/autogenstudio/gallery/builder.py:382:388"
+  },
+  {
+   "id": "verifier",
+   "kind": "llm",
+   "label": "verifier",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Hsing-Tzu__AI-Aided-Systems@ca2b2c5/AAS-venv/Lib/site-packages/autogenstudio/gallery/builder.py:382:388"
+  },
+  {
+   "id": "summary_agent",
+   "kind": "llm",
+   "label": "summary_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Hsing-Tzu__AI-Aided-Systems@ca2b2c5/AAS-venv/Lib/site-packages/autogenstudio/gallery/builder.py:382:388"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_assistant",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "research_assistant",
+   "target": "verifier",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "verifier",
+   "target": "summary_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "summary_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

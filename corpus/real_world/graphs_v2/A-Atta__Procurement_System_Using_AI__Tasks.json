@@ -1,0 +1,106 @@
+{
+ "name": "A-Atta__Procurement_System_Using_AI__Tasks",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "search_queries_recommendation_task",
+   "kind": "llm",
+   "label": "search_queries_recommendation_task",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/A-Atta__Procurement_System_Using_AI@815bc80/Tasks.py:18:33"
+  },
+  {
+   "id": "search_engine_task",
+   "kind": "llm",
+   "label": "search_engine_task",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/A-Atta__Procurement_System_Using_AI@815bc80/Tasks.py:47:59"
+  },
+  {
+   "id": "scraping_task",
+   "kind": "llm",
+   "label": "scraping_task",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/A-Atta__Procurement_System_Using_AI@815bc80/Tasks.py:86:96"
+  },
+  {
+   "id": "procurement_report_author_task",
+   "kind": "llm",
+   "label": "procurement_report_author_task",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/A-Atta__Procurement_System_Using_AI@815bc80/Tasks.py:101:121"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "search_queries_recommendation_task",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "search_queries_recommendation_task",
+   "target": "search_engine_task",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "search_engine_task",
+   "target": "scraping_task",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "scraping_task",
+   "target": "procurement_report_author_task",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "procurement_report_author_task",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

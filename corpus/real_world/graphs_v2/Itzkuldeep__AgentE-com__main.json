@@ -1,0 +1,182 @@
+{
+ "name": "Itzkuldeep__AgentE-com__main",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "call_agent",
+   "kind": "llm",
+   "label": "call_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "meet_agent",
+   "kind": "llm",
+   "label": "meet_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "mailgetter",
+   "kind": "llm",
+   "label": "mailgetter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "rag_agent",
+   "kind": "llm",
+   "label": "rag_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "scheduler_agent",
+   "kind": "llm",
+   "label": "scheduler_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "email_sender_agent",
+   "kind": "llm",
+   "label": "email_sender_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "conversation_agent",
+   "kind": "llm",
+   "label": "conversation_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "user_proxy",
+   "kind": "human",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Itzkuldeep__AgentE-com@ed0bf31/MarketPlace/main.py:253:264"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "call_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "call_agent",
+   "target": "meet_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "meet_agent",
+   "target": "mailgetter",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "mailgetter",
+   "target": "rag_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "rag_agent",
+   "target": "scheduler_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "scheduler_agent",
+   "target": "email_sender_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "email_sender_agent",
+   "target": "conversation_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "conversation_agent",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "call_agent",
+   "kind": "loop",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "user_proxy",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

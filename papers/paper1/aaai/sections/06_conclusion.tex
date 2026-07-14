@@ -3,10 +3,11 @@
 
 Agent frameworks encode behavior as explicit workflow graphs, and
 \textsc{Agentproof} turns that structure into an analyzable, cross-framework
-model with structural checks, witness traces, and a policy DSL with precise
-LTL$_f$ semantics evaluated both statically (via a graph\,$\times$\,DFA
-product covering bad prefixes, termination obligations, and divergent
-obligations) and at runtime. Used as a measurement instrument on 922 workflows
+model with structural checks, witness traces, extraction provenance, and a
+policy DSL with precise LTL$_f$ semantics evaluated both statically---via a
+conservative graph\,$\times$\,DFA product over finite maximal executions that
+covers bad prefixes and termination obligations and returns
+\emph{inconclusive} for behavior it cannot certify---and at runtime. Used as a measurement instrument on 922 workflows
 from 252 public GitHub repositories, it yields a finding more textured than a
 simple null: flags are almost never defects (precision 1.1\%), yet the
 instrument also \emph{hides} defects---measured prevalence doubles, to 3.4\%
@@ -23,7 +24,7 @@ an extraction artifact; three of four extractors cannot even express the
 defects the structural checks target; and the risk-aware gate misses real
 sensitive paths because tool bindings hide in node bodies. The static
 machinery keeps a defect-independent job---under an explicit trace-containment
-premise, the product soundly prunes provably-inert runtime monitors (93\% on
+premise, the product soundly prunes provably-inert runtime monitors (88\% on
 the curated corpus, all of it alphabet-level today)---positioning
 pre-deployment analysis as a monitor-selection layer within a
 static-plus-runtime safety stack.
@@ -31,7 +32,7 @@ static-plus-runtime safety stack.
 \paragraph{Limitations.}
 The population is public GitHub, not production systems; two thirds of it is
 tutorial-grade, which we census and stratify but cannot fully correct.
-Ground-truth graphs and triage labels are LLM reconstructions with adversarial
+Reference graphs and triage labels are LLM reconstructions with adversarial
 verification, not human annotations; confidence-stratified sensitivity checks
 and released per-label justifications mitigate but do not eliminate this, and
 human annotation of a subsample is the immediate next step. Prevalence CIs are
@@ -41,7 +42,7 @@ redirection---toward higher-fidelity extraction and per-workflow policy
 instantiation, the direction we pursue in follow-up work on runtime shields.
 
 \paragraph{Artifact.}
-The tool, corpora, mining and validation pipeline, ground-truth
+The tool, corpora, mining and validation pipeline, reference-graph
 reconstructions, triage labels with justifications, and all evaluation
 scripts will be released under the MIT license.
 

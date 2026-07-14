@@ -1,0 +1,81 @@
+{
+ "name": "Saimoguloju__AI-Agents__sample_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "classify",
+   "kind": "router",
+   "label": "classify",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:90:90"
+  },
+  {
+   "id": "math",
+   "kind": "llm",
+   "label": "math",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:91:91"
+  },
+  {
+   "id": "general",
+   "kind": "llm",
+   "label": "general",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:92:92"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "classify",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:93:93"
+  },
+  {
+   "source": "math",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:95:95"
+  },
+  {
+   "source": "general",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Saimoguloju__AI-Agents@4cdedda/LangGraph/sample_agent.py:96:96"
+  }
+ ]
+}

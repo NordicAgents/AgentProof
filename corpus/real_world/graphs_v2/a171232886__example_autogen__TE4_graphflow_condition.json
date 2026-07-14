@@ -1,0 +1,87 @@
+{
+ "name": "a171232886__example_autogen__TE4_graphflow_condition",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent_e",
+   "kind": "llm",
+   "label": "agent_e",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:22:22"
+  },
+  {
+   "id": "agent_c",
+   "kind": "llm",
+   "label": "agent_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:22:22"
+  },
+  {
+   "id": "agent_b",
+   "kind": "llm",
+   "label": "agent_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:22:22"
+  },
+  {
+   "id": "agent_a",
+   "kind": "llm",
+   "label": "agent_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:22:22"
+  }
+ ],
+ "edges": [
+  {
+   "source": "agent_a",
+   "target": "agent_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:25:25"
+  },
+  {
+   "source": "agent_b",
+   "target": "agent_c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:28:28"
+  },
+  {
+   "source": "agent_c",
+   "target": "agent_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:31:31"
+  },
+  {
+   "source": "agent_b",
+   "target": "agent_e",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/a171232886__example_autogen@910287f/TE4_graphflow_condition.py:34:34"
+  }
+ ]
+}

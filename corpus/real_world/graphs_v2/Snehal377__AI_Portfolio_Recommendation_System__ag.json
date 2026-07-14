@@ -1,0 +1,106 @@
+{
+ "name": "Snehal377__AI_Portfolio_Recommendation_System__ag",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "market_analyst",
+   "kind": "llm",
+   "label": "market_analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:294:294"
+  },
+  {
+   "id": "risk_analyst",
+   "kind": "llm",
+   "label": "risk_analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:295:295"
+  },
+  {
+   "id": "portfolio_consultant",
+   "kind": "llm",
+   "label": "portfolio_consultant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:296:296"
+  },
+  {
+   "id": "portfolio_critic",
+   "kind": "llm",
+   "label": "portfolio_critic",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:297:297"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "market_analyst",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:299:299"
+  },
+  {
+   "source": "market_analyst",
+   "target": "risk_analyst",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:300:300"
+  },
+  {
+   "source": "risk_analyst",
+   "target": "portfolio_consultant",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:301:301"
+  },
+  {
+   "source": "portfolio_consultant",
+   "target": "portfolio_critic",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:302:302"
+  },
+  {
+   "source": "portfolio_critic",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Snehal377__AI_Portfolio_Recommendation_System@753e8b7/ag.py:303:303"
+  }
+ ]
+}

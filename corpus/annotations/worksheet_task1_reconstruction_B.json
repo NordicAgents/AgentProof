@@ -1,0 +1,550 @@
+{
+  "annotator": "B",
+  "task": "graph_reconstruction",
+  "items": [
+    {
+      "workflow_id": "AdaptiveBProcess__bpm_agent__template",
+      "source_url": "https://github.com/AdaptiveBProcess/bpm_agent/blob/8ca648be0b7b69ec9c7a39cb7ef59696f2569086/template.py",
+      "source_path": "template.py",
+      "commit_sha": "8ca648be0b7b69ec9c7a39cb7ef59696f2569086",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Astrodevil__ADK-Agent-Examples__agent",
+      "source_url": "https://github.com/Astrodevil/ADK-Agent-Examples/blob/e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c/analyzer_agent/agent.py",
+      "source_path": "analyzer_agent/agent.py",
+      "commit_sha": "e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Avneesh26024__Gen_AI_Exchange__main",
+      "source_url": "https://github.com/Avneesh26024/Gen_AI_Exchange/blob/73b68d7ed3bca375eb3c815241f0d2c958d95e89/main.py",
+      "source_path": "main.py",
+      "commit_sha": "73b68d7ed3bca375eb3c815241f0d2c958d95e89",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Hsing-Tzu__AI-Aided-Systems__TRAgent",
+      "source_url": "https://github.com/Hsing-Tzu/AI-Aided-Systems/blob/ca2b2c5e81b7862493fe11a88630fb027499826d/TRAgent.py",
+      "source_path": "TRAgent.py",
+      "commit_sha": "ca2b2c5e81b7862493fe11a88630fb027499826d",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+      "source_url": "https://github.com/IbrahimAlobid2/Smart-Procurement-Agents/blob/b29b530a4ec295e6963ffd709d4aaca2337f1d58/src/Agents/search_engine_agent.py",
+      "source_path": "src/Agents/search_engine_agent.py",
+      "commit_sha": "b29b530a4ec295e6963ffd709d4aaca2337f1d58",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Itzkuldeep__AgentE-com__main",
+      "source_url": "https://github.com/Itzkuldeep/AgentE-com/blob/ed0bf312318e4c1975d9c9c860f43a2a216e7382/MarketPlace/main.py",
+      "source_path": "MarketPlace/main.py",
+      "commit_sha": "ed0bf312318e4c1975d9c9c860f43a2a216e7382",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Mhijazi16__LanggraphExercise__one",
+      "source_url": "https://github.com/Mhijazi16/LanggraphExercise/blob/8c0e11424b200c7423a274b82511262d6de5d4fc/one.py",
+      "source_path": "one.py",
+      "commit_sha": "8c0e11424b200c7423a274b82511262d6de5d4fc",
+      "pilot": true,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+      "source_url": "https://github.com/NEU-Bio-Research-Team/tox-agent/blob/7dd69e7b3d44eb7674fa792e5d6dd837b10eac0b/agents/orchestrator_agent.py",
+      "source_path": "agents/orchestrator_agent.py",
+      "commit_sha": "7dd69e7b3d44eb7674fa792e5d6dd837b10eac0b",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "SPZts__AutoModel__model22",
+      "source_url": "https://github.com/SPZts/AutoModel/blob/2d02ffee5d735c037ceb2b45d1490cee23c48aba/modelTeam/model22.py",
+      "source_path": "modelTeam/model22.py",
+      "commit_sha": "2d02ffee5d735c037ceb2b45d1490cee23c48aba",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "SPZts__AutoModel__model32",
+      "source_url": "https://github.com/SPZts/AutoModel/blob/2d02ffee5d735c037ceb2b45d1490cee23c48aba/modelTeam/model32.py",
+      "source_path": "modelTeam/model32.py",
+      "commit_sha": "2d02ffee5d735c037ceb2b45d1490cee23c48aba",
+      "pilot": true,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+      "source_url": "https://github.com/Sarfaraz021/WhatsApp-data-Assistant-Using-Qdrant-VectorDB/blob/efe35d816f1ccc31f847c8a1904fd1386faa6c10/new.py",
+      "source_path": "new.py",
+      "commit_sha": "efe35d816f1ccc31f847c8a1904fd1386faa6c10",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Sidreyas__The_Grand_AI_Repo__builder",
+      "source_url": "https://github.com/Sidreyas/The_Grand_AI_Repo/blob/61bb48c610bae5e30167a71875d9bf5f779b1294/8.agents-towards-production/python/packages/autogen-studio/autogenstudio/gallery/builder.py",
+      "source_path": "8.agents-towards-production/python/packages/autogen-studio/autogenstudio/gallery/builder.py",
+      "commit_sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+      "source_url": "https://github.com/Sirivella-Rajasekhar-Reddy/Product-Dynamic-Page/blob/025f8f1944dc9f78b3bbea95f46253bdd78d3553/raj.py",
+      "source_path": "raj.py",
+      "commit_sha": "025f8f1944dc9f78b3bbea95f46253bdd78d3553",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+      "source_url": "https://github.com/SomanGaurav/Agentic_Research_Assistant/blob/08977f9ab588c218f0c0c851499f39800f33e036/test_agent.py",
+      "source_path": "test_agent.py",
+      "commit_sha": "08977f9ab588c218f0c0c851499f39800f33e036",
+      "pilot": true,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+      "source_url": "https://github.com/Sujas-Aggarwal/langraph-chatbot/blob/1e5cc6bd1ea8875de5058289fab6d3ad71138a5a/versions/v2.6.0.py",
+      "source_path": "versions/v2.6.0.py",
+      "commit_sha": "1e5cc6bd1ea8875de5058289fab6d3ad71138a5a",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+      "source_url": "https://github.com/Tushar365/WebScript-AI-Powered-Research-Content-Creator/blob/3e98e307c171349ec56ee11e53d86ea8d5bf450e/tasks.py",
+      "source_path": "tasks.py",
+      "commit_sha": "3e98e307c171349ec56ee11e53d86ea8d5bf450e",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "aayu2003__agent_creation__tasks",
+      "source_url": "https://github.com/aayu2003/agent_creation/blob/930e3201842ab0a9011a345b36d9e2fe273725ab/tasks.py",
+      "source_path": "tasks.py",
+      "commit_sha": "930e3201842ab0a9011a345b36d9e2fe273725ab",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+      "source_url": "https://github.com/blueming333/aicraft-class-autogen/blob/c29822a0f02473f127c9ccfe128e0444e69bea2d/GitHubOfficialMcpExample.py",
+      "source_path": "GitHubOfficialMcpExample.py",
+      "commit_sha": "c29822a0f02473f127c9ccfe128e0444e69bea2d",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+      "source_url": "https://github.com/blueming333/aicraft-class-autogen/blob/c29822a0f02473f127c9ccfe128e0444e69bea2d/Extensions/LangChainTest/PythonAstREPLTool.py",
+      "source_path": "Extensions/LangChainTest/PythonAstREPLTool.py",
+      "commit_sha": "c29822a0f02473f127c9ccfe128e0444e69bea2d",
+      "pilot": true,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "dforwardfeed__memo_generator__main",
+      "source_url": "https://github.com/dforwardfeed/memo_generator/blob/b02cb185013c7484565491cbcd16738e3b689d07/main.py",
+      "source_path": "main.py",
+      "commit_sha": "b02cb185013c7484565491cbcd16738e3b689d07",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "ericjiang18__Agent-Q-Mix__test_agent",
+      "source_url": "https://github.com/ericjiang18/Agent-Q-Mix/blob/c1154769f9ab27707a35d331f3727c52a5c05ec8/agent_baseline/autogen/python/packages/autogen-agentchat/tests/test_agent.py",
+      "source_path": "agent_baseline/autogen/python/packages/autogen-agentchat/tests/test_agent.py",
+      "commit_sha": "c1154769f9ab27707a35d331f3727c52a5c05ec8",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "esk000__AIAgentsIntensive__LoopAgent",
+      "source_url": "https://github.com/esk000/AIAgentsIntensive/blob/66d8482ec96818243706925ac811b72d2dfa3dd1/LoopAgent.py",
+      "source_path": "LoopAgent.py",
+      "commit_sha": "66d8482ec96818243706925ac811b72d2dfa3dd1",
+      "pilot": true,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "firaflash__career-mentor-ai-agent__tasks",
+      "source_url": "https://github.com/firaflash/career-mentor-ai-agent/blob/b1a8cca802589c77d8591a44c776aa348bcc48ba/tasks.py",
+      "source_path": "tasks.py",
+      "commit_sha": "b1a8cca802589c77d8591a44c776aa348bcc48ba",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "gabrielpreda__adk-sql-agent__agent",
+      "source_url": "https://github.com/gabrielpreda/adk-sql-agent/blob/ef9206ea3d5c4a89b956481043a1508ff433a0fc/sql_agent/agent.py",
+      "source_path": "sql_agent/agent.py",
+      "commit_sha": "ef9206ea3d5c4a89b956481043a1508ff433a0fc",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "huangdihd__ProjectAI__main",
+      "source_url": "https://github.com/huangdihd/ProjectAI/blob/76d35404844caf1e10e9cd714963f08fd6dec86f/main.py",
+      "source_path": "main.py",
+      "commit_sha": "76d35404844caf1e10e9cd714963f08fd6dec86f",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "joansantoso__iox-adk__agent",
+      "source_url": "https://github.com/joansantoso/iox-adk/blob/4e81d594bf67d696fbdfdb34741fd0facdbe1c66/agent04/agent.py",
+      "source_path": "agent04/agent.py",
+      "commit_sha": "4e81d594bf67d696fbdfdb34741fd0facdbe1c66",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+      "source_url": "https://github.com/maxidiazbattan/Agentic-RAG-langgraph-ollama-streamlit/blob/fde35006d862b46b4a3edfd3dfa3543b388f71a1/app.py",
+      "source_path": "app.py",
+      "commit_sha": "fde35006d862b46b4a3edfd3dfa3543b388f71a1",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "merdandt__SalesShortcut__outreach_email_agent",
+      "source_url": "https://github.com/merdandt/SalesShortcut/blob/599998f2629de69368af15178c8d8ae1c820cdf4/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py",
+      "source_path": "sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py",
+      "commit_sha": "599998f2629de69368af15178c8d8ae1c820cdf4",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "sreekarrs__JobSearch-Agent__cv_writer",
+      "source_url": "https://github.com/sreekarrs/JobSearch-Agent/blob/1b52cafe923b8b2bd925b0c7a5bf3af75d8518f1/archive/cv_writer.py",
+      "source_path": "archive/cv_writer.py",
+      "commit_sha": "1b52cafe923b8b2bd925b0c7a5bf3af75d8518f1",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "suryaMadhav16__RAG-Lab__CrewAI",
+      "source_url": "https://github.com/suryaMadhav16/RAG-Lab/blob/987bc8aec7c3b63169c6ce02cd0852c49fcf1545/CrewAI.py",
+      "source_path": "CrewAI.py",
+      "commit_sha": "987bc8aec7c3b63169c6ce02cd0852c49fcf1545",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "svpino__ml.school__agent",
+      "source_url": "https://github.com/svpino/ml.school/blob/7390072a1f965c826dd4a7dd82f881fff374da6a/src/agents/rag/agent.py",
+      "source_path": "src/agents/rag/agent.py",
+      "commit_sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    },
+    {
+      "workflow_id": "vishnusurya11__ember__dev",
+      "source_url": "https://github.com/vishnusurya11/ember/blob/a992997e7737fdeebc305932c4e9a96b896be025/dev.py",
+      "source_path": "dev.py",
+      "commit_sha": "a992997e7737fdeebc305932c4e9a96b896be025",
+      "pilot": false,
+      "reconstruction": {
+        "entry_id": "",
+        "exit_ids": [],
+        "nodes": [],
+        "edges": []
+      },
+      "insufficient_evidence": false,
+      "insufficient_evidence_scope": [],
+      "notes": "",
+      "committed": false
+    }
+  ]
+}

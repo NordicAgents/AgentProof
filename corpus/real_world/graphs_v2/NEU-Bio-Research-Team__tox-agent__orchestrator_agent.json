@@ -1,0 +1,89 @@
+{
+ "name": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "input_validator",
+   "kind": "llm",
+   "label": "input_validator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NEU-Bio-Research-Team__tox-agent@7dd69e7/agents/orchestrator_agent.py:333:333"
+  },
+  {
+   "id": "analysis_stage",
+   "kind": "llm",
+   "label": "analysis_stage",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NEU-Bio-Research-Team__tox-agent@7dd69e7/agents/orchestrator_agent.py:333:333"
+  },
+  {
+   "id": "writer_agent",
+   "kind": "llm",
+   "label": "writer_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NEU-Bio-Research-Team__tox-agent@7dd69e7/agents/orchestrator_agent.py:333:333"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "input_validator",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "input_validator",
+   "target": "analysis_stage",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analysis_stage",
+   "target": "writer_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "writer_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

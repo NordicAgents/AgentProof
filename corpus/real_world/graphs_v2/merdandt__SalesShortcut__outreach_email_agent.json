@@ -1,0 +1,123 @@
+{
+ "name": "merdandt__SalesShortcut__outreach_email_agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "specification_creator_agent",
+   "kind": "llm",
+   "label": "specification_creator_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py:17:17"
+  },
+  {
+   "id": "website_creator_agent",
+   "kind": "llm",
+   "label": "website_creator_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py:18:18"
+  },
+  {
+   "id": "offer_file_creator_agent",
+   "kind": "llm",
+   "label": "offer_file_creator_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py:19:19"
+  },
+  {
+   "id": "email_agent",
+   "kind": "llm",
+   "label": "email_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py:20:20"
+  },
+  {
+   "id": "engagement_saver_agent",
+   "kind": "llm",
+   "label": "engagement_saver_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/outreach_email_agent.py:21:21"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "specification_creator_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "specification_creator_agent",
+   "target": "website_creator_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "website_creator_agent",
+   "target": "offer_file_creator_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "offer_file_creator_agent",
+   "target": "email_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "email_agent",
+   "target": "engagement_saver_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "engagement_saver_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

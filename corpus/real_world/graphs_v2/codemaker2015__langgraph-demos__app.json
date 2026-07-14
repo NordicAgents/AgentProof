@@ -1,0 +1,53 @@
+{
+ "name": "codemaker2015__langgraph-demos__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "LLM",
+   "kind": "router",
+   "label": "LLM",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/codemaker2015__langgraph-demos@98ba598/app.py:114:114"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/codemaker2015__langgraph-demos@98ba598/app.py:120:120"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "LLM",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/codemaker2015__langgraph-demos@98ba598/app.py:117:117"
+  },
+  {
+   "source": "tools",
+   "target": "LLM",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/codemaker2015__langgraph-demos@98ba598/app.py:126:126"
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "name": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "summary_agent",
+   "kind": "llm",
+   "label": "summary_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jpantsjoha__Agentic-Marketing-Campaign-Generator@7e06c42/backend/marketing_agent.py:156:156"
+  },
+  {
+   "id": "idea_agent",
+   "kind": "llm",
+   "label": "idea_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jpantsjoha__Agentic-Marketing-Campaign-Generator@7e06c42/backend/marketing_agent.py:156:156"
+  },
+  {
+   "id": "social_agent",
+   "kind": "llm",
+   "label": "social_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jpantsjoha__Agentic-Marketing-Campaign-Generator@7e06c42/backend/marketing_agent.py:156:156"
+  },
+  {
+   "id": "video_agent",
+   "kind": "llm",
+   "label": "video_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jpantsjoha__Agentic-Marketing-Campaign-Generator@7e06c42/backend/marketing_agent.py:156:156"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "summary_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "summary_agent",
+   "target": "idea_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "idea_agent",
+   "target": "social_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "social_agent",
+   "target": "video_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "video_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

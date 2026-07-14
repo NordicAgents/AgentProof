@@ -1,0 +1,194 @@
+{
+ "name": "GaoDalie__LangGraph_Example__scraper",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "RESEARCHER",
+   "kind": "llm",
+   "label": "RESEARCHER",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:194:194"
+  },
+  {
+   "id": "ANALYZER",
+   "kind": "llm",
+   "label": "ANALYZER",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:195:195"
+  },
+  {
+   "id": "EXPERT",
+   "kind": "llm",
+   "label": "EXPERT",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:196:196"
+  },
+  {
+   "id": "SUPERVISOR",
+   "kind": "router",
+   "label": "SUPERVISOR",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:197:197"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "RESEARCHER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:199:199"
+  },
+  {
+   "source": "ANALYZER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:200:200"
+  },
+  {
+   "source": "EXPERT",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:201:201"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "RESEARCHER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:202:211"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "ANALYZER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:202:211"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "EXPERT",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:202:211"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:202:211"
+  },
+  {
+   "source": "__start__",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:213:213"
+  },
+  {
+   "source": "RESEARCHER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:254:254"
+  },
+  {
+   "source": "ANALYZER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:255:255"
+  },
+  {
+   "source": "EXPERT",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:256:256"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "RESEARCHER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:257:266"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "ANALYZER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:257:266"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "EXPERT",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:257:266"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:257:266"
+  },
+  {
+   "source": "__start__",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/scraper.py:268:268"
+  }
+ ]
+}

@@ -23,7 +23,7 @@
 \graphicspath{{../figures/}{../generated/}}
 
 % Title (Title Case, per AAAI rules).
-\title{Agentproof: A Base-Rate Study of Static Verification for Agent Workflow Graphs Mined from Public GitHub}
+\title{When Can Static Verification Help Agent Workflows? A Base-Rate and Model-Fidelity Study}
 \author{Anonymous Submission}
 \affiliations{}
 
@@ -35,19 +35,23 @@ Agent frameworks increasingly encode tool-using behavior as explicit workflow
 graphs whose topology can be analyzed before deployment---yet how often such
 graphs actually contain the structural defects static verification targets has
 not been measured. We build \textsc{Agentproof}, which automatically extracts a
-unified graph model from four agent frameworks (LangGraph, CrewAI, AutoGen,
-Google ADK) with no per-workflow manual modeling, applies six structural checks
-with witness traces, and compiles a temporal policy DSL with LTL$_f$
-(finite-trace) semantics to DFAs evaluated statically, via a
-graph\,$\times$\,DFA product covering bad prefixes, termination obligations,
-and divergent obligations, and at runtime. We use it as a measurement
-instrument on 922 workflows from 252 public GitHub repositories, with a
-119-workflow sample validated against independently reconstructed ground-truth
-graphs and adversarial triage---reporting flag \emph{precision} and defect
-\emph{prevalence} as separate estimands, since a lossy extractor both
+unified graph model with per-element extraction provenance from four agent
+frameworks (LangGraph, CrewAI, AutoGen, Google ADK) with no per-workflow manual
+modeling, applies six structural checks with witness traces, and compiles a
+temporal policy DSL with LTL$_f$ (finite-trace) semantics---differentially
+tested against an independent reference oracle---to DFAs evaluated at runtime
+and statically over finite maximal executions, via a conservative
+graph\,$\times$\,DFA product that explores every declared tool binding, covers
+bad prefixes and end-of-trace obligations, and returns an explicit
+\emph{inconclusive} verdict for behavior it cannot certify. We use it as a
+measurement instrument on 922 workflows from 252 public GitHub repositories,
+with a 119-workflow sample validated against independently reconstructed
+reference graphs (LLM-generated, adversarially cross-checked, not human
+annotations) and adversarial triage---reporting flag \emph{precision} and
+defect \emph{prevalence} as separate estimands, since a lossy extractor both
 manufactures false flags and hides true defects. Flags are almost never
 defects: 2 of 186 are genuine (1.1\%); every structural flag is an extraction
-artifact. But re-running the checks on ground-truth graphs reveals defects the
+artifact. But re-running the checks on the reference graphs reveals defects the
 extractor missed, doubling measured prevalence to 4 of 119 workflows (3.4\%,
 95\% CI $[1.3,8.3]\%$)---concentrated in application-like workflows binding
 side-effecting tools (7.7\%) rather than the tutorials and demos that dominate
@@ -55,7 +59,7 @@ public GitHub (1.3\%). We diagnose extraction fidelity (edge recall 0.65 on
 real code, 0.38 on implicit-topology ADK), not the check algorithms, as the
 binding constraint, and give the static machinery a defect-independent job
 under an explicit trace-containment premise: proving which runtime monitors
-can never fire, so they can be soundly pruned (93\% on a curated corpus, all
+can never fire, so they can be soundly pruned (88\% on a curated corpus, all
 alphabet-level today).
 \end{abstract}
 

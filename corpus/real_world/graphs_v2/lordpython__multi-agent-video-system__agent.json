@@ -1,0 +1,140 @@
+{
+ "name": "lordpython__multi-agent-video-system__agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_agent",
+   "kind": "llm",
+   "label": "research_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:41:41"
+  },
+  {
+   "id": "story_agent",
+   "kind": "llm",
+   "label": "story_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:42:42"
+  },
+  {
+   "id": "asset_sourcing_agent",
+   "kind": "llm",
+   "label": "asset_sourcing_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:43:43"
+  },
+  {
+   "id": "image_generation_agent",
+   "kind": "llm",
+   "label": "image_generation_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:44:44"
+  },
+  {
+   "id": "audio_agent",
+   "kind": "llm",
+   "label": "audio_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:45:45"
+  },
+  {
+   "id": "video_assembly_agent",
+   "kind": "llm",
+   "label": "video_assembly_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/lordpython__multi-agent-video-system@424ad45/video_system/agent.py:46:46"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "research_agent",
+   "target": "story_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "story_agent",
+   "target": "asset_sourcing_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "asset_sourcing_agent",
+   "target": "image_generation_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "image_generation_agent",
+   "target": "audio_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "audio_agent",
+   "target": "video_assembly_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "video_assembly_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "name": "SAMAR-CODE404__backend__operations_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "supply_chain_analysis",
+   "kind": "llm",
+   "label": "supply_chain_analysis",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:175:175"
+  },
+  {
+   "id": "human_approval",
+   "kind": "router",
+   "label": "human_approval",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:176:176"
+  },
+  {
+   "id": "industry_positioning",
+   "kind": "llm",
+   "label": "industry_positioning",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:177:177"
+  },
+  {
+   "id": "operations_reporting",
+   "kind": "llm",
+   "label": "operations_reporting",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:178:178"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "supply_chain_analysis",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:181:181"
+  },
+  {
+   "source": "supply_chain_analysis",
+   "target": "industry_positioning",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:182:182"
+  },
+  {
+   "source": "industry_positioning",
+   "target": "human_approval",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:183:183"
+  },
+  {
+   "source": "human_approval",
+   "target": "operations_reporting",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:186:193"
+  },
+  {
+   "source": "human_approval",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:186:193"
+  },
+  {
+   "source": "operations_reporting",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/operations_agent.py:196:196"
+  }
+ ]
+}

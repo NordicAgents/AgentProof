@@ -1,0 +1,89 @@
+{
+ "name": "merdandt__SalesShortcut__websiter_creator_agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "prepare_prompt",
+   "kind": "llm",
+   "label": "prepare_prompt",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/sub_agents/website_creator/websiter_creator_agent.py:14:14"
+  },
+  {
+   "id": "request_URL",
+   "kind": "llm",
+   "label": "request_URL",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/sub_agents/website_creator/websiter_creator_agent.py:15:15"
+  },
+  {
+   "id": "process_decision",
+   "kind": "llm",
+   "label": "process_decision",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/merdandt__SalesShortcut@599998f/sdr/sdr/sub_agents/outreach_email_agent/sub_agents/website_creator/websiter_creator_agent.py:16:16"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "prepare_prompt",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "prepare_prompt",
+   "target": "request_URL",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "request_URL",
+   "target": "process_decision",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "process_decision",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "name": "AliciaSJF__autogen__agnte_que_cuenta",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "add_agent",
+   "kind": "llm",
+   "label": "add_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AliciaSJF__autogen@3601382/agnte_que_cuenta.py:97:107"
+  },
+  {
+   "id": "multiply_agent",
+   "kind": "llm",
+   "label": "multiply_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AliciaSJF__autogen@3601382/agnte_que_cuenta.py:97:107"
+  },
+  {
+   "id": "subtract_agent",
+   "kind": "llm",
+   "label": "subtract_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AliciaSJF__autogen@3601382/agnte_que_cuenta.py:97:107"
+  },
+  {
+   "id": "divide_agent",
+   "kind": "llm",
+   "label": "divide_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AliciaSJF__autogen@3601382/agnte_que_cuenta.py:97:107"
+  },
+  {
+   "id": "identity_agent",
+   "kind": "llm",
+   "label": "identity_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AliciaSJF__autogen@3601382/agnte_que_cuenta.py:97:107"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "add_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "add_agent",
+   "target": "multiply_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "multiply_agent",
+   "target": "subtract_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "subtract_agent",
+   "target": "divide_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "divide_agent",
+   "target": "identity_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "identity_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,172 @@
+{
+ "name": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__4",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "get_failures",
+   "kind": "llm",
+   "label": "get_failures",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:42:42"
+  },
+  {
+   "id": "generate_summary",
+   "kind": "llm",
+   "label": "generate_summary",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:43:43"
+  },
+  {
+   "id": "send_to_slack",
+   "kind": "llm",
+   "label": "send_to_slack",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:76:76"
+  },
+  {
+   "id": "clean_logs",
+   "kind": "llm",
+   "label": "clean_logs",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:99:99"
+  },
+  {
+   "id": "question_summarization",
+   "kind": "llm",
+   "label": "question_summarization",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:100:100"
+  },
+  {
+   "id": "failure_analysis",
+   "kind": "llm",
+   "label": "failure_analysis",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:101:101"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "get_failures",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:45:45"
+  },
+  {
+   "source": "get_failures",
+   "target": "generate_summary",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:46:46"
+  },
+  {
+   "source": "generate_summary",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:47:47"
+  },
+  {
+   "source": "__start__",
+   "target": "generate_summary",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:77:77"
+  },
+  {
+   "source": "generate_summary",
+   "target": "send_to_slack",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:78:78"
+  },
+  {
+   "source": "send_to_slack",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:79:79"
+  },
+  {
+   "source": "__start__",
+   "target": "clean_logs",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:103:103"
+  },
+  {
+   "source": "clean_logs",
+   "target": "question_summarization",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:104:104"
+  },
+  {
+   "source": "clean_logs",
+   "target": "failure_analysis",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:105:105"
+  },
+  {
+   "source": "question_summarization",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:106:106"
+  },
+  {
+   "source": "failure_analysis",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/4.py:107:107"
+  }
+ ]
+}

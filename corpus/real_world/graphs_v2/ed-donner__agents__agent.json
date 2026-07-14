@@ -1,0 +1,72 @@
+{
+ "name": "ed-donner__agents__agent",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "search_for_the_latest_news_on_{topic}._provide_5-8",
+   "kind": "llm",
+   "label": "Search for the latest news on {topic}. Provide 5-8",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/3_crewai/community_contributions/ngahunj/agent.py:146:157"
+  },
+  {
+   "id": "using_the_research_findings:\n\n1._extract_each_head",
+   "kind": "llm",
+   "label": "Using the research findings:\n\n1. Extract each head",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/3_crewai/community_contributions/ngahunj/agent.py:159:182"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "search_for_the_latest_news_on_{topic}._provide_5-8",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "search_for_the_latest_news_on_{topic}._provide_5-8",
+   "target": "using_the_research_findings:\n\n1._extract_each_head",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_research_findings:\n\n1._extract_each_head",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

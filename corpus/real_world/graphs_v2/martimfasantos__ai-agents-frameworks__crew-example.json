@@ -1,0 +1,106 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__crew-example",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "continuously_monitor_and_analyze_market_data_for_t",
+   "kind": "llm",
+   "label": "Continuously monitor and analyze market data for t",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/crewai-simple-examples/crew-example.py:29:41"
+  },
+  {
+   "id": "develop_and_refine_trading_strategies_based_on_the",
+   "kind": "llm",
+   "label": "Develop and refine trading strategies based on the",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/crewai-simple-examples/crew-example.py:44:56"
+  },
+  {
+   "id": "analyze_approved_trading_strategies_to_determine_t",
+   "kind": "llm",
+   "label": "Analyze approved trading strategies to determine t",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/crewai-simple-examples/crew-example.py:59:70"
+  },
+  {
+   "id": "evaluate_the_risks_associated_with_the_proposed_tr",
+   "kind": "llm",
+   "label": "Evaluate the risks associated with the proposed tr",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/crewai-simple-examples/crew-example.py:73:85"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "continuously_monitor_and_analyze_market_data_for_t",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "continuously_monitor_and_analyze_market_data_for_t",
+   "target": "develop_and_refine_trading_strategies_based_on_the",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "develop_and_refine_trading_strategies_based_on_the",
+   "target": "analyze_approved_trading_strategies_to_determine_t",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analyze_approved_trading_strategies_to_determine_t",
+   "target": "evaluate_the_risks_associated_with_the_proposed_tr",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "evaluate_the_risks_associated_with_the_proposed_tr",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

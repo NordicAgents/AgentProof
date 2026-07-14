@@ -1,0 +1,139 @@
+{
+ "name": "noriyukitakei__sf6-ai-analysis__magi",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "prepare",
+   "kind": "llm",
+   "label": "prepare",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:331:331"
+  },
+  {
+   "id": "offense",
+   "kind": "llm",
+   "label": "offense",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:332:332"
+  },
+  {
+   "id": "defense",
+   "kind": "llm",
+   "label": "defense",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:333:333"
+  },
+  {
+   "id": "strategy",
+   "kind": "llm",
+   "label": "strategy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:334:334"
+  },
+  {
+   "id": "finalize",
+   "kind": "llm",
+   "label": "finalize",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:335:335"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "prepare",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:337:337"
+  },
+  {
+   "source": "prepare",
+   "target": "offense",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:339:339"
+  },
+  {
+   "source": "prepare",
+   "target": "defense",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:340:340"
+  },
+  {
+   "source": "prepare",
+   "target": "strategy",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:341:341"
+  },
+  {
+   "source": "offense",
+   "target": "finalize",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:343:343"
+  },
+  {
+   "source": "defense",
+   "target": "finalize",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:344:344"
+  },
+  {
+   "source": "strategy",
+   "target": "finalize",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:345:345"
+  },
+  {
+   "source": "finalize",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/noriyukitakei__sf6-ai-analysis@c3986fe/magi.py:346:346"
+  }
+ ]
+}

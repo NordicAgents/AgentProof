@@ -1,0 +1,140 @@
+{
+ "name": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "global_workspace_agent",
+   "kind": "llm",
+   "label": "global_workspace_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "perception_agent",
+   "kind": "llm",
+   "label": "perception_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "attention_agent",
+   "kind": "llm",
+   "label": "attention_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "evaluation_agent",
+   "kind": "llm",
+   "label": "evaluation_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "execution_agent",
+   "kind": "llm",
+   "label": "execution_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "environment_proxy",
+   "kind": "llm",
+   "label": "environment_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/project194-cognitivellm__cognitivellm@b141b73/gwt_run_autogen_eval.py:185:192"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "global_workspace_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "global_workspace_agent",
+   "target": "perception_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "perception_agent",
+   "target": "attention_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "attention_agent",
+   "target": "evaluation_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "evaluation_agent",
+   "target": "execution_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "execution_agent",
+   "target": "environment_proxy",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "environment_proxy",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

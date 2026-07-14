@@ -1,0 +1,89 @@
+{
+ "name": "microsoft__ACV__test_groupchat",
+ "framework": "autogen",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent_a",
+   "kind": "llm",
+   "label": "agent_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/microsoft__ACV@994ac15/misc/DoVer/AG2/ag2-0.10.0/test/agentchat/test_groupchat.py:2307:2307"
+  },
+  {
+   "id": "agent_b",
+   "kind": "llm",
+   "label": "agent_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/microsoft__ACV@994ac15/misc/DoVer/AG2/ag2-0.10.0/test/agentchat/test_groupchat.py:2307:2307"
+  },
+  {
+   "id": "agent_c",
+   "kind": "llm",
+   "label": "agent_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/microsoft__ACV@994ac15/misc/DoVer/AG2/ag2-0.10.0/test/agentchat/test_groupchat.py:2307:2307"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "agent_a",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "agent_a",
+   "target": "agent_b",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "agent_b",
+   "target": "agent_c",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "agent_c",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

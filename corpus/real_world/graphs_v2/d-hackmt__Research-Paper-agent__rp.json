@@ -1,0 +1,81 @@
+{
+ "name": "d-hackmt__Research-Paper-agent__rp",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "orchestrator",
+   "kind": "router",
+   "label": "orchestrator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:145:145"
+  },
+  {
+   "id": "llm_call",
+   "kind": "llm",
+   "label": "llm_call",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:146:146"
+  },
+  {
+   "id": "synthesizer",
+   "kind": "llm",
+   "label": "synthesizer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:147:147"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "orchestrator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:148:148"
+  },
+  {
+   "source": "llm_call",
+   "target": "synthesizer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:150:150"
+  },
+  {
+   "source": "synthesizer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/d-hackmt__Research-Paper-agent@8e177e5/rp.py:151:151"
+  }
+ ]
+}

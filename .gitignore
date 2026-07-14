@@ -32,3 +32,7 @@ htmlcov/
 corpus/real_world/_repos/
 corpus/real_world/sources/
 corpus/real_world/*.log
+
+# Anonymized review artifact (build output; full repo copy, regenerable). Kept local.
+papers/paper1/aaai/artifact/
+.remine_tmp/

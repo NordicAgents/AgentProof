@@ -1,0 +1,53 @@
+{
+ "name": "0evja__LangGraph-Agent__Agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chatbot",
+   "kind": "router",
+   "label": "chatbot",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Agent.py:38:38"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Agent.py:40:40"
+  }
+ ],
+ "edges": [
+  {
+   "source": "tools",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Agent.py:45:45"
+  },
+  {
+   "source": "__start__",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/0evja__LangGraph-Agent@2112ded/Agent.py:46:46"
+  }
+ ]
+}

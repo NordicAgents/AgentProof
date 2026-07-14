@@ -2,8 +2,24 @@
 """Monitor-pruning result: how many runtime monitors are provably inert?
 
 For each (workflow, policy) pair we run the graph x DFA product construction
-(agentproof.verify.temporal.check_temporal_property), which covers both LTLf
-violation mechanisms (bad prefixes and non-accepting termination at exits).
+(agentproof.verify.temporal.check_temporal_property). Its claim is scoped to
+the FINITE MAXIMAL EXECUTIONS of the graph (entry to an exit node or a
+dead end); infinite executions are out of scope. The checker returns a
+three-valued verdict:
+
+  - "safe"         -- no resolution of the graph's finite maximal executions
+                      violates the policy (neither by bad prefix nor by
+                      non-accepting termination); the monitor is provably
+                      inert and can be pruned.
+  - "may_violate"  -- some resolution violates it; the monitor must be kept.
+  - "inconclusive" -- the finite-trace checker cannot certify the graph
+                      (e.g. a divergent-obligation cycle, or no reachable
+                      termination point); the monitor must be kept.
+
+Multi-tool nodes need no pre-expansion: the checker's default event mapper
+natively closes over every finite invocation sequence of a node's declared
+tools -- all orders, all subsets, including the empty sequence -- so the
+product conservatively over-approximates multi-tool behavior.
 
 SOUNDNESS PREMISE (trace containment): pruning is sound only relative to a
 graph whose paths OVER-approximate the workflow's runtime traces. That holds
@@ -13,16 +29,12 @@ NOT hold for the lossy AST-extracted mined graphs (edge recall 0.64), which
 under-approximate. Do not use this script's verdicts to prune monitors for
 AST-extracted graphs.
 
-Given that premise: if the product reaches no violation, the policy can never
-be violated on that workflow at runtime, so its monitor is provably inert and
-can be pruned. We report the overall pruning rate over corpus x policies,
-split into
+Given that premise: a monitor is pruned ONLY on a "safe" verdict. We report
+the overall pruning rate over corpus x policies, split into
   - trivially inert: the policy's atoms never appear in the workflow, and
-  - reachability-proven inert: atoms appear, yet the product proves no violation
-    path exists (the case where the product construction does real work).
-
-Multi-tool nodes are expanded into a complete digraph of single-tool nodes
-first (all orders/subsets), so the default (tools[0]) event mapper stays sound.
+  - reachability-proven inert: atoms appear, yet the product proves no
+    violation path exists (the case where the product does real work),
+and the kept monitors split into may-violate and inconclusive.
 
 Usage:
     python scripts/monitor_pruning.py --corpus corpus/real_world/graphs \
@@ -33,52 +45,12 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 from agentproof.graph.model import graph_from_dict
 from agentproof.monitor.ltl import MonitorRuleSpec, compile_monitor_rule
 from agentproof.verify.temporal import check_temporal_property
-
-
-def expand_multitool(g: dict) -> dict:
-    """Split each tool node with >1 bound tool into single-tool sub-nodes
-    forming a complete digraph, with every incoming edge fanning into every
-    sub-node and every sub-node fanning out to every successor.
-
-    A multi-tool node may invoke ANY subset of its tools in ANY order at
-    runtime, so the expansion must over-approximate all such sequences: the
-    complete digraph admits every ordering (and repetitions), and the full
-    in/out fan admits every nonempty subset. A fixed linear chain would
-    under-approximate orderings and could unsoundly prune order-sensitive
-    policies."""
-    remap_in: dict[str, list[str]] = {}
-    remap_out: dict[str, list[str]] = {}
-    out_nodes: list[dict] = []
-    out_edges: list[dict] = []
-    for n in g["nodes"]:
-        tools = n.get("tools", []) or []
-        if n["kind"] == "tool" and len(tools) > 1:
-            subs = []
-            for i, t in enumerate(tools):
-                sid = f"{n['id']}__tool{i}"
-                out_nodes.append({**n, "id": sid, "tools": [t]})
-                subs.append(sid)
-            for a in subs:
-                for b in subs:
-                    if a != b:
-                        out_edges.append({"source": a, "target": b, "kind": "direct"})
-            remap_in[n["id"]] = subs
-            remap_out[n["id"]] = subs
-        else:
-            out_nodes.append(n)
-            remap_in[n["id"]] = [n["id"]]
-            remap_out[n["id"]] = [n["id"]]
-    for e in g["edges"]:
-        for src in remap_out.get(e["source"], [e["source"]]):
-            for tgt in remap_in.get(e["target"], [e["target"]]):
-                out_edges.append({**e, "source": src, "target": tgt})
-    return {**g, "nodes": out_nodes, "edges": out_edges}
 
 
 def workflow_alphabet(g: dict) -> set[str]:
@@ -112,32 +84,48 @@ def main() -> None:
     prunable = 0
     trivial = 0            # prunable because atoms never appear
     reach_proven = 0       # prunable although atoms appear (product did real work)
-    must_keep = 0
-    per_policy = defaultdict(lambda: {"pairs": 0, "prunable": 0, "reach_proven": 0, "keep": 0})
+    must_keep = 0          # kept monitors = may_violate + inconclusive
+    may_violate = 0        # kept: some resolution violates the policy
+    inconclusive = 0       # kept: checker cannot certify (must-keep, own category)
+    per_policy = defaultdict(lambda: {"pairs": 0, "prunable": 0, "reach_proven": 0,
+                                      "keep": 0, "may_violate": 0, "inconclusive": 0})
     per_wf_pruned = []     # how many of the N policies each workflow can prune
 
     for gf in graph_files:
-        g = expand_multitool(json.loads(gf.read_text()))
+        g = json.loads(gf.read_text())
         alpha = workflow_alphabet(g)
         graph = graph_from_dict(g)
         wf_pruned = 0
         for p, rule in compiled:
             n_pairs += 1
-            per_policy[p["id"]]["pairs"] += 1
+            pp = per_policy[p["id"]]
+            pp["pairs"] += 1
             atoms_present = any(a in alpha for a in rule.predicates)
-            violated = check_temporal_property(graph, rule)["violated"]
-            if not violated:
+            result = check_temporal_property(graph, rule)
+            verdict = result.get("verdict")
+            if verdict is None:
+                # Robustness fallback for older checker builds that predate
+                # the three-valued verdict: treat "not violated" as safe.
+                verdict = "may_violate" if result.get("violated") else "safe"
+            if verdict == "safe":
                 prunable += 1
                 wf_pruned += 1
-                per_policy[p["id"]]["prunable"] += 1
+                pp["prunable"] += 1
                 if atoms_present:
                     reach_proven += 1
-                    per_policy[p["id"]]["reach_proven"] += 1
+                    pp["reach_proven"] += 1
                 else:
                     trivial += 1
             else:
+                # Anything not proven safe is conservatively kept.
                 must_keep += 1
-                per_policy[p["id"]]["keep"] += 1
+                pp["keep"] += 1
+                if verdict == "inconclusive":
+                    inconclusive += 1
+                    pp["inconclusive"] += 1
+                else:
+                    may_violate += 1
+                    pp["may_violate"] += 1
         per_wf_pruned.append(wf_pruned)
 
     n_pol = len(compiled)
@@ -151,6 +139,9 @@ def main() -> None:
         "reachability_proven_inert": reach_proven,
         "must_keep": must_keep,
         "must_keep_pct": round(must_keep * 100 / n_pairs, 1) if n_pairs else 0,
+        "may_violate": may_violate,
+        "inconclusive": inconclusive,
+        "inconclusive_pct": round(inconclusive * 100 / n_pairs, 1) if n_pairs else 0,
         "reach_proven_pct_of_atoms_present": round(
             reach_proven * 100 / (reach_proven + must_keep), 1) if (reach_proven + must_keep) else 0,
         "mean_monitors_pruned_per_workflow": round(sum(per_wf_pruned) / len(per_wf_pruned), 2) if per_wf_pruned else 0,
@@ -163,7 +154,9 @@ def main() -> None:
     print(f"  provably inert (prunable):     {prunable:5d}  ({summary['prunable_pct']}%)")
     print(f"    - trivially inert (no atoms): {trivial:5d}")
     print(f"    - reachability-proven inert:  {reach_proven:5d}  (atoms present, product proves safe)")
-    print(f"  must keep (monitor may fire):  {must_keep:5d}  ({summary['must_keep_pct']}%)")
+    print(f"  must keep:                     {must_keep:5d}  ({summary['must_keep_pct']}%)")
+    print(f"    - may violate (monitor may fire): {may_violate:5d}")
+    print(f"    - inconclusive (uncertifiable):   {inconclusive:5d}  ({summary['inconclusive_pct']}%)")
     print(f"  mean monitors pruned / workflow: {summary['mean_monitors_pruned_per_workflow']} of {n_pol}")
     print(f"  of monitors whose atoms DO appear, {summary['reach_proven_pct_of_atoms_present']}% still provably inert")
     print(f"\nWritten to {args.output}")

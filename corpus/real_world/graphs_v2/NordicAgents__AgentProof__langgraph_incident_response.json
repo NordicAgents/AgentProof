@@ -1,0 +1,154 @@
+{
+ "name": "NordicAgents__AgentProof__langgraph_incident_response",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "intake",
+   "kind": "llm",
+   "label": "intake",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:125:125"
+  },
+  {
+   "id": "triage_router",
+   "kind": "router",
+   "label": "triage_router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:126:126"
+  },
+  {
+   "id": "auto_mitigate",
+   "kind": "llm",
+   "label": "auto_mitigate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:127:127"
+  },
+  {
+   "id": "human_approval",
+   "kind": "human",
+   "label": "human_approval",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:128:128"
+  },
+  {
+   "id": "mitigate_tools",
+   "kind": "tool",
+   "label": "mitigate_tools",
+   "tools": [
+    "restart_service",
+    "rollback_deploy"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:130:134"
+  },
+  {
+   "id": "postmortem_tools",
+   "kind": "tool",
+   "label": "postmortem_tools",
+   "tools": [
+    "create_ticket",
+    "page_oncall"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:135:139"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "intake",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:141:141"
+  },
+  {
+   "source": "intake",
+   "target": "triage_router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:142:142"
+  },
+  {
+   "source": "triage_router",
+   "target": "auto_mitigate",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:143:147"
+  },
+  {
+   "source": "triage_router",
+   "target": "human_approval",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:143:147"
+  },
+  {
+   "source": "auto_mitigate",
+   "target": "mitigate_tools",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:148:148"
+  },
+  {
+   "source": "human_approval",
+   "target": "mitigate_tools",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:149:149"
+  },
+  {
+   "source": "mitigate_tools",
+   "target": "postmortem_tools",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:150:150"
+  },
+  {
+   "source": "postmortem_tools",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/langgraph_incident_response.py:151:151"
+  }
+ ]
+}

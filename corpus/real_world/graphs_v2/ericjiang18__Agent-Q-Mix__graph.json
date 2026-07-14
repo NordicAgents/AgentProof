@@ -1,0 +1,36 @@
+{
+ "name": "ericjiang18__Agent-Q-Mix__graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "call_model",
+   "kind": "router",
+   "label": "call_model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/cli/python-monorepo-example/apps/agent/src/agent/graph.py:34:34"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "call_model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/cli/python-monorepo-example/apps/agent/src/agent/graph.py:37:37"
+  }
+ ]
+}

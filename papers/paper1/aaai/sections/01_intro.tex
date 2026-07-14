@@ -32,17 +32,21 @@ DSL with LTL$_f$ (finite-trace) semantics~\citep{degiacomo2013ltlf} to DFAs
 checked statically via a graph\,$\times$\,DFA product and enforced at runtime.
 We then use it as a measurement instrument on 922 workflow graphs mined from
 252 public GitHub repositories, with a stratified 119-workflow sample validated
-against independently reconstructed ground-truth graphs and adversarial triage.
+against independently reconstructed reference graphs and adversarial triage.
+Four questions organize the study: how faithfully workflow behavior can be
+recovered from source (RQ1), what fraction of static findings is genuine
+(RQ2), what defect prevalence remains after auditing false negatives (RQ3),
+and when static analysis can soundly reduce runtime enforcement (RQ4).
 
 Because a lossy extractor both \emph{manufactures} false flags and \emph{hides}
 true defects, we report two estimands separately: the \emph{precision} of the
 instrument's flags (what fraction of raised flags are genuine) and the
 \emph{prevalence} of defects per workflow, estimated by re-running every check
-on the reconstructed ground-truth graphs so that defects the extractor missed
+on the reconstructed reference graphs so that defects the extractor missed
 are counted. The distinction matters: flag precision is 1.1\% (2 of 186), but
 prevalence is roughly twice what the extractor sees---4 of 119 workflows
-(3.4\%)---because two genuine defects, including a payment-adjacent
-missing-human-gate, were invisible to the lossy extraction. Both are small;
+(3.4\%)---because two genuine defects, including an SQL-executing tool
+reachable with no human gate, were invisible to the lossy extraction. Both are small;
 neither is the ${\approx}0$ a na\"ive reading of flag counts would suggest, and
 the defects concentrate exactly where they matter: in application-like
 workflows binding side-effecting tools (3 of 39, versus 1 of 80 among
@@ -57,11 +61,14 @@ tutorials, demos, and tests).
   a source-level census of the corpus (one third application-like, two thirds
   tutorials/demos/tests; Section~\ref{sec:realworld}).
   \item \textbf{\textsc{Agentproof}}, the measurement instrument: automatic
-  extraction of a unified graph model from four heterogeneous frameworks, six
-  structural checks with witness traces, and a seven-form policy DSL with
-  precise LTL$_f$ semantics whose static product covers bad prefixes,
-  end-of-trace obligations, and divergent (never-satisfiable) obligations
-  (Section~\ref{sec:system}).
+  extraction of a unified graph model with per-element provenance from four
+  heterogeneous frameworks, six structural checks with witness traces, and a
+  seven-form policy DSL with precise LTL$_f$ semantics---differentially tested
+  against an independent reference oracle---whose conservative static product
+  covers bad prefixes and end-of-trace obligations over finite maximal
+  executions, explores every declared tool binding, and returns
+  \emph{inconclusive} rather than a proof when a cycle could postpone an
+  obligation forever (Section~\ref{sec:system}).
   \item \textbf{A quantified diagnosis}: extraction fidelity, not the check
   algorithms, is the binding constraint. Edge recall is 0.65 on real code
   (0.38 on ADK) versus near-perfect on stubs; every structural flag on
@@ -72,8 +79,9 @@ tutorials, demos, and tests).
   \item \textbf{A defect-independent job} for the static machinery, stated
   with its premise: given a graph that over-approximates runtime traces, the
   product proves which policy monitors can never fire, so they can be soundly
-  pruned. On the curated corpus 251 of 270 monitor instances (93\%) are
-  provably inert---though on today's small workflows every proven case is
-  alphabet-level, so the product's value there is soundness on branching
-  topologies, not extra pruning (Section~\ref{sec:results}).
+  pruned. On the curated corpus 237 of 270 monitor instances (88\%) are
+  provably inert and 14 are declined as inconclusive---though on today's small
+  workflows every proven case is alphabet-level, so the product's value there
+  is soundness on branching topologies, not extra pruning
+  (Section~\ref{sec:results}).
 \end{itemize}

@@ -1,0 +1,106 @@
+{
+ "name": "SAMAR-CODE404__backend__legal_agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "assess_regulatory_compliance",
+   "kind": "llm",
+   "label": "assess_regulatory_compliance",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:283:283"
+  },
+  {
+   "id": "conduct_legal_due_diligence",
+   "kind": "llm",
+   "label": "conduct_legal_due_diligence",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:284:284"
+  },
+  {
+   "id": "assess_potential_legal_risks",
+   "kind": "llm",
+   "label": "assess_potential_legal_risks",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:285:285"
+  },
+  {
+   "id": "finalize_legal_report",
+   "kind": "llm",
+   "label": "finalize_legal_report",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:286:286"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "assess_regulatory_compliance",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:289:289"
+  },
+  {
+   "source": "assess_regulatory_compliance",
+   "target": "conduct_legal_due_diligence",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:292:292"
+  },
+  {
+   "source": "conduct_legal_due_diligence",
+   "target": "assess_potential_legal_risks",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:293:293"
+  },
+  {
+   "source": "assess_potential_legal_risks",
+   "target": "finalize_legal_report",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:294:294"
+  },
+  {
+   "source": "finalize_legal_report",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/SAMAR-CODE404__backend@3047d81/agents/legal_agent.py:297:297"
+  }
+ ]
+}

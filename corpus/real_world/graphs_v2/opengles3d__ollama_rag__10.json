@@ -1,0 +1,72 @@
+{
+ "name": "opengles3d__ollama_rag__10",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generate_sql",
+   "kind": "llm",
+   "label": "generate_sql",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/10.py:64:64"
+  },
+  {
+   "id": "explain_sql",
+   "kind": "llm",
+   "label": "explain_sql",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/10.py:65:65"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "generate_sql",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/10.py:66:66"
+  },
+  {
+   "source": "generate_sql",
+   "target": "explain_sql",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/10.py:67:67"
+  },
+  {
+   "source": "explain_sql",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/opengles3d__ollama_rag@716890d/10.py:68:68"
+  }
+ ]
+}

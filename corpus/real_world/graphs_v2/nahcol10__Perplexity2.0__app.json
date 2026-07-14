@@ -1,0 +1,53 @@
+{
+ "name": "nahcol10__Perplexity2.0__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "model",
+   "kind": "router",
+   "label": "model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nahcol10__Perplexity2.0@a3301ef/app.py:79:79"
+  },
+  {
+   "id": "tool_node",
+   "kind": "tool",
+   "label": "tool_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nahcol10__Perplexity2.0@a3301ef/app.py:80:80"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nahcol10__Perplexity2.0@a3301ef/app.py:81:81"
+  },
+  {
+   "source": "tool_node",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nahcol10__Perplexity2.0@a3301ef/app.py:84:84"
+  }
+ ]
+}

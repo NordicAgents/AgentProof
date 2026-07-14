@@ -25,6 +25,45 @@ class EdgeKind(Enum):
     LOOP = "loop"
 
 
+# ---------------------------------------------------------------------------
+# Provenance vocabulary (research plan 3.4D)
+# ---------------------------------------------------------------------------
+# Convention: the two axes are independent.
+#   origin     = the information SOURCE the element was derived from
+#                (live runtime object | source AST | fabricated by us).
+#   confidence = the STRENGTH of the structural claim
+#                (exact = declared, may = plausible inference, heuristic = guess).
+# In particular, an ordering/relation that a runtime extractor infers from a
+# LIVE object (e.g. chaining a Crew's task list, expanding a round-robin team)
+# is origin="runtime" with a non-exact confidence -- NOT "ast_inferred",
+# which is reserved for inferences made over source AST.
+#
+# ``origin`` values:
+#   runtime      - derived from a live framework object: declared nodes,
+#                  add_edge edges, declared tool bindings, and also relations
+#                  the extractor infers from that object's semantics
+#   ast_explicit - parsed from an explicit source-code call (add_edge/add_node/...)
+#   ast_inferred - derived from source AST; the element is real, but the
+#                  relation/ordering was inferred rather than declared in code
+#   synthesized  - element fabricated by the extractor (entry/exit sentinels,
+#                  guessed hookups); corresponds to nothing in the source
+#   unknown      - provenance was not recorded (legacy data)
+VALID_ORIGINS = frozenset(
+    {"runtime", "ast_explicit", "ast_inferred", "synthesized", "unknown"}
+)
+
+# ``confidence`` records how strong the structural claim is:
+#   exact     - the element is exactly as declared in the framework/source
+#   may       - plausible inference; may over- or under-approximate structure
+#   heuristic - the element rests on a guess (naming, connectivity, ordering)
+#
+# For nodes, confidence covers the WEAKEST attribute claim (kind, tool
+# bindings) -- not mere existence: a node whose kind was guessed from a name
+# substring is emitted with confidence="may" even when its existence is
+# certain.
+VALID_CONFIDENCES = frozenset({"exact", "may", "heuristic"})
+
+
 @dataclass(frozen=True)
 class GraphNode:
     id: str
@@ -32,6 +71,11 @@ class GraphNode:
     label: str = ""
     tools: tuple[str, ...] = ()
     metadata: tuple[tuple[str, Any], ...] = ()
+    # Provenance (plain strings for JSON simplicity; see VALID_ORIGINS /
+    # VALID_CONFIDENCES for the vocabulary).
+    origin: str = "unknown"
+    confidence: str = "may"
+    source_span: str = ""  # "file:start_line:end_line" or "" when unavailable
 
 
 @dataclass(frozen=True)
@@ -41,6 +85,10 @@ class GraphEdge:
     kind: EdgeKind = EdgeKind.DIRECT
     condition: str = ""
     metadata: tuple[tuple[str, Any], ...] = ()
+    # Provenance (see VALID_ORIGINS / VALID_CONFIDENCES).
+    origin: str = "unknown"
+    confidence: str = "may"
+    source_span: str = ""  # "file:start_line:end_line" or "" when unavailable
 
 
 @dataclass(frozen=True)
@@ -93,6 +141,9 @@ def graph_to_dict(graph: AgentGraph) -> dict[str, Any]:
                 "label": n.label,
                 "tools": list(n.tools),
                 "metadata": {k: v for k, v in n.metadata},
+                "origin": n.origin,
+                "confidence": n.confidence,
+                "source_span": n.source_span,
             }
             for n in graph.nodes
         ],
@@ -102,6 +153,9 @@ def graph_to_dict(graph: AgentGraph) -> dict[str, Any]:
                 "target": e.target,
                 "kind": e.kind.value,
                 "condition": e.condition,
+                "origin": e.origin,
+                "confidence": e.confidence,
+                "source_span": e.source_span,
             }
             for e in graph.edges
         ],
@@ -117,6 +171,10 @@ def graph_from_dict(data: dict[str, Any]) -> AgentGraph:
             label=n.get("label", ""),
             tools=tuple(n.get("tools", ())),
             metadata=tuple((k, v) for k, v in n.get("metadata", {}).items()),
+            # Legacy corpus JSON predates provenance: default to unknown/may.
+            origin=n.get("origin", "unknown"),
+            confidence=n.get("confidence", "may"),
+            source_span=n.get("source_span", ""),
         )
         for n in data["nodes"]
     )
@@ -126,6 +184,9 @@ def graph_from_dict(data: dict[str, Any]) -> AgentGraph:
             target=e["target"],
             kind=EdgeKind(e.get("kind", "direct")),
             condition=e.get("condition", ""),
+            origin=e.get("origin", "unknown"),
+            confidence=e.get("confidence", "may"),
+            source_span=e.get("source_span", ""),
         )
         for e in data["edges"]
     )

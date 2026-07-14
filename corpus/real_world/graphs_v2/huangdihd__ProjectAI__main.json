@@ -1,0 +1,53 @@
+{
+ "name": "huangdihd__ProjectAI__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "manager",
+   "kind": "router",
+   "label": "manager",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/huangdihd__ProjectAI@76d3540/main.py:49:49"
+  },
+  {
+   "id": "executor",
+   "kind": "llm",
+   "label": "executor",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/huangdihd__ProjectAI@76d3540/main.py:50:50"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/huangdihd__ProjectAI@76d3540/main.py:52:52"
+  },
+  {
+   "source": "executor",
+   "target": "manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/huangdihd__ProjectAI@76d3540/main.py:62:62"
+  }
+ ]
+}

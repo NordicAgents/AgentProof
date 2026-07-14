@@ -127,6 +127,71 @@ def test_different_seeds_may_differ():
     assert traces1 != traces2
 
 
+def _multi_tool_graph() -> AgentGraph:
+    return AgentGraph(
+        name="multi_tool",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("tool", NodeKind.TOOL, tools=("t1", "t2", "t3")),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "tool"),
+            GraphEdge("tool", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+
+def test_multi_tool_node_samples_all_declared_tools():
+    """A multi-tool node must sample tool_name uniformly per visit, not pin
+    tools[0]. With 60 seeded visits over 3 tools, missing one tool would
+    have probability ~3*(2/3)^60 under uniform sampling; the fixed seed
+    makes the assertion deterministic."""
+    traces = generate_traces(_multi_tool_graph(), n_traces=60, seed=7)
+    names = {
+        e["tool_name"] for trace in traces for e in trace if e["action_type"] == "tool"
+    }
+    assert names == {"t1", "t2", "t3"}
+
+
+def test_multi_tool_sampling_deterministic_with_seed():
+    """Tool sampling threads through the seeded rng: same seed, same traces."""
+    graph = _multi_tool_graph()
+    traces1 = generate_traces(graph, n_traces=10, seed=5)
+    traces2 = generate_traces(graph, n_traces=10, seed=5)
+    assert traces1 == traces2
+
+
+def test_toolless_tool_node_emits_bare_visit_event():
+    """A TOOL node with NO declared tools still emits an event on every
+    visit: the bare visit event {'node_id', 'action_type': 'tool'} with no
+    tool_name and no tags. This is the runtime half of the static/runtime
+    event-model invariant (see agentproof.verify.temporal): the static
+    closure covers exactly this event for tool-less TOOL nodes, so the two
+    sides cannot contradict each other (Finding 1 regression)."""
+    graph = AgentGraph(
+        name="toolless",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("bare", NodeKind.TOOL, tools=()),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "bare"),
+            GraphEdge("bare", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+    traces = generate_traces(graph, n_traces=1)
+    bare_events = [e for e in traces[0] if e["node_id"] == "bare"]
+    assert bare_events == [{"node_id": "bare", "action_type": "tool"}]
+
+
 def test_max_steps_limits_trace_length():
     """Traces should not exceed max_steps even in cyclic graphs."""
     graph = AgentGraph(

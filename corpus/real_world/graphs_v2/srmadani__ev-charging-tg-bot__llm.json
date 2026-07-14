@@ -1,0 +1,36 @@
+{
+ "name": "srmadani__ev-charging-tg-bot__llm",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "model",
+   "kind": "llm",
+   "label": "model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/srmadani__ev-charging-tg-bot@ee7b5da/llm.py:20:20"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/srmadani__ev-charging-tg-bot@ee7b5da/llm.py:19:19"
+  }
+ ]
+}

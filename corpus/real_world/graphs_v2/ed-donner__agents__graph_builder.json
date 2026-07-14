@@ -1,0 +1,224 @@
+{
+ "name": "ed-donner__agents__graph_builder",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "clarifier",
+   "kind": "llm",
+   "label": "clarifier",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:47:47"
+  },
+  {
+   "id": "topic_generator",
+   "kind": "llm",
+   "label": "topic_generator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:48:48"
+  },
+  {
+   "id": "topic_evaluator",
+   "kind": "router",
+   "label": "topic_evaluator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:49:49"
+  },
+  {
+   "id": "summarizer_agent",
+   "kind": "llm",
+   "label": "summarizer_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:50:50"
+  },
+  {
+   "id": "report_writer",
+   "kind": "llm",
+   "label": "report_writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:51:51"
+  },
+  {
+   "id": "report_evaluator",
+   "kind": "router",
+   "label": "report_evaluator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:52:52"
+  },
+  {
+   "id": "file_writer",
+   "kind": "llm",
+   "label": "file_writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:53:53"
+  },
+  {
+   "id": "html_converter",
+   "kind": "llm",
+   "label": "html_converter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:54:54"
+  },
+  {
+   "id": "email",
+   "kind": "llm",
+   "label": "email",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:55:55"
+  },
+  {
+   "id": "push_notification",
+   "kind": "llm",
+   "label": "push_notification",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:56:56"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "clarifier",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:58:58"
+  },
+  {
+   "source": "clarifier",
+   "target": "topic_generator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:59:59"
+  },
+  {
+   "source": "topic_generator",
+   "target": "topic_evaluator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:60:60"
+  },
+  {
+   "source": "topic_evaluator",
+   "target": "topic_generator",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:62:69"
+  },
+  {
+   "source": "topic_evaluator",
+   "target": "summarizer_agent",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:62:69"
+  },
+  {
+   "source": "summarizer_agent",
+   "target": "report_writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:71:71"
+  },
+  {
+   "source": "report_writer",
+   "target": "report_evaluator",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:72:72"
+  },
+  {
+   "source": "report_evaluator",
+   "target": "report_writer",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:74:81"
+  },
+  {
+   "source": "report_evaluator",
+   "target": "file_writer",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:74:81"
+  },
+  {
+   "source": "file_writer",
+   "target": "html_converter",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:82:82"
+  },
+  {
+   "source": "html_converter",
+   "target": "email",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:83:83"
+  },
+  {
+   "source": "email",
+   "target": "push_notification",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:84:84"
+  },
+  {
+   "source": "push_notification",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/muhammad_qasim_sheikh/graph_builder.py:85:85"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "name": "ed-donner__agents__financial_analyst_researcher",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "search_for_the_latest_news,_market_sentiment,_and_",
+   "kind": "llm",
+   "label": "Search for the latest news, market sentiment, and ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/3_crewai/community_contributions/kihara-njoroge/financial_analyst_researcher.py:83:91"
+  },
+  {
+   "id": "using_the_research_findings,_analyze_the_financial",
+   "kind": "llm",
+   "label": "Using the research findings, analyze the financial",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/3_crewai/community_contributions/kihara-njoroge/financial_analyst_researcher.py:93:109"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "search_for_the_latest_news,_market_sentiment,_and_",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "search_for_the_latest_news,_market_sentiment,_and_",
+   "target": "using_the_research_findings,_analyze_the_financial",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_research_findings,_analyze_the_financial",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

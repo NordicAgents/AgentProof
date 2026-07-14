@@ -1,0 +1,135 @@
+{
+ "name": "jkmaina__autogen_blueprint__02_basic_graph_flow",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "finalizer",
+   "kind": "llm",
+   "label": "finalizer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:86:86"
+  },
+  {
+   "id": "agent3",
+   "kind": "llm",
+   "label": "agent3",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:86:86"
+  },
+  {
+   "id": "agent2",
+   "kind": "llm",
+   "label": "agent2",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:86:86"
+  },
+  {
+   "id": "agent1",
+   "kind": "llm",
+   "label": "agent1",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:86:86"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "agent1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:87:87"
+  },
+  {
+   "source": "agent1",
+   "target": "agent2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:88:88"
+  },
+  {
+   "source": "agent2",
+   "target": "agent3",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:89:89"
+  },
+  {
+   "source": "agent3",
+   "target": "agent1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:92:92"
+  },
+  {
+   "source": "agent3",
+   "target": "finalizer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:93:93"
+  },
+  {
+   "source": "__start__",
+   "target": "agent1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:136:136"
+  },
+  {
+   "source": "agent1",
+   "target": "agent2",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:137:137"
+  },
+  {
+   "source": "agent2",
+   "target": "agent3",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:138:138"
+  },
+  {
+   "source": "agent3",
+   "target": "agent1",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:139:139"
+  },
+  {
+   "source": "agent3",
+   "target": "finalizer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter7/02_basic_graph_flow.py:140:140"
+  }
+ ]
+}

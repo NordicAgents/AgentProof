@@ -1,0 +1,143 @@
+{
+ "name": "ericjiang18__Agent-Q-Mix__test_deprecation",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "test_node",
+   "kind": "llm",
+   "label": "test_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:35:35"
+  },
+  {
+   "id": "plain_node",
+   "kind": "llm",
+   "label": "plain_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:213:213"
+  },
+  {
+   "id": "sync_node_with_dict_config",
+   "kind": "llm",
+   "label": "sync_node_with_dict_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:259:259"
+  },
+  {
+   "id": "async_node_with_dict_config",
+   "kind": "llm",
+   "label": "async_node_with_dict_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:272:272"
+  },
+  {
+   "id": "sync_node_with_any_config",
+   "kind": "llm",
+   "label": "sync_node_with_any_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:283:283"
+  },
+  {
+   "id": "async_node_with_any_config",
+   "kind": "llm",
+   "label": "async_node_with_any_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:295:295"
+  },
+  {
+   "id": "node_with_correct_config",
+   "kind": "llm",
+   "label": "node_with_correct_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:304:304"
+  },
+  {
+   "id": "node_with_optional_config",
+   "kind": "llm",
+   "label": "node_with_optional_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:312:312"
+  },
+  {
+   "id": "node_with_untyped_config",
+   "kind": "llm",
+   "label": "node_with_untyped_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:317:317"
+  },
+  {
+   "id": "async_node_with_correct_config",
+   "kind": "llm",
+   "label": "async_node_with_correct_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:324:324"
+  },
+  {
+   "id": "async_node_with_optional_config",
+   "kind": "llm",
+   "label": "async_node_with_optional_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:332:332"
+  },
+  {
+   "id": "async_node_with_untyped_config",
+   "kind": "llm",
+   "label": "async_node_with_untyped_config",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:339:339"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "test_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:117:117"
+  },
+  {
+   "source": "__start__",
+   "target": "plain_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ericjiang18__Agent-Q-Mix@c115476/agent_baseline/langgraph/libs/langgraph/tests/test_deprecation.py:214:214"
+  }
+ ]
+}

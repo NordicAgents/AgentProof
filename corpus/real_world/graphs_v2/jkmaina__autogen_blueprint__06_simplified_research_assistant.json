@@ -1,0 +1,170 @@
+{
+ "name": "jkmaina__autogen_blueprint__06_simplified_research_assistant",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_manager",
+   "kind": "llm",
+   "label": "research_manager",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:151:151"
+  },
+  {
+   "id": "literature_reviewer",
+   "kind": "llm",
+   "label": "literature_reviewer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:152:152"
+  },
+  {
+   "id": "data_analyst",
+   "kind": "llm",
+   "label": "data_analyst",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:153:153"
+  },
+  {
+   "id": "domain_expert",
+   "kind": "llm",
+   "label": "domain_expert",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:154:154"
+  },
+  {
+   "id": "content_writer",
+   "kind": "llm",
+   "label": "content_writer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:155:155"
+  },
+  {
+   "id": "fact_checker",
+   "kind": "llm",
+   "label": "fact_checker",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:156:156"
+  },
+  {
+   "id": "user_proxy",
+   "kind": "llm",
+   "label": "user_proxy",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:157:157"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:160:160"
+  },
+  {
+   "source": "research_manager",
+   "target": "literature_reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:163:163"
+  },
+  {
+   "source": "research_manager",
+   "target": "data_analyst",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:164:164"
+  },
+  {
+   "source": "research_manager",
+   "target": "domain_expert",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:165:165"
+  },
+  {
+   "source": "research_manager",
+   "target": "user_proxy",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:166:166"
+  },
+  {
+   "source": "literature_reviewer",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:168:168"
+  },
+  {
+   "source": "data_analyst",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:169:169"
+  },
+  {
+   "source": "domain_expert",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:170:170"
+  },
+  {
+   "source": "user_proxy",
+   "target": "research_manager",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:171:171"
+  },
+  {
+   "source": "research_manager",
+   "target": "content_writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:173:173"
+  },
+  {
+   "source": "content_writer",
+   "target": "fact_checker",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/06_simplified_research_assistant.py:174:174"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "name": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "initial_writer_agent",
+   "kind": "llm",
+   "label": "initial_writer_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course@ba646f4/LoopAgent.py:103:103"
+  },
+  {
+   "id": "story_refinement_loop",
+   "kind": "llm",
+   "label": "story_refinement_loop",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course@ba646f4/LoopAgent.py:103:103"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "initial_writer_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "initial_writer_agent",
+   "target": "story_refinement_loop",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "story_refinement_loop",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

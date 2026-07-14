@@ -1,0 +1,164 @@
+{
+ "name": "Avneesh26024__Gen_AI_Exchange__main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "router",
+   "kind": "router",
+   "label": "router",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:213:213"
+  },
+  {
+   "id": "condense_query",
+   "kind": "router",
+   "label": "condense_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:214:214"
+  },
+  {
+   "id": "retrieve_context",
+   "kind": "router",
+   "label": "retrieve_context",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:215:215"
+  },
+  {
+   "id": "synthesize_answer",
+   "kind": "llm",
+   "label": "synthesize_answer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:216:216"
+  },
+  {
+   "id": "verify_claim",
+   "kind": "llm",
+   "label": "verify_claim",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:217:217"
+  },
+  {
+   "id": "handle_conversation",
+   "kind": "llm",
+   "label": "handle_conversation",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:218:218"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "router",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:220:220"
+  },
+  {
+   "source": "router",
+   "target": "condense_query",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:221:221"
+  },
+  {
+   "source": "condense_query",
+   "target": "retrieve_context",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:223:231"
+  },
+  {
+   "source": "condense_query",
+   "target": "verify_claim",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:223:231"
+  },
+  {
+   "source": "condense_query",
+   "target": "handle_conversation",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:223:231"
+  },
+  {
+   "source": "retrieve_context",
+   "target": "synthesize_answer",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:232:239"
+  },
+  {
+   "source": "retrieve_context",
+   "target": "verify_claim",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:232:239"
+  },
+  {
+   "source": "synthesize_answer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:241:241"
+  },
+  {
+   "source": "verify_claim",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:242:242"
+  },
+  {
+   "source": "handle_conversation",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/main.py:243:243"
+  }
+ ]
+}

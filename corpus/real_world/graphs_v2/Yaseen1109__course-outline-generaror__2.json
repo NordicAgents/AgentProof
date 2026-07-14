@@ -1,0 +1,72 @@
+{
+ "name": "Yaseen1109__course-outline-generaror__2",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "generate_outline",
+   "kind": "llm",
+   "label": "generate_outline",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Yaseen1109__course-outline-generaror@2c86f9c/2.py:48:48"
+  },
+  {
+   "id": "summarize_outline",
+   "kind": "llm",
+   "label": "summarize_outline",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Yaseen1109__course-outline-generaror@2c86f9c/2.py:49:49"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "generate_outline",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Yaseen1109__course-outline-generaror@2c86f9c/2.py:51:51"
+  },
+  {
+   "source": "generate_outline",
+   "target": "summarize_outline",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Yaseen1109__course-outline-generaror@2c86f9c/2.py:52:52"
+  },
+  {
+   "source": "summarize_outline",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Yaseen1109__course-outline-generaror@2c86f9c/2.py:53:53"
+  }
+ ]
+}

@@ -12,6 +12,22 @@ it analyzes structural properties of the topology before deployment, and its
 monitor-selection layer (Section~\ref{sec:pruning}) decides which runtime
 monitors are even needed.
 
+\paragraph{Concurrent agent-policy systems.}
+A concurrent line of work enforces policies at the tool-call boundary with
+formal machinery: Agent-C compiles temporal safety specifications to
+constraints checked at generation time with conformance
+guarantees~\citep{kamath2026agentc}; ClawGuard and SecureClaw interpose
+rule sets and authorization boundaries against prompt
+injection~\citep{zhao2026clawguard, ma2026secureclaw}; PolicyGuard trains a
+compact guardrail model for trajectory-level policy violation
+detection~\citep{wen2025policyguard}; and AgentFlow builds cross-framework
+agent dependency graphs for static security analysis at
+scale~\citep{wang2026agentflow}. These systems address \emph{how} to enforce
+or analyze; our study measures \emph{when} the static side of that stack pays
+off---the base rate of the defects such tools target in public code, and
+where the error budget actually sits (model extraction). That measurement is
+orthogonal to, and needed by, every system above.
+
 \paragraph{Model checking and workflow soundness.}
 Classical model checkers---SPIN~\citep{holzmann1997spin},
 NuSMV~\citep{cimatti2002nusmv}, CBMC~\citep{cbmc}---verify the same class of

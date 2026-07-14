@@ -1,0 +1,106 @@
+{
+ "name": "winstonbartlegod__enhanced-multimodal-rag__v1",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "process_query",
+   "kind": "llm",
+   "label": "process_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:836:836"
+  },
+  {
+   "id": "chunk_and_embed",
+   "kind": "llm",
+   "label": "chunk_and_embed",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:837:837"
+  },
+  {
+   "id": "retrieve_chunks",
+   "kind": "llm",
+   "label": "retrieve_chunks",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:838:838"
+  },
+  {
+   "id": "generate_response",
+   "kind": "llm",
+   "label": "generate_response",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:839:839"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "process_query",
+   "target": "chunk_and_embed",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:842:842"
+  },
+  {
+   "source": "chunk_and_embed",
+   "target": "retrieve_chunks",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:843:843"
+  },
+  {
+   "source": "retrieve_chunks",
+   "target": "generate_response",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:844:844"
+  },
+  {
+   "source": "generate_response",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:845:845"
+  },
+  {
+   "source": "__start__",
+   "target": "process_query",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/winstonbartlegod__enhanced-multimodal-rag@11f520e/v1.py:847:847"
+  }
+ ]
+}

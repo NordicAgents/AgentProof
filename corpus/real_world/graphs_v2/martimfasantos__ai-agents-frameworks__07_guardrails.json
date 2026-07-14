@@ -1,0 +1,72 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__07_guardrails",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "summarize_the_benefits_of_remote_work_in_a_short_b",
+   "kind": "llm",
+   "label": "Summarize the benefits of remote work in a short b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/07_guardrails.py:60:65"
+  },
+  {
+   "id": "list_the_top_3_programming_languages_for_ai_develo",
+   "kind": "llm",
+   "label": "List the top 3 programming languages for AI develo",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/07_guardrails.py:73:78"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "summarize_the_benefits_of_remote_work_in_a_short_b",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "summarize_the_benefits_of_remote_work_in_a_short_b",
+   "target": "list_the_top_3_programming_languages_for_ai_develo",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "list_the_top_3_programming_languages_for_ai_develo",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "name": "Astrodevil__ADK-Agent-Examples__agent",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "exa_agent",
+   "kind": "llm",
+   "label": "exa_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Astrodevil__ADK-Agent-Examples@e9c2462/analyzer_agent/agent.py:178:178"
+  },
+  {
+   "id": "tavily_agent",
+   "kind": "llm",
+   "label": "tavily_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Astrodevil__ADK-Agent-Examples@e9c2462/analyzer_agent/agent.py:178:178"
+  },
+  {
+   "id": "summary_agent",
+   "kind": "llm",
+   "label": "summary_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Astrodevil__ADK-Agent-Examples@e9c2462/analyzer_agent/agent.py:178:178"
+  },
+  {
+   "id": "firecrawl_agent",
+   "kind": "llm",
+   "label": "firecrawl_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Astrodevil__ADK-Agent-Examples@e9c2462/analyzer_agent/agent.py:178:178"
+  },
+  {
+   "id": "analysis_agent",
+   "kind": "llm",
+   "label": "analysis_agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Astrodevil__ADK-Agent-Examples@e9c2462/analyzer_agent/agent.py:178:178"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "exa_agent",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "exa_agent",
+   "target": "tavily_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "tavily_agent",
+   "target": "summary_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "summary_agent",
+   "target": "firecrawl_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "firecrawl_agent",
+   "target": "analysis_agent",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analysis_agent",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

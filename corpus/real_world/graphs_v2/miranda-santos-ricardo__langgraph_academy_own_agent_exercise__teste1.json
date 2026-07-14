@@ -1,0 +1,72 @@
+{
+ "name": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__teste1",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "clarify_scope",
+   "kind": "llm",
+   "label": "clarify_scope",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/teste1.py:19:19"
+  },
+  {
+   "id": "print",
+   "kind": "llm",
+   "label": "print",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/teste1.py:20:20"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "clarify_scope",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/teste1.py:22:22"
+  },
+  {
+   "source": "clarify_scope",
+   "target": "print",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/teste1.py:23:23"
+  },
+  {
+   "source": "print",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/miranda-santos-ricardo__langgraph_academy_own_agent_exercise@9461569/teste1.py:24:24"
+  }
+ ]
+}

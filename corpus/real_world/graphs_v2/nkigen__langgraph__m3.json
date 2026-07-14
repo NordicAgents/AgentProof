@@ -1,0 +1,53 @@
+{
+ "name": "nkigen__langgraph__m3",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chatbot",
+   "kind": "router",
+   "label": "chatbot",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nkigen__langgraph@79c2ab9/m3.py:39:39"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nkigen__langgraph@79c2ab9/m3.py:49:49"
+  }
+ ],
+ "edges": [
+  {
+   "source": "tools",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nkigen__langgraph@79c2ab9/m3.py:56:56"
+  },
+  {
+   "source": "__start__",
+   "target": "chatbot",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/nkigen__langgraph@79c2ab9/m3.py:57:57"
+  }
+ ]
+}

@@ -1,0 +1,198 @@
+{
+ "name": "Chrisolande__MedReportAI__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "write_sections",
+   "kind": "router",
+   "label": "write_sections",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:34:34"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:35:35"
+  },
+  {
+   "id": "generate_report_plan",
+   "kind": "router",
+   "label": "generate_report_plan",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:51:51"
+  },
+  {
+   "id": "build_section_with_tools",
+   "kind": "tool",
+   "label": "build_section_with_tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:52:52"
+  },
+  {
+   "id": "gather_sections",
+   "kind": "router",
+   "label": "gather_sections",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:53:53"
+  },
+  {
+   "id": "write_final_sections",
+   "kind": "llm",
+   "label": "write_final_sections",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:54:54"
+  },
+  {
+   "id": "compile_final_report",
+   "kind": "llm",
+   "label": "compile_final_report",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:55:55"
+  },
+  {
+   "id": "validate_report_quality",
+   "kind": "llm",
+   "label": "validate_report_quality",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:56:56"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "write_sections",
+   "target": "tools",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:36:38"
+  },
+  {
+   "source": "write_sections",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:36:38"
+  },
+  {
+   "source": "tools",
+   "target": "write_sections",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:39:39"
+  },
+  {
+   "source": "__start__",
+   "target": "write_sections",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:40:40"
+  },
+  {
+   "source": "generate_report_plan",
+   "target": "build_section_with_tools",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:58:65"
+  },
+  {
+   "source": "generate_report_plan",
+   "target": "gather_sections",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:58:65"
+  },
+  {
+   "source": "build_section_with_tools",
+   "target": "gather_sections",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:66:66"
+  },
+  {
+   "source": "gather_sections",
+   "target": "write_final_sections",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:67:74"
+  },
+  {
+   "source": "gather_sections",
+   "target": "compile_final_report",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:67:74"
+  },
+  {
+   "source": "write_final_sections",
+   "target": "compile_final_report",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:75:75"
+  },
+  {
+   "source": "compile_final_report",
+   "target": "validate_report_quality",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:76:76"
+  },
+  {
+   "source": "__start__",
+   "target": "generate_report_plan",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Chrisolande__MedReportAI@157f8f6/app.py:77:77"
+  }
+ ]
+}

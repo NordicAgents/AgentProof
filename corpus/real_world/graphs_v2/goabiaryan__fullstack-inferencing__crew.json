@@ -1,0 +1,72 @@
+{
+ "name": "goabiaryan__fullstack-inferencing__crew",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+   "kind": "llm",
+   "label": "Topic: benefits of chunked prefill in LLM serving.",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/goabiaryan__fullstack-inferencing@d0ee65c/crew.py:271:278"
+  },
+  {
+   "id": "using_the_research_only,_write_one_short_paragraph",
+   "kind": "llm",
+   "label": "Using the research only, write one short paragraph",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/goabiaryan__fullstack-inferencing@d0ee65c/crew.py:279:284"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "topic:_benefits_of_chunked_prefill_in_llm_serving.",
+   "target": "using_the_research_only,_write_one_short_paragraph",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "using_the_research_only,_write_one_short_paragraph",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

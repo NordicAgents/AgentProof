@@ -1,0 +1,53 @@
+{
+ "name": "siddiquiamir__LangChain-2025__tut",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "llm_call",
+   "kind": "router",
+   "label": "llm_call",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/siddiquiamir__LangChain-2025@4b0e180/tut.py:115:115"
+  },
+  {
+   "id": "tool_node",
+   "kind": "tool",
+   "label": "tool_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/siddiquiamir__LangChain-2025@4b0e180/tut.py:116:116"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "llm_call",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/siddiquiamir__LangChain-2025@4b0e180/tut.py:119:119"
+  },
+  {
+   "source": "tool_node",
+   "target": "llm_call",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/siddiquiamir__LangChain-2025@4b0e180/tut.py:125:125"
+  }
+ ]
+}

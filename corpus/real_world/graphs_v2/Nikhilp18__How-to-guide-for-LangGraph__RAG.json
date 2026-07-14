@@ -1,0 +1,114 @@
+{
+ "name": "Nikhilp18__How-to-guide-for-LangGraph__RAG",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "check_db_exists",
+   "kind": "router",
+   "label": "check_db_exists",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:223:223"
+  },
+  {
+   "id": "emded_documents",
+   "kind": "llm",
+   "label": "emded_documents",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:224:224"
+  },
+  {
+   "id": "retrieve",
+   "kind": "llm",
+   "label": "retrieve",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:225:225"
+  },
+  {
+   "id": "generate",
+   "kind": "llm",
+   "label": "generate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:226:226"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "check_db_exists",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:228:228"
+  },
+  {
+   "source": "check_db_exists",
+   "target": "retrieve",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:229:233"
+  },
+  {
+   "source": "check_db_exists",
+   "target": "emded_documents",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:229:233"
+  },
+  {
+   "source": "emded_documents",
+   "target": "retrieve",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:235:235"
+  },
+  {
+   "source": "retrieve",
+   "target": "generate",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:236:236"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Nikhilp18__How-to-guide-for-LangGraph@5ef8697/RAG.py:237:237"
+  }
+ ]
+}

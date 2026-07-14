@@ -8,11 +8,11 @@
     \toprule
     ID & DSL / workload & Preds & Compile ms (median) & Eval events/s (median) \\
     \midrule
-    forbidden\_tool & \texttt{G !tool:rm\_rf} & 1 & 0.003 & -- \\
-    interleave & \texttt{action:fetch -> F action:validate} & 2 & 0.005 & -- \\
-    until\_like & \texttt{action:ingest U action:validate} & 2 & 0.005 & -- \\
+    forbidden\_tool & \texttt{G !tool:rm\_rf} & 1 & 0.013 & -- \\
+    interleave & \texttt{action:fetch -> F action:validate} & 2 & 0.042 & -- \\
+    until\_like & \texttt{action:ingest U action:validate} & 2 & 0.021 & -- \\
     \midrule
-    evaluate & 3 monitors on 1000 events & 3 & -- & 327.94k \\
+    evaluate & 3 monitors on 1000 events & 3 & -- & 180.10k \\
     \bottomrule
   \end{tabular}
 \end{table}

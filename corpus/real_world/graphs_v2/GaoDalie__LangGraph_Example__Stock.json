@@ -1,0 +1,194 @@
+{
+ "name": "GaoDalie__LangGraph_Example__Stock",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "RESEARCHER",
+   "kind": "llm",
+   "label": "RESEARCHER",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:192:192"
+  },
+  {
+   "id": "ANALYZER",
+   "kind": "llm",
+   "label": "ANALYZER",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:193:193"
+  },
+  {
+   "id": "EXECUTOR",
+   "kind": "llm",
+   "label": "EXECUTOR",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:194:194"
+  },
+  {
+   "id": "SUPERVISOR",
+   "kind": "router",
+   "label": "SUPERVISOR",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:195:195"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "RESEARCHER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:197:197"
+  },
+  {
+   "source": "ANALYZER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:198:198"
+  },
+  {
+   "source": "EXECUTOR",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:199:199"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "RESEARCHER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:201:210"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "ANALYZER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:201:210"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "EXECUTOR",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:201:210"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:201:210"
+  },
+  {
+   "source": "__start__",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:212:212"
+  },
+  {
+   "source": "RESEARCHER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:267:267"
+  },
+  {
+   "source": "ANALYZER",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:268:268"
+  },
+  {
+   "source": "EXECUTOR",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:269:269"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "RESEARCHER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:270:279"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "ANALYZER",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:270:279"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "EXECUTOR",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:270:279"
+  },
+  {
+   "source": "SUPERVISOR",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:270:279"
+  },
+  {
+   "source": "__start__",
+   "target": "SUPERVISOR",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/Stock.py:281:281"
+  }
+ ]
+}

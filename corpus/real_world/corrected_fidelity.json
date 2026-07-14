@@ -1,0 +1,115 @@
+{
+ "note": "v1 = as-mined extractor (paper Table 1); v2 = corrected extractor (path_map 3-positional + LoopAgent fixes) re-run at identical pinned SHAs. Fidelity vs the same LLM reference graphs, self-repo excluded.",
+ "fidelity_v1_asmined": {
+  "overall": {
+   "n": 119,
+   "node_precision": 0.909,
+   "node_recall": 0.854,
+   "edge_precision": 0.805,
+   "edge_recall": 0.649,
+   "kind_accuracy": 0.828
+  },
+  "per_framework": {
+   "adk": {
+    "n": 24,
+    "node_precision": 0.711,
+    "node_recall": 0.622,
+    "edge_precision": 0.42,
+    "edge_recall": 0.382,
+    "kind_accuracy": 0.94
+   },
+   "autogen": {
+    "n": 35,
+    "node_precision": 1.0,
+    "node_recall": 0.942,
+    "edge_precision": 0.957,
+    "edge_recall": 0.77,
+    "kind_accuracy": 0.9
+   },
+   "crewai": {
+    "n": 20,
+    "node_precision": 0.867,
+    "node_recall": 0.867,
+    "edge_precision": 0.7,
+    "edge_recall": 0.692,
+    "kind_accuracy": 0.929
+   },
+   "langgraph": {
+    "n": 40,
+    "node_precision": 0.968,
+    "node_recall": 0.91,
+    "edge_precision": 0.956,
+    "edge_recall": 0.682,
+    "kind_accuracy": 0.647
+   }
+  },
+  "n_scored": 119
+ },
+ "fidelity_v2_corrected": {
+  "overall": {
+   "n": 115,
+   "node_precision": 0.888,
+   "node_recall": 0.85,
+   "edge_precision": 0.777,
+   "edge_recall": 0.679,
+   "kind_accuracy": 0.833
+  },
+  "per_framework": {
+   "adk": {
+    "n": 23,
+    "node_precision": 0.697,
+    "node_recall": 0.606,
+    "edge_precision": 0.395,
+    "edge_recall": 0.355,
+    "kind_accuracy": 0.938
+   },
+   "autogen": {
+    "n": 32,
+    "node_precision": 0.963,
+    "node_recall": 0.927,
+    "edge_precision": 0.906,
+    "edge_recall": 0.73,
+    "kind_accuracy": 0.897
+   },
+   "crewai": {
+    "n": 20,
+    "node_precision": 0.867,
+    "node_recall": 0.867,
+    "edge_precision": 0.7,
+    "edge_recall": 0.692,
+    "kind_accuracy": 0.929
+   },
+   "langgraph": {
+    "n": 40,
+    "node_precision": 0.95,
+    "node_recall": 0.921,
+    "edge_precision": 0.931,
+    "edge_recall": 0.819,
+    "kind_accuracy": 0.674
+   }
+  },
+  "n_scored": 115
+ },
+ "flags_v1_asmined": {
+  "n_graphs": 922,
+  "workflows_struct_flagged": 314,
+  "by_check": {
+   "reverse_reachability": 295,
+   "dead_ends": 301,
+   "tool_declarations": 84,
+   "exit_reachability": 86,
+   "router_shape": 36
+  }
+ },
+ "flags_v2_corrected": {
+  "n_graphs": 904,
+  "workflows_struct_flagged": 239,
+  "by_check": {
+   "exit_reachability": 32,
+   "reverse_reachability": 201,
+   "dead_ends": 209,
+   "tool_declarations": 86,
+   "router_shape": 35
+  }
+ }
+}

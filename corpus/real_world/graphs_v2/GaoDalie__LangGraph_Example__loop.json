@@ -1,0 +1,80 @@
+{
+ "name": "GaoDalie__LangGraph_Example__loop",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent",
+   "kind": "router",
+   "label": "agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:169:169"
+  },
+  {
+   "id": "action",
+   "kind": "llm",
+   "label": "action",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:170:170"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:172:172"
+  },
+  {
+   "source": "agent",
+   "target": "action",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:174:181"
+  },
+  {
+   "source": "agent",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:174:181"
+  },
+  {
+   "source": "action",
+   "target": "agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/GaoDalie__LangGraph_Example@4965e27/loop.py:183:183"
+  }
+ ]
+}

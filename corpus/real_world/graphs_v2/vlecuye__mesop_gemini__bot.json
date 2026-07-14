@@ -1,0 +1,45 @@
+{
+ "name": "vlecuye__mesop_gemini__bot",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "researcher",
+   "kind": "llm",
+   "label": "researcher",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vlecuye__mesop_gemini@f72f084/bot.py:92:92"
+  },
+  {
+   "id": "calculator",
+   "kind": "llm",
+   "label": "calculator",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vlecuye__mesop_gemini@f72f084/bot.py:93:93"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "researcher",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/vlecuye__mesop_gemini@f72f084/bot.py:94:94"
+  }
+ ]
+}

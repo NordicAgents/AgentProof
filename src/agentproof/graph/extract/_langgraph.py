@@ -16,27 +16,33 @@ _ENTRY_SENTINEL = "__start__"
 _EXIT_SENTINEL = "__end__"
 
 
-def _classify_node(node_id: str, data: Any) -> NodeKind:
+def _classify_node(node_id: str, data: Any) -> tuple[NodeKind, bool]:
+    """Classify a node.
+
+    Returns ``(kind, guessed)`` where ``guessed`` is True when the kind rests
+    on a name-substring heuristic rather than declared structure (sentinels,
+    bound tools/metadata).
+    """
     if node_id == _ENTRY_SENTINEL:
-        return NodeKind.ENTRY
+        return NodeKind.ENTRY, False
     if node_id == _EXIT_SENTINEL:
-        return NodeKind.EXIT
+        return NodeKind.EXIT, False
 
     # Detect tool-calling nodes via metadata or bound tools
     if hasattr(data, "metadata") and isinstance(data.metadata, dict):
         if data.metadata.get("tools"):
-            return NodeKind.TOOL
+            return NodeKind.TOOL, False
 
     if hasattr(data, "tools") and data.tools:
-        return NodeKind.TOOL
+        return NodeKind.TOOL, False
 
     name = getattr(data, "name", str(node_id)).lower()
     if "human" in name:
-        return NodeKind.HUMAN
+        return NodeKind.HUMAN, True
     if "route" in name or "router" in name:
-        return NodeKind.ROUTER
+        return NodeKind.ROUTER, True
 
-    return NodeKind.LLM
+    return NodeKind.LLM, False
 
 
 def _get_tools(data: Any) -> tuple[str, ...]:
@@ -84,7 +90,7 @@ def extract_langgraph(graph: Any) -> AgentGraph:
         if hasattr(drawable, "_nodes") and isinstance(getattr(drawable, "_nodes", None), dict):
             data = drawable._nodes.get(nid, data)
 
-        kind = _classify_node(nid, data)
+        kind, kind_guessed = _classify_node(nid, data)
         label = nid
         if nid == _ENTRY_SENTINEL:
             label = "__entry__"
@@ -92,7 +98,21 @@ def extract_langgraph(graph: Any) -> AgentGraph:
             label = "__exit__"
 
         tools = _get_tools(data) if data is not None else ()
-        nodes.append(GraphNode(id=nid, kind=kind, label=label, tools=tools))
+        # Every node (including the __start__/__end__ sentinels) is reported by
+        # the compiled framework graph itself: runtime-observed.  But a kind
+        # assigned by a name-substring heuristic is only a plausible inference,
+        # so such nodes are downgraded to "may"; kinds derived from declared
+        # structure (bound tools/metadata, sentinels) stay "exact".
+        nodes.append(
+            GraphNode(
+                id=nid,
+                kind=kind,
+                label=label,
+                tools=tools,
+                origin="runtime",
+                confidence="may" if kind_guessed else "exact",
+            )
+        )
         node_ids.add(nid)
 
     edges: list[GraphEdge] = []
@@ -103,9 +123,27 @@ def extract_langgraph(graph: Any) -> AgentGraph:
         condition = getattr(edge, "data", "") or ""
         if is_conditional:
             ekind = EdgeKind.CONDITIONAL
+            # Judgment call: the edge object is reported by the framework, but
+            # LangGraph enumerates conditional targets itself (path_map, or an
+            # over-approximation to all nodes) -> real element, "may" hold.
+            # Deliberate asymmetry with the AST extractor, which tags path_map
+            # conditional edges "exact": the AST sees the literal dict the
+            # author declared, while the compiled graph object cannot
+            # distinguish declared targets from an over-approximation.
+            edge_confidence = "may"
         else:
             ekind = EdgeKind.DIRECT
-        edges.append(GraphEdge(source=source, target=target, kind=ekind, condition=str(condition)))
+            edge_confidence = "exact"
+        edges.append(
+            GraphEdge(
+                source=source,
+                target=target,
+                kind=ekind,
+                condition=str(condition),
+                origin="runtime",
+                confidence=edge_confidence,
+            )
+        )
 
     entry_id = _ENTRY_SENTINEL
     exit_ids = tuple(n.id for n in nodes if n.kind == NodeKind.EXIT)

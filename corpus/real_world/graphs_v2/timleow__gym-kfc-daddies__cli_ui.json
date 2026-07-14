@@ -1,0 +1,114 @@
+{
+ "name": "timleow__gym-kfc-daddies__cli_ui",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "greeting",
+   "kind": "llm",
+   "label": "greeting",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:99:99"
+  },
+  {
+   "id": "get_user_prompt",
+   "kind": "router",
+   "label": "get_user_prompt",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:100:100"
+  },
+  {
+   "id": "assistant",
+   "kind": "llm",
+   "label": "assistant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:101:101"
+  },
+  {
+   "id": "farewell",
+   "kind": "llm",
+   "label": "farewell",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:102:102"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "greeting",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:104:104"
+  },
+  {
+   "source": "greeting",
+   "target": "get_user_prompt",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:105:105"
+  },
+  {
+   "source": "get_user_prompt",
+   "target": "assistant",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:106:109"
+  },
+  {
+   "source": "get_user_prompt",
+   "target": "farewell",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:106:109"
+  },
+  {
+   "source": "assistant",
+   "target": "get_user_prompt",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:110:110"
+  },
+  {
+   "source": "farewell",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/timleow__gym-kfc-daddies@561f402/cli_ui.py:111:111"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "name": "faresrafat3__ai-earth__knowledge_graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "name",
+   "kind": "llm",
+   "label": "name",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/faresrafat3__ai-earth@a3b9446/ai_earth/core/knowledge_graph.py:24:24"
+  }
+ ],
+ "edges": [
+  {
+   "source": "name",
+   "target": "node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/faresrafat3__ai-earth@a3b9446/ai_earth/core/knowledge_graph.py:33:33"
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "name": "Avneesh26024__Gen_AI_Exchange__Verifier_Agent",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "text_evidence_collection",
+   "kind": "llm",
+   "label": "text_evidence_collection",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:169:169"
+  },
+  {
+   "id": "image_analysis",
+   "kind": "llm",
+   "label": "image_analysis",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:170:170"
+  },
+  {
+   "id": "verify_claims",
+   "kind": "llm",
+   "label": "verify_claims",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:171:171"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "text_evidence_collection",
+   "target": "image_analysis",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:172:172"
+  },
+  {
+   "source": "image_analysis",
+   "target": "verify_claims",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:173:173"
+  },
+  {
+   "source": "__start__",
+   "target": "text_evidence_collection",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:174:174"
+  },
+  {
+   "source": "verify_claims",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Avneesh26024__Gen_AI_Exchange@73b68d7/Verifier_Agent.py:175:175"
+  }
+ ]
+}

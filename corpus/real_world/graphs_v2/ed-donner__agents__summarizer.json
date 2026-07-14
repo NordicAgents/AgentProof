@@ -1,0 +1,106 @@
+{
+ "name": "ed-donner__agents__summarizer",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "parse_input",
+   "kind": "llm",
+   "label": "parse_input",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:298:298"
+  },
+  {
+   "id": "chunk_text",
+   "kind": "llm",
+   "label": "chunk_text",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:299:299"
+  },
+  {
+   "id": "summarize_chunks",
+   "kind": "llm",
+   "label": "summarize_chunks",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:300:300"
+  },
+  {
+   "id": "create_final_summary",
+   "kind": "llm",
+   "label": "create_final_summary",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:301:301"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "parse_input",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:304:304"
+  },
+  {
+   "source": "parse_input",
+   "target": "chunk_text",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:305:305"
+  },
+  {
+   "source": "chunk_text",
+   "target": "summarize_chunks",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:306:306"
+  },
+  {
+   "source": "summarize_chunks",
+   "target": "create_final_summary",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:307:307"
+  },
+  {
+   "source": "create_final_summary",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ed-donner__agents@031f65e/4_langchain_langgraph/community_contributions/transcript_summarizer/src/core/summarizer.py:308:308"
+  }
+ ]
+}

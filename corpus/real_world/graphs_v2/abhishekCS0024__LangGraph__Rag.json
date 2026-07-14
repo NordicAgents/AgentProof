@@ -1,0 +1,53 @@
+{
+ "name": "abhishekCS0024__LangGraph__Rag",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "chat_node",
+   "kind": "router",
+   "label": "chat_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/abhishekCS0024__LangGraph@fd37053/Rag.py:206:206"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/abhishekCS0024__LangGraph@fd37053/Rag.py:207:207"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "chat_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/abhishekCS0024__LangGraph@fd37053/Rag.py:209:209"
+  },
+  {
+   "source": "tools",
+   "target": "chat_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/abhishekCS0024__LangGraph@fd37053/Rag.py:211:211"
+  }
+ ]
+}

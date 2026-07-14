@@ -1,0 +1,139 @@
+{
+ "name": "Adityagupta930__Recruiter-agency-workflow__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "categorize_experience",
+   "kind": "llm",
+   "label": "categorize_experience",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:69:69"
+  },
+  {
+   "id": "assess_skill_set",
+   "kind": "router",
+   "label": "assess_skill_set",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:70:70"
+  },
+  {
+   "id": "schedule_interview",
+   "kind": "llm",
+   "label": "schedule_interview",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:71:71"
+  },
+  {
+   "id": "escalate_to_recruiter",
+   "kind": "llm",
+   "label": "escalate_to_recruiter",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:72:72"
+  },
+  {
+   "id": "reject_application",
+   "kind": "llm",
+   "label": "reject_application",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:73:73"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "categorize_experience",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:75:75"
+  },
+  {
+   "source": "categorize_experience",
+   "target": "assess_skill_set",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:76:76"
+  },
+  {
+   "source": "assess_skill_set",
+   "target": "schedule_interview",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:77:85"
+  },
+  {
+   "source": "assess_skill_set",
+   "target": "escalate_to_recruiter",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:77:85"
+  },
+  {
+   "source": "assess_skill_set",
+   "target": "reject_application",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:77:85"
+  },
+  {
+   "source": "schedule_interview",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:86:86"
+  },
+  {
+   "source": "escalate_to_recruiter",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:87:87"
+  },
+  {
+   "source": "reject_application",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/Adityagupta930__Recruiter-agency-workflow@b87e1f1/app.py:88:88"
+  }
+ ]
+}

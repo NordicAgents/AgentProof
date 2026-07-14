@@ -1,0 +1,115 @@
+{
+ "name": "sap156__AI-Claims-Agent-LangGraph__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "evaluate_risk",
+   "kind": "llm",
+   "label": "evaluate_risk",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:127:127"
+  },
+  {
+   "id": "check_validity",
+   "kind": "router",
+   "label": "check_validity",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:128:128"
+  },
+  {
+   "id": "approve_claim",
+   "kind": "llm",
+   "label": "approve_claim",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:129:129"
+  },
+  {
+   "id": "reject_claim",
+   "kind": "llm",
+   "label": "reject_claim",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:130:130"
+  },
+  {
+   "id": "send_for_review",
+   "kind": "llm",
+   "label": "send_for_review",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:131:131"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "evaluate_risk",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:132:132"
+  },
+  {
+   "source": "evaluate_risk",
+   "target": "check_validity",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:133:133"
+  },
+  {
+   "source": "approve_claim",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:135:135"
+  },
+  {
+   "source": "reject_claim",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:136:136"
+  },
+  {
+   "source": "send_for_review",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sap156__AI-Claims-Agent-LangGraph@8e62e03/app.py:137:137"
+  }
+ ]
+}

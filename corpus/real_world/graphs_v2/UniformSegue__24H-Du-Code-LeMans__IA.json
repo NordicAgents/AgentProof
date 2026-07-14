@@ -1,0 +1,53 @@
+{
+ "name": "UniformSegue__24H-Du-Code-LeMans__IA",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "tool_node",
+   "kind": "tool",
+   "label": "tool_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/UniformSegue__24H-Du-Code-LeMans@29083dc/IA.py:39:39"
+  },
+  {
+   "id": "prompt_node",
+   "kind": "router",
+   "label": "prompt_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/UniformSegue__24H-Du-Code-LeMans@29083dc/IA.py:44:44"
+  }
+ ],
+ "edges": [
+  {
+   "source": "tool_node",
+   "target": "prompt_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/UniformSegue__24H-Du-Code-LeMans@29083dc/IA.py:55:55"
+  },
+  {
+   "source": "__start__",
+   "target": "prompt_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/UniformSegue__24H-Du-Code-LeMans@29083dc/IA.py:57:57"
+  }
+ ]
+}

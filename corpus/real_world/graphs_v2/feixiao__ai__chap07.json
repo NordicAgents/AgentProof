@@ -1,0 +1,72 @@
+{
+ "name": "feixiao__ai__chap07",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "\u7814\u7a762024-2025\u5e74\u4eba\u5de5\u667a\u80fd\u9886\u57df\u6392\u540d\u524d3\u7684\u65b0\u5174\u8d8b\u52bf\u3002\u91cd\u70b9\u5173\u6ce8\u5b9e\u9645\u5e94\u7528\u548c\u6f5c\u5728\u5f71\u54cd\u3002",
+   "kind": "llm",
+   "label": "\u7814\u7a762024-2025\u5e74\u4eba\u5de5\u667a\u80fd\u9886\u57df\u6392\u540d\u524d3\u7684\u65b0\u5174\u8d8b\u52bf\u3002\u91cd\u70b9\u5173\u6ce8\u5b9e\u9645\u5e94\u7528\u548c\u6f5c\u5728\u5f71\u54cd\u3002",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/feixiao__ai@8d7cd95/AgenticDesignPatterns/langchain/chap07.py:47:51"
+  },
+  {
+   "id": "\u6839\u636e\u7814\u7a76\u7ed3\u679c\u64b0\u5199\u4e00\u7bc7500\u5b57\u7684\u535a\u5ba2\u6587\u7ae0\u3002\u6587\u7ae0\u5e94\u8be5\u5f15\u4eba\u5165\u80dc\uff0c\u5e76\u6613\u4e8e\u666e\u901a\u53d7\u4f17\u7406\u89e3\u3002",
+   "kind": "llm",
+   "label": "\u6839\u636e\u7814\u7a76\u7ed3\u679c\u64b0\u5199\u4e00\u7bc7500\u5b57\u7684\u535a\u5ba2\u6587\u7ae0\u3002\u6587\u7ae0\u5e94\u8be5\u5f15\u4eba\u5165\u80dc\uff0c\u5e76\u6613\u4e8e\u666e\u901a\u53d7\u4f17\u7406\u89e3\u3002",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/feixiao__ai@8d7cd95/AgenticDesignPatterns/langchain/chap07.py:54:59"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "\u7814\u7a762024-2025\u5e74\u4eba\u5de5\u667a\u80fd\u9886\u57df\u6392\u540d\u524d3\u7684\u65b0\u5174\u8d8b\u52bf\u3002\u91cd\u70b9\u5173\u6ce8\u5b9e\u9645\u5e94\u7528\u548c\u6f5c\u5728\u5f71\u54cd\u3002",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "\u7814\u7a762024-2025\u5e74\u4eba\u5de5\u667a\u80fd\u9886\u57df\u6392\u540d\u524d3\u7684\u65b0\u5174\u8d8b\u52bf\u3002\u91cd\u70b9\u5173\u6ce8\u5b9e\u9645\u5e94\u7528\u548c\u6f5c\u5728\u5f71\u54cd\u3002",
+   "target": "\u6839\u636e\u7814\u7a76\u7ed3\u679c\u64b0\u5199\u4e00\u7bc7500\u5b57\u7684\u535a\u5ba2\u6587\u7ae0\u3002\u6587\u7ae0\u5e94\u8be5\u5f15\u4eba\u5165\u80dc\uff0c\u5e76\u6613\u4e8e\u666e\u901a\u53d7\u4f17\u7406\u89e3\u3002",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "\u6839\u636e\u7814\u7a76\u7ed3\u679c\u64b0\u5199\u4e00\u7bc7500\u5b57\u7684\u535a\u5ba2\u6587\u7ae0\u3002\u6587\u7ae0\u5e94\u8be5\u5f15\u4eba\u5165\u80dc\uff0c\u5e76\u6613\u4e8e\u666e\u901a\u53d7\u4f17\u7406\u89e3\u3002",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "name": "thisyanthpolice__Local-Agentic-Research-Assistant-LARA-__app",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "preprocess_query",
+   "kind": "llm",
+   "label": "preprocess_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:159:159"
+  },
+  {
+   "id": "retrieve",
+   "kind": "llm",
+   "label": "retrieve",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:160:160"
+  },
+  {
+   "id": "grade_documents",
+   "kind": "router",
+   "label": "grade_documents",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:161:161"
+  },
+  {
+   "id": "rewrite_query",
+   "kind": "llm",
+   "label": "rewrite_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:162:162"
+  },
+  {
+   "id": "generate_answer",
+   "kind": "llm",
+   "label": "generate_answer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:163:163"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "preprocess_query",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:165:165"
+  },
+  {
+   "source": "preprocess_query",
+   "target": "retrieve",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:166:166"
+  },
+  {
+   "source": "retrieve",
+   "target": "grade_documents",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:167:167"
+  },
+  {
+   "source": "grade_documents",
+   "target": "rewrite_query",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:168:168"
+  },
+  {
+   "source": "grade_documents",
+   "target": "generate_answer",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:168:168"
+  },
+  {
+   "source": "rewrite_query",
+   "target": "retrieve",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:169:169"
+  },
+  {
+   "source": "generate_answer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/app.py:170:170"
+  }
+ ]
+}

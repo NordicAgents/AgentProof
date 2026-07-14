@@ -1,0 +1,53 @@
+{
+ "name": "anthony-ism__riz-mAIstro-react-agent__web",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "call_model",
+   "kind": "router",
+   "label": "call_model",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/anthony-ism__riz-mAIstro-react-agent@e45ecd3/web.py:64:64"
+  },
+  {
+   "id": "tools",
+   "kind": "tool",
+   "label": "tools",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "may",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/anthony-ism__riz-mAIstro-react-agent@e45ecd3/web.py:65:65"
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "call_model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/anthony-ism__riz-mAIstro-react-agent@e45ecd3/web.py:68:68"
+  },
+  {
+   "source": "tools",
+   "target": "call_model",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/anthony-ism__riz-mAIstro-react-agent@e45ecd3/web.py:73:73"
+  }
+ ]
+}

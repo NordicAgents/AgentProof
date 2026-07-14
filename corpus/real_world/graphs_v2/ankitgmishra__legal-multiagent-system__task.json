@@ -1,0 +1,74 @@
+{
+ "name": "ankitgmishra__legal-multiagent-system__task",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "based_on_the_user_query:_'{user_input}',_retrieve_",
+   "kind": "tool",
+   "label": "Based on the user query: '{user_input}', retrieve ",
+   "tools": [
+    "legal_retrieval_tool"
+   ],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ankitgmishra__legal-multiagent-system@8724614/task.py:8:19"
+  },
+  {
+   "id": "based_on_the_retrieved_legal_information,_provide_",
+   "kind": "llm",
+   "label": "Based on the retrieved legal information, provide ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/ankitgmishra__legal-multiagent-system@8724614/task.py:21:32"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "based_on_the_user_query:_'{user_input}',_retrieve_",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "based_on_the_user_query:_'{user_input}',_retrieve_",
+   "target": "based_on_the_retrieved_legal_information,_provide_",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "based_on_the_retrieved_legal_information,_provide_",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

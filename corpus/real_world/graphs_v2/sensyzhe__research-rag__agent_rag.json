@@ -1,0 +1,106 @@
+{
+ "name": "sensyzhe__research-rag__agent_rag",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent",
+   "kind": "router",
+   "label": "agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:255:255"
+  },
+  {
+   "id": "retrieve",
+   "kind": "router",
+   "label": "retrieve",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:257:257"
+  },
+  {
+   "id": "rewrite",
+   "kind": "llm",
+   "label": "rewrite",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:258:258"
+  },
+  {
+   "id": "generate",
+   "kind": "llm",
+   "label": "generate",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:259:261"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:263:263"
+  },
+  {
+   "source": "agent",
+   "target": "retrieve",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:266:275"
+  },
+  {
+   "source": "agent",
+   "target": "__end__",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:266:275"
+  },
+  {
+   "source": "generate",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:283:283"
+  },
+  {
+   "source": "rewrite",
+   "target": "agent",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/sensyzhe__research-rag@3351971/\u53c2\u8003/agent_rag.py:284:284"
+  }
+ ]
+}

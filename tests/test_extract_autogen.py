@@ -92,6 +92,14 @@ class TestGroupChat:
         assert "a" in successors(graph, "c")
 
 
+class SelectorGroupChat:
+    """Stub whose type name triggers the v0.4 selector path."""
+
+    def __init__(self, participants):
+        self.participants = participants
+        self.name = "selector_chat"
+
+
 class TestEntryExit:
     def test_synthetic_nodes(self):
         a = AssistantAgent("agent")
@@ -101,3 +109,71 @@ class TestEntryExit:
         exit_n = node_by_id(graph, "__exit__")
         assert entry is not None and entry.kind == NodeKind.ENTRY
         assert exit_n is not None and exit_n.kind == NodeKind.EXIT
+
+
+class TestProvenance:
+    def test_agent_nodes_are_runtime_exact(self):
+        alice = AssistantAgent("alice")
+        bob = AssistantAgent("bob")
+        graph = extract_autogen([alice, bob], allowed_transitions={alice: [bob]})
+
+        for nid in ("alice", "bob"):
+            n = node_by_id(graph, nid)
+            assert n is not None
+            assert n.origin == "runtime"
+            assert n.confidence == "exact"
+
+    def test_declared_transitions_are_runtime_exact(self):
+        alice = AssistantAgent("alice")
+        bob = AssistantAgent("bob")
+        transitions = {alice: [bob], bob: [alice]}
+        gc = GroupChat(agents=[alice, bob], allowed_speaker_transitions_dict=transitions)
+        graph = extract_autogen(gc)
+
+        ab = next(e for e in graph.edges if (e.source, e.target) == ("alice", "bob"))
+        assert ab.origin == "runtime"
+        assert ab.confidence == "exact"
+
+    def test_round_robin_ordering_is_inferred(self):
+        a = AssistantAgent("a")
+        b = AssistantAgent("b")
+        gc = GroupChat(agents=[a, b], speaker_selection_method="round_robin")
+        graph = extract_autogen(gc)
+
+        ab = next(e for e in graph.edges if (e.source, e.target) == ("a", "b"))
+        # Reconstructed from the LIVE team object (no AST involved): origin is
+        # "runtime" (the information source), confidence stays non-exact.
+        assert ab.origin == "runtime"
+        assert ab.confidence == "may"
+
+    def test_selector_full_connectivity_is_heuristic(self):
+        a = AssistantAgent("a")
+        b = AssistantAgent("b")
+        c = AssistantAgent("c")
+        team = SelectorGroupChat([a, b, c])
+        graph = extract_autogen(team)
+
+        agent_ids = {"a", "b", "c"}
+        between = [
+            e for e in graph.edges
+            if e.source in agent_ids and e.target in agent_ids
+        ]
+        assert len(between) == 6  # fully-connected expansion
+        # Expansion of a live SelectorGroupChat -> runtime origin, but the
+        # fully-connected over-approximation is a guess -> heuristic.
+        assert all(e.origin == "runtime" for e in between)
+        assert all(e.confidence == "heuristic" for e in between)
+
+    def test_synthesized_elements_tagged_non_exact(self):
+        a = AssistantAgent("only")
+        graph = extract_autogen([a])
+
+        for nid in ("__entry__", "__exit__"):
+            n = node_by_id(graph, nid)
+            assert n is not None
+            assert n.origin == "synthesized"
+            assert n.confidence != "exact"
+        for e in graph.edges:
+            if "__entry__" in (e.source, e.target) or "__exit__" in (e.source, e.target):
+                assert e.origin == "synthesized"
+                assert e.confidence != "exact"

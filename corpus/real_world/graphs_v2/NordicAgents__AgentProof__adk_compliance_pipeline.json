@@ -1,0 +1,123 @@
+{
+ "name": "NordicAgents__AgentProof__adk_compliance_pipeline",
+ "framework": "adk",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "collect_docs",
+   "kind": "llm",
+   "label": "collect_docs",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/adk_compliance_pipeline.py:109:109"
+  },
+  {
+   "id": "analysis_parallel",
+   "kind": "llm",
+   "label": "analysis_parallel",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/adk_compliance_pipeline.py:109:109"
+  },
+  {
+   "id": "remediation_loop",
+   "kind": "llm",
+   "label": "remediation_loop",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/adk_compliance_pipeline.py:109:109"
+  },
+  {
+   "id": "human_signoff",
+   "kind": "llm",
+   "label": "human_signoff",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/adk_compliance_pipeline.py:109:109"
+  },
+  {
+   "id": "publish",
+   "kind": "llm",
+   "label": "publish",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/NordicAgents__AgentProof@30c6b5a/examples/adk_compliance_pipeline.py:109:109"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "collect_docs",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "collect_docs",
+   "target": "analysis_parallel",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "analysis_parallel",
+   "target": "remediation_loop",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "remediation_loop",
+   "target": "human_signoff",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "human_signoff",
+   "target": "publish",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "publish",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

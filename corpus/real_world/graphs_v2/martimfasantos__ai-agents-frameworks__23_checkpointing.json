@@ -1,0 +1,72 @@
+{
+ "name": "martimfasantos__ai-agents-frameworks__23_checkpointing",
+ "framework": "crewai",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "research_the_topic:_'benefits_of_checkpointing_in_",
+   "kind": "llm",
+   "label": "Research the topic: 'Benefits of checkpointing in ",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/23_checkpointing.py:58:62"
+  },
+  {
+   "id": "write_a_2-sentence_summary_based_on_the_research_f",
+   "kind": "llm",
+   "label": "Write a 2-sentence summary based on the research f",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/martimfasantos__ai-agents-frameworks@d6f7d08/crewai/23_checkpointing.py:64:68"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "research_the_topic:_'benefits_of_checkpointing_in_",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "source": "research_the_topic:_'benefits_of_checkpointing_in_",
+   "target": "write_a_2-sentence_summary_based_on_the_research_f",
+   "kind": "direct",
+   "origin": "ast_inferred",
+   "confidence": "may",
+   "source_span": ""
+  },
+  {
+   "source": "write_a_2-sentence_summary_based_on_the_research_f",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "name": "thisyanthpolice__Local-Agentic-Research-Assistant-LARA-__Main",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [
+  "__end__"
+ ],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "retrieve",
+   "kind": "llm",
+   "label": "retrieve",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:111:111"
+  },
+  {
+   "id": "grade_documents",
+   "kind": "router",
+   "label": "grade_documents",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:112:112"
+  },
+  {
+   "id": "rewrite_query",
+   "kind": "llm",
+   "label": "rewrite_query",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:113:113"
+  },
+  {
+   "id": "generate_answer",
+   "kind": "llm",
+   "label": "generate_answer",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:114:114"
+  },
+  {
+   "id": "__end__",
+   "kind": "exit",
+   "label": "end",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "__start__",
+   "target": "retrieve",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:116:116"
+  },
+  {
+   "source": "retrieve",
+   "target": "grade_documents",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:117:117"
+  },
+  {
+   "source": "grade_documents",
+   "target": "rewrite_query",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:118:122"
+  },
+  {
+   "source": "grade_documents",
+   "target": "generate_answer",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:118:122"
+  },
+  {
+   "source": "rewrite_query",
+   "target": "retrieve",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:123:123"
+  },
+  {
+   "source": "generate_answer",
+   "target": "__end__",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/thisyanthpolice__Local-Agentic-Research-Assistant-LARA-@0d85451/Main.py:124:124"
+  }
+ ]
+}

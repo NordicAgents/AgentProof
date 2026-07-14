@@ -1,0 +1,71 @@
+{
+ "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__drawing",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "_done",
+   "kind": "llm",
+   "label": "_done",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:30:30"
+  },
+  {
+   "id": "step_name",
+   "kind": "llm",
+   "label": "step_name",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:45:47"
+  },
+  {
+   "id": "event_node",
+   "kind": "llm",
+   "label": "event_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:104:106"
+  },
+  {
+   "id": "step_node",
+   "kind": "llm",
+   "label": "step_node",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:107:109"
+  }
+ ],
+ "edges": [
+  {
+   "source": "event_node",
+   "target": "step_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:110:110"
+  },
+  {
+   "source": "prev_step_node",
+   "target": "event_node",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/llama_index/llama-index-core/llama_index/core/workflow/drawing.py:114:114"
+  }
+ ]
+}

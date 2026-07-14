@@ -1,0 +1,322 @@
+{
+ "name": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_group_chat_graph",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "agent",
+   "kind": "llm",
+   "label": "agent",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1298:1298"
+  },
+  {
+   "id": "b",
+   "kind": "router",
+   "label": "b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1311:1311"
+  },
+  {
+   "id": "a",
+   "kind": "router",
+   "label": "a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1311:1311"
+  },
+  {
+   "id": "c",
+   "kind": "llm",
+   "label": "c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1325:1325"
+  },
+  {
+   "id": "agent_c",
+   "kind": "llm",
+   "label": "agent_c",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1637:1637"
+  },
+  {
+   "id": "agent_b",
+   "kind": "llm",
+   "label": "agent_b",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1637:1637"
+  },
+  {
+   "id": "agent_a",
+   "kind": "llm",
+   "label": "agent_a",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1637:1637"
+  }
+ ],
+ "edges": [
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1312:1312"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1326:1326"
+  },
+  {
+   "source": "a",
+   "target": "c",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1326:1326"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1347:1347"
+  },
+  {
+   "source": "B",
+   "target": "C",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1361:1361"
+  },
+  {
+   "source": "A",
+   "target": "B",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1361:1361"
+  },
+  {
+   "source": "__start__",
+   "target": "A",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1362:1362"
+  },
+  {
+   "source": "a",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1379:1379"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1379:1379"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1380:1380"
+  },
+  {
+   "source": "b",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1395:1395"
+  },
+  {
+   "source": "a",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1395:1395"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1396:1396"
+  },
+  {
+   "source": "b",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1397:1397"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1413:1413"
+  },
+  {
+   "source": "b",
+   "target": "a",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1414:1414"
+  },
+  {
+   "source": "b",
+   "target": "c",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1414:1414"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1415:1415"
+  },
+  {
+   "source": "b",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1439:1439"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1439:1439"
+  },
+  {
+   "source": "a",
+   "target": "c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1461:1461"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1461:1461"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1484:1484"
+  },
+  {
+   "source": "a",
+   "target": "c",
+   "kind": "conditional",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1484:1484"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1551:1551"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1552:1552"
+  },
+  {
+   "source": "a",
+   "target": "b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1596:1596"
+  },
+  {
+   "source": "__start__",
+   "target": "a",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1597:1597"
+  },
+  {
+   "source": "agent_a",
+   "target": "agent_b",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1640:1640"
+  },
+  {
+   "source": "agent_a",
+   "target": "agent_c",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-@7be0cb0/external_sources/autogen/python/packages/autogen-agentchat/tests/test_group_chat_graph.py:1641:1641"
+  }
+ ]
+}

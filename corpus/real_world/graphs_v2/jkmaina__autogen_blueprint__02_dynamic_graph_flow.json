@@ -1,0 +1,92 @@
+{
+ "name": "jkmaina__autogen_blueprint__02_dynamic_graph_flow",
+ "framework": "langgraph",
+ "entry_id": "__start__",
+ "exit_ids": [],
+ "nodes": [
+  {
+   "id": "__start__",
+   "kind": "entry",
+   "label": "start",
+   "tools": [],
+   "origin": "synthesized",
+   "confidence": "heuristic",
+   "source_span": ""
+  },
+  {
+   "id": "participant",
+   "kind": "llm",
+   "label": "participant",
+   "tools": [],
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:88:88"
+  }
+ ],
+ "edges": [
+  {
+   "source": "source",
+   "target": "target",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:80:80"
+  },
+  {
+   "source": "__start__",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:143:143"
+  },
+  {
+   "source": "planner",
+   "target": "researcher",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:146:146"
+  },
+  {
+   "source": "researcher",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:147:147"
+  },
+  {
+   "source": "__start__",
+   "target": "planner",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:204:204"
+  },
+  {
+   "source": "planner",
+   "target": "researcher",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:207:207"
+  },
+  {
+   "source": "researcher",
+   "target": "writer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:208:208"
+  },
+  {
+   "source": "writer",
+   "target": "reviewer",
+   "kind": "direct",
+   "origin": "ast_explicit",
+   "confidence": "exact",
+   "source_span": "/home/midhun/Documents/MX/Research/AgentProof/.remine_tmp/jkmaina__autogen_blueprint@cdc7e30/chapter8/02_dynamic_graph_flow.py:213:213"
+  }
+ ]
+}
