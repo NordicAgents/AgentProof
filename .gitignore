@@ -36,3 +36,6 @@ corpus/real_world/*.log
 # Anonymized review artifact (build output; full repo copy, regenerable). Kept local.
 papers/paper1/aaai/artifact/
 .remine_tmp/
+
+# AgentProof-CEGAR (Paper 2) experiment outputs — regenerable via scripts/cegar/reproduce_cegar.sh
+scripts/cegar/results/

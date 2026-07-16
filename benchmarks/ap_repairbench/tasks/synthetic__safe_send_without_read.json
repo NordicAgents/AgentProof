@@ -1,0 +1,157 @@
+{
+  "assume_trace_conservative": false,
+  "description": "send_email with no prior read vs Forbid(read_db -> send_email).",
+  "expected_verdict": "safe",
+  "framework": "langgraph",
+  "graph": {
+    "edges": [
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "entry",
+        "target": "send",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "send",
+        "target": "exit",
+        "unsupported": []
+      }
+    ],
+    "entry_id": "entry",
+    "exit_ids": [
+      "exit"
+    ],
+    "framework": "langgraph",
+    "name": "safe_noexfil",
+    "nodes": [
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "entry",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:entry"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "invokes_tool",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "send",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:tool"
+        ],
+        "tool": "send_email",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "exit",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:exit"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      }
+    ],
+    "unsupported": []
+  },
+  "policy": {
+    "contiguous": false,
+    "policy": "forbid",
+    "rule_id": "no_exfil",
+    "steps": [
+      {
+        "name": "read_db",
+        "pred": "tool"
+      },
+      {
+        "name": "send_email",
+        "pred": "tool"
+      }
+    ]
+  },
+  "repairable": true,
+  "slice": "synthetic",
+  "task_id": "synthetic__safe_send_without_read"
+}

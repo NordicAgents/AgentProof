@@ -26,6 +26,17 @@ The paper succeeds only if the complete system improves held-out repair success
 over the strongest LLM-only baseline without producing a false certificate. A
 large implementation with only an extraction or latency result is insufficient.
 
+### 1.1a Product direction and build order
+
+AgentProof-CEGAR will be an effect-aware, tri-valued analyzer rather than a
+larger topology checker. The build order is: (1) expose `SAFE`/`UNSAFE`/
+`UNKNOWN` with unsupported-feature explanations; (2) add source-level witnesses
+and effect/argument/authority annotations; (3) model exceptions, retries,
+cancellation, parallel branches, callbacks, and nested agents conservatively;
+(4) add typed policies and an independent evaluator; and (5) implement CEGAR,
+proof-carrying repair, and certificate checking. The flat `AgentGraph` remains a
+compatibility and visualization format and must not erase uncertainty.
+
 ### 1.1 Relationship to Paper 1
 
 Paper 1 is the motivating base-rate and extraction-fidelity study. Paper 2 may
@@ -134,6 +145,12 @@ conditional, loop, parallel, exception, callback, or dynamic dispatch), guard,
 source span, framework rule, and refinement history. Cross-event correlations
 must not be destroyed merely to obtain a convenient graph.
 
+The IR must preserve proof eligibility: unknown dispatch, direct calls that
+bypass declared tools, incomplete schemas, unmodeled exceptions, and unresolved
+parallel or nested-agent behavior become explicit unsupported facts. Diagnosis
+may use over-approximations, but `SAFE` is forbidden when the relevant region is
+outside the declared abstraction contract.
+
 ### 4.2 Framework semantic front-ends
 
 Implement LangGraph first, then AutoGen, CrewAI, and ADK if the correctness
@@ -158,6 +175,10 @@ and state references, generate distinguishing traces between candidate meanings,
 and require human approval when ambiguity remains. Compilability alone is not a
 quality metric.
 
+Initial policies should prioritize authorization before effects, approval before
+irreversible actions, least privilege, argument/path restrictions, identity
+consistency, data-flow labels, and retry or quota limits.
+
 ### 4.4 CEGAR and concretization
 
 - reconstruct a source-level counterexample from the product;
@@ -166,6 +187,11 @@ quality metric.
 - refine aliases, argument domains, guards, framework summaries, or correlations;
 - preserve refinement provenance for diagnosis and certificates;
 - return UNKNOWN on timeouts or unsupported behavior rather than SAFE.
+
+Every candidate witness should include the product path, policy state, branch
+assumptions, tool arguments, provenance, and source spans. A possible path is
+not an `UNSAFE` verdict until concretization or a trusted semantic argument
+establishes feasibility.
 
 ### 4.5 Proof-carrying repair
 
@@ -218,6 +244,11 @@ The runtime layer must mediate all claimed tool boundaries and report bypasses.
 Measure complete-mediation failures, parallel calls, retries, nested agents,
 argument rewriting, policy disclosure, and denial-of-service/retry loops. Do
 not present low DFA latency as a primary contribution.
+
+Provide CLI/CI integration with JSON and SARIF output, source-linked findings,
+graph visualization, and a diff-aware mode. Reports must answer both “why
+unsafe?” and “why not provably safe?”. Runtime enforcement is reserved for the
+explicit `UNKNOWN` region.
 
 ## 5. AP-RepairBench
 

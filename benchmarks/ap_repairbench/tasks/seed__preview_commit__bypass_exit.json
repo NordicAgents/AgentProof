@@ -1,0 +1,470 @@
+{
+  "defect_category": "commit_boundary_bypass",
+  "disclosure_status": "not_applicable_synthetic",
+  "expected_verdict": "unknown",
+  "framework": "langgraph",
+  "framework_version": "0.2.60",
+  "graph": {
+    "edges": [
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:__start__->build_batch:0:0"
+        },
+        "refinement_history": [],
+        "source": "__start__",
+        "target": "build_batch",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:build_batch->preview:0:0"
+        },
+        "refinement_history": [],
+        "source": "build_batch",
+        "target": "preview",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:preview->commit:0:0"
+        },
+        "refinement_history": [],
+        "source": "preview",
+        "target": "commit",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:commit->__end__:0:0"
+        },
+        "refinement_history": [],
+        "source": "commit",
+        "target": "__end__",
+        "unsupported": []
+      },
+      {
+        "control": "conditional",
+        "framework_rule": "mutation:bypass_exit",
+        "guard": "",
+        "modality": "may",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": ""
+        },
+        "refinement_history": [],
+        "source": "build_batch",
+        "target": "commit",
+        "unsupported": []
+      }
+    ],
+    "entry_id": "__start__",
+    "exit_ids": [
+      "__end__"
+    ],
+    "framework": "langgraph",
+    "name": "preview_commit",
+    "nodes": [
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "__start__",
+        "identity": "",
+        "in_labels": [],
+        "label": "__start__",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:__start__:0:0"
+        },
+        "state_predicates": [
+          "k",
+          "i",
+          "n",
+          "d",
+          ":",
+          "e",
+          "n",
+          "t",
+          "r",
+          "y"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "llm",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "build_batch",
+        "identity": "",
+        "in_labels": [],
+        "label": "build_batch",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:build_batch:0:0"
+        },
+        "state_predicates": [
+          "k",
+          "i",
+          "n",
+          "d",
+          ":",
+          "l",
+          "l",
+          "m"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "preview",
+        "identity": "",
+        "in_labels": [],
+        "label": "preview",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:preview:0:0"
+        },
+        "state_predicates": [
+          "k",
+          "i",
+          "n",
+          "d",
+          ":",
+          "p",
+          "a",
+          "s",
+          "s",
+          "t",
+          "h",
+          "r",
+          "o",
+          "u",
+          "g",
+          "h",
+          "preview"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "finance",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "financial",
+        "framework_object": "",
+        "guards": [],
+        "id": "commit",
+        "identity": "",
+        "in_labels": [],
+        "label": "commit",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:commit:0:0"
+        },
+        "state_predicates": [
+          "k",
+          "i",
+          "n",
+          "d",
+          ":",
+          "t",
+          "o",
+          "o",
+          "l"
+        ],
+        "tool": "wire_transfer",
+        "tool_schema": {
+          "authority_required": "finance",
+          "complete": true,
+          "effect": "financial",
+          "name": "wire_transfer",
+          "params": [
+            {
+              "name": "amount",
+              "sensitive": true,
+              "type": "float"
+            },
+            {
+              "name": "recipient",
+              "sensitive": true,
+              "type": "str"
+            },
+            {
+              "name": "account",
+              "sensitive": true,
+              "type": "str"
+            }
+          ],
+          "reversible": false
+        },
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "__end__",
+        "identity": "",
+        "in_labels": [],
+        "label": "__end__",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed:__end__:0:0"
+        },
+        "state_predicates": [
+          "k",
+          "i",
+          "n",
+          "d",
+          ":",
+          "e",
+          "x",
+          "i",
+          "t"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      }
+    ],
+    "unsupported": []
+  },
+  "human_patch": "Remove the bypass edge so every path to commit goes through preview.",
+  "license": "CC-BY-4.0",
+  "policy": {
+    "guarded": {
+      "kind": "financial",
+      "pred": "effect"
+    },
+    "policy": "require_before",
+    "required": {
+      "name": "preview",
+      "pred": "tag"
+    },
+    "rule_id": "preview_before_commit",
+    "strict": true
+  },
+  "redistribute": true,
+  "regression": {
+    "benign_traces": [
+      [
+        {
+          "action_type": "",
+          "effect": "none",
+          "node_id": "__start__",
+          "tags": [
+            "k",
+            "i",
+            "n",
+            "d",
+            ":",
+            "e",
+            "n",
+            "t",
+            "r",
+            "y"
+          ]
+        },
+        {
+          "action_type": "",
+          "capability": "llm",
+          "effect": "none",
+          "node_id": "build_batch",
+          "tags": [
+            "k",
+            "i",
+            "n",
+            "d",
+            ":",
+            "l",
+            "l",
+            "m"
+          ]
+        },
+        {
+          "action_type": "",
+          "effect": "none",
+          "node_id": "preview",
+          "tags": [
+            "k",
+            "i",
+            "n",
+            "d",
+            ":",
+            "p",
+            "a",
+            "s",
+            "s",
+            "t",
+            "h",
+            "r",
+            "o",
+            "u",
+            "g",
+            "h",
+            "preview"
+          ]
+        },
+        {
+          "action_type": "",
+          "authority": "finance",
+          "effect": "financial",
+          "node_id": "commit",
+          "tags": [
+            "k",
+            "i",
+            "n",
+            "d",
+            ":",
+            "t",
+            "o",
+            "o",
+            "l"
+          ],
+          "tool_name": "wire_transfer"
+        },
+        {
+          "action_type": "",
+          "effect": "none",
+          "node_id": "__end__",
+          "tags": [
+            "k",
+            "i",
+            "n",
+            "d",
+            ":",
+            "e",
+            "x",
+            "i",
+            "t"
+          ]
+        }
+      ]
+    ],
+    "must_stay_safe": true,
+    "utility_note": "The certified repair must preserve the benign path shown in benign_traces and keep the workflow's declared task success."
+  },
+  "repo": "",
+  "repo_sha": "",
+  "requirement_text": "A financial commit must be preceded by a preview/confirmation boundary.",
+  "slice": "official_example",
+  "source_path": "",
+  "task_id": "seed__preview_commit__bypass_exit",
+  "tool_schemas": {
+    "wire_transfer": {
+      "authority_required": "finance",
+      "complete": true,
+      "effect": "financial",
+      "name": "wire_transfer",
+      "params": [
+        {
+          "name": "amount",
+          "sensitive": true,
+          "type": "float"
+        },
+        {
+          "name": "recipient",
+          "sensitive": true,
+          "type": "str"
+        },
+        {
+          "name": "account",
+          "sensitive": true,
+          "type": "str"
+        }
+      ],
+      "reversible": false
+    }
+  },
+  "validation": {
+    "disagreements": [],
+    "note": "machine-built; mutation=bypass_exit; edit=added bypass edge 'build_batch' -> 'commit', skipping commit gate 'preview'",
+    "status": "synthetic_auto",
+    "validators": []
+  },
+  "violating_trace": null
+}

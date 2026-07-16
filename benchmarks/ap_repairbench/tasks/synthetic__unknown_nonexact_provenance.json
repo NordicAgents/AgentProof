@@ -1,0 +1,150 @@
+{
+  "assume_trace_conservative": false,
+  "description": "A structurally clean flow whose effect node has non-exact (guessed) provenance.",
+  "expected_verdict": "unknown",
+  "framework": "langgraph",
+  "graph": {
+    "edges": [
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "entry",
+        "target": "call",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "call",
+        "target": "exit",
+        "unsupported": []
+      }
+    ],
+    "entry_id": "entry",
+    "exit_ids": [
+      "exit"
+    ],
+    "framework": "langgraph",
+    "name": "unknown_prov",
+    "nodes": [
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "entry",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:entry"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "invokes_tool",
+        "effect": "communicate",
+        "framework_object": "",
+        "guards": [],
+        "id": "call",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "may",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "may",
+          "origin": "ast_inferred",
+          "source_span": "seed.py:2:2"
+        },
+        "state_predicates": [
+          "kind:tool"
+        ],
+        "tool": "send_email",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "exit",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:exit"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      }
+    ],
+    "unsupported": []
+  },
+  "policy": {
+    "policy": "never",
+    "pred": {
+      "name": "wire_transfer",
+      "pred": "tool"
+    },
+    "rule_id": "no_wire"
+  },
+  "repairable": true,
+  "slice": "synthetic",
+  "task_id": "synthetic__unknown_nonexact_provenance"
+}

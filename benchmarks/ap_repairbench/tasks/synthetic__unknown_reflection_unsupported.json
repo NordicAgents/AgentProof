@@ -1,0 +1,156 @@
+{
+  "assume_trace_conservative": false,
+  "description": "An effect node that performs reflection (getattr) \u2014 outside the abstraction contract.",
+  "expected_verdict": "unknown",
+  "framework": "langgraph",
+  "graph": {
+    "edges": [
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "entry",
+        "target": "call",
+        "unsupported": []
+      },
+      {
+        "control": "direct",
+        "framework_rule": "",
+        "guard": "",
+        "modality": "must",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "refinement_history": [],
+        "source": "call",
+        "target": "exit",
+        "unsupported": []
+      }
+    ],
+    "entry_id": "entry",
+    "exit_ids": [
+      "exit"
+    ],
+    "framework": "langgraph",
+    "name": "unknown_reflect",
+    "nodes": [
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "entry",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:entry"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "invokes_tool",
+        "effect": "execute",
+        "framework_object": "",
+        "guards": [],
+        "id": "call",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:tool"
+        ],
+        "tool": "dynamic_call",
+        "tool_schema": null,
+        "unsupported": [
+          {
+            "detail": "getattr(mod, name)()",
+            "kind": "reflection",
+            "source_span": ""
+          }
+        ]
+      },
+      {
+        "abort": false,
+        "abstract_args": [],
+        "authority": "",
+        "call_target": "",
+        "cancellation": false,
+        "capability": "",
+        "effect": "none",
+        "framework_object": "",
+        "guards": [],
+        "id": "exit",
+        "identity": "",
+        "in_labels": [],
+        "label": "",
+        "modeling_confidence": "exact",
+        "out_labels": [],
+        "possible_exceptions": [],
+        "principal": "",
+        "provenance": {
+          "confidence": "exact",
+          "origin": "ast_explicit",
+          "source_span": "seed.py:1:1"
+        },
+        "state_predicates": [
+          "kind:exit"
+        ],
+        "tool": "",
+        "tool_schema": null,
+        "unsupported": []
+      }
+    ],
+    "unsupported": []
+  },
+  "policy": {
+    "policy": "never",
+    "pred": {
+      "name": "wire_transfer",
+      "pred": "tool"
+    },
+    "rule_id": "no_wire"
+  },
+  "repairable": false,
+  "slice": "synthetic",
+  "task_id": "synthetic__unknown_reflection_unsupported"
+}

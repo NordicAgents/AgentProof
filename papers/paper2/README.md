@@ -57,6 +57,13 @@ oracle, refinement loop, source patchers, and certificate checker. If Paper 1 is
 under review or published, Paper 2 must cite it, disclose reused data/code, and
 keep its benchmark, experiments, and central claims scientifically distinct.
 
+The implementation priority is explicit: first make uncertainty visible and
+actionable, then add effect-sensitive modeling, and only then build CEGAR and
+repair on top. The flat graph remains a compatibility and visualization view;
+it is not the proof abstraction. Unknown dispatch, hidden tool calls, guessed
+connectivity, incomplete failure semantics, and unmodeled parallelism must
+produce `UNKNOWN`, never silently support `SAFE`.
+
 ## Research questions
 
 1. **Sound modeling:** Can a framework-aware may abstraction contain every
@@ -71,6 +78,9 @@ keep its benchmark, experiments, and central claims scientifically distinct.
    policy families, and at least one unseen framework or version?
 5. **Static/runtime partition:** Can certificates reduce expensive runtime
    judging or human approval at matched safety and benign utility?
+6. **Actionability:** Do source-level witnesses and structured `UNKNOWN`
+   explanations help developers resolve risks more accurately than graph-only
+   reports?
 
 ## Formal contract
 
@@ -121,11 +131,20 @@ source patch -> re-extract -> verify -> regression tests -> certificate
 residual UNKNOWN -> formal runtime guard / approval / LLM judge
 ```
 
+The public API should expose the same three-way contract directly:
+
+```text
+SAFE     = no bad state is reachable in the conservative may model
+UNSAFE   = a feasible violating trace and source witness are returned
+UNKNOWN  = unsupported or imprecisely modeled behavior is identified
+```
+
 ## Intended contributions
 
 1. A provenance-carrying may/must transition system for the effect, authority,
    argument, identity, state, and data-flow behavior of tool-using agents.
-2. Tri-valued policy verification with concrete witnesses and
+2. Tri-valued policy verification with structured UNKNOWN explanations,
+   source-level concrete witnesses, and
    counterexample-guided refinement rather than unsound binary SAFE results.
 3. Proof-carrying repair that combines a finite edit grammar, cost-aware
    optimization, optional LLM proposals, source patching, re-analysis, and an
