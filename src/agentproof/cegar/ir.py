@@ -753,6 +753,17 @@ _KIND_EFFECT: dict[NodeKind, EffectKind] = {
 
 _EFFECT_STR: dict[str, EffectKind] = {e.value: e for e in EffectKind}
 
+# NodeKind -> the capability it implies, so kind-based predicates (Approval,
+# Capability, ...) work on a lifted graph whose flat nodes declare no
+# ``capabilities`` (the common case for mined AST graphs).
+_KIND_CAPABILITY: dict[NodeKind, frozenset[str]] = {
+    NodeKind.HUMAN: frozenset({"human_pause"}),
+    NodeKind.ROUTER: frozenset({"routes"}),
+    NodeKind.LLM: frozenset({"llm"}),
+    NodeKind.TOOL: frozenset({"invokes_tool"}),
+    NodeKind.SUBGRAPH: frozenset({"subgraph"}),
+}
+
 _CONTROL_FROM_EDGEKIND: dict[EdgeKind, ControlKind] = {
     EdgeKind.DIRECT: ControlKind.DIRECT,
     EdgeKind.CONDITIONAL: ControlKind.CONDITIONAL,
@@ -795,7 +806,11 @@ def _from_agent_graph(g: AgentGraph) -> MayMustGraph:
         if n.kind is NodeKind.SUBGRAPH:
             unsup.append(UnsupportedFact(UnsupportedKind.NESTED_AGENT,
                                          detail=f"subgraph {n.id}", source_span=n.source_span))
-        caps = set(n.capabilities)
+        # Capabilities: any declared on the flat node, plus the default implied
+        # by its NodeKind (so kind-based predicates like Approval() can see a
+        # HUMAN node, or a ROUTER's routing, on a lifted graph whose flat nodes
+        # carry no explicit ``capabilities``).
+        caps = set(n.capabilities) | _KIND_CAPABILITY.get(n.kind, frozenset())
         nodes.append(EffectNode(
             id=n.id,
             effect=eff,
@@ -805,7 +820,9 @@ def _from_agent_graph(g: AgentGraph) -> MayMustGraph:
             provenance=prov,
             modeling_confidence=n.confidence,
             unsupported=tuple(unsup),
-            state_predicates=tuple(f"kind:{n.kind.value}"),
+            # A single "kind:<value>" predicate — NOT tuple("kind:…"), which
+            # would iterate the string into one-character predicates.
+            state_predicates=(f"kind:{n.kind.value}",),
         ))
 
     edges: list[ModalEdge] = []
