@@ -18,7 +18,8 @@ runnable harnesses that honestly report which arms are not executed here.
 | `oracle.py` | §4.3 | Slow, independent, denotational finite-trace evaluator + distinguishing-trace search. The E0 differential backbone. |
 | `product.py` | §3, §4.4 | Tri-valued may/must product checker → SAFE / UNSAFE / UNKNOWN with source-level witnesses. SAFE only on a certifiable region (mirrors the reviewer-#6 gate). |
 | `cegar.py` | §4.4, Thm 5 | CEGAR loop: symbolic (offline, no code-exec) concretizer, oracle-confirmed feasibility, monotone domain refinement over a finite candidate pool, `UNKNOWN`-on-timeout. Conditional-termination argument in the docstring. `Concretizer` Protocol leaves a real sandbox as a drop-in. |
-| `repair.py` | §4.5, Thm 3/4 | Proof-carrying repair: the 10-operator finite edit grammar, published weighted cost model, `GrammarProposer` optimizer (LLM proposer is an injectable Protocol, **outside the TCB**), and a re-verify loop that accepts a patch **only** when the independent checker admits its certificate. |
+| `repair.py` | §4.5, Thm 3/4 | Proof-carrying repair: the 10-operator finite edit grammar, published weighted cost model, `GrammarProposer` optimizer, and a re-verify loop that accepts a patch **only** when the independent checker admits its certificate. |
+| `llm_proposer.py` | §4.5, §6.2 | Untrusted LLM patch proposer (real Claude via the `anthropic` SDK) that selects/parameterizes operators from the finite grammar as a search heuristic. Provider-agnostic core (a `complete` callable) so it is fully offline-testable; `CombinedProposer` unions solver + LLM. **Outside the TCB** — a wrong or adversarial suggestion is applied, re-analyzed, and rejected by the certificate checker, never admitted. |
 | `certificate.py` | §4.6 | Certificate schema (program/policy hashes, deps, assumptions, abstract transitions, repair cost, regression manifest) + emitter. |
 | `checker.py` | §4.6, Thm 2 | Deliberately small **independent** checker. Imports only `ir`/`policy`/`certificate`; re-derives the SAFE claim by its own reachability over the recorded graph+policy — it does **not** trust the analyzer or the recorded verdict. |
 | `frontend/langgraph.py` | §4.2 | Enriched LangGraph → may/must lift: resolves tool effects from schemas, records conservative `UnsupportedFact`s (nested agents, dynamic dispatch, unresolved parallelism, guessed structure). Never drops a node/edge. |
@@ -81,8 +82,10 @@ mutation, CEGAR, repair end-to-end, certificate rejection, benchmark, frontend.
 
 - Real-defect and mutated-real-workflow benchmark slices (mining + 2-person
   validation, plan §5).
-- LLM patch-proposer and multi-model repair sweeps (plan §6.2) — injection
-  point exists (`repair.PatchProposer`), no model wired.
+- Multi-model repair *sweeps* and the E3 flagship comparison (plan §6.2): the
+  LLM proposer is now wired (`cegar.llm_proposer`, real Claude via `anthropic`),
+  but running the sweep needs API keys/models and frozen prompts — not executed
+  here (the offline tests exercise it against a fake model).
 - Framework-native runtime-trace conformance for E1 containment (needs the
   frameworks installed to run untrusted code).
 - Human repair study E6, NL-policy translation ablation E7 with a real model.

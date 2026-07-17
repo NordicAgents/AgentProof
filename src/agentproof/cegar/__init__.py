@@ -271,6 +271,10 @@ __all__ = [
     "lift",
     "default_tool_schemas",
     "build_certificate",
+    # --- untrusted LLM patch proposer (outside the TCB) ---
+    "LLMProposer",
+    "CombinedProposer",
+    "anthropic_completer",
     # --- IR types ---
     "AbstractValue",
     "EffectEvent",
@@ -317,3 +321,17 @@ __all__ = [
     "policy_from_dict",
     "pred_from_dict",
 ]
+
+
+# The LLM proposer pulls in the repair/product modules (and, only when actually
+# calling a model, the optional ``anthropic`` SDK). Expose it lazily so a bare
+# ``import agentproof.cegar`` stays light and SDK-free.
+_LAZY = {"LLMProposer", "CombinedProposer", "anthropic_completer"}
+
+
+def __getattr__(name: str) -> Any:
+    if name in _LAZY:
+        from agentproof.cegar import llm_proposer
+
+        return getattr(llm_proposer, name)
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
