@@ -39,3 +39,6 @@ papers/paper1/aaai/artifact/
 
 # AgentProof-CEGAR (Paper 2) experiment outputs — regenerable via scripts/cegar/reproduce_cegar.sh
 scripts/cegar/results/
+
+# Local secrets (never commit)
+.env

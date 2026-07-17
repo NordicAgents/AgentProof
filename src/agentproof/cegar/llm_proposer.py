@@ -17,9 +17,10 @@ The core (:class:`LLMProposer`, :func:`parse_edit_sequences`, :func:`build_op`,
 :func:`render_prompt`) depends only on a ``complete: Callable[[str], str]`` that maps a
 prompt to the model's raw text — no SDK, no key, no network. This keeps the module
 importable and fully unit-testable offline with a fake ``complete``.
-:func:`anthropic_completer` is the thin, lazily-imported adapter that drives Claude via
-the official ``anthropic`` SDK (structured JSON output, adaptive thinking); it is used
-only when a real model is wanted.
+:func:`anthropic_completer` drives Claude via the official ``anthropic`` SDK (structured
+JSON output, adaptive thinking); :func:`openai_completer` drives any OpenAI-compatible
+endpoint (e.g. an NVIDIA / GLM / DeepSeek / Qwen gateway). Both are thin, lazily-imported
+adapters used only when a real model is wanted, and both stay outside the TCB.
 """
 
 from __future__ import annotations
@@ -374,5 +375,62 @@ def anthropic_completer(
         except anthropic.BadRequestError:  # pragma: no cover - live-API only
             resp = cl.messages.create(**base)
         return "".join(b.text for b in resp.content if getattr(b, "type", None) == "text")
+
+    return complete
+
+
+def openai_completer(
+    *,
+    client: Any = None,
+    model: str = "z-ai/glm-5.2",
+    base_url: str | None = None,
+    api_key: str | None = None,
+    max_tokens: int = 8192,
+    temperature: float | None = None,
+) -> Completer:
+    """Return a ``complete`` backed by any OpenAI-compatible chat endpoint.
+
+    Works with hosted OpenAI-compatible gateways (e.g. NVIDIA ``build.nvidia.com``
+    serving GLM / DeepSeek / Qwen / Nemotron). ``base_url`` / ``api_key`` default
+    to ``OPENAI_BASE_URL`` / ``OPENAI_API_KEY`` from the environment. JSON output
+    is requested via ``response_format={"type": "json_object"}`` with a fallback
+    if the endpoint rejects it (the prompt still specifies the JSON shape, and
+    :func:`parse_edit_sequences` is defensive). ``openai`` is imported lazily.
+
+    The model here is untrusted exactly like Claude — its proposals are re-verified
+    and certificate-checked before any repair is reported.
+    """
+    import os
+
+    state: dict[str, Any] = {"client": client}
+
+    def complete(prompt: str) -> str:
+        try:
+            import openai
+        except ImportError as e:  # pragma: no cover - environment dependent
+            raise RuntimeError(
+                "openai SDK not installed; run `pip install \"agentproofx[llm]\"` "
+                "or pass your own `complete` callable to LLMProposer."
+            ) from e
+        if state["client"] is None:
+            state["client"] = openai.OpenAI(
+                base_url=base_url or os.environ.get("OPENAI_BASE_URL"),
+                api_key=api_key or os.environ.get("OPENAI_API_KEY"),
+            )
+        cl = state["client"]
+        kwargs: dict[str, Any] = dict(
+            model=model,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        if temperature is not None:
+            kwargs["temperature"] = temperature
+        try:
+            resp = cl.chat.completions.create(
+                response_format={"type": "json_object"}, **kwargs
+            )
+        except openai.BadRequestError:  # pragma: no cover - live-API only
+            resp = cl.chat.completions.create(**kwargs)
+        return resp.choices[0].message.content or ""
 
     return complete
