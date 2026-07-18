@@ -367,6 +367,53 @@ true/false may-violations acquire precision/recall (§13).
 
 ---
 
+## 16. Independent self-validation (re-derived from raw files, core API only)
+
+The §1–§15 numbers came partly from an agent-built harness
+(`benchmarks/real_corpus/`). They were independently re-derived from the raw
+corpus JSON using **only** the core `graph_from_dict` → `MayMustGraph.from_agent_graph`
+→ `product.check` / `region_is_certifiable` path (no harness), and cross-checked:
+
+- **Confirmed:** 912/912 UNKNOWN, **0 SAFE**, and **0/912 graphs with a fully-exact
+  reachable structure**. The one difference from the harness — the single UNSAFE
+  under `approval_before_financial` — is **fully explained**: the harness tags tool
+  effects by name (`read_financial_document`→FINANCIAL), which the plain core lift
+  leaves UNKNOWN; that tag turns one may-financial into a must-financial on a MUST
+  path. Every difference is accounted for; the 0-SAFE headline is identical either way.
+
+- **Refined (and a self-correction).** The 0% is provenance-driven, but it further
+  decomposes — and this partly **vindicates the panel's "knob" critique** that §13
+  understated:
+  - **302 / 912** graphs are blocked **solely by the synthesized `__start__`/`__end__`
+    sentinel nodes** (heuristic, effect-none, no policy atom). These are structural
+    markers AST extraction inserts, not guessed source; exempting them is defensible,
+    and doing so is exactly what lifts the "sentinel-exempt" number off 0. So for a
+    third of the corpus, uncertifiability is a **sentinel-modeling choice**, not a
+    real extraction failure. (My earlier §13 framing — "purely structural, the knob
+    doesn't matter" — was too strong; the sentinel knob is load-bearing for ~33%.)
+  - **610 / 912** have **genuine deeper loss**: 511 carry non-exact (`may`/heuristic)
+    edges, 99 carry guessed non-sentinel nodes. No sentinel exemption fixes these —
+    this is the real extraction-fidelity ceiling.
+
+- **Mechanism, on one real graph** (`NordicAgents…langgraph_customer_support`, 6
+  nodes): `router`/`agent` extract **exact**; `__start__`/`__end__` are
+  synthesized-heuristic; `escalate_human` is `may`; `tool_call` is `may` + effect
+  **UNKNOWN** + `incomplete_schema`. The analyzer returns UNKNOWN with a may-witness
+  ending at `tool_call` — a **correct, sound** verdict (it cannot prove
+  approval-before-financial when the tool's effect is unknown on a guessed path).
+
+- **Candidates are over-approximation, verified by trace.** A sampled
+  `may_violation_candidate` witness ends at `yt_tool` with effect **UNKNOWN**, which
+  may-matches *any* effect predicate — i.e. "this graph has an unresolved tool," not
+  "this graph violates a financial policy." Confirms §11's caveat directly.
+
+**Net:** the reported results hold under independent re-derivation; the mechanism is
+understood; the honest ceiling is *"≤ ~33% certifiable even if you trust your own
+sentinels, and far lower otherwise,"* with effect resolvability a separate, smaller
+issue affecting only candidate noise.
+
+---
+
 ### Appendix A — Full number ledger (as cited)
 
 Corpus: n=912; langgraph 401 / autogen 345 / crewai 115 / adk 51. Nodes 3385
