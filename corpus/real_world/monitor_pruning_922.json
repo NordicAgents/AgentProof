@@ -1,0 +1,151 @@
+{
+  "corpus_kind": "real_world",
+  "assume_trace_conservative": false,
+  "n_workflows": 922,
+  "n_policies": 15,
+  "n_monitor_instances": 13830,
+  "prunable": 0,
+  "prunable_pct": 0.0,
+  "trivially_inert": 0,
+  "reachability_proven_inert": 0,
+  "must_keep": 13830,
+  "must_keep_pct": 100.0,
+  "may_violate": 922,
+  "inconclusive": 12908,
+  "inconclusive_pct": 93.3,
+  "reach_proven_pct_of_atoms_present": 0.0,
+  "mean_monitors_pruned_per_workflow": 0.0,
+  "soundness_gate": {
+    "certified_safe": 0,
+    "alphabet_inert_descriptive": 13830,
+    "alphabet_inert_not_certified": 13830,
+    "uncertified_extraction": 12908,
+    "note": "certified_safe = SOUND prunable set (gate returned certified 'safe'). alphabet_inert_descriptive = policy atoms absent from the declared graph vocabulary; DESCRIPTIVE ONLY, provenance-independent, and NOT a sound pruning guarantee on lossy graphs."
+  },
+  "certified_safe": 0,
+  "alphabet_inert_descriptive": 13830,
+  "per_policy": {
+    "no_delete_production": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "no_drop_table": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "no_rm_rf": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "email_requires_review": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "pii_anonymize_bounded": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "deploy_requires_approval": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "sql_query_then_review": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "no_destructive_ops": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "draft_then_review_then_send": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "classify_then_route": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "fetch_data_then_validate": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "payment_requires_human": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "no_send_without_review_or_block": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    },
+    "analyze_until_decision": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 922,
+      "inconclusive": 0
+    },
+    "either_log_or_audit": {
+      "pairs": 922,
+      "prunable": 0,
+      "reach_proven": 0,
+      "keep": 922,
+      "may_violate": 0,
+      "inconclusive": 922
+    }
+  },
+  "_excluded_prefix": "NordicAgents__AgentProof",
+  "_excluded_self_repo": 8
+}

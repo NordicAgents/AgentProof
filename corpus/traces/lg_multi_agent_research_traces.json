@@ -105,78 +105,6 @@
         ]
       },
       {
-        "node_id": "researcher",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "search",
-        "action_type": "tool",
-        "tool_name": "tavily_search",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "writer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "reviewer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "review_router",
-        "action_type": "router",
-        "tags": [
-          "router"
-        ]
-      },
-      {
-        "node_id": "researcher",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "search",
-        "action_type": "tool",
-        "tool_name": "tavily_search",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "writer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "reviewer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "review_router",
-        "action_type": "router",
-        "tags": [
-          "router"
-        ]
-      },
-      {
         "node_id": "__end__",
         "action_type": "exit"
       }
@@ -239,7 +167,7 @@
       {
         "node_id": "search",
         "action_type": "tool",
-        "tool_name": "tavily_search",
+        "tool_name": "arxiv_search",
         "tags": [
           "tool"
         ]
@@ -299,7 +227,7 @@
       {
         "node_id": "search",
         "action_type": "tool",
-        "tool_name": "tavily_search",
+        "tool_name": "arxiv_search",
         "tags": [
           "tool"
         ]
@@ -379,6 +307,23 @@
         ]
       },
       {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "planner",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
         "node_id": "researcher",
         "action_type": "llm",
         "tags": [
@@ -388,7 +333,7 @@
       {
         "node_id": "search",
         "action_type": "tool",
-        "tool_name": "tavily_search",
+        "tool_name": "arxiv_search",
         "tags": [
           "tool"
         ]
@@ -448,7 +393,7 @@
       {
         "node_id": "search",
         "action_type": "tool",
-        "tool_name": "tavily_search",
+        "tool_name": "arxiv_search",
         "tags": [
           "tool"
         ]
@@ -614,7 +559,7 @@
       {
         "node_id": "search",
         "action_type": "tool",
-        "tool_name": "tavily_search",
+        "tool_name": "arxiv_search",
         "tags": [
           "tool"
         ]
@@ -641,56 +586,10 @@
         ]
       },
       {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "planner",
-        "action_type": "llm",
+        "node_id": "human_review",
+        "action_type": "human",
         "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "researcher",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "search",
-        "action_type": "tool",
-        "tool_name": "tavily_search",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "writer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "reviewer",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "review_router",
-        "action_type": "router",
-        "tags": [
-          "router"
+          "human"
         ]
       },
       {

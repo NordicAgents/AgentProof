@@ -53,3 +53,6 @@ exclude = ["papers/", "corpus/", "scripts/"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# Tests import helper modules as `tests.<pkg>._seeds`, which needs the repo root
+# on sys.path. `python -m pytest` adds cwd implicitly; `uv run pytest` does not.
+pythonpath = ["."]

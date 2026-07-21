@@ -1,215 +1,321 @@
 \section{Base-Rate Study on Public GitHub Workflows}
 \label{sec:realworld}
 
-To estimate defect base rates on independently authored workflows---and to
-measure extractor fidelity on code we did not write---we mined public GitHub
-repositories across all four frameworks. We state the population precisely:
-\emph{public GitHub files matching framework-specific code searches}, not
-production deployments. The unit of analysis is one source file mapped to one
-\emph{extracted file-level graph}; some files hold multiple executable roots,
-only task declarations, or fixtures, so a fully executable-workflow-root unit
-is future work. We census the population below and report all prevalence
-figures as \emph{LLM-assisted exploratory estimates}, not ground truth.
+To estimate defect base rates on independently authored workflows---and measure
+extractor fidelity on code we did not write---we mined public GitHub across all
+four frameworks. The population is \emph{public GitHub files matching
+framework-specific code searches}, not production deployments; the unit is one
+source file mapped to one \emph{extracted file-level graph}, so a fully
+executable-workflow-root unit is future work. All prevalence figures are
+\emph{LLM-assisted exploratory estimates}, not ground truth.
 
 \paragraph{Mining and corpus census.}
-Using GitHub code search (\texttt{gh} CLI, July 2026, newest pinned commit
-2026-07-11, with per-framework query sets and per-repository caps) we streamed
-each candidate repository through clone, extraction, and cleanup. After removing
-one repository of our own test fixtures (8 files; a contamination detected
-during revision and excluded from every number), the corpus is \textbf{922
-extracted file-level graphs} from 252 distinct repositories (LangGraph~400,
-AutoGen~359, CrewAI~113, ADK~50), with provenance recorded as repository,
-commit SHA, and file path. Mined graphs are small---median 2 non-sentinel nodes
-(mean~3.9)---and predominantly static linear pipelines. The corpus is
-\emph{not} mostly applications: 32\% of files carry tutorial/test/demo-style
-names, 48 topology groups are topologically identical duplicates across
-repositories (170 redundant graphs, retained but reported), and a source-level
-classification of the validation sample (below) found 44\% tutorial or course
-material, 17\% toy demos, 7\% test files, and 33\% application-like code. We
-therefore report prevalence both pooled and stratified by this classification.
+We mined GitHub on 2026-07-11 with eleven \texttt{gh search code} queries
+(three per framework, two for CrewAI), retaining the top \textbf{40} results per
+query in GitHub's default relevance order and cloning the first \textbf{180}
+unique repositories in that order; within a cloned repository every
+\texttt{.py} file was extracted (no per-file cap). After removing one repository
+of our own test fixtures (8 files; a contamination detected during revision and
+excluded from every number), the corpus is \textbf{922 extracted file-level
+graphs} from 252 distinct repositories (LangGraph~400, AutoGen~359, CrewAI~113,
+ADK~50), with provenance recorded as repository, commit SHA, and file path.
+This is a \emph{search-ranked convenience corpus}, not a probability sample: the
+ranking function is proprietary and non-stationary, the index denominator is
+unpublished, and both cuts are deterministic in that ranking, so inclusion
+probabilities are \emph{undefined} rather than merely unestimated. Every rate is
+a property of this corpus and the instrument applied to it; we make no claim of
+the form ``$X\%$ of agent workflows on GitHub.'' Mined graphs are small (median 2
+non-sentinel nodes, mean~3.9) and predominantly static linear pipelines, and the
+corpus is \emph{not} mostly applications: 32\% of files carry tutorial/test/demo
+names, 170 graphs are topological duplicates, and a source-level classification
+of the validation sample found 44\% tutorial, 17\% toy demo, 7\% test, and 33\%
+application-like code.
 
 \paragraph{Reference graphs and validation.}
-On a stratified 119-graph sample from 87 repositories (LangGraph~40, CrewAI~20,
+On a 119-graph validation sample from 87 repositories (LangGraph~40, CrewAI~20,
 AutoGen~35, ADK~24) we ran two independent LLM-agent passes (Claude Opus~4.8
 under a multi-agent harness; all outputs released). First, an agent
 reconstructed a reference graph from source alone, blind to the extractor's
 output and following its node-id conventions; we score node/edge
 precision--recall and node-kind accuracy against these \emph{LLM-reconstructed
-reference graphs} (reconstruction confidence: 77 high, 33 medium, 9 low).
-Second, every flag was triaged from source
+reference graphs} (confidence: 77 high, 33 medium, 9 low). Second, every flag was
+triaged from source
 (\textsc{real}/\textsc{extraction-artifact}/\textsc{intentional}) and an
 adversarial verifier attempted to overturn each label (4.6\% overturned;
-unresolved labels recorded as \textsc{arguable}). We state the limitation
-squarely: reference graphs are LLM reconstructions, not human annotations, and
-both passes share a model family. Results are stable on the high-confidence
-subset (edge recall 0.67 vs.\ 0.65 overall), every triage label carries a
-source-line justification that survived an adversarial pass, and a revision
-re-audit overturned one label of 16 re-examined. \textbf{Two-annotator
-independent human validation was not performed; it is required future work,
-and the protocol and samples are staged.} We report Wilson 95\% CIs for
-proportions and repository-clustered bootstrap CIs (10{,}000 resamples) for
-means, since workflows from one repository are not independent.
+unresolved labels recorded as \textsc{arguable}). Reference graphs are LLM
+reconstructions, not human annotations, and both passes share a model family.
+Results are stable on the high-confidence subset, every triage label carries a
+source-line justification that survived an adversarial pass, and a re-audit
+overturned one label of 16 re-examined.
+\textbf{Two-annotator independent human validation was not performed; it is
+required future work, and the protocol and samples are staged.} We report Wilson
+95\% CIs and repository-clustered bootstrap CIs (10{,}000 resamples), since
+workflows from one repository are not independent.
+
+\paragraph{How the validation sample was selected.}
+The 119 graphs were chosen under fixed per-framework quotas \emph{without
+randomization}: the identifiers exist only as literal lists in the released
+harness scripts, with no seed or reproducible selection rule. We therefore do not
+claim the sample is random within framework, nor call it stratified.
+Consequently the framework-share reweighting is a
+\emph{corpus-share-weighted descriptive statistic}---the rate the corpus would
+show if each framework's sampled rate held across its members, correcting the
+sample's ${\sim}5\times$ over-representation of ADK---not a design-based
+estimate; and the intervals quantify sampling noise \emph{within this corpus}
+only. We apply no finite-population correction, since an FPC presupposes the
+simple random sampling this design does not provide.
 
 \begin{table}[t]
 \centering\small
-\caption{Extractor fidelity on real workflows: the corrected instrument
-(v2, primary; $n{=}115$) with the as-mined instrument's edge recall
-(v1, $n{=}119$) as an ablation column. Node detection is strong and stable
-(v2 overall $P{=}0.89$, $R{=}0.85$); edge recall and node-kind accuracy are the
-framework-dependent bottleneck. Repository-clustered bootstrap CIs and the full
-per-framework v1 breakdown are in the supplement.}
+\caption{Extractor fidelity on the \emph{matched, provenance-disambiguated} set
+($n{=}106$): both instruments scored on identical graphs, colliding records
+excluded. Edge P and kind are identical between instruments except where
+shown---the corrected instrument changes \emph{exactly one} framework.}
 \label{tab:realworld_fidelity}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lrrrrr@{}}
 \toprule
-\textbf{Framework} & \textbf{$n$} & \textbf{Edge P} & \textbf{Edge R} & \textbf{Kind} & \textbf{Edge R$_{\mathrm{v1}}$} \\
+\textbf{Framework} & \textbf{$n$} & \textbf{Edge P} & \textbf{Edge R$_{\mathrm{v1}}$} & \textbf{Edge R$_{\mathrm{v2}}$} & \textbf{Kind} \\
 \midrule
-LangGraph & 40 & 0.931 & 0.819 & 0.674 & 0.682 \\
-CrewAI    & 20 & 0.700 & 0.692 & 0.929 & 0.692 \\
-AutoGen   & 32 & 0.906 & 0.730 & 0.897 & 0.770 \\
-ADK       & 23 & 0.395 & 0.355 & 0.938 & 0.382 \\
+LangGraph & 38 & 0.954 & 0.678 & \textbf{0.836} & 0.659/0.670 \\
+CrewAI    & 20 & 0.700 & 0.692 & 0.692 & 0.929 \\
+AutoGen   & 30 & 0.966 & 0.778 & 0.778 & 0.890 \\
+ADK       & 18 & 0.394 & 0.343 & 0.343 & 0.920 \\
 \midrule
-\textbf{Overall} & \textbf{115} & \textbf{0.777} & \textbf{0.679} & \textbf{0.833} & \textbf{0.649} \\
+\textbf{Overall} & \textbf{106} & \textbf{0.814} & \textbf{0.652} & \textbf{0.709} & \textbf{0.820/0.824} \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
-\paragraph{Extraction fidelity is the bottleneck.}
+\paragraph{A keying defect.}
+We report an instrumentation error found while preparing this comparison,
+because it changes the numbers. Graphs were keyed by
+repository plus file \emph{basename}, which is not unique: \textbf{76} slugs
+collide, and for those the two instruments scored \emph{different source files}
+against the same reference graph. The v1 miner resolved collisions last-wins
+without recording which file survived, so no colliding pair is repairable (all
+58 affected v1 records; supplement) and every colliding graph is dropped:
+\textbf{9} inside the fidelity set, cutting it from 115 matched graphs to the
+$n{=}106$ of Table~\ref{tab:realworld_fidelity}, with 4 more of the 119 sampled
+unavailable at re-mining. The cost is not uniform---ADK loses 5 of 23 versus
+0--6\% elsewhere---so ADK's row is the least stable. The keying is fixed in the
+released instrument.
+
+\paragraph{Extraction fidelity is the bottleneck---for structural checks.}
 Node detection stays strong and stable across instruments (v2 overall
-$P{=}0.89$, $R{=}0.85$; v1 $0.91/0.85$), but edge recall and node-kind accuracy
-are the bottleneck and are strongly framework-dependent
+$P{=}0.914$, $R{=}0.868$; v1 $0.914/0.862$), but edge recall and node-kind
+accuracy are the bottleneck and are strongly framework-dependent
 (Table~\ref{tab:realworld_fidelity}): the corrected instrument recovers only
-0.36 of ADK's edges---whose nested \texttt{SequentialAgent}/
+0.34 of ADK's edges---whose nested \texttt{SequentialAgent}/
 \texttt{ParallelAgent} composition, and AutoGen's participant lists with dynamic
-speaker selection, encode topology \emph{implicitly}---versus 0.82 on LangGraph,
-whose edges are explicit. On LangGraph the dominant remaining error is instead
+speaker selection, encode topology \emph{implicitly}---versus 0.84 on LangGraph's
+explicit edges. On LangGraph the dominant remaining error is instead
 node-kind (\texttt{tool}$\rightarrow$\texttt{llm}: nodes invoking tools in their
-body with no declared binding; kind accuracy 0.67). This is a property of the
-static AST fallback used at scale, not of the runtime extractors that read the
-compiled framework object (for ADK the runtime graph is far richer, 16 vs.\
-${\sim}5$ edges); realizing that ceiling would require sandboxed execution of
-untrusted code, which we do not attempt. A post-hoc audit
-demonstrates the diagnosis \emph{causally}: the extractor silently dropped
-conditional edges declared through LangGraph's common three-argument
-\texttt{add\_conditional\_edges} form. Fixing that one bug and re-extracting at
-the identical pinned commits---the check algorithms untouched---raises LangGraph
-edge recall from 0.68 to 0.82 (the v1$\rightarrow$v2 shift in
-Table~\ref{tab:realworld_fidelity}) and removes roughly a quarter of the
-structural flags (314$\rightarrow$239 flagged workflows; unreachable-exit flags
-86$\rightarrow$32), directly confirming extraction, not the checks, as the
-bottleneck. Both instruments are released.
+body with no declared binding; kind accuracy 0.67), the direct cause of the
+risk-aware gate's blindness below. This is a property of the static AST fallback
+used at scale, not of the runtime extractors reading the compiled framework
+object (for ADK the runtime graph is far richer, 16 vs.\ ${\sim}5$ edges);
+realizing that ceiling would require sandboxed execution of untrusted code, which
+we do not attempt.
+
+A corrected-instrument ablation demonstrates the diagnosis \emph{causally} for
+the structural checks. The correction is not a single fix: the instrument
+bundles \emph{three} behavioral changes---a LangGraph three-argument
+\texttt{add\_conditional\_edges} fix, a LangGraph declared-tool metadata fix,
+and ADK \texttt{LoopAgent} support. Re-extracting at identical
+pinned commits with the check algorithms untouched, only \emph{one} has a
+measurable effect: LangGraph edge recall rises $0.678\rightarrow0.836$, and of
+the 54 true edges newly recovered, \textbf{54/54} are targets of a three-argument
+\texttt{add\_conditional\_edges} path map across 24 call sites. ADK, AutoGen, and
+CrewAI are bit-identical between instruments
+(Table~\ref{tab:realworld_fidelity}), so the \texttt{LoopAgent} fix cannot be
+credited with an improvement. On the matched collision-free corpus ($n{=}853$)
+the correction removes roughly a quarter of the structural flags
+($299\rightarrow229$ flagged workflows; unreachable-exit flags
+$81\rightarrow29$), confirming extraction as the binding constraint \emph{for
+the structural checks}---a scope the attribution below makes precise, and which
+does not extend to the policy checks. Both instruments are released.
 
 \paragraph{Flag precision on extracted graphs.}
-Distinct from prevalence, we ask what fraction of the checker's \emph{flags} on
-extracted graphs are genuine. The as-mined study raised 186 flags on 114
-file-level graphs; adversarial triage confirmed 2 as genuine (both missing
-human gates on sensitive workflows), classifying 42\% as extraction artifacts
-and 50\% as intentional design (full triage breakdown in the supplement). This
-is a workflow-level PPV of $2/114 = 1.75\%$ $[0.48,6.17]\%$
-(repository-clustered bootstrap $[0.00,4.59]\%$) and a flag-level confirmed PPV
-of $2/186 = 1.08\%$ $[0.30,3.84]\%$. Because flags are correlated---one missing
-edge fires several structural checks---we also dedup to root cause
-($186\rightarrow161$ flags, 25 structural collapsed; $2/161 = 1.24\%$
-confirmed). Counting all 12 \textsc{arguable} labels pessimistically as genuine
-bounds the flag-level rate at $14/186 = 7.53\%$ $[4.54,12.24]\%$
-($14/161 = 8.70\%$ deduped), so the identification rate lies in
-$[1.08\%, 7.53\%]$. \emph{None of the 72 structural flags was confirmed
-genuine} (0 genuine, 1 arguable; CI $[0,5.1]\%$), and structural flags are
-almost entirely a LangGraph phenomenon---partly \emph{by construction}, since
-the other three extractors emit connected topologies and cannot produce a dead
-end or unreachable exit. This as-mined 186-flag universe (genuine${=}2$) is
-\emph{distinct} from the reconstructed-graph re-run that yields the four
-confirmed estimand cases below (one of them structural); we never pool the two.
+Distinct from prevalence, what fraction of the checker's \emph{flags} is
+genuine? The as-mined study raised 186 flags on 114 file-level graphs;
+adversarial triage confirmed 2 as genuine (both missing human gates),
+classifying 42\% as extraction artifacts and 50\% as intentional design.
+That is a workflow-level PPV of $2/114 = 1.75\%$ $[0.48,6.17]\%$ and a flag-level
+PPV of $2/186 = 1.08\%$ $[0.30,3.84]\%$; deduping correlated flags to root cause
+($186\rightarrow161$) gives $1.24\%$, and counting all 12 \textsc{arguable}
+labels pessimistically bounds the rate at $7.53\%$, so identification lies in
+$[1.08\%,7.53\%]$. \emph{None of the 72 structural flags was confirmed genuine}
+(CI $[0,5.1]\%$), and structural flags are almost entirely a LangGraph
+phenomenon---partly \emph{by construction}, since the other three extractors
+emit connected topologies and cannot produce a dead end or unreachable exit.
+This as-mined universe is \emph{distinct} from the reconstructed-graph re-run
+below; the two are never pooled.
+
+\paragraph{Two failure modes.}
+A precision number says findings are non-actionable but not \emph{why}, and the
+answer decides what to fix. We attribute each of the 186 flags to one of four
+causes: \textsc{extractor} (the graph misrepresents the code); \textsc{checker}
+(check logic wrong given a correct graph); \textsc{policy-spec} (graph and check
+both correct, but the policy does not apply---a blunt human-presence requirement
+on a read-only tutorial); and \textsc{label} (disputed judgment). One caveat: our
+triage vocabulary asked ``is this a real defect?'', not ``whose fault is this
+flag?'', so \textsc{checker} is not separable from \textsc{policy-spec} and is
+folded into it---nonzero but unquantified; both are check-side, so the comparison
+is unaffected. The result does not support one cause: extraction artifacts
+account for $42.5\%$ of flags $[35.6,49.7]$, policy misspecification for $50.0\%$
+$[42.9,57.1]$---overlapping intervals in which extraction is, if anything, the
+\emph{smaller} term.
+
+\paragraph{The decisive test.}
+Attribution rests on labels, so we ran the symmetric ablation: hold the checks
+fixed, vary only the graph, using the 119 reference graphs as a near-oracle
+extractor. Flags fall from 184 to 122---an oracle removes \textbf{62 flags,
+roughly a third}, leaving \textbf{${\ge}120$ non-actionable findings standing} on
+119 workflows, a check-side floor ${\approx}1.9\times$ the
+extraction-attributable share. The other knob is far more effective: holding the
+graph fixed and swapping the blunt policy for the risk-aware gate moves firings
+from \textbf{113 to 0}. The causes separate by check family: among
+non-actionable \emph{structural} flags ($n{=}72$), $98.6\%$ $[92.5,99.8]$ are
+extraction-attributable and $0\%$ $[0,5.1]$ check-side, whereas among
+non-actionable \emph{human-gate} flags ($n{=}112$) only $7.1\%$ $[3.7,13.5]$ are
+extraction-attributable against $83.0\%$ $[75.0,88.9]$ check-side---$92\%$ of
+attributed flags, the rest disputed labels. Because
+human-gate checks are $61\%$ of all flags, the aggregate goes against a pure
+extraction story even though extraction dominates the structural checks. Better
+extractors fix reachability checks; only per-workflow policy instantiation fixes
+safety checks; neither alone suffices.
+
+% Attribution table moved to the supplement (page limit); all figures stated inline.
 
 \paragraph{Defining a defect.}
-Flag triage cannot see false negatives: a defect the lossy extractor never
-surfaces is absent from the flag universe entirely. We therefore re-ran every
-check on the 119 LLM-reconstructed reference graphs---which can express dead
-ends and unreachable exits for all four frameworks---and adversarially triaged
-the results, recovering two genuine defects the extracted study missed. We
-separate two kinds of finding the pooled count conflated. A \emph{structural
-defect} is a genuine topology error (unreachable exit, dead end, mis-wired
-router)---a property of the graph, confirmed on the reference graph. A
-\emph{human-gate policy violation} is a normative judgment, not a structural
-fact: a side-effecting or irreversible tool (SQL execution, payment, external
-write) is reachable along some path with no intervening \textsc{human}
-checkpoint, judged against an explicit policy---\emph{no irreversible tool
-without a preceding human gate}---and it would not appear under a permissive
-policy. We report each as a \textbf{distinct estimand} and their union
-(\emph{composite}) only as a heterogeneous secondary summary.
+Flag triage cannot see false negatives: a defect the extractor never surfaces is
+absent from the flag universe entirely. We therefore re-ran every check on the
+119 reference graphs---which can express dead ends and unreachable exits for all
+four frameworks---and adversarially triaged the results, recovering two genuine
+defects the extracted study missed. A \emph{structural defect} is a topology
+error; a \emph{human-gate policy violation} is a normative judgment that a
+side-effecting tool is reachable with no intervening \textsc{human} checkpoint,
+which a permissive policy would not yield. We report each as a \textbf{distinct
+estimand} and their union only as a heterogeneous secondary summary.
 
-\paragraph{Three estimands and post-stratification.}
-Table~\ref{tab:estimands} reports all three. The one structural defect is a
-router mis-wiring in an ADK SQL agent (application-like): $1/119$
-$[0.15,4.61]\%$. The three policy violations are a LangGraph chatbot whose
-SQL-executing tool is reachable with no human gate, and a CrewAI workflow and
-an ADK payment agent flagged for missing human presence on side-effecting
-paths: $3/119$ $[0.86,7.15]\%$. The composite is $4/119$ $[1.31,8.32]\%$. The
-sample over-represents ADK---20\% of the sample but 5.4\% of the corpus
-($50/922$)---and ADK carries 2 of the 4 cases (per-framework composite:
-LangGraph 1/40, CrewAI 1/20, AutoGen 0/35, ADK 2/24), so the unweighted rate
-overstates. Re-weighting each stratum to its corpus share (repository-clustered
-bootstrap) lowers every estimate: structural $0.23\%$ $[0.00,0.80]$, policy
-$1.92\%$ $[0.00,4.85]$, composite $\mathbf{2.15\%}$ $[0.20,5.12]$, against the
-unweighted validation-sample composite of $3.36\%$. We treat the
-post-stratified figures as the corpus-facing estimate and $3.36\%$ as a
-validation-sample statistic only. Three of four observed cases occurred in
-application-like files ($3/39 = 7.7\%$ vs.\ $1/80 = 1.3\%$ in tutorials, demos,
-and tests), but the sample is too small to establish a stratum difference
-(Fisher exact $p{=}0.10$; OR~6.58 $[0.66,65.5]$, the interval spanning~1); we
-report the association descriptively only and make no claim that defects
-concentrate where the stakes are highest.
+\paragraph{Three estimands and reweighting.}
+Table~\ref{tab:estimands} reports all three under the uniform policy. The one
+structural defect is a router mis-wiring in an ADK SQL agent, $1/119$
+$[0.15,4.61]\%$; the human-gate estimand is the re-audited $12/119$
+$[5.86,16.80]\%$; and the composite unions them---the structural case is
+\textsc{arguable}, not a violation, under HGP-1, so the union is a strict
+addition---giving $13/119$ $[6.50,17.80]\%$. Per-framework violations run
+LangGraph $6/40$, AutoGen $5/35$, CrewAI $0/20$, ADK $1/24$. Reweighting each
+stratum to its corpus share (clustered bootstrap, no finite-population
+correction) \emph{raises} rather than lowers these estimates, because LangGraph
+and AutoGen carry both the highest violation rates and $82\%$ of corpus weight:
+human-gate $12.30\%$ $[4.70,21.34]$, composite $12.52\%$ $[4.93,21.56]$. The
+weakest link is CrewAI's $0\%$, resting on a single audited workflow.
+
+The revision is \emph{not} additive. Of the three cases the two-check procedure
+reported, HGP-1 retains only one; the other two become \textsc{arguable}, their
+side-effecting callees living in modules the single-file mining unit never
+captured. The uniform policy thus retains 1 of 3 and finds 11 new violations. We
+do not re-estimate the earlier application-versus-tutorial stratum association,
+which described a superseded four-case universe.
 
 \begin{table}[t]
 \centering\small
-\caption{Three defect estimands on the 119-graph validation sample
-(LLM-assisted exploratory estimates), with Wilson 95\% CIs (\%) and
-post-stratified corpus estimates (repository-clustered bootstrap). The
-composite unions a structural graph property with a policy judgment and is
-reported only as a heterogeneous secondary summary.}
+\caption{Three defect estimands on the 119-graph validation sample (LLM-assisted
+exploratory estimates), with Wilson 95\% CIs (\%) and corpus-share-weighted
+estimates (clustered bootstrap, no FPC). The human-gate row is the uniform HGP-1
+re-audit, superseding the $3/119$ a two-check procedure reported.}
 \label{tab:estimands}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}llll@{}}
 \toprule
-\textbf{Estimand} & \textbf{Sample} & \textbf{Wilson 95\%} & \textbf{Post-strat.} \\
+\textbf{Estimand} & \textbf{Sample} & \textbf{Wilson 95\%} & \textbf{Weighted} \\
 \midrule
-Structural defect      & 1/119 (0.84\%) & [0.15,\,4.61] & 0.23\% [0.00,\,0.80] \\
-Human-gate policy      & 3/119 (2.52\%) & [0.86,\,7.15] & 1.92\% [0.00,\,4.85] \\
-Composite$^{\dagger}$  & 4/119 (3.36\%) & [1.31,\,8.32] & 2.15\% [0.20,\,5.12] \\
+Structural defect      & 1/119 (0.84\%)  & [0.15,\,4.61]  & 0.23\% [0.00,\,0.80] \\
+Human-gate (HGP-1)     & 12/119 (10.1\%) & [5.86,\,16.80] & 12.30\% [4.70,\,21.34] \\
+\quad + \textsc{arguable} & 23/119 (19.3\%) & [13.24,\,27.34] & 17.74\% [9.52,\,27.01] \\
+Composite$^{\dagger}$  & 13/119 (10.9\%) & [6.50,\,17.80] & 12.52\% [4.93,\,21.56] \\
 \bottomrule
 \end{tabular}}\\[2pt]
 {\footnotesize $^{\dagger}$Heterogeneous secondary summary (union of the two
 primary estimands).}
 \end{table}
 
+\paragraph{One policy, applied uniformly.}
+The three policy cases above came from \emph{two} different checks (blunt
+\texttt{human\_presence} and path-sensitive \texttt{human\_gate\_coverage}) over
+two graph populations. That is not one estimand, and it cannot see a violation
+neither check flags. We therefore pre-registered a single operational policy
+(HGP-1; in the supplement) and applied it uniformly to every sampled workflow
+with a side-effecting tool at \emph{source} level---all 32---regardless of flag
+universe. HGP-1 fixes the side-effecting categories by what the callee does in
+source rather than by name; requires a gate to be an explicit checkpoint or a
+blocking confirmation whose negative branch exists and skips the effect, and to
+\emph{dominate} the call site; and records undecidable cases as
+\textsc{arguable}, never silently as compliant. Demo, tutorial, and test status
+are explicitly \emph{not} exemptions; genuine mocks and visibly sandboxed effects
+are.
+
+The audit returns \textbf{12 violations, 9 compliant, 11 arguable}: $12/119 =
+10.1\%$ $[5.9,16.8]$ against the reported $3/119$---a fourfold revision whose
+interval excludes the old estimate; \textsc{arguable} counted pessimistically
+bounds it at $23/119$. The uncertainty points upward: $12/119$ is a \emph{lower
+bound}, since several \textsc{arguable} cases (a payment pipeline whose prompts
+forbid confirmation four times over) would likely resolve toward violation given
+repository-level rather than single-file source. The 87 workflows without
+side-effecting tools were screened by the same source-level pass, and a re-sweep
+for effect signatures surfaced no missed violation. Three of the 12 lie
+\emph{outside both flag universes}---no triage entry, neither check
+fired---confirming that false negatives exist beyond the union of the flag sets,
+where a flag-triage study can never find them.
+
+\paragraph{Placebo gates: the reference graphs overstate oversight.}
+The most consequential finding is not a count. All seven side-effecting
+workflows that \emph{both} checks cleared were cleared because the reference
+graph held a node typed \textsc{human}---and on source inspection \emph{none is
+a genuine dominating gate}: five are placebo or inert, one does not dominate the
+call site, one is unverifiable. One exemplar declares six
+\texttt{*\_human\_approval} nodes whose body reads a constructor flag hard-set
+to \texttt{True}: a checkpoint that cannot block, typed \textsc{human} by both
+extractor and reconstruction because it is named and shaped like one. Reference
+graphs assign \textsc{human} from naming and framework type, not from whether the
+body can block, so \emph{every} human-gate estimand computed over
+them---including the risk-aware one---is systematically biased \textbf{downward}.
+The fidelity metric compounds it: for two of these workflows it records
+human-node recall $1.0$, crediting the extractor with recovering oversight that
+does not exist. A near-oracle graph is not a semantic oracle, and node
+\emph{kinds} inherit whatever the source calls its nodes.
+
 \paragraph{Risk-aware gating.}
-The blunt human-presence check fires on 91\% of mined file-level graphs with
-only 2 of 113 firings genuine---uninformative as a detector, motivating the
-risk-aware \emph{human-gate coverage} check: flag only when a sensitive tool
-(destructive/write/exec/communication/financial, by a keyword lexicon over
-bound tool names) is reachable without a \textsc{human} gate. On the 922 mined
-graphs it fires zero times---a statement about extracted \emph{declarations},
-not the code: no mined graph declares a sensitive binding, while source-level
-classification finds side-effecting tools in 32 of 119 sampled workflows,
-invisible to the extractor through the \texttt{tool}$\rightarrow$\texttt{llm}
-kind error. On the reconstructed graphs, where bindings are recovered from
-source, the same check fires three times and one firing is the genuine
-SQL-gate defect above. The lexicon is \emph{correct relative to its
-declared-tool abstraction}; its recall is bounded by extraction fidelity---the
-paper's central diagnosis.
+The blunt human-presence check fires on 91\% of mined graphs with only 2 of 113
+firings genuine---uninformative as a detector, motivating the risk-aware
+\emph{human-gate coverage} check: flag only when a sensitive tool
+(destructive/write/exec/communication/financial, by a keyword lexicon over bound
+tool names) is reachable without a \textsc{human} gate. On the 922 mined graphs
+it fires zero times---a statement about extracted \emph{declarations}, not the
+code: no mined graph declares a sensitive binding, while source review finds
+side-effecting tools in 32 of 119 sampled workflows, invisible to the extractor
+through the \texttt{tool}$\rightarrow$\texttt{llm} kind error. On reconstructed
+graphs it fires three times. The lexicon is \emph{correct relative to its
+declared-tool abstraction}; its recall is bounded by extraction fidelity, its
+precision---per the audit above---by whether a \textsc{human} node can block.
 
 \paragraph{Threats to validity.}
 \label{par:threats}
-\emph{Construct:} the composite estimand unions a structural graph property with
-a policy judgment, which is why we report the two separately.
-\emph{Internal:} reference graphs and triage labels come from LLM passes sharing
-a model family, so correlated errors are possible; we report reconstruction
-confidence, adversarial overturn rates, and a re-audit, but these are not
-independent human judgments. \emph{External:} the population is public GitHub
-files, not production deployments, and the unit is a file-level graph, so
-results may not transfer to executable workflow roots or private code.
-\emph{Sampling:} the validation sample is stratified and over-represents ADK; we
-post-stratify to corpus composition, but small per-stratum counts leave wide
-intervals. \emph{Label reliability:} no human validation has yet been performed;
-a two-annotator independent protocol with staged samples is required future
-work. Accordingly we frame every prevalence number as an LLM-assisted
-exploratory estimate, not ground truth.
+\emph{Construct:} the composite unions a structural property with a policy
+judgment, so we report the two separately. \emph{Internal:} reference graphs and
+triage labels come from LLM passes sharing a model family, so correlated errors
+are possible; confidence stratification, adversarial overturn rates, and a
+re-audit mitigate but do not replace independent human judgment.
+\emph{External:} the population is public GitHub files and the unit a file-level
+graph, so results may not transfer to executable roots or private code.
+\emph{Sampling:} the frame is a convenience corpus with undefined inclusion
+probabilities and the sample was quota-selected without randomization, so
+reweighting yields a descriptive statistic, not a design-based estimate.
+\emph{Label reliability:} no human validation has been performed; a two-annotator
+protocol with staged samples is future work.
+\emph{Reference-graph semantics:} node kinds are assigned from naming, not from
+whether a body has the effect its kind implies---the placebo-gate audit shows
+this biases human-gate estimands downward. Every prevalence number is accordingly
+an LLM-assisted exploratory estimate, not ground truth.

@@ -98,7 +98,65 @@
       {
         "node_id": "auto_remediate",
         "action_type": "tool",
-        "tool_name": "kubectl_restart",
+        "tool_name": "config_rollback",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "postmortem",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "triage",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "severity_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "parallel_investigation",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "trace_analysis",
+        "action_type": "tool",
+        "tool_name": "jaeger_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "diagnose",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "auto_remediate",
+        "action_type": "tool",
+        "tool_name": "config_rollback",
         "tags": [
           "tool"
         ]
@@ -156,119 +214,7 @@
       {
         "node_id": "auto_remediate",
         "action_type": "tool",
-        "tool_name": "kubectl_restart",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "postmortem",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "triage",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "severity_router",
-        "action_type": "router",
-        "tags": [
-          "router"
-        ]
-      },
-      {
-        "node_id": "parallel_investigation",
-        "action_type": "subgraph"
-      },
-      {
-        "node_id": "log_analysis",
-        "action_type": "tool",
-        "tool_name": "elk_query",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "diagnose",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "auto_remediate",
-        "action_type": "tool",
-        "tool_name": "kubectl_restart",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "postmortem",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "triage",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "severity_router",
-        "action_type": "router",
-        "tags": [
-          "router"
-        ]
-      },
-      {
-        "node_id": "log_analysis",
-        "action_type": "tool",
-        "tool_name": "elk_query",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "diagnose",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "auto_remediate",
-        "action_type": "tool",
-        "tool_name": "kubectl_restart",
+        "tool_name": "config_rollback",
         "tags": [
           "tool"
         ]
@@ -380,6 +326,64 @@
       {
         "node_id": "auto_remediate",
         "action_type": "tool",
+        "tool_name": "config_rollback",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "postmortem",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "triage",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "severity_router",
+        "action_type": "router",
+        "tags": [
+          "router"
+        ]
+      },
+      {
+        "node_id": "parallel_investigation",
+        "action_type": "subgraph"
+      },
+      {
+        "node_id": "trace_analysis",
+        "action_type": "tool",
+        "tool_name": "jaeger_query",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "diagnose",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "auto_remediate",
+        "action_type": "tool",
         "tool_name": "kubectl_restart",
         "tags": [
           "tool"
@@ -475,9 +479,9 @@
         "action_type": "subgraph"
       },
       {
-        "node_id": "metric_check",
+        "node_id": "log_analysis",
         "action_type": "tool",
-        "tool_name": "prometheus_query",
+        "tool_name": "splunk_search",
         "tags": [
           "tool"
         ]
@@ -492,7 +496,7 @@
       {
         "node_id": "auto_remediate",
         "action_type": "tool",
-        "tool_name": "kubectl_restart",
+        "tool_name": "config_rollback",
         "tags": [
           "tool"
         ]
@@ -533,9 +537,9 @@
         "action_type": "subgraph"
       },
       {
-        "node_id": "metric_check",
+        "node_id": "trace_analysis",
         "action_type": "tool",
-        "tool_name": "prometheus_query",
+        "tool_name": "jaeger_query",
         "tags": [
           "tool"
         ]
@@ -550,7 +554,7 @@
       {
         "node_id": "auto_remediate",
         "action_type": "tool",
-        "tool_name": "kubectl_restart",
+        "tool_name": "config_rollback",
         "tags": [
           "tool"
         ]

@@ -1,0 +1,3200 @@
+{
+ "note": "Matched v1-vs-v2 comparison. All fidelity and flag numbers are computed on the exact intersection of slugs present in BOTH instruments (v1 = as-mined graphs/, v2 = corrected graphs_v2/ re-run at identical pinned SHAs), self-repo excluded. Every dropped slug is enumerated with a reason.",
+ "counts": {
+  "v1_graphs_on_disk": 930,
+  "v2_graphs_on_disk": 912,
+  "self_repo_graphs_excluded": 8,
+  "corpus_v1": 922,
+  "corpus_v2": 904,
+  "corpus_matched": 904,
+  "ground_truth_files": 120,
+  "ground_truth_self_repo": 1,
+  "fidelity_matched_n": 115,
+  "fidelity_v1_unmatched_n": 119
+ },
+ "drops": {
+  "corpus_dropped_n": 18,
+  "by_reason": {
+   "no_graph": 5,
+   "repo_unreachable": 13
+  },
+  "by_framework": {
+   "adk": 2,
+   "autogen": 14,
+   "langgraph": 1,
+   "crewai": 1
+  },
+  "by_repo": {
+   "Sidreyas/The_Grand_AI_Repo": 13,
+   "Ankur2606/multiAgenticAgri": 1,
+   "docker/compose-for-agents": 1,
+   "ed-donner/agents": 1,
+   "microsoft/ACV": 1,
+   "surpradhan/agent-event-protocol": 1
+  },
+  "corpus_framework_distribution": {
+   "autogen": 359,
+   "crewai": 113,
+   "langgraph": 400,
+   "adk": 50
+  },
+  "records": [
+   {
+    "slug": "Ankur2606__multiAgenticAgri__agent",
+    "reason": "no_graph",
+    "framework": "adk",
+    "repo": "Ankur2606/multiAgenticAgri",
+    "sha": "23246013e12c2a9f41ab533ed18ca1725c213c0d",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__app_team",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": true
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": true
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__scenario",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_agent",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_db_manager",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_group_chat",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_group_chat_endpoint",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_group_chat_graph",
+    "reason": "repo_unreachable",
+    "framework": "langgraph",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_group_chat_pause_resume",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": true
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_task_runner_tool",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_team_manager",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo",
+    "sha": "61bb48c610bae5e30167a71875d9bf5f779b1294",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "docker__compose-for-agents__agent",
+    "reason": "no_graph",
+    "framework": "adk",
+    "repo": "docker/compose-for-agents",
+    "sha": "630b35e72cb3bd2f67f086a663b276a25f30edc7",
+    "in_ground_truth": true
+   },
+   {
+    "slug": "ed-donner__agents__crew",
+    "reason": "no_graph",
+    "framework": "crewai",
+    "repo": "ed-donner/agents",
+    "sha": "031f65e7e181dba5094a15c5bb195c1bdf461f49",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "microsoft__ACV__scenario",
+    "reason": "no_graph",
+    "framework": "autogen",
+    "repo": "microsoft/ACV",
+    "sha": "994ac15db6fff8a5131bbf5a26e84e352e676796",
+    "in_ground_truth": false
+   },
+   {
+    "slug": "surpradhan__agent-event-protocol__test_instrument_autogen",
+    "reason": "no_graph",
+    "framework": "autogen",
+    "repo": "surpradhan/agent-event-protocol",
+    "sha": "41b88393e2bcbb447c5b436e4ad621cf7b3de5c3",
+    "in_ground_truth": false
+   }
+  ],
+  "orphan_v2_not_in_v1": [],
+  "fidelity_set_drops": [
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__app_team_user_proxy",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo"
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo"
+   },
+   {
+    "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+    "reason": "repo_unreachable",
+    "framework": "autogen",
+    "repo": "Sidreyas/The_Grand_AI_Repo"
+   },
+   {
+    "slug": "docker__compose-for-agents__agent",
+    "reason": "no_graph",
+    "framework": "adk",
+    "repo": "docker/compose-for-agents"
+   },
+   {
+    "slug": "NordicAgents__AgentProof__test_extract_adk",
+    "reason": "self_repo_excluded",
+    "framework": "self",
+    "repo": ""
+   }
+  ]
+ },
+ "matched_fidelity": {
+  "n": 115,
+  "v1_asmined": {
+   "overall": {
+    "n": 115,
+    "node_precision": 0.906,
+    "node_recall": 0.855,
+    "edge_precision": 0.803,
+    "edge_recall": 0.649,
+    "kind_accuracy": 0.824
+   },
+   "per_framework": {
+    "adk": {
+     "n": 23,
+     "node_precision": 0.699,
+     "node_recall": 0.606,
+     "edge_precision": 0.395,
+     "edge_recall": 0.355,
+     "kind_accuracy": 0.938
+    },
+    "autogen": {
+     "n": 32,
+     "node_precision": 1.0,
+     "node_recall": 0.958,
+     "edge_precision": 0.968,
+     "edge_recall": 0.792,
+     "kind_accuracy": 0.897
+    },
+    "crewai": {
+     "n": 20,
+     "node_precision": 0.867,
+     "node_recall": 0.867,
+     "edge_precision": 0.7,
+     "edge_recall": 0.692,
+     "kind_accuracy": 0.929
+    },
+    "langgraph": {
+     "n": 40,
+     "node_precision": 0.968,
+     "node_recall": 0.91,
+     "edge_precision": 0.956,
+     "edge_recall": 0.682,
+     "kind_accuracy": 0.647
+    }
+   }
+  },
+  "v2_corrected": {
+   "overall": {
+    "n": 115,
+    "node_precision": 0.888,
+    "node_recall": 0.85,
+    "edge_precision": 0.777,
+    "edge_recall": 0.679,
+    "kind_accuracy": 0.833
+   },
+   "per_framework": {
+    "adk": {
+     "n": 23,
+     "node_precision": 0.697,
+     "node_recall": 0.606,
+     "edge_precision": 0.395,
+     "edge_recall": 0.355,
+     "kind_accuracy": 0.938
+    },
+    "autogen": {
+     "n": 32,
+     "node_precision": 0.963,
+     "node_recall": 0.927,
+     "edge_precision": 0.906,
+     "edge_recall": 0.73,
+     "kind_accuracy": 0.897
+    },
+    "crewai": {
+     "n": 20,
+     "node_precision": 0.867,
+     "node_recall": 0.867,
+     "edge_precision": 0.7,
+     "edge_recall": 0.692,
+     "kind_accuracy": 0.929
+    },
+    "langgraph": {
+     "n": 40,
+     "node_precision": 0.95,
+     "node_recall": 0.921,
+     "edge_precision": 0.931,
+     "edge_recall": 0.819,
+     "kind_accuracy": 0.674
+    }
+   }
+  }
+ },
+ "unmatched_fidelity_for_reference": {
+  "v1_asmined_n119_style": {
+   "overall": {
+    "n": 119,
+    "node_precision": 0.909,
+    "node_recall": 0.854,
+    "edge_precision": 0.805,
+    "edge_recall": 0.649,
+    "kind_accuracy": 0.828
+   },
+   "per_framework": {
+    "adk": {
+     "n": 24,
+     "node_precision": 0.711,
+     "node_recall": 0.622,
+     "edge_precision": 0.42,
+     "edge_recall": 0.382,
+     "kind_accuracy": 0.94
+    },
+    "autogen": {
+     "n": 35,
+     "node_precision": 1.0,
+     "node_recall": 0.942,
+     "edge_precision": 0.957,
+     "edge_recall": 0.77,
+     "kind_accuracy": 0.9
+    },
+    "crewai": {
+     "n": 20,
+     "node_precision": 0.867,
+     "node_recall": 0.867,
+     "edge_precision": 0.7,
+     "edge_recall": 0.692,
+     "kind_accuracy": 0.929
+    },
+    "langgraph": {
+     "n": 40,
+     "node_precision": 0.968,
+     "node_recall": 0.91,
+     "edge_precision": 0.956,
+     "edge_recall": 0.682,
+     "kind_accuracy": 0.647
+    }
+   }
+  }
+ },
+ "matched_structural_flags": {
+  "n_graphs": 904,
+  "v1_asmined": {
+   "n_graphs": 904,
+   "workflows_struct_flagged": 313,
+   "by_check": {
+    "dead_ends": 300,
+    "exit_reachability": 86,
+    "reverse_reachability": 294,
+    "router_shape": 35,
+    "tool_declarations": 84
+   },
+   "errors": []
+  },
+  "v2_corrected": {
+   "n_graphs": 904,
+   "workflows_struct_flagged": 239,
+   "by_check": {
+    "dead_ends": 209,
+    "exit_reachability": 32,
+    "reverse_reachability": 201,
+    "router_shape": 35,
+    "tool_declarations": 86
+   },
+   "errors": []
+  },
+  "flagged_only_in_v1": [
+   "Adityagupta930__Recruiter-agency-workflow__app",
+   "AliHShahid__agentic_ai_langgraph__app",
+   "AllwynJesu__langgraph-simple-chatbot__bot",
+   "Avneesh26024__Gen_AI_Exchange__io",
+   "Brenmull12__Hoohacks2025__llm",
+   "Dhanush-Kumar-007__LangGraph-Begginer-Chatbot-project__app",
+   "DipeshDhote__RAG_Based_Chatbot__app",
+   "Elcano20241021__ReAct-Function-Calling__main",
+   "GaoDalie__LangGraph_Example__CRAG",
+   "GaoDalie__LangGraph_Example__Stock",
+   "GaoDalie__LangGraph_Example__loop",
+   "GaoDalie__LangGraph_Example__scraper",
+   "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+   "KomachiZ__BICO__app",
+   "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+   "Md-Emon-Hasan__LangGraph__app",
+   "Nagi-ovo__CRAG-Ollama-Chat__app",
+   "Nikhilp18__How-to-guide-for-LangGraph__RAG",
+   "Nikhilp18__How-to-guide-for-LangGraph__RAG-based_chat_bot",
+   "Nikhilp18__How-to-guide-for-LangGraph__basic_chat_bot",
+   "Nikhilp18__How-to-guide-for-LangGraph__programmatic_chat",
+   "Pai1403__Single-Agent_LLM__Lesson_2_Student (1)",
+   "Pai1403__Single-Agent_LLM__Only_Code",
+   "Pai1403__Single-Agent_LLM__app",
+   "Pai1403__Single-Agent_LLM__app_image",
+   "SAMAR-CODE404__backend__Main",
+   "SAMAR-CODE404__backend__operations_agent",
+   "SAMAR-CODE404__backend__research_agent",
+   "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__main_upd",
+   "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+   "Shardul003__11October__Add",
+   "Shardul003__11October__rag-chatbot",
+   "ZhangJinHaHaHa__FinchainAgent__main",
+   "bhattyuvraj22__Fitness-AIagent__MAS",
+   "botextractai__ai-langgraph-multi-agent__main",
+   "ed-donner__agents__advisor",
+   "ed-donner__agents__agent",
+   "ed-donner__agents__agentic_rag",
+   "ed-donner__agents__github_review_util",
+   "ed-donner__agents__graph",
+   "ed-donner__agents__graph_builder",
+   "ed-donner__agents__main",
+   "ed-donner__agents__meeting_prep",
+   "ed-donner__agents__orchestrator",
+   "ed-donner__agents__pipeline",
+   "ed-donner__agents__research_graph",
+   "ed-donner__agents__state_manager",
+   "haipham05__PDF_QA_Chatbot__PDF",
+   "haipham05__PDF_QA_Chatbot__app",
+   "haipham05__PDF_QA_Chatbot__video",
+   "hargurjeet__Langraph__app",
+   "jakenolan__langgraph-custom-tools__main",
+   "juananpe__langgraph-flask__cli",
+   "juananpe__langgraph-flask__web",
+   "martimfasantos__ai-agents-frameworks__01_state_and_reducers",
+   "martimfasantos__ai-agents-frameworks__04_graph_visualization",
+   "martimfasantos__ai-agents-frameworks__07_prompt_chaining_and_routing",
+   "martimfasantos__ai-agents-frameworks__11_message_management",
+   "martimfasantos__ai-agents-frameworks__20_evaluator_optimizer",
+   "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+   "raj-2005__Langgraph-RAG__Rag",
+   "sensyzhe__research-rag__diy_rag",
+   "shazy89__ai-learning__agent",
+   "shazy89__ai-learning__all",
+   "shazy89__ai-learning__langgraph_lesson",
+   "shazy89__ai-learning__research_agent",
+   "shivam682__codiing__help_chatbot",
+   "thisyanthpolice__Local-Agentic-Research-Assistant-LARA-__Main",
+   "thisyanthpolice__Local-Agentic-Research-Assistant-LARA-__app",
+   "timleow__gym-kfc-daddies__cli_ui",
+   "timleow__gym-kfc-daddies__furhat-to-localagent",
+   "timleow__gym-kfc-daddies__furhat_to_server",
+   "timleow__gym-kfc-daddies__ui",
+   "vansh-khaneja__RAG-using-LangGraph-Agents__main",
+   "vego147__AI_Research_Img_Assistance__main"
+  ],
+  "flagged_only_in_v2": [
+   "Saimoguloju__AI-Agents__sample_agent"
+  ],
+  "collision_free": {
+   "n_graphs": 853,
+   "n_collision_slugs_removed": 51,
+   "v1_asmined": {
+    "n_graphs": 853,
+    "workflows_struct_flagged": 299,
+    "by_check": {
+     "dead_ends": 286,
+     "exit_reachability": 81,
+     "reverse_reachability": 280,
+     "router_shape": 35,
+     "tool_declarations": 81
+    },
+    "errors": []
+   },
+   "v2_corrected": {
+    "n_graphs": 853,
+    "workflows_struct_flagged": 229,
+    "by_check": {
+     "dead_ends": 200,
+     "exit_reachability": 29,
+     "reverse_reachability": 192,
+     "router_shape": 35,
+     "tool_declarations": 81
+    },
+    "errors": []
+   }
+  }
+ },
+ "unmatched_structural_flags_for_reference": {
+  "v1_asmined_full_corpus": {
+   "n_graphs": 922,
+   "workflows_struct_flagged": 314,
+   "by_check": {
+    "dead_ends": 301,
+    "exit_reachability": 86,
+    "reverse_reachability": 295,
+    "router_shape": 36,
+    "tool_declarations": 84
+   },
+   "errors": []
+  }
+ },
+ "per_slug_matched": {
+  "v1": {
+   "0evja__LangGraph-Agent__demo": {
+    "node_precision": 1.0,
+    "node_recall": 0.833,
+    "edge_precision": 1.0,
+    "edge_recall": 0.222,
+    "kind_accuracy": 0.4
+   },
+   "AIAnytime__agentic-context-engineering__curator": {
+    "node_precision": 0.75,
+    "node_recall": 0.75,
+    "edge_precision": 0.333,
+    "edge_recall": 0.333,
+    "kind_accuracy": 0.667
+   },
+   "AbhiShetye0703__Google-ADK__parallelAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "AbhiShetye0703__Google-ADK__sequentialAgent": {
+    "node_precision": 0.4,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "AdaptiveBProcess__bpm_agent__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "AdaptiveBProcess__bpm_agent__template": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "AkshatKumar12__AutoGen_Learning__teams": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "AkshatKumar12__AutoGen_Learning__test": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "Arhamirfan__Snake-Agents__snake_autogen": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 0.8,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Astrodevil__ADK-Agent-Examples__agent": {
+    "node_precision": 0.4,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Avneesh26024__Gen_AI_Exchange__io": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.429,
+    "kind_accuracy": 0.5
+   },
+   "Avneesh26024__Gen_AI_Exchange__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.75
+   },
+   "Brenmull12__Hoohacks2025__multiturn": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.5
+   },
+   "Damish-7__MOLYSIS__health_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Damish-7__MOLYSIS__multi_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Harsh1210__llm-opsbot__main": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.667
+   },
+   "Hsing-Tzu__AI-Aided-Systems__TRAgent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.833
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Itzkuldeep__AgentE-com__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Jamahl__fraya-25__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "Kasun-Tharaka__Multi-Agent-AI-RAG__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.5
+   },
+   "LeonardoDaviti__LangGraph-Tutorials__chat": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "LeonardoDaviti__LangGraph-Tutorials__email_simulation": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.714,
+    "kind_accuracy": 0.571
+   },
+   "LightningGod7__prometheus__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Md-Emon-Hasan__LangGraph__7_human_in_the_loop": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.75,
+    "kind_accuracy": 0.75
+   },
+   "MdArshath2004__snowflakeoptimization__tes": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "Mhijazi16__LanggraphExercise__one": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "Mhijazi16__LanggraphExercise__two": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "MikhailMostWanted__Astra__app_team": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "MikhailMostWanted__Astra__mcp_session_host_example": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "MikhailMostWanted__Astra__test_group_chat_endpoint": {
+    "node_precision": 1.0,
+    "node_recall": 0.714,
+    "edge_precision": 1.0,
+    "edge_recall": 0.444,
+    "kind_accuracy": 1.0
+   },
+   "MikhailMostWanted__Astra__test_team_manager": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "NEU-Bio-Research-Team__tox-agent__orchestrator_agent": {
+    "node_precision": 0.6,
+    "node_recall": 0.5,
+    "edge_precision": 0.25,
+    "edge_recall": 0.2,
+    "kind_accuracy": 1.0
+   },
+   "NanGePlus__AutoGenV04Test__5_RunTeamStream": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "NanGePlus__AutoGenV04Test__CacheTeam": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "NavalGear__Manufacturing_Process_Plan__autogen_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.889,
+    "kind_accuracy": 0.889
+   },
+   "SAMAR-CODE404__backend__Main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.609,
+    "kind_accuracy": 0.73
+   },
+   "SAMAR-CODE404__backend__merger_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.333
+   },
+   "SAMAR-CODE404__backend__report_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.286
+   },
+   "SPZts__AutoModel__model22": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "SPZts__AutoModel__model32": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Saimoguloju__AI-Agents__sample_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.75
+   },
+   "Shirmeen__Chatbot__app3": {
+    "node_precision": 0.333,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "SomanGaurav__Agentic_Research_Assistant__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.444,
+    "kind_accuracy": 0.571
+   },
+   "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Zen7-Labs__Zen7-Payment-Agent__agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.556,
+    "edge_precision": 0.75,
+    "edge_recall": 0.273,
+    "kind_accuracy": 1.0
+   },
+   "aayu2003__agent_creation__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "arunacarunac__MultiAgentSamples__App": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__2_RunTeam": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__PythonAstREPLTool": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "brightertiger__google-adk-demo__agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.833,
+    "edge_precision": 0.25,
+    "edge_recall": 0.143,
+    "kind_accuracy": 0.6
+   },
+   "colinmccrae__CrewAITest__do1": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "dforwardfeed__memo_generator__main": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "divyansh-tripathi7__AutoMated_LinkedinCrew__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "dream-horizon-org__pulse__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "ed-donner__agents__sequential_agents": {
+    "node_precision": 0.286,
+    "node_recall": 0.25,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "ericjiang18__Agent-Q-Mix__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "esk000__AIAgentsIntensive__LoopAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "esk000__AIAgentsIntensive__parallelAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "feixiao__ai__ex03": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "firaflash__career-mentor-ai-agent__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.833,
+    "kind_accuracy": 1.0
+   },
+   "foxyglue__faq-db-chat__app2": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.6
+   },
+   "gabrielpreda__adk-sql-agent__agent": {
+    "node_precision": 0.8,
+    "node_recall": 0.444,
+    "edge_precision": 0.5,
+    "edge_recall": 0.222,
+    "kind_accuracy": 0.75
+   },
+   "houyongsheng__local_rag__rag": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.6,
+    "kind_accuracy": 1.0
+   },
+   "huangdihd__ProjectAI__main": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 1.0
+   },
+   "jakenolan__langgraph-custom-tools__main": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.333
+   },
+   "jkmaina__autogen_blueprint__03_model_based_selector": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.2,
+    "kind_accuracy": 1.0
+   },
+   "joansantoso__iox-adk__agent": {
+    "node_precision": 0.333,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator": {
+    "node_precision": 0.5,
+    "node_recall": 0.286,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "juananpe__langgraph-flask__cli": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.5
+   },
+   "leewow03__llm__10": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "lordpython__multi-agent-video-system__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "matttbates__job-search-assistant__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__email_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "merdandt__SalesShortcut__outreach_email_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__potential_lead_finder_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__websiter_creator_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "microsoft__ACV__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "microsoft__ACV__test_cache_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.8,
+    "kind_accuracy": 0.8
+   },
+   "microsoft__ACV__test_group_chat_endpoint": {
+    "node_precision": 1.0,
+    "node_recall": 0.714,
+    "edge_precision": 0.75,
+    "edge_recall": 0.333,
+    "kind_accuracy": 1.0
+   },
+   "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.714,
+    "kind_accuracy": 0.286
+   },
+   "muzifa-mubarak__crew_ai_practice__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.714,
+    "kind_accuracy": 0.714
+   },
+   "nokia__mcp-redfish__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "opengles3d__ollama_rag__18": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "opengles3d__ollama_rag__state_graph": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.667
+   },
+   "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 0.429,
+    "edge_recall": 0.273,
+    "kind_accuracy": 0.625
+   },
+   "shazy89__ai-learning__agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.333
+   },
+   "shazy89__ai-learning__research_agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.333
+   },
+   "sreekarrs__JobSearch-Agent__cv_writer": {
+    "node_precision": 0.5,
+    "node_recall": 0.222,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "suryaMadhav16__RAG-Lab__CrewAI": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "svpino__ml.school__agent": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "timleow__gym-kfc-daddies__cli_ui": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.5
+   },
+   "tweetlol__eve__eve": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.75,
+    "kind_accuracy": 0.75
+   },
+   "vego147__AI_Research_Img_Assistance__Bot": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "venkatavinayvijjapu__New_Assignment__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "vishnusurya11__ember__dev": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.2,
+    "kind_accuracy": 0.333
+   },
+   "vishnusurya11__ember__prompt_agent": {
+    "node_precision": 0.4,
+    "node_recall": 0.333,
+    "edge_precision": 0.25,
+    "edge_recall": 0.125,
+    "kind_accuracy": 0.5
+   },
+   "vishnusurya11__ember__reflection_agent": {
+    "node_precision": 0.333,
+    "node_recall": 0.25,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "volcengine__veadk-python__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "waqasniazi9__voice-agent__builder": {
+    "node_precision": 1.0,
+    "node_recall": 0.231,
+    "edge_precision": 1.0,
+    "edge_recall": 0.08,
+    "kind_accuracy": 0.667
+   },
+   "winstonbartlegod__enhanced-multimodal-rag__v1": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   }
+  },
+  "v2": {
+   "0evja__LangGraph-Agent__demo": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.778,
+    "kind_accuracy": 0.5
+   },
+   "AIAnytime__agentic-context-engineering__curator": {
+    "node_precision": 0.75,
+    "node_recall": 0.75,
+    "edge_precision": 0.333,
+    "edge_recall": 0.333,
+    "kind_accuracy": 0.667
+   },
+   "AbhiShetye0703__Google-ADK__parallelAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "AbhiShetye0703__Google-ADK__sequentialAgent": {
+    "node_precision": 0.4,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "AdaptiveBProcess__bpm_agent__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "AdaptiveBProcess__bpm_agent__template": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "AkshatKumar12__AutoGen_Learning__teams": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "AkshatKumar12__AutoGen_Learning__test": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "Arhamirfan__Snake-Agents__snake_autogen": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 0.8,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Astrodevil__ADK-Agent-Examples__agent": {
+    "node_precision": 0.286,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Avneesh26024__Gen_AI_Exchange__io": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "Avneesh26024__Gen_AI_Exchange__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "Brenmull12__Hoohacks2025__multiturn": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "Damish-7__MOLYSIS__health_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Damish-7__MOLYSIS__multi_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Harsh1210__llm-opsbot__main": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.667
+   },
+   "Hsing-Tzu__AI-Aided-Systems__TRAgent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.833
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent": {
+    "node_precision": 0.667,
+    "node_recall": 0.667,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Itzkuldeep__AgentE-com__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Jamahl__fraya-25__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "Kasun-Tharaka__Multi-Agent-AI-RAG__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "LeonardoDaviti__LangGraph-Tutorials__chat": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "LeonardoDaviti__LangGraph-Tutorials__email_simulation": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.571
+   },
+   "LightningGod7__prometheus__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Md-Emon-Hasan__LangGraph__7_human_in_the_loop": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.75,
+    "kind_accuracy": 0.75
+   },
+   "MdArshath2004__snowflakeoptimization__tes": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "Mhijazi16__LanggraphExercise__one": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "Mhijazi16__LanggraphExercise__two": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "MikhailMostWanted__Astra__app_team": {
+    "node_precision": 0.4,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "MikhailMostWanted__Astra__mcp_session_host_example": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "MikhailMostWanted__Astra__test_group_chat_endpoint": {
+    "node_precision": 1.0,
+    "node_recall": 0.714,
+    "edge_precision": 1.0,
+    "edge_recall": 0.444,
+    "kind_accuracy": 1.0
+   },
+   "MikhailMostWanted__Astra__test_team_manager": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "NEU-Bio-Research-Team__tox-agent__orchestrator_agent": {
+    "node_precision": 0.6,
+    "node_recall": 0.5,
+    "edge_precision": 0.25,
+    "edge_recall": 0.2,
+    "kind_accuracy": 1.0
+   },
+   "NanGePlus__AutoGenV04Test__5_RunTeamStream": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "NanGePlus__AutoGenV04Test__CacheTeam": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 1.0
+   },
+   "NavalGear__Manufacturing_Process_Plan__autogen_agents": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.889,
+    "kind_accuracy": 0.889
+   },
+   "SAMAR-CODE404__backend__Main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.73
+   },
+   "SAMAR-CODE404__backend__merger_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.333
+   },
+   "SAMAR-CODE404__backend__report_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.286
+   },
+   "SPZts__AutoModel__model22": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "SPZts__AutoModel__model32": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Saimoguloju__AI-Agents__sample_agent": {
+    "node_precision": 0.4,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "Shirmeen__Chatbot__app3": {
+    "node_precision": 0.333,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.667
+   },
+   "SomanGaurav__Agentic_Research_Assistant__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.444,
+    "kind_accuracy": 0.571
+   },
+   "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "Zen7-Labs__Zen7-Payment-Agent__agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.556,
+    "edge_precision": 0.75,
+    "edge_recall": 0.273,
+    "kind_accuracy": 1.0
+   },
+   "aayu2003__agent_creation__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "arunacarunac__MultiAgentSamples__App": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__2_RunTeam": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "blueming333__aicraft-class-autogen__PythonAstREPLTool": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "brightertiger__google-adk-demo__agent": {
+    "node_precision": 1.0,
+    "node_recall": 0.833,
+    "edge_precision": 0.25,
+    "edge_recall": 0.143,
+    "kind_accuracy": 0.6
+   },
+   "colinmccrae__CrewAITest__do1": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "dforwardfeed__memo_generator__main": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "divyansh-tripathi7__AutoMated_LinkedinCrew__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "dream-horizon-org__pulse__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "ed-donner__agents__sequential_agents": {
+    "node_precision": 0.286,
+    "node_recall": 0.25,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "ericjiang18__Agent-Q-Mix__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "esk000__AIAgentsIntensive__LoopAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.4,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "esk000__AIAgentsIntensive__parallelAgent": {
+    "node_precision": 0.5,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "feixiao__ai__ex03": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "firaflash__career-mentor-ai-agent__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.833,
+    "kind_accuracy": 1.0
+   },
+   "foxyglue__faq-db-chat__app2": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.6
+   },
+   "gabrielpreda__adk-sql-agent__agent": {
+    "node_precision": 0.8,
+    "node_recall": 0.444,
+    "edge_precision": 0.5,
+    "edge_recall": 0.222,
+    "kind_accuracy": 0.75
+   },
+   "houyongsheng__local_rag__rag": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "huangdihd__ProjectAI__main": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 1.0
+   },
+   "jakenolan__langgraph-custom-tools__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "jkmaina__autogen_blueprint__03_model_based_selector": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.2,
+    "kind_accuracy": 1.0
+   },
+   "joansantoso__iox-adk__agent": {
+    "node_precision": 0.4,
+    "node_recall": 0.333,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator": {
+    "node_precision": 0.5,
+    "node_recall": 0.286,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "juananpe__langgraph-flask__cli": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "leewow03__llm__10": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "lordpython__multi-agent-video-system__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "matttbates__job-search-assistant__crew": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__email_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "merdandt__SalesShortcut__outreach_email_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__potential_lead_finder_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "merdandt__SalesShortcut__websiter_creator_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.8
+   },
+   "microsoft__ACV__test_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "microsoft__ACV__test_cache_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.8,
+    "kind_accuracy": 0.8
+   },
+   "microsoft__ACV__test_group_chat_endpoint": {
+    "node_precision": 1.0,
+    "node_recall": 0.714,
+    "edge_precision": 0.75,
+    "edge_recall": 0.333,
+    "kind_accuracy": 1.0
+   },
+   "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.714,
+    "kind_accuracy": 0.286
+   },
+   "muzifa-mubarak__crew_ai_practice__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.714
+   },
+   "nokia__mcp-redfish__agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.667,
+    "kind_accuracy": 0.667
+   },
+   "opengles3d__ollama_rag__18": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.75
+   },
+   "opengles3d__ollama_rag__state_graph": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.5,
+    "kind_accuracy": 0.667
+   },
+   "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 0.429,
+    "edge_recall": 0.273,
+    "kind_accuracy": 0.625
+   },
+   "shazy89__ai-learning__agent": {
+    "node_precision": 0.286,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "shazy89__ai-learning__research_agent": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "sreekarrs__JobSearch-Agent__cv_writer": {
+    "node_precision": 0.5,
+    "node_recall": 0.222,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "suryaMadhav16__RAG-Lab__CrewAI": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "svpino__ml.school__agent": {
+    "node_precision": 0.5,
+    "node_recall": 0.5,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "timleow__gym-kfc-daddies__cli_ui": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   },
+   "tweetlol__eve__eve": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 0.75,
+    "kind_accuracy": 0.75
+   },
+   "vego147__AI_Research_Img_Assistance__Bot": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "venkatavinayvijjapu__New_Assignment__tasks": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "vishnusurya11__ember__dev": {
+    "node_precision": 1.0,
+    "node_recall": 0.75,
+    "edge_precision": 1.0,
+    "edge_recall": 0.2,
+    "kind_accuracy": 0.333
+   },
+   "vishnusurya11__ember__prompt_agent": {
+    "node_precision": 0.4,
+    "node_recall": 0.333,
+    "edge_precision": 0.25,
+    "edge_recall": 0.125,
+    "kind_accuracy": 0.5
+   },
+   "vishnusurya11__ember__reflection_agent": {
+    "node_precision": 0.333,
+    "node_recall": 0.25,
+    "edge_precision": 0.0,
+    "edge_recall": 0.0,
+    "kind_accuracy": 1.0
+   },
+   "volcengine__veadk-python__main": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 1.0
+   },
+   "waqasniazi9__voice-agent__builder": {
+    "node_precision": 1.0,
+    "node_recall": 0.231,
+    "edge_precision": 1.0,
+    "edge_recall": 0.08,
+    "kind_accuracy": 0.667
+   },
+   "winstonbartlegod__enhanced-multimodal-rag__v1": {
+    "node_precision": 1.0,
+    "node_recall": 1.0,
+    "edge_precision": 1.0,
+    "edge_recall": 1.0,
+    "kind_accuracy": 0.5
+   }
+  }
+ },
+ "provenance_collisions": {
+  "note": "Slug <repo>__<basename> is not unique. remine_pinned.load_records() resolves collisions first-wins, so v2 may re-mine a DIFFERENT file than v1 for the same slug. Such graphs compare two different programs, not two instrument versions.",
+  "n_colliding_slugs_total": 76,
+  "n_in_corpus_matched": 51,
+  "n_in_fidelity_matched": 9,
+  "fidelity_collision_slugs": {
+   "Astrodevil__ADK-Agent-Examples__agent": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Astrodevil/ADK-Agent-Examples",
+     "sha": "e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c",
+     "file_path": "analyzer_agent/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Astrodevil/ADK-Agent-Examples",
+     "sha": "e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c",
+     "file_path": "seq_adk_agent/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Astrodevil/ADK-Agent-Examples",
+     "sha": "e9c24623ae82ef7e9a409c7ee767f5f8faa8b56c",
+     "file_path": "multi_tool_search_agent/agent.py",
+     "framework": "adk"
+    }
+   ],
+   "MikhailMostWanted__Astra__app_team": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "MikhailMostWanted/Astra",
+     "sha": "38f97249c7a8576ee3f9dd91d5d095c5ad0e81d9",
+     "file_path": "tmp/autogen_code/python/samples/agentchat_fastapi/app_team.py",
+     "framework": "autogen"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "MikhailMostWanted/Astra",
+     "sha": "38f97249c7a8576ee3f9dd91d5d095c5ad0e81d9",
+     "file_path": "tmp/autogen_code/python/samples/core_chainlit/app_team.py",
+     "framework": "autogen"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "MikhailMostWanted/Astra",
+     "sha": "38f97249c7a8576ee3f9dd91d5d095c5ad0e81d9",
+     "file_path": "tmp/autogen_code/python/samples/agentchat_chainlit/app_team.py",
+     "framework": "autogen"
+    }
+   ],
+   "Saimoguloju__AI-Agents__sample_agent": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Saimoguloju/AI-Agents",
+     "sha": "4cdedda2cbf75393a3fd9b47bf2eea26806100e1",
+     "file_path": "LangGraph/sample_agent.py",
+     "framework": "langgraph"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Saimoguloju/AI-Agents",
+     "sha": "4cdedda2cbf75393a3fd9b47bf2eea26806100e1",
+     "file_path": "CrewAI/sample_agent.py",
+     "framework": "crewai"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Saimoguloju/AI-Agents",
+     "sha": "4cdedda2cbf75393a3fd9b47bf2eea26806100e1",
+     "file_path": "GoogleADK/sample_agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "Saimoguloju/AI-Agents",
+     "sha": "4cdedda2cbf75393a3fd9b47bf2eea26806100e1",
+     "file_path": "AutoGen/sample_agent.py",
+     "framework": "autogen"
+    }
+   ],
+   "joansantoso__iox-adk__agent": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "joansantoso/iox-adk",
+     "sha": "4e81d594bf67d696fbdfdb34741fd0facdbe1c66",
+     "file_path": "agent04/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "joansantoso/iox-adk",
+     "sha": "4e81d594bf67d696fbdfdb34741fd0facdbe1c66",
+     "file_path": "agent03/agent.py",
+     "framework": "adk"
+    }
+   ],
+   "lordpython__multi-agent-video-system__agent": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "lordpython/multi-agent-video-system",
+     "sha": "424ad45aafb188c9795599c2f8f9289039ef6fb4",
+     "file_path": "video_system/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "lordpython/multi-agent-video-system",
+     "sha": "424ad45aafb188c9795599c2f8f9289039ef6fb4",
+     "file_path": "video_system_old/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "lordpython/multi-agent-video-system",
+     "sha": "424ad45aafb188c9795599c2f8f9289039ef6fb4",
+     "file_path": "video_system/agents/asset_sourcing_agent/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "lordpython/multi-agent-video-system",
+     "sha": "424ad45aafb188c9795599c2f8f9289039ef6fb4",
+     "file_path": "video_system/agents/video_orchestrator/agent.py",
+     "framework": "adk"
+    }
+   ],
+   "shazy89__ai-learning__agent": [
+    {
+     "metadata_file": "metadata.lg_crew.json",
+     "repo": "shazy89/ai-learning",
+     "sha": "fe853004b8417c56ad44052394c350df8fad0690",
+     "file_path": "essay_writer_agent/agent.py",
+     "framework": "langgraph"
+    },
+    {
+     "metadata_file": "metadata.lg_crew.json",
+     "repo": "shazy89/ai-learning",
+     "sha": "fe853004b8417c56ad44052394c350df8fad0690",
+     "file_path": "research_agent/agent.py",
+     "framework": "langgraph"
+    }
+   ],
+   "svpino__ml.school__agent": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "svpino/ml.school",
+     "sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+     "file_path": "src/agents/rag/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "svpino/ml.school",
+     "sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+     "file_path": "src/agents/tic_tac_toe/tic_tac_toe/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "svpino/ml.school",
+     "sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+     "file_path": "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/commentator/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "svpino/ml.school",
+     "sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+     "file_path": "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/game/agent.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "svpino/ml.school",
+     "sha": "7390072a1f965c826dd4a7dd82f881fff374da6a",
+     "file_path": "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/player/agent.py",
+     "framework": "adk"
+    }
+   ],
+   "volcengine__veadk-python__main": [
+    {
+     "metadata_file": "metadata.json",
+     "repo": "volcengine/veadk-python",
+     "sha": "3b2615926b13eee842ecf14170d1d80c7d58414c",
+     "file_path": "examples/06_multi_agent/main.py",
+     "framework": "adk"
+    },
+    {
+     "metadata_file": "metadata.json",
+     "repo": "volcengine/veadk-python",
+     "sha": "3b2615926b13eee842ecf14170d1d80c7d58414c",
+     "file_path": "examples/10_agent_routing/main.py",
+     "framework": "adk"
+    }
+   ],
+   "winstonbartlegod__enhanced-multimodal-rag__v1": [
+    {
+     "metadata_file": "metadata.lg_crew.json",
+     "repo": "winstonbartlegod/enhanced-multimodal-rag",
+     "sha": "11f520efbcddd7011482124d4b3856d901cb59d9",
+     "file_path": "v1.py",
+     "framework": "langgraph"
+    },
+    {
+     "metadata_file": "metadata.lg_crew.json",
+     "repo": "winstonbartlegod/enhanced-multimodal-rag",
+     "sha": "11f520efbcddd7011482124d4b3856d901cb59d9",
+     "file_path": "archive_code/v1.py",
+     "framework": "langgraph"
+    }
+   ]
+  },
+  "corpus_structurally_changed": {
+   "total": 150,
+   "collision": 40,
+   "genuine_extractor_change": 110
+  },
+  "collision_free_fidelity": {
+   "n": 106,
+   "v1_asmined": {
+    "overall": {
+     "n": 106,
+     "node_precision": 0.914,
+     "node_recall": 0.862,
+     "edge_precision": 0.814,
+     "edge_recall": 0.652,
+     "kind_accuracy": 0.82
+    },
+    "per_framework": {
+     "adk": {
+      "n": 18,
+      "node_precision": 0.713,
+      "node_recall": 0.595,
+      "edge_precision": 0.394,
+      "edge_recall": 0.343,
+      "kind_accuracy": 0.92
+     },
+     "autogen": {
+      "n": 30,
+      "node_precision": 1.0,
+      "node_recall": 0.955,
+      "edge_precision": 0.966,
+      "edge_recall": 0.778,
+      "kind_accuracy": 0.89
+     },
+     "crewai": {
+      "n": 20,
+      "node_precision": 0.867,
+      "node_recall": 0.867,
+      "edge_precision": 0.7,
+      "edge_recall": 0.692,
+      "kind_accuracy": 0.929
+     },
+     "langgraph": {
+      "n": 38,
+      "node_precision": 0.967,
+      "node_recall": 0.912,
+      "edge_precision": 0.954,
+      "edge_recall": 0.678,
+      "kind_accuracy": 0.659
+     }
+    }
+   },
+   "v2_corrected": {
+    "overall": {
+     "n": 106,
+     "node_precision": 0.914,
+     "node_recall": 0.868,
+     "edge_precision": 0.814,
+     "edge_recall": 0.709,
+     "kind_accuracy": 0.824
+    },
+    "per_framework": {
+     "adk": {
+      "n": 18,
+      "node_precision": 0.713,
+      "node_recall": 0.595,
+      "edge_precision": 0.394,
+      "edge_recall": 0.343,
+      "kind_accuracy": 0.92
+     },
+     "autogen": {
+      "n": 30,
+      "node_precision": 1.0,
+      "node_recall": 0.955,
+      "edge_precision": 0.966,
+      "edge_recall": 0.778,
+      "kind_accuracy": 0.89
+     },
+     "crewai": {
+      "n": 20,
+      "node_precision": 0.867,
+      "node_recall": 0.867,
+      "edge_precision": 0.7,
+      "edge_recall": 0.692,
+      "kind_accuracy": 0.929
+     },
+     "langgraph": {
+      "n": 38,
+      "node_precision": 0.967,
+      "node_recall": 0.93,
+      "edge_precision": 0.954,
+      "edge_recall": 0.836,
+      "kind_accuracy": 0.67
+     }
+    }
+   }
+  },
+  "rekey_recovery": {
+   "n_colliding_slugs": 76,
+   "n_on_disk_v1": 58,
+   "n_on_disk_v2": 51,
+   "v2_rekeyable_exactly": 51,
+   "v1_rekeyable_by_framework": 5,
+   "usable_v1_v2_pairs_recovered": 0,
+   "must_drop": 58,
+   "unrecoverable_detail": [
+    {
+     "slug": "Saimoguloju__AI-Agents__sample_agent",
+     "reason": "v2_mined_a_different_file",
+     "v1_inferred_path": "AutoGen/sample_agent.py",
+     "v2_path": "LangGraph/sample_agent.py"
+    },
+    {
+     "slug": "splx-ai__agentic-radar__graph",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "examples/langgraph/Gladiator2/graph.py",
+      "agentic_radar/analysis/langgraph/graph.py"
+     ]
+    },
+    {
+     "slug": "feixiao__ai__chap06",
+     "reason": "v2_mined_a_different_file",
+     "v1_inferred_path": "AgenticDesignPatterns/autogen/chap06.py",
+     "v2_path": "AgenticDesignPatterns/langchain/chap06.py"
+    },
+    {
+     "slug": "feixiao__ai__chap07",
+     "reason": "v2_mined_a_different_file",
+     "v1_inferred_path": "AgenticDesignPatterns/autogen/chap07.py",
+     "v2_path": "AgenticDesignPatterns/langchain/chap07.py"
+    },
+    {
+     "slug": "Narwhal-Lab__MagicSkills__model",
+     "reason": "v2_mined_a_different_file",
+     "v1_inferred_path": "crewai_example/model.py",
+     "v2_path": "autogen_example/model.py"
+    },
+    {
+     "slug": "surpradhan__agent-event-protocol__test_instrument_autogen",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "sdks/python/tests/unit/test_instrument_autogen.py",
+      "sdks/python/tests/integration/test_instrument_autogen.py"
+     ]
+    },
+    {
+     "slug": "Mehbinamal__WEEK-3__main",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "MAY-21/main.py",
+      "MAY-20/main.py",
+      "MAY-22/main.py"
+     ]
+    },
+    {
+     "slug": "microsoft__ACV__test_society_of_mind_agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "misc/DoVer/AG2/ag2-0.10.0/test/agentchat/contrib/test_society_of_mind_agent.py",
+      "misc/DoVer/src/autogen-agentchat/tests/test_society_of_mind_agent.py"
+     ]
+    },
+    {
+     "slug": "microsoft__ACV__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "misc/DoVer/src/agdebugger/examples/magentic-agents/scenario.py",
+      "misc/DoVer/src/agdebugger/examples/local-agents/scenario.py"
+     ]
+    },
+    {
+     "slug": "microsoft__ACV__cluster_manager",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "self_managing_systems/microservice/AutoKube/src/intent_exec/agent/cluster_manager.py",
+      "self_managing_systems/microservice/paper_artifact_arXiv_2407_14402/src/agent/cluster_manager.py"
+     ]
+    },
+    {
+     "slug": "ericjiang18__Agent-Q-Mix__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "agent_baseline/langgraph/libs/cli/tests/unit_tests/agent.py",
+      "agent_baseline/langgraph/libs/cli/examples/graph_prerelease_reqs_fail/agent.py",
+      "agent_baseline/langgraph/libs/cli/examples/graph_prerelease_reqs/agent.py",
+      "agent_baseline/langgraph/libs/cli/examples/graphs/agent.py",
+      "agent_baseline/langgraph/libs/cli/examples/graphs_reqs_b/graphs_submod/agent.py",
+      "agent_baseline/langgraph/libs/cli/examples/graphs_reqs_a/graphs_submod/agent.py"
+     ]
+    },
+    {
+     "slug": "ericjiang18__Agent-Q-Mix__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "agent_baseline/autogen/python/samples/agentchat_fastapi/app_team.py",
+      "agent_baseline/autogen/python/samples/core_chainlit/app_team.py",
+      "agent_baseline/autogen/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "ericjiang18__Agent-Q-Mix__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "agent_baseline/autogen/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "agent_baseline/autogen/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "agent_baseline/autogen/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "agent_baseline/autogen/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "Schmiddyyy__autogen__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "python/samples/agentchat_fastapi/app_team.py",
+      "python/samples/core_chainlit/app_team.py",
+      "python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "Schmiddyyy__autogen__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "discohead__autogen-enhanced-docs__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "python/samples/agentchat_fastapi/app_team.py",
+      "python/samples/core_chainlit/app_team.py",
+      "python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "discohead__autogen-enhanced-docs__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "waqasniazi9__voice-agent__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "samples/agentchat_fastapi/app_team.py",
+      "samples/core_chainlit/app_team.py",
+      "samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "waqasniazi9__voice-agent__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "Sidreyas__The_Grand_AI_Repo__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "8.agents-towards-production/python/samples/agentchat_fastapi/app_team.py",
+      "8.agents-towards-production/python/samples/core_chainlit/app_team.py",
+      "8.agents-towards-production/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "Sidreyas__The_Grand_AI_Repo__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "8.agents-towards-production/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "8.agents-towards-production/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "8.agents-towards-production/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "8.agents-towards-production/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "LtRusty1__AI-LAB__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "AutoGen/python/samples/agentchat_fastapi/app_team.py",
+      "AutoGen/python/samples/core_chainlit/app_team.py",
+      "AutoGen/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "LtRusty1__AI-LAB__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "AutoGen/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "AutoGen/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "AutoGen/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "AutoGen/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "LightningGod7__prometheus__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "autogen/python/samples/agentchat_fastapi/app_team.py",
+      "autogen/python/samples/core_chainlit/app_team.py",
+      "autogen/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "LightningGod7__prometheus__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "autogen/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "autogen/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "autogen/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "autogen/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_delta_channel_migration",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "external_sources/langgraph/libs/langgraph/tests/test_delta_channel_migration.py",
+      "external_sources/langgraph/libs/checkpoint-sqlite/tests/test_delta_channel_migration.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__test_react_agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "external_sources/langgraph/libs/prebuilt/tests/test_react_agent.py",
+      "external_sources/langchain/libs/langchain_v1/tests/unit_tests/agents/test_react_agent.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "external_sources/langgraph/libs/cli/tests/unit_tests/agent.py",
+      "external_sources/langgraph/libs/cli/examples/graph_prerelease_reqs_fail/agent.py",
+      "external_sources/langgraph/libs/cli/examples/graph_prerelease_reqs/agent.py",
+      "external_sources/langgraph/libs/cli/examples/graphs/agent.py",
+      "external_sources/langgraph/libs/cli/examples/graphs_reqs_b/graphs_submod/agent.py",
+      "external_sources/langgraph/libs/cli/examples/graphs_reqs_a/graphs_submod/agent.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__graph",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "external_sources/langgraph/libs/cli/python-monorepo-example/apps/agent/src/agent/graph.py",
+      "external_sources/langgraph/libs/cli/uv-examples/monorepo/apps/agent/src/agent/graph.py",
+      "external_sources/langgraph/libs/cli/uv-examples/simple/src/agent/graph.py",
+      "external_sources/langchain/libs/core/langchain_core/runnables/graph.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__base",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "external_sources/langchain/libs/core/langchain_core/runnables/base.py",
+      "external_sources/langchain/libs/langchain/langchain_classic/chains/constitutional_ai/base.py",
+      "external_sources/langchain/libs/langchain/langchain_classic/chains/api/base.py",
+      "external_sources/langchain/libs/langchain/langchain_classic/chains/llm_math/base.py",
+      "external_sources/llama_index/llama-index-core/llama_index/core/indices/knowledge_graph/base.py",
+      "external_sources/haystack/haystack/core/pipeline/base.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "external_sources/autogen/python/samples/agentchat_fastapi/app_team.py",
+      "external_sources/autogen/python/samples/core_chainlit/app_team.py",
+      "external_sources/autogen/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "carlosdh12335-ship-it__INTELIGENCIA-VASTA-DA-IA-__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "external_sources/autogen/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "external_sources/autogen/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "external_sources/autogen/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "external_sources/autogen/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "MikhailMostWanted__Astra__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "tmp/autogen_code/python/samples/agentchat_fastapi/app_team.py",
+      "tmp/autogen_code/python/samples/core_chainlit/app_team.py",
+      "tmp/autogen_code/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "MikhailMostWanted__Astra__scenario",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "tmp/autogen_code/python/packages/agbench/benchmarks/HumanEval/Templates/AgentChat/scenario.py",
+      "tmp/autogen_code/python/packages/agbench/benchmarks/GAIA/Templates/MagenticOne/scenario.py",
+      "tmp/autogen_code/python/packages/agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py",
+      "tmp/autogen_code/python/packages/agbench/benchmarks/GAIA/Templates/SelectorGroupChat/scenario.py"
+     ]
+    },
+    {
+     "slug": "akfldk1028__AG__app_team",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "autogen_a2a_kit/autogen_source/python/samples/agentchat_fastapi/app_team.py",
+      "autogen_a2a_kit/autogen_source/python/samples/core_chainlit/app_team.py",
+      "autogen_a2a_kit/autogen_source/python/samples/agentchat_chainlit/app_team.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__crew",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 72,
+     "candidate_paths": [
+      "3_crewai/community_contributions/crew.py",
+      "3_crewai/community_contributions/Ayesha/crew.py",
+      "3_crewai/community_contributions/engineering_team_ns_sly/crew.py",
+      "3_crewai/community_contributions/career_agent_crew/crew.py",
+      "3_crewai/community_contributions/debate_ollama_multi_agents/crew.py",
+      "3_crewai/community_contributions/martinsawojide/code_converter/src/code_converter/crew.py",
+      "3_crewai/community_contributions/financial_researcher_guard/src/financial_researcher_guard/crew.py",
+      "3_crewai/community_contributions/financial_analyser/analyser/src/analyser/crew.py",
+      "3_crewai/community_contributions/ugomichael33/engineering_team/src/engineering_team/crew.py",
+      "3_crewai/community_contributions/stock-picker-advance/src/stock_picker/crew.py",
+      "3_crewai/community_contributions/stock_picker_lmstudio/src/stock_picker/crew.py",
+      "3_crewai/community_contributions/student_companion/src/student_companion/crew.py",
+      "3_crewai/community_contributions/incident_postmortem/src/incident_postmortem/crew.py",
+      "3_crewai/community_contributions/a3_igniters_ebenhays/bitsnbites/src/bitsnbites/crew.py",
+      "3_crewai/community_contributions/debate_lmstudio/src/debate_lmstudio/crew.py",
+      "3_crewai/community_contributions/leadership_calibration/src/leadership_calibration/crew.py",
+      "3_crewai/community_contributions/resume_match_ai/src/resume_match_ai/crew.py",
+      "3_crewai/community_contributions/sam__/news_writer/src/news_writer/crew.py",
+      "3_crewai/community_contributions/Book_Researcher/src/book/crew.py",
+      "3_crewai/community_contributions/ngx_analyst/src/ngx_analyst/crew.py",
+      "3_crewai/community_contributions/elijah_ach_igniters/engineering_team/src/engineering_team/crew.py",
+      "3_crewai/community_contributions/haastrupea/startup_idea_brainstormer/src/startup_idea_brainstormer/crew.py",
+      "3_crewai/community_contributions/latest_market_research/src/latest_market_research/crew.py",
+      "3_crewai/community_contributions/chidera-ugo/content_creator/src/content_creator/crew.py",
+      "3_crewai/community_contributions/kisali/financial_researcher/src/financial_researcher/crew.py",
+      "3_crewai/community_contributions/kisali/swe_team/src/swe_team/crew.py",
+      "3_crewai/community_contributions/kisali/debate/src/debate/crew.py",
+      "3_crewai/community_contributions/kisali/stock_picker/src/stock_picker/crew.py",
+      "3_crewai/community_contributions/kisali/coder_agent/src/coder_agent/crew.py",
+      "3_crewai/community_contributions/modular_code_gen/src/modular_code_gen/crew.py",
+      "3_crewai/community_contributions/financial_advisory/src/financial_advisory/crew.py",
+      "3_crewai/community_contributions/crypto_market/src/crypto_market/crew.py",
+      "3_crewai/community_contributions/gomezc08/swe_team/src/swe_team/crew.py",
+      "3_crewai/community_contributions/gomezc08/university_picker/src/university_picker/crew.py",
+      "3_crewai/community_contributions/gomezc08/interview_questions_researcher/src/interview_questions_researcher/crew.py",
+      "3_crewai/community_contributions/gomezc08/interview/src/interview/crew.py",
+      "3_crewai/community_contributions/gomezc08/coder/src/coder/crew.py",
+      "3_crewai/community_contributions/stellaoiro/hali_crew/src/hali_crew/crew.py",
+      "3_crewai/community_contributions/johnerick_eng_team/advanced_engineering_team/src/advanced_engineering_team/crew.py",
+      "3_crewai/community_contributions/adetayo/event_research/src/event_research/crew.py",
+      "3_crewai/community_contributions/travelmate/src/travelmate/crew.py",
+      "3_crewai/community_contributions/misi/dev_team/src/dev_team/crew.py",
+      "3_crewai/community_contributions/schema_builder/src/schema_builder/crew.py",
+      "3_crewai/community_contributions/codypharm/health_aid/src/health_aid/crew.py",
+      "3_crewai/community_contributions/stock_picker_emads22/src/stock_picker/crew.py",
+      "3_crewai/community_contributions/advanced-engineering-team/src/advanced_engineering_team/crew.py",
+      "3_crewai/community_contributions/data_science_help/src/data_science_help/crew.py",
+      "3_crewai/community_contributions/software-engineering-crew/src/software_engineering/crew.py",
+      "3_crewai/community_contributions/f1_planner/src/f1_planner/crew.py",
+      "3_crewai/community_contributions/ukweh_chima_everest_relativity_codes/software_crew/crew.py",
+      "3_crewai/community_contributions/a3_ignitiers_adeyemi_kayode/src/flight_ai_researcher/crew.py",
+      "3_crewai/community_contributions/ijosh/src/digitalfarm_team/crew.py",
+      "3_crewai/community_contributions/trip_daily_planner/src/trip_daily_planner/crew.py",
+      "3_crewai/community_contributions/PrasadGaitonde/src/global_climate_modeling_local_mitigation/crew.py",
+      "3_crewai/community_contributions/a3_igniters_amitb/market_researcher/src/market_researcher/crew.py",
+      "3_crewai/community_contributions/protien_food_finder/src/protien_food_finder/crew.py",
+      "3_crewai/community_contributions/ghost_writer/src/ghost_writer/crew.py",
+      "3_crewai/community_contributions/Igniters_tobe_week_3/src/engineering_team/crew.py",
+      "3_crewai/community_contributions/a3_igniters_sodiq/marketing_team/src/marketing_team/crew.py",
+      "3_crewai/community_contributions/1_swap_trading_prism/src/prism/crew.py",
+      "3_crewai/community_contributions/Igniters_Week3_Rithwik/safe_agile_team/src/safe_agile_team/crew.py",
+      "3_crewai/community_contributions/igniters_olawale/src/igniters_olawale/crew.py",
+      "3_crewai/community_contributions/blt909/homepage_builder/src/homepage_builder/crew.py",
+      "3_crewai/community_contributions/assignment_creator/src/homeworker/crew.py",
+      "3_crewai/community_contributions/SX_wk3_solution/sx_debate/src/sx_debate/crew.py",
+      "3_crewai/community_contributions/storytellingbattle/src/storytellingbattle/crew.py",
+      "3_crewai/reference/engineering_team/src/engineering_team/crew.py",
+      "3_crewai/reference/financial_researcher/src/financial_researcher/crew.py",
+      "3_crewai/reference/debate/src/debate/crew.py",
+      "3_crewai/reference/stock_picker/src/stock_picker/crew.py",
+      "3_crewai/reference/coder/src/coder/crew.py",
+      "3_crewai/reference/researcher/src/researcher/crew.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "3_crewai/community_contributions/ngahunj/agent.py",
+      "5_agent_frameworks/1_google_adk_a2a/a2a_demo/spanish_concierge/agent.py",
+      "2_openai/community_contributions/customer_care_agents/agent.py",
+      "4_langchain_langgraph/community_contributions/martinsawojide/agent.py",
+      "4_langchain_langgraph/community_contributions/Mikeaig4real/agent.py",
+      "4_langchain_langgraph/community_contributions/Vagz1216/agent.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__main",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 14,
+     "candidate_paths": [
+      "3_crewai/community_contributions/conversational-debate/main.py",
+      "3_crewai/community_contributions/software_team_flow_ui_no_code_docker_run/src/software_team_flow_ui_no_code_docker_run/main.py",
+      "3_crewai/community_contributions/sw_team/eng_team_flow/src/eng_team_flow/main.py",
+      "3_crewai/community_contributions/sw_team/eng_team_flow_se_agents_combined/src/eng_team_flow/main.py",
+      "3_crewai/community_contributions/Mikeaig4real/faith_debate/src/faith_debate/main.py",
+      "3_crewai/community_contributions/engineering_team_with_feedback_loops/src/engineering_team_using_flow/main.py",
+      "3_crewai/community_contributions/assignment_creator/src/homeworker/main.py",
+      "5_agent_frameworks/community_contributions/Igniters-Tunde-Week5/main.py",
+      "5_agent_frameworks/community_contributions/readme_truth_checker/main.py",
+      "5_agent_frameworks/community_contributions/a3_adeyemi_kayode/main.py",
+      "5_agent_frameworks/community_contributions/a3_igniters_sodiq/main.py",
+      "5_agent_frameworks/community_contributions/ugomichael33/week5_agentchat_team_email/main.py",
+      "4_langchain_langgraph/community_contributions/mostafa/main.py",
+      "4_langchain_langgraph/community_contributions/a3_igniters_amitb/job_search/main.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__graph",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 11,
+     "candidate_paths": [
+      "4_langchain_langgraph/community_contributions/tobenna/graph.py",
+      "4_langchain_langgraph/community_contributions/codekick_muthama/graph.py",
+      "4_langchain_langgraph/community_contributions/career_advisor1/graph.py",
+      "4_langchain_langgraph/community_contributions/AdnanGobeljic/graph.py",
+      "4_langchain_langgraph/community_contributions/SamuelAdebodun/graph.py",
+      "4_langchain_langgraph/community_contributions/asket-langgraph/education_coach/graph.py",
+      "4_langchain_langgraph/community_contributions/emmy_sidekick/src/graph.py",
+      "4_langchain_langgraph/community_contributions/wakanda_team_thomas/learning_planner/graph.py",
+      "4_langchain_langgraph/community_contributions/mugisha_caleb_didier/kigali_property_scout/agent/graph.py",
+      "4_langchain_langgraph/community_contributions/gomezc08/ai_sidekick/graph.py",
+      "4_langchain_langgraph/community_contributions/makinda/nairobi_city_agents/graph.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__sidekick",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 55,
+     "candidate_paths": [
+      "4_langchain_langgraph/community_contributions/week4_ns_sly/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_research_and_action/sidekick.py",
+      "4_langchain_langgraph/community_contributions/PrasadGaitonde_4LangGraphLab5/sidekick.py",
+      "4_langchain_langgraph/community_contributions/william/sidekick.py",
+      "4_langchain_langgraph/community_contributions/victor_conqueror/sidekick.py",
+      "4_langchain_langgraph/community_contributions/adriana_sidekick_eventplanner/sidekick.py",
+      "4_langchain_langgraph/community_contributions/dkisselev-zz/sidekick.py",
+      "4_langchain_langgraph/community_contributions/osas_sidekick/sidekick.py",
+      "4_langchain_langgraph/community_contributions/patch_to_pr/sidekick.py",
+      "4_langchain_langgraph/community_contributions/hayatu/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sach91-docker-ollama-telegram/sidekick.py",
+      "4_langchain_langgraph/community_contributions/google-scholar-sidekick/sidekick.py",
+      "4_langchain_langgraph/community_contributions/patrickcmd/sidekick.py",
+      "4_langchain_langgraph/community_contributions/najeeb_sidekick_exercise/sidekick.py",
+      "4_langchain_langgraph/community_contributions/raju/sidekick.py",
+      "4_langchain_langgraph/community_contributions/NaheemQuadri/sidekick.py",
+      "4_langchain_langgraph/community_contributions/yemigabriel/sidekick.py",
+      "4_langchain_langgraph/community_contributions/chrys/sidekick.py",
+      "4_langchain_langgraph/community_contributions/Igniters_Week4_Rithwik/sidekick.py",
+      "4_langchain_langgraph/community_contributions/mideseniordev/sidekick.py",
+      "4_langchain_langgraph/community_contributions/emmanuel_ochade_sidekick/sidekick.py",
+      "4_langchain_langgraph/community_contributions/chidera-ugo/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_with_session_memory/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_vinamra/sidekick.py",
+      "4_langchain_langgraph/community_contributions/adetayo/sidekick.py",
+      "4_langchain_langgraph/community_contributions/SideKick(Ugraded)/sidekick.py",
+      "4_langchain_langgraph/community_contributions/langgraph-sidekick/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_with_preamble/sidekick.py",
+      "4_langchain_langgraph/community_contributions/codypharm/sidekick.py",
+      "4_langchain_langgraph/community_contributions/kica/sidekick.py",
+      "4_langchain_langgraph/community_contributions/mayowa/sidekick.py",
+      "4_langchain_langgraph/community_contributions/geraldino/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick-Personal-CoWorker-refactored-AzureOpenAI/sidekick.py",
+      "4_langchain_langgraph/community_contributions/rnik12/sidekick.py",
+      "4_langchain_langgraph/community_contributions/CynthiaOmovoiye/sidekick.py",
+      "4_langchain_langgraph/community_contributions/ijosh/sidekick.py",
+      "4_langchain_langgraph/community_contributions/samuel_remo/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_hf_docker_chromium_deploy/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_with_planning/sidekick.py",
+      "4_langchain_langgraph/community_contributions/sidekick_proj/sidekick.py",
+      "4_langchain_langgraph/community_contributions/Igniters_tobe_week_4/sidekick.py",
+      "4_langchain_langgraph/community_contributions/michael-ishola_Wakanda_Sidekick/sidekick.py",
+      "4_langchain_langgraph/community_contributions/marketing_website_team_Ashir/sidekick.py",
+      "4_langchain_langgraph/community_contributions/igniters_olawale/sidekick.py",
+      "4_langchain_langgraph/community_contributions/ebunilo_langraph/sidekick.py",
+      "4_langchain_langgraph/community_contributions/Sidekick_hopeogbons/sidekick.py",
+      "4_langchain_langgraph/community_contributions/Collins/sidekick.py",
+      "4_langchain_langgraph/community_contributions/bmuk/sidekick.py",
+      "4_langchain_langgraph/community_contributions/exercise_week4_jom/sidekick.py",
+      "4_langchain_langgraph/community_contributions/basic_page_language_detector/sidekick.py",
+      "4_langchain_langgraph/community_contributions/ugomichael33/sidekick_with_planner/sidekick.py",
+      "4_langchain_langgraph/community_contributions/raheem_yaqub/langgraph_implentation/sidekick.py",
+      "4_langchain_langgraph/community_contributions/Timothy/sidekick-upgrade/sidekick.py",
+      "4_langchain_langgraph/community_contributions/iamumarjaved/sidekick_agent/sidekick.py",
+      "4_langchain_langgraph/community_contributions/ukweh_chima_everest_relativity_codes/sidekick/sidekick.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__app",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "4_langchain_langgraph/community_contributions/ai_job_application_assistant/app.py",
+      "4_langchain_langgraph/community_contributions/obogomaty/app.py",
+      "4_langchain_langgraph/community_contributions/tolu/app.py",
+      "4_langchain_langgraph/community_contributions/silasamisi/app.py",
+      "4_langchain_langgraph/community_contributions/ranskills-toolbox/app.py",
+      "4_langchain_langgraph/community_contributions/Igniters-Tunde-LangGraph/app.py"
+     ]
+    },
+    {
+     "slug": "ed-donner__agents__coach_graph",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "4_langchain_langgraph/community_contributions/abdussamadbello_fat_loss_coach/coach_graph.py",
+      "4_langchain_langgraph/community_contributions/sunakshi_b/coach_graph.py",
+      "4_langchain_langgraph/community_contributions/sunakshib/coach_graph.py"
+     ]
+    },
+    {
+     "slug": "lordpython__multi-agent-video-system__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "video_system/agent.py",
+      "video_system_old/agent.py",
+      "video_system/agents/asset_sourcing_agent/agent.py",
+      "video_system/agents/video_orchestrator/agent.py"
+     ]
+    },
+    {
+     "slug": "Ankur2606__multiAgenticAgri__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "agent.py",
+      "sub_agents/market_intelligence_agent/agent.py",
+      "sub_agents/crop_advisory_agent/agent.py"
+     ]
+    },
+    {
+     "slug": "docker__compose-for-agents__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 4,
+     "candidate_paths": [
+      "a2a/src/AgentKit/agent/agent.py",
+      "adk/agents/agent.py",
+      "adk-cerebras/agents/devduck/agent.py",
+      "adk-sock-shop/agents/agent.py"
+     ]
+    },
+    {
+     "slug": "svpino__ml.school__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 5,
+     "candidate_paths": [
+      "src/agents/rag/agent.py",
+      "src/agents/tic_tac_toe/tic_tac_toe/agent.py",
+      "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/commentator/agent.py",
+      "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/game/agent.py",
+      "src/agents/tic_tac_toe/tic_tac_toe/sub_agents/player/agent.py"
+     ]
+    },
+    {
+     "slug": "martimfasantos__ai-agents-frameworks__00_hello_world",
+     "reason": "v2_mined_a_different_file",
+     "v1_inferred_path": "crewai/00_hello_world.py",
+     "v2_path": "langgraph/00_hello_world.py"
+    },
+    {
+     "slug": "AhsanAyaz__ai-agents-google-adk__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 5,
+     "candidate_paths": [
+      "agentspan_demo/agent.py",
+      "structured_output/agent.py",
+      "multi_model/agent.py",
+      "marketing_campaign_agent/agent.py",
+      "deploying_agents/social_posts_agent/agent.py"
+     ]
+    },
+    {
+     "slug": "cuppibla__adk_tutorial__agents",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 6,
+     "candidate_paths": [
+      "d_routing_agent/agents.py",
+      "e_agent_as_tool/agents.py",
+      "b1_sequential_agent/agents.py",
+      "c_custom_agent/agents.py",
+      "b2_parallel_agent/agents.py",
+      "b3_loop_agent/agents.py"
+     ]
+    },
+    {
+     "slug": "Astrodevil__ADK-Agent-Examples__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "analyzer_agent/agent.py",
+      "seq_adk_agent/agent.py",
+      "multi_tool_search_agent/agent.py"
+     ]
+    },
+    {
+     "slug": "volcengine__veadk-python__main",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "examples/06_multi_agent/main.py",
+      "examples/10_agent_routing/main.py"
+     ]
+    },
+    {
+     "slug": "merdandt__SalesShortcut__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 3,
+     "candidate_paths": [
+      "lead_finder/lead_finder/agent.py",
+      "sdr/sdr/agent.py",
+      "lead_manager/lead_manager/agent.py"
+     ]
+    },
+    {
+     "slug": "joansantoso__iox-adk__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "agent04/agent.py",
+      "agent03/agent.py"
+     ]
+    },
+    {
+     "slug": "AliHShahid__agentic_ai_langgraph__app",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "app.py",
+      "chatbot/app.py"
+     ]
+    },
+    {
+     "slug": "AliHShahid__agentic_ai_langgraph__main",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "main.py",
+      "chatbot/main.py"
+     ]
+    },
+    {
+     "slug": "shazy89__ai-learning__agent",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "essay_writer_agent/agent.py",
+      "research_agent/agent.py"
+     ]
+    },
+    {
+     "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "v1.py",
+      "archive_code/v1.py"
+     ]
+    },
+    {
+     "slug": "junison17__CREWAI-3__task",
+     "reason": "v1_file_indeterminate",
+     "n_candidates": 2,
+     "candidate_paths": [
+      "task.py",
+      "tools/task.py"
+     ]
+    }
+   ]
+  },
+  "fidelity_drop_bias": {
+   "note": "Frameworks/strata lost when the 9 colliding graphs are excluded from the matched fidelity set. Compare share of the dropped set to share of the matched set to judge bias.",
+   "matched_115_by_framework": {
+    "langgraph": 40,
+    "adk": 23,
+    "autogen": 32,
+    "crewai": 20
+   },
+   "dropped_9_by_framework": {
+    "adk": 5,
+    "autogen": 2,
+    "langgraph": 2
+   },
+   "remaining_106_by_framework": {
+    "adk": 18,
+    "autogen": 30,
+    "crewai": 20,
+    "langgraph": 38
+   },
+   "drop_rate_by_framework": {
+    "adk": 0.217,
+    "autogen": 0.062,
+    "crewai": 0.0,
+    "langgraph": 0.05
+   },
+   "gt_confidence_of_dropped": {
+    "high": 8,
+    "medium": 1
+   },
+   "gt_confidence_of_matched": {
+    "high": 75,
+    "medium": 32,
+    "low": 8
+   }
+  }
+ }
+}

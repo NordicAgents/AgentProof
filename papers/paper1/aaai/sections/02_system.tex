@@ -3,141 +3,120 @@
 \label{sec:graph_model}
 \label{sec:verification_methods}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{pipeline.pdf}
-\caption{Agentproof extracts a unified graph model from four frameworks, runs
-structural checks and DFA-compiled temporal policies statically (and at runtime),
-and emits witness traces.}
-\label{fig:pipeline}
-\end{figure}
+% Pipeline figure moved to the supplement to meet the page limit.
 
 \paragraph{Unified graph model.}
-Agentproof represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with a
-distinguished entry $v_0$ and exit set $V_f$. Each node carries a kind
-$\kappa_V(v)$ ranging over \textsc{entry}, \textsc{exit}, \textsc{tool},
-\textsc{llm}, \textsc{router}, \textsc{human}, \textsc{passthrough}, and
-\textsc{subgraph} and, for tool nodes, a set of bound tool names; each edge is
-\textsc{direct}, \textsc{conditional}, \textsc{parallel}, or \textsc{loop}. Every node and edge additionally carries
-extraction \emph{provenance}---an origin (runtime object, explicit AST,
-inferred, synthesized, unknown), a confidence (exact, may, heuristic), and a
-source span---so that structure read from a framework declaration is
-distinguishable from structure the extractor guessed, and downstream witness
-traces inherit the weakest confidence they traverse. Per-framework extractors bridge four
-heterogeneous representations---each with different entry/exit conventions, edge
-semantics, and hierarchy models---into this single typed model. The extractors
-themselves encode framework semantics and are hand-written once per framework;
-what is eliminated is the per-workflow manual translation that SPIN or NuSMV
-require. Extraction has two paths: a runtime extractor that reads the compiled
-graph object, and a static AST fallback (used for large-scale mining, where
-installing every repository's dependencies is infeasible).
+Agentproof represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with
+entry $v_0$ and exit set $V_f$. Each node carries a kind $\kappa_V(v)$ over
+\textsc{entry}, \textsc{exit}, \textsc{tool}, \textsc{llm}, \textsc{router},
+\textsc{human}, \textsc{passthrough}, \textsc{subgraph} and, for tool nodes,
+bound tool names; each edge is \textsc{direct}, \textsc{conditional},
+\textsc{parallel}, or \textsc{loop}. Every node and edge also carries extraction
+\emph{provenance}---an origin (runtime object, explicit AST, inferred,
+synthesized, unknown), a confidence (exact, may, heuristic), and a source
+span---so structure read from a declaration is distinguishable from structure the
+extractor guessed, and witness traces inherit the weakest confidence they
+traverse. Per-framework extractors, hand-written once each, bridge four
+representations into this model. Extraction has two paths: a runtime extractor reading the
+compiled graph object, and a static AST fallback for large-scale mining, where
+installing every repository's dependencies is infeasible.
 
 \paragraph{An orthogonal attribute ontology.}
 \label{par:ontology}
-The single-label kinds above are a compatibility view for cross-framework
-comparison, but forcing each element into one bucket mislabels multi-faceted
-nodes---an \textsc{llm} node that also invokes a tool, or a conditional edge that
-also closes a loop---and was itself a source of extraction error (one reference
-graph recorded a conditional loop as a bare \textsc{loop}). We therefore layer a
-non-exclusive ontology over $\kappa_V/\kappa_E$: each node carries an
+The single-label kinds above are a compatibility view: forcing each element into
+one bucket mislabels multi-faceted nodes---an \textsc{llm} node that also invokes
+a tool---and was itself a source of extraction error. We therefore layer a
+non-exclusive ontology over
+$\kappa_V/\kappa_E$ (vocabulary in the supplement): each node carries an
 \emph{effect} set (read, write, execute, communicate, financial, delete) and a
-\emph{capability} set (llm, invokes\_tool, human\_pause, routes, state\_update,
-subgraph), and each edge a \emph{back-edge} flag, so a conditional loop is
-represented as $(\textsc{conditional},\text{back\_edge})$ rather than collapsed to
-a single \textsc{loop} label. These descriptors are orthogonal---a node may read,
-write, and communicate at once---and are the ontology we treat as primary; the
-exclusive kinds are retained only for legacy checks and comparison. The full
-vocabulary and its per-framework mapping appear in the supplement.
+\emph{capability} set, and each edge a \emph{back-edge} flag, so a conditional
+loop is $(\textsc{conditional},\text{back\_edge})$ rather than a bare
+\textsc{loop}. It is primary in the data model, but the per-framework extractors
+do \emph{not} yet populate these fields: every mined graph carries defaults, and
+the sets are assigned at corpus-build time by a framework-independent rule
+(capabilities from the node kind, effects from a keyword match over declared
+tool names). The ontology therefore inherits the same declared-tool blindness as
+the risk-aware gate (Section~\ref{sec:realworld}) rather than curing it.
 
 \paragraph{Structural checks.}
 Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
-\emph{witness trace} on failure. \emph{Exit reachability} verifies
-$V_f\subseteq\mathrm{Reach}(v_0)$; \emph{reverse reachability} flags reachable
-nodes with no path to any exit---executions entering such a node can never
-complete (passing this check does not guarantee termination, which depends on
-runtime routing); \emph{dead-end detection} flags non-exit nodes with no
-successor; \emph{router shape} is a framework-convention check requiring router
-outgoing edges to be conditional; \emph{human presence} flags workflows with no
-\textsc{human} node (a deliberately blunt policy check we evaluate against a
-risk-aware variant); and \emph{tool declaration} flags tool nodes with an empty
-tool set. A seventh, path-sensitive check, \emph{human-gate coverage}, is the
-risk-aware variant: it flags a workflow only if a \emph{sensitive} tool is
-reachable from $v_0$ without passing a \textsc{human} node
-(Section~\ref{sec:realworld}). Witness traces follow standard model-checking
-practice~\citep{clarke1999modelchecking} and pinpoint the offending path.
+\emph{witness trace}~\citep{clarke1999modelchecking} on failure: \emph{exit
+reachability} ($V_f\subseteq\mathrm{Reach}(v_0)$), \emph{reverse reachability}
+(reachable nodes with no path to an exit), \emph{dead-end detection} (non-exit
+nodes with no successor), \emph{router shape} (router outgoing edges must be
+conditional), \emph{human presence} (no \textsc{human} node---a deliberately
+blunt policy check we evaluate against a risk-aware variant), and \emph{tool
+declaration} (tool nodes with an empty tool set). A seventh, path-sensitive
+check---\emph{human-gate coverage}---flags a workflow only if a \emph{sensitive}
+tool is reachable from $v_0$ without passing a \textsc{human} node
+(Section~\ref{sec:realworld}).
 
 \paragraph{Temporal policies with LTL$_f$ semantics.}
-Beyond topology, Agentproof supports a policy DSL over finite traces
-(LTL$_f$~\citep{degiacomo2013ltlf}): a workflow execution is a finite event
-sequence, and each of the seven DSL forms denotes an LTL$_f$ formula---forbidden
-($\mathbf{G}\,\neg a$), response ($\mathbf{G}(a \rightarrow \mathbf{F}\,b)$),
-strong until ($a\,\mathbf{U}\,b$, including nested until), bounded response
-($\mathbf{G}(a \rightarrow \mathbf{F}_{\leq k}\,b)$), response chain
-($\mathbf{G}(a \rightarrow \mathbf{F}(b \wedge \mathbf{F}c))$), conjunction, and
-disjunction. Formulas are parsed into a typed recursive AST and compiled
-compositionally to a DFA by LTL$_f$ formula progression (2--3 states for base
-patterns, $k{+}2$ for bounded response), with two disjoint violation
-mechanisms: \emph{violation states} are exactly the doomed states---those from
-which no accepting state is reachable---so a bad prefix is flagged at the
-earliest event that makes every extension violating; and a trace ending in a
-non-accepting state---a pending $\mathbf{F}$-obligation---violates the
-property at termination. The compiler's verdicts are differentially tested
-against an independent, directly recursive reference evaluator, exhaustively
-over all traces up to length six for two-atom formulas and property-based
-beyond. Runtime
-monitors evaluate events in $O(1)$ each and apply the end-of-trace acceptance
-check when the workflow terminates; obligations still open when a run is
-aborted are reported as inconclusive rather than violated, following
-three-valued runtime verification~\citep{bauer2011ltl3}.
+Agentproof also supports a policy DSL over finite traces
+(LTL$_f$~\citep{degiacomo2013ltlf}): an execution is a finite event sequence, and
+each of seven DSL forms denotes an LTL$_f$ formula---forbidden ($\mathbf{G}\,\neg
+a$), response ($\mathbf{G}(a \rightarrow \mathbf{F}\,b)$), strong until, bounded
+response ($\mathbf{G}(a \rightarrow \mathbf{F}_{\leq k}\,b)$), response chain,
+conjunction, disjunction (grammar in the supplement). Formulas compile
+compositionally to a DFA by formula progression (2--3 states for base patterns,
+$k{+}2$ for bounded response), with two disjoint violation mechanisms: \emph{violation states} are exactly the doomed states, so a bad
+prefix is flagged at the earliest event making every extension violating; and a
+trace ending in a non-accepting state---a pending
+$\mathbf{F}$-obligation---violates at termination. The compiler is
+differentially tested against an independent reference evaluator, exhaustively to
+length six for two-atom formulas. Runtime
+monitors evaluate events in $O(1)$; obligations open when a run aborts are
+reported inconclusive rather than violated~\citep{bauer2011ltl3}.
 
 \paragraph{Static temporal verification.}
 Policies are checked statically via a graph\,$\times$\,DFA product: BFS from
-$(v_0,q_0)$ advances the DFA at each node and follows graph edges. Executions
-are modeled as finite \emph{maximal} paths, judged by LTL$_f$: paths ending at
-an exit node or at a dead end. Because static extraction cannot prove which of
-a tool node's declared tools will be invoked, or whether any will be, the
-product is \emph{conservative}: at each tool node it closes the DFA state over
-every finite invocation sequence drawn from the declared tools, including the
-empty one---a false alarm is acceptable, a false proof is not. The checker
-returns one of three verdicts: \emph{may-violate}, when some resolution
-reaches a DFA violation state (bad prefix) or a termination point with a
-pending obligation; \emph{safe}, when no resolution does; and
-\emph{inconclusive}, when the only finding is a reachable product cycle on
-which an obligation could be postponed forever, or no termination point is
-reachable. Universal satisfaction over the finite terminating traces is itself
-decidable; treating a divergent cycle as inconclusive, rather than enumerating
-the terminating traces that thread it, is a deliberate engineering-scope choice,
-not a semantic limitation. Witness paths carry the provenance-derived
-confidence of the edges and bindings they traverse. Explored states are
-bounded by $|V|\cdot|Q|$, so verification is linear in graph size for
-fixed-size DFAs.
+$(v_0,q_0)$ advances the DFA at each node and follows graph edges, modeling
+executions as finite \emph{maximal} paths. Because static extraction cannot prove
+which of a tool node's declared tools will be invoked, or whether any will be,
+the product is \emph{conservative}: at each tool node it closes the DFA state
+over every finite invocation sequence drawn from the declared tools, including
+the empty one---a false alarm is acceptable, a false proof is not. The checker
+returns \emph{may-violate} (some resolution reaches a bad prefix or a pending
+obligation at termination), \emph{safe} (none does), or \emph{inconclusive} (a
+reachable product cycle postpones an obligation forever, or no termination point
+is reachable; an engineering-scope choice, not undecidability). Explored states
+are bounded by $|V|\cdot|Q|$.
 
 \paragraph{Soundness gated on certified extraction.}
 \label{thm:soundness}
 Soundness is a claim about \emph{event} traces, not graph paths. Let
 $\mathrm{Traces}_{\mathrm{ev}}(P)$ be the concrete finite terminating event traces
-a workflow $P$ can emit (tool identities and arguments, node-emitted events,
-termination), and let $\lambda$ label each event, inducing a graph event-language
-$\mathcal{L}(G,\lambda)$. If $\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq
+a workflow $P$ can emit, and let $\lambda$ label each event, inducing a graph
+event-language $\mathcal{L}(G,\lambda)$. If $\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq
 \mathcal{L}(G,\lambda)$ (\emph{event-trace conservatism}) and every trace in
 $\mathcal{L}(G,\lambda)$ is accepted by the policy DFA, then every concrete finite
 terminating execution of $P$ satisfies the policy---the guarantee we exploit for
-monitor pruning (Section~\ref{sec:results}); the full proof is in the supplement.
+monitor pruning (Section~\ref{sec:results}); the proof is in the supplement.
 Graph-\emph{path} containment alone does \emph{not} suffice: a node may issue tool
-calls the graph never records, so a path-conservative graph can still omit the
-events that decide the property. Because a lossy extractor cannot be assumed
-event-trace conservative, the checker gates on certification.
-\texttt{check\_temporal\_property} returns \texttt{safe} only when the traversed
-region is \emph{certified}---every traversed edge and every visited tool-node
-binding carries \texttt{exact} provenance, or the caller asserts an authored graph
-(\texttt{assume\_trace\_conservative})---and it stamps the result with a
-\texttt{certified} key; otherwise it downgrades to \texttt{inconclusive} with
-reason \texttt{uncertified\_extraction}. A \texttt{may\_violate} finding is
-\emph{never} suppressed by the gate. This is the may/must-lite discipline:
-provenance now gates soundness itself, not merely the confidence annotation on a
-witness. Authored corpus graphs and runtime-extracted graphs (absent dynamic
-graph modification) certify; the lossy AST fallback used for mining (edge recall
-0.65, Section~\ref{sec:realworld}) rarely does, so on mined graphs the gate
-withholds \texttt{safe} rather than emit a false proof, and we report only
-measurements---the \texttt{certified} field making the distinction
-machine-checkable.
+calls the graph never records. Because a lossy extractor cannot be assumed
+event-trace conservative, the checker returns \texttt{safe} only when the
+traversed region is \emph{certified}---every traversed edge and every visited
+tool-node binding carries \texttt{exact} provenance, or the caller asserts an
+authored graph---stamping the result with a \texttt{certified} key; otherwise it
+downgrades to \texttt{inconclusive} with reason
+\texttt{uncertified\_extraction}. A \texttt{may\_violate} finding is \emph{never}
+suppressed by the gate.
+
+\paragraph{What the gate does and does not certify.}
+Exact provenance describes \emph{how an element was obtained}---read from a
+declaration rather than guessed---and is \emph{not} equivalent to event-trace
+conservatism. The two come apart exactly where our measurements say they do: an
+edge can be read exactly while tool calls inside a node's body go unmodeled, the
+\texttt{tool}$\rightarrow$\texttt{llm} kind error that dominates LangGraph's
+residual error and hides side-effecting tools from the risk-aware gate in 32 of
+119 sampled workflows (Section~\ref{sec:realworld}); nothing in
+\texttt{region\_is\_certifiable} inspects node bodies for unrecorded events. The
+gate therefore certifies \emph{provenance metadata, or a caller's
+assertion}---not the containment
+$\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq\mathcal{L}(G,\lambda)$ the soundness
+theorem requires. We accordingly make the weaker claim the machinery supports:
+the product is sound \emph{relative to an authored abstraction} whose event
+coverage the caller asserts, with exact provenance a necessary screening
+condition, not a proof. Independent event-coverage analysis is future work. On
+mined graphs the gate withholds \texttt{safe} outright, so no false proof is
+emitted.

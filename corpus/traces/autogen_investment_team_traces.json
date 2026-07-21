@@ -18,7 +18,191 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
+        "tool_name": "bloomberg_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "approver",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "analyst",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "market_data",
+        "action_type": "tool",
         "tool_name": "yahoo_finance",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "approver",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "analyst",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "market_data",
+        "action_type": "tool",
+        "tool_name": "bloomberg_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "approver",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "analyst",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "market_data",
+        "action_type": "tool",
+        "tool_name": "bloomberg_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "risk",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "compliance",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "approver",
+        "action_type": "human",
+        "tags": [
+          "human"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "analyst",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "market_data",
+        "action_type": "tool",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -156,7 +340,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -202,7 +386,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -248,191 +432,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "risk",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "compliance",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "approver",
-        "action_type": "human",
-        "tags": [
-          "human"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "analyst",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "market_data",
-        "action_type": "tool",
-        "tool_name": "yahoo_finance",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "risk",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "compliance",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "approver",
-        "action_type": "human",
-        "tags": [
-          "human"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "analyst",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "market_data",
-        "action_type": "tool",
-        "tool_name": "yahoo_finance",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "risk",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "compliance",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "approver",
-        "action_type": "human",
-        "tags": [
-          "human"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "analyst",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "market_data",
-        "action_type": "tool",
-        "tool_name": "yahoo_finance",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "risk",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "compliance",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "approver",
-        "action_type": "human",
-        "tags": [
-          "human"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "analyst",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "market_data",
-        "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]

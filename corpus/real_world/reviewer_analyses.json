@@ -184,13 +184,9 @@
         "note": "VALIDATION-SAMPLE rate only"
       },
       "post_stratified_point": 0.002259580621836587,
-      "post_stratified_survey_ci": {
-        "point": 0.002259580621836587,
-        "se": 0.0015950996162137994,
-        "normal_ci": [
-          0.0,
-          0.005385975869615634
-        ]
+      "post_stratified_survey_ci_withdrawn": {
+        "reason": "The analytic stratified-survey CI applied a finite-population correction that presupposes SRSWOR within each framework stratum. The validation sample is a hard-coded, unseeded slug list with no documented selection rule, so that premise does not hold and the FPC made the interval anticonservative.",
+        "quote_instead": "post_stratified_cluster_bootstrap_ci"
       },
       "post_stratified_cluster_bootstrap_ci": {
         "point": 0.002259580621836587,
@@ -239,13 +235,9 @@
         "note": "VALIDATION-SAMPLE rate only"
       },
       "post_stratified_point": 0.01923355025307303,
-      "post_stratified_survey_ci": {
-        "point": 0.01923355025307303,
-        "se": 0.011624539418053179,
-        "normal_ci": [
-          0.0,
-          0.04201764751245726
-        ]
+      "post_stratified_survey_ci_withdrawn": {
+        "reason": "The analytic stratified-survey CI applied a finite-population correction that presupposes SRSWOR within each framework stratum. The validation sample is a hard-coded, unseeded slug list with no documented selection rule, so that premise does not hold and the FPC made the interval anticonservative.",
+        "quote_instead": "post_stratified_cluster_bootstrap_ci"
       },
       "post_stratified_cluster_bootstrap_ci": {
         "point": 0.01923355025307303,
@@ -294,13 +286,9 @@
         "note": "VALIDATION-SAMPLE rate only"
       },
       "post_stratified_point": 0.021493130874909616,
-      "post_stratified_survey_ci": {
-        "point": 0.021493130874909616,
-        "se": 0.011724035664768586,
-        "normal_ci": [
-          0.0,
-          0.04447224077785605
-        ]
+      "post_stratified_survey_ci_withdrawn": {
+        "reason": "The analytic stratified-survey CI applied a finite-population correction that presupposes SRSWOR within each framework stratum. The validation sample is a hard-coded, unseeded slug list with no documented selection rule, so that premise does not hold and the FPC made the interval anticonservative.",
+        "quote_instead": "post_stratified_cluster_bootstrap_ci"
       },
       "post_stratified_cluster_bootstrap_ci": {
         "point": 0.021493130874909616,

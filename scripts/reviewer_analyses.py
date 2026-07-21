@@ -132,25 +132,21 @@ def stratified_point(strata: dict) -> float:
     return p
 
 
-def stratified_survey_ci(strata: dict, z: float = Z) -> dict:
-    """Analytic stratified-survey variance with finite-population correction.
-
-    Var(p_hat) = sum_f W_f^2 (1 - n_f/N_f) p_f(1-p_f)/n_f.
-    Normal CI clamped to [0,1].  Poor for tiny counts -> reported alongside the
-    clustered bootstrap, which is the preferred interval here.
-    """
-    var = 0.0
-    for f, (d, n) in strata.items():
-        if n == 0:
-            continue
-        w = CORPUS_N[f] / CORPUS_TOTAL
-        p = d / n
-        fpc = max(0.0, 1 - n / CORPUS_N[f])
-        var += w * w * fpc * p * (1 - p) / n
-    se = math.sqrt(var)
-    point = stratified_point(strata)
-    return {"point": point, "se": se,
-            "normal_ci": [max(0.0, point - z * se), min(1.0, point + z * se)]}
+# WITHDRAWN: analytic stratified-survey CI with finite-population correction.
+#
+# The estimator Var(p_hat) = sum_f W_f^2 (1 - n_f/N_f) p_f(1-p_f)/n_f presupposes
+# simple random sampling WITHOUT replacement within each framework stratum.  This
+# study's design does not provide that: the validated sample is a hard-coded list
+# of slugs in scripts/wf_run.js / wf_run_v2.js with no seed and no documented
+# selection rule (see CLAIMS_AUDIT.md, "Validation sample has no seed").  Under an
+# unknown, possibly purposive selection mechanism the FPC factor (1 - n_f/N_f)
+# shrinks the variance on a premise the design cannot support, producing intervals
+# that are anticonservative by an unquantifiable amount.
+#
+# The repository-clustered bootstrap (`stratified_cluster_bootstrap` below) is
+# quoted instead everywhere the analytic CI was previously reported.  It makes no
+# SRSWOR assumption; it resamples repositories, which is the only dependence
+# structure we can actually justify.
 
 
 def stratified_cluster_bootstrap(strata_clusters: dict,
@@ -344,7 +340,6 @@ def main() -> None:
         strata, clusters = indicators(set(slug_set))
         k = sum(d for d, _ in strata.values())
         wp, wlo, whi = wilson(k, 119)
-        analytic = stratified_survey_ci(strata)
         bpoint, blo, bhi = stratified_cluster_bootstrap(clusters)
         return {
             "per_framework": {f: {"d": d, "n": n,
@@ -355,7 +350,15 @@ def main() -> None:
                                        "wilson_ci": [wlo, whi],
                                        "note": "VALIDATION-SAMPLE rate only"},
             "post_stratified_point": stratified_point(strata),
-            "post_stratified_survey_ci": analytic,
+            "post_stratified_survey_ci_withdrawn": {
+                "reason": "The analytic stratified-survey CI applied a "
+                          "finite-population correction that presupposes SRSWOR "
+                          "within each framework stratum. The validation sample is "
+                          "a hard-coded, unseeded slug list with no documented "
+                          "selection rule, so that premise does not hold and the "
+                          "FPC made the interval anticonservative.",
+                "quote_instead": "post_stratified_cluster_bootstrap_ci",
+            },
             "post_stratified_cluster_bootstrap_ci":
                 {"point": bpoint, "ci95": [blo, bhi],
                  "method": "repo-clustered bootstrap within strata, "
@@ -632,15 +635,16 @@ def main() -> None:
 
     print("\n[2] POST-STRATIFICATION (corpus-weighted)")
     print(f"  {'estimand':13} {'unwt sample':>12} {'post-strat':>11}  "
-          f"{'bootstrap CI':>16}  {'survey CI':>16}")
+          f"{'repo-clustered bootstrap CI':>28}")
     for key in ("structural", "policy", "composite_any"):
         b = post_stratification[key]
         us = b["unweighted_sample_rate"]
         pp = b["post_stratified_point"]
         bc = b["post_stratified_cluster_bootstrap_ci"]["ci95"]
-        sc = b["post_stratified_survey_ci"]["normal_ci"]
         print(f"  {key:13} {us['k']}/119={pct(us['rate'])} {pct(pp)}  "
-              f"{ci(*bc)}  {ci(*sc)}")
+              f"{ci(*bc):>28}")
+    print("  (analytic stratified-survey CI withdrawn: its finite-population "
+          "correction presupposed SRSWOR, which this design does not provide)")
     ao = post_stratification["application_only_stratum"]
     print(f"  app-only composite: {ao['composite_any']['app_like']['k']}/"
           f"{ao['composite_any']['app_like']['n']}="

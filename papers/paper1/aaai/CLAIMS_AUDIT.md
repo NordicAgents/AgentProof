@@ -55,8 +55,8 @@ audited row-by-row.
 | A9 | 7.7% app-like vs 1.3% tutorials | main.tex:53–55 | 3/39; 1/80 | derived from `gt_triage_results.json` `classification` + the 4 defect slugs; **no artifact** | hand-written-unverified | audit confirms 3/39=7.7%; 1/80=1.25% (paper rounds to 1.3%) |
 | A10 | edge recall 0.65 real code | main.tex:54 | 0.649 | `revision_analyses.json` `confidence.fidelity_all` | traced-to-artifact | |
 | A11 | edge recall 0.38 on ADK | main.tex:55 | 0.382 (n=24) | **no artifact** emits per-framework fidelity after self-repo exclusion; `validated_results.json` says 0.367 (n=25) | hand-written-unverified | audit recompute from `fidelity_details` minus self-repo gives exactly 0.382; commit the recompute |
-| A12 | 93% monitors provably inert (curated) | main.tex:58 | 251/270, 93.0% | `monitor_pruning_curated.json` | needs-rerun-after-semantics-change | rerun after any further temporal-semantics fix |
-| A13 | all pruning alphabet-level today | main.tex:58–59 | reach-proven 0 | `monitor_pruning_curated.json` (`trivially_inert` 251, `reachability_proven_inert` 0) | needs-rerun-after-semantics-change | prune rule tightened to `verdict == "safe"` this session (item 15); smoke rerun keeps reach-proven 0 but the headline counts change (237/270 vs 251/270) |
+| A12 | 88% monitors provably inert (curated) | main.tex:58 | 237/270, 87.8% | `monitor_pruning_curated.json` | traced-to-artifact | regenerated under the tightened `verdict == "safe"` prune rule; supersedes the stale 251/270 (93.0%) |
+| A13 | all pruning alphabet-level today | main.tex:58–59 | reach-proven 0 | `monitor_pruning_curated.json` (`trivially_inert` 237, `reachability_proven_inert` 0) | traced-to-artifact | prune rule tightened to `verdict == "safe"`; reach-proven stays 0 and the headline count is 237/270 (was 251/270) |
 
 ### 1.2 sections/01_intro.tex
 
@@ -77,7 +77,7 @@ audited row-by-row.
 
 | # | Claim (short) | Location | Value | Generating artifact / command | Status | Note |
 |---|---|---|---|---|---|---|
-| S1 | node-kind vocabulary (7 kinds listed) | 02_system.tex:17–20 | 7 kinds | `src/agentproof/graph/model.py` `NodeKind` has **8** (paper omits `passthrough`) | hand-written-unverified | **DISCREPANCY:** GT graphs and kind-accuracy scoring use `passthrough`; paper text should list it or explain the projection |
+| S1 | node-kind vocabulary (8 kinds listed) | 02_system.tex:17–20 | 8 kinds | `src/agentproof/graph/model.py` `NodeKind` | **RESOLVED** | The 8-vs-7 mismatch is closed on both sides: `PASSTHROUGH` is now an explicitly documented first-class kind (`model.py:10–24` docstring states the full vocabulary ENTRY, EXIT, TOOL, LLM, ROUTER, HUMAN, SUBGRAPH, PASSTHROUGH and why it was historically omitted), and `02_system.tex:19` lists PASSTHROUGH (reviewer item #7). |
 | S2 | checks each O(\|V\|+\|E\|) | 02_system.tex:31 | complexity | `structural.py` | hand-written-unverified | **imprecise:** `router_shape` scans all edges per router (structural.py:196–197), worst case O(\|V\|·\|E\|); reachability checks are linear |
 | S3 | DFA sizes: 2–3 states base, k+2 bounded | 02_system.tex:56–57 | 2–3; k+2 | `src/agentproof/monitor/ltl.py` (states are canonical formulas) | hand-written-unverified | no test asserts state counts; add one or soften |
 | S4 | runtime monitors O(1)/event | 02_system.tex:60–61 | O(1) | `monitor/ltl.py` transition lookup | traced-to-artifact | code |
@@ -103,11 +103,11 @@ audited row-by-row.
 | R11 | adversarial verifier overturned 4.6% | 03_realworld.tex:36–37 | 4.6% | `FINDINGS.md` (131-flag first pass, 60-workflow sample) | needs-rerun-after-semantics-change | **stale denominator:** current triage has 187 flags; recompute the overturn rate on the current set or date-scope the sentence |
 | R12 | edge recall 0.67 high-conf vs 0.65 overall | 03_realworld.tex:42–43 | 0.674 / 0.649 | `confidence.fidelity_high_confidence_only` / `fidelity_all` | traced-to-artifact | |
 | R13 | 1 of 16 labels overturned in re-audit | 03_realworld.tex:44–45 | 1/16 | `gt_triage_results.json` (merdandt: primary intentional → final gt_error) | traced-to-artifact | |
-| R14 | Wilson CIs; clustered bootstrap 10,000 | 03_realworld.tex:46–48 | 10,000 | `compute_cis.py`, `revision_analyses.py` (`bootstrap_B` 10000) | traced-to-artifact | |
-| R15 | Table 1 rows: LG .956/.682/.647; CrewAI .700/.692/.929; AutoGen .957/.770/.900 | 03_realworld.tex:60–62 | — | `validated_results.json` `per_framework` | traced-to-artifact | |
+| R14 | Wilson CIs; clustered bootstrap 10,000 | 03_realworld.tex:46–48 | 10,000 | `compute_cis.py` → `corpus/real_world/confidence_intervals.json` `bootstrap_B` = 10000 | traced-to-artifact | **path corrected:** `bootstrap_B` does **not** exist anywhere in `revision_analyses.json` (verified: the key is absent from its serialized output, whose top-level keys are `prevalence_gt`, `composition`, `confidence`, `cluster_cis`). It lives only in `confidence_intervals.json`. `scripts/reviewer_analyses.py` separately uses a module constant `BOOT = 10000`. |
+| R15 | Table 1 rows: LG .956/.682/.647; CrewAI .700/.692/.929; AutoGen .957/.770/.900 | 03_realworld.tex:60–62 | — | `validated_results.json` **`extractor_fidelity_real_code.per_framework`** | traced-to-artifact | **path corrected:** there is no top-level `per_framework` key. `validated_results.json`'s top-level keys are `extractor_fidelity_real_code`, `triage`, `crosscheck_edge_recall_vs_artifact`, `fidelity_details`, `triage_details`. Values verified unchanged at the corrected path. |
 | R16 | Table 1 ADK row: n=24, .420/.382/.940 | 03_realworld.tex:63 | — | **no artifact** (committed per-framework numbers are n=25: .403/.367/.943) | hand-written-unverified | audit recompute (fidelity_details minus self-repo) reproduces .420/.382/.940 exactly; commit the recompute |
 | R17 | Table 1 overall .805/.649/.829 + CIs [.72,.89]/[.56,.73]/[.78,.87] | 03_realworld.tex:65–66 | — | precision/recall/CIs: `confidence.fidelity_all` + `cluster_cis.{edge_precision,edge_recall,kind_accuracy}`; kind accuracy .829 traces only to the PRE-exclusion n=120 run (`validated_results.json` `extractor_fidelity_real_code.overall.kind_accuracy`) | hand-written-unverified | **DISCREPANCY:** the post-exclusion artifact says **0.828** (`revision_analyses.json` `confidence.fidelity_all.kind_accuracy`, n=119); change 0.829→0.828 at 03_realworld.tex:65 and :73 (or regenerate on n=119) |
-| R18 | node P=0.91, R=0.85 | 03_realworld.tex:72 | 0.907/0.848 | `validated_results.json` `overall` (n=120, includes self-repo) | traced-to-artifact | post-exclusion recompute = 0.909/0.854, same at 2 d.p.; regenerate on n=119 for consistency |
+| R18 | node P=0.91, R=0.85 | 03_realworld.tex:72 | 0.907/0.848 | `validated_results.json` **`extractor_fidelity_real_code.overall`** (n=120, includes self-repo) | traced-to-artifact | **path corrected:** no top-level `overall` key exists; see R15 for the real top-level key list. Values verified unchanged at the corrected path (node_precision 0.907, node_recall 0.848). Post-exclusion recompute = 0.909/0.854, same at 2 d.p.; regenerate on n=119 for consistency. |
 | R19 | ADK edge recall 0.38, cluster CI [0.14,0.62] | 03_realworld.tex:73–74 | CI | **no artifact**; `confidence_intervals.json` ADK CI is [0.20,0.55] (unclustered, n=25) | unknown-origin | per-framework **clustered** CIs are not produced anywhere; generate or cite the unclustered one |
 | R20 | AutoGen edge recall 0.77 | 03_realworld.tex:74–75 | 0.770 | `validated_results.json` | traced-to-artifact | |
 | R21 | AST recovers 0.71 of runtime LangGraph edges | 03_realworld.tex:84–86 | 0.709 | `runtime_fidelity.json` `ast_vs_runtime_aligned.edge_recall` | traced-to-artifact | caveat: n=2 aligned workflows; state n in paper |
@@ -134,11 +134,11 @@ audited row-by-row.
 | # | Claim (short) | Location | Value | Generating artifact / command | Status | Note |
 |---|---|---|---|---|---|---|
 | C1 | curated corpus: 18 workflows, 4 frameworks | 04_results.tex:6–7 | 18 | `corpus/curated/` (18 files); `scripts/defect_results.json` | traced-to-artifact | |
-| C2 | detects every injected structural defect | 04_results.tex:7–8 | qualitative | `scripts/defect_results.json` + `corpus/annotations/defect_labels.json` | hand-written-unverified | no committed list of *seeded* defects to check firing against; add a seeded-defect manifest. Also: the committed `scripts/defect_results.json` is stale — it predates the `reverse_reachability` check (item 14) |
+| C2 | detects every injected structural defect | 04_results.tex:7–8 | qualitative | `scripts/defect_results.json` + `corpus/annotations/defect_labels.json` | hand-written-unverified | **Staleness sub-claim RESOLVED:** the committed `scripts/defect_results.json` is *no longer* stale — it now reports `total_defects` = **17** and `defects_by_type` **does** include `reverse_reachability: 2` (full split: human_presence 10, reverse_reachability 2, dead_ends 2, router_shape 1, exit_reachability 1, tool_declarations 1). The earlier audit text asserting "no `reverse_reachability`, 15 defects" described a superseded artifact. Still open (unchanged): there is no committed manifest of *seeded* defects to check firing against; add one. |
 | C3 | risk-aware flags 8 vs 10 blunt; declines 2 | 04_results.tex:8–13 | 8; 10; 2 | `risk_aware_gate_curated.json` | traced-to-artifact | |
-| C4 | sub-second at 5,000 nodes | 04_results.tex:14–15 | 345 ms | `scripts/scaling_results.json` (structural_check_ms=345.2 @5000) | traced-to-artifact | |
+| C4 | sub-second at 5,000 nodes | 04_results.tex:14–15 | ~7 ms | `scripts/scaling_results.json` (structural_check_ms=**7.19** @5000 nodes / 10,713 edges) | traced-to-artifact | **RESOLVED.** Two stale values were in circulation: the audit's 345.2 ms and the previously committed artifact's 239.838 ms. A fresh `python scripts/benchmark_scale.py` on this machine gives 7–8 ms (three consecutive runs: 8.15, 7.19, 8.15 ms), and `scaling_results.json` has been regenerated (7.1905 ms). **Hardware-dependent:** this is a single-machine wall-clock median, not a portable constant; the paper claim that survives re-execution anywhere is the *asymptotic* one (linear in \|V\|+\|E\|, visible across the 50→5000 sweep) plus "sub-second", which all three values satisfy by two orders of magnitude. Do not quote the absolute ms without naming the machine. |
 | C5 | multi-tool nodes expanded to complete digraph | 04_results.tex:28–31 | qualitative | **stale:** the `expand_multitool` pre-pass was removed from `scripts/monitor_pruning.py` this session; `check_temporal_property`'s default mapper now expands multi-tool nodes natively (Q2 closed) | needs-rerun-after-semantics-change | rewrite 04_results.tex:28–31 to describe the native multi-tool closure (item 15) |
-| C6 | 251/270 (93.0%), mean 13.9/15 skipped | 04_results.tex:33–35 | — | `monitor_pruning_curated.json` | needs-rerun-after-semantics-change | |
+| C6 | 237/270 (87.8%), mean 13.17/15 skipped | 04_results.tex:33–35 | — | `monitor_pruning_curated.json` (`prunable` 237, `prunable_pct` 87.8, `mean_monitors_pruned_per_workflow` 13.17) | traced-to-artifact | supersedes the stale 251/270 (93.0%), mean 13.9 |
 | C7 | every proven case alphabet-level; product adds 0 | 04_results.tex:36–40 | reach-proven 0 | `monitor_pruning_curated.json` | needs-rerun-after-semantics-change | prune rule tightened this session (item 15); smoke rerun still gives reach-proven 0, but the artifact must be regenerated |
 | C8 | "the single case the earlier semantics 'won' was a live termination-obligation monitor" | 04_results.tex:40–43 | 1 (historical) | none — the pre-fix run is not committed | unknown-origin | keep only if the old result file is restored or the sentence is softened |
 | C9 | none of the 922 mined invokes any of the 15 policies' tools | 04_results.tex:44–46 | 0 | `monitor_pruning.json` per_policy (14 policies alphabet-inert on all 930; `analyze_until_decision` kept for liveness) + `policy_evaluation_results.json` | traced-to-artifact | artifact denominator 930 incl. self-repo; rerun on 922 |
@@ -167,7 +167,7 @@ audited row-by-row.
 | Q4 | DSL forms have precise LTL_f semantics | 02_system.tex:47–64 | `src/agentproof/monitor/ltl.py` (recursive `_Parser`, canonical-formula DFA states) | Nested until now parses recursively (audit-verified: `a U (b U c)` → recursive AST) and response-chain re-arming has a regression test (`tests/test_monitor_extended.py::test_rearm_mid_chain_rejected`), addressing plan 2.3 items 1–2. The plan-3.4A finite-trace oracle now exists (`tests/oracles/ltlf_reference.py` + `tests/semantics/`, green this session; untracked) — commit it before freeze. |
 | Q5 | six checks run in O(\|V\|+\|E\|) with witness traces | 02_system.tex:31–32 | `structural.py` | Witnesses: yes. Complexity: router_shape is O(routers·\|E\|) — soften or fix (S2). |
 | Q6 | monitors evaluate events in O(1); abort ⇒ inconclusive | 02_system.tex:60–64 | `monitor/ltl.py` | Holds (DFA step is a table lookup); pin the abort behavior with a test. |
-| Q7 | node kinds are {entry,exit,tool,llm,router,human,subgraph} | 02_system.tex:17–20 | `graph/model.py` `NodeKind` | **Mismatch:** code and GT data also use `passthrough` (S1). |
+| Q7 | node kinds are {entry,exit,tool,llm,router,human,subgraph,passthrough} | 02_system.tex:17–20 | `graph/model.py` `NodeKind` | **RESOLVED (was a mismatch).** `passthrough` is documented as first-class at `model.py:10–24` and is listed in the paper at `02_system.tex:19`; the orthogonal `effects`/`capabilities` descriptors carry the non-exclusive ontology. See S1. |
 | Q8 | three extractors emit connected topologies **by construction** (structural checks vacuous there) | 03_realworld.tex:121–126 | `scripts/ast_extractor.py` (CrewAI/AutoGen/ADK builders wire `__start__`…`__end__` chains unconditionally) | Confirmed in code. |
 | Q9 | reference labels are LLM reconstructions, not human ground truth (limitation stated) | 03_realworld.tex:38–46; 06_conclusion.tex:33–37 | human protocol now exists: `corpus/annotations/ANNOTATION_GUIDE.md` + `samples_manifest.json` | Honest as written; hard gate 3 requires either executing the protocol or keeping the qualified language. |
 | Q10 | witness traces pinpoint the offending path | 02_system.tex:44–46 | `structural.py` `_find_path`, `_find_path_to_frontier` | Confirmed in code. |
@@ -223,12 +223,13 @@ audited row-by-row.
     extracted with the buggy version, so every fidelity number (A10/A11,
     R15–R20, Table 1) describes the OLD instrument. Re-mine/re-extract the
     corpus, or add an explicit instrument-versioning note, before submission.
-14. **Stale curated defect artifact (NEW, this session).** The committed
-    `scripts/defect_results.json` (cited by C1/C2) predates the
-    `reverse_reachability` check: it contains no `reverse_reachability`
-    entries and reports 15 total defects, while `scripts/defect_study.py:102`
-    now runs that check (a regeneration run yields 17 defects including 2
-    reverse_reachability). Regenerate in the rerun phase.
+14. **Stale curated defect artifact — RESOLVED.** The regeneration was done and
+    committed. `scripts/defect_results.json` now reports `total_defects` = **17**
+    with `defects_by_type` = {human_presence 10, reverse_reachability **2**,
+    dead_ends 2, router_shape 1, exit_reachability 1, tool_declarations 1},
+    i.e. it *does* contain `reverse_reachability` entries and it *does* run
+    `scripts/defect_study.py:102`. The prior audit text ("no reverse_reachability,
+    15 defects") is itself now stale and has been corrected at C2 above.
 15. **Pruning rule tightened (NEW, this session).**
     `scripts/monitor_pruning.py` now prunes ONLY on `verdict == "safe"` and
     reports `inconclusive` verdicts as their own must-keep category; the
@@ -255,7 +256,7 @@ audited row-by-row.
 | Static soundness conditioned on conservative extraction; no guarantee claimed for lossy AST corpus | **PASS (conditional)** | 02_system.tex:79–88 and 04_results.tex:20–27 state the premise; the Q2 multi-tool condition is now closed (item 10, uncommitted) |
 | Code/data available anonymously at submission, not promised later | **FAIL** | 06_conclusion.tex:44–46 promises future release; no anonymized link exists |
 | All four real issues have a responsible-disclosure record | **FAIL** | No disclosure record anywhere in the repository (X6) |
-| A clean machine can reproduce every main table | **FAIL (untested)** | `scripts/reproduce_all.sh` covers the curated pipeline only; real-world tables require an undocumented sequence plus the hand steps in item 2 above |
+| A clean machine can reproduce every main table | **PARTIAL (tested)** | `scripts/reproduce_all.sh` was executed end to end this pass. Steps 1–7 (curated pipeline: build corpus, defect study, traces, policy evaluation, scalability benchmark, comparison table, `pytest` 405 passed / 1 skipped) all **PASS**. The script has since been extended with a real-world stage (`aggregate_realworld.py`, `revision_analyses.py`, `compute_cis.py`, `monitor_pruning.py`, `risk_aware_gate.py`, `runtime_fidelity.py`, `corrected_fidelity.py`, `matched_fidelity.py`, `error_decomposition.py`, `reviewer_analyses.py`, `pruning_experiment.py`, `sensitivity_analyses.py`), each step loudly announcing `SKIPPED` when a required input or `GITHUB_TOKEN` is absent. **Residual gap:** the real-world *tables* still cannot be regenerated from scratch on a clean machine — the LLM reconstruction/triage passes (`scripts/wf_run*.js`, `wf_validate_triage.js`) are non-deterministic, network-bound, and are consumed from committed outputs rather than re-executed. Table rendering from those committed artifacts reproduces; the artifacts themselves do not. |
 | Paper, references, checklist satisfy official page rules | **UNKNOWN** | `main.pdf` builds with aaai2027 kit; not re-verified in this audit |
 
 ### Soft gates
@@ -303,7 +304,7 @@ Open items from Section 5 now RESOLVED with evidence:
 | Corpus re-mine with fixed extractor | **Done.** `scripts/remine_pinned.py` re-fetched every record at its pinned SHA (912/930 re-extracted; 13 repos now unreachable, 5 files no longer yield a graph — all categorized in `corpus/real_world/metadata_v2.json`). v2 graphs in `corpus/real_world/graphs_v2/`; v1 untouched. |
 | Corrected-instrument fidelity/flag delta | **Measured** (`scripts/corrected_fidelity.py` → `corpus/real_world/corrected_fidelity.json`): overall edge recall 0.649→0.679; **LangGraph edge recall 0.682→0.819**; structural-flagged workflows 314→239 (exit-reachability flags 86→32). Reported in `03_realworld.tex` as causal confirmation of the extraction-bottleneck thesis. Table 1/Table 2 remain the as-mined (v1) instrument the study ran on; the delta is additive evidence, not a table swap. |
 | Hard gate 7 (responsible disclosure) | **Records drafted** (not sent). `corpus/real_world/DISCLOSURES.md` + four maintainer-ready drafts in `corpus/real_world/disclosures/`. All four repo@SHA verified against provenance records; the two reference-graph-only defects match the paper's `real_defect` triage labels exactly. Sending is gated on user go-ahead + real sender identity (kept paper-anonymous). |
-| Hard gate 8 (anonymous artifact) | **Built.** `papers/paper1/aaai/artifact/agentproof-anonymized.zip` (1.77 MB). Independent anonymity audit: zero author-identity hits, zero live API keys, no `.git`/`.venv`; self-repo pseudonymized to `ANONYMIZED__SELFREPO`; bundle test suite 255/255; sensitivity/CI artifacts regenerate byte-identically inside the bundle. Third-party `sources/` excluded (contains third-party secrets; ethics statement forbids source redistribution) and is re-fetchable via `remine_pinned.py`. |
+| Hard gate 8 (anonymous artifact) | **Built.** `papers/paper1/aaai/artifact/agentproof-anonymized.zip` (1.77 MB). Independent anonymity audit: zero author-identity hits, zero live API keys, no `.git`/`.venv`; self-repo pseudonymized to `ANONYMIZED__SELFREPO`; bundle test suite **405 passed, 1 skipped** (the earlier "255/255" predates the current suite and the `pythonpath=["."]` fix in `pyproject.toml`); sensitivity/CI artifacts regenerate byte-identically inside the bundle. Third-party `sources/` excluded (contains third-party secrets; ethics statement forbids source redistribution) and is re-fetchable via `remine_pinned.py`. |
 
 Still OPEN: human annotation execution (protocol + samples + pinned source snapshots now all staged in `corpus/annotations/` and `corpus/real_world/sources/`); actually sending the four disclosures (needs user approval + identity); arXiv-variant sync (`papers/paper1/arxiv/` not updated this session).
 
@@ -332,9 +333,11 @@ contains no `\ref`/`\label`. Referenced labels: `sec:realworld`, `sec:results`,
 |---|---|
 | `reviewer_analyses.json` | §1 estimands (k/n/Wilson), §2 post-stratification, §3 Fisher, §4 flag PPV/dedup/bounds, §5 v1↔v2 fidelity table |
 | `corrected_fidelity.json` | v1 as-mined vs v2 corrected per-framework fidelity; flag-volume delta (314→239 structural-flagged; exit 86→32) |
-| `pruning_experiment.json` | path-sensitive experiment: alphabet 1 / node-reach 3 / product 10 / runtime 0; +9 over alphabet, +7 over reachability; 5 curated + 4 synthetic; 50 executions, 0 false prunes |
+| `pruning_experiment.json` | path-sensitive experiment: alphabet 1 / node-reach 3 / product 10 / runtime 0; +9 over alphabet, +7 over reachability; the +9 decomposes as **5 curated + 4 synthetic incremental gains** over **9 curated + 9 synthetic pairs** (`n_pairs` 18, `n_curated_pairs` 9, `n_synthetic_pairs` 9); 50 executions, 0 false prunes |
 | `monitor_pruning_curated.json` | curated gate: 237/270 (87.8%) prunable, 14 `inconclusive`, 19 `may_violate`; 18 wf × 15 pol = 270 |
-| `monitor_pruning.json` | mined gate: 0/13950 certified-sound (all may-provenance, refused); 13950 alphabet-inert descriptively |
+| `monitor_pruning_922.json` | mined gate, **self-repo excluded (cite this one)**: 0/**13,830** certified-sound (all may-provenance, refused); 13,830 alphabet-inert descriptively; 922 workflows × 15 policies |
+| `risk_aware_gate_922.json` | mined risk gate, self-repo excluded: 922 workflows, naive human-gate flags 840 (**91.1%**), sensitive-tool workflows 0, risk-aware flags 0 |
+| `monitor_pruning.json`, `risk_aware_gate.json` | **SUPERSEDED** pre-exclusion runs on 930 workflows (13,950 instances / 91.0%). Retained as the historical record only; do not cite. |
 
 ### 7.1 Reviewer problems
 
@@ -345,9 +348,9 @@ contains no `\ref`/`\label`. Referenced labels: `sec:realworld`, `sec:results`,
 | 3 | Undefined "workflow" unit | `03_realworld.tex:8–11` (unit = one source file → one *extracted file-level graph*; executable-workflow-root unit is future work); denominators renamed "extracted file-level graph" throughout; `06_conclusion.tex:42–43` | definitional; corpus size 922 extracted file-level graphs → `reviewer_analyses.json` `_meta.corpus_composition` |
 | 4 | "Ground truth"/human-validation overclaim | `main.tex:40–41`; `01_intro.tex:48–51`; `03_realworld.tex:12,31–51` ("LLM-reconstructed reference graphs"; "Two-annotator independent human validation was not performed… protocol and samples are staged"); `06_conclusion.tex:44–48`; `par:threats` `03_realworld.tex:211–214` | qualitative (no new number). Reconstruction-confidence 77/33/9 is pre-existing (`revision_analyses.json` `confidence.gt_confidence_distribution`); protocol staged in `corpus/annotations/` |
 | 5 | "Concentrate exactly where they matter" overreach | `03_realworld.tex:155–160`; `01_intro.tex:71–73`; `06_conclusion.tex:26–28` | app-like 3/39 (7.7%) vs 1/80 (1.3%); Fisher two-sided **p=0.10**; OR 6.58, Wald [0.66,65.5] (spans 1) → `reviewer_analyses.json` `3_fisher_exact.{table,two_sided_p,odds_ratio_sample}` |
-| 6 | Soundness stated over graph paths, not event traces; no gate against false `safe` | `02_system.tex:94–144` (Static temporal verification; Soundness gated on certified extraction, `thm:soundness`); `04_results.tex:22–35`; `01_intro.tex:93–97`; `main.tex:48–52` | qualitative theorem over labeled event traces; gate returns `inconclusive`/`uncertified_extraction`, stamps `certified` key → code `src/agentproof/verify/temporal.py`. Gate yields on lossy graphs: mined 0/13950 certified → `monitor_pruning.json` |
+| 6 | Soundness stated over graph paths, not event traces; no gate against false `safe` | `02_system.tex:94–144` (Static temporal verification; Soundness gated on certified extraction, `thm:soundness`); `04_results.tex:22–35`; `01_intro.tex:93–97`; `main.tex:48–52` | qualitative theorem over labeled event traces; gate returns `inconclusive`/`uncertified_extraction`, stamps `certified` key → code `src/agentproof/verify/temporal.py`. Gate yields on lossy graphs: mined 0/**13,830** certified → `monitor_pruning_922.json` (self-repo excluded; the superseded `monitor_pruning.json` said 0/13950 on 930 workflows) |
 | 7 | Exclusive NodeKind/EdgeKind ontology mislabels multi-faceted nodes; PASSTHROUGH omitted | `02_system.tex:36–51` (`par:ontology`: orthogonal effect/capability sets + edge back_edge flag; full vocabulary in supplement); `02_system.tex:19` (PASSTHROUGH added to kind list) | qualitative → code `src/agentproof/graph/model.py` |
-| 8 | Monitor pruning was zero-value (all alphabet-level / claimed 93% on graphs pruning can't apply to) | `04_results.tex:18–84` (three paragraphs + Table `tab:pruning`); `01_intro.tex:96–97`; `main.tex:48–52`; `06_conclusion.tex:33–36` | curated 237/270 (87.8%) certified-sound, 14 `inconclusive`, 19 `may_violate` → `monitor_pruning_curated.json`; mined 0/13950 certified (all may-provenance) → `monitor_pruning.json`; incremental experiment alphabet 1 / node-reach 3 / product 10 / runtime 0, +9 over alphabet (+7 over reachability), 5 curated + 4 synthetic, 50 executions / 0 false prunes → `pruning_experiment.json` `{strategies,incremental,false_pruning}` |
+| 8 | Monitor pruning was zero-value (all alphabet-level / claimed 93% on graphs pruning can't apply to) | `04_results.tex:18–84` (three paragraphs + Table `tab:pruning`); `01_intro.tex:96–97`; `main.tex:48–52`; `06_conclusion.tex:33–36` | curated 237/270 (87.8%) certified-sound, 14 `inconclusive`, 19 `may_violate` → `monitor_pruning_curated.json`; mined 0/**13,830** certified (all may-provenance) → `monitor_pruning_922.json`; incremental experiment alphabet 1 / node-reach 3 / product 10 / runtime 0, +9 over alphabet (+7 over reachability), decomposing as 5 curated + 4 synthetic *gains* over 9 curated + 9 synthetic *pairs*, 50 executions / 0 false prunes → `pruning_experiment.json` `{strategies,incremental,false_pruning}` |
 | 9 | Fidelity numbers describe an uncorrected instrument | `03_realworld.tex:53–99` (Table `tab:realworld_fidelity` v2 primary + v1 ablation column; "Extraction fidelity is the bottleneck"); `main.tex:41–43`; `01_intro.tex:74–76,80–83`; `06_conclusion.tex:28–32` | v2 overall edge R **0.679** (v1 0.649), LangGraph edge R **0.682→0.819**, ADK 0.355; structural-flagged 314→239, exit flags 86→32 → `corrected_fidelity.json` `{fidelity_v1_asmined,fidelity_v2_corrected,flags_v1_asmined,flags_v2_corrected}` and `reviewer_analyses.json` `5_fidelity_v2_table` |
 | 10 | Flags treated as independent; single PPV point | `03_realworld.tex:101–121` (Flag precision); `01_intro.tex:84–85`; `06_conclusion.tex:19–21` | workflow-level PPV 2/114 (1.75%, [0.48,6.17], cluster [0.00,4.59]); confirmed flag PPV 2/186 (1.08%, [0.30,3.84]); root-cause dedup 186→161 (25 collapsed), 2/161 (1.24%); pessimistic 14/186 (7.53%, [4.54,12.24]), 14/161 (8.70%); identification range [1.08%,7.53%] → `reviewer_analyses.json` `4_flag_ppv.{workflow_level_ppv,root_cause_dedup,ppv_bounds}` |
 | 11 | "No analogous measurement exists"; missing related work + comparison | `05_related.tex:15–73` (Concurrent agent-policy systems; Empirical characterizations; comparison Table `tab:related`); `01_intro.tex:89–92` | cited counts ~1026 bugs / 9 root causes (`xue2025bugs`), 221 vulns / 14 types (`shen2025securitydebt`), 5399 programs (`wang2026agentflow`); also `ning2024agentable`, `wang2025agentspec`, `kamath2026agentc` → primary sources in `../references.bib` |
@@ -393,15 +396,20 @@ block; all match:
 
 ### 7.4 Residual notes (not papered over)
 
-1. **Mined-instance denominator drift (facts-block-endorsed, not fixed).**
-   `04_results.tex:41–42` reports **13,950** mined (workflow, policy) instances
-   (= 930 workflows × 15 policies, `monitor_pruning.json` `n_monitor_instances`),
-   while the corpus census reports **922** workflows (`03_realworld.tex:19`).
-   13950/15 = 930 ≠ 922: the pruning artifact still includes the 8 self-repo
-   graphs the census excludes. The facts block explicitly sanctions both
-   "476/13950 (3.4%)" and "922", so I left it as-is; flagging for the freeze
-   pass in case the pruning artifact should be regenerated post-exclusion (would
-   become 922×15 = 13,830).
+1. **Mined-instance denominator drift — RESOLVED.** Root cause identified and
+   fixed. `scripts/monitor_pruning.py` globbed *all* graphs under
+   `corpus/real_world/graphs/` without applying the 8-file
+   `NordicAgents__AgentProof__*` self-repo exclusion that `revision_analyses.py`
+   applies via `SELF_REPO_PREFIX`. That is why the artifact said 930 × 15 =
+   **13,950** while the census said **922**. Corrected artifacts are committed:
+   `corpus/real_world/monitor_pruning_922.json` (`n_workflows` 922,
+   `n_monitor_instances` **13,830** = 922 × 15, `_excluded_self_repo` 8) and
+   `corpus/real_world/risk_aware_gate_922.json` (`n_workflows` 922,
+   `naive_flag_pct` **91.1** vs the old 91.0 on 930, `risk_aware_flags` 0). Both
+   carry a `_provenance` string stating they supersede the 930-workflow runs in
+   `monitor_pruning.json` / `risk_aware_gate.json`. Cite the `_922` artifacts;
+   the unsuffixed files are retained only as the superseded pre-exclusion record.
+   This also settles R33 and R35 above.
 2. **`04_results.tex:29–31` phrasing.** "certifies 237 of 270 (87.8%)… declines
    14 as `inconclusive`, leaving the remaining 12.2% (19 that may fire)": the
    12.2% (= 33/270) is the complement of 87.8% and correctly spans the 14
@@ -413,3 +421,177 @@ block; all match:
    this is the as-mined v1 instrument (0.649), correct for that context and not
    in conflict with the v2-primary "0.68" used elsewhere (different instrument,
    explicitly the "AST fallback used for mining"). No fix needed.
+
+---
+
+## 8. Clean-room reproduction pass — 2026-07-20
+
+A reviewer flagged that this document itself carried stale claims. Every item in
+Sections 1–7 was re-verified against a committed artifact or a fresh run; the
+corrections are applied in place above. This section records findings that were
+**not** previously in the audit at all. Each was verified independently, not
+taken on report.
+
+### 8.1 Framework mix: the reported 400/359/113/50 is CORRECT (a proposed "fix" was wrong)
+
+This pass received a claim that the paper's framework mix was wrong and that the
+true split was LangGraph 400 / AutoGen **357** / CrewAI **115** / ADK 50. **That
+claim does not survive verification and was not applied.**
+
+Two sources disagree, on exactly **7** slugs:
+
+| source | LangGraph | AutoGen | CrewAI | ADK | total |
+|---|---|---|---|---|---|
+| the `framework` field inside each graph in `corpus/real_world/graphs/` | 400 | **359** | **113** | 50 | 922 |
+| `matched_fidelity.json` `drops.corpus_framework_distribution` | 400 | **357** | **115** | 50 | 922 |
+
+The second figure is the artifact of a bug, not the ground truth.
+`scripts/matched_fidelity.py:251` builds that distribution as
+`Counter(status.get(s, {}).get("framework") for s in corpus_v1)`, where `status`
+comes from `load_v2_status()` — i.e. it labels **v1** graphs using **v2**
+(`metadata_v2.json`) records. Because of the slug collision documented in §8.2,
+the v1 miner and the v2 re-miner resolve a colliding slug to *different files*
+(last-wins vs first-wins), so for 7 slugs the v2 record names a file in a
+different framework than the graph actually on disk.
+
+Worked example — `ed-donner__agents__agent`. `metadata.json` lists **6**
+candidate files for this one slug across three frameworks. `metadata_v2.json`
+(first-wins) picks `3_crewai/community_contributions/ngahunj/agent.py` →
+"crewai". But the graph actually on disk is unambiguously LangGraph: its
+`framework` field reads `langgraph`, its `entry_id` is `__start__`, its
+`exit_ids` are `["__end__"]`, and its nodes are the LangGraph sentinel topology
+`__start__, clarifier, planner, searcher, sufficiency, writer, evaluator,
+emailer, __end__`. The remaining six disagreeing slugs are
+`Narwhal-Lab__MagicSkills__model`, `Saimoguloju__AI-Agents__sample_agent`,
+`ed-donner__agents__main`, `feixiao__ai__chap06`, `feixiao__ai__chap07`,
+`martimfasantos__ai-agents-frameworks__00_hello_world` — every one a
+same-basename-across-framework-directories collision.
+
+Since the census counts the 922 **extracted graphs**, and each graph's
+`framework` field is written by the extractor from the file it actually parsed
+(`mine_github_gh.py:177–180`), the graph-field attribution is the correct one.
+
+**Consequences.**
+- The paper's LG 400 / AutoGen 359 / CrewAI 113 / ADK 50 stands. R3 unchanged.
+- `scripts/reviewer_analyses.py:57` `CORPUS_N = {"langgraph": 400, "crewai": 113,
+  "autogen": 359, "adk": 50}` is **already correct**; it was NOT changed, and the
+  post-stratification weights it feeds are sound.
+- The real defect is in `matched_fidelity.py:251`, which should key off the v1
+  graph's own `framework` field rather than the v2 status record. This affects
+  only the descriptive `corpus_framework_distribution` block; the fidelity
+  numbers bucket on the *ground-truth* graph's framework
+  (`matched_fidelity.py:270–275`) and are unaffected. **Open.**
+
+### 8.2 Slug-collision keying defect (documented; mitigation committed)
+
+The original mining key was `<repo-with-slashes-escaped>__<file basename>`
+(`mine_github_gh.py`). It is **not injective**: a repository holding both
+`AutoGen/sample_agent.py` and `LangGraph/sample_agent.py` maps both to
+`<repo>__sample_agent`. Because the miner wrote `out_dir / f"{slug}.json"`,
+the later file **silently overwrote** the earlier one.
+
+Measured impact (`matched_fidelity.json` `provenance_collisions`):
+
+- **76** colliding legacy slugs in the mined corpus; roughly **150** extracted
+  records were silently discarded by overwrite (≈1,072 extraction successes
+  collapsing to the 922 graphs on disk).
+- **51** colliding slugs fall inside the matched v1∩v2 corpus.
+- **9** colliding slugs fall inside the 115-workflow matched fidelity set. For
+  those, `remine_pinned.load_records()` resolves first-wins while the miner
+  resolved last-wins, so **v1 and v2 scored two different programs** — such a
+  row measures program difference, not instrument difference.
+
+**Mitigation:** `scripts/slugkey.py` provides `stable_key(repo, file_path)`,
+injective on the full path (escaped, SHA-1-suffixed whenever escaping or
+truncation could lose information), plus `legacy_slug()` to keep existing
+on-disk artifacts addressable, `ambiguous_slugs()` to enumerate the damage, and
+`assert_unique()` as a defensive guard.
+
+**Reporting rule:** quote the **collision-free** fidelity set
+(`provenance_collisions.collision_free_fidelity`, n=**106** after removing the 9
+colliding rows), not the n=115 matched set, whenever a v1↔v2 delta is claimed:
+
+| figure | matched n=115 | collision-free n=106 |
+|---|---|---|
+| overall edge recall v1 → v2 | 0.649 → 0.679 | **0.652 → 0.709** |
+| LangGraph edge recall v1 → v2 | 0.682 → 0.819 | 0.678 → (see artifact) |
+| ADK edge recall | 0.355 | **0.343** |
+
+The collision-free figures are the defensible ones; the n=115 set inflates
+nothing but does mix in 9 rows that compare different programs.
+
+### 8.3 Finite-population correction removed from `reviewer_analyses.py` (SRSWOR unsupported)
+
+`scripts/reviewer_analyses.py:148` applied
+`fpc = max(0.0, 1 - n / CORPUS_N[f])` inside an analytic stratified-survey
+variance `Var(p̂) = Σ_f W_f² (1 − n_f/N_f) p_f(1−p_f)/n_f`. That estimator
+presupposes **simple random sampling without replacement within each stratum**,
+which this design does not provide (see §8.4: the sample is a hard-coded,
+unseeded list). Under an unknown selection mechanism the FPC shrinks the
+variance on an unsupportable premise.
+
+**Action:** `stratified_survey_ci()` was deleted; the emitted key
+`post_stratified_survey_ci` is replaced by
+`post_stratified_survey_ci_withdrawn` carrying the reason, and the
+**repository-clustered bootstrap** (B=10,000, seed 20260714, which assumes no
+SRSWOR and resamples repositories) is quoted in its place.
+
+Re-run of `python scripts/reviewer_analyses.py`. **Point estimates are
+unchanged**; only the interval changes, and in every case the withdrawn interval
+was *narrower* — i.e. the FPC had been anticonservative:
+
+| estimand | point | withdrawn survey CI (FPC) | now quoted: repo-clustered bootstrap |
+|---|---|---|---|
+| structural | 0.23% | [0.00, **0.54**]% | [0.00, **0.80**]% |
+| policy | 1.92% | [0.00, **4.20**]% | [0.00, **4.85**]% |
+| composite (any) | 2.15% | [0.00, **4.45**]% | [**0.20**, **5.12**]% |
+
+The headline post-stratified composite **2.15%** is unaffected; its interval
+widens to [0.20, 5.12]%. Anywhere the paper quotes a post-stratified interval it
+must now quote the bootstrap column.
+
+### 8.4 Validation sample has no seed and no selection rule (known limitation)
+
+Checklist item 4.5 claims "Sampling uses fixed seeds (`random.seed(42)`,
+`seed(7)`)". That is true of other sampling in the repo but **not** of the
+119-workflow validation sample. The slugs sent to the LLM reconstruction and
+triage passes are **hard-coded literal lists** inside `scripts/wf_run.js` and
+`scripts/wf_run_v2.js`; grepping those files for `seed`, `random`, or
+`Math.random` returns **nothing**. No script draws the sample, no seed is
+recorded, and no written inclusion rule exists.
+
+**Therefore the sample is not demonstrably random**, and every inference that
+generalizes from the 119 to the 922 rests on an unverifiable assumption. This is
+the direct justification for §8.3. Concretely:
+
+- Post-stratification by framework corrects the framework mix but cannot correct
+  selection on any *unobserved* correlate of defectiveness.
+- No design-based interval (FPC or otherwise) is licensed; the clustered
+  bootstrap is a dependence-structure correction, not a selection-bias
+  correction, and should be read as such.
+- Stated as a limitation in the threats-to-validity paragraph, not repaired.
+  Repairing it requires re-drawing the sample from a seeded, documented frame.
+
+### 8.5 Unbacked "adversarial no-false-safe search (~21,000 graph×policy pairs)"
+
+`reproducibility_checklist.md:27` asserted an adversarial no-false-safe search
+over ~21,000 graph×policy pairs. A repository-wide search for `21,000`, `21000`,
+`no-false-safe`, and `no_false_safe` finds the string **only in the checklist
+sentence itself**. No script generates it and no artifact records it. The
+nearest real thing is
+`tests/cegar/test_abstraction_soundness.py::test_no_false_safe_over_all_resolutions`,
+which is a bounded soundness test, not a 21,000-pair search. The claim was
+**deleted** rather than softened, since nothing backs any pair count.
+
+The genuinely backed no-false-prune evidence is `pruning_experiment.json`
+`false_pruning`: 10 product-pruned pairs checked over 50 concrete executions,
+0 false prunes.
+
+### 8.6 Scalability constant is hardware-dependent and had drifted twice
+
+See C4. Three values were in circulation for `structural_check_ms` at 5,000
+nodes: 345.2 ms (audit text), 239.838 ms (committed artifact), and 7–8 ms
+(fresh run). The artifact was regenerated (**7.1905 ms**; three consecutive runs
+gave 8.15 / 7.19 / 8.15 ms on 5,002 nodes / 10,713 edges). Absolute timings must
+be quoted with the machine named; the portable claims are linearity across the
+50→5,000 sweep and "sub-second", which all three values satisfy.

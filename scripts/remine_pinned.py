@@ -43,6 +43,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 from ast_extractor import extract_graph_from_source  # noqa: E402
+from slugkey import ambiguous_slugs, stable_key  # noqa: E402
 
 REAL_WORLD = ROOT / "corpus" / "real_world"
 GRAPHS_V1 = REAL_WORLD / "graphs"
@@ -65,21 +66,55 @@ def run_git(args: list[str], cwd: Path | None = None, timeout: int = 180) -> sub
 
 
 def load_records() -> list[dict]:
-    """Provenance records for every v1 graph on disk (slug-keyed, deduplicated)."""
+    """Provenance records for every v1 graph on disk.
+
+    The legacy slug (repo + file BASENAME) is not unique: 76 slugs in the mined
+    corpus are claimed by more than one file. This function used to resolve
+    such a slug FIRST-WINS, silently. That is unsound, because the v1 miner
+    resolved the same slug LAST-WINS (it wrote ``<slug>.json`` per file, so the
+    last file with that basename overwrote the earlier ones) and did not record
+    which file survived. A first-wins re-mine can therefore extract a totally
+    different program and present it as the same workflow.
+
+    Ambiguous slugs are now marked ``ambiguous_slug`` and NOT re-mined, so they
+    can never contaminate a v1-vs-v2 comparison. Every record also carries a
+    collision-free ``key`` (repo + full path) for future runs.
+    """
     on_disk = {p.stem for p in GRAPHS_V1.glob("*.json")}
-    records: dict[str, dict] = {}
+    all_recs: list[dict] = []
     for name in ("metadata.json", "metadata.lg_crew.json"):
         meta = json.loads((REAL_WORLD / name).read_text())
-        for rec in meta["records"]:
-            slug = rec.get("slug", "")
-            if slug in on_disk and slug not in records and rec.get("sha"):
-                records[slug] = {
-                    "slug": slug,
-                    "repo": rec["repo"],
-                    "sha": rec["sha"],
-                    "file_path": rec["file_path"],
-                    "framework": rec["framework"],
-                }
+        all_recs.extend(r for r in meta["records"]
+                        if r.get("slug") in on_disk and r.get("sha"))
+    ambiguous = ambiguous_slugs(all_recs)
+
+    records: dict[str, dict] = {}
+    for rec in all_recs:
+        slug = rec["slug"]
+        if slug in records:
+            continue
+        entry = {
+            "slug": slug,
+            "key": stable_key(rec["repo"], rec["file_path"]),
+            "repo": rec["repo"],
+            "sha": rec["sha"],
+            "file_path": rec["file_path"],
+            "framework": rec["framework"],
+        }
+        if slug in ambiguous:
+            # Unusable: v1's file for this slug was not recorded and cannot be
+            # recovered, so no honest pairing exists.
+            entry["ambiguous_candidates"] = [
+                {"repo": c["repo"], "sha": c["sha"], "file_path": c["file_path"],
+                 "framework": c.get("framework")}
+                for c in ambiguous[slug]
+            ]
+            entry["status"] = "ambiguous_slug"
+        records[slug] = entry
+
+    if ambiguous:
+        log(f"WARNING: {len(ambiguous)} on-disk slugs have ambiguous provenance "
+            f"(same repo+basename, different files); marked ambiguous_slug and NOT re-mined.")
     missing = sorted(on_disk - set(records))
     if missing:
         log(f"WARNING: {len(missing)} on-disk graphs have no provenance record: {missing[:5]}...")
@@ -158,6 +193,10 @@ def main() -> int:
     SOURCES.mkdir(parents=True, exist_ok=True)
 
     records = load_records()
+    # Ambiguous-slug records are carried through to the manifest with their
+    # status but are never fetched or extracted.
+    ambiguous_records = [r for r in records if r.get("status") == "ambiguous_slug"]
+    records = [r for r in records if r.get("status") != "ambiguous_slug"]
     groups: dict[tuple[str, str], list[dict]] = {}
     for r in records:
         groups.setdefault((r["repo"], r["sha"]), []).append(r)
@@ -197,6 +236,7 @@ def main() -> int:
             if done_n % 10 == 0 or done_n == len(pending):
                 log(f"  progress: {done_n}/{len(pending)} groups")
 
+    results.extend({**r, "commit_date": ""} for r in ambiguous_records)
     results.sort(key=lambda r: r["slug"])
     by_status: dict[str, int] = {}
     for r in results:

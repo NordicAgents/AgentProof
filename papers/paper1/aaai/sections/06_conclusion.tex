@@ -2,53 +2,51 @@
 \label{sec:conclusion}
 
 Static checks on agent workflows are only as credible as the behavioral model
-they run on, and recovering that model from public agent code---not the check
-algorithms---is the binding constraint. On a cross-framework corpus of $922$
-extracted file-level graphs from $252$ public GitHub repositories, extraction
-error dominates check error and can reverse both apparent precision and
-apparent prevalence; the DSL and monitor-pruning layer are supporting
-infrastructure for that finding, not the headline.
+they run on---but repairing that model is only half the problem. On $922$
+extracted file-level graphs from $252$ public GitHub repositories,
+non-actionable findings divide roughly evenly between extraction error
+($42.5\%$) and policy misspecification ($50.0\%$), and swapping in near-oracle
+graphs removes only $62$ of $184$ flags, leaving ${\ge}120$ non-actionable
+findings standing. A perfect extractor would not make these tools usable. The
+causes localize cleanly---extraction explains $98.6\%$ of non-actionable
+structural flags, policy specification $83.0\%$ of non-actionable human-gate
+flags.
 
-The estimates are textured, not a null. Read as distinct estimands rather than
-a pooled rate, LLM-assisted exploratory estimates put confirmed structural
-defects at $0.84\%$ and human-gate policy violations at $2.5\%$ of the
-validation sample (Table~\ref{tab:estimands}), with the composite
-post-stratifying to $2.2\%$; three of four observed cases occur in
-application-like files, too few to establish a stratum difference (Fisher exact
-$p{=}0.10$). Yet flag-level precision stays low (workflow-level PPV $1.8\%$),
-none of the structural flags on extracted graphs was a confirmed defect, and
-the diagnosis holds across every cut---edge recall $0.68$ on real code, $0.36$
-on implicit-topology ADK. The static machinery still keeps a defect-independent
-role: under certified event-trace containment the graph\,$\times$\,DFA product
-soundly prunes $237$ of $270$ curated monitor instances ($88\%$;
-Table~\ref{tab:pruning}), a monitor-selection layer in a static-plus-runtime
-safety stack rather than a scale result.
+The estimates are textured, not a null. Structural defects sit at $0.84\%$ of
+the validation sample, while one pre-registered policy applied uniformly puts
+human-gate violations at $10.1\%$---fourfold above an ad-hoc two-check procedure,
+with three violations outside both flag universes
+(Table~\ref{tab:estimands}). That audit also found every workflow both checks
+cleared was cleared by a \emph{placebo} gate: a node typed \textsc{human} whose
+body cannot block. Reference graphs assign kinds from naming, not behavior, so
+they overstate oversight and bias the estimand downward. Flag-level precision
+stays low (workflow-level PPV $1.8\%$), no structural flag on an extracted graph
+was a confirmed defect, and fidelity is poor---edge recall $0.71$ overall, $0.34$
+on implicit-topology ADK. The static machinery keeps a defect-independent role:
+on authored graphs whose event coverage the caller asserts, the
+graph\,$\times$\,DFA product prunes $237$ of $270$ curated monitor instances
+($88\%$)---sound relative to that abstraction, not a proof it is event-complete.
 
 \paragraph{Limitations.}
-The population is public GitHub, not production systems; two thirds of it is
-tutorial-grade, which we census and stratify but cannot fully correct. The unit
-of analysis is one extracted file-level graph, not an executable workflow root;
-a root-level unit is future work. Reference graphs and triage labels are
-LLM reconstructions with adversarial verification, not human annotations;
-confidence-stratified sensitivity checks and released per-label justifications
-mitigate but do not eliminate this, and a two-human independent validation is
-staged (protocol and samples prepared) as the immediate next step. Prevalence
-CIs are wide at $n{=}119$; the estimates are best read as ``rare, but real'',
-not as precise rates. We read these results as a redirection---toward
-higher-fidelity extraction and per-workflow policy instantiation.
+The population is public GitHub, not production systems, and two thirds is
+tutorial-grade; the unit is an extracted file-level graph, not an executable
+workflow root. Reference graphs and triage labels are LLM reconstructions with
+adversarial verification, not human annotations; sensitivity checks and released
+per-label justifications mitigate but do not eliminate this, and a two-human
+independent validation is the immediate next step. CIs are wide at $n{=}119$. We
+read these results as a redirection---toward higher-fidelity extraction
+\emph{and} per-workflow policy instantiation, neither alone.
 
 \paragraph{Artifact.}
-An anonymized artifact is submitted with this paper, not merely promised: the
-tool, both corpora, the mining and validation pipeline, the LLM-reconstructed
-reference graphs, triage labels with per-label justifications, and all
-evaluation scripts, packaged for double-blind review under the MIT license.
+An anonymized artifact is submitted, not promised: the tool, both corpora, the
+mining and validation pipeline, reference graphs, justified triage labels, and
+all evaluation scripts (MIT license).
 
 \section*{Ethical Statement}
-The study mines only \emph{public} GitHub repositories, records exact provenance
-(repository at commit SHA plus file path), and redistributes only derived graph
+We mine only \emph{public} GitHub repositories, record exact provenance
+(repository at commit SHA plus file path), and redistribute only derived graph
 abstractions, never third-party source; no personal data is processed. Confirmed
-defects are reported without identifying maintainers, and we disclose them to
-the affected repositories before publication. The intended impact is
-defensive---the honest finding that such defects are rare in public code should
-calibrate, not inflate, claims about static verification's role in agent
-safety.
+defects---$12$ of $119$ under the re-audit, not $3$---are disclosed to the
+affected repositories before publication, without naming maintainers. Our
+findings should calibrate rather than inflate claims about static verification
+in agent safety.

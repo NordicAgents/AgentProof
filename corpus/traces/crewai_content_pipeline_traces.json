@@ -59,7 +59,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "web_search",
+        "tool_name": "scraper",
         "tags": [
           "tool"
         ]
@@ -155,7 +155,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "web_search",
+        "tool_name": "scraper",
         "tags": [
           "tool"
         ]
@@ -251,7 +251,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "web_search",
+        "tool_name": "scraper",
         "tags": [
           "tool"
         ]
@@ -347,7 +347,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "web_search",
+        "tool_name": "scraper",
         "tags": [
           "tool"
         ]
@@ -443,7 +443,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "web_search",
+        "tool_name": "scraper",
         "tags": [
           "tool"
         ]

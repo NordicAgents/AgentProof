@@ -32,6 +32,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 from ast_extractor import extract_graph_from_source  # noqa: E402
 from scrape_workflows import find_workflow_files  # noqa: E402
+from slugkey import legacy_slug, stable_key  # noqa: E402
 
 # (framework, code-search query). Kept aligned with scrape_workflows.SEARCH_QUERIES.
 SEARCH_QUERIES: list[tuple[str, str]] = [
@@ -167,7 +168,10 @@ def extract_all(repos: dict[str, dict], out_dir: Path, sources_dir: Path) -> dic
         for wf_file, framework in wf_files:
             n_files_scanned += 1
             rel = str(wf_file.relative_to(repo_path))
-            slug = f"{repo_name.replace('/', '__')}__{wf_file.stem}"
+            # Key on repo + FULL path. The old scheme (repo + basename) was not
+            # unique, and since graphs are written to <slug>.json a second file
+            # with the same basename silently overwrote the first.
+            slug = stable_key(repo_name, rel)
             graph = None
             try:
                 graph = extract_graph_from_source(wf_file, framework)
@@ -203,6 +207,7 @@ def extract_all(repos: dict[str, dict], out_dir: Path, sources_dir: Path) -> dic
                 "sha": info["sha"], "stars": info["stars"], "url":
                     f"https://github.com/{repo_name}/blob/{info['sha']}/{rel}",
                 "status": "extracted", "slug": slug,
+                "legacy_slug": legacy_slug(repo_name, rel),
                 "n_nodes": len(graph["nodes"]), "n_real_nodes": len(real_nodes),
                 "n_edges": len(graph["edges"]),
                 "source_snapshot": str(src_snap),
@@ -253,7 +258,7 @@ def stream_mine(candidates: list[dict], clone_dir: Path, out_dir: Path,
         for wf_file, fw in find_workflow_files(dest):
             n_scanned += 1
             rel = str(wf_file.relative_to(dest))
-            slug = f"{safe}__{wf_file.stem}"
+            slug = stable_key(repo_name, rel)  # collision-free; see slugkey.py
             try:
                 graph = extract_graph_from_source(wf_file, fw)
             except Exception as e:  # noqa: BLE001
@@ -276,6 +281,7 @@ def stream_mine(candidates: list[dict], clone_dir: Path, out_dir: Path,
                             "sha": sha, "stars": repos_meta[repo_name]["stars"],
                             "url": f"https://github.com/{repo_name}/blob/{sha}/{rel}",
                             "status": "extracted", "slug": slug,
+                            "legacy_slug": legacy_slug(repo_name, rel),
                             "n_nodes": len(graph["nodes"]), "n_real_nodes": len(real),
                             "n_edges": len(graph["edges"]),
                             "source_snapshot": str(sources_dir / f"{slug}.py")})

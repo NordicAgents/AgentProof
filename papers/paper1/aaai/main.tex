@@ -23,7 +23,7 @@
 \graphicspath{{../figures/}{../generated/}}
 
 % Title (Title Case, per AAAI rules).
-\title{Model Extraction Dominates Static Analysis of Agent Workflows: A Cross-Framework Measurement Study}
+\title{Two Failure Modes, Not One: Extraction Error and Policy Misspecification in Static Analysis of Agent Workflows}
 \author{Anonymous Submission}
 \affiliations{}
 
@@ -31,26 +31,32 @@
 \maketitle
 
 \begin{abstract}
-Static analysis of agent workflows is only as credible as the behavioral model
-an extractor recovers from source code: on public agent code, extraction error
-dominates check error and can reverse both apparent precision and apparent
-defect prevalence. We make this quantitative with a cross-framework measurement
-study spanning LangGraph, CrewAI, AutoGen, and Google ADK, mining 922 extracted
-file-level graphs from public GitHub and validating a 119-graph sample against
+Static analysis of agent workflows raises overwhelmingly non-actionable
+findings, and the field has attributed this to one cause---a lossy extractor.
+We show there are two, and that fixing the extractor addresses the smaller one.
+Mining 922 extracted file-level graphs from public GitHub across LangGraph,
+CrewAI, AutoGen, and Google ADK, we validate a 119-graph sample against
 LLM-reconstructed reference graphs (LLM-assisted exploratory labels, not
-human-validated ground truth). Measuring a corrected extraction instrument, we
-find fidelity is the binding constraint: fixing a single conditional-edge
-extractor bug lifts LangGraph edge recall from 0.68 to 0.82 while leaving the
-check algorithms untouched. We separate three estimands that a pooled rate
-conflates: structural-defect prevalence (1 of 119), human-gate policy-violation
-prevalence (3 of 119), and a heterogeneous composite (4 of 119, reported only
-as secondary), which post-stratifies to 2.15\% under the corpus's framework
-mix. We then give the static machinery two defect-independent jobs: a
-provenance-gated certification that returns \texttt{inconclusive} rather than a
-false \texttt{safe} on lossy graphs, and a path-sensitive graph\,$\times$\,DFA
-product that soundly prunes runtime monitors, yielding a small but nonzero gain
-over alphabet-only pruning. The lesson is methodological: report extraction
-fidelity alongside every static-analysis claim about agent workflows.
+human-validated ground truth). Triaging 186 flags attributes 42.5\% to
+extraction artifacts but 50.0\% to policy misspecification---checks firing
+correctly on faithful graphs against workflows the policy does not apply to. A
+symmetric ablation is decisive: re-running the identical checks on near-oracle
+reference graphs removes only 62 of 184 flags, leaving ${\ge}120$ non-actionable
+findings standing on 119 workflows. The causes separate cleanly by check family:
+extraction
+explains 98.6\% of non-actionable structural flags, policy specification
+83.0\% of non-actionable human-gate flags, where a risk-aware policy moves firings from
+113 to 0 without touching a graph. One pre-registered policy applied uniformly,
+in place of an ad-hoc two-check procedure, revises human-gate violations
+fourfold upward (3 to 12 of 119), three outside both original flag universes,
+and reveals that every workflow the checks cleared was cleared by a
+\emph{placebo} gate---a node typed \textsc{human} whose body cannot block. We
+also give the static machinery two defect-independent jobs: provenance-gated
+certification returning \texttt{inconclusive} rather than a false \texttt{safe}
+on lossy graphs, and a path-sensitive graph\,$\times$\,DFA product that prunes
+runtime monitors soundly relative to an authored abstraction. The lesson is
+methodological: report extraction fidelity alongside every static-analysis claim
+about agent workflows.
 \end{abstract}
 
 \input{sections/01_intro}

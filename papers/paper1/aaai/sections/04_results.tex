@@ -3,83 +3,51 @@
 \label{sec:pruning}
 
 \paragraph{Controlled detection test.}
-A curated corpus of 18 workflows spanning all four frameworks, seeded with known
-anti-patterns, confirms the checks fire when defects are genuinely present:
-Agentproof detects every injected structural defect and, with a risk-aware
-sensitive-tool set, flags 8 workflows whose sensitive path (e.g.
-\texttt{account\_create}, \texttt{publish}, \texttt{auto\_remediate}) is reachable
-without a human gate, versus 10 for the blunt human-presence check---declining to
-flag two workflows that lack a human node but perform no sensitive action. This
-corpus is a controlled test that the algorithms work, not evidence of prevalence.
-Verification is sub-second even for synthetic graphs of 5{,}000 nodes (far larger
-than any observed workflow); details, per-framework extractor accuracy on stubs,
-and a Promela/SMV modeling-effort comparison are in the supplementary material.
+A curated corpus of 18 workflows across all four frameworks, seeded with known
+anti-patterns, confirms the checks fire when defects are present: Agentproof
+detects every injected structural defect and, with a risk-aware sensitive-tool
+set, flags 8 workflows whose sensitive path is reachable without a human gate,
+versus 10 for the blunt check---declining to flag two that lack a human node but
+perform no sensitive action. This is a controlled test that the algorithms work,
+not evidence of prevalence. Verification is sub-second on synthetic graphs of
+5{,}000 nodes; the supplement compares Promela/SMV modeling effort.
 
-\paragraph{Static monitor selection is an optimization, not a headline.}
-The graph\,$\times$\,DFA product gives the static machinery a job that does not
-depend on defects existing: deciding which runtime monitors to deploy. Its value
-is \emph{soundness}, not scale, and we treat the pruning layer and its policy DSL
-as supporting infrastructure for the certification gate of
-Section~\ref{sec:system}, which returns \texttt{safe} for a monitor only when the
-traversed graph region is certified trace-conservative. A policy whose product is
-safe---no resolution of the workflow's declared tool bindings reaches a bad prefix
-or a termination point with a pending obligation---can never fire at runtime, so
-its monitor need not be deployed; violations (\texttt{may\_violate}) are never
-suppressed. On the curated corpus (exact-provenance authored graphs) the gate
+\paragraph{Static monitor selection.}
+The graph\,$\times$\,DFA product gives the static machinery a job independent of
+whether defects exist: deciding which runtime monitors to deploy. Its value is
+\emph{soundness}, not scale, and it supports the certification gate of
+Section~\ref{sec:system}, which returns \texttt{safe} only when the traversed
+region passes the provenance screen or the caller asserts an authored
+abstraction. Every pruning number is therefore sound \emph{relative to that
+abstraction}: we assume, and do not prove, that a curated workflow's nodes emit
+no events outside their declared bindings. A policy whose product is safe can
+never fire at runtime, so its monitor need not be deployed;
+\texttt{may\_violate} is never suppressed. On the curated corpus the gate
 certifies 237 of 270 monitor instances (87.8\%) as provably inert and declines 14
-(all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving the
-remaining 12.2\% (19 that may fire) to runtime enforcement. Returning
-\texttt{inconclusive} on a workflow whose cycles could postpone an obligation
-forever is an engineering scope choice, not undecidability: universal satisfaction
-over finite terminating traces is decidable, and we simply do not bound the
-divergent case.
+(all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving 19 to
+runtime enforcement.
 
 \paragraph{Descriptive vs.\ sound pruning on mined code.}
-This certified rate does not survive contact with lossy extraction, and stating so
-removes a latent contradiction. What an earlier draft reported as ${\sim}93\%$
-``pruning'' on mined graphs is really pure \emph{alphabet-inertness}: all 13{,}950
-mined (workflow, policy) instances are alphabet-inert (100\%) because no mined
-workflow invokes any of the 15 policies' tools---a descriptive property of a
-mismatched vocabulary, not a sound prune. On a may-provenance graph a missing edge
-could hide exactly the tool that makes a live monitor look inert. The sound gate
-therefore certifies \emph{none} of the 13{,}950 mined instances---every mined
-graph carries only \texttt{may}-provenance nodes and edges, so the gate refuses
-them all as uncertified extraction---reconciling this section with the paper's
-own claim that pruning cannot soundly apply to lossy graphs.
+This certified rate does not survive contact with lossy extraction. A
+${\sim}93\%$ ``pruning'' rate is available on the mined graphs, but it is pure
+\emph{alphabet-inertness}: all 13{,}830 mined (workflow, policy) instances are
+alphabet-inert because no mined workflow invokes any of the 15 policies'
+tools---a descriptive property of a mismatched vocabulary, not a sound prune. On
+a may-provenance graph a missing edge could hide exactly the tool that makes a
+live monitor look inert, so the sound gate certifies \emph{none} of the 13{,}830,
+refusing them all as uncertified extraction.
 
 \paragraph{Does path-sensitivity buy anything?}
 Alphabet-inertness needs no product; the product earns its keep only when a
-policy's atoms actually occur and inertness turns on \emph{which} paths reach them.
-We built 18 (workflow, policy) pairs of exactly this kind and compared four
-selection strategies (Table~\ref{tab:pruning}). A runtime-only strategy---prune a
-monitor if no observed execution triggers it---certifies 0, since one unobserved
-path forbids the claim. Alphabet-only prunes 1, node-reachability 3, and the
-path-sensitive product 10: 9 more inert monitors than the symbol-set check and 7
-more than node reachability, with \emph{no} false prunes across 50 concrete
-executions. We are deliberately conservative about what this shows. Five of the 9
-incremental cases are linear curated response-obligation pipelines in which the
-consequent trivially dominates every path; the genuine evidence of path-sensitivity
-on branching and looping topologies rests on the 4 purpose-built \emph{synthetic}
-fixtures (labeled synthetic, not sampled)---including a declared-but-unreachable
-forbidden tool and an obligation that is bounded across every branch. The
-contribution is thus a sound, cheap optimization with a small but real
-path-sensitive gain, not a scale result.
+policy's atoms occur and inertness turns on \emph{which} paths reach them. On 18
+(workflow, policy) pairs of that kind, a runtime-only strategy certifies 0, since
+one unobserved path forbids the claim; alphabet-only prunes 1, node-reachability
+3, and the path-sensitive product 10---with no false prunes across 50 concrete
+executions. We are deliberately conservative: five of the 9 incremental cases are
+linear response-obligation pipelines in which the consequent trivially dominates
+every path, and the evidence on branching and looping topologies rests on 4
+purpose-built \emph{synthetic} fixtures (labeled synthetic, not sampled). Fifty
+executions cannot establish the absence of false prunes; this is a mechanism
+demonstration and a cheap optimization, not real-world evidence of scale.
 
-\begin{table}[t]
-\centering\small
-\caption{Monitor pruning on 18 (workflow, policy) pairs whose policy atoms occur in
-the workflow. The path-sensitive product certifies 9 more inert monitors than a
-symbol-set check and 7 more than node reachability, with no false prunes across 50
-concrete executions.}
-\label{tab:pruning}
-\begin{tabular}{@{}lrr@{}}
-\toprule
-\textbf{Strategy} & \textbf{Pruned (/18)} & \textbf{$\Delta$ vs.\ alphabet} \\
-\midrule
-Runtime-only (execution witness) & 0  & --- \\
-Alphabet-only (symbol set)       & 1  & --- \\
-Node-reachability                & 3  & $+2$ \\
-Path-sensitive product           & 10 & $+9$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+% Pruning table moved to the supplement (page limit); counts stated inline above.

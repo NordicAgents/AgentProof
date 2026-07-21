@@ -1,0 +1,303 @@
+{
+  "_meta": {
+    "script": "scripts/supplement_cis.py",
+    "set": "matched, collision-free (n=106)",
+    "inputs": [
+      "matched_fidelity.json",
+      "validated_results.json"
+    ],
+    "bootstrap_B": 10000,
+    "seed": 20260712,
+    "clustering": "repository (owner__repo prefix of the slug)"
+  },
+  "v1:overall": {
+    "n": 106,
+    "n_repos": 78,
+    "node_precision": [
+      0.914,
+      0.866,
+      0.956
+    ],
+    "node_recall": [
+      0.862,
+      0.804,
+      0.913
+    ],
+    "edge_precision": [
+      0.814,
+      0.72,
+      0.897
+    ],
+    "edge_recall": [
+      0.652,
+      0.561,
+      0.739
+    ],
+    "kind_accuracy": [
+      0.82,
+      0.773,
+      0.866
+    ]
+  },
+  "v1:langgraph": {
+    "n": 38,
+    "n_repos": 29,
+    "node_precision": [
+      0.967,
+      0.903,
+      1.0
+    ],
+    "node_recall": [
+      0.912,
+      0.823,
+      0.976
+    ],
+    "edge_precision": [
+      0.954,
+      0.865,
+      1.0
+    ],
+    "edge_recall": [
+      0.678,
+      0.549,
+      0.791
+    ],
+    "kind_accuracy": [
+      0.659,
+      0.59,
+      0.73
+    ]
+  },
+  "v1:crewai": {
+    "n": 20,
+    "n_repos": 17,
+    "node_precision": [
+      0.867,
+      0.76,
+      0.972
+    ],
+    "node_recall": [
+      0.867,
+      0.76,
+      0.972
+    ],
+    "edge_precision": [
+      0.7,
+      0.44,
+      0.944
+    ],
+    "edge_recall": [
+      0.692,
+      0.435,
+      0.939
+    ],
+    "kind_accuracy": [
+      0.929,
+      0.85,
+      1.0
+    ]
+  },
+  "v1:autogen": {
+    "n": 30,
+    "n_repos": 19,
+    "node_precision": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "node_recall": [
+      0.955,
+      0.892,
+      1.0
+    ],
+    "edge_precision": [
+      0.966,
+      0.917,
+      1.0
+    ],
+    "edge_recall": [
+      0.778,
+      0.678,
+      0.872
+    ],
+    "kind_accuracy": [
+      0.89,
+      0.832,
+      0.945
+    ]
+  },
+  "v1:adk": {
+    "n": 18,
+    "n_repos": 13,
+    "node_precision": [
+      0.713,
+      0.546,
+      0.863
+    ],
+    "node_recall": [
+      0.595,
+      0.4,
+      0.782
+    ],
+    "edge_precision": [
+      0.394,
+      0.108,
+      0.678
+    ],
+    "edge_recall": [
+      0.343,
+      0.067,
+      0.636
+    ],
+    "kind_accuracy": [
+      0.92,
+      0.854,
+      0.979
+    ]
+  },
+  "v2:overall": {
+    "n": 106,
+    "n_repos": 78,
+    "node_precision": [
+      0.914,
+      0.866,
+      0.956
+    ],
+    "node_recall": [
+      0.868,
+      0.81,
+      0.92
+    ],
+    "edge_precision": [
+      0.814,
+      0.72,
+      0.897
+    ],
+    "edge_recall": [
+      0.709,
+      0.613,
+      0.798
+    ],
+    "kind_accuracy": [
+      0.824,
+      0.778,
+      0.868
+    ]
+  },
+  "v2:langgraph": {
+    "n": 38,
+    "n_repos": 29,
+    "node_precision": [
+      0.967,
+      0.903,
+      1.0
+    ],
+    "node_recall": [
+      0.93,
+      0.841,
+      0.992
+    ],
+    "edge_precision": [
+      0.954,
+      0.865,
+      1.0
+    ],
+    "edge_recall": [
+      0.836,
+      0.695,
+      0.943
+    ],
+    "kind_accuracy": [
+      0.67,
+      0.606,
+      0.738
+    ]
+  },
+  "v2:crewai": {
+    "n": 20,
+    "n_repos": 17,
+    "node_precision": [
+      0.867,
+      0.76,
+      0.972
+    ],
+    "node_recall": [
+      0.867,
+      0.76,
+      0.972
+    ],
+    "edge_precision": [
+      0.7,
+      0.44,
+      0.944
+    ],
+    "edge_recall": [
+      0.692,
+      0.435,
+      0.939
+    ],
+    "kind_accuracy": [
+      0.929,
+      0.85,
+      1.0
+    ]
+  },
+  "v2:autogen": {
+    "n": 30,
+    "n_repos": 19,
+    "node_precision": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "node_recall": [
+      0.955,
+      0.892,
+      1.0
+    ],
+    "edge_precision": [
+      0.966,
+      0.917,
+      1.0
+    ],
+    "edge_recall": [
+      0.778,
+      0.678,
+      0.872
+    ],
+    "kind_accuracy": [
+      0.89,
+      0.832,
+      0.945
+    ]
+  },
+  "v2:adk": {
+    "n": 18,
+    "n_repos": 13,
+    "node_precision": [
+      0.713,
+      0.546,
+      0.863
+    ],
+    "node_recall": [
+      0.595,
+      0.4,
+      0.782
+    ],
+    "edge_precision": [
+      0.394,
+      0.108,
+      0.678
+    ],
+    "edge_recall": [
+      0.343,
+      0.067,
+      0.636
+    ],
+    "kind_accuracy": [
+      0.92,
+      0.854,
+      0.979
+    ]
+  }
+}

@@ -1,0 +1,548 @@
+{
+ "_meta": {
+  "script": "scripts/error_decomposition.py",
+  "purpose": "symmetric extractor-vs-checker/policy attribution of non-actionable findings (AAAI reviewer response)",
+  "inputs": [
+   "validated_results.json",
+   "gt_triage_results.json",
+   "graphs/",
+   "graphs_v2/",
+   "ground_truth/"
+  ],
+  "attribution_rules": {
+   "extraction_artifact": "EXTRACTOR",
+   "gt_error": "EXTRACTOR",
+   "intentional": "POLICY_SPEC",
+   "arguable": "LABEL",
+   "real_defect": "ACTIONABLE"
+  },
+  "check_aliases": {
+   "router-non-conditional-edges": "router_shape",
+   "sensitive-path-bypasses-human-review": "human_gate_coverage"
+  }
+ },
+ "decomposition_186": {
+  "n_flags_triaged": 186,
+  "n_actionable": 2,
+  "n_non_actionable": 184,
+  "over_all_flags": {
+   "POLICY_SPEC": {
+    "n": 93,
+    "pct": 50.0,
+    "wilson95": [
+     42.9,
+     57.1
+    ]
+   },
+   "EXTRACTOR": {
+    "n": 79,
+    "pct": 42.5,
+    "wilson95": [
+     35.6,
+     49.7
+    ]
+   },
+   "LABEL": {
+    "n": 12,
+    "pct": 6.5,
+    "wilson95": [
+     3.7,
+     10.9
+    ]
+   },
+   "ACTIONABLE": {
+    "n": 2,
+    "pct": 1.1,
+    "wilson95": [
+     0.3,
+     3.8
+    ]
+   }
+  },
+  "over_non_actionable": {
+   "POLICY_SPEC": {
+    "n": 93,
+    "pct": 50.5,
+    "wilson95": [
+     43.4,
+     57.7
+    ]
+   },
+   "EXTRACTOR": {
+    "n": 79,
+    "pct": 42.9,
+    "wilson95": [
+     36.0,
+     50.2
+    ]
+   },
+   "LABEL": {
+    "n": 12,
+    "pct": 6.5,
+    "wilson95": [
+     3.8,
+     11.1
+    ]
+   }
+  },
+  "checker_note": "CHECKER is not separable in the committed triage vocabulary; it is a subset of POLICY_SPEC. Its share is >0 (documented instance: the LangGraph implicit-END convention) but unquantified. Both are on the check side of the extraction/check split.",
+  "by_check": {
+   "human_presence": {
+    "n_flags": 113,
+    "dist": {
+     "POLICY_SPEC": {
+      "n": 93,
+      "pct": 82.3,
+      "wilson95": [
+       74.2,
+       88.2
+      ]
+     },
+     "LABEL": {
+      "n": 10,
+      "pct": 8.8,
+      "wilson95": [
+       4.9,
+       15.5
+      ]
+     },
+     "EXTRACTOR": {
+      "n": 8,
+      "pct": 7.1,
+      "wilson95": [
+       3.6,
+       13.4
+      ]
+     },
+     "ACTIONABLE": {
+      "n": 2,
+      "pct": 1.8,
+      "wilson95": [
+       0.5,
+       6.2
+      ]
+     }
+    }
+   },
+   "reverse_reachability": {
+    "n_flags": 25,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 25,
+      "pct": 100.0,
+      "wilson95": [
+       86.7,
+       100.0
+      ]
+     }
+    }
+   },
+   "dead_ends": {
+    "n_flags": 25,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 24,
+      "pct": 96.0,
+      "wilson95": [
+       80.5,
+       99.3
+      ]
+     },
+     "LABEL": {
+      "n": 1,
+      "pct": 4.0,
+      "wilson95": [
+       0.7,
+       19.5
+      ]
+     }
+    }
+   },
+   "exit_reachability": {
+    "n_flags": 14,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 14,
+      "pct": 100.0,
+      "wilson95": [
+       78.5,
+       100.0
+      ]
+     }
+    }
+   },
+   "tool_declarations": {
+    "n_flags": 5,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 5,
+      "pct": 100.0,
+      "wilson95": [
+       56.5,
+       100.0
+      ]
+     }
+    }
+   },
+   "router_shape": {
+    "n_flags": 3,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 3,
+      "pct": 100.0,
+      "wilson95": [
+       43.9,
+       100.0
+      ]
+     }
+    }
+   },
+   "human_gate_coverage": {
+    "n_flags": 1,
+    "dist": {
+     "LABEL": {
+      "n": 1,
+      "pct": 100.0,
+      "wilson95": [
+       20.6,
+       100.0
+      ]
+     }
+    }
+   }
+  },
+  "by_framework": {
+   "langgraph": {
+    "n_flags": 111,
+    "dist": {
+     "EXTRACTOR": {
+      "n": 73,
+      "pct": 65.8,
+      "wilson95": [
+       56.5,
+       73.9
+      ]
+     },
+     "POLICY_SPEC": {
+      "n": 32,
+      "pct": 28.8,
+      "wilson95": [
+       21.2,
+       37.9
+      ]
+     },
+     "LABEL": {
+      "n": 6,
+      "pct": 5.4,
+      "wilson95": [
+       2.5,
+       11.3
+      ]
+     }
+    }
+   },
+   "autogen": {
+    "n_flags": 31,
+    "dist": {
+     "POLICY_SPEC": {
+      "n": 23,
+      "pct": 74.2,
+      "wilson95": [
+       56.8,
+       86.3
+      ]
+     },
+     "EXTRACTOR": {
+      "n": 5,
+      "pct": 16.1,
+      "wilson95": [
+       7.1,
+       32.6
+      ]
+     },
+     "LABEL": {
+      "n": 3,
+      "pct": 9.7,
+      "wilson95": [
+       3.4,
+       24.9
+      ]
+     }
+    }
+   },
+   "adk": {
+    "n_flags": 24,
+    "dist": {
+     "POLICY_SPEC": {
+      "n": 20,
+      "pct": 83.3,
+      "wilson95": [
+       64.1,
+       93.3
+      ]
+     },
+     "LABEL": {
+      "n": 2,
+      "pct": 8.3,
+      "wilson95": [
+       2.3,
+       25.9
+      ]
+     },
+     "ACTIONABLE": {
+      "n": 1,
+      "pct": 4.2,
+      "wilson95": [
+       0.7,
+       20.2
+      ]
+     },
+     "EXTRACTOR": {
+      "n": 1,
+      "pct": 4.2,
+      "wilson95": [
+       0.7,
+       20.2
+      ]
+     }
+    }
+   },
+   "crewai": {
+    "n_flags": 20,
+    "dist": {
+     "POLICY_SPEC": {
+      "n": 18,
+      "pct": 90.0,
+      "wilson95": [
+       69.9,
+       97.2
+      ]
+     },
+     "ACTIONABLE": {
+      "n": 1,
+      "pct": 5.0,
+      "wilson95": [
+       0.9,
+       23.6
+      ]
+     },
+     "LABEL": {
+      "n": 1,
+      "pct": 5.0,
+      "wilson95": [
+       0.9,
+       23.6
+      ]
+     }
+    }
+   }
+  },
+  "by_check_family": {
+   "structural": {
+    "n_non_actionable": 72,
+    "extractor": 71,
+    "extractor_pct": 98.6,
+    "extractor_wilson95": [
+     92.5,
+     99.8
+    ],
+    "check_side": 0,
+    "check_side_pct": 0.0,
+    "check_side_wilson95": [
+     0.0,
+     5.1
+    ]
+   },
+   "human_gate": {
+    "n_non_actionable": 112,
+    "extractor": 8,
+    "extractor_pct": 7.1,
+    "extractor_wilson95": [
+     3.7,
+     13.5
+    ],
+    "check_side": 93,
+    "check_side_pct": 83.0,
+    "check_side_wilson95": [
+     75.0,
+     88.9
+    ]
+   }
+  }
+ },
+ "symmetric_ablation": {
+  "sensitive_tool_lexicon_hits_in_gt": [
+   "execute_function",
+   "execute_sql_query",
+   "initialize_payment_or_query_orders",
+   "save_article",
+   "save_order_to_sheet",
+   "write_article_czech"
+  ],
+  "v1_extracted": {
+   "n_workflows": 119,
+   "n_flags_total": 184,
+   "flags_per_workflow": 1.55,
+   "by_check": {
+    "human_presence": 113,
+    "reverse_reachability": 25,
+    "dead_ends": 25,
+    "exit_reachability": 14,
+    "tool_declarations": 5,
+    "router_shape": 2
+   },
+   "n_structural_flags": 71,
+   "n_workflows_with_structural_flag": 26,
+   "n_workflows_human_presence": 113,
+   "n_workflows_human_gate_coverage": 0
+  },
+  "gt_reference": {
+   "n_workflows": 119,
+   "n_flags_total": 122,
+   "flags_per_workflow": 1.03,
+   "by_check": {
+    "human_presence": 106,
+    "tool_declarations": 6,
+    "router_shape": 4,
+    "human_gate_coverage": 3,
+    "dead_ends": 2,
+    "reverse_reachability": 1
+   },
+   "n_structural_flags": 13,
+   "n_workflows_with_structural_flag": 11,
+   "n_workflows_human_presence": 106,
+   "n_workflows_human_gate_coverage": 3
+  },
+  "_matched_n": 119,
+  "matched_116": {
+   "_n": 115,
+   "v1": {
+    "n_workflows": 115,
+    "n_flags_total": 181,
+    "flags_per_workflow": 1.57,
+    "by_check": {
+     "human_presence": 110,
+     "reverse_reachability": 25,
+     "dead_ends": 25,
+     "exit_reachability": 14,
+     "tool_declarations": 5,
+     "router_shape": 2
+    },
+    "n_structural_flags": 71,
+    "n_workflows_with_structural_flag": 26,
+    "n_workflows_human_presence": 110,
+    "n_workflows_human_gate_coverage": 0
+   },
+   "v2": {
+    "n_workflows": 115,
+    "n_flags_total": 147,
+    "flags_per_workflow": 1.28,
+    "by_check": {
+     "human_presence": 109,
+     "reverse_reachability": 13,
+     "dead_ends": 13,
+     "exit_reachability": 5,
+     "tool_declarations": 5,
+     "router_shape": 2
+    },
+    "n_structural_flags": 38,
+    "n_workflows_with_structural_flag": 16,
+    "n_workflows_human_presence": 109,
+    "n_workflows_human_gate_coverage": 0
+   },
+   "gt": {
+    "n_workflows": 115,
+    "n_flags_total": 120,
+    "flags_per_workflow": 1.04,
+    "by_check": {
+     "human_presence": 104,
+     "tool_declarations": 6,
+     "router_shape": 4,
+     "human_gate_coverage": 3,
+     "dead_ends": 2,
+     "reverse_reachability": 1
+    },
+    "n_structural_flags": 13,
+    "n_workflows_with_structural_flag": 11,
+    "n_workflows_human_presence": 104,
+    "n_workflows_human_gate_coverage": 3
+   }
+  },
+  "gt_flag_triage": {
+   "n_triaged": 16,
+   "note": "Only the non-human_presence GT flags were triaged (n=16); the blunt human_presence firings on GT graphs were not re-triaged because the same estimand was already triaged on v1.",
+   "final_labels": {
+    "intentional": 10,
+    "gt_error": 4,
+    "real_defect": 2
+   },
+   "attribution": {
+    "POLICY_SPEC": {
+     "n": 10,
+     "pct": 62.5,
+     "wilson95": [
+      38.6,
+      81.5
+     ]
+    },
+    "EXTRACTOR": {
+     "n": 4,
+     "pct": 25.0,
+     "wilson95": [
+      10.2,
+      49.5
+     ]
+    },
+    "ACTIONABLE": {
+     "n": 2,
+     "pct": 12.5,
+     "wilson95": [
+      3.5,
+      36.0
+     ]
+    }
+   }
+  },
+  "contrast": {
+   "graph_varied_policy_fixed": {
+    "blunt_human_presence": {
+     "v1": 113,
+     "gt": 106,
+     "delta_from_extraction": 7
+    },
+    "risk_aware_human_gate": {
+     "v1": 0,
+     "gt": 3,
+     "delta_from_extraction": -3
+    },
+    "structural": {
+     "v1": 71,
+     "gt": 13,
+     "delta_from_extraction": 58
+    }
+   },
+   "policy_varied_graph_fixed": {
+    "on_v1": {
+     "blunt": 113,
+     "risk_aware": 0,
+     "delta_from_policy_spec": 113
+    },
+    "on_gt": {
+     "blunt": 106,
+     "risk_aware": 3,
+     "delta_from_policy_spec": 103
+    }
+   }
+  },
+  "headline": {
+   "n_workflows": 119,
+   "flags_on_v1_extraction": 184,
+   "flags_on_perfect_graph": 122,
+   "flags_removed_by_perfect_graph": 62,
+   "extraction_attributable_share_of_flag_volume": 0.337,
+   "check_policy_residual_share_of_flag_volume": 0.663,
+   "genuine_defects_found_on_perfect_graph": 2,
+   "interpretation": "Residual = flags that a PERFECT graph still produces. They are, by construction, not extraction error. Compare directly against flags_removed_by_perfect_graph."
+  }
+ }
+}

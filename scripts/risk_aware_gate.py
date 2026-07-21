@@ -55,9 +55,26 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--corpus", default="corpus/real_world/graphs")
     ap.add_argument("--output", default="corpus/real_world/risk_aware_gate.json")
+    ap.add_argument(
+        "--exclude-prefix", default=None,
+        help=(
+            "Skip graphs whose filename stem starts with this prefix. Use "
+            "'NordicAgents__AgentProof' to apply the 8-file self-repo exclusion "
+            "that revision_analyses.py applies via SELF_REPO_PREFIX; without it "
+            "this script reports on all 930 mined graphs rather than the 922 the "
+            "corpus census uses."
+        ),
+    )
     args = ap.parse_args()
 
     files = sorted(Path(args.corpus).glob("*.json"))
+    n_excluded = 0
+    if args.exclude_prefix:
+        before = len(files)
+        files = [f for f in files if not f.stem.startswith(args.exclude_prefix)]
+        n_excluded = before - len(files)
+        print(f"[exclude] dropped {n_excluded} graph(s) matching "
+              f"{args.exclude_prefix!r}: {before} -> {len(files)}")
     n = 0
     naive_flag = 0             # no HUMAN node at all (require_human=True)
     has_sensitive = 0          # workflow declares >=1 sensitive tool
@@ -116,6 +133,9 @@ def main() -> None:
         "sensitive_by_category": cat_counts,
         "flagged_examples": flagged_examples,
     }
+    if args.exclude_prefix:
+        summary["_excluded_prefix"] = args.exclude_prefix
+        summary["_excluded_self_repo"] = n_excluded
     Path(args.output).write_text(json.dumps(summary, indent=2))
 
     print("=" * 60)

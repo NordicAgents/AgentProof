@@ -105,6 +105,16 @@ def main() -> None:
     ap.add_argument("--policies", default="corpus/policies/temporal_policies.json")
     ap.add_argument("--output", default="corpus/real_world/monitor_pruning.json")
     ap.add_argument(
+        "--exclude-prefix", default=None,
+        help=(
+            "Skip graphs whose filename stem starts with this prefix. Use "
+            "'NordicAgents__AgentProof' to apply the 8-file self-repo exclusion "
+            "that revision_analyses.py applies via SELF_REPO_PREFIX. Without it "
+            "this script globs all 930 mined graphs and reports 930x15=13950 "
+            "monitor instances, which disagrees with the 922-workflow census."
+        ),
+    )
+    ap.add_argument(
         "--corpus-kind", choices=["curated", "real_world"], default="real_world",
         help=(
             "curated: authored-with-code graphs -> assert trace-conservatism "
@@ -127,6 +137,14 @@ def main() -> None:
         compiled.append((p, rule))
 
     graph_files = sorted(Path(args.corpus).glob("*.json"))
+    n_excluded = 0
+    if args.exclude_prefix:
+        before = len(graph_files)
+        graph_files = [g for g in graph_files
+                       if not g.stem.startswith(args.exclude_prefix)]
+        n_excluded = before - len(graph_files)
+        print(f"[exclude] dropped {n_excluded} graph(s) matching "
+              f"{args.exclude_prefix!r}: {before} -> {len(graph_files)}")
     n_pairs = 0
     prunable = 0
     trivial = 0            # prunable because atoms never appear
@@ -240,6 +258,9 @@ def main() -> None:
         "alphabet_inert_descriptive": alphabet_inert_descriptive,
         "per_policy": {k: v for k, v in per_policy.items()},
     }
+    if args.exclude_prefix:
+        summary["_excluded_prefix"] = args.exclude_prefix
+        summary["_excluded_self_repo"] = n_excluded
     Path(args.output).write_text(json.dumps(summary, indent=2))
 
     print("=" * 62)

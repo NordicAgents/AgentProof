@@ -203,7 +203,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -226,6 +226,102 @@
         "node_id": "designer",
         "action_type": "tool",
         "tool_name": "dall_e",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "social_media_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "competitor_analysis",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "strategist",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "copywriter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "designer",
+        "action_type": "tool",
+        "tool_name": "dall_e",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "publish",
+        "action_type": "tool",
+        "tool_name": "social_media_api",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "__end__",
+        "action_type": "exit"
+      }
+    ],
+    [
+      {
+        "node_id": "__start__",
+        "action_type": "entry"
+      },
+      {
+        "node_id": "research",
+        "action_type": "tool",
+        "tool_name": "survey_tool",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "node_id": "strategist",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "copywriter",
+        "action_type": "llm",
+        "tags": [
+          "llm_step"
+        ]
+      },
+      {
+        "node_id": "designer",
+        "action_type": "tool",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]
@@ -299,7 +395,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -347,103 +443,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "strategist",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "copywriter",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "designer",
-        "action_type": "tool",
-        "tool_name": "dall_e",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "publish",
-        "action_type": "tool",
-        "tool_name": "social_media_api",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "research",
-        "action_type": "tool",
-        "tool_name": "survey_tool",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "strategist",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "copywriter",
-        "action_type": "llm",
-        "tags": [
-          "llm_step"
-        ]
-      },
-      {
-        "node_id": "designer",
-        "action_type": "tool",
-        "tool_name": "dall_e",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "publish",
-        "action_type": "tool",
-        "tool_name": "social_media_api",
-        "tags": [
-          "tool"
-        ]
-      },
-      {
-        "node_id": "__end__",
-        "action_type": "exit"
-      }
-    ],
-    [
-      {
-        "node_id": "__start__",
-        "action_type": "entry"
-      },
-      {
-        "node_id": "research",
-        "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
