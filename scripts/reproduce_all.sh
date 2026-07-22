@@ -225,6 +225,19 @@ run "20b. Path-sensitive pruning experiment" \
 run "20c. Sensitivity analyses (dedup, confidence, strata)" \
     $PY scripts/sensitivity_analyses.py
 
+# ---- 21. Survival test: FP/FN decomposition over four causes -----
+# Separates CHECKER from POLICY-SPEC without using the triage labels, and
+# decomposes false negatives symmetrically.  Depends on step 19's inputs only.
+run "21. Survival test (FP/FN four-way decomposition)" \
+    $PY scripts/fp_fn_decomposition.py
+
+# ---- 22. Human validation scoring --------------------------------
+# Scores whatever is filled in under corpus/annotations/.  With empty
+# worksheets this reports 0/N completed and exits 0 by design, so the pipeline
+# stays green before the annotation pass is run.
+run "22. Human inter-annotator agreement (scores staged worksheets)" \
+    $PY scripts/human_agreement.py
+
 # ==================================================================
 # Summary
 # ==================================================================
@@ -260,6 +273,7 @@ echo "  $RW/risk_aware_gate_curated.json     $RW/risk_aware_gate_922.json"
 echo "  $RW/corrected_fidelity.json          $RW/matched_fidelity.json"
 echo "  $RW/error_decomposition.json         $RW/pruning_experiment.json"
 echo "  $RW/sensitivity_analyses.json        $RW/runtime_fidelity.json"
+echo "  $RW/fp_fn_decomposition.json         corpus/annotations/human_agreement.json"
 echo "  papers/paper1/generated/comparison_table.tex"
 echo ""
 echo "Pipeline complete — no failures."

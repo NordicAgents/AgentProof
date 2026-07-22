@@ -1,0 +1,137 @@
+{
+  "_meta": {
+    "script": "scripts/human_agreement.py",
+    "n_bootstrap": 10000,
+    "seed": 20260722,
+    "label_domain_task2": [
+      "real_defect",
+      "extraction_artifact",
+      "intentional",
+      "arguable"
+    ],
+    "purpose": "score the two-annotator human validation and compare it against the committed LLM labels"
+  },
+  "task1_graph_reconstruction": {
+    "status": "partial",
+    "n_items": 32,
+    "n_reconstructed_by_both": 0,
+    "n_insufficient_evidence": 0,
+    "human_vs_human": {
+      "n": 0,
+      "mean_node_f1": null,
+      "mean_edge_f1": null,
+      "mean_edge_recall": null,
+      "mean_kind_accuracy": null,
+      "_scored_against": "annotator B"
+    },
+    "human_A_vs_llm_reference": {
+      "n": 0,
+      "mean_node_f1": null,
+      "mean_edge_f1": null,
+      "mean_edge_recall": null,
+      "mean_kind_accuracy": null,
+      "_scored_against": "LLM reference graph"
+    },
+    "human_B_vs_llm_reference": {
+      "n": 0,
+      "mean_node_f1": null,
+      "mean_edge_f1": null,
+      "mean_edge_recall": null,
+      "mean_kind_accuracy": null,
+      "_scored_against": "LLM reference graph"
+    },
+    "interpretation": "human_vs_human is the ceiling: no automatic extractor should be credited with fidelity above the level at which two humans agree on what the graph even is. Compare Table 1's edge recall against mean_edge_f1 here before reading the fidelity numbers as absolute."
+  },
+  "task2_defect_labels": {
+    "status": "partial",
+    "n_flag_items": 18,
+    "n_flag_items_labelled_by_both": 0,
+    "human_vs_human": {
+      "n": 0,
+      "n_clusters": null,
+      "raw_agreement": null,
+      "raw_agreement_ci": [
+        NaN,
+        NaN
+      ],
+      "cohens_kappa": null,
+      "cohens_kappa_ci": [
+        NaN,
+        NaN
+      ],
+      "krippendorff_alpha": null,
+      "krippendorff_alpha_ci": [
+        NaN,
+        NaN
+      ],
+      "confusion": {}
+    },
+    "human_A_vs_llm": {
+      "n": 0,
+      "n_clusters": null,
+      "raw_agreement": null,
+      "raw_agreement_ci": [
+        NaN,
+        NaN
+      ],
+      "cohens_kappa": null,
+      "cohens_kappa_ci": [
+        NaN,
+        NaN
+      ],
+      "krippendorff_alpha": null,
+      "krippendorff_alpha_ci": [
+        NaN,
+        NaN
+      ],
+      "confusion": {}
+    },
+    "human_B_vs_llm": {
+      "n": 0,
+      "n_clusters": null,
+      "raw_agreement": null,
+      "raw_agreement_ci": [
+        NaN,
+        NaN
+      ],
+      "cohens_kappa": null,
+      "cohens_kappa_ci": [
+        NaN,
+        NaN
+      ],
+      "krippendorff_alpha": null,
+      "krippendorff_alpha_ci": [
+        NaN,
+        NaN
+      ],
+      "confusion": {}
+    },
+    "no_flag_sweep": {
+      "n_items": 32,
+      "n_completed_by_both": 0,
+      "human_vs_human": {
+        "n": 0,
+        "n_clusters": null,
+        "raw_agreement": null,
+        "raw_agreement_ci": [
+          NaN,
+          NaN
+        ],
+        "cohens_kappa": null,
+        "cohens_kappa_ci": [
+          NaN,
+          NaN
+        ],
+        "krippendorff_alpha": null,
+        "krippendorff_alpha_ci": [
+          NaN,
+          NaN
+        ],
+        "confusion": {}
+      },
+      "workflows_where_a_human_found_an_unflagged_defect": [],
+      "note": "A non-empty list here is a FALSE-NEGATIVE finding: a defect outside the flag universe entirely, which flag triage cannot see by construction."
+    },
+    "interpretation": "The decisive comparison is human_vs_human against human_*_vs_llm. If the LLM agrees with each human about as well as the humans agree with each other, the LLM labels are a third annotator. If human_vs_human is materially higher, the LLM is a different instrument and every LLM-derived prevalence figure inherits that gap."
+  }
+}

@@ -76,9 +76,21 @@ suites. All sub-items are therefore NA (matching `ReproducibilityChecklist.tex`)
   instead. See `CLAIMS_AUDIT.md` §8.3–§8.4.
 
 *(4.6, 4.8, and 4.9 were upgraded to `yes`: infrastructure + run-count sentences
-and 95% confidence intervals were added to §Real-World Study. A second human
-annotator for Cohen's κ remains a nice-to-have for camera-ready but is not a
-checklist item.)*
+and 95% confidence intervals were added to §Real-World Study.)*
+
+- **Label reliability.** An earlier revision of this file called a second human
+  annotator "a nice-to-have for camera-ready". That understated it and is
+  withdrawn. Every reference graph and every triage label comes from LLM passes
+  sharing a model family, so two-annotator validation is the paper's **principal
+  open gap**, declared as such in §Real-World Study, the threats paragraph, and
+  supplement gap 8. The scoring half is implemented and tested
+  (`scripts/human_agreement.py`; Cohen's κ, Krippendorff's α, item bootstrap
+  CIs, human-vs-LLM comparison), and the worksheets are staged under
+  `corpus/annotations/`; the labelling pass itself is outstanding. A partial
+  mitigation exists — `scripts/fp_fn_decomposition.py` reproduces the headline
+  attribution from graphs alone, without consulting the labels, agreeing on
+  93.0% of flags — but that is evidence against label *dependence*, not evidence
+  of label *correctness*. See `CLAIMS_AUDIT.md` §9.2–§9.3.
 
 ## Note on responsible data use (for the ethics/impact statement, not the checklist)
 

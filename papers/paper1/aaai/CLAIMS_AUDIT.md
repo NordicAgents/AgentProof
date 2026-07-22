@@ -480,7 +480,11 @@ Since the census counts the 922 **extracted graphs**, and each graph's
   graph's own `framework` field rather than the v2 status record. This affects
   only the descriptive `corpus_framework_distribution` block; the fidelity
   numbers bucket on the *ground-truth* graph's framework
-  (`matched_fidelity.py:270–275`) and are unaffected. **Open.**
+  (`matched_fidelity.py:270–275`) and are unaffected.
+  **FIXED** (verified 2026-07-22): `_v1_framework()` now reads each v1 graph's
+  own `framework` field, with the rationale in a source comment, and a clean
+  re-run of `scripts/matched_fidelity.py` emits the correct
+  400/359/113/50. This entry previously read "Open"; that status was stale.
 
 ### 8.2 Slug-collision keying defect (documented; mitigation committed)
 
@@ -595,3 +599,133 @@ nodes: 345.2 ms (audit text), 239.838 ms (committed artifact), and 7–8 ms
 gave 8.15 / 7.19 / 8.15 ms on 5,002 nodes / 10,713 edges). Absolute timings must
 be quoted with the machine named; the portable claims are linearity across the
 50→5,000 sweep and "sub-second", which all three values satisfy.
+
+---
+
+## 9. Second reviewer-response pass — 2026-07-22
+
+A second review (against commit `c0382c6`, i.e. *before* the hardening sprint
+`e42a929`) raised seven major concerns. Five were already closed by that sprint
+and are re-verified here; two required new work, recorded below. The review's
+line citations do not resolve against HEAD because it predates the sprint.
+
+### 9.1 Already closed by `e42a929`, re-verified at HEAD
+
+| Review concern | Status at HEAD | Evidence |
+|---|---|---|
+| "calls the 119 a *stratified sample*" | **Closed.** The text now says the opposite — quota-selected, no seed, no sampler, "nor call it stratified" | `03_realworld.tex:55–66`, `SAMPLING_DESIGN.md`, supplement §"Sampling Design" |
+| "reweighting → defensible corpus prevalence" | **Closed.** Reported as a *corpus-share-weighted descriptive statistic*, explicitly not design-based, no FPC | `03_realworld.tex:60–66`, `tab:estimands` caption |
+| "title/causal language exceeds the decomposition" | **Closed.** Title is now *Two Failure Modes, Not One*; the abstract leads with 42.5% vs 50.0% | `main.tex:31`, `main.tex:38–65` |
+| "Table 1 compares v2 on 115 vs v1 on 119" | **Closed.** Table 1 is the *matched, provenance-disambiguated* set n=106; the slug-collision keying defect is disclosed | `tab:realworld_fidelity`, `03_realworld.tex:90–102`, supplement §"Slug-Collision Keying Defect" |
+| "provenance is not a soundness certificate" | **Closed.** The gate is stated to certify *provenance metadata or a caller's assertion*, and soundness is claimed only *relative to an authored abstraction* | `02_system.tex:110–122`, supplement §"Event-Trace Soundness" |
+| "13,950 = 930×15 vs a 922 corpus" | **Closed.** Root-caused to a missing self-repo exclusion in `monitor_pruning.py`; corrected artifacts are `monitor_pruning_922.json` (13,830 = 922×15) and `risk_aware_gate_922.json` | §7.4 item 1 above |
+| "no supplement present" | **Closed.** `supplement.tex` → 31pp, 0 undefined references | `supplement.pdf` |
+
+### 9.2 New work: the survival test (concern 3, the constructive ask)
+
+The review asked for a decomposition of false positives **and false negatives**
+by extractor, checker, policy specification, and label error. The paper could
+not previously separate CHECKER from POLICY-SPEC, and said so
+(`error_decomposition.json` → `checker_note`). That gap is now closed by a
+second, **label-independent** instrument.
+
+| Claim | Value | Source |
+|---|---|---|
+| CHECKER share of the 186 flags | **1.1%** [0.3, 3.8] (n=2) | `fp_fn_decomposition.json` → `false_positives.over_all_flags` |
+| POLICY-SPEC share | 50.5% (n=94) | same |
+| EXTRACTOR share | 38.2% (n=71) | same |
+| REFERENCE_ERROR share (validity guard) | 2.7% (n=5) | same |
+| Agreement with the label-derived mapping | **173/186 = 93.0%** | `false_positives.delta_vs_committed_mapping` (13 disagreements, each with its rule) |
+| FN, as-mined pipeline | 12/12 EXTRACTOR (100% [75.7, 100]) | `false_negatives.as_mined_pipeline` |
+| FN, reference graph substituted | 1 detected; 9 ABSTRACTION, 1 REFERENCE_ERROR, 1 CHECKER | `false_negatives.oracle_graph_pipeline` |
+
+Generating command: `uv run python scripts/fp_fn_decomposition.py`
+(step 21 of `reproduce_all.sh`). Rules are pre-registered in the script
+docstring. Rule ordering — the validity guard must precede the survival test —
+is pinned by `tests/test_agreement_stats.py::TestSurvivalTestRuleOrdering`.
+
+**Why the guard exists.** R1–R3 presume the reference graph is correct. Two
+committed sources say where it is not: the GT triage's `gt_error` labels, and
+the HGP-1 placebo audit's non-discharging `human` nodes. Without the guard the
+script reported 3 CHECKER and 2 EXTRACTOR findings that the evidence contradicts;
+they are now `REFERENCE_ERROR`. This was caught during construction, not
+papered over.
+
+**Scope limit, stated plainly.** This is *not* independent human validation and
+is not offered as a substitute. It supports a weaker claim: the headline
+decomposition does not *depend* on the LLM triage labels, since a mechanical
+procedure over graphs alone reproduces it on 93.0% of flags. That is evidence
+against label dependence, not evidence of label correctness.
+
+### 9.3 New work: human-validation scoring is now wired (concern 1)
+
+The labelling pass remains unexecuted — it is the paper's principal open gap and
+is declared as such in the main text, the threats paragraph, and supplement
+gap 8. What is new is that the *analysis* half is built and tested, so filled-in
+worksheets convert to reportable statistics with one command:
+
+`uv run python scripts/human_agreement.py [--latex]` (step 22).
+
+It emits Cohen's κ, Krippendorff's α, and raw agreement with item-level
+bootstrap CIs (10,000 resamples, seed 20260722), for **human-vs-human** and for
+**each human vs the committed LLM label** — the latter being the comparison that
+decides the validity claim. It also scores the graph-reconstruction task with
+the same matcher the fidelity table uses, and reports a no-flag sweep whose
+non-empty result would be a false-negative finding outside the flag universe.
+The estimators are pinned against textbook values in
+`tests/test_agreement_stats.py` (κ = 0.4 on the standard 2×2; κ undefined rather
+than 1.0 when both coders use a single label). Run against empty worksheets it
+reports 0/N and exits 0, so the pipeline stays green until the pass is done.
+
+### 9.4 Corrected: the 87 non-side-effecting workflows
+
+The main text said the 87 were "screened by the same source-level pass, and a
+re-sweep for effect signatures surfaced no missed violation", while supplement
+gap 6 said they "were not re-read under it". Both were true of different things
+and read as a contradiction. The artifact
+(`human_gate_audit.json` → `denominator_caveat`) is the authority: the 87 were
+**not** read under HGP-1; they were excluded by the same classification pass
+that produced the 32; an independent regex sweep for effect signatures flagged
+**10** for manual re-reading, of which **9** are correctly screened and **1** is
+borderline (`MikhailMostWanted__Astra__mcp_session_host_example`, an MCP
+workbench whose server module lies outside the mining unit) and would be
+`arguable`, not a violation. Both documents now state this, and both state that
+the residual is *bounded* by that one case rather than eliminated.
+
+### 9.5 Not repaired, and why
+
+- **Pruning evidence is a mechanism demonstration** (concern 7). 50 executions
+  cannot establish absence of false pruning; 4 of the branching/looping fixtures
+  are purpose-built synthetics. Already labelled as such at
+  `04_results.tex:45–51`. Not repairable without a corpus of executable
+  workflows, which the mining unit (single files) does not provide.
+- **Sampling is a convenience corpus** (concern 2). Inclusion probabilities are
+  undefined, not merely unestimated. Repair requires re-drawing from a seeded,
+  documented frame — a re-mine, not an analysis change.
+- **Human validation** (concern 1) — labelling pass outstanding; see 9.3.
+
+### 9.6 Clean-room reproduction re-run — 2026-07-22
+
+`bash scripts/reproduce_all.sh` from a clean tree: **23 steps passed, 0 failed,
+4 skipped**, each skip announced at runtime with its reason (steps 8 and 9 need
+`GITHUB_TOKEN` and network; step 10 is the non-deterministic LLM pass whose raw
+outputs are committed and consumed downstream; step 17 needs the
+`all-frameworks` extras). Two artifacts changed, neither affecting a paper
+number:
+
+- `corpus/real_world/matched_fidelity.json` — key **ordering** only inside
+  `corpus_framework_distribution`; all four counts identical. This is the run
+  that confirmed §8.1's defect is fixed rather than open.
+- `scripts/scaling_results.json` — wall-clock timings, which §8.6 already
+  records as hardware-dependent and not comparable across machines. The
+  regenerated sweep is 0.074 ms at the small end rising to **9.38 ms at 5,000
+  nodes**, consistent with the 7.19–8.15 ms band recorded in §8.6 and with the
+  only portable claims the paper makes: near-linear growth across the
+  50→5,000 sweep, and sub-second verification (`04_results.tex:12`).
+
+Test suite: **420 passed, 1 skipped**, including the 15 new estimator and
+rule-ordering tests in `tests/test_agreement_stats.py`.
+
+Documents: `main.pdf` builds with **0 undefined references**, content ending on
+page 7 with references from page 8; `supplement.pdf` builds at **31 pages** with
+0 undefined references.

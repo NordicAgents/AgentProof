@@ -761,9 +761,13 @@ Attribution maps each triage label to a cause under the rules recorded in
 \textsc{policy-spec}; \slug{arguable} $\to$ \textsc{label};
 \slug{real\_defect} $\to$ \textsc{actionable}. (No record in the 186 carries
 the \slug{gt\_error} label, so \textsc{extractor} coincides exactly with
-\slug{extraction\_artifact} here.) \textsc{checker} is not separable in the
-committed triage vocabulary and is folded into \textsc{policy-spec}; both are on
-the check side.
+\slug{extraction\_artifact} here.) \textsc{checker} is not separable in this
+\emph{label-derived} attribution and is folded into \textsc{policy-spec}; both
+are on the check side, so the extraction-versus-check comparison is unaffected.
+Section~\ref{sec:survival} separates the two with a second, label-independent
+instrument and finds \textsc{checker} $= 1.1\%$ $[0.3,3.8]$ --- i.e.\ the
+\textsc{policy-spec} bucket reported here is $\approx\!98\%$ specification
+error, and the two instruments agree on $93.0\%$ of flags.
 
 \begin{table}[htbp]
 \centering\small
@@ -885,6 +889,189 @@ text is careful never to pool them. Second, \slug{human\_gate\_coverage} fires
 \emph{zero} times on extracted graphs and \emph{three} times on reference
 graphs---the risk-aware check is not insensitive, it is starved of declared
 bindings, which is the paper's central diagnosis expressed as a single row.
+
+% ===========================================================================
+\section{The Survival Test: Separating \textsc{checker} from \textsc{policy-spec},
+and Decomposing Misses}
+\label{sec:survival}
+
+The four-way attribution above is derived from triage \emph{labels}, and those
+labels cannot isolate \textsc{checker}: the triager was asked ``is this a real
+defect?'', not ``whose fault is this flag?''. This section reports a second,
+\emph{label-independent} instrument that closes that gap and extends the same
+logic to false negatives. It is implemented in
+\artifact{scripts/fp\_fn\_decomposition.py} and emits
+\artifact{corpus/real\_world/fp\_fn\_decomposition.json}. It re-reads no source
+code: every input is a committed artifact, so the decomposition replays
+deterministically.
+
+\subsection{The rule, stated before it was run}
+
+For each triaged flag (workflow $s$, check $C$) judged non-actionable:
+
+\begin{description}
+\item[R1] Re-run $C$ on the reference graph $\mathrm{GT}(s)$. If $C$ does
+  \emph{not} fire, the near-oracle removed the flag $\Rightarrow$
+  \textsc{extractor}.
+\item[R2] If $C$ fires and $C$ is \emph{structural}
+  (\slug{dead\_ends}, \slug{exit\_reachability}, \slug{reverse\_reachability},
+  \slug{router\_shape}, \slug{tool\_declarations}) $\Rightarrow$
+  \textsc{checker}. A structural check is a claim about topology alone; it has
+  no per-workflow applicability parameter to misfire on. If the topology is
+  faithful and the finding is still not a defect, the decision procedure is
+  wrong for that framework's semantics.
+\item[R3] If $C$ fires and $C$ is a \emph{policy} check
+  (\slug{human\_presence}, \slug{human\_gate\_coverage}) $\Rightarrow$
+  \textsc{policy-spec}, except when $\mathrm{GT}(s)$ already contains a node of
+  kind \slug{human}, where the check contradicts evidence present in the
+  faithful graph $\Rightarrow$ \textsc{checker}.
+\item[R4/R5] \slug{arguable} $\Rightarrow$ \textsc{label};
+  \slug{real\_defect} $\Rightarrow$ actionable (outside the denominator).
+  These precede R1--R3: a disputed label is a label error whatever the graph
+  says.
+\end{description}
+
+\paragraph{The validity guard.} R1--R3 presume the reference graph is correct
+for the predicate under test. Our own results say it sometimes is not, and two
+committed sources record exactly where: (a)~the GT triage pass labelled the flag
+\slug{gt\_error}, i.e.\ the reconstruction misrepresents the source; (b)~the
+verdict turns on a \slug{human} node that the HGP-1 placebo audit found
+non-discharging. When the guard trips, the survival test is not evidence about
+the check, and we record \textsc{reference-error} rather than force the flag
+onto a side. Reporting it as its own cause is the point: it measures how often
+the ``near-oracle'' is itself wrong, which on this sample is
+\textbf{5 of 186} flags ($2.7\%$). Suppressing that category would have
+manufactured 3 spurious \textsc{checker} findings and 2 spurious
+\textsc{extractor} findings.
+
+\subsection{False positives: the checker is not the problem}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Label-independent decomposition of the 186 triaged flags by the
+survival test, with Wilson 95\% CIs (\%). Source:
+\artifact{fp\_fn\_decomposition.json} $\to$
+\slug{false\_positives.over\_all\_flags}.}
+\label{tab:survival}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+\textbf{Cause} & \textbf{$n$} & \textbf{\%} & \textbf{Wilson 95\%} \\
+\midrule
+\textsc{policy-spec}      & 94 & 50.5 & [43.4,\,57.6] \\
+\textsc{extractor}        & 71 & 38.2 & [31.5,\,45.3] \\
+\textsc{label}            & 12 &  6.5 & [3.7,\,10.9]  \\
+\textsc{reference-error}  &  5 &  2.7 & [1.2,\,6.1]   \\
+\textsc{checker}          &  2 &  1.1 & [0.3,\,3.8]   \\
+Actionable                &  2 &  1.1 & [0.3,\,3.8]   \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{The same decomposition split by check family, over the 184
+non-actionable flags. Source: \slug{false\_positives.by\_check\_family}.}
+\label{tab:survival_family}
+\begin{tabular}{@{}lrllll@{}}
+\toprule
+\textbf{Family} & \textbf{$n$} & \textbf{Extr.} & \textbf{Checker} &
+\textbf{Policy} & \textbf{Ref./Label} \\
+\midrule
+Structural & 72  & \textbf{94.4\%} & 2.8\% & 0.0\% & 2.8\% \\
+Human-gate & 112 & 2.7\%           & 0.0\% & \textbf{83.9\%} & 13.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three things follow. First, \textsc{checker} is now \emph{quantified} rather
+than merely bounded below: $2/186 = 1.1\%$ $[0.3,3.8]$. The two instances are
+the LangGraph \slug{interrupt()} multi-turn pattern, where a genuinely
+outgoing-edge-free node is a deliberate re-entry point rather than a dead end,
+and a LangGraph \slug{ToolNode} whose tools are fetched from an MCP server at
+runtime and so are statically undeclarable. Both are framework-semantics gaps in
+the check, and neither is a policy question.
+
+Second, the check-side error the paper reports is therefore almost entirely
+\emph{specification}, not \emph{logic}: $50.5\%$ \textsc{policy-spec} against
+$1.1\%$ \textsc{checker}. The checks do what they say; what they say is wrong
+for these workflows. This matters for the paper's prescription---writing a
+better checker is not the lever; instantiating the policy per workflow is.
+
+Third, the two instruments agree. Mapping the committed triage labels
+directly (\slug{extraction\_artifact}$\to$\textsc{extractor},
+\slug{intentional}$\to$\textsc{policy-spec}) reproduces the survival test's
+verdict on \textbf{173 of 186} flags, $93.0\%$. The 13 disagreements are listed
+in the artifact with their triggering rule; 5 are guard trips, and the
+remainder are cases where a \slug{human} node present in the reconstruction but
+absent from the extraction (or vice versa) moves the flag between
+\textsc{extractor} and \textsc{policy-spec}. This is not independent human
+validation and is not offered as a substitute for it. It is a weaker but real
+claim: the headline decomposition does not depend on the LLM triage labels,
+because a mechanical procedure over graphs alone reproduces it.
+
+\subsection{False negatives: the opposite budget}
+
+Flag triage is blind to misses by construction. The survival test extends to
+them directly: hold the policy fixed, vary the graph, and ask which of the 12
+confirmed HGP-1 violations the pipeline reports.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Why the pipeline misses each of the 12 confirmed human-gate
+violations, under the as-mined extractor and under the reference graph. Source:
+\slug{false\_negatives}.}
+\label{tab:fn}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Cause of the miss} & \textbf{As-mined} & \textbf{Reference graph} \\
+\midrule
+Detected (no miss)                & 0  & 1 \\
+\textsc{extractor}                & \textbf{12} & --- \\
+\textsc{abstraction}              & --- & \textbf{9} \\
+\textsc{reference-error}          & --- & 1 \\
+\textsc{checker}                  & 0  & 1 \\
+\midrule
+\textbf{Total missed}             & \textbf{12} & \textbf{11} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The as-mined column is unmixed: \emph{no} mined graph declares a sensitive tool
+at all, so the risk-aware check could not have fired on any of the 12, and every
+miss is extraction. The reference-graph column is the informative one. Swapping
+in the near-oracle recovers \textbf{1 of 12}. Of the 11 that remain:
+
+\begin{itemize}
+\item \textbf{9 are \textsc{abstraction}}: the effect is absent from the
+  \emph{reconstruction} too, because it lives inside a node \emph{body}. No
+  extractor could recover it within the \slug{NodeKind}/\slug{EdgeKind}/declared-tool
+  vocabulary these graphs use; the fix is a richer abstraction, not a better
+  reader of the same one.
+\item \textbf{1 is \textsc{reference-error}}: the reconstruction omitted tools
+  the source declares statically (the \slug{Harsh1210\_\_llm-opsbot\_\_main}
+  \slug{gt\_error}), so this one \emph{is} recoverable by a better model.
+\item \textbf{1 is \textsc{checker}}: the workflow was cleared on a gate that
+  cannot block---the placebo failure mode, appearing here as a false negative
+  rather than a false positive.
+\end{itemize}
+
+\paragraph{Why this is the paper's sharpest result.} The two directions have
+\emph{opposite} error budgets. Non-actionable findings are check-side
+($50.5\%$ policy specification versus $38.2\%$ extraction). Misses are
+model-side ($100\%$ extraction as mined). But the near-oracle repairs only
+$1/12$ of the misses, because the missing information sits \emph{below} the
+abstraction rather than above it. A reader who concluded from the false-positive
+decomposition that ``extraction fidelity is a secondary concern'' would draw
+exactly the wrong lesson: extraction fidelity bounds what the analysis can
+\emph{see}, and improving the extractor within a body-blind abstraction moves
+that bound by one workflow in twelve.
+
+This is the same boundary the certification gate meets
+(Section~\ref{sec:h1}). Exact provenance certifies that an \emph{edge} was read
+correctly; it says nothing about the events inside the node that edge connects.
+Table~\ref{tab:fn} is the empirical measurement of that gap: on 9 of 12
+confirmed violations, the abstraction is silent about the very effect the policy
+regulates.
 
 % ===========================================================================
 \section{Scalability, Extractor Accuracy, and a Modeling-Effort Comparison}
@@ -1930,14 +2117,30 @@ than cite it, and report the discrepancy.
 withdrawn, not averaged in. \emph{Residual gap:} HGP-1 is single-rater, 11 cases
 remain \slug{arguable} for want of a repository-level corpus, and $12/119$ is a
 lower bound because the 87 workflows with no source-level side-effecting tool
-were not re-read under it.
+were not re-read \emph{under HGP-1} --- they were excluded by the same
+classification pass that produced the 32, and an independent effect-signature
+sweep of all 87 flagged 10 for manual re-reading, of which 9 are correctly
+screened and 1 would be \slug{arguable}. The residual is bounded by that one
+case, not eliminated.
 \item \textbf{Absolute benchmark timings are not comparable across drafts}
 (Section~\ref{sec:eval}). Three recorded figures at 5{,}000 nodes span a factor
 of ${\approx}33$ across machines. Only the asymptotic shape is a property of the
 system.
 \item \textbf{Two-annotator independent human validation has not been performed}
 (main text, Section~3). Reference graphs and triage labels come from LLM passes
-sharing a model family; the protocol and samples are staged but unexecuted.
+sharing a model family; the protocol and samples are staged but unexecuted. The
+survival test of Section~\ref{sec:survival} weakens, but does not remove, this
+threat: it shows the headline decomposition is reproducible from graphs alone
+without consulting the labels ($93.0\%$ agreement), which is evidence against
+label \emph{dependence}, not evidence of label \emph{correctness}.
+\item \textbf{The reference graphs are not a semantic oracle, and we now
+measure by how much} (Sections~\ref{sec:hgp},~\ref{sec:survival}). Node kinds
+are assigned from naming and framework type, so a \slug{human} node need not be
+able to block; $5/186$ flags trip the validity guard for this reason, and $9$ of
+the $12$ confirmed violations are invisible even to the reconstruction because
+the effect lives in a node body. Every human-gate estimand computed over
+reference graphs is therefore biased downward by an amount we bound but cannot
+correct.
 \end{enumerate}
 
 \bibliographystyle{plainnat}

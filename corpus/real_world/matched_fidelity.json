@@ -33,9 +33,9 @@
    "surpradhan/agent-event-protocol": 1
   },
   "corpus_framework_distribution": {
+   "langgraph": 400,
    "autogen": 359,
    "crewai": 113,
-   "langgraph": 400,
    "adk": 50
   },
   "records": [

@@ -1,0 +1,2189 @@
+{
+  "_meta": {
+    "script": "scripts/fp_fn_decomposition.py",
+    "purpose": "separate CHECKER from POLICY_SPEC via a mechanical oracle-survival test, and decompose false negatives symmetrically",
+    "inputs": [
+      "validated_results.json",
+      "human_gate_audit.json",
+      "graphs/",
+      "ground_truth/"
+    ],
+    "fp_rules": {
+      "R1": "check does not fire on the reference graph -> EXTRACTOR",
+      "R2": "structural check still fires on the reference graph -> CHECKER",
+      "R3a": "policy check still fires, no human node in reference -> POLICY_SPEC",
+      "R3b": "policy check still fires but reference has a human node -> CHECKER",
+      "R4": "arguable -> LABEL",
+      "R5": "real_defect -> ACTIONABLE",
+      "Ga": "GT triage marked the reference graph wrong here -> REFERENCE_ERROR",
+      "Gb": "reference `human` node is non-discharging (placebo audit) -> REFERENCE_ERROR"
+    },
+    "fn_rules": {
+      "F1": "no sensitive tool declared in the mined graph -> EXTRACTOR",
+      "F2": "sensitive tool declared, non-discharging gate accepted -> CHECKER",
+      "F3": "sensitive tool declared, no gate excuse -> POLICY_SPEC",
+      "G1": "risk-aware check fires on the reference graph -> DETECTED",
+      "G2": "effect absent even from the reference graph -> ABSTRACTION",
+      "G3/G4": "reference graph shows the effect, check still clears -> CHECKER"
+    },
+    "guard_inputs": {
+      "n_gt_error_flags": 4,
+      "n_non_discharging_gates": 8
+    },
+    "sensitive_tool_lexicon_hits": [
+      "execute_function",
+      "execute_sql_query",
+      "initialize_payment_or_query_orders",
+      "save_article",
+      "save_order_to_sheet",
+      "write_article_czech"
+    ]
+  },
+  "false_positives": {
+    "n_flags": 186,
+    "n_actionable": 2,
+    "n_non_actionable": 184,
+    "over_all_flags": {
+      "POLICY_SPEC": {
+        "n": 94,
+        "pct": 50.5,
+        "wilson95": [
+          43.4,
+          57.6
+        ]
+      },
+      "EXTRACTOR": {
+        "n": 71,
+        "pct": 38.2,
+        "wilson95": [
+          31.5,
+          45.3
+        ]
+      },
+      "LABEL": {
+        "n": 12,
+        "pct": 6.5,
+        "wilson95": [
+          3.7,
+          10.9
+        ]
+      },
+      "REFERENCE_ERROR": {
+        "n": 5,
+        "pct": 2.7,
+        "wilson95": [
+          1.2,
+          6.1
+        ]
+      },
+      "CHECKER": {
+        "n": 2,
+        "pct": 1.1,
+        "wilson95": [
+          0.3,
+          3.8
+        ]
+      },
+      "ACTIONABLE": {
+        "n": 2,
+        "pct": 1.1,
+        "wilson95": [
+          0.3,
+          3.8
+        ]
+      }
+    },
+    "over_non_actionable": {
+      "POLICY_SPEC": {
+        "n": 94,
+        "pct": 51.1,
+        "wilson95": [
+          43.9,
+          58.2
+        ]
+      },
+      "EXTRACTOR": {
+        "n": 71,
+        "pct": 38.6,
+        "wilson95": [
+          31.9,
+          45.8
+        ]
+      },
+      "LABEL": {
+        "n": 12,
+        "pct": 6.5,
+        "wilson95": [
+          3.8,
+          11.1
+        ]
+      },
+      "REFERENCE_ERROR": {
+        "n": 5,
+        "pct": 2.7,
+        "wilson95": [
+          1.2,
+          6.2
+        ]
+      },
+      "CHECKER": {
+        "n": 2,
+        "pct": 1.1,
+        "wilson95": [
+          0.3,
+          3.9
+        ]
+      }
+    },
+    "by_check": {
+      "human_presence": {
+        "n": 111,
+        "dist": {
+          "POLICY_SPEC": {
+            "n": 94,
+            "pct": 84.7,
+            "wilson95": [
+              76.8,
+              90.2
+            ]
+          },
+          "LABEL": {
+            "n": 10,
+            "pct": 9.0,
+            "wilson95": [
+              5.0,
+              15.8
+            ]
+          },
+          "REFERENCE_ERROR": {
+            "n": 4,
+            "pct": 3.6,
+            "wilson95": [
+              1.4,
+              8.9
+            ]
+          },
+          "EXTRACTOR": {
+            "n": 3,
+            "pct": 2.7,
+            "wilson95": [
+              0.9,
+              7.6
+            ]
+          }
+        }
+      },
+      "reverse_reachability": {
+        "n": 25,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 24,
+            "pct": 96.0,
+            "wilson95": [
+              80.5,
+              99.3
+            ]
+          },
+          "CHECKER": {
+            "n": 1,
+            "pct": 4.0,
+            "wilson95": [
+              0.7,
+              19.5
+            ]
+          }
+        }
+      },
+      "dead_ends": {
+        "n": 25,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 24,
+            "pct": 96.0,
+            "wilson95": [
+              80.5,
+              99.3
+            ]
+          },
+          "LABEL": {
+            "n": 1,
+            "pct": 4.0,
+            "wilson95": [
+              0.7,
+              19.5
+            ]
+          }
+        }
+      },
+      "exit_reachability": {
+        "n": 14,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 14,
+            "pct": 100.0,
+            "wilson95": [
+              78.5,
+              100.0
+            ]
+          }
+        }
+      },
+      "tool_declarations": {
+        "n": 5,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 3,
+            "pct": 60.0,
+            "wilson95": [
+              23.1,
+              88.2
+            ]
+          },
+          "REFERENCE_ERROR": {
+            "n": 1,
+            "pct": 20.0,
+            "wilson95": [
+              3.6,
+              62.4
+            ]
+          },
+          "CHECKER": {
+            "n": 1,
+            "pct": 20.0,
+            "wilson95": [
+              3.6,
+              62.4
+            ]
+          }
+        }
+      },
+      "router_shape": {
+        "n": 3,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 3,
+            "pct": 100.0,
+            "wilson95": [
+              43.8,
+              100.0
+            ]
+          }
+        }
+      },
+      "human_gate_coverage": {
+        "n": 1,
+        "dist": {
+          "LABEL": {
+            "n": 1,
+            "pct": 100.0,
+            "wilson95": [
+              20.7,
+              100.0
+            ]
+          }
+        }
+      }
+    },
+    "by_check_family": {
+      "human_gate": {
+        "n": 112,
+        "dist": {
+          "POLICY_SPEC": {
+            "n": 94,
+            "pct": 83.9,
+            "wilson95": [
+              76.0,
+              89.6
+            ]
+          },
+          "LABEL": {
+            "n": 11,
+            "pct": 9.8,
+            "wilson95": [
+              5.6,
+              16.7
+            ]
+          },
+          "REFERENCE_ERROR": {
+            "n": 4,
+            "pct": 3.6,
+            "wilson95": [
+              1.4,
+              8.8
+            ]
+          },
+          "EXTRACTOR": {
+            "n": 3,
+            "pct": 2.7,
+            "wilson95": [
+              0.9,
+              7.6
+            ]
+          }
+        }
+      },
+      "structural": {
+        "n": 72,
+        "dist": {
+          "EXTRACTOR": {
+            "n": 68,
+            "pct": 94.4,
+            "wilson95": [
+              86.6,
+              97.8
+            ]
+          },
+          "CHECKER": {
+            "n": 2,
+            "pct": 2.8,
+            "wilson95": [
+              0.8,
+              9.6
+            ]
+          },
+          "REFERENCE_ERROR": {
+            "n": 1,
+            "pct": 1.4,
+            "wilson95": [
+              0.2,
+              7.5
+            ]
+          },
+          "LABEL": {
+            "n": 1,
+            "pct": 1.4,
+            "wilson95": [
+              0.2,
+              7.5
+            ]
+          }
+        }
+      }
+    },
+    "rule_counts": {
+      "R3a_policy_survives_oracle": 94,
+      "R1_removed_by_oracle": 71,
+      "R4": 12,
+      "Ga_gt_triage_marked_reference_wrong": 1,
+      "R2_structural_survives_oracle": 2,
+      "Gb_reference_human_node_non_discharging": 4,
+      "R5": 2
+    },
+    "rows": [
+      {
+        "slug": "SAMAR-CODE404__backend__report_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "vego147__AI_Research_Img_Assistance__Bot",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "foxyglue__faq-db-chat__app2",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__dev",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__dev",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__dev",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "huangdihd__ProjectAI__main",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "huangdihd__ProjectAI__main",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "huangdihd__ProjectAI__main",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "jakenolan__langgraph-custom-tools__main",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "jakenolan__langgraph-custom-tools__main",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "jakenolan__langgraph-custom-tools__main",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "check": "router_shape",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__main",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "0evja__LangGraph-Agent__demo",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "0evja__LangGraph-Agent__demo",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "0evja__LangGraph-Agent__demo",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__merger_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "MdArshath2004__snowflakeoptimization__tes",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "mvdiogo__Langgraph-langchain-Ollama-and-DuckDuckGo__app",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__research_agent",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__research_agent",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__research_agent",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "maxidiazbattan__Agentic-RAG-langgraph-ollama-streamlit__app",
+        "check": "tool_declarations",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "opengles3d__ollama_rag__state_graph",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__agent",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__agent",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "shazy89__ai-learning__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Mhijazi16__LanggraphExercise__one",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "miranda-santos-ricardo__langgraph_academy_own_agent_exercise__2",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Harsh1210__llm-opsbot__main",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Harsh1210__llm-opsbot__main",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Harsh1210__llm-opsbot__main",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "Harsh1210__llm-opsbot__main",
+        "check": "tool_declarations",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "REFERENCE_ERROR",
+        "rule": "Ga_gt_triage_marked_reference_wrong"
+      },
+      {
+        "slug": "AdaptiveBProcess__bpm_agent__main",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "peytonrivers__AI-Agentic-System-using-Canvas-LMS-API__my",
+        "check": "tool_declarations",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "CHECKER",
+        "rule": "R2_structural_survives_oracle"
+      },
+      {
+        "slug": "Brenmull12__Hoohacks2025__multiturn",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Brenmull12__Hoohacks2025__multiturn",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "CHECKER",
+        "rule": "R2_structural_survives_oracle"
+      },
+      {
+        "slug": "Brenmull12__Hoohacks2025__multiturn",
+        "check": "dead_ends",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "Brenmull12__Hoohacks2025__multiturn",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+        "check": "router_shape",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Md-Emon-Hasan__LangGraph__7_human_in_the_loop",
+        "check": "tool_declarations",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "leewow03__llm__10",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "timleow__gym-kfc-daddies__cli_ui",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "timleow__gym-kfc-daddies__cli_ui",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "timleow__gym-kfc-daddies__cli_ui",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "timleow__gym-kfc-daddies__cli_ui",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "REFERENCE_ERROR",
+        "rule": "Gb_reference_human_node_non_discharging"
+      },
+      {
+        "slug": "winstonbartlegod__enhanced-multimodal-rag__v1",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Mhijazi16__LanggraphExercise__two",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "houyongsheng__local_rag__rag",
+        "check": "tool_declarations",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "AdaptiveBProcess__bpm_agent__template",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__prompt_agent",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__prompt_agent",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__prompt_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__email_simulation",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "juananpe__langgraph-flask__cli",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "juananpe__langgraph-flask__cli",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "juananpe__langgraph-flask__cli",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "juananpe__langgraph-flask__cli",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__io",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__io",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__io",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Avneesh26024__Gen_AI_Exchange__io",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "LeonardoDaviti__LangGraph-Tutorials__chat",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "opengles3d__ollama_rag__18",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Sarfaraz021__WhatsApp-data-Assistant-Using-Qdrant-VectorDB__new",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__Main",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__Main",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__Main",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "SAMAR-CODE404__backend__Main",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "langgraph",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "vishnusurya11__ember__reflection_agent",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__reflection_agent",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "vishnusurya11__ember__reflection_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Kasun-Tharaka__Multi-Agent-AI-RAG__app",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "tweetlol__eve__eve",
+        "check": "exit_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "tweetlol__eve__eve",
+        "check": "reverse_reachability",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "tweetlol__eve__eve",
+        "check": "dead_ends",
+        "triage_label": "extraction_artifact",
+        "framework": "langgraph",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "tweetlol__eve__eve",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "langgraph",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "firaflash__career-mentor-ai-agent__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__procurement_report_author_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "matttbates__job-search-assistant__crew",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "muzifa-mubarak__crew_ai_practice__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__app",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "divyansh-tripathi7__AutoMated_LinkedinCrew__crew",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Shirmeen__Chatbot__app3",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Jamahl__fraya-25__crew",
+        "check": "human_presence",
+        "triage_label": "real_defect",
+        "framework": "crewai",
+        "cause": "ACTIONABLE",
+        "rule": "R5"
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__scraping_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "venkatavinayvijjapu__New_Assignment__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "IbrahimAlobid2__Smart-Procurement-Agents__search_engine_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "colinmccrae__CrewAITest__do1",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Tushar365__WebScript-AI-Powered-Research-Content-Creator__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "SuyashMohanty__SuyashMohanty-CrewAI-YouTube-Blog-Generator-A-Multi-Agent-Content-Creation-System__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "suryaMadhav16__RAG-Lab__CrewAI",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Sirivella-Rajasekhar-Reddy__Product-Dynamic-Page__raj",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Lucky-akash321__News-Reporter-AI-using-CrewAI__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "dforwardfeed__memo_generator__main",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "SomanGaurav__Agentic_Research_Assistant__test_agent",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "crewai",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "aayu2003__agent_creation__tasks",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "crewai",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "waqasniazi9__voice-agent__builder",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "REFERENCE_ERROR",
+        "rule": "Gb_reference_human_node_non_discharging"
+      },
+      {
+        "slug": "SPZts__AutoModel__model32",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__test_group_chat_endpoint",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__8_RunTeamStreamMCP",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "microsoft__ACV__test_group_chat_endpoint",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "nokia__mcp-redfish__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Saimoguloju__AI-Agents__sample_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__app_team",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "NanGePlus__AutoGenV04Test__CacheTeam",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__2_RunTeam",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "LightningGod7__prometheus__test_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "AkshatKumar12__AutoGen_Learning__teams",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__test_team_manager",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "ericjiang18__Agent-Q-Mix__test_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "project194-cognitivellm__cognitivellm__gwt_run_autogen_eval",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Damish-7__MOLYSIS__multi_agents",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "microsoft__ACV__test_agent",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "AkshatKumar12__AutoGen_Learning__test",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "autogen",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "autogen",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "feixiao__ai__ex03",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "SPZts__AutoModel__model22",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "jkmaina__autogen_blueprint__03_model_based_selector",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Sidreyas__The_Grand_AI_Repo__builder",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "REFERENCE_ERROR",
+        "rule": "Gb_reference_human_node_non_discharging"
+      },
+      {
+        "slug": "NanGePlus__AutoGenV04Test__5_RunTeamStream",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "autogen",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "MikhailMostWanted__Astra__mcp_session_host_example",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "arunacarunac__MultiAgentSamples__App",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Damish-7__MOLYSIS__health_agents",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "autogen",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Itzkuldeep__AgentE-com__main",
+        "check": "router_shape",
+        "triage_label": "extraction_artifact",
+        "framework": "autogen",
+        "cause": "EXTRACTOR",
+        "rule": "R1_removed_by_oracle"
+      },
+      {
+        "slug": "Itzkuldeep__AgentE-com__main",
+        "check": "human_gate_coverage",
+        "triage_label": "arguable",
+        "framework": "autogen",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "AIAnytime__agentic-context-engineering__curator",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "merdandt__SalesShortcut__potential_lead_finder_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "volcengine__veadk-python__main",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Zen7-Labs__Zen7-Payment-Agent__agent",
+        "check": "human_presence",
+        "triage_label": "real_defect",
+        "framework": "adk",
+        "cause": "ACTIONABLE",
+        "rule": "R5"
+      },
+      {
+        "slug": "AbhiShetye0703__Google-ADK__sequentialAgent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "esk000__AIAgentsIntensive__LoopAgent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "joansantoso__iox-adk__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "sreekarrs__JobSearch-Agent__cv_writer",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "gabrielpreda__adk-sql-agent__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "merdandt__SalesShortcut__websiter_creator_agent",
+        "check": "human_presence",
+        "triage_label": "extraction_artifact",
+        "framework": "adk",
+        "cause": "REFERENCE_ERROR",
+        "rule": "Gb_reference_human_node_non_discharging"
+      },
+      {
+        "slug": "merdandt__SalesShortcut__outreach_email_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "NEU-Bio-Research-Team__tox-agent__orchestrator_agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "AbhiShetye0703__Google-ADK__parallelAgent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "dream-horizon-org__pulse__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "Astrodevil__ADK-Agent-Examples__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "svpino__ml.school__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "merdandt__SalesShortcut__email_agent",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "adk",
+        "cause": "LABEL",
+        "rule": "R4"
+      },
+      {
+        "slug": "docker__compose-for-agents__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "esk000__AIAgentsIntensive__parallelAgent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "AsadAhmedSaiyed__Google-AI-Agent-Intensive-Course__LoopAgent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "lordpython__multi-agent-video-system__agent",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "ed-donner__agents__sequential_agents",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "jpantsjoha__Agentic-Marketing-Campaign-Generator__marketing_orchestrator",
+        "check": "human_presence",
+        "triage_label": "intentional",
+        "framework": "adk",
+        "cause": "POLICY_SPEC",
+        "rule": "R3a_policy_survives_oracle"
+      },
+      {
+        "slug": "brightertiger__google-adk-demo__agent",
+        "check": "human_presence",
+        "triage_label": "arguable",
+        "framework": "adk",
+        "cause": "LABEL",
+        "rule": "R4"
+      }
+    ],
+    "delta_vs_committed_mapping": {
+      "n_reattributed": 13,
+      "moves": {
+        "EXTRACTOR->POLICY_SPEC": 5,
+        "EXTRACTOR->REFERENCE_ERROR": 2,
+        "EXTRACTOR->CHECKER": 2,
+        "POLICY_SPEC->EXTRACTOR": 1,
+        "POLICY_SPEC->REFERENCE_ERROR": 3
+      }
+    }
+  },
+  "false_negatives": {
+    "n_confirmed_human_gate_violations": 12,
+    "as_mined_pipeline": {
+      "n_missed": 12,
+      "dist": {
+        "EXTRACTOR": {
+          "n": 12,
+          "pct": 100.0,
+          "wilson95": [
+            75.7,
+            100.0
+          ]
+        }
+      },
+      "rows": [
+        {
+          "slug": "AdaptiveBProcess__bpm_agent__main",
+          "framework": "langgraph",
+          "category": "exec",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "Arhamirfan__Snake-Agents__snake_autogen",
+          "framework": "autogen",
+          "category": "exec",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "placebo: UserProxyAgent typed 'human' in the reference graph but human_input_mode='TERMINATE'",
+          "outside_both_flag_universes": true,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "Harsh1210__llm-opsbot__main",
+          "framework": "langgraph",
+          "category": "comms_third_party",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "Itzkuldeep__AgentE-com__main",
+          "framework": "autogen",
+          "category": "comms_third_party",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "non-dominating: UserProxyAgent human_input_mode='ALWAYS' (L233/L250) exists but is ordered after the executing agent",
+          "outside_both_flag_universes": true,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+          "framework": "autogen",
+          "category": "exec",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__Main",
+          "framework": "langgraph",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "placebo: 6 nodes typed 'human' in the reference graph whose body reads a hard-coded True flag",
+          "outside_both_flag_universes": true,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__merger_agent",
+          "framework": "langgraph",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__report_agent",
+          "framework": "langgraph",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+          "framework": "langgraph",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "partial: confirmation_node exists but auto-confirms above threshold (L399-404)",
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+          "framework": "autogen",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+          "framework": "autogen",
+          "category": "exec",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        },
+        {
+          "slug": "ed-donner__agents__sequential_agents",
+          "framework": "adk",
+          "category": "external_write",
+          "v1_graph_present": true,
+          "v1_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "outside_both_flag_universes": false,
+          "cause": "EXTRACTOR",
+          "rule": "F1_no_sensitive_declaration"
+        }
+      ],
+      "note": "All 12 HGP-1 violations were missed by the as-mined risk-aware pipeline (it fires 0 times on the 922 mined graphs), so the miss denominator is the full violation set."
+    },
+    "oracle_graph_pipeline": {
+      "n_detected": 1,
+      "n_still_missed": 11,
+      "dist": {
+        "ABSTRACTION": {
+          "n": 9,
+          "pct": 75.0,
+          "wilson95": [
+            46.8,
+            91.1
+          ]
+        },
+        "REFERENCE_ERROR": {
+          "n": 1,
+          "pct": 8.3,
+          "wilson95": [
+            1.5,
+            35.4
+          ]
+        },
+        "DETECTED": {
+          "n": 1,
+          "pct": 8.3,
+          "wilson95": [
+            1.5,
+            35.4
+          ]
+        },
+        "CHECKER": {
+          "n": 1,
+          "pct": 8.3,
+          "wilson95": [
+            1.5,
+            35.4
+          ]
+        }
+      },
+      "rows": [
+        {
+          "slug": "AdaptiveBProcess__bpm_agent__main",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "Arhamirfan__Snake-Agents__snake_autogen",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "placebo: UserProxyAgent typed 'human' in the reference graph but human_input_mode='TERMINATE'",
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "Harsh1210__llm-opsbot__main",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "REFERENCE_ERROR",
+          "rule": "G2b_reference_omitted_declarable_tools"
+        },
+        {
+          "slug": "Itzkuldeep__AgentE-com__main",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "non-dominating: UserProxyAgent human_input_mode='ALWAYS' (L233/L250) exists but is ordered after the executing agent",
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "NavalGear__Manufacturing_Process_Plan__autogen_agents",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__Main",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "placebo: 6 nodes typed 'human' in the reference graph whose body reads a hard-coded True flag",
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__merger_agent",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "SAMAR-CODE404__backend__report_agent",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
+          "risk_aware_fires_on_oracle": true,
+          "gt_declared_sensitive_tools": [
+            "execute_sql_query"
+          ],
+          "gt_has_human_node": true,
+          "non_discharging_gate": "partial: confirmation_node exists but auto-confirms above threshold (L399-404)",
+          "cause": "DETECTED",
+          "rule": "G1_oracle_graph_detects"
+        },
+        {
+          "slug": "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "blueming333__aicraft-class-autogen__PythonAstREPLTool",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "ABSTRACTION",
+          "rule": "G2_effect_absent_even_from_reference"
+        },
+        {
+          "slug": "ed-donner__agents__sequential_agents",
+          "risk_aware_fires_on_oracle": false,
+          "gt_declared_sensitive_tools": [
+            "save_order_to_sheet"
+          ],
+          "gt_has_human_node": false,
+          "non_discharging_gate": null,
+          "cause": "CHECKER",
+          "rule": "G4_cleared_despite_violation"
+        }
+      ],
+      "note": "Symmetric counterpart of the FP survival test: the extractor is replaced by the near-oracle reference graph and the policy is held fixed.  Violations still missed are the check-side false-negative floor."
+    }
+  }
+}

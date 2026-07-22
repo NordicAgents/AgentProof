@@ -462,7 +462,30 @@ verify the flagged structure exists in source (faithfulness) → judge intent
 | agreement report | node/edge F1, kind kappa, raw agreement, Krippendorff alpha + bootstrap CIs, confusion matrices — all pre-adjudication |
 | fidelity report | extractor and LLM-GT precision/recall vs adjudicated human graphs |
 
+**The agreement and fidelity reports are generated, not hand-computed.** Run
+
+```bash
+uv run python scripts/human_agreement.py          # writes human_agreement.json
+uv run python scripts/human_agreement.py --latex  # + the .tex macros
+```
+
+at any point during annotation: it reports how many items each annotator has
+committed and scores whatever is complete, so it is useful as a progress check
+and not only at the end. It implements section 8.4 as frozen — Krippendorff's
+alpha primary, Cohen's kappa secondary, 10,000-resample percentile CIs both
+item-level and repository-clustered, full confusion matrices, all
+pre-adjudication — and additionally scores **each annotator against the
+committed LLM label**, which is the comparison that decides whether the LLM
+labels behave like a third annotator or like a different instrument. The
+estimators are pinned against textbook values in
+`tests/test_agreement_stats.py`.
+
 ## Change log
 
 - v1.0 — initial guide (2026-07-13), written against
   `samples_manifest.json` seed 20260713.
+- v1.1 — 2026-07-22. **No change to any protocol, sample, label domain, or
+  scoring rule**; the samples and seed are untouched, so labels collected under
+  v1.0 remain valid. Documentation only: section 10 now names
+  `scripts/human_agreement.py` as the implementation of section 8.4, which
+  previously existed only as prose.

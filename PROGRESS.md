@@ -1,5 +1,25 @@
 # Revision progress — AAAI paper (papers/paper1/aaai)
 
+> **HISTORICAL RECORD — superseded in part. Do not cite figures from this file.**
+> This documents the **2026-07-13** revision round only. Two later rounds
+> changed headline numbers, and this file was deliberately not rewritten so the
+> sequence stays auditable. Where this file and `papers/paper1/aaai/CLAIMS_AUDIT.md`
+> disagree, the audit is authoritative. Known supersessions:
+>
+> - **human-gate prevalence 3/119 → 12/119** $[5.9,16.8]\%$, under the
+>   pre-registered uniform policy HGP-1 (`HUMAN_GATE_POLICY.md`, audit §9.4).
+>   The 3/119 figure came from two different checks over two graph populations
+>   and was never one estimand.
+> - **fidelity Table 1 → matched, provenance-disambiguated $n{=}106$**, after
+>   the slug-collision keying defect was found (audit §8.2).
+> - **"stratified sample" → quota-selected, no seed, no sampler**; the
+>   reweighting is a descriptive statistic, not a design-based estimate
+>   (`SAMPLING_DESIGN.md`, audit §8.3–8.4).
+> - **checker-vs-policy split now quantified** by the label-independent survival
+>   test (audit §9.2), which also decomposes false negatives.
+>
+> Current status of every quantitative claim: `papers/paper1/aaai/CLAIMS_AUDIT.md`.
+
 Status as of 2026-07-13. This revision responds to an AAAI-style review
 (overall 4/10) whose major concerns were: wrong estimand (flag PPV presented
 as prevalence), unmeasured false negatives, extractor-imposed connectivity

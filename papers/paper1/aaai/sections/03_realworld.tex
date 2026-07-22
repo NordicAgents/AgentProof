@@ -158,14 +158,29 @@ answer decides what to fix. We attribute each of the 186 flags to one of four
 causes: \textsc{extractor} (the graph misrepresents the code); \textsc{checker}
 (check logic wrong given a correct graph); \textsc{policy-spec} (graph and check
 both correct, but the policy does not apply---a blunt human-presence requirement
-on a read-only tutorial); and \textsc{label} (disputed judgment). One caveat: our
-triage vocabulary asked ``is this a real defect?'', not ``whose fault is this
-flag?'', so \textsc{checker} is not separable from \textsc{policy-spec} and is
-folded into it---nonzero but unquantified; both are check-side, so the comparison
-is unaffected. The result does not support one cause: extraction artifacts
+on a read-only tutorial); and \textsc{label} (disputed judgment). The result does
+not support one cause: extraction artifacts
 account for $42.5\%$ of flags $[35.6,49.7]$, policy misspecification for $50.0\%$
 $[42.9,57.1]$---overlapping intervals in which extraction is, if anything, the
 \emph{smaller} term.
+
+Because the triage vocabulary asked ``is this a real defect?'', not ``whose
+fault is this flag?'', we separate \textsc{checker} from \textsc{policy-spec}
+\emph{mechanically} rather than by label, with a survival test: re-run each
+check on the reference graph. A flag the near-oracle removes is
+\textsc{extractor}; a \emph{structural} flag that survives on a faithful graph
+yet is still not a defect indicts the check's decision procedure
+(\textsc{checker}); a surviving \emph{policy} flag indicts its specification.
+Where the reference graph is itself known wrong---a \textsc{gt-error} label, or
+a \textsc{human} node the placebo audit found non-discharging---the test is not
+evidence about the check, and we record \textsc{reference-error} rather than
+force a side. This label-independent instrument agrees with the label-based one
+on \textbf{173 of 186} flags ($93.0\%$), and closes the gap the earlier
+vocabulary left open: \textsc{checker} is $1.1\%$ $[0.3,3.8]$ against
+\textsc{policy-spec} $50.5\%$, with \textsc{extractor} $38.2\%$ and
+\textsc{reference-error} $2.7\%$. Check-side error is almost entirely
+\emph{specification}, not \emph{logic}---the checks do what they say; what they
+say is wrong for these workflows.
 
 \paragraph{The decisive test.}
 Attribution rests on labels, so we ran the symmetric ablation: hold the checks
@@ -185,6 +200,24 @@ human-gate checks are $61\%$ of all flags, the aggregate goes against a pure
 extraction story even though extraction dominates the structural checks. Better
 extractors fix reachability checks; only per-workflow policy instantiation fixes
 safety checks; neither alone suffices.
+
+\paragraph{The same test, run on misses.}
+Everything above decomposes false \emph{positives}. Flag triage cannot see
+misses, so we run the ablation in the other direction, over the 12 confirmed
+HGP-1 violations. The as-mined risk-aware check reports \textbf{none} of them,
+and the cause is unmixed: no mined graph declares a sensitive tool at all, so
+all 12 misses are extraction ($100\%$ $[75.7,100]$). Replacing the extractor
+with the reference graph---the same near-oracle swap---recovers only
+\textbf{1 of 12}. Of the 11 still missed, \textbf{9} have the effect absent even
+from the \emph{reconstruction}, because it lives in a node \emph{body} that the
+graph abstraction does not represent; 1 is a reconstruction that dropped
+statically declarable tools; 1 is a workflow the check cleared on a gate that
+cannot block. The two directions therefore have opposite error budgets:
+non-actionable findings are check-side, but misses are model-side---and a
+near-oracle graph repairs almost none of them, because the missing information
+sits \emph{below} the abstraction rather than above it. This is the same
+boundary the certification gate runs into (Section~\ref{sec:system}): reading an
+edge exactly says nothing about the events inside the node it connects.
 
 % Attribution table moved to the supplement (page limit); all figures stated inline.
 
@@ -263,9 +296,17 @@ interval excludes the old estimate; \textsc{arguable} counted pessimistically
 bounds it at $23/119$. The uncertainty points upward: $12/119$ is a \emph{lower
 bound}, since several \textsc{arguable} cases (a payment pipeline whose prompts
 forbid confirmation four times over) would likely resolve toward violation given
-repository-level rather than single-file source. The 87 workflows without
-side-effecting tools were screened by the same source-level pass, and a re-sweep
-for effect signatures surfaced no missed violation. Three of the 12 lie
+repository-level rather than single-file source. It is a lower bound for a
+second reason we state plainly: only the 32 were read \emph{under HGP-1}; the
+other 87 enter the denominator as non-violations by construction, having been
+excluded by the same source-level classification pass that produced the 32. To
+bound that residual we swept all 87 sources independently for effect signatures
+(\texttt{subprocess}/\texttt{exec}, SMTP/send, non-idempotent HTTP, write-mode
+\texttt{open}, SQL DML/DDL, code executors, MCP workbenches). It flagged 10 for
+manual re-reading: 9 are correctly screened and 1 is borderline---an MCP
+workbench whose server module lies outside the mining unit---which HGP-1 would
+record as \textsc{arguable}, not a violation. No missed violation was found, so
+the residual is bounded by one \textsc{arguable} case. Three of the 12 lie
 \emph{outside both flag universes}---no triage entry, neither check
 fired---confirming that false negatives exist beyond the union of the flag sets,
 where a flag-triage study can never find them.

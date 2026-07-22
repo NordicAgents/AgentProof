@@ -22,6 +22,11 @@
 
 \graphicspath{{../figures/}{../generated/}}
 
+% TL;DR (submission form, 250-char limit; not typeset):
+% Non-actionable findings in static analysis of agent workflows have two causes,
+% not one: extraction error (42.5%) and policy misspecification (50.0%).
+% A perfect extractor would not make these tools usable.
+
 % Title (Title Case, per AAAI rules).
 \title{Two Failure Modes, Not One: Extraction Error and Policy Misspecification in Static Analysis of Agent Workflows}
 \author{Anonymous Submission}
@@ -50,7 +55,11 @@ explains 98.6\% of non-actionable structural flags, policy specification
 in place of an ad-hoc two-check procedure, revises human-gate violations
 fourfold upward (3 to 12 of 119), three outside both original flag universes,
 and reveals that every workflow the checks cleared was cleared by a
-\emph{placebo} gate---a node typed \textsc{human} whose body cannot block. We
+\emph{placebo} gate---a node typed \textsc{human} whose body cannot block.
+Running the same ablation on \emph{misses} inverts the budget: all 12 confirmed
+violations escape the as-mined pipeline for want of extraction, yet a
+near-oracle graph recovers only one, because the effect lives inside a node
+body no graph of this kind represents. We
 also give the static machinery two defect-independent jobs: provenance-gated
 certification returning \texttt{inconclusive} rather than a false \texttt{safe}
 on lossy graphs, and a path-sensitive graph\,$\times$\,DFA product that prunes
