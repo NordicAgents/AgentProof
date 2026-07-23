@@ -4,7 +4,7 @@
 
 \paragraph{Controlled detection test.}
 A curated corpus of 18 workflows across all four frameworks, seeded with known
-anti-patterns, confirms the checks fire when defects are present: Agentproof
+anti-patterns, confirms the checks fire when defects are present: the analyzer
 detects every injected structural defect and, with a risk-aware sensitive-tool
 set, flags 8 workflows whose sensitive path is reachable without a human gate,
 versus 10 for the blunt check---declining to flag two that lack a human node but
@@ -15,27 +15,24 @@ not evidence of prevalence. Verification is sub-second on synthetic graphs of
 \paragraph{Static monitor selection.}
 The graph\,$\times$\,DFA product gives the static machinery a job independent of
 whether defects exist: deciding which runtime monitors to deploy. Its value is
-\emph{soundness}, not scale, and it supports the certification gate of
-Section~\ref{sec:system}, which returns \texttt{safe} only when the traversed
-region passes the provenance screen or the caller asserts an authored
-abstraction. Every pruning number is therefore sound \emph{relative to that
-abstraction}: we assume, and do not prove, that a curated workflow's nodes emit
-no events outside their declared bindings. A policy whose product is safe can
-never fire at runtime, so its monitor need not be deployed;
+\emph{soundness}, not scale, and it rests on the certification gate of
+Section~\ref{sec:system}, so every pruning number is sound \emph{relative to an
+authored abstraction}---we assume, and do not prove, that a curated workflow's
+nodes emit no events outside their declared bindings. A policy whose product is
+safe can never fire at runtime, so its monitor need not be deployed;
 \texttt{may\_violate} is never suppressed. On the curated corpus the gate
-certifies 237 of 270 monitor instances (87.8\%) as provably inert and declines 14
-(all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving 19 to
+certifies 237 of 270 monitor instances (87.8\%) as provably inert and declines
+14 (all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving 19 to
 runtime enforcement.
 
 \paragraph{Descriptive vs.\ sound pruning on mined code.}
-This certified rate does not survive contact with lossy extraction. A
-${\sim}93\%$ ``pruning'' rate is available on the mined graphs, but it is pure
-\emph{alphabet-inertness}: all 13{,}830 mined (workflow, policy) instances are
-alphabet-inert because no mined workflow invokes any of the 15 policies'
-tools---a descriptive property of a mismatched vocabulary, not a sound prune. On
-a may-provenance graph a missing edge could hide exactly the tool that makes a
-live monitor look inert, so the sound gate certifies \emph{none} of the 13{,}830,
-refusing them all as uncertified extraction.
+This rate does not survive lossy extraction. A ${\sim}93\%$ ``pruning'' rate is
+available on the mined graphs, but it is pure \emph{alphabet-inertness}: all
+13{,}830 mined (workflow, policy) instances are inert only because no mined
+workflow invokes any of the 15 policies' tools---a mismatched vocabulary, not a
+sound prune. On a may-provenance graph a missing edge could hide exactly the
+tool that makes a live monitor look inert, so the gate certifies \emph{none} of
+them, refusing all as uncertified extraction.
 
 \paragraph{Does path-sensitivity buy anything?}
 Alphabet-inertness needs no product; the product earns its keep only when a
@@ -45,9 +42,8 @@ one unobserved path forbids the claim; alphabet-only prunes 1, node-reachability
 3, and the path-sensitive product 10---with no false prunes across 50 concrete
 executions. We are deliberately conservative: five of the 9 incremental cases are
 linear response-obligation pipelines in which the consequent trivially dominates
-every path, and the evidence on branching and looping topologies rests on 4
-purpose-built \emph{synthetic} fixtures (labeled synthetic, not sampled). Fifty
-executions cannot establish the absence of false prunes; this is a mechanism
-demonstration and a cheap optimization, not real-world evidence of scale.
+every path, and the branching and looping evidence rests on 4 purpose-built
+\emph{synthetic} fixtures. Fifty executions cannot establish the absence of
+false prunes; this is a mechanism demonstration, not evidence of scale.
 
 % Pruning table moved to the supplement (page limit); counts stated inline above.

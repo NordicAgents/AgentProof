@@ -1,4 +1,4 @@
-\section{The Agentproof System}
+\section{The Analyzer}
 \label{sec:system}
 \label{sec:graph_model}
 \label{sec:verification_methods}
@@ -6,7 +6,7 @@
 % Pipeline figure moved to the supplement to meet the page limit.
 
 \paragraph{Unified graph model.}
-Agentproof represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with
+The analyzer represents a workflow as a directed graph $G=(V,E,v_0,V_f)$ with
 entry $v_0$ and exit set $V_f$. Each node carries a kind $\kappa_V(v)$ over
 \textsc{entry}, \textsc{exit}, \textsc{tool}, \textsc{llm}, \textsc{router},
 \textsc{human}, \textsc{passthrough}, \textsc{subgraph} and, for tool nodes,
@@ -16,27 +16,25 @@ bound tool names; each edge is \textsc{direct}, \textsc{conditional},
 synthesized, unknown), a confidence (exact, may, heuristic), and a source
 span---so structure read from a declaration is distinguishable from structure the
 extractor guessed, and witness traces inherit the weakest confidence they
-traverse. Per-framework extractors, hand-written once each, bridge four
-representations into this model. Extraction has two paths: a runtime extractor reading the
-compiled graph object, and a static AST fallback for large-scale mining, where
-installing every repository's dependencies is infeasible.
+traverse. Per-framework extractors bridge four representations into this model
+by either of two paths: a runtime extractor reading the compiled graph object,
+or a static AST fallback for large-scale mining, where installing every
+repository's dependencies is infeasible.
 
 \paragraph{An orthogonal attribute ontology.}
 \label{par:ontology}
 The single-label kinds above are a compatibility view: forcing each element into
 one bucket mislabels multi-faceted nodes---an \textsc{llm} node that also invokes
 a tool---and was itself a source of extraction error. We therefore layer a
-non-exclusive ontology over
-$\kappa_V/\kappa_E$ (vocabulary in the supplement): each node carries an
-\emph{effect} set (read, write, execute, communicate, financial, delete) and a
-\emph{capability} set, and each edge a \emph{back-edge} flag, so a conditional
-loop is $(\textsc{conditional},\text{back\_edge})$ rather than a bare
-\textsc{loop}. It is primary in the data model, but the per-framework extractors
-do \emph{not} yet populate these fields: every mined graph carries defaults, and
-the sets are assigned at corpus-build time by a framework-independent rule
-(capabilities from the node kind, effects from a keyword match over declared
-tool names). The ontology therefore inherits the same declared-tool blindness as
-the risk-aware gate (Section~\ref{sec:realworld}) rather than curing it.
+non-exclusive ontology over $\kappa_V/\kappa_E$ (vocabulary in the supplement):
+each node carries an \emph{effect} set (read, write, execute, communicate,
+financial, delete) and a \emph{capability} set, and each edge a \emph{back-edge}
+flag. It is primary in the data model, but the per-framework extractors do
+\emph{not} yet populate these fields: every mined graph carries defaults, and
+the sets are assigned at corpus-build time by a framework-independent rule over
+node kinds and declared tool names. The ontology therefore inherits the same
+declared-tool blindness as the risk-aware gate (Section~\ref{sec:realworld})
+rather than curing it.
 
 \paragraph{Structural checks.}
 Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
@@ -52,21 +50,20 @@ tool is reachable from $v_0$ without passing a \textsc{human} node
 (Section~\ref{sec:realworld}).
 
 \paragraph{Temporal policies with LTL$_f$ semantics.}
-Agentproof also supports a policy DSL over finite traces
+It also supports a policy DSL over finite traces
 (LTL$_f$~\citep{degiacomo2013ltlf}): an execution is a finite event sequence, and
 each of seven DSL forms denotes an LTL$_f$ formula---forbidden ($\mathbf{G}\,\neg
 a$), response ($\mathbf{G}(a \rightarrow \mathbf{F}\,b)$), strong until, bounded
 response ($\mathbf{G}(a \rightarrow \mathbf{F}_{\leq k}\,b)$), response chain,
 conjunction, disjunction (grammar in the supplement). Formulas compile
 compositionally to a DFA by formula progression (2--3 states for base patterns,
-$k{+}2$ for bounded response), with two disjoint violation mechanisms: \emph{violation states} are exactly the doomed states, so a bad
-prefix is flagged at the earliest event making every extension violating; and a
-trace ending in a non-accepting state---a pending
-$\mathbf{F}$-obligation---violates at termination. The compiler is
-differentially tested against an independent reference evaluator, exhaustively to
-length six for two-atom formulas. Runtime
-monitors evaluate events in $O(1)$; obligations open when a run aborts are
-reported inconclusive rather than violated~\citep{bauer2011ltl3}.
+$k{+}2$ for bounded response), with two disjoint violation mechanisms:
+\emph{violation states} are exactly the doomed states, so a bad prefix is
+flagged at the earliest event making every extension violating; and a pending
+$\mathbf{F}$-obligation violates at termination. The compiler is differentially
+tested against an independent reference evaluator, exhaustively to length six
+for two-atom formulas. Runtime monitors evaluate events in $O(1)$; obligations
+open when a run aborts are reported inconclusive~\citep{bauer2011ltl3}.
 
 \paragraph{Static temporal verification.}
 Policies are checked statically via a graph\,$\times$\,DFA product: BFS from
@@ -109,10 +106,9 @@ conservatism. The two come apart exactly where our measurements say they do: an
 edge can be read exactly while tool calls inside a node's body go unmodeled, the
 \texttt{tool}$\rightarrow$\texttt{llm} kind error that dominates LangGraph's
 residual error and hides side-effecting tools from the risk-aware gate in 32 of
-119 sampled workflows (Section~\ref{sec:realworld}); nothing in
-\texttt{region\_is\_certifiable} inspects node bodies for unrecorded events. The
-gate therefore certifies \emph{provenance metadata, or a caller's
-assertion}---not the containment
+119 sampled workflows (Section~\ref{sec:realworld}); nothing in the gate
+inspects node bodies for unrecorded events. It therefore certifies
+\emph{provenance metadata, or a caller's assertion}---not the containment
 $\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq\mathcal{L}(G,\lambda)$ the soundness
 theorem requires. We accordingly make the weaker claim the machinery supports:
 the product is sound \emph{relative to an authored abstraction} whose event

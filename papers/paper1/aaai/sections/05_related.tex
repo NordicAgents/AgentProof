@@ -7,7 +7,7 @@ LlamaGuard~\citep{llamaguard}, and Rebuff~\citep{rebuff} enforce safety at the
 point of LLM output or tool call, catching violations only when the offending
 path runs; ToolEmu~\citep{ruan2024toolemu} and
 AgentDojo~\citep{debenedetti2024agentdojo} measure agent risk by executing
-behaviors. Agentproof is complementary: it analyzes topology before deployment
+behaviors. Our analyzer is complementary: it analyzes topology before deployment
 and decides which runtime monitors are needed (Section~\ref{sec:pruning}).
 
 \paragraph{Concurrent agent-policy systems.}
@@ -27,9 +27,8 @@ cross-framework dependency graphs over $5{,}399$ programs, so we claim none for
 cross-framework graph construction or scale. What remains ours is the measurement
 neither performs: \emph{how faithfully} such extracted models correspond to the
 code they abstract. AgentFlow reports no validation of its graphs against
-reference models;
-our result is that on public code this is not a formality but a dominant term in
-the error budget---the check every system above omits.
+reference models; our result is that on public code this is not a formality but
+a dominant term in the error budget.
 
 \paragraph{Empirical characterizations of agent defects.}
 Recent studies catalogue where agent systems break: a defect taxonomy from
@@ -37,8 +36,7 @@ developer discussions~\citep{ning2024agentable}, nine root causes across
 ${\sim}1{,}026$ orchestration bugs~\citep{xue2025bugs}, and $221$ vulnerabilities
 spanning fourteen types~\citep{shen2025securitydebt}. We ask not \emph{which}
 defects occur, but \emph{how reliably a static analyzer can recover the
-behavioral model it needs to find them}, and what remains non-actionable once
-instrument error is separated from signal.
+behavioral model it needs to find them}.
 
 % Positioning table moved to the supplement to meet the page limit.
 

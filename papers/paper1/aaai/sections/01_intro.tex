@@ -7,7 +7,7 @@ orchestration frameworks structure this behavior as explicit \emph{workflow
 graphs}: LangGraph~\citep{langgraph_docs}, CrewAI~\citep{crewai_docs},
 AutoGen~\citep{wu2023autogen}, and Google ADK~\citep{google_adk_docs} represent
 computation steps as nodes and allowable transitions as edges. Safety
-enforcement remains almost entirely a \emph{runtime} concern: tools such as NeMo
+enforcement remains almost entirely a \emph{runtime} concern: NeMo
 Guardrails~\citep{nemo_guardrails} and LlamaGuard~\citep{llamaguard} filter
 individual calls at execution time, detecting a violation only when the
 offending path is exercised.
@@ -22,8 +22,8 @@ verify such properties, but require hand-translation into Promela or SMV. For
 conventional static analyzers, adoption is decided not by detection power but by
 the rate of actionable findings~\citep{bessey2010coverity, johnson2013static,
 sadowski2018lessons}; the analogous question for agent workflows---how often
-these graphs contain the defects static checks target, and whether the checks
-fire on real defects---has received far less measurement.
+these graphs contain the defects static checks target---has received far less
+measurement.
 
 \paragraph{Thesis.}
 Answering it requires a prior question: \emph{can we trust the graph?} A static
@@ -43,35 +43,28 @@ policy specification $83.0\%$ of non-actionable human-gate flags ($92\%$ of
 attributed flags)---so the aggregate tilts
 check-ward only because human-gate checks are $61\%$ of all flags. Static
 verification of agent workflows is thus a \emph{measurement} problem with two
-error budgets, not one. \textsc{AgentProof} is prior, publicly available
-infrastructure; this paper's contribution is not that tool but the
-cross-framework fidelity measurement it enables and the limits it exposes.
+error budgets, not one. The analyzer we measure with is prior infrastructure;
+this paper's contribution is not that tool but the cross-framework fidelity
+measurement it enables and the limits it exposes.
 
 \paragraph{Study.}
-We use \textsc{AgentProof} as a measurement instrument on 922 extracted
+We use it as a measurement instrument on 922 extracted
 file-level graphs mined from public GitHub across the four frameworks---a
 search-ranked convenience corpus, not a probability sample---and validate a
 quota-selected 119-graph sample against \emph{LLM-reconstructed reference
 graphs} from an independent, adversarially cross-checked LLM pass. These are
 \emph{LLM-assisted exploratory labels}, not human-validated ground truth; a
 two-human validation protocol (samples staged) is required future work, and we
-bound our claims accordingly. Four questions organize the study: how faithfully
-behavior can be recovered from source, and whether correcting the instrument
-changes the answer; what fraction of flags is genuine, and what causes the rest;
-what prevalence remains once false negatives are audited under a uniform policy;
-and whether the machinery can certify soundness and prune monitors without
-trusting uncertain extraction.
-
+bound our claims accordingly.
 
 \paragraph{Three estimands, not one prevalence.}
 A pooled ``prevalence'' conflates distinct quantities, so we separate three
 (Table~\ref{tab:estimands}): flag-level precision; \emph{structural-defect}
 prevalence, a topological property (1 of 119); and \emph{human-gate
-policy-violation} prevalence, a normative judgment that a side-effecting tool is
-reachable with no human checkpoint. For the latter, one pre-registered policy
-applied uniformly in place of an ad-hoc two-check procedure revises the rate
-fourfold upward, from 3 to \textbf{12 of 119} $[5.9,16.8]\%$, three of them
-outside \emph{both} original flag universes---false negatives a flag-triage study
+policy-violation} prevalence, a normative judgment. One pre-registered policy
+applied uniformly, in place of an ad-hoc two-check procedure, revises the last
+fourfold upward, from 3 to \textbf{12 of 119} $[5.9,16.8]\%$, three outside
+\emph{both} original flag universes---false negatives a flag-triage study
 structurally cannot see.
 
 \paragraph{Contributions.}
@@ -80,19 +73,19 @@ structurally cannot see.
   symmetric ablation the comparison requires, establishing a check-side error
   floor ${\approx}1.9\times$ the extraction-attributable share and localizing
   each cause to a check family. A label-independent \emph{survival test}
-  reproduces the attribution from graphs alone ($93.0\%$ agreement), separating
-  checker error ($1.1\%$) from policy misspecification ($50.5\%$); run on
-  \emph{misses} it inverts the budget (Section~\ref{sec:realworld}).
+  reproduces it from graphs alone ($93.0\%$ agreement), separating checker error
+  ($1.1\%$) from policy misspecification ($50.5\%$); run on \emph{misses} it
+  inverts the budget (Section~\ref{sec:realworld}).
   \item \textbf{A cross-framework extraction-fidelity measurement}
   (LLM-assisted), with a matched, provenance-disambiguated corrected-instrument
-  ablation isolating extraction error from check error.
-  \item \textbf{A separation of three estimands} the field tends to pool, the
-  last re-measured under one pre-registered policy applied uniformly, which
-  revises it fourfold upward and exposes \emph{placebo} human gates that bias
-  every reconstructed-graph estimand downward (Table~\ref{tab:estimands}).
+  ablation isolating extraction from check error.
+  \item \textbf{A separation of three estimands} the field pools, the last
+  re-measured under one uniformly applied pre-registered policy, which revises
+  it fourfold upward and exposes \emph{placebo} human gates biasing every
+  reconstructed-graph estimand downward (Table~\ref{tab:estimands}).
   \item \textbf{A conservative certification gate} returning
-  \texttt{inconclusive} rather than a false \texttt{safe} whenever extraction
-  fails a provenance screen, plus a path-sensitive product that prunes runtime
+  \texttt{inconclusive} rather than a false \texttt{safe} when extraction fails
+  a provenance screen, plus a path-sensitive product pruning runtime
   monitors---soundly \emph{relative to an authored abstraction}, since exact
   provenance screens for but does not prove event-trace conservatism
   (Sections~\ref{sec:system},~\ref{sec:results}).

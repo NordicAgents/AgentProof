@@ -37,35 +37,31 @@
 
 \begin{abstract}
 Static analysis of agent workflows raises overwhelmingly non-actionable
-findings, and the field has attributed this to one cause---a lossy extractor.
-We show there are two, and that fixing the extractor addresses the smaller one.
+findings, and the field attributes this to one cause---a lossy extractor. We
+show there are two, and that fixing the extractor addresses the smaller one.
 Mining 922 extracted file-level graphs from public GitHub across LangGraph,
 CrewAI, AutoGen, and Google ADK, we validate a 119-graph sample against
 LLM-reconstructed reference graphs (LLM-assisted exploratory labels, not
 human-validated ground truth). Triaging 186 flags attributes 42.5\% to
 extraction artifacts but 50.0\% to policy misspecification---checks firing
-correctly on faithful graphs against workflows the policy does not apply to. A
-symmetric ablation is decisive: re-running the identical checks on near-oracle
-reference graphs removes only 62 of 184 flags, leaving ${\ge}120$ non-actionable
-findings standing on 119 workflows. The causes separate cleanly by check family:
-extraction
-explains 98.6\% of non-actionable structural flags, policy specification
-83.0\% of non-actionable human-gate flags, where a risk-aware policy moves firings from
-113 to 0 without touching a graph. One pre-registered policy applied uniformly,
-in place of an ad-hoc two-check procedure, revises human-gate violations
+correctly, on faithful graphs, against workflows their policy never governed. A
+symmetric ablation is decisive: the identical checks on near-oracle graphs
+remove only 62 of 184 flags, leaving ${\ge}120$ non-actionable findings on 119
+workflows. The causes separate by check family---extraction explains 98.6\% of
+non-actionable structural flags, policy specification 83.0\% of human-gate
+flags, where a risk-aware policy moves firings from 113 to 0 without touching a
+graph. One pre-registered policy applied uniformly revises human-gate violations
 fourfold upward (3 to 12 of 119), three outside both original flag universes,
 and reveals that every workflow the checks cleared was cleared by a
-\emph{placebo} gate---a node typed \textsc{human} whose body cannot block.
-Running the same ablation on \emph{misses} inverts the budget: all 12 confirmed
-violations escape the as-mined pipeline for want of extraction, yet a
-near-oracle graph recovers only one, because the effect lives inside a node
-body no graph of this kind represents. We
-also give the static machinery two defect-independent jobs: provenance-gated
-certification returning \texttt{inconclusive} rather than a false \texttt{safe}
-on lossy graphs, and a path-sensitive graph\,$\times$\,DFA product that prunes
-runtime monitors soundly relative to an authored abstraction. The lesson is
-methodological: report extraction fidelity alongside every static-analysis claim
-about agent workflows.
+\emph{placebo} gate---a node typed \textsc{human} whose body cannot block. The
+same ablation on \emph{misses} inverts the budget: all 12 violations escape the
+as-mined pipeline, yet a near-oracle graph recovers one, the effect living
+inside a node body no such graph represents. We also give the static machinery
+two defect-independent jobs: provenance-gated certification returning
+\texttt{inconclusive} rather than a false \texttt{safe}, and a path-sensitive
+product that prunes runtime monitors soundly relative to an authored
+abstraction. The lesson is methodological: report extraction fidelity alongside
+every static-analysis claim about agent workflows.
 \end{abstract}
 
 \input{sections/01_intro}

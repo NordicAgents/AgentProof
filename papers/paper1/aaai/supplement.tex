@@ -1,5 +1,6 @@
 % ---------------------------------------------------------------------------
-% Agentproof --- Supplementary Material
+% Supplementary Material  (anonymized for double-blind submission: the system
+% name and its source package are redacted; restore both in the camera-ready)
 %
 % STANDALONE document.  It deliberately does NOT use aaai2027.sty (which is
 % submission-locked) and does not \input any file from sections/.  Build with:
@@ -41,7 +42,8 @@
 \sloppy
 
 \title{Supplementary Material for\\
-\emph{Agentproof: Static Verification of Agent Workflows}}
+\emph{Two Failure Modes, Not One: Extraction Error and Policy
+Misspecification in Static Analysis of Agent Workflows}}
 \author{}
 \date{}
 
@@ -88,7 +90,7 @@ per-framework mapping appear in the supplement.''
 \subsection{The vocabulary as implemented}
 
 The vocabulary below is transcribed from
-\artifact{src/agentproof/graph/model.py} (the frozensets \slug{VALID\_EFFECTS},
+\artifact{src/[pkg]/graph/model.py} (the frozensets \slug{VALID\_EFFECTS},
 \slug{VALID\_CAPABILITIES}, and the \slug{back\_edge} field of
 \slug{GraphEdge}), not from the paper's prose, so the two are guaranteed to
 agree.
@@ -97,7 +99,7 @@ agree.
 \centering\small
 \caption{The \emph{effect} set: observable side effects a node's execution may
 have on the world or on shared state. Non-exclusive---a node may carry any
-subset, including the empty set. Source: \artifact{src/agentproof/graph/model.py},
+subset, including the empty set. Source: \artifact{src/[pkg]/graph/model.py},
 \slug{VALID\_EFFECTS}.}
 \label{tab:effects}
 \begin{tabular}{@{}lp{0.62\linewidth}@{}}
@@ -120,7 +122,7 @@ subset, including the empty set. Source: \artifact{src/agentproof/graph/model.py
 orthogonal to \slug{NodeKind}. A single node may hold several; the
 implementation's own worked example is an LLM node that also invokes tools and
 routes, i.e.\ \slug{("llm","invokes\_tool","routes")}. Source:
-\artifact{src/agentproof/graph/model.py}, \slug{VALID\_CAPABILITIES}.}
+\artifact{src/[pkg]/graph/model.py}, \slug{VALID\_CAPABILITIES}.}
 \label{tab:capabilities}
 \begin{tabular}{@{}lp{0.62\linewidth}@{}}
 \toprule
@@ -162,7 +164,7 @@ even though earlier drafts of the paper's formal vocabulary omitted it.
 \centering\small
 \caption{Per-framework mapping into the exclusive \slug{NodeKind}/%
 \slug{EdgeKind} view, transcribed from the four runtime extractors under
-\artifact{src/agentproof/graph/extract/}. ``sy'' marks synthesized sentinels
+\artifact{src/[pkg]/graph/extract/}. ``sy'' marks synthesized sentinels
 (elements fabricated by the extractor, provenance
 \slug{origin=synthesized}).}
 \label{tab:fwmap}
@@ -219,7 +221,7 @@ We must be precise about what is implemented, because the main text's phrase
 A repository-wide search for assignments to the \slug{effects} and
 \slug{capabilities} fields outside the model definition returns exactly two
 non-test sites, both in \artifact{scripts/build\_corpus.py}. \textbf{None of the
-four per-framework extractors under \artifact{src/agentproof/graph/extract/}
+four per-framework extractors under \artifact{src/[pkg]/graph/extract/}
 populates \slug{effects} or \slug{capabilities}, and none sets
 \slug{back\_edge}.} Every graph produced by extraction---runtime or AST,
 curated or mined---therefore carries the dataclass defaults \slug{effects=()},
@@ -699,7 +701,8 @@ supplement)''.
 The triage universe lives at
 \artifact{corpus/real\_world/validated\_results.json}, key
 \slug{triage\_details}, which holds \textbf{187} records. Exactly one of them
-has slug \slug{NordicAgents\_\_AgentProof\_\_test\_extract\_adk}---a graph from
+has a slug naming our own repository (redacted here for anonymity), suffix
+\slug{\_\_test\_extract\_adk}---a graph from
 our own test fixtures, the contamination the main text describes as detected
 during revision and excluded from every number. Removing it leaves
 \textbf{186}, and the label totals then reproduce the main text exactly. All
@@ -1215,12 +1218,12 @@ construction and we do not dress it up as a measurement.
 SPIN~\citep{holzmann1997spin}   & Promela (manual) & Full LTL & High & Fast (small) & None \\
 NuSMV~\citep{cimatti2002nusmv}  & SMV (manual)     & CTL + LTL & High & Fast (small) & None \\
 CBMC~\citep{cbmc}               & C source         & Assertions & Medium & Bounded & None \\
-\textbf{Agentproof}             & Auto-extracted   & Safety LTL fragment &
+\textbf{This work}              & Auto-extracted   & Safety LTL fragment &
 \textbf{None} & $O(|V|{+}|E|)$ & \textbf{Agent workflows} \\
 \bottomrule
 \end{tabular}}\\[3pt]
 {\footnotesize SPIN, NuSMV, and CBMC require manual translation of agent
-workflows into their input languages. Agentproof extracts models automatically
+workflows into their input languages. Our analyzer extracts models automatically
 from framework APIs, eliminating the modeling step entirely.}
 \end{table}
 
