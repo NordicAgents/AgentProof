@@ -1,4 +1,4 @@
-\section{The Analyzer}
+\section{Audit Instrument and Conditional Guarantees}
 \label{sec:system}
 \label{sec:graph_model}
 \label{sec:verification_methods}
@@ -21,20 +21,13 @@ by either of two paths: a runtime extractor reading the compiled graph object,
 or a static AST fallback for large-scale mining, where installing every
 repository's dependencies is infeasible.
 
-\paragraph{An orthogonal attribute ontology.}
+\paragraph{Event attributes.}
 \label{par:ontology}
-The single-label kinds above are a compatibility view: forcing each element into
-one bucket mislabels multi-faceted nodes---an \textsc{llm} node that also invokes
-a tool---and was itself a source of extraction error. We therefore layer a
-non-exclusive ontology over $\kappa_V/\kappa_E$ (vocabulary in the supplement):
-each node carries an \emph{effect} set (read, write, execute, communicate,
-financial, delete) and a \emph{capability} set, and each edge a \emph{back-edge}
-flag. It is primary in the data model, but the per-framework extractors do
-\emph{not} yet populate these fields: every mined graph carries defaults, and
-the sets are assigned at corpus-build time by a framework-independent rule over
-node kinds and declared tool names. The ontology therefore inherits the same
-declared-tool blindness as the risk-aware gate (Section~\ref{sec:realworld})
-rather than curing it.
+Nodes may additionally carry non-exclusive effects (read, write, execute,
+communicate, financial, delete) and capabilities. The mined extractors do not
+populate these fields from node bodies; corpus construction assigns them from
+declared tool names. This limitation is central to the audit rather than hidden
+by the representation.
 
 \paragraph{Structural checks.}
 Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
@@ -79,7 +72,7 @@ reachable product cycle postpones an obligation forever, or no termination point
 is reachable; an engineering-scope choice, not undecidability). Explored states
 are bounded by $|V|\cdot|Q|$.
 
-\paragraph{Soundness gated on certified extraction.}
+\paragraph{Soundness requires an event-complete abstraction.}
 \label{thm:soundness}
 Soundness is a claim about \emph{event} traces, not graph paths. Let
 $\mathrm{Traces}_{\mathrm{ev}}(P)$ be the concrete finite terminating event traces
@@ -90,29 +83,18 @@ $\mathcal{L}(G,\lambda)$ is accepted by the policy DFA, then every concrete fini
 terminating execution of $P$ satisfies the policy---the guarantee we exploit for
 monitor pruning (Section~\ref{sec:results}); the proof is in the supplement.
 Graph-\emph{path} containment alone does \emph{not} suffice: a node may issue tool
-calls the graph never records. Because a lossy extractor cannot be assumed
-event-trace conservative, the checker returns \texttt{safe} only when the
-traversed region is \emph{certified}---every traversed edge and every visited
-tool-node binding carries \texttt{exact} provenance, or the caller asserts an
-authored graph---stamping the result with a \texttt{certified} key; otherwise it
-downgrades to \texttt{inconclusive} with reason
-\texttt{uncertified\_extraction}. A \texttt{may\_violate} finding is \emph{never}
-suppressed by the gate.
+calls the graph never records. Because provenance cannot establish that node
+bodies emit no unmodeled events, the checker returns \texttt{safe} only when the
+caller explicitly asserts event-trace conservatism for an authored abstraction.
+Without that assertion, a would-be safe result is downgraded to
+\texttt{inconclusive} with reason \texttt{uncertified\_extraction};
+\texttt{may\_violate} findings remain visible.
 
 \paragraph{What the gate does and does not certify.}
-Exact provenance describes \emph{how an element was obtained}---read from a
-declaration rather than guessed---and is \emph{not} equivalent to event-trace
-conservatism. The two come apart exactly where our measurements say they do: an
-edge can be read exactly while tool calls inside a node's body go unmodeled, the
-\texttt{tool}$\rightarrow$\texttt{llm} kind error that dominates LangGraph's
-residual error and hides side-effecting tools from the risk-aware gate in 32 of
-119 sampled workflows (Section~\ref{sec:realworld}); nothing in the gate
-inspects node bodies for unrecorded events. It therefore certifies
-\emph{provenance metadata, or a caller's assertion}---not the containment
-$\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq\mathcal{L}(G,\lambda)$ the soundness
-theorem requires. We accordingly make the weaker claim the machinery supports:
-the product is sound \emph{relative to an authored abstraction} whose event
-coverage the caller asserts, with exact provenance a necessary screening
-condition, not a proof. Independent event-coverage analysis is future work. On
-mined graphs the gate withholds \texttt{safe} outright, so no false proof is
-emitted.
+Exact provenance describes \emph{how} an element was obtained, not whether the
+abstraction covers all runtime events. An edge can be read exactly while a tool
+call inside its node body is absent. We therefore use provenance to qualify
+witnesses, never to discharge event-trace conservatism. The product is sound
+\emph{relative to an authored abstraction} whose event coverage the caller
+asserts; on every mined graph in this study, the gate withholds
+\texttt{safe}. Independent event-coverage analysis remains future work.

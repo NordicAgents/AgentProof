@@ -1,8 +1,9 @@
 {
   "policy_id": "HGP-1",
   "policy_path": "papers/paper1/aaai/HUMAN_GATE_POLICY.md",
-  "pre_registered": true,
-  "note": "Policy written and committed before any of the 32 workflows was assessed for gate presence.",
+  "pre_registered": false,
+  "prospectively_specified": true,
+  "note": "Policy written and committed before the 32 workflows were labeled for gate presence; this was not a public preregistration.",
   "n_validation_sample": 119,
   "n_side_effecting_source_level": 32,
   "threshold_rule": "A side-effecting callable counts only if it is agent/LLM-invocable or called inside a graph node body that executes during a workflow run; script-level setup/teardown/reporting code is outside the policy (a) threshold.",
@@ -12,16 +13,17 @@
     "arguable": 11,
     "source_unavailable": 0
   },
-  "prevalence_over_sample": {
+  "audit_proportion_over_sample": {
     "k": 12,
     "n": 119,
     "point": 0.1008,
     "wilson95": [
       0.0586,
       0.168
-    ]
+    ],
+    "interpretation": "descriptive only; sample inclusion probabilities are undefined"
   },
-  "prevalence_sensitivity_band": {
+  "descriptive_sensitivity_band": {
     "lower_arm_violations_only": [
       0.0586,
       0.168
@@ -32,7 +34,7 @@
     ],
     "k_upper": 23
   },
-  "prevalence_over_audited": {
+  "audit_proportion_over_effect_bearing_subset": {
     "k": 12,
     "n": 32,
     "point": 0.375,
@@ -41,7 +43,7 @@
       0.5475
     ]
   },
-  "post_stratified": {
+  "corpus_share_weighted_sensitivity": {
     "corpus_mix": {
       "langgraph": 400,
       "autogen": 359,
@@ -254,10 +256,10 @@
     "note": "the revision is NOT '3 plus 9 more': only 1 of the 3 previously reported cases survives as a violation under HGP-1, and 11 new ones are found"
   },
   "denominator_caveat": {
-    "claim": "12/119 is a lower bound on the sample.",
+    "claim": "12/119 is an observed audit count conditional on the upstream screen.",
     "reason": "Only the 32 workflows with source-level side-effecting tools were read under HGP-1. The other 87 were not re-read; they enter the denominator as non-violations by construction.",
     "screening_procedure_for_the_87": "The SAME source-level procedure that produced the 32. gt_triage_results.json contains one `classification` record per workflow for all 119, each with a `has_side_effecting_tools` boolean and a free-text `reason` grounded in the file's actual tools. It is a single classification pass over the whole sample, not a weaker or separate screen applied only to the negatives.",
-    "strength": "small",
+    "strength": "reduced_but_not_eliminated",
     "why_small": "The screen is the same one that yielded the 32, so a missed violation requires a missed *tool*, not a missed gate. An independent regex sweep of all 87 sources for side-effect signatures (subprocess/exec, SMTP/send, non-idempotent HTTP, write-mode open, SQL DML/DDL, code executors, MCP workbenches) flagged 10 files for manual re-reading; 9 are correctly screened under HGP-1 and 1 is borderline.",
     "residual_risk_detail": {
       "files_flagged_by_independent_regex_sweep": 10,
@@ -281,7 +283,7 @@
       "a side-effecting tool missed by the upstream classification (bounded above as small)",
       "the 2 of 87 whose source snapshot is absent, so no sweep was possible: Sidreyas__The_Grand_AI_Repo__app_team_user_proxy, Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent"
     ],
-    "recommended_wording": "12/119 is a lower bound: only the 32 workflows that source review identified as containing side-effecting tools were assessed under the pre-registered policy, and the remaining 87 enter the denominator as non-violations by construction. Because those 87 were screened by the same source-level procedure that produced the 32, a missed violation would require a missed tool rather than a missed gate; an independent regex sweep of all 87 sources surfaced 10 candidates, 9 of which are correctly screened and 1 of which would be `arguable` at worst. We therefore expect the downward bias from the unaudited 87 to be small, though not provably zero."
+    "recommended_wording": "Only the 32 workflows that source review identified as containing side-effecting tools were assessed under the prospectively specified policy; the other 87 enter through an upstream source-level screen. An independent effect-signature sweep surfaced 10 candidates among those 87: 9 were screened correctly and 1 would be `arguable`. This reduces but does not eliminate screening error. Because annotation errors could also remove a current violation, 12/119 is an observed audit count, not a formal lower bound."
   },
   "false_negatives_outside_both_flag_universes": [
     "Arhamirfan__Snake-Agents__snake_autogen",

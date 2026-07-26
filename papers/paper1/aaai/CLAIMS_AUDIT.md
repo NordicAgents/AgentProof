@@ -637,7 +637,7 @@ second, **label-independent** instrument.
 | REFERENCE_ERROR share (validity guard) | 2.7% (n=5) | same |
 | Agreement with the label-derived mapping | **173/186 = 93.0%** | `false_positives.delta_vs_committed_mapping` (13 disagreements, each with its rule) |
 | FN, as-mined pipeline | 12/12 EXTRACTOR (100% [75.7, 100]) | `false_negatives.as_mined_pipeline` |
-| FN, reference graph substituted | 1 detected; 9 ABSTRACTION, 1 REFERENCE_ERROR, 1 CHECKER | `false_negatives.oracle_graph_pipeline` |
+| FN, reference graph substituted | 1 detected; 9 ABSTRACTION, 1 REFERENCE_ERROR, 1 CHECKER | `false_negatives.reconstructed_reference_pipeline` |
 
 Generating command: `uv run python scripts/fp_fn_decomposition.py`
 (step 21 of `reproduce_all.sh`). Rules are pre-registered in the script

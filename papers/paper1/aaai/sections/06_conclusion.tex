@@ -2,36 +2,38 @@
 \label{sec:conclusion}
 
 Static checks on agent workflows are only as credible as the behavioral model
-they run on---but repairing that model is only half the problem. On $922$
-extracted file-level graphs from $252$ public GitHub repositories,
-non-actionable findings divide roughly evenly between extraction error
-($42.5\%$) and policy misspecification ($50.0\%$), and near-oracle graphs remove
-only $62$ of $184$ flags: a perfect extractor would not make these tools usable.
-The causes localize cleanly---extraction explains $98.6\%$ of non-actionable
-structural flags, policy specification $83.0\%$ of human-gate flags.
+they run on and the applicability of the policy they enforce. In our audit of
+$922$ extracted file-level graphs from $252$ public GitHub repositories, the
+causes are check-family dependent: graph substitution attributes 68 of 72
+non-actionable structural findings to extraction, while it attributes 94 of
+112 non-actionable human-gate findings to an inapplicable approval policy.
+Pooling them into one error rate would
+make the result depend on how many checks of each family happened to run.
 
-The estimates are textured, not a null. Structural defects sit at $0.84\%$ of
-the validation sample; one pre-registered policy applied uniformly puts
-human-gate violations at $10.1\%$, fourfold above an ad-hoc two-check procedure,
-with three outside both flag universes (Table~\ref{tab:estimands}). Every
-workflow both checks cleared was cleared by a \emph{placebo} gate, so reference
-graphs---which assign kinds from naming, not behavior---overstate oversight and
-bias the estimand downward. Flag-level precision stays low (workflow-level PPV
-$1.8\%$), no structural flag on an extracted graph was a confirmed defect, and
-fidelity is poor: edge recall $0.71$ overall, $0.34$ on implicit-topology ADK.
-The static machinery keeps a defect-independent role: on authored graphs whose
-event coverage the caller asserts, the graph\,$\times$\,DFA product prunes $237$
-of $270$ curated monitor instances ($88\%$)---sound relative to that
-abstraction, not a proof it is event-complete.
+The reverse audit is more consequential. All 12 source-audited HGP-1 violations
+escape the mined pipeline, and a source-reconstructed graph recovers only one;
+nine regulated effects live inside node bodies outside the graph vocabulary.
+Every side-effecting workflow cleared by both graph checks was cleared by a
+\emph{placebo} gate. Thus graph reconstruction, policy applicability, and
+semantic abstraction coverage are separate validation obligations. The static
+machinery retains a limited operational role: on authored graphs whose event
+coverage the caller asserts, the graph\,$\times$\,DFA product can select runtime
+monitors; no mined graph in this study receives a \texttt{safe} verdict.
 
 \paragraph{Limitations.}
-The population is public GitHub, not production systems, and two thirds is
-tutorial-grade; the unit is an extracted file-level graph, not an executable
-workflow root. Reference graphs and triage labels are LLM reconstructions with
-adversarial verification, not human annotations, and a two-human independent
-validation is the immediate next step. CIs are wide at $n{=}119$. We read these
-results as a redirection toward higher-fidelity extraction \emph{and}
-per-workflow policy instantiation, neither alone.
+The frame is public GitHub, not production systems, and two thirds of the
+validation sample is tutorial/demo/test code; the unit is an extracted
+file-level graph, not an executable workflow root. The 119 files were
+quota-selected without randomization, so all proportions describe this audit
+rather than a population.
+\ifnum\humanNflags>0
+Independent human validation is reported in Section~\ref{sec:realworld}.
+\else
+Reference graphs and labels remain LLM-assisted pending the included
+two-annotator validation.
+\fi
+The result redirects effort toward higher-fidelity extraction, body-level
+effect modeling, and per-workflow policy instantiation.
 
 \paragraph{Artifact.}
 An anonymized artifact is submitted, not promised: the tool, both corpora, the
@@ -41,6 +43,6 @@ all evaluation scripts.
 \section*{Ethical Statement}
 We mine only \emph{public} GitHub repositories, record exact provenance
 (repository at commit SHA plus file path), and redistribute only derived graph
-abstractions, never third-party source; no personal data is processed. Confirmed
-defects are disclosed to the affected repositories before publication, without
-naming maintainers.
+abstractions, never third-party source; no personal data is processed. Findings
+classified as defects are disclosed to the affected repositories before
+publication, without naming maintainers.

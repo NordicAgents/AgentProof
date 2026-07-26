@@ -8,7 +8,7 @@ separable* from POLICY-SPEC, because the committed triage vocabulary asked
 only false POSITIVES; false negatives were reported anecdotally.
 
 This script closes both gaps without inventing new labels, using one
-pre-registered mechanical rule per side.  Nothing here re-reads source code:
+prospectively specified mechanical rule per side. Nothing here re-reads source code:
 every input is a committed artifact, so the whole decomposition is replayable.
 
 ---------------------------------------------------------------------------
@@ -16,7 +16,7 @@ FALSE POSITIVES -- the survival test
 ---------------------------------------------------------------------------
 For each triaged flag (slug s, check C) judged NON-ACTIONABLE:
 
-  R1  Re-run C on the near-oracle reference graph GT(s).
+  R1  Re-run C on the source-reconstructed reference graph GT(s).
       If C does NOT fire on GT(s)                      -> EXTRACTOR
       The oracle graph removes the flag, so the flag was a property of the
       extraction, not of the check.
@@ -57,14 +57,14 @@ BEFORE R1 fires:
 
 When the guard trips the survival test is not evidence about the checker, and
 the flag is attributed REFERENCE_ERROR: a model error like EXTRACTOR, but one
-the near-oracle shares, so it cannot be blamed on this extractor.  Reporting it
+the source reconstruction shares, so it cannot be blamed on this extractor. Reporting it
 as a separate cause rather than folding it into either side is the point --- it
-measures how often the "near-oracle" is itself wrong.
+measures how often the source reconstruction is itself wrong.
 
 ---------------------------------------------------------------------------
 FALSE NEGATIVES -- the miss test
 ---------------------------------------------------------------------------
-The confirmed-defect set is the HGP-1 audit's 12 human-gate violations plus
+The source-audited defect set is the HGP-1 audit's 12 human-gate violations plus
 the 1 structural defect.  For each, we ask why the as-mined pipeline (v1 graph
 + risk-aware `human_gate_coverage`) did not report it:
 
@@ -297,9 +297,10 @@ def decompose_false_negatives(audit, v1_graphs, gt_graphs, gt_errors) -> dict:
 
     causes = [r["cause"] for r in rows]
 
-    # ---- Symmetric arm: replace the extractor with the near-oracle graph ----
+    # ---- Symmetric arm: replace the extractor with the reconstructed graph ----
     # This is the FN counterpart of the FP survival test.  Holding the policy
-    # fixed and handing the check a (near-)perfect graph, which violations does
+    # fixed and handing the check a higher-fidelity reconstructed graph, which
+    # violations does
     # it STILL miss?  Those misses are the check-side false-negative floor.
     sens_gt = sensitive_tool_set(list(gt_graphs.values()))
     oracle = []
@@ -341,7 +342,7 @@ def decompose_false_negatives(audit, v1_graphs, gt_graphs, gt_errors) -> dict:
     n_still_missed = sum(1 for c in ocauses if c != "DETECTED")
 
     return {
-        "n_confirmed_human_gate_violations": len(rows),
+        "n_source_audited_human_gate_violations": len(rows),
         "as_mined_pipeline": {
             "n_missed": len(rows),
             "dist": dist(causes, len(causes)) if rows else {},
@@ -351,13 +352,13 @@ def decompose_false_negatives(audit, v1_graphs, gt_graphs, gt_errors) -> dict:
                      "graphs), so the miss denominator is the full violation "
                      "set."),
         },
-        "oracle_graph_pipeline": {
+        "reconstructed_reference_pipeline": {
             "n_detected": len(oracle) - n_still_missed,
             "n_still_missed": n_still_missed,
             "dist": dist(ocauses, len(ocauses)) if oracle else {},
             "rows": oracle,
             "note": ("Symmetric counterpart of the FP survival test: the "
-                     "extractor is replaced by the near-oracle reference "
+                     "extractor is replaced by the source-reconstructed reference "
                      "graph and the policy is held fixed.  Violations still "
                      "missed are the check-side false-negative floor."),
         },
@@ -447,13 +448,13 @@ def main() -> None:
         inner = "  ".join(f"{c}={d['n']}({d['pct']}%)"
                           for c, d in v["dist"].items())
         print(f"    {fam:12s} n={v['n']:3d}  {inner}")
-    print(f"\nFALSE NEGATIVES  ({fn['n_confirmed_human_gate_violations']} "
-          f"confirmed violations)")
+    print(f"\nFALSE NEGATIVES  ({fn['n_source_audited_human_gate_violations']} "
+          f"source-audited violations)")
     print("  as-mined pipeline (v1 graph):")
     for k, v in fn["as_mined_pipeline"]["dist"].items():
         print(f"    {k:12s} {v['n']:4d}  {v['pct']:5.1f}%  {v['wilson95']}")
-    og = fn["oracle_graph_pipeline"]
-    print(f"  oracle graph, policy fixed: detected {og['n_detected']}, "
+    og = fn["reconstructed_reference_pipeline"]
+    print(f"  reconstructed reference, policy fixed: detected {og['n_detected']}, "
           f"still missed {og['n_still_missed']}")
     for k, v in og["dist"].items():
         print(f"    {k:12s} {v['n']:4d}  {v['pct']:5.1f}%  {v['wilson95']}")

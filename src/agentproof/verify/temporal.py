@@ -56,8 +56,8 @@ Passing an explicit ``event_mapper`` opts out of this conservative
 expansion: the caller asserts exact single events, one per node visit, and
 the product uses them verbatim (the pre-expansion behavior).
 
-Certified trace-conservatism (soundness gate, reviewer fix #6)
---------------------------------------------------------------
+Caller-asserted trace-conservatism (soundness gate)
+---------------------------------------------------
 Verdict semantics (see :func:`check_temporal_property`) are CONDITIONED on
 the extracted graph being TRACE-CONSERVATIVE over labeled event traces: for
 the workflow ``P`` under the node/edge event labeling ``lambda``,
@@ -71,15 +71,12 @@ edge recall is ~0.65, which UNDER-approximate the workflow) a missing edge
 can hide a policy atom, so even an *alphabet-absent* monitor could fire at
 runtime while the static product proves ``"safe"`` — a FALSE PROOF.
 
-To close this hole the checker never emits ``"safe"`` unless the EXPLORED
-reachable product subgraph is *certified* trace-conservative. The
-certification predicate is the graph-wide analogue of ``witness_confidence``:
-the explored region is certified iff the caller asserts conservatism
-(``assume_trace_conservative=True``) OR every edge traversed on any explored
-path has ``confidence == "exact"`` AND every TOOL node visited has
-``confidence == "exact"`` on its bindings (read defensively with
-``getattr(x, "confidence", "may")``). An uncertified region downgrades a
-would-be ``"safe"`` verdict to ``"inconclusive"`` with
+To close this hole the checker never emits ``"safe"`` unless the caller
+explicitly asserts conservatism (``assume_trace_conservative=True``). Exact
+provenance says that a graph element was read rather than guessed; it does not
+prove that node bodies emit no unmodeled events, so provenance alone cannot
+discharge the premise. Without the caller assertion, a would-be ``"safe"``
+verdict is downgraded to ``"inconclusive"`` with
 ``inconclusive_reason == "uncertified_extraction"`` and ``certified ==
 False``. The gate is applied UNIFORMLY to every product-proven ``"safe"``
 verdict — alphabet-absent monitors included — because on a lossy graph even
@@ -250,15 +247,13 @@ def check_temporal_property(
         passed explicitly, the mapper's single event per node is used
         verbatim — the caller thereby asserts the events are exact.
     assume_trace_conservative : bool, optional
-        Caller assertion that the extracted graph is trace-conservative
+        Caller assertion that the graph abstraction is trace-conservative
         (``Traces_event(P) subseteq L(G, lambda)``) REGARDLESS of per-element
-        provenance. When ``True`` the certification gate is satisfied
-        unconditionally, so a would-be ``"safe"`` verdict is emitted as
-        ``"safe"`` even on a ``"may"``-provenance graph. Intended for corpora
-        whose graphs are authored-with-code (e.g. the curated corpus), where
-        conservatism is guaranteed by construction rather than by
-        edge/tool-binding provenance. Defaults to ``False`` (certify from
-        provenance), which is the sound default for mined/AST graphs.
+        provenance. When ``True`` the gate is satisfied, so a would-be
+        ``"safe"`` verdict is emitted as ``"safe"``. Intended for authored
+        abstractions whose event coverage the caller has established outside
+        this checker. Defaults to ``False``; provenance alone never certifies
+        event coverage.
 
     Returns
     -------
@@ -277,10 +272,8 @@ def check_temporal_property(
           violates the policy (provenance-independent — the gate never
           suppresses it). ``"inconclusive"`` means the finite-trace checker
           cannot soundly certify the graph (see ``inconclusive_reason``).
-        - ``certified``: bool, present on EVERY return path. ``True`` iff
-          ``assume_trace_conservative`` OR the explored reachable product
-          subgraph is provenance-certified (every traversed edge exact and
-          every visited TOOL node's bindings exact). For a ``"safe"`` verdict
+        - ``certified``: bool, present on EVERY return path. ``True`` iff the
+          caller set ``assume_trace_conservative``. For a ``"safe"`` verdict
           this is always ``True`` (it is the gate condition); for
           ``uncertified_extraction`` it is ``False``. On ``may_violate`` the
           BFS halts at the witness, so ``certified`` describes only the
@@ -329,15 +322,6 @@ def check_temporal_property(
 
     adj = adjacency(graph)
     exit_ids = set(graph.exit_ids)
-    # Certification (soundness gate, fix #6): the graph-wide analogue of
-    # witness_confidence. ``region_exact`` accumulates over the EXPLORED
-    # reachable subgraph during the BFS below and stays True iff every edge
-    # traversed and every TOOL node visited carries confidence == "exact".
-    # Edge confidences are precomputed here with the same weakest-parallel
-    # rule _witness_confidence uses. Non-TOOL nodes are not consulted (only
-    # their edges and tool bindings affect the events checked).
-    edge_conf = _edge_conf_map(graph)
-    region_exact = True
     # First occurrence wins on duplicate ids, consistent with
     # graph.model.node_by_id (used by _default_event_mapper,
     # _witness_confidence, and api._event_for_node). Duplicates are
@@ -434,20 +418,6 @@ def check_temporal_property(
     while queue:
         v, q = queue.popleft()
 
-        # Certification: this node is visited by the explored region. A
-        # missing node cannot be certified (mirrors _witness_confidence,
-        # which degrades an unknown node to "may"). A visited node with
-        # non-exact confidence has a guessed kind or bindings, so its real
-        # emitted events are unknown: a node read as \textsc{llm} could
-        # actually invoke a forbidden tool, and a node read as \textsc{human}
-        # could actually be an ungated step. Because a node-kind atom
-        # (human/router/llm_step) can decide a policy just as a tool atom can,
-        # any non-exact visited node makes the region uncertified, not only
-        # TOOL nodes.
-        node_v = nodes_by_id.get(v)
-        if node_v is None or getattr(node_v, "confidence", "may") != "exact":
-            region_exact = False
-
         posts, hit = _post_states(v, q)
         if hit:
             violation_product_state = (v, q)
@@ -469,11 +439,6 @@ def check_temporal_property(
 
         pend: list[tuple[str, int]] = []
         for u in succ_nodes:
-            # Certification: this graph edge is traversed by the explored
-            # region. A non-exact (or unknown) edge makes the region
-            # uncertified.
-            if edge_conf.get((v, u), "may") != "exact":
-                region_exact = False
             for p in posts:
                 product_next = (u, p)
                 if p not in accepting:
@@ -493,9 +458,11 @@ def check_temporal_property(
         path_nodes.reverse()
         return path_nodes
 
-    # Graph-wide certification: the caller assertion satisfies it
-    # unconditionally; otherwise the explored region must be provenance-exact.
-    certified = assume_trace_conservative or region_exact
+    # Provenance-exact structure is useful evidence about how the graph was
+    # recovered, but it cannot establish event coverage inside node bodies.
+    # Only the caller's explicit trace-conservatism assertion discharges the
+    # premise required by a ``safe`` verdict.
+    certified = assume_trace_conservative
 
     result: dict[str, Any] = {
         "rule_id": rule.rule_id,

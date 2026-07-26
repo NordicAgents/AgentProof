@@ -29,11 +29,11 @@ Four pruning strategies (over each authored (workflow, policy) pair)
                            reachable from entry (ignores DFA state / ordering).
   (c) PATH-SENSITIVE       prune iff check_temporal_property returns a
       PRODUCT               CERTIFIED verdict=="safe" -- the full graph x DFA
-                           product.  Certification is EARNED from provenance
-                           (assume_trace_conservative is NOT asserted); the
-                           curated graphs are all exact-provenance and the
-                           synthetic fixtures are exact except the deliberate
-                           uncertified control.
+                           product.  For the authored-with-code curated graphs
+                           and constructed fixtures, the caller explicitly
+                           asserts event coverage. Exact provenance is not
+                           treated as evidence of coverage. A deliberate
+                           control withholds the assertion.
   (d) RUNTIME-ONLY         never prune (deploy every monitor) -- the no-static
                            baseline.
 
@@ -57,8 +57,9 @@ that survives this check is sound.  We report false_prunes (must be 0).
 Certification gate control (reviewer fix #6)
 --------------------------------------------
 One synthetic fixture (syn_uncertified) is topologically a product-safe
-response case but carries may-provenance on a traversed edge.  Under strategy
-(c) (no caller assertion) the gate refuses to emit "safe" (returns
+response case. Unlike every evaluation fixture, the control deliberately
+withholds the caller's event-coverage assertion. The gate therefore refuses
+to emit "safe" (returns
 inconclusive / uncertified_extraction), so the product does NOT prune it -- we
 confirm it WOULD be safe if conservatism were asserted, proving the gate, not
 the topology, is what withholds the prune.
@@ -110,9 +111,9 @@ MAX_RESOLUTIONS = 4096   # cap on concrete tool-resolutions per path
 # Synthetic fixtures (embedded, clearly labeled; NOT sampled from any corpus)
 # ---------------------------------------------------------------------------
 # Purpose-built to exercise path-sensitivity that the curated (mostly linear)
-# topologies cannot.  Every element is exact-provenance so the fixtures certify
-# from provenance alone -- EXCEPT syn_uncertified, which deliberately carries a
-# may-provenance edge to drive the certification-gate control.  origin is
+# topologies cannot. They are authored abstractions whose event coverage the
+# experiment explicitly asserts -- EXCEPT syn_uncertified, where the assertion
+# is deliberately withheld to drive the certification-gate control. origin is
 # "synthesized": these correspond to no source code and are documented as
 # constructed, not mined.
 
@@ -426,8 +427,13 @@ def main() -> None:
         alpha_prune = not atoms_present
         reach_prune = not atoms_reachable
 
-        # Strategy (c): earn certification from provenance (no caller assertion).
-        result = check_temporal_property(graph, rule, assume_trace_conservative=False)
+        # Strategy (c): the curated graphs were authored with their code and the
+        # synthetic fixtures were constructed here, so the experiment asserts
+        # event coverage explicitly. The dedicated control withholds it.
+        coverage_asserted = pol.get("case_type") != "uncertified_control"
+        result = check_temporal_property(
+            graph, rule, assume_trace_conservative=coverage_asserted
+        )
         verdict = result["verdict"]
         product_prune = verdict == "safe" and result.get("certified", False)
 
@@ -503,6 +509,7 @@ def main() -> None:
             "node_reachability_prune": reach_prune,
             "product_verdict": verdict,
             "product_certified": result.get("certified"),
+            "event_coverage_asserted": coverage_asserted,
             "product_inconclusive_reason": result.get("inconclusive_reason"),
             "path_sensitive_prune": product_prune,
             "runtime_only_prune": False,
@@ -521,11 +528,14 @@ def main() -> None:
         "reviewer_demand": "#8 (path-sensitive pruning beyond alphabet-only) / min experiment #9",
         "config": {
             "policies_file": str(POLICIES_PATH.relative_to(REPO)),
-            "assume_trace_conservative": False,
+            "assume_trace_conservative": (
+                "true for authored/constructed evaluation fixtures; false for "
+                "the dedicated certification-gate control"
+            ),
             "note": (
-                "Strategy (c) earns certification from provenance; curated "
-                "graphs are all exact-provenance and synthetic fixtures are "
-                "exact except the deliberate uncertified control."
+                "Strategy (c) relies on an explicit caller assertion of event "
+                "coverage for authored/constructed fixtures. Exact provenance "
+                "never supplies that assertion."
             ),
             "soundness_bounds": {
                 "max_node_visits": MAX_NODE_VISITS,

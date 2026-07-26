@@ -11,6 +11,12 @@
 \makeatother
 
 \ifreproStandalone
+  \newcommand{\reproFinish}{\end{document}}
+\else
+  \newcommand{\reproFinish}{}
+\fi
+
+\ifreproStandalone
 \documentclass[letterpaper]{article}
 \usepackage[submission]{aaai2027}
 \setlength{\pdfpagewidth}{8.5in}
@@ -217,6 +223,4 @@ yes
 
 \end{itemize}
 \end{itemize}
-\ifreproStandalone
-\end{document}
-\fi
+\reproFinish

@@ -6,15 +6,16 @@ Motivation
 The three policy-violation cases previously reported on the 119-workflow validation
 sample were produced by two *different* checks (``human_presence`` on mined graphs and
 ``human_gate_coverage`` on reconstructed graphs). That is not a single estimand. This
-script records the result of applying ONE pre-registered policy
+script records the result of applying ONE prospectively specified policy
 (``papers/paper1/aaai/HUMAN_GATE_POLICY.md``) independently to every workflow in the
 sample whose source contains a side-effecting tool, so that false negatives lying
 outside both flag universes become visible.
 
 The verdicts below are the product of manual source review against HGP-1; this script
-is the machine-checkable record of them. It recomputes the prevalence, the Wilson
-interval, the flag-universe cross-reference and the false-negative list from the
-corpus artifacts, and fails loudly if the corpus no longer agrees with the audit.
+is the machine-checkable record of them. It recomputes descriptive audit
+proportions, Wilson summaries, the flag-universe cross-reference, and the
+false-negative list from the corpus artifacts, and fails loudly if the corpus
+no longer agrees with the audit.
 
 Usage:
     python scripts/human_gate_audit.py
@@ -530,7 +531,7 @@ PREVIOUS_POLICY_CASES = {
 
 
 DENOMINATOR_CAVEAT = {
-    "claim": "12/119 is a lower bound on the sample.",
+    "claim": "12/119 is an observed audit count conditional on the upstream screen.",
     "reason": ("Only the 32 workflows with source-level side-effecting tools were read "
                "under HGP-1. The other 87 were not re-read; they enter the denominator "
                "as non-violations by construction."),
@@ -541,7 +542,7 @@ DENOMINATOR_CAVEAT = {
         "file's actual tools. It is a single classification pass over the whole sample, "
         "not a weaker or separate screen applied only to the negatives."
     ),
-    "strength": "small",
+    "strength": "reduced_but_not_eliminated",
     "why_small": (
         "The screen is the same one that yielded the 32, so a missed violation requires "
         "a missed *tool*, not a missed gate. An independent regex sweep of all 87 sources "
@@ -578,14 +579,14 @@ DENOMINATOR_CAVEAT = {
         "Sidreyas__The_Grand_AI_Repo__test_society_of_mind_agent",
     ],
     "recommended_wording": (
-        "12/119 is a lower bound: only the 32 workflows that source review identified as "
-        "containing side-effecting tools were assessed under the pre-registered policy, and "
-        "the remaining 87 enter the denominator as non-violations by construction. Because "
-        "those 87 were screened by the same source-level procedure that produced the 32, a "
-        "missed violation would require a missed tool rather than a missed gate; an "
-        "independent regex sweep of all 87 sources surfaced 10 candidates, 9 of which are "
-        "correctly screened and 1 of which would be `arguable` at worst. We therefore expect "
-        "the downward bias from the unaudited 87 to be small, though not provably zero."
+        "Only the 32 workflows that source review identified as containing "
+        "side-effecting tools were assessed under the prospectively specified "
+        "policy; the other 87 enter through an upstream source-level screen. "
+        "An independent effect-signature sweep surfaced 10 candidates among "
+        "those 87: 9 were screened correctly and 1 would be `arguable`. This "
+        "reduces but does not eliminate screening error. Because annotation "
+        "errors could also remove a current violation, 12/119 is an observed "
+        "audit count, not a formal lower bound."
     ),
 }
 
@@ -768,8 +769,12 @@ def main() -> None:
     out = {
         "policy_id": POLICY_ID,
         "policy_path": POLICY_PATH,
-        "pre_registered": True,
-        "note": "Policy written and committed before any of the 32 workflows was assessed for gate presence.",
+        "pre_registered": False,
+        "prospectively_specified": True,
+        "note": (
+            "Policy written and committed before the 32 workflows were labeled "
+            "for gate presence; this was not a public preregistration."
+        ),
         "n_validation_sample": n_sample,
         "n_side_effecting_source_level": len(side_effecting),
         "threshold_rule": (
@@ -783,20 +788,21 @@ def main() -> None:
             "arguable": len(arguable),
             "source_unavailable": len(unavailable),
         },
-        "prevalence_over_sample": {
+        "audit_proportion_over_sample": {
             "k": k, "n": n_sample, "point": round(k / n_sample, 4),
             "wilson95": [round(lo, 4), round(hi, 4)],
+            "interpretation": "descriptive only; sample inclusion probabilities are undefined",
         },
-        "prevalence_sensitivity_band": {
+        "descriptive_sensitivity_band": {
             "lower_arm_violations_only": [round(lo, 4), round(hi, 4)],
             "upper_arm_violations_plus_arguable": [round(lo_s, 4), round(hi_s, 4)],
             "k_upper": k + len(arguable),
         },
-        "prevalence_over_audited": {
+        "audit_proportion_over_effect_bearing_subset": {
             "k": k, "n": 32, "point": round(k / 32, 4),
             "wilson95": [round(lo32, 4), round(hi32, 4)],
         },
-        "post_stratified": {
+        "corpus_share_weighted_sensitivity": {
             "corpus_mix": CORPUS_N,
             "corpus_total": CORPUS_TOTAL,
             "corpus_mix_provenance": {
@@ -863,26 +869,29 @@ def main() -> None:
     print(f"  arguable           {len(arguable):3d}")
     print(f"  source_unavailable {len(unavailable):3d}")
     print()
-    print(f"  prevalence over n={n_sample}: {k}/{n_sample} = {k/n_sample:.2%}  Wilson95 [{lo:.2%}, {hi:.2%}]")
-    print(f"  sensitivity upper arm ({k+len(arguable)}/{n_sample}):  [{lo_s:.2%}, {hi_s:.2%}]")
-    print(f"  prevalence over audited 32:  {k}/32 = {k/32:.2%}  Wilson95 [{lo32:.2%}, {hi32:.2%}]")
+    print(f"  audit proportion over n={n_sample}: {k}/{n_sample} = {k/n_sample:.2%}  "
+          f"descriptive Wilson [{lo:.2%}, {hi:.2%}]")
+    print(f"  sensitivity upper arm ({k+len(arguable)}/{n_sample}):  "
+          f"[{lo_s:.2%}, {hi_s:.2%}]")
+    print(f"  audit proportion over effect-bearing 32: {k}/32 = {k/32:.2%}  "
+          f"descriptive Wilson [{lo32:.2%}, {hi32:.2%}]")
     print()
     print("  PER-FRAMEWORK (violations / sampled):")
     for f, v in ps_violation["per_framework"].items():
         print(f"      {f:<10s} {v['violations']:2d}/{v['n_sampled']:<3d} = {v['rate']:.3f}"
               f"   corpus N={v['corpus_N']:3d}  w={v['weight']:.3f}")
     pv, pu = ps_violation, ps_upper
-    print(f"  post-stratified (violations only):     {pv['post_stratified_point']:.2%}  "
+    print(f"  corpus-share weighted (violations only):     {pv['post_stratified_point']:.2%}  "
           f"CI [{pv['repo_clustered_bootstrap_95'][0]:.2%}, {pv['repo_clustered_bootstrap_95'][1]:.2%}]")
-    print(f"  post-stratified (violations+arguable): {pu['post_stratified_point']:.2%}  "
+    print(f"  corpus-share weighted (violations+arguable): {pu['post_stratified_point']:.2%}  "
           f"CI [{pu['repo_clustered_bootstrap_95'][0]:.2%}, {pu['repo_clustered_bootstrap_95'][1]:.2%}]")
     print()
-    print(f"  COMPOSITE (policy U structural): {kc}/{n_sample} = {kc/n_sample:.2%}  "
-          f"Wilson95 [{loc:.2%}, {hic:.2%}]")
+    print(f"  COMPOSITE audit count (policy U structural): {kc}/{n_sample} = "
+          f"{kc/n_sample:.2%}  descriptive Wilson [{loc:.2%}, {hic:.2%}]")
     print(f"      structural defect {STRUCTURAL_DEFECT}")
     print(f"      its HGP-1 verdict: {verdict_of.get(STRUCTURAL_DEFECT)}  "
           f"(already among violations: {struct_in_violations})")
-    print(f"      post-stratified: {ps_composite['post_stratified_point']:.2%}  "
+    print(f"      corpus-share weighted: {ps_composite['post_stratified_point']:.2%}  "
           f"CI [{ps_composite['repo_clustered_bootstrap_95'][0]:.2%}, "
           f"{ps_composite['repo_clustered_bootstrap_95'][1]:.2%}]")
     print()

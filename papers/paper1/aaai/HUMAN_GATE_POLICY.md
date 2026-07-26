@@ -1,6 +1,6 @@
-# Pre-registered human-gate policy (HGP-1)
+# Prospectively specified human-gate policy (HGP-1)
 
-**Status:** pre-registered. Written and committed *before* any of the 32 candidate
+**Status:** fixed before case labeling. Written *before* any of the 32 candidate
 workflows were assessed for gate presence, and before any comparison against the
 `human_presence` or `human_gate_coverage` flag outputs.
 
@@ -13,8 +13,8 @@ independently to every workflow in the sample that contains a side-effecting too
 *source* level, so that false negatives outside both flag universes are detectable.
 
 **Unit of analysis.** One workflow = one mined source file (a `slug` in
-`corpus/real_world/gt_triage_results.json`). Denominator for prevalence is the full
-validation sample, n = 119.
+`corpus/real_world/gt_triage_results.json`). The full audit denominator is
+n = 119; this is not a population-prevalence denominator.
 
 **Evidence base.** The workflow's actual source text under
 `corpus/real_world/sources/<slug>.py`, or, if absent, the recorded `repo`/`sha`/`path`.
@@ -60,7 +60,7 @@ that can prevent the side effect*. Exactly one of:
    conversation such that the human speaks between the proposing agent and the
    executing agent.
 
-**Explicitly NOT a gate** (pre-registered, to avoid post-hoc leniency):
+**Explicitly NOT a gate** (fixed before labeling, to avoid post-hoc leniency):
 
 - A generic conversational REPL in which the human supplies the *task* and the agent
   then autonomously chooses and executes tools. The human authorises a goal, not the
@@ -100,7 +100,7 @@ Excluded from the side-effecting set (these do **not** create a violation):
   destroyed at process exit, or code execution inside a container created and torn down
   by the framework for that call. The confinement must be visible in source.
 
-**Explicitly NOT excluded** (pre-registered, so the audit cannot be softened later):
+**Explicitly NOT excluded** (fixed before labeling):
 
 - **N1 Demo, toy, tutorial, or example status.** If the code as written performs a real
   external write, execution, or send, it is side-effecting. "It's only a demo" is a
@@ -125,11 +125,12 @@ Verdict domain is exactly `{violation, compliant, arguable, source_unavailable}`
   **must** state which of (i)–(iii) applies.
 - `source_unavailable` — no source file and no retrievable `repo`/`sha`/`path` content.
 - **An undecidable case is never recorded as `compliant`.** Silent downgrading of
-  uncertainty to a negative is the specific bias this pre-registration exists to prevent.
+  uncertainty to a negative is the specific bias this policy exists to prevent.
 
 ## Reporting rule
 
-The headline prevalence is `violation / 119`, with a Wilson 95% confidence interval.
+The headline audit proportion is `violation / 119`; any Wilson interval is
+descriptive and has no design-based population coverage.
 A **sensitivity band** is also reported: the lower bound counts only `violation`, the
 upper bound counts `violation + arguable`. Both are reported regardless of whether the
 resulting count is higher or lower than the 3 cases currently in the paper.
@@ -207,8 +208,8 @@ can never block execution:
 because the reference graph contained a node typed `human`. On source inspection,
 **none of the 7 is a genuine dominating gate.**
 
-This means the bias is not confined to the extractor. The reference (near-oracle)
-graphs themselves overstate human oversight, because `human` is assigned from node
+This means the bias is not confined to the extractor. The source-reconstructed
+reference graphs themselves overstate human oversight, because `human` is assigned from node
 name or framework type rather than from whether the body can block. Any estimand
 computed over those graphs — including the corrected, risk-aware one — is therefore
 biased **downward**, and the direction of the bias is systematic rather than random.
@@ -283,16 +284,16 @@ cases are held at `arguable` only because their side-effecting callees live in
 modules the mining pipeline never captured — in both the *absence of a gate is
 certain*.
 
-## Denominator caveat (wording I stand behind)
+## Denominator caveat
 
-> 12/119 is a lower bound: only the 32 workflows that source review identified as
-> containing side-effecting tools were assessed under the pre-registered policy, and
-> the remaining 87 enter the denominator as non-violations by construction. Because
-> those 87 were screened by the same source-level procedure that produced the 32, a
-> missed violation would require a missed tool rather than a missed gate; an
-> independent regex sweep of all 87 sources surfaced 10 candidates, 9 of which are
-> correctly screened and 1 of which would be `arguable` at worst. We therefore expect
-> the downward bias from the unaudited 87 to be small, though not provably zero.
+> Only the 32 workflows that source review identified as containing
+> side-effecting tools were assessed under the prospectively specified policy;
+> the remaining 87 enter the denominator as non-violations through the upstream
+> screen. An independent effect-signature sweep of all 87 surfaced 10
+> candidates: 9 were screened correctly and 1 would be `arguable`. This reduces
+> but does not eliminate screening error. Because annotation errors could also
+> remove a current violation, 12/119 is an observed audit count, not a formal
+> lower bound.
 
 The screening was **the same procedure**, not a weaker one:
 `gt_triage_results.json` holds one `classification` record per workflow for all
@@ -327,9 +328,9 @@ missed by the upstream classification, bounded above as small by the sweep; and
   prompts forbid confirmation four separate times (L19, L22, L23, L94) and where only
   the callee body, not the missing gate, is unverifiable. They are held at `arguable`
   because the policy requires it, not because the evidence is balanced.
-- 12/119 remains a **lower bound on the sample**: the 87 workflows with no
-  source-level side-effecting tool were not re-read under HGP-1, so any
-  misclassification in that upstream step propagates.
+- The 87 workflows with no source-level side-effecting tool were not re-read
+  under HGP-1, so any misclassification in that upstream step propagates. The
+  reported 12/119 is therefore conditional on that screen.
 - The audit is single-rater. `ed-donner__agents__sequential_agents` (prompt-level
   confirmation only) and `microsoft__ACV__test_cache_agent` (compliant) are the two
   calls most likely to move under a second rater.

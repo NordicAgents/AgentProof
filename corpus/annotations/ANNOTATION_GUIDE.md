@@ -428,11 +428,12 @@ verify the flagged structure exists in source (faithfulness) → judge intent
 - Report the confusion matrix between annotators over the full label set.
 - Report agreement **before adjudication** always; adjudicated labels are an
   additional, separately-labeled column, never a replacement.
-- The paper's prevalence re-estimate uses adjudicated labels; a sensitivity
-  row uses only items where A and B independently agreed.
+- The paper's revised descriptive audit counts use adjudicated labels; a
+  sensitivity row uses only items where A and B independently agreed.
 - **Do not** present agreement on the flag items (a selected set) as
-  validation of prevalence; prevalence claims rest on the no-flag audit plus
-  the flag items together (plan 3.3).
+  validation of a corpus or GitHub prevalence. The combined flag/no-flag audit
+  measures label reliability only for the locked human-validation items; the
+  corpus and 119-file sample have undefined inclusion probabilities.
 
 ---
 
@@ -489,3 +490,7 @@ estimators are pinned against textbook values in
   v1.0 remain valid. Documentation only: section 10 now names
   `scripts/human_agreement.py` as the implementation of section 8.4, which
   previously existed only as prose.
+- v1.2 — 2026-07-26. **No change to the protocol, samples, label domain, or
+  scoring rule.** Documentation only: section 8.4 now matches the paper's
+  descriptive-audit scope and does not call the quota sample a prevalence
+  estimator.

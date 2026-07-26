@@ -118,15 +118,16 @@ def main() -> None:
         "--corpus-kind", choices=["curated", "real_world"], default="real_world",
         help=(
             "curated: authored-with-code graphs -> assert trace-conservatism "
-            "(assume_trace_conservative=True). real_world/mined: earn "
-            "certification only from 'exact' provenance (the sound default)."
+            "(assume_trace_conservative=True). real_world/mined: withhold that "
+            "assertion; exact provenance alone cannot establish event coverage."
         ),
     )
     args = ap.parse_args()
 
     # Curated graphs are conservative BY CONSTRUCTION (authored with the
-    # code), so the caller legitimately asserts trace-conservatism; mined
-    # graphs must earn certification from provenance. See module docstring.
+    # code), so the caller explicitly asserts trace-conservatism. Mined graphs
+    # receive no such assertion: provenance records where an extracted element
+    # came from, but cannot prove that no behavior was omitted.
     assume_conservative = args.corpus_kind == "curated"
 
     policies = json.loads(Path(args.policies).read_text())
@@ -178,8 +179,8 @@ def main() -> None:
             # the atom) -- reported for context only.
             if not atoms_present:
                 alphabet_inert_descriptive += 1
-            # Curated: caller asserts conservatism; mined: earn it from
-            # provenance. The gate returns "safe" only when certified.
+            # Curated: caller asserts conservatism. Mined: no assertion, hence
+            # the gate cannot return "safe" merely from provenance metadata.
             result = check_temporal_property(
                 graph, rule, assume_trace_conservative=assume_conservative
             )
@@ -215,8 +216,8 @@ def main() -> None:
 
     n_pol = len(compiled)
     # DESCRIPTIVE gap: alphabet-inert pairs that the gate did NOT certify as
-    # safe (present only when certification is earned from provenance, i.e.
-    # not asserted). On a lossy corpus this gap is exactly the set of monitors
+    # safe (present only when event coverage was not asserted). On a lossy
+    # corpus this gap is exactly the set of monitors
     # a naive alphabet-only prune would UNSOUNDLY drop.
     alphabet_inert_not_certified = alphabet_inert_descriptive - trivial
     summary = {

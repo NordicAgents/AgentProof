@@ -22,13 +22,29 @@
 
 \graphicspath{{../figures/}{../generated/}}
 
+% Human-validation statistics are generated from the two locked worksheets.
+\IfFileExists{../generated/human_agreement.tex}{%
+  \input{../generated/human_agreement.tex}%
+}{%
+  \newcommand{\humanNflags}{0}
+  \newcommand{\humanKappa}{--}
+  \newcommand{\humanAlpha}{--}
+  \newcommand{\humanRaw}{--}
+  \newcommand{\humanLLMkappaA}{--}
+  \newcommand{\humanLLMkappaB}{--}
+  \newcommand{\humanGraphN}{0}
+  \newcommand{\humanGraphEdgeF}{--}
+  \newcommand{\humanGraphKind}{--}
+  \newcommand{\humanRefEdgeF}{--}
+}
+
 % TL;DR (submission form, 250-char limit; not typeset):
-% Non-actionable findings in static analysis of agent workflows have two causes,
-% not one: extraction error (42.5%) and policy misspecification (50.0%).
-% A perfect extractor would not make these tools usable.
+% In an audit of agent-workflow analysis, structural false alarms track graph
+% extraction, while human-gate false alarms track policy applicability; misses
+% arise mainly from effects absent from the graph abstraction.
 
 % Title (Title Case, per AAAI rules).
-\title{Two Failure Modes, Not One: Extraction Error and Policy Misspecification in Static Analysis of Agent Workflows}
+\title{Auditing Static Analysis of Agent Workflows: Extraction Fidelity and Policy Applicability}
 \author{Anonymous Submission}
 \affiliations{}
 
@@ -36,32 +52,30 @@
 \maketitle
 
 \begin{abstract}
-Static analysis of agent workflows raises overwhelmingly non-actionable
-findings, and the field attributes this to one cause---a lossy extractor. We
-show there are two, and that fixing the extractor addresses the smaller one.
-Mining 922 extracted file-level graphs from public GitHub across LangGraph,
-CrewAI, AutoGen, and Google ADK, we validate a 119-graph sample against
-LLM-reconstructed reference graphs (LLM-assisted exploratory labels, not
-human-validated ground truth). Triaging 186 flags attributes 42.5\% to
-extraction artifacts but 50.0\% to policy misspecification---checks firing
-correctly, on faithful graphs, against workflows their policy never governed. A
-symmetric ablation is decisive: the identical checks on near-oracle graphs
-remove only 62 of 184 flags, leaving ${\ge}120$ non-actionable findings on 119
-workflows. The causes separate by check family---extraction explains 98.6\% of
-non-actionable structural flags, policy specification 83.0\% of human-gate
-flags, where a risk-aware policy moves firings from 113 to 0 without touching a
-graph. One pre-registered policy applied uniformly revises human-gate violations
-fourfold upward (3 to 12 of 119), three outside both original flag universes,
-and reveals that every workflow the checks cleared was cleared by a
-\emph{placebo} gate---a node typed \textsc{human} whose body cannot block. The
-same ablation on \emph{misses} inverts the budget: all 12 violations escape the
-as-mined pipeline, yet a near-oracle graph recovers one, the effect living
-inside a node body no such graph represents. We also give the static machinery
-two defect-independent jobs: provenance-gated certification returning
-\texttt{inconclusive} rather than a false \texttt{safe}, and a path-sensitive
-product that prunes runtime monitors soundly relative to an authored
-abstraction. The lesson is methodological: report extraction fidelity alongside
-every static-analysis claim about agent workflows.
+Static analysis of agent workflows depends on two choices that are often left
+implicit: whether the extracted graph represents the source, and whether a
+policy applies to the workflow being checked. We audit both choices on 922
+extracted file-level graphs from public GitHub across LangGraph, CrewAI,
+AutoGen, and Google ADK. On a quota-selected 119-graph sample, an
+LLM-assisted source audit labels 184 of 186 findings non-actionable; these are
+exploratory labels pending independent human validation. Attribution is
+\emph{check-family dependent}: a graph-substitution survival test attributes 68
+of 72 non-actionable structural findings to extraction, whereas it attributes
+94 of 112 non-actionable human-gate findings to an inapplicable approval policy.
+Holding checks fixed and substituting source-reconstructed graphs removes 62 of
+184 findings. A declaration-sensitive human-gate rule moves blanket firings
+from 113 to 0, but only because mined graphs expose no sensitive bindings. The
+reverse audit exposes the consequence:
+all 12 source-audited human-gate violations escape the mined pipeline, and a
+source-reconstructed graph recovers only one; nine effects occur inside node
+bodies that the graph vocabulary does not represent. Moreover, every
+side-effecting workflow cleared by both graph checks was cleared by a
+\emph{placebo} gate---a node typed \textsc{human} whose body cannot block. We
+therefore separate extraction fidelity, policy applicability, and abstraction
+coverage, and make \texttt{safe} conditional on an authored event-complete
+abstraction; otherwise the analyzer returns \texttt{inconclusive}. The result is
+a methodological requirement for agent-workflow analysis: validate both the
+recovered model and the applicability of every policy.
 \end{abstract}
 
 \input{sections/01_intro}
@@ -72,12 +86,5 @@ every static-analysis claim about agent workflows.
 \input{sections/06_conclusion}
 
 \bibliography{../references}
-
-% Reproducibility checklist (required by AAAI). Defining \isChecklistMainFile
-% puts the included file into embedded (non-standalone) mode.
-\makeatletter
-\@ifundefined{isChecklistMainFile}{\gdef\isChecklistMainFile{}}{}
-\makeatother
-\input{ReproducibilityChecklist.tex}
 
 \end{document}

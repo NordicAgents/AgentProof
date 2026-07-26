@@ -29,23 +29,19 @@ measurement.
 Answering it requires a prior question: \emph{can we trust the graph?} A static
 check is only as credible as the behavioral model an extractor recovers from
 source, and on public agent code that extraction is lossy---it manufactures
-false flags and hides true defects at once. That much is expected, and we
-quantify it; our central finding is that it is only \emph{half} the story.
-Attributing every non-actionable flag to a cause, extraction artifacts account
-for $42.5\%$ but \textbf{policy misspecification accounts for $50.0\%$}: checks
-firing correctly, on faithful graphs, against workflows their policy was never
-meant to govern. The decisive test is an ablation that holds the checks fixed
-and swaps in near-oracle graphs: it removes only 62 of 184 flags, leaving
-${\ge}120$ non-actionable findings standing on 119 workflows. \textbf{A perfect
-extractor would not make these tools usable.} The causes separate cleanly by
-check family---extraction explains $98.6\%$ of non-actionable structural flags,
-policy specification $83.0\%$ of non-actionable human-gate flags ($92\%$ of
-attributed flags)---so the aggregate tilts
-check-ward only because human-gate checks are $61\%$ of all flags. Static
-verification of agent workflows is thus a \emph{measurement} problem with two
-error budgets, not one. The analyzer we measure with is prior infrastructure;
-this paper's contribution is not that tool but the cross-framework fidelity
-measurement it enables and the limits it exposes.
+false flags and hides true defects at once. A second question is equally
+necessary: \emph{does the policy govern this workflow?} Our audit shows that
+the answer is check-family dependent. A graph-substitution survival test
+attributes 68 of 72 non-actionable structural findings to extraction, while it
+attributes 94 of 112 non-actionable human-gate findings to an inapplicable
+blanket approval policy. These counts should not be pooled into a universal error rate: the
+aggregate is determined by the chosen mix of checks, frameworks, and files.
+More importantly, the reverse audit finds a different boundary. All 12
+source-audited human-gate violations escape the mined pipeline; nine remain
+invisible even in a source-reconstructed graph because the regulated effect
+lives inside a node body. Static verification of agent workflows is therefore a
+measurement problem over three distinct objects: extraction fidelity, policy
+applicability, and abstraction coverage.
 
 \paragraph{Study.}
 We use it as a measurement instrument on 922 extracted
@@ -54,39 +50,34 @@ search-ranked convenience corpus, not a probability sample---and validate a
 quota-selected 119-graph sample against \emph{LLM-reconstructed reference
 graphs} from an independent, adversarially cross-checked LLM pass. These are
 \emph{LLM-assisted exploratory labels}, not human-validated ground truth; a
-two-human validation protocol (samples staged) is required future work, and we
-bound our claims accordingly.
+two-human validation protocol and locked samples are provided, and we bound our
+current claims accordingly.
 
-\paragraph{Three estimands, not one prevalence.}
-A pooled ``prevalence'' conflates distinct quantities, so we separate three
-(Table~\ref{tab:estimands}): flag-level precision; \emph{structural-defect}
-prevalence, a topological property (1 of 119); and \emph{human-gate
-policy-violation} prevalence, a normative judgment. One pre-registered policy
-applied uniformly, in place of an ad-hoc two-check procedure, revises the last
-fourfold upward, from 3 to \textbf{12 of 119} $[5.9,16.8]\%$, three outside
-\emph{both} original flag universes---false negatives a flag-triage study
-structurally cannot see.
+\paragraph{Three audit quantities, not one prevalence.}
+A pooled rate conflates distinct quantities, so we report separately:
+flag-level precision; observed structural defects, a topological judgment; and
+observed human-gate policy violations, a normative judgment under one policy
+fixed before case labeling (Table~\ref{tab:estimands}). Because neither the
+GitHub corpus nor the 119-file validation set is a probability sample, these are
+descriptive audit proportions, not population-prevalence estimates.
 
 \paragraph{Contributions.}
 \begin{itemize}\itemsep1pt
-  \item \textbf{A two-cause attribution of non-actionable findings}, with the
-  symmetric ablation the comparison requires, establishing a check-side error
-  floor ${\approx}1.9\times$ the extraction-attributable share and localizing
-  each cause to a check family. A label-independent \emph{survival test}
-  reproduces it from graphs alone ($93.0\%$ agreement), separating checker error
-  ($1.1\%$) from policy misspecification ($50.5\%$); run on \emph{misses} it
-  inverts the budget (Section~\ref{sec:realworld}).
-  \item \textbf{A cross-framework extraction-fidelity measurement}
-  (LLM-assisted), with a matched, provenance-disambiguated corrected-instrument
-  ablation isolating extraction from check error.
-  \item \textbf{A separation of three estimands} the field pools, the last
-  re-measured under one uniformly applied pre-registered policy, which revises
-  it fourfold upward and exposes \emph{placebo} human gates biasing every
-  reconstructed-graph estimand downward (Table~\ref{tab:estimands}).
-  \item \textbf{A conservative certification gate} returning
-  \texttt{inconclusive} rather than a false \texttt{safe} when extraction fails
-  a provenance screen, plus a path-sensitive product pruning runtime
-  monitors---soundly \emph{relative to an authored abstraction}, since exact
-  provenance screens for but does not prove event-trace conservatism
-  (Sections~\ref{sec:system},~\ref{sec:results}).
+  \item \textbf{A cross-framework extraction-fidelity audit} with matched,
+  provenance-disambiguated instruments and a corrected-extractor ablation. It
+  localizes extraction error to structural checks instead of treating all
+  findings as one population.
+  \item \textbf{Symmetric audits of findings and misses.} Holding checks fixed
+  while swapping mined for reconstructed graphs separates extraction from
+  check-side effects; applying the same test to source-audited violations shows
+  when the graph vocabulary itself omits the regulated behavior.
+  \item \textbf{A separation of policy applicability from graph fidelity.} A
+  policy fixed before case labeling exposes violations outside both original
+  flag universes and \emph{placebo} human gates that make graph-only evaluation
+  overstate oversight.
+  \item \textbf{A conservative operational consequence:} results are
+  \texttt{safe} only relative to a caller-asserted, event-complete authored
+  abstraction; lossy mined graphs return \texttt{inconclusive}. A small
+  path-sensitive experiment demonstrates the resulting monitor-selection
+  mechanism (Section~\ref{sec:results}).
 \end{itemize}

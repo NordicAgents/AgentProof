@@ -41,9 +41,29 @@
 \DeclareRobustCommand{\slug}[1]{{\ttfamily\let\_\bslash #1}}
 \sloppy
 
+\IfFileExists{../generated/human_agreement.tex}{%
+  \input{../generated/human_agreement.tex}%
+}{%
+  \newcommand{\humanNflags}{0}
+  \newcommand{\humanKappa}{--}
+  \newcommand{\humanAlpha}{--}
+  \newcommand{\humanRaw}{--}
+  \newcommand{\humanLLMkappaA}{--}
+  \newcommand{\humanLLMkappaB}{--}
+  \newcommand{\humanGraphN}{0}
+  \newcommand{\humanGraphEdgeF}{--}
+  \newcommand{\humanGraphKind}{--}
+  \newcommand{\humanRefEdgeF}{--}
+}
+\ifnum\humanNflags>0
+  \newcommand{\humanValidationStatus}{human-validated}
+\else
+  \newcommand{\humanValidationStatus}{human validation pending}
+\fi
+
 \title{Supplementary Material for\\
-\emph{Two Failure Modes, Not One: Extraction Error and Policy
-Misspecification in Static Analysis of Agent Workflows}}
+\emph{Auditing Static Analysis of Agent Workflows: Extraction Fidelity and
+Policy Applicability}}
 \author{}
 \date{}
 
@@ -282,7 +302,7 @@ the exclusive kinds---and should be read as such.
 \label{sec:proof}
 
 \emph{Promised at} \artifact{sections/02\_system.tex}, paragraph
-\emph{Soundness gated on certified extraction}: ``the full proof is in the
+\emph{Soundness requires an event-complete abstraction}: ``the full proof is in the
 supplement.''
 
 \subsection{Why the existing graph-path lemmas do not suffice}
@@ -448,12 +468,11 @@ weaker, never unsound.
 \subsection{What the implementation does \emph{not} discharge: (H1)}
 \label{sec:h1}
 
-\begin{proposition}[The provenance gate does not entail (H1)]
+\begin{proposition}[Exact provenance does not entail (H1)]
 \label{prop:gap}
-Let \slug{region\_is\_certifiable} be the predicate the checker uses to gate
-the \slug{safe} verdict: every traversed edge and every visited tool-node
-binding carries \slug{exact} provenance. Then
-\slug{region\_is\_certifiable}$(G)$ does not imply
+Let \slug{region\_is\_provenance\_exact} mean that every traversed edge and
+every visited node carries \slug{exact} provenance. Then
+\slug{region\_is\_provenance\_exact}$(G)$ does not imply
 $\Tev(P)\subseteq\Lang(G,\lambda)$.
 \end{proposition}
 
@@ -464,10 +483,10 @@ guessed---and quantifies only over elements that were recorded. It says nothing
 about elements that were never recorded. Concretely: let $v$ be a node whose
 body calls a tool $t$ directly, with no declared binding. Every edge incident to
 $v$ may be read exactly from \slug{add\_edge}, and $v$ may have $T(v)=\emptyset$
-recorded exactly, so \slug{region\_is\_certifiable} holds; yet
+recorded exactly, so \slug{region\_is\_provenance\_exact} holds; yet
 $\lambda(v)=\emptyset^{*}=\{\varepsilon\}$ while the concrete execution emits
 $t$, so $\sigma_e\notin\Lang(G,\lambda)$ and (H1) fails. Nothing in
-\slug{region\_is\_certifiable} inspects node bodies for unrecorded events.
+\slug{region\_is\_provenance\_exact} inspects node bodies for unrecorded events.
 \end{proof}
 
 This is not a hypothetical counterexample. It is the
@@ -482,18 +501,16 @@ via \artifact{corpus/real\_world/error\_decomposition.json}).
 In the implementation, (H1) is discharged in exactly one way: \textbf{by
 assertion}. The caller passes \slug{assume\_trace\_conservative}, asserting
 that the graph is an authored abstraction whose nodes emit no events outside
-their declared bindings. The provenance screen is a \emph{necessary screening
-condition} on top of that assertion---it prevents the assertion from being
-combined with a graph whose recorded structure was itself guessed---but it is
-not a proof of (H1) and must not be read as one. Accordingly:
+their declared bindings. Provenance qualifies witnesses but is not a proof of
+(H1) and never authorizes \slug{safe} by itself. Accordingly:
 
 \begin{itemize}
 \item On the \textbf{curated corpus}, authorship supplies the assertion, and every
 pruning number in the main text is sound \emph{relative to that assertion},
 which the paper labels as such.
-\item On \textbf{mined graphs}, the AST fallback emits \slug{may}-provenance
-nodes and edges, so the screen fails and the gate withholds \slug{safe}
-outright. No false proof is emitted, because no proof is emitted.
+\item On \textbf{mined graphs}, the caller supplies no event-coverage assertion,
+so the gate withholds \slug{safe} outright. No false proof is emitted, because
+no proof is emitted.
 \item In both cases a \slug{may\_violate} finding is never suppressed by the
 gate, so the gate can only lose precision, never soundness.
 \end{itemize}
@@ -747,13 +764,13 @@ flags). $^{\dagger}$legacy alias for \slug{human\_gate\_coverage}.}
 \paragraph{Consistency with the main text.}
 Table~\ref{tab:triage} reproduces every headline of
 \artifact{sections/03\_realworld.tex}: 186 flags; label shares
-$42.5\%$/$50.0\%$/$6.5\%$/$1.1\%$; 2 confirmed genuine, both under
+$42.5\%$/$50.0\%$/$6.5\%$/$1.1\%$; 2 classified as genuine, both under
 \slug{human\_presence} on sensitive workflows; 12 \textsc{arguable}; and
 $113/186=61\%$ of flags from the blunt \slug{human\_presence} check alone. The
 72 structural flags are the sum of the six structural rows
 ($25+25+14+5+2+1=72$), of which 71 are extraction artifacts and 1 is arguable,
-with \emph{zero} confirmed genuine---the main text's ``none of the 72 structural
-flags was confirmed genuine''.
+with \emph{zero} classified as genuine---the main text's ``none of the 72
+structural flags was classified as genuine''.
 
 \subsection{The four-way attribution, by check}
 
@@ -913,8 +930,9 @@ deterministically.
 For each triaged flag (workflow $s$, check $C$) judged non-actionable:
 
 \begin{description}
-\item[R1] Re-run $C$ on the reference graph $\mathrm{GT}(s)$. If $C$ does
-  \emph{not} fire, the near-oracle removed the flag $\Rightarrow$
+\item[R1] Re-run $C$ on the source-reconstructed reference graph
+  $\mathrm{GT}(s)$. If $C$ does \emph{not} fire, the reconstruction removed the
+  flag $\Rightarrow$
   \textsc{extractor}.
 \item[R2] If $C$ fires and $C$ is \emph{structural}
   (\slug{dead\_ends}, \slug{exit\_reachability}, \slug{reverse\_reachability},
@@ -942,7 +960,7 @@ verdict turns on a \slug{human} node that the HGP-1 placebo audit found
 non-discharging. When the guard trips, the survival test is not evidence about
 the check, and we record \textsc{reference-error} rather than force the flag
 onto a side. Reporting it as its own cause is the point: it measures how often
-the ``near-oracle'' is itself wrong, which on this sample is
+the source-reconstructed reference is itself wrong, which on this sample is
 \textbf{5 of 186} flags ($2.7\%$). Suppressing that category would have
 manufactured 3 spurious \textsc{checker} findings and 2 spurious
 \textsc{extractor} findings.
@@ -1042,7 +1060,8 @@ Detected (no miss)                & 0  & 1 \\
 The as-mined column is unmixed: \emph{no} mined graph declares a sensitive tool
 at all, so the risk-aware check could not have fired on any of the 12, and every
 miss is extraction. The reference-graph column is the informative one. Swapping
-in the near-oracle recovers \textbf{1 of 12}. Of the 11 that remain:
+in the source-reconstructed reference recovers \textbf{1 of 12}. Of the 11 that
+remain:
 
 \begin{itemize}
 \item \textbf{9 are \textsc{abstraction}}: the effect is absent from the
@@ -1061,7 +1080,7 @@ in the near-oracle recovers \textbf{1 of 12}. Of the 11 that remain:
 \paragraph{Why this is the paper's sharpest result.} The two directions have
 \emph{opposite} error budgets. Non-actionable findings are check-side
 ($50.5\%$ policy specification versus $38.2\%$ extraction). Misses are
-model-side ($100\%$ extraction as mined). But the near-oracle repairs only
+model-side ($100\%$ extraction as mined). But the reconstruction repairs only
 $1/12$ of the misses, because the missing information sits \emph{below} the
 abstraction rather than above it. A reader who concluded from the false-positive
 decomposition that ``extraction fidelity is a secondary concern'' would draw
@@ -1073,7 +1092,7 @@ This is the same boundary the certification gate meets
 (Section~\ref{sec:h1}). Exact provenance certifies that an \emph{edge} was read
 correctly; it says nothing about the events inside the node that edge connects.
 Table~\ref{tab:fn} is the empirical measurement of that gap: on 9 of 12
-confirmed violations, the abstraction is silent about the very effect the policy
+source-audited violations, the abstraction is silent about the very effect the policy
 regulates.
 
 % ===========================================================================
@@ -1521,18 +1540,17 @@ Reproducibility claims should be scoped to ``the corpus is reproducible from the
 pinned manifest'', never to ``the mining is reproducible''.
 
 % ===========================================================================
-\section{The Pre-Registered Human-Gate Policy (HGP-1)}
+\section{The Prospectively Specified Human-Gate Policy (HGP-1)}
 \label{sec:hgp}
 
-Not promised by the main text, but included because it is the instrument behind
-the human-gate estimand and because it was pre-registered. The following inlines
+Included because it is the instrument behind the human-gate audit. The following inlines
 \artifact{papers/paper1/aaai/HUMAN\_GATE\_POLICY.md}. Machine-readable record:
 \artifact{corpus/real\_world/human\_gate\_audit.json}; script:
 \artifact{scripts/human\_gate\_audit.py}.
 
 \paragraph{Status and purpose.}
-Pre-registered: written and committed \emph{before} any of the 32 candidate
-workflows were assessed for gate presence, and before any comparison against
+Prospectively specified: written before any of the 32 candidate workflows were
+assessed for gate presence, and before any comparison against
 \slug{human\_presence} or \slug{human\_gate\_coverage} output. Its purpose is
 to replace a conflated estimand---three cases produced by two different checks
 over two different artifact populations---with one operational procedure applied
@@ -1595,7 +1613,7 @@ branch present in source; or (3) AutoGen \slug{UserProxyAgent} with
 \slug{human\_input\_mode="ALWAYS"} positioned so the human speaks between the
 proposing agent and the executing agent.
 
-\emph{Explicitly not a gate} (pre-registered, to avoid post-hoc leniency): a
+\emph{Explicitly not a gate} (fixed before case labeling): a
 generic conversational REPL in which the human supplies the \emph{task} and the
 agent then autonomously chooses and executes tools (the human authorises a goal,
 not the specific irreversible action); \slug{human\_input\_mode="NEVER"} or
@@ -1622,7 +1640,7 @@ sandboxed side effects (writes confined to \slug{tempfile}/\slug{tmp\_path},
 or execution inside a container created and torn down for that call), with the
 confinement visible in source.
 
-\emph{Explicitly not excluded} (pre-registered): N1 demo/toy/tutorial/example
+\emph{Explicitly not excluded} (fixed before case labeling): N1 demo/toy/tutorial/example
 status---``it's only a demo'' is a statement about intent, not behaviour, and
 intent is recorded separately without changing the verdict; N2 test files, which
 require E5 or E6 to be exempt; N3 unconfigured credentials---a send that would
@@ -1639,8 +1657,8 @@ behaviour cannot be established, (ii) tool dispatch is fully dynamic, or
 runtime configuration not fixed in source; an \slug{arguable} verdict must
 state which applies. \textbf{An undecidable case is never recorded as
 \slug{compliant}}---silent downgrading of uncertainty to a negative is the
-specific bias this pre-registration exists to prevent. The headline is
-$\text{violation}/119$ with a Wilson 95\% CI, plus a sensitivity band whose lower
+specific bias this policy exists to prevent. We report
+$\text{violation}/119$ with a descriptive Wilson interval, plus a sensitivity band whose lower
 arm counts only \slug{violation} and whose upper arm counts
 $\text{\slug{violation}}+\text{\slug{arguable}}$; both are reported regardless of direction.
 
@@ -1697,7 +1715,7 @@ number. The earlier figure was produced by two \emph{different} checks
 so it was never a single estimand; and both checks read gate presence off a
 graph node's \emph{kind}, which is exactly the field the
 \slug{tool}$\rightarrow$\slug{llm} error corrupts. HGP-1 replaces this with one
-pre-registered procedure applied uniformly to source text, with a verdict
+prospectively specified procedure applied uniformly to source text, with a verdict
 domain that forbids recording an undecidable case as compliant. The two
 subsections below---the three violations invisible to \emph{both} earlier
 checks, and the eight non-discharging ``gates'' that both checks accepted---are
@@ -1754,8 +1772,8 @@ proxy, but ordered after the executing agent \\
 \textbf{All 7} side-effecting workflows that both existing checks cleared were
 cleared because the reference graph contained a node typed \slug{human}; on
 source inspection \textbf{none of the 7 is a genuine dominating gate}. The bias
-is therefore \emph{not} confined to the extractor: the reference (near-oracle)
-graphs themselves overstate human oversight, because \slug{human} is assigned
+is therefore \emph{not} confined to the extractor: the source-reconstructed
+reference graphs themselves overstate human oversight, because \slug{human} is assigned
 from node name or framework type rather than from whether the body can block. Any
 estimand computed over those graphs---including the corrected, risk-aware
 one---is biased \textbf{downward}, systematically rather than randomly. The
@@ -1776,9 +1794,9 @@ notably \slug{Zen7-Labs\_\_Zen7-Payment-Agent\_\_agent}, a crypto
 payment/settlement pipeline whose prompts forbid confirmation four separate times
 and where only the callee body, not the missing gate, is unverifiable. They are
 held at \slug{arguable} because the policy requires it, not because the evidence
-is balanced. $12/119$ remains a \textbf{lower bound on the sample}: the 87
-workflows with no source-level side-effecting tool were not re-read under HGP-1,
-so any misclassification upstream propagates. Finally the audit is
+is balanced. The 87 workflows screened as having no source-level side effect
+were not re-read under HGP-1, so upstream screening error can change the
+$12/119$ count in either direction. Finally the audit is
 \textbf{single-rater}; \slug{ed-donner\_\_agents\_\_sequential\_agents}
 (prompt-level confirmation only) and \slug{microsoft\_\_ACV\_\_test\_cache\_agent}
 (compliant) are the two calls most likely to move under a second rater.
@@ -2043,8 +2061,8 @@ which any static check depends.
 \setlength{\tabcolsep}{4pt}
 \caption{Positioning against measurement and enforcement work for LLM agents,
 along the six axes of Section~\ref{sec:related}. Ours measures the fidelity of
-the extracted model on which static checks depend, separates distinct prevalence
-estimands, and gates soundness on extraction provenance.}
+the extracted model on which static checks depend, separates distinct audit
+quantities, and makes soundness conditional on caller-asserted event coverage.}
 \label{tab:related}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lllllll@{}}
@@ -2059,8 +2077,8 @@ Work & Corpus & Frameworks & Model & Properties & Validation & Guarantees \\
 \citet{kamath2026agentc}     & case studies         & generation-time & temporal aut.\    & temporal constraints  & conformance   & conformance (runtime) \\
 \midrule
 \textbf{Ours} & $922$ graphs, $252$ repos & $4$ (cross) & graph\,+\,LTL$_f$ &
-struct.\,+\,policy estimands & LLM-recon.; human staged &
-provenance-screened soundness (rel.\ authored abstraction) \\
+struct.\,+\,policy quantities & LLM-recon.; \humanValidationStatus &
+caller-asserted soundness (rel.\ authored abstraction) \\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -2069,21 +2087,45 @@ provenance-screened soundness (rel.\ authored abstraction) \\
 The wording is deliberately weaker than an unqualified soundness claim, and is
 the same claim Section~\ref{sec:proof} proves. What the system delivers is
 soundness \emph{relative to an authored abstraction} whose event coverage the
-caller asserts; exact provenance is a necessary \emph{screening} condition on
-that assertion, not a proof of it (Proposition~\ref{prop:gap}). Reading the cell
+caller asserts; exact provenance qualifies witnesses but never discharges that
+assertion (Proposition~\ref{prop:gap}). Reading the cell
 as ``verified soundness'' would overstate the result in exactly the way
 Section~\ref{sec:h1} warns against. Two neighbouring cells are similarly
-hedged on purpose: our ``Validation'' entry records that the reference graphs are
-LLM reconstructions and that two-annotator human validation is staged but
-\emph{not} performed, and our ``Corpus'' entry counts \emph{extracted file-level
-graphs}, not executable workflow roots or deployed systems---so it is not
-directly comparable to a bug count or a vulnerability count in the rows above.
+hedged on purpose: our ``Validation'' entry records that the reference graphs
+are LLM reconstructions and reports the status of independent human validation,
+and our ``Corpus'' entry counts \emph{extracted file-level graphs}, not
+executable workflow roots or deployed systems---so it is not directly
+comparable to a bug count or a vulnerability count in the rows above.
 
 \paragraph{What the table does not encode.}
 It is a capability placement, not a benchmark: no row was re-run by us, and the
 corpus sizes are not commensurable across rows (bug reports, vulnerability
 records, programs, and extracted graphs are different units). We make no claim
 of the form ``ours is $N\times$ larger''.
+
+\section{Independent Human Validation}
+\label{sec:human-validation}
+
+\ifnum\humanNflags>0
+Two independent annotators labeled \humanNflags{} defect items. Human--human
+raw agreement is \humanRaw{}, Cohen's $\kappa=\humanKappa$, and
+Krippendorff's $\alpha=\humanAlpha$. Cohen's $\kappa$ against the committed LLM
+labels is \humanLLMkappaA{} for annotator A and \humanLLMkappaB{} for annotator
+B. The annotators also independently reconstructed \humanGraphN{} locked
+workflows: human--human mean edge F1 is \humanGraphEdgeF{} and node-kind
+agreement is \humanGraphKind{}; annotator A's mean edge F1 against the
+LLM-reconstructed references is \humanRefEdgeF{}. Full confusion matrices,
+repository-cluster bootstrap intervals, per-item graph scores, and completion
+counts are in \artifact{corpus/annotations/human\_agreement.json}.
+\else
+Two-annotator validation has not yet been executed. The locked samples,
+independent worksheets, annotation guide, and scoring script are included under
+\artifact{corpus/annotations/} and
+\artifact{scripts/human\_agreement.py}. Running the latter with
+\slug{--latex} updates this section and the main paper from the same generated
+macro file. Until then, LLM-assisted labels are exploratory and this remains
+the principal internal-validity gap.
+\fi
 
 \section{Summary of Unmet Promises and Known Gaps}
 \label{sec:gaps}
@@ -2102,8 +2144,8 @@ documents agree}: what Table~\ref{tab:fwmap} documents is the per-framework
 mapping into the exclusive \slug{NodeKind}/\slug{EdgeKind} view, which is the
 only one that runs during extraction.
 \item \textbf{Event-trace conservatism (H1) is assumed, not verified}
-(Section~\ref{sec:h1}). Theorem~\ref{thm:etc} is conditional; the provenance
-gate screens metadata and the caller's assertion discharges the hypothesis. A
+(Section~\ref{sec:h1}). Theorem~\ref{thm:etc} is conditional; provenance
+metadata qualifies witnesses and only the caller's assertion discharges the hypothesis. A
 body-level effect analysis is the missing piece.
 \item \textbf{Per-framework extractor accuracy ``on stubs'' is not available}
 (Section~\ref{sec:stubs}). \artifact{corpus/ground\_truth/} does not exist and the
@@ -2118,29 +2160,30 @@ than cite it, and report the discrepancy.
 \item \textbf{HGP-1 supersedes the earlier human-gate estimand}
 (Section~\ref{sec:hgp}). The primary figure is $12/119$; the earlier $3/119$ is
 withdrawn, not averaged in. \emph{Residual gap:} HGP-1 is single-rater, 11 cases
-remain \slug{arguable} for want of a repository-level corpus, and $12/119$ is a
-lower bound because the 87 workflows with no source-level side-effecting tool
-were not re-read \emph{under HGP-1} --- they were excluded by the same
+remain \slug{arguable} for want of a repository-level corpus. The $12/119$
+count is conditional on the upstream screen: the 87 workflows with no
+source-level side-effecting tool were not re-read \emph{under HGP-1}---they were
+excluded by the same
 classification pass that produced the 32, and an independent effect-signature
 sweep of all 87 flagged 10 for manual re-reading, of which 9 are correctly
-screened and 1 would be \slug{arguable}. The residual is bounded by that one
-case, not eliminated.
+screened and 1 would be \slug{arguable}. Screening error and label error can
+move the observed count in either direction.
 \item \textbf{Absolute benchmark timings are not comparable across drafts}
 (Section~\ref{sec:eval}). Three recorded figures at 5{,}000 nodes span a factor
 of ${\approx}33$ across machines. Only the asymptotic shape is a property of the
 system.
-\item \textbf{Two-annotator independent human validation has not been performed}
-(main text, Section~3). Reference graphs and triage labels come from LLM passes
-sharing a model family; the protocol and samples are staged but unexecuted. The
-survival test of Section~\ref{sec:survival} weakens, but does not remove, this
-threat: it shows the headline decomposition is reproducible from graphs alone
-without consulting the labels ($93.0\%$ agreement), which is evidence against
-label \emph{dependence}, not evidence of label \emph{correctness}.
+\item \textbf{Independent human-validation status: \humanValidationStatus}
+(Section~\ref{sec:human-validation}). Reference graphs and triage labels
+originate in LLM passes sharing a model family. The survival test of
+Section~\ref{sec:survival} weakens, but does not by itself remove, this threat:
+it reproduces the headline decomposition from graphs alone without consulting
+the labels ($93.0\%$ agreement), which is evidence against label
+\emph{dependence}, not evidence of label \emph{correctness}.
 \item \textbf{The reference graphs are not a semantic oracle, and we now
 measure by how much} (Sections~\ref{sec:hgp},~\ref{sec:survival}). Node kinds
 are assigned from naming and framework type, so a \slug{human} node need not be
 able to block; $5/186$ flags trip the validity guard for this reason, and $9$ of
-the $12$ confirmed violations are invisible even to the reconstruction because
+the $12$ source-audited violations are invisible even to the reconstruction because
 the effect lives in a node body. Every human-gate estimand computed over
 reference graphs is therefore biased downward by an amount we bound but cannot
 correct.

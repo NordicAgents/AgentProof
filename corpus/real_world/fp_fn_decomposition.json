@@ -1871,7 +1871,7 @@
     }
   },
   "false_negatives": {
-    "n_confirmed_human_gate_violations": 12,
+    "n_source_audited_human_gate_violations": 12,
     "as_mined_pipeline": {
       "n_missed": 12,
       "dist": {
@@ -2032,7 +2032,7 @@
       ],
       "note": "All 12 HGP-1 violations were missed by the as-mined risk-aware pipeline (it fires 0 times on the 922 mined graphs), so the miss denominator is the full violation set."
     },
-    "oracle_graph_pipeline": {
+    "reconstructed_reference_pipeline": {
       "n_detected": 1,
       "n_still_missed": 11,
       "dist": {
@@ -2183,7 +2183,7 @@
           "rule": "G4_cleared_despite_violation"
         }
       ],
-      "note": "Symmetric counterpart of the FP survival test: the extractor is replaced by the near-oracle reference graph and the policy is held fixed.  Violations still missed are the check-side false-negative floor."
+      "note": "Symmetric counterpart of the FP survival test: the extractor is replaced by the source-reconstructed reference graph and the policy is held fixed.  Violations still missed are the check-side false-negative floor."
     }
   }
 }

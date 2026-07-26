@@ -569,24 +569,19 @@ def _linear_tool_graph(tool: str, edge_conf: str, node_conf: str) -> AgentGraph:
     )
 
 
-def test_gate_exact_provenance_alphabet_absent_is_safe_certified():
-    """(1) EXACT-provenance graph + alphabet-absent policy => safe, certified.
+def test_gate_exact_provenance_alone_does_not_certify_event_coverage():
+    """Exact provenance alone cannot certify an alphabet-absent policy.
 
     Policy 'G !tool:X'; the graph declares only tool A, so 'tool:X' never
-    appears in the event vocabulary and the DFA never leaves its initial
-    accepting state — a would-be 'safe' run. Every traversed edge
-    (entry->t, t->exit) and the visited TOOL node 't' are confidence
-    'exact', so the explored region certifies from PROVENANCE alone (no
-    assume flag). Derivation: no bad prefix, no unfulfilled obligation at
-    exit, no divergence, termination reachable, region certified => safe /
-    certified True. This is the intended soundness tightening: alphabet-
-    absence on an EXACT graph still yields 'safe'.
+    appears in the graph vocabulary. Even with exact edges and bindings, a
+    node body could emit X, so the result remains inconclusive until the
+    caller explicitly asserts event-trace conservatism.
     """
     graph = _linear_tool_graph("A", edge_conf="exact", node_conf="exact")
     result = check_temporal_property(graph, _rule("no_X", "G !tool:X"))
-    assert result["verdict"] == "safe"
-    assert result["certified"] is True
-    assert result["inconclusive_reason"] is None
+    assert result["verdict"] == "inconclusive"
+    assert result["certified"] is False
+    assert result["inconclusive_reason"] == "uncertified_extraction"
     assert result["violated"] is False
 
 
@@ -663,7 +658,9 @@ def test_gate_may_node_kind_downgrades_safe_to_uncertified():
     assert guessed["inconclusive_reason"] == "uncertified_extraction"
     assert guessed["certified"] is False
     assert guessed["violated"] is False
-    certified = check_temporal_property(build("exact"), rule)
+    certified = check_temporal_property(
+        build("exact"), rule, assume_trace_conservative=True
+    )
     assert certified["verdict"] == "safe"
     assert certified["certified"] is True
 

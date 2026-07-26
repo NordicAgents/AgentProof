@@ -18,7 +18,7 @@ WHAT IT COMPUTES
 Task 2 (defect labels), the estimand the paper's triage rests on:
   * raw pairwise agreement, Cohen's kappa, Krippendorff's alpha (nominal),
     each with two 95% bootstrap intervals: resampled over ITEMS, and --- the
-    pre-registered primary for pooled statistics, per annotation guide v1.0
+    prospectively specified primary for pooled statistics, per annotation guide v1.0
     section 8.4 --- resampled over REPOSITORY CLUSTERS, since workflows from
     one repository are not independent;
   * the same three statistics for each human against the committed LLM triage
@@ -93,7 +93,7 @@ def krippendorff_alpha(pairs: list[tuple[str, str]]) -> float:
         return float("nan")
     # Coincidence matrix over the observed label set.
     labels = sorted({v for u in units for v in u})
-    idx = {l: i for i, l in enumerate(labels)}
+    idx = {label: i for i, label in enumerate(labels)}
     k = len(labels)
     coinc = [[0.0] * k for _ in range(k)]
     for u in units:
@@ -199,7 +199,7 @@ def score_pairs(pairs: list[tuple[str, str]],
         # are retained as the (narrower) secondary.
         out["cluster_bootstrap"] = {
             "_note": ("resamples repositories, not items; this is the "
-                      "pre-registered primary interval for pooled statistics "
+                      "prospectively specified primary interval for pooled statistics "
                       "(annotation guide v1.0 section 8.4)"),
             "raw_agreement_ci": cluster_boot_ci(pairs, clusters, raw_agreement),
             "cohens_kappa_ci": cluster_boot_ci(pairs, clusters, cohens_kappa),
