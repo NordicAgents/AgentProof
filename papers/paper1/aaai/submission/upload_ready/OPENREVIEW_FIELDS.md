@@ -5,7 +5,7 @@ Re-sync it if `main.tex` changes.
 
 ## Title
 
-Auditing Static Analysis of Agent Workflows: Extraction Fidelity and Policy Applicability
+Auditing File-Level Static Analysis of Agent Workflows: Extraction Fidelity and Policy Applicability
 
 ## Abstract
 
@@ -32,7 +32,8 @@ applicability, and abstraction coverage, and make safe conditional on an
 authored event-complete abstraction; otherwise the analyzer returns
 inconclusive. The result is a methodological requirement for agent-workflow
 analysis: validate both the recovered model and the applicability of every
-policy.
+policy. All proportions are descriptive of these audited files, not estimates
+for executable or deployed workflows.
 
 ## TL;DR
 

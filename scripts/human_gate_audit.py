@@ -630,8 +630,9 @@ def stratified_cluster_bootstrap(strata_clusters: dict, n_boot: int = BOOT,
     draws = []
     for _ in range(n_boot):
         p = 0.0
-        for f, cl in strata_clusters.items():
-            repos = list(cl)
+        for f in sorted(strata_clusters):
+            cl = strata_clusters[f]
+            repos = sorted(cl)
             if not repos:
                 continue
             sd = sn = 0.0

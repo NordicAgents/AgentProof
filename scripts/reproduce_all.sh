@@ -154,12 +154,8 @@ fi
 run "13. Revision analyses (census + clustered CIs)" \
     $PY scripts/revision_analyses.py
 
-# ---- 14. Confidence intervals ------------------------------------
-if need_file "14. Confidence intervals (compute_cis.py)" "$RW/validated_results.json"; then
-    run "14. Confidence intervals" \
-        $PY scripts/compute_cis.py --validated "$RW/validated_results.json" \
-                                   --output "$RW/confidence_intervals.json"
-fi
+# Confidence intervals are generated after the matched-set and HGP-1 analyses,
+# so the command cannot silently fall back to the superseded n=120/187 inputs.
 
 # ---- 15. Monitor pruning -----------------------------------------
 # Curated: deliberately run WITHOUT --corpus-kind curated. The script would then
@@ -211,18 +207,30 @@ if need_file "18b. Matched + collision-free fidelity (matched_fidelity.py)" "$RW
         $PY scripts/matched_fidelity.py
 fi
 
+run "18c. Matched-set repository-clustered fidelity intervals" \
+    $PY scripts/supplement_cis.py
+
 # ---- 19. Error decomposition -------------------------------------
 run "19. Error decomposition (effect vs provenance)" \
     $PY scripts/error_decomposition.py
 
 # ---- 20. Reviewer analyses, pruning experiment, sensitivity ------
-run "20a. Reviewer analyses (estimands, post-strat, Fisher, PPV)" \
+run "20a. HGP-1 source-level policy audit" \
+    $PY scripts/human_gate_audit.py
+
+run "20b. Current confidence intervals (n=106 fidelity; n=186 triage; HGP-1)" \
+    $PY scripts/compute_cis.py --validated "$RW/validated_results.json" \
+        --matched "$RW/matched_fidelity.json" \
+        --hgp "$RW/human_gate_audit.json" \
+        --output "$RW/confidence_intervals.json"
+
+run "20c. Reviewer analyses (current estimands, post-strat, Fisher, PPV)" \
     $PY scripts/reviewer_analyses.py
 
-run "20b. Path-sensitive pruning experiment" \
+run "20d. Path-sensitive pruning experiment" \
     $PY scripts/pruning_experiment.py
 
-run "20c. Sensitivity analyses (dedup, confidence, strata)" \
+run "20e. Sensitivity analyses (dedup, confidence, strata)" \
     $PY scripts/sensitivity_analyses.py
 
 # ---- 21. Survival test: FP/FN decomposition over four causes -----
@@ -237,6 +245,9 @@ run "21. Survival test (FP/FN four-way decomposition)" \
 # stays green before the annotation pass is run.
 run "22. Human inter-annotator agreement (scores staged worksheets)" \
     $PY scripts/human_agreement.py
+
+run "23. Cross-artifact headline consistency" \
+    $PY scripts/validate_submission_claims.py
 
 # ==================================================================
 # Summary

@@ -16,16 +16,20 @@ nine regulated effects live inside node bodies outside the graph vocabulary.
 Every side-effecting workflow cleared by both graph checks was cleared by a
 \emph{placebo} gate. Thus graph reconstruction, policy applicability, and
 semantic abstraction coverage are separate validation obligations. The static
-machinery retains a limited operational role: on authored graphs whose event
+machinery supplies only a conditional mechanism: on authored graphs whose event
 coverage the caller asserts, the graph\,$\times$\,DFA product can select runtime
-monitors; no mined graph in this study receives a \texttt{safe} verdict.
+monitors. We do not validate that assertion operationally, and no mined graph
+in this study receives a \texttt{safe} verdict.
 
 \paragraph{Limitations.}
 The frame is public GitHub, not production systems, and two thirds of the
 validation sample is tutorial/demo/test code; the unit is an extracted
 file-level graph, not an executable workflow root. The 119 files were
 quota-selected without randomization, so all proportions describe this audit
-rather than a population.
+rather than a population. Accordingly, the contribution is the observed
+failure-mode decomposition for this fixed file set, not a prevalence estimate
+or evidence about deployed agents; a probability sample of executable
+repository roots is required before either generalization.
 \ifnum\humanNflags>0
 Independent human validation is reported in Section~\ref{sec:realworld}.
 \else

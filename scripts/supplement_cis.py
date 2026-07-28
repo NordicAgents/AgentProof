@@ -47,7 +47,7 @@ def clustered_bootstrap(
     by_repo: dict[str, list[float]] = collections.defaultdict(list)
     for repo, val in rows:
         by_repo[repo].append(val)
-    keys = list(by_repo)
+    keys = sorted(by_repo)
     n_clusters = len(keys)
     rng = random.Random(seed)
     means = []

@@ -1,4 +1,4 @@
-\section{Controlled Evaluation and Monitor Selection}
+\section{Controlled Evaluation and a Conditional Monitor-Selection Mechanism}
 \label{sec:results}
 \label{sec:pruning}
 
@@ -10,20 +10,23 @@ set, flags 8 workflows whose sensitive path is reachable without a human gate,
 versus 10 for the blunt check---declining to flag two that lack a human node but
 perform no sensitive action. This is a controlled test that the algorithms work,
 not evidence of prevalence. Verification is sub-second on synthetic graphs of
-5{,}000 nodes; the supplement compares Promela/SMV modeling effort.
+5{,}000 nodes; the supplement discusses the scope of comparison with
+Promela/SMV without claiming a quantitative modeling-effort benchmark.
 
-\paragraph{Static monitor selection.}
+\paragraph{Conditional monitor selection.}
 The graph\,$\times$\,DFA product gives the static machinery a job independent of
 whether defects exist: deciding which runtime monitors to deploy. Its value is
-\emph{soundness}, not scale, and it rests on the certification gate of
-Section~\ref{sec:system}, so every pruning number is sound \emph{relative to an
-authored abstraction}---we assume, and do not prove, that a curated workflow's
-nodes emit no events outside their declared bindings. A policy whose product is
-safe can never fire at runtime, so its monitor need not be deployed;
+\emph{conditional soundness}, not demonstrated deployment utility: it rests on
+the certification gate of Section~\ref{sec:system}, so every pruning number is
+sound only \emph{relative to an authored abstraction}---we assume, and do not
+prove, that a curated workflow's nodes emit no events outside their declared
+bindings. Under that premise, a policy whose product is safe can never fire at
+runtime, so its monitor need not be deployed;
 \texttt{may\_violate} is never suppressed. On the curated corpus the gate
 classifies 237 of 270 monitor instances (87.8\%) as inert under that assertion and declines
 14 (all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving 19 to
-runtime enforcement.
+runtime enforcement. These authored fixtures establish a proof-of-mechanism,
+not that event completeness can be certified for third-party workflows.
 
 \paragraph{Descriptive vs.\ sound pruning on mined code.}
 This rate does not survive lossy extraction. A ${\sim}93\%$ ``pruning'' rate is
@@ -44,6 +47,7 @@ executions. We are deliberately conservative: five of the 9 incremental cases ar
 linear response-obligation pipelines in which the consequent trivially dominates
 every path, and the branching and looping evidence rests on 4 purpose-built
 \emph{synthetic} fixtures. Fifty executions cannot establish the absence of
-false prunes; this is a mechanism demonstration, not evidence of scale.
+false prunes; neither this experiment nor the conditional theorem validates
+operational pruning on extracted code.
 
 % Pruning table moved to the supplement (page limit); counts stated inline above.

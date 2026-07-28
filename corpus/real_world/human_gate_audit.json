@@ -100,8 +100,8 @@
       },
       "post_stratified_point": 0.123,
       "repo_clustered_bootstrap_95": [
-        0.047,
-        0.2134
+        0.0474,
+        0.212
       ],
       "method": "repo-clustered bootstrap within framework strata, fixed corpus weights, NO finite-population correction (design is not SRSWOR)",
       "n_boot": 10000,
@@ -140,8 +140,8 @@
       },
       "post_stratified_point": 0.1774,
       "repo_clustered_bootstrap_95": [
-        0.0952,
-        0.2701
+        0.095,
+        0.2703
       ],
       "method": "repo-clustered bootstrap within framework strata, fixed corpus weights, NO finite-population correction (design is not SRSWOR)",
       "n_boot": 10000,
@@ -180,8 +180,8 @@
       },
       "post_stratified_point": 0.1252,
       "repo_clustered_bootstrap_95": [
-        0.0493,
-        0.2156
+        0.0501,
+        0.2141
       ],
       "method": "repo-clustered bootstrap within framework strata, fixed corpus weights, NO finite-population correction (design is not SRSWOR)",
       "n_boot": 10000,
@@ -203,8 +203,8 @@
     ],
     "post_stratified_point": 0.1252,
     "post_stratified_ci": [
-      0.0493,
-      0.2156
+      0.0501,
+      0.2141
     ]
   },
   "previously_reported": {

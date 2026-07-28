@@ -6,23 +6,25 @@ corpus/real_world/reviewer_analyses.json and prints a compact summary.
 
 Addresses five reviewer points:
 
-  1. SEPARATE ESTIMANDS (construct validity). The paper's 4/119 pooled one
-     router/topology (structural) defect with three normative missing-human-gate
-     judgments. Split into three estimands with Wilson 95% CIs:
+  1. SEPARATE ESTIMANDS (construct validity). The current paper reports the
+     source-level HGP-1 audit rather than the withdrawn union of two graph
+     checks. Split into three estimands with Wilson 95% CIs:
        - structural   (exit/reverse reachability, dead_ends, router_shape,
                         tool_declarations)                 -> 1/119
-       - human-gate policy (human_presence, human_gate_coverage) -> 3/119
-       - any-confirmed composite (heterogeneous, secondary) -> 4/119
-     Cross-checked against gt_triage_results.json real_defect labels + the two
-     extractor-visible human_presence confirmed_real reverifications.
+       - HGP-1 source-level human-gate violations           -> 12/119
+       - any-observed composite (heterogeneous, secondary)  -> 13/119
+     The earlier 3/119 two-check union is retained only in a clearly marked
+     superseded block so historical provenance cannot be mistaken for the
+     paper's current policy estimand.
 
   2. POST-STRATIFICATION. Sample composition is not corpus composition. Reweight
      each framework stratum by its corpus share and report a repository-clustered
      bootstrap CI plus an analytic stratified-survey-variance CI, for all three
      estimands. Application-only stratum reported where computable.
 
-  3. FISHER EXACT. App-like 3/39 vs tutorial/demo/test 1/80. Dependency-free
-     two-sided Fisher exact (hypergeometric) + sample odds ratio with Wald CI.
+  3. FISHER EXACT. Application-like versus tutorial/demo/test composition for
+     the current secondary composite. Dependency-free two-sided Fisher exact
+     (hypergeometric) + sample odds ratio with Wald CI.
 
   4. FLAG-LEVEL PPV + ROOT-CAUSE DEDUP + BOUNDS. From the 186 as-mined triage
      flags: workflow-level PPV (repo-clustered bootstrap CI), root-cause dedup
@@ -65,9 +67,9 @@ POLICY_CHECKS = {"human_presence", "human_gate_coverage",
                  "sensitive-path-bypasses-human-review"}
 SELF_REPO_PREFIX = "NordicAgents__AgentProof"
 
-# The four confirmed findings (slug -> (framework, estimand-check, kind)).
-# structural = topology/router; policy = missing-human-gate.
-CONFIRMED = {
+# The superseded four-finding union combined two graph checks over different
+# artifact populations. It is retained only to cross-check historical inputs.
+SUPERSEDED_GRAPH_VISIBLE = {
     "gabrielpreda__adk-sql-agent__agent":
         {"framework": "adk", "check": "router_shape", "kind": "structural",
          "source": "gt_triage_results.triage(real_defect)"},
@@ -165,8 +167,9 @@ def stratified_cluster_bootstrap(strata_clusters: dict,
     draws = []
     for _ in range(n_boot):
         p = 0.0
-        for f, cl in strata_clusters.items():
-            repos = list(cl)
+        for f in sorted(strata_clusters):
+            cl = strata_clusters[f]
+            repos = sorted(cl)
             sd = sn = 0.0
             for _ in range(len(repos)):
                 d_, n_ = cl[repos[rng.randrange(len(repos))]]
@@ -262,7 +265,8 @@ def main() -> None:
     gt = json.loads((RW / "gt_triage_results.json").read_text())
     rev = json.loads((RW / "revision_analyses.json").read_text())
     validated = json.loads((RW / "validated_results.json").read_text())
-    corrfid = json.loads((RW / "corrected_fidelity.json").read_text())
+    matched = json.loads((RW / "matched_fidelity.json").read_text())
+    hgp = json.loads((RW / "human_gate_audit.json").read_text())
     cls = {c["slug"]: c for c in gt["classification"]}
     per_wf = rev["prevalence_gt"]["per_workflow"]  # 119 sample workflows
 
@@ -277,45 +281,78 @@ def main() -> None:
     slug_repo = {r["slug"]: r["repo"] for r in per_wf}
 
     # ================= 1. SEPARATE ESTIMANDS ================================= #
-    struct_slugs = [s for s, m in CONFIRMED.items() if m["kind"] == "structural"]
-    policy_slugs = [s for s, m in CONFIRMED.items() if m["kind"] == "policy"]
-    assert len(struct_slugs) == 1 and len(policy_slugs) == 3
-    assert len(struct_slugs) + len(policy_slugs) == 4  # split sums to 4
+    struct_slugs = [
+        s for s, m in SUPERSEDED_GRAPH_VISIBLE.items()
+        if m["kind"] == "structural"
+    ]
+    policy_slugs = [
+        row["slug"] for row in hgp["verdicts"] if row["verdict"] == "violation"
+    ]
+    composite_slugs = sorted(set(struct_slugs) | set(policy_slugs))
+    assert len(struct_slugs) == 1
+    assert len(policy_slugs) == hgp["counts"]["violation"] == 12
+    assert hgp["composite_estimand"]["k"] == len(composite_slugs) == 13
 
-    # cross-check against gt_triage real_defect + reverify confirmed_real
+    current_findings = {
+        struct_slugs[0]: {
+            "framework": "adk",
+            "check": "router_shape",
+            "kind": "structural",
+            "source": "gt_triage_results.triage(real_defect)",
+        }
+    }
+    for slug in policy_slugs:
+        current_findings[slug] = {
+            "framework": slug_fw[slug],
+            "check": "HGP-1",
+            "kind": "policy",
+            "source": "human_gate_audit.verdicts(violation)",
+        }
+
+    # Cross-check the withdrawn graph-visible union for provenance only.
     real_defect_flags = [(t["slug"], t["check_id"]) for t in gt["triage"]
                          if t["primary"]["label"] == "real_defect"]
     confirmed_real_reverify = [(r["slug"], r["check"]) for r in gt["reverify"]
                                if r["verdict"] == "confirmed_real"]
     xcheck_union = {s for s, _ in real_defect_flags} | \
                    {s for s, _ in confirmed_real_reverify}
-    assert xcheck_union == set(CONFIRMED), (xcheck_union, set(CONFIRMED))
+    assert xcheck_union == set(SUPERSEDED_GRAPH_VISIBLE), (
+        xcheck_union,
+        set(SUPERSEDED_GRAPH_VISIBLE),
+    )
 
     def estimand_block(slugs, label):
         k = len(slugs)
         p, lo, hi = wilson(k, 119)
         return {"label": label, "k": k, "n": 119,
                 "rate": p, "wilson_ci": [lo, hi],
-                "slugs": {s: {"framework": CONFIRMED[s]["framework"],
-                              "check": CONFIRMED[s]["check"],
+                "slugs": {s: {"framework": current_findings[s]["framework"],
+                              "check": current_findings[s]["check"],
                               "category": cls[s]["category"],
-                              "source": CONFIRMED[s]["source"]} for s in slugs}}
+                              "source": current_findings[s]["source"]}
+                          for s in slugs}}
 
     estimand_split = {
-        "note": ("Three disjoint estimands. Structural = router/topology "
-                 "checks; policy = missing-human-gate normative judgments; "
-                 "composite = their union, heterogeneous, reported as SECONDARY "
-                 "only. Confirmed set = gt_triage real_defect labels (2) + "
-                 "reverify confirmed_real human_presence (2)."),
+        "note": ("Current estimands. Structural = observed router/topology "
+                 "defect; policy = source-level HGP-1 violations; composite = "
+                 "their union, heterogeneous and SECONDARY only."),
         "structural": estimand_block(struct_slugs, "confirmed_structural_defects"),
-        "policy": estimand_block(policy_slugs, "confirmed_human_gate_policy_violations"),
-        "composite_any": estimand_block(list(CONFIRMED), "any_confirmed_finding_COMPOSITE_SECONDARY"),
-        "split_sums_to_composite": len(struct_slugs) + len(policy_slugs) == len(CONFIRMED),
-        "crosscheck": {
+        "policy": estimand_block(policy_slugs, "HGP1_source_audit_violations"),
+        "composite_any": estimand_block(
+            composite_slugs, "any_observed_finding_COMPOSITE_SECONDARY"
+        ),
+        "split_sums_to_composite":
+            len(struct_slugs) + len(policy_slugs) == len(composite_slugs),
+        "superseded_two_graph_check_union": {
+            "status": "withdrawn; not the current policy estimand",
+            "k": 3,
+            "n": 119,
+            "reason": ("combined human_presence and human_gate_coverage over "
+                       "different graph populations"),
             "gt_triage_real_defect_flags": real_defect_flags,
             "reverify_confirmed_real": confirmed_real_reverify,
-            "extractor_visible_human_presence_real_defects":
-                [s for s, _ in confirmed_real_reverify],
+            "disposition_under_hgp1":
+                hgp["previously_reported"]["disposition_under_hgp1"],
         },
     }
 
@@ -370,7 +407,7 @@ def main() -> None:
         "sample_composition": dict(sample_n),
         "structural": post_strat_block(struct_slugs),
         "policy": post_strat_block(policy_slugs),
-        "composite_any": post_strat_block(list(CONFIRMED)),
+        "composite_any": post_strat_block(composite_slugs),
     }
 
     # application-only stratum (post-stratification within app needs a corpus
@@ -393,7 +430,7 @@ def main() -> None:
         "n_app_like": n_app, "n_non_app": n_nonapp,
         "structural": app_split(struct_slugs),
         "policy": app_split(policy_slugs),
-        "composite_any": app_split(list(CONFIRMED)),
+        "composite_any": app_split(composite_slugs),
         "note": ("Framework post-stratification WITHIN the app-like stratum is "
                  "NOT computable: no corpus-level app-vs-tutorial census exists "
                  "in the artifacts. Only unweighted app-like vs non-app rates "
@@ -401,11 +438,10 @@ def main() -> None:
     }
 
     # ================= 3. FISHER EXACT ====================================== #
-    a = sum(1 for s in CONFIRMED if s in app_slugs)         # app & defect = 3
-    c = len(CONFIRMED) - a                                   # non-app & defect = 1
-    b = n_app - a                                            # app & no-defect = 36
-    d = n_nonapp - c                                         # non-app & no-defect = 79
-    assert (a, b, c, d) == (3, 36, 1, 79), (a, b, c, d)
+    a = sum(1 for s in composite_slugs if s in app_slugs)
+    c = len(composite_slugs) - a
+    b = n_app - a
+    d = n_nonapp - c
     p_fisher = fisher_exact_two_sided(a, b, c, d)
     orr = odds_ratio_wald(a, b, c, d)
     sample_or = orr["sample"]
@@ -419,15 +455,13 @@ def main() -> None:
         "odds_ratio_haldane": {"or": orr["haldane"][0],
                                "wald_ci95": [orr["haldane"][1], orr["haldane"][2]]},
         "suggested_wording": (
-            "Confirmed defects were concentrated in application-like workflows "
-            f"(3/39, 7.7%) relative to tutorial, demo, and test workflows "
-            f"(1/80, 1.3%). The difference is suggestive but not statistically "
-            f"significant at this sample size (two-sided Fisher exact "
+            "Observed structural/HGP-1 findings occurred in application-like "
+            f"workflows ({a}/{n_app}, {100*a/n_app:.1f}%) and other workflows "
+            f"({c}/{n_nonapp}, {100*c/n_nonapp:.1f}%). This post-hoc comparison "
+            "is descriptive for the nonrandom sample (two-sided Fisher exact "
             f"p = {p_fisher:.2f}; odds ratio {sample_or[0]:.1f}, 95% CI "
-            f"[{sample_or[1]:.1f}, {sample_or[2]:.0f}], spanning 1). We therefore "
-            "frame the application/tutorial gap as a hypothesis-generating "
-            "association rather than a confirmed effect, and note the wide "
-            "interval reflects the small number of confirmed defects."),
+            f"[{sample_or[1]:.1f}, {sample_or[2]:.1f}]). It is not a "
+            "population comparison."),
     }
 
     # ================= 4. FLAG-LEVEL PPV + DEDUP + BOUNDS =================== #
@@ -576,8 +610,9 @@ def main() -> None:
     }
 
     # ================= 5. v2-PRIMARY FIDELITY TABLE ======================== #
-    v1 = corrfid["fidelity_v1_asmined"]
-    v2 = corrfid["fidelity_v2_corrected"]
+    collision_free = matched["provenance_collisions"]["collision_free_fidelity"]
+    v1 = collision_free["v1_asmined"]
+    v2 = collision_free["v2_corrected"]
     metrics = ["node_precision", "node_recall", "edge_precision",
                "edge_recall", "kind_accuracy"]
 
@@ -589,15 +624,14 @@ def main() -> None:
         return r
 
     fidelity_v2_table = {
-        "note": corrfid["note"],
-        "node_pr_per_framework_source": ("present in corrected_fidelity.json "
-                                         "(node_precision/node_recall per "
-                                         "framework); no recomputation needed"),
+        "note": ("Primary matched, provenance-disambiguated comparison; both "
+                 "instruments are scored on the same collision-free n=106 set."),
+        "source": ("matched_fidelity.json -> provenance_collisions."
+                   "collision_free_fidelity"),
         "overall": row(v2["overall"], v1["overall"]),
         "per_framework": {fw: row(v2["per_framework"][fw], v1["per_framework"][fw])
                           for fw in sorted(v2["per_framework"])},
-        "flag_volume": {"v1_asmined": corrfid["flags_v1_asmined"],
-                        "v2_corrected": corrfid["flags_v2_corrected"]},
+        "flag_volume": matched["matched_structural_flags"]["collision_free"],
     }
 
     # ================= ASSEMBLE + WRITE ==================================== #
@@ -653,7 +687,7 @@ def main() -> None:
           f"{ao['composite_any']['non_app']['n']}="
           f"{pct(ao['composite_any']['non_app']['rate'])}")
 
-    print("\n[3] FISHER EXACT  app-like 3/39 vs other 1/80")
+    print(f"\n[3] FISHER EXACT  app-like {a}/{n_app} vs other {c}/{n_nonapp}")
     print(f"  two-sided p = {p_fisher:.4f}   OR(sample) = {sample_or[0]:.2f} "
           f"Wald95% [{sample_or[1]:.2f},{sample_or[2]:.1f}]")
 

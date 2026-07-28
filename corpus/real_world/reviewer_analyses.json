@@ -19,7 +19,7 @@
     "z": 1.96
   },
   "1_separate_estimands": {
-    "note": "Three disjoint estimands. Structural = router/topology checks; policy = missing-human-gate normative judgments; composite = their union, heterogeneous, reported as SECONDARY only. Confirmed set = gt_triage real_defect labels (2) + reverify confirmed_real human_presence (2).",
+    "note": "Current estimands. Structural = observed router/topology defect; policy = source-level HGP-1 violations; composite = their union, heterogeneous and SECONDARY only.",
     "structural": {
       "label": "confirmed_structural_defects",
       "k": 1,
@@ -39,73 +39,185 @@
       }
     },
     "policy": {
-      "label": "confirmed_human_gate_policy_violations",
-      "k": 3,
+      "label": "HGP1_source_audit_violations",
+      "k": 12,
       "n": 119,
-      "rate": 0.025210084033613446,
+      "rate": 0.10084033613445378,
       "wilson_ci": [
-        0.008610075311511797,
-        0.07150610682874037
+        0.058629716308506635,
+        0.16801663150851956
       ],
       "slugs": {
+        "AdaptiveBProcess__bpm_agent__main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Arhamirfan__Snake-Agents__snake_autogen": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "demo_or_toy",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Harsh1210__llm-opsbot__main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Itzkuldeep__AgentE-com__main": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "NavalGear__Manufacturing_Process_Plan__autogen_agents": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__Main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__merger_agent": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__report_agent": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
         "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
           "framework": "langgraph",
-          "check": "human_gate_coverage",
+          "check": "HGP-1",
           "category": "application_like",
-          "source": "gt_triage_results.triage(real_defect)"
+          "source": "human_gate_audit.verdicts(violation)"
         },
-        "Jamahl__fraya-25__crew": {
-          "framework": "crewai",
-          "check": "human_presence",
-          "category": "application_like",
-          "source": "gt_triage_results.reverify(confirmed_real)"
+        "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "tutorial_or_example",
+          "source": "human_gate_audit.verdicts(violation)"
         },
-        "Zen7-Labs__Zen7-Payment-Agent__agent": {
+        "blueming333__aicraft-class-autogen__PythonAstREPLTool": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "tutorial_or_example",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "ed-donner__agents__sequential_agents": {
           "framework": "adk",
-          "check": "human_presence",
-          "category": "demo_or_toy",
-          "source": "gt_triage_results.reverify(confirmed_real)"
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
         }
       }
     },
     "composite_any": {
-      "label": "any_confirmed_finding_COMPOSITE_SECONDARY",
-      "k": 4,
+      "label": "any_observed_finding_COMPOSITE_SECONDARY",
+      "k": 13,
       "n": 119,
-      "rate": 0.03361344537815126,
+      "rate": 0.1092436974789916,
       "wilson_ci": [
-        0.013147540181404155,
-        0.08324977147848957
+        0.06496179454072629,
+        0.17796568279594144
       ],
       "slugs": {
+        "AdaptiveBProcess__bpm_agent__main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Arhamirfan__Snake-Agents__snake_autogen": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "demo_or_toy",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Harsh1210__llm-opsbot__main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Itzkuldeep__AgentE-com__main": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "NavalGear__Manufacturing_Process_Plan__autogen_agents": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__Main": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__merger_agent": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "SAMAR-CODE404__backend__report_agent": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+          "framework": "langgraph",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "blueming333__aicraft-class-autogen__GitHubOfficialMcpExample": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "tutorial_or_example",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "blueming333__aicraft-class-autogen__PythonAstREPLTool": {
+          "framework": "autogen",
+          "check": "HGP-1",
+          "category": "tutorial_or_example",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
+        "ed-donner__agents__sequential_agents": {
+          "framework": "adk",
+          "check": "HGP-1",
+          "category": "application_like",
+          "source": "human_gate_audit.verdicts(violation)"
+        },
         "gabrielpreda__adk-sql-agent__agent": {
           "framework": "adk",
           "check": "router_shape",
           "category": "application_like",
           "source": "gt_triage_results.triage(real_defect)"
-        },
-        "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
-          "framework": "langgraph",
-          "check": "human_gate_coverage",
-          "category": "application_like",
-          "source": "gt_triage_results.triage(real_defect)"
-        },
-        "Jamahl__fraya-25__crew": {
-          "framework": "crewai",
-          "check": "human_presence",
-          "category": "application_like",
-          "source": "gt_triage_results.reverify(confirmed_real)"
-        },
-        "Zen7-Labs__Zen7-Payment-Agent__agent": {
-          "framework": "adk",
-          "check": "human_presence",
-          "category": "demo_or_toy",
-          "source": "gt_triage_results.reverify(confirmed_real)"
         }
       }
     },
     "split_sums_to_composite": true,
-    "crosscheck": {
+    "superseded_two_graph_check_union": {
+      "status": "withdrawn; not the current policy estimand",
+      "k": 3,
+      "n": 119,
+      "reason": "combined human_presence and human_gate_coverage over different graph populations",
       "gt_triage_real_defect_flags": [
         [
           "Sujas-Aggarwal__langraph-chatbot__v2.6.0",
@@ -126,10 +238,20 @@
           "human_presence"
         ]
       ],
-      "extractor_visible_human_presence_real_defects": [
-        "Jamahl__fraya-25__crew",
-        "Zen7-Labs__Zen7-Payment-Agent__agent"
-      ]
+      "disposition_under_hgp1": {
+        "Sujas-Aggarwal__langraph-chatbot__v2.6.0": {
+          "previous_check": "human_gate_coverage",
+          "hgp1_verdict": "violation"
+        },
+        "Jamahl__fraya-25__crew": {
+          "previous_check": "human_presence",
+          "hgp1_verdict": "arguable"
+        },
+        "Zen7-Labs__Zen7-Payment-Agent__agent": {
+          "previous_check": "human_presence",
+          "hgp1_verdict": "arguable"
+        }
+      }
     }
   },
   "2_post_stratification": {
@@ -192,7 +314,7 @@
         "point": 0.002259580621836587,
         "ci95": [
           0.0,
-          0.008034064433196753
+          0.008134490238611713
         ],
         "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
       }
@@ -200,21 +322,21 @@
     "policy": {
       "per_framework": {
         "langgraph": {
-          "d": 1,
+          "d": 6,
           "n": 40,
-          "rate": 0.025,
+          "rate": 0.15,
           "corpus_weight": 0.43383947939262474
         },
         "crewai": {
-          "d": 1,
+          "d": 0,
           "n": 20,
-          "rate": 0.05,
+          "rate": 0.0,
           "corpus_weight": 0.12255965292841649
         },
         "autogen": {
-          "d": 0,
+          "d": 5,
           "n": 35,
-          "rate": 0.0,
+          "rate": 0.14285714285714285,
           "corpus_weight": 0.3893709327548807
         },
         "adk": {
@@ -225,25 +347,25 @@
         }
       },
       "unweighted_sample_rate": {
-        "k": 3,
+        "k": 12,
         "n": 119,
-        "rate": 0.025210084033613446,
+        "rate": 0.10084033613445378,
         "wilson_ci": [
-          0.008610075311511797,
-          0.07150610682874037
+          0.058629716308506635,
+          0.16801663150851956
         ],
         "note": "VALIDATION-SAMPLE rate only"
       },
-      "post_stratified_point": 0.01923355025307303,
+      "post_stratified_point": 0.12295992149571325,
       "post_stratified_survey_ci_withdrawn": {
         "reason": "The analytic stratified-survey CI applied a finite-population correction that presupposes SRSWOR within each framework stratum. The validation sample is a hard-coded, unseeded slug list with no documented selection rule, so that premise does not hold and the FPC made the interval anticonservative.",
         "quote_instead": "post_stratified_cluster_bootstrap_ci"
       },
       "post_stratified_cluster_bootstrap_ci": {
-        "point": 0.01923355025307303,
+        "point": 0.12295992149571325,
         "ci95": [
-          0.0,
-          0.048527437005170836
+          0.047444887252181815,
+          0.21201824694232507
         ],
         "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
       }
@@ -251,21 +373,21 @@
     "composite_any": {
       "per_framework": {
         "langgraph": {
-          "d": 1,
+          "d": 6,
           "n": 40,
-          "rate": 0.025,
+          "rate": 0.15,
           "corpus_weight": 0.43383947939262474
         },
         "crewai": {
-          "d": 1,
+          "d": 0,
           "n": 20,
-          "rate": 0.05,
+          "rate": 0.0,
           "corpus_weight": 0.12255965292841649
         },
         "autogen": {
-          "d": 0,
+          "d": 5,
           "n": 35,
-          "rate": 0.0,
+          "rate": 0.14285714285714285,
           "corpus_weight": 0.3893709327548807
         },
         "adk": {
@@ -276,25 +398,25 @@
         }
       },
       "unweighted_sample_rate": {
-        "k": 4,
+        "k": 13,
         "n": 119,
-        "rate": 0.03361344537815126,
+        "rate": 0.1092436974789916,
         "wilson_ci": [
-          0.013147540181404155,
-          0.08324977147848957
+          0.06496179454072629,
+          0.17796568279594144
         ],
         "note": "VALIDATION-SAMPLE rate only"
       },
-      "post_stratified_point": 0.021493130874909616,
+      "post_stratified_point": 0.12521950211754984,
       "post_stratified_survey_ci_withdrawn": {
         "reason": "The analytic stratified-survey CI applied a finite-population correction that presupposes SRSWOR within each framework stratum. The validation sample is a hard-coded, unseeded slug list with no documented selection rule, so that premise does not hold and the FPC made the interval anticonservative.",
         "quote_instead": "post_stratified_cluster_bootstrap_ci"
       },
       "post_stratified_cluster_bootstrap_ci": {
-        "point": 0.021493130874909616,
+        "point": 0.12521950211754984,
         "ci95": [
-          0.0020085161082991883,
-          0.05124585384889073
+          0.050075935558185174,
+          0.21405547977938702
         ],
         "method": "repo-clustered bootstrap within strata, B=10000, corpus weights fixed"
       }
@@ -324,41 +446,41 @@
       },
       "policy": {
         "app_like": {
-          "k": 2,
+          "k": 9,
           "n": 39,
-          "rate": 0.05128205128205128,
+          "rate": 0.23076923076923078,
           "wilson_ci": [
-            0.014177657646399527,
-            0.1688593904563791
+            0.1264566242878376,
+            0.38336560457382957
           ]
         },
         "non_app": {
-          "k": 1,
+          "k": 3,
           "n": 80,
-          "rate": 0.0125,
+          "rate": 0.0375,
           "wilson_ci": [
-            0.002209918618306224,
-            0.06746432423965451
+            0.012834336300788757,
+            0.10454891974394322
           ]
         }
       },
       "composite_any": {
         "app_like": {
-          "k": 3,
+          "k": 10,
           "n": 39,
-          "rate": 0.07692307692307693,
+          "rate": 0.2564102564102564,
           "wilson_ci": [
-            0.026506914073495688,
-            0.2032137312805527
+            0.14568625843452188,
+            0.410819567678415
           ]
         },
         "non_app": {
-          "k": 1,
+          "k": 3,
           "n": 80,
-          "rate": 0.0125,
+          "rate": 0.0375,
           "wilson_ci": [
-            0.002209918618306224,
-            0.06746432423965451
+            0.012834336300788757,
+            0.10454891974394322
           ]
         }
       },
@@ -367,29 +489,29 @@
   },
   "3_fisher_exact": {
     "table": {
-      "app_like_defect": 3,
-      "app_like_clean": 36,
-      "other_defect": 1,
-      "other_clean": 79,
-      "app_rate": 0.07692307692307693,
-      "other_rate": 0.0125
+      "app_like_defect": 10,
+      "app_like_clean": 29,
+      "other_defect": 3,
+      "other_clean": 77,
+      "app_rate": 0.2564102564102564,
+      "other_rate": 0.0375
     },
-    "two_sided_p": 0.10242998426722569,
+    "two_sided_p": 0.0007407356489830409,
     "odds_ratio_sample": {
-      "or": 6.583333333333333,
+      "or": 8.850574712643677,
       "wald_ci95": [
-        0.661838461716083,
-        65.48467682793871
+        2.2737240532262866,
+        34.451266253236874
       ]
     },
     "odds_ratio_haldane": {
-      "or": 5.082191780821918,
+      "or": 7.88135593220339,
       "wald_ci95": [
-        0.721262086503051,
-        35.81038540689273
+        2.187158369574174,
+        28.40021655229801
       ]
     },
-    "suggested_wording": "Confirmed defects were concentrated in application-like workflows (3/39, 7.7%) relative to tutorial, demo, and test workflows (1/80, 1.3%). The difference is suggestive but not statistically significant at this sample size (two-sided Fisher exact p = 0.10; odds ratio 6.6, 95% CI [0.7, 65], spanning 1). We therefore frame the application/tutorial gap as a hypothesis-generating association rather than a confirmed effect, and note the wide interval reflects the small number of confirmed defects."
+    "suggested_wording": "Observed structural/HGP-1 findings occurred in application-like workflows (10/39, 25.6%) and other workflows (3/80, 3.8%). This post-hoc comparison is descriptive for the nonrandom sample (two-sided Fisher exact p = 0.00; odds ratio 8.9, 95% CI [2.3, 34.5]). It is not a population comparison."
   },
   "4_flag_ppv": {
     "workflow_level_ppv": {
@@ -481,94 +603,94 @@
     }
   },
   "5_fidelity_v2_table": {
-    "note": "v1 = as-mined extractor (paper Table 1); v2 = corrected extractor (path_map 3-positional + LoopAgent fixes) re-run at identical pinned SHAs. Fidelity vs the same LLM reference graphs, self-repo excluded.",
-    "node_pr_per_framework_source": "present in corrected_fidelity.json (node_precision/node_recall per framework); no recomputation needed",
+    "note": "Primary matched, provenance-disambiguated comparison; both instruments are scored on the same collision-free n=106 set.",
+    "source": "matched_fidelity.json -> provenance_collisions.collision_free_fidelity",
     "overall": {
-      "n_v2": 115,
-      "n_v1": 119,
+      "n_v2": 106,
+      "n_v1": 106,
       "node_precision": {
-        "v2_primary": 0.888,
-        "v1_asmined_ablation": 0.909,
-        "delta": -0.021
+        "v2_primary": 0.914,
+        "v1_asmined_ablation": 0.914,
+        "delta": 0.0
       },
       "node_recall": {
-        "v2_primary": 0.85,
-        "v1_asmined_ablation": 0.854,
-        "delta": -0.004
+        "v2_primary": 0.868,
+        "v1_asmined_ablation": 0.862,
+        "delta": 0.006
       },
       "edge_precision": {
-        "v2_primary": 0.777,
-        "v1_asmined_ablation": 0.805,
-        "delta": -0.028
+        "v2_primary": 0.814,
+        "v1_asmined_ablation": 0.814,
+        "delta": 0.0
       },
       "edge_recall": {
-        "v2_primary": 0.679,
-        "v1_asmined_ablation": 0.649,
-        "delta": 0.03
+        "v2_primary": 0.709,
+        "v1_asmined_ablation": 0.652,
+        "delta": 0.057
       },
       "kind_accuracy": {
-        "v2_primary": 0.833,
-        "v1_asmined_ablation": 0.828,
-        "delta": 0.005
+        "v2_primary": 0.824,
+        "v1_asmined_ablation": 0.82,
+        "delta": 0.004
       }
     },
     "per_framework": {
       "adk": {
-        "n_v2": 23,
-        "n_v1": 24,
+        "n_v2": 18,
+        "n_v1": 18,
         "node_precision": {
-          "v2_primary": 0.697,
-          "v1_asmined_ablation": 0.711,
-          "delta": -0.014
+          "v2_primary": 0.713,
+          "v1_asmined_ablation": 0.713,
+          "delta": 0.0
         },
         "node_recall": {
-          "v2_primary": 0.606,
-          "v1_asmined_ablation": 0.622,
-          "delta": -0.016
+          "v2_primary": 0.595,
+          "v1_asmined_ablation": 0.595,
+          "delta": 0.0
         },
         "edge_precision": {
-          "v2_primary": 0.395,
-          "v1_asmined_ablation": 0.42,
-          "delta": -0.025
+          "v2_primary": 0.394,
+          "v1_asmined_ablation": 0.394,
+          "delta": 0.0
         },
         "edge_recall": {
-          "v2_primary": 0.355,
-          "v1_asmined_ablation": 0.382,
-          "delta": -0.027
+          "v2_primary": 0.343,
+          "v1_asmined_ablation": 0.343,
+          "delta": 0.0
         },
         "kind_accuracy": {
-          "v2_primary": 0.938,
-          "v1_asmined_ablation": 0.94,
-          "delta": -0.002
+          "v2_primary": 0.92,
+          "v1_asmined_ablation": 0.92,
+          "delta": 0.0
         }
       },
       "autogen": {
-        "n_v2": 32,
-        "n_v1": 35,
+        "n_v2": 30,
+        "n_v1": 30,
         "node_precision": {
-          "v2_primary": 0.963,
+          "v2_primary": 1.0,
           "v1_asmined_ablation": 1.0,
-          "delta": -0.037
+          "delta": 0.0
         },
         "node_recall": {
-          "v2_primary": 0.927,
-          "v1_asmined_ablation": 0.942,
-          "delta": -0.015
+          "v2_primary": 0.955,
+          "v1_asmined_ablation": 0.955,
+          "delta": 0.0
         },
         "edge_precision": {
-          "v2_primary": 0.906,
-          "v1_asmined_ablation": 0.957,
-          "delta": -0.051
+          "v2_primary": 0.966,
+          "v1_asmined_ablation": 0.966,
+          "delta": 0.0
         },
         "edge_recall": {
-          "v2_primary": 0.73,
-          "v1_asmined_ablation": 0.77,
-          "delta": -0.04
+          "v2_primary": 0.778,
+          "v1_asmined_ablation": 0.778,
+          "delta": 0.0
         },
         "kind_accuracy": {
-          "v2_primary": 0.897,
-          "v1_asmined_ablation": 0.9,
-          "delta": -0.003
+          "v2_primary": 0.89,
+          "v1_asmined_ablation": 0.89,
+          "delta": 0.0
         }
       },
       "crewai": {
@@ -601,57 +723,61 @@
         }
       },
       "langgraph": {
-        "n_v2": 40,
-        "n_v1": 40,
+        "n_v2": 38,
+        "n_v1": 38,
         "node_precision": {
-          "v2_primary": 0.95,
-          "v1_asmined_ablation": 0.968,
-          "delta": -0.018
+          "v2_primary": 0.967,
+          "v1_asmined_ablation": 0.967,
+          "delta": 0.0
         },
         "node_recall": {
-          "v2_primary": 0.921,
-          "v1_asmined_ablation": 0.91,
-          "delta": 0.011
+          "v2_primary": 0.93,
+          "v1_asmined_ablation": 0.912,
+          "delta": 0.018
         },
         "edge_precision": {
-          "v2_primary": 0.931,
-          "v1_asmined_ablation": 0.956,
-          "delta": -0.025
+          "v2_primary": 0.954,
+          "v1_asmined_ablation": 0.954,
+          "delta": 0.0
         },
         "edge_recall": {
-          "v2_primary": 0.819,
-          "v1_asmined_ablation": 0.682,
-          "delta": 0.137
+          "v2_primary": 0.836,
+          "v1_asmined_ablation": 0.678,
+          "delta": 0.158
         },
         "kind_accuracy": {
-          "v2_primary": 0.674,
-          "v1_asmined_ablation": 0.647,
-          "delta": 0.027
+          "v2_primary": 0.67,
+          "v1_asmined_ablation": 0.659,
+          "delta": 0.011
         }
       }
     },
     "flag_volume": {
+      "n_graphs": 853,
+      "n_collision_slugs_removed": 51,
       "v1_asmined": {
-        "n_graphs": 922,
-        "workflows_struct_flagged": 314,
+        "n_graphs": 853,
+        "workflows_struct_flagged": 299,
         "by_check": {
-          "reverse_reachability": 295,
-          "dead_ends": 301,
-          "tool_declarations": 84,
-          "exit_reachability": 86,
-          "router_shape": 36
-        }
+          "dead_ends": 286,
+          "exit_reachability": 81,
+          "reverse_reachability": 280,
+          "router_shape": 35,
+          "tool_declarations": 81
+        },
+        "errors": []
       },
       "v2_corrected": {
-        "n_graphs": 904,
-        "workflows_struct_flagged": 239,
+        "n_graphs": 853,
+        "workflows_struct_flagged": 229,
         "by_check": {
-          "exit_reachability": 32,
-          "reverse_reachability": 201,
-          "dead_ends": 209,
-          "tool_declarations": 86,
-          "router_shape": 35
-        }
+          "dead_ends": 200,
+          "exit_reachability": 29,
+          "reverse_reachability": 192,
+          "router_shape": 35,
+          "tool_declarations": 81
+        },
+        "errors": []
       }
     }
   }

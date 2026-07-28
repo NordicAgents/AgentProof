@@ -248,8 +248,8 @@ Dropping it widens the intervals, which is the conservative direction.
 | CrewAI | 0/20 | 0.0% | 113 | 0.123 |
 | ADK | 1/24 | 4.2% | 50 | 0.054 |
 
-- **Violations only:** post-stratified **12.30%**, repo-clustered bootstrap 95% **[4.70%, 21.34%]**.
-- **Violations + arguable:** post-stratified **17.74%**, 95% **[9.52%, 27.01%]**.
+- **Violations only:** post-stratified **12.30%**, repo-clustered bootstrap 95% **[4.74%, 21.20%]**.
+- **Violations + arguable:** post-stratified **17.74%**, 95% **[9.50%, 27.03%]**.
 
 The post-stratified point (12.30%) sits slightly *above* the raw sample rate
 (10.08%) because the two heaviest strata, LangGraph and AutoGen, carry the highest
@@ -266,7 +266,7 @@ none of which is in the corpus. It is therefore **not** among the 12, and the
 union is a strict addition:
 
 - **Composite = 13/119 = 10.92%**, Wilson 95% **[6.50%, 17.80%]**.
-- Post-stratified **12.52%**, 95% **[4.93%, 21.56%]**.
+- Post-stratified **12.52%**, 95% **[5.01%, 21.41%]**.
 
 ## What happened to the three previously reported cases
 
