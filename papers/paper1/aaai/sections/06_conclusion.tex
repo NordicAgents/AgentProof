@@ -15,11 +15,12 @@ escape the mined pipeline, and a source-reconstructed graph recovers only one;
 nine regulated effects live inside node bodies outside the graph vocabulary.
 Every side-effecting workflow cleared by both graph checks was cleared by a
 \emph{placebo} gate. Thus graph reconstruction, policy applicability, and
-semantic abstraction coverage are separate validation obligations. The static
-machinery supplies only a conditional mechanism: on authored graphs whose event
-coverage the caller asserts, the graph\,$\times$\,DFA product can select runtime
-monitors. We do not validate that assertion operationally, and no mined graph
-in this study receives a \texttt{safe} verdict.
+semantic abstraction coverage are separate validation obligations. The
+graph\,$\times$\,DFA product supplies only a scope consequence: on authored
+graphs whose event coverage the caller asserts, it can identify a monitor that
+cannot fire. This is not an evaluated deployment contribution. We do not
+validate the assertion operationally, and no mined graph in this study receives
+a \texttt{safe} verdict.
 
 \paragraph{Limitations.}
 The frame is public GitHub, not production systems, and two thirds of the

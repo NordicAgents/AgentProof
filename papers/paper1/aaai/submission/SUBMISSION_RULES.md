@@ -1,7 +1,7 @@
 # AAAI-27 submission rules and build checklist
 
 **Conference:** AAAI 2027 Main Technical Track
-**Last checked:** 2026-07-28
+**Last checked:** 2026-07-29
 **Scope:** AgentProof Paper 1 main paper, reproducibility checklist,
 supplementary PDF, and anonymous code/data package
 
@@ -248,7 +248,7 @@ extract_root=$(mktemp -d -p /home/midhun/Documents/MX/local_tmp \
   agentproof-review.XXXXXX)
 unzip -q papers/paper1/aaai/artifact/agentproof-anonymized.zip \
   -d "$extract_root"
-cd "$extract_root/agentproof"
+cd "$extract_root/workflow_verifier"
 env PYTHONPATH=src \
   /home/midhun/Documents/MX/Research/AgentProof/.venv/bin/python \
   -m pytest tests/ -q
@@ -299,7 +299,7 @@ Regenerate the folder only after rebuilding all source artifacts:
 
 ## 18. Current verified status
 
-As of 2026-07-28:
+As of 2026-07-29:
 
 - Main paper: 8 US-Letter pages; page 8 contains references only.
 - Checklist: 2 US-Letter pages.
@@ -309,8 +309,10 @@ As of 2026-07-28:
 - PDF text and metadata identity scans pass.
 - Logs have no LaTeX errors, overfull boxes, undefined citations, or undefined
   references.
-- Anonymous archive advertised suite: 420 passed, 1 skipped after clean
-  extraction; all three advertised analyses exit zero.
+- Full-checkout suite: 423 passed, 1 skipped. Anonymous archive advertised
+  suite: 421 passed, 3 skipped after clean extraction; two additional skips
+  require third-party source snapshots deliberately omitted from the archive.
+  All three advertised analyses exit zero.
 - Archive member-name/content scans pass; no symlinks, hidden files, caches,
   bytecode, repository history, author-owned URL, author identity, or private
   path was detected.

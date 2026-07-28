@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RW = ROOT / "corpus" / "real_world"
+ANNOT = ROOT / "corpus" / "annotations"
 
 
 def load(name: str) -> dict:
@@ -28,6 +29,9 @@ def main() -> None:
     decomposition = load("fp_fn_decomposition.json")
     pruning = load("pruning_experiment.json")
     supplement_cis = load("supplement_cis.json")
+    prospective = json.loads(
+        (ANNOT / "prospective_validation_manifest.json").read_text()
+    )
 
     assert hgp["counts"] == {
         "violation": 12,
@@ -85,10 +89,15 @@ def main() -> None:
     )
     assert pruning["n_pairs"] == 18
     assert pruning["strategies"]["path_sensitive_product"]["pruned"] == 10
+    assert prospective["_meta"]["status"] == "frozen_before_annotation"
+    assert len(prospective["audit_sample"]) == 96
+    assert len(prospective["human_reconstruction_workflow_ids"]) == 32
+    assert prospective["frame"]["n_eligible_workflows"] == 904
 
     print(
         "headline consistency validated: fidelity n=106; triage n=186; "
-        "HGP-1 12/119; secondary composite 13/119; pruning 10/18"
+        "HGP-1 12/119; prospective audit n=96 with 32 dual-human "
+        "reconstructions frozen"
     )
 
 

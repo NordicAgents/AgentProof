@@ -138,6 +138,10 @@ fi
 skip "10. LLM reconstruction + triage (wf_run.js / wf_run_v2.js / wf_validate_triage.js)" \
      "These are non-deterministic, network-bound LLM agent passes and are NOT re-executed by this script. Their raw outputs are committed ($RW/wf_output.json, wf_output_v2.json, wf_output_combined.json, gt_triage_results.json, gt_flags_for_triage.json) and are consumed by the steps below. NOTE: the 119-workflow sample these scripts use is a hard-coded slug list with no seed and no documented selection rule — see CLAIMS_AUDIT.md 8.4."
 
+# ---- 10a. Prospective replacement sample (deterministic) ----------
+run "10a. Prospective validation sample (96 files; frozen outcome-blind)" \
+    $PY scripts/make_prospective_validation_sample.py --check
+
 # ---- 11. Defect study on the mined corpus ------------------------
 if need_file "11. Defect study (real-world corpus)" "$RW/graphs"; then
     run "11. Defect study (real-world corpus)" \

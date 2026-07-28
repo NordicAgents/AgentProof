@@ -51,13 +51,13 @@ suites. All sub-items are therefore NA (matching `ReproducibilityChecklist.tex`)
 | 4.2 | All experiment/analysis code included | **yes** | `defect_study.py`, `aggregate_realworld.py`, `monitor_pruning.py`, `risk_aware_gate.py`, plus the validation-workflow scripts. |
 | 4.3 | Code public upon publication, research license | **yes** | MIT. |
 | 4.4 | New-method code commented with paper references | **partial** | Modules carry docstrings/comments; not every step back-references a paper section. |
-| 4.5 | Seed-setting method described | **partial** | Downstream analyses use fixed seeds (`random.seed(42)`, `seed(7)`; the clustered bootstrap uses B=10,000 with seed 20260714), and although the LLM-agent validation is non-deterministic its raw outputs (`wf_output*.json`) are released and all aggregation over them is deterministic. **However, the 119-workflow validation sample itself was not drawn under a seed.** The slugs are hard-coded literal lists inside `scripts/wf_run.js` and `scripts/wf_run_v2.js`; no script draws the sample, no seed is recorded, and no written inclusion rule exists. The sample is therefore not demonstrably random, and generalization from the 119 to the 922 rests on an unverifiable assumption. Reported as a limitation, not repaired. |
+| 4.5 | Seed-setting method described | **partial** | Downstream analyses use fixed seeds (`random.seed(42)`, `seed(7)`; clustered bootstrap seed 20260714), and the non-deterministic LLM passes release their raw outputs. **The reported 119-workflow sample itself was not drawn under a recoverable seed:** its slugs are hard-coded in `scripts/wf_run*.js`, so it remains nonrandom and descriptive. A prospective replacement is now frozen separately by `make_prospective_validation_sample.py` with seed 20260728, exact two-stage inclusion probabilities, 96 files, and a 32-file dual-human subset; it contributes no result until independent annotation is complete. |
 | 4.6 | Computing infrastructure specified (HW/SW, versions) | **yes** | §Real-World Study, Validation: pure Python 3.12 on a commodity laptop (no GPU); ground-truth/triage agents were Claude Opus 4.8 via a workflow harness. |
-| 4.7 | Evaluation metrics formally described + motivated | **yes** | Node/edge precision–recall, node-kind accuracy, triage label distribution, and monitor-pruning rate are defined and motivated. |
+| 4.7 | Evaluation metrics formally described + motivated | **yes** | Node/edge precision–recall, node-kind accuracy, triage actionability, and the extraction/policy/abstraction decomposition are defined and motivated. |
 | 4.8 | Number of algorithm runs per result stated | **yes** | §Real-World Study, Validation: 1 ground-truth + 1 triage + 1 adversarial-verify pass per workflow; scalability timings are the median of 10 trials. |
 | 4.9 | Analysis beyond single-dimensional summaries | **yes** | Per-framework/per-check distributional breakdowns plus 95% CIs on every headline number: repository-clustered bootstrap (B=10,000) for fidelity means, Wilson for prevalence proportions (`scripts/compute_cis.py`, `scripts/reviewer_analyses.py`). Current figures: edge recall on the collision-free matched set (n=106) **0.652** as-mined → **0.709** corrected, ADK **0.343** (`corpus/real_world/matched_fidelity.json` `provenance_collisions.collision_free_fidelity`); structural genuine 0/72 [0, 5.1]%. The previously quoted "0.64 [0.57,0.71]" was the superseded pre-exclusion n=120 first pass. |
 | 4.10 | Statistical significance tests | **NA** | Descriptive base-rate study; no trained-model performance comparison for which a significance test applies. |
-| 4.11 | Final (hyper-)parameters listed | **partial** | No trained models. Experimental parameters listed: analyzed sample size **119** (post-exclusion; 120 reference-graph files on disk), curated corpus 18 workflows × 15 policies = 270 monitor instances, bootstrap B=10,000 with seed 20260714, the sensitive-tool keyword lexicon, and the 15 policy DSL strings. The earlier "120 / 60+60" described the superseded pre-exclusion first pass. **Gap:** the 119-workflow validation sample has no seed and no documented selection rule — see 4.5. |
+| 4.11 | Final (hyper-)parameters listed | **yes** | No trained models. The paper/artifact list the analyzed sample size **119** (post-exclusion), controlled corpus 18 workflows × 15 policies, bootstrap B=10,000 with seed 20260714, the sensitive-tool lexicon, the 15 policy DSL strings, and the separately frozen prospective design parameters. The unknown historical selection rule is a sampling limitation, not an omitted algorithm setting; see 4.5. |
 | 4.12 | Number/range of values tried per hyper-parameter | **NA** | No hyper-parameter search. |
 
 ---
@@ -68,12 +68,12 @@ suites. All sub-items are therefore NA (matching `ReproducibilityChecklist.tex`)
 - **3.2** — derived graphs + provenance are released; raw third-party source is not
   redistributed (licensing).
 - **4.4** — code is commented but not every step back-references a paper section.
-- **4.5 / 4.11** — the 119-workflow validation sample has no seed and no documented
-  selection rule (hard-coded slug lists in `scripts/wf_run*.js`). This is the one
-  genuine sampling-design gap; it also removes the justification for any
-  design-based (SRSWOR / finite-population-corrected) interval, which is why
-  `scripts/reviewer_analyses.py` now quotes the repository-clustered bootstrap
-  instead. See `CLAIMS_AUDIT.md` §8.3–§8.4.
+- **4.5** — the reported 119-workflow validation sample has no seed and no
+  documented selection rule (hard-coded slug lists in `scripts/wf_run*.js`).
+  It remains a genuine limitation of the current results, so no design-based
+  interval or population claim is made. The seeded 96-file prospective
+  replacement repairs the procedure going forward but cannot retroactively
+  change the provenance of the reported 119.
 
 *(4.6, 4.8, and 4.9 were upgraded to `yes`: infrastructure + run-count sentences
 and 95% confidence intervals were added to §Real-World Study.)*

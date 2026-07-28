@@ -70,20 +70,32 @@ descriptive statistic}---the rate the corpus would show if each framework's
 sampled rate held across its members, correcting the sample's ${\sim}5\times$
 over-representation of ADK---not a design-based estimate. We treat it only as a
 sensitivity analysis and make no inferential claim from its intervals.
+For a prospective replacement, we freeze an outcome-blind two-stage sample of
+96 files: independently within each framework, 24 repositories are sampled
+uniformly and then one eligible file per repository. Exact inclusion
+probabilities, pinned provenance, and a 32-file dual-human-reconstruction
+subset are released. No outcome from this sample enters the present paper;
+the protocol requires completed independent annotation before replacement of
+the exploratory 119-file results.
 
 \begin{table}[t]
 \centering\small
-\caption{Audit questions and the evidence used to answer each one.}
+\caption{Evidence streams are not interchangeable. Only the corpus row is a
+census of the mined frame; every labeled row remains exploratory pending the
+locked independent-human study.}
 \label{tab:audit_design}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lll@{}}
 \toprule
-\textbf{Question} & \textbf{Evidence} & \textbf{Comparison} \\
+\textbf{Evidence} & \textbf{Unit ($n$)} & \textbf{What it supports} \\
 \midrule
-Extraction effect & matched graphs & mined $\to$ reconstructed \\
-Policy applicability & source triage & blanket rule $\to$ HGP-1 \\
-Miss mechanism & HGP-1 cases & mined $\to$ reconstructed \\
+Corpus census & file graphs (922) & mined-frame description \\
+Fidelity & matched files (106) & extraction error on fixed files \\
+Flag audit & flags/files (186/119) & finding actionability \\
+HGP-1 & effect-bearing files (32) & single-rater policy judgment \\
+Controlled test & authored workflows (18) & mechanism only \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \begin{table}[t]

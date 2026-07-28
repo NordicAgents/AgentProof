@@ -5,35 +5,30 @@ Re-sync it if `main.tex` changes.
 
 ## Title
 
-Auditing File-Level Static Analysis of Agent Workflows: Extraction Fidelity and Policy Applicability
+Before Verifying Agent Workflows: Auditing Extraction Fidelity and Policy Applicability
 
 ## Abstract
 
-Static analysis of agent workflows depends on two choices that are often left
-implicit: whether the extracted graph represents the source, and whether a
-policy applies to the workflow being checked. We audit both choices on 922
-extracted file-level graphs from public GitHub across LangGraph, CrewAI,
-AutoGen, and Google ADK. On a quota-selected 119-graph sample, an LLM-assisted
-source audit labels 184 of 186 findings non-actionable; these are exploratory
-labels pending independent human validation. Attribution is check-family
-dependent: a graph-substitution survival test attributes 68 of 72
-non-actionable structural findings to extraction, whereas it attributes 94 of
-112 non-actionable human-gate findings to an inapplicable approval policy.
-Holding checks fixed and substituting source-reconstructed graphs removes 62
-of 184 findings. A declaration-sensitive human-gate rule moves blanket firings
-from 113 to 0, but only because mined graphs expose no sensitive bindings. The
-reverse audit exposes the consequence: all 12 source-audited human-gate
-violations escape the mined pipeline, and a source-reconstructed graph
-recovers only one; nine effects occur inside node bodies that the graph
-vocabulary does not represent. Moreover, every side-effecting workflow cleared
-by both graph checks was cleared by a placebo gate—a node typed human whose
-body cannot block. We therefore separate extraction fidelity, policy
-applicability, and abstraction coverage, and make safe conditional on an
-authored event-complete abstraction; otherwise the analyzer returns
-inconclusive. The result is a methodological requirement for agent-workflow
-analysis: validate both the recovered model and the applicability of every
-policy. All proportions are descriptive of these audited files, not estimates
-for executable or deployed workflows.
+Static checks over agent workflows are credible only if the recovered graph
+represents the source and the checked policy applies to that workflow. We audit
+these prerequisites on 922 extracted file-level graphs from public GitHub
+across LangGraph, CrewAI, AutoGen, and Google ADK. On a fixed, nonrandom
+119-file audit set, LLM-assisted source review labels 184 of 186 findings
+non-actionable; independent human validation is pending, so these labels are
+exploratory. A graph-substitution survival test shows why the check families
+must remain separate: extraction accounts for 68 of 72 non-actionable
+structural findings, whereas policy misspecification accounts for 94 of 112
+non-actionable human-gate findings. The reverse audit finds a different failure
+mode. All 12 source-audited human-gate violations escape the mined pipeline,
+and a source-reconstructed graph recovers only one; nine regulated effects
+occur inside node bodies outside the graph vocabulary. Every side-effecting
+workflow cleared by both graph checks was cleared by a placebo gate—a node
+typed human whose body cannot block. These descriptive case-study results do
+not estimate prevalence on GitHub or deployed systems. They support a
+methodological requirement: validate extraction fidelity, policy applicability,
+and abstraction coverage separately. Accordingly, no mined graph receives a
+safe verdict; sound monitor elimination remains only a conditional implication
+for authored event-complete abstractions.
 
 ## TL;DR
 

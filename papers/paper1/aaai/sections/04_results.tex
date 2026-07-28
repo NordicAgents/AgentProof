@@ -1,53 +1,25 @@
-\section{Controlled Evaluation and a Conditional Monitor-Selection Mechanism}
+\section{Controlled Check and Scope Boundary}
 \label{sec:results}
 \label{sec:pruning}
 
 \paragraph{Controlled detection test.}
 A curated corpus of 18 workflows across all four frameworks, seeded with known
-anti-patterns, confirms the checks fire when defects are present: the analyzer
-detects every injected structural defect and, with a risk-aware sensitive-tool
-set, flags 8 workflows whose sensitive path is reachable without a human gate,
-versus 10 for the blunt check---declining to flag two that lack a human node but
-perform no sensitive action. This is a controlled test that the algorithms work,
-not evidence of prevalence. Verification is sub-second on synthetic graphs of
-5{,}000 nodes; the supplement discusses the scope of comparison with
-Promela/SMV without claiming a quantitative modeling-effort benchmark.
+anti-patterns, confirms that the checks fire when their predicates are present:
+the analyzer detects every injected structural defect and, with a risk-aware
+sensitive-tool set, flags 8 workflows whose sensitive path is reachable without
+a human gate, versus 10 for the blunt check---declining to flag two that lack a
+human node but perform no sensitive action. Verification is sub-second on
+synthetic graphs of 5{,}000 nodes. This validates the implementation on authored
+inputs, not extraction fidelity, defect prevalence, or deployed behavior.
 
-\paragraph{Conditional monitor selection.}
-The graph\,$\times$\,DFA product gives the static machinery a job independent of
-whether defects exist: deciding which runtime monitors to deploy. Its value is
-\emph{conditional soundness}, not demonstrated deployment utility: it rests on
-the certification gate of Section~\ref{sec:system}, so every pruning number is
-sound only \emph{relative to an authored abstraction}---we assume, and do not
-prove, that a curated workflow's nodes emit no events outside their declared
-bindings. Under that premise, a policy whose product is safe can never fire at
-runtime, so its monitor need not be deployed;
-\texttt{may\_violate} is never suppressed. On the curated corpus the gate
-classifies 237 of 270 monitor instances (87.8\%) as inert under that assertion and declines
-14 (all on one seeded-livelock workflow) as \texttt{inconclusive}, leaving 19 to
-runtime enforcement. These authored fixtures establish a proof-of-mechanism,
-not that event completeness can be certified for third-party workflows.
-
-\paragraph{Descriptive vs.\ sound pruning on mined code.}
-This rate does not survive lossy extraction. A ${\sim}93\%$ ``pruning'' rate is
-available on the mined graphs, but it is pure \emph{alphabet-inertness}: all
-13{,}830 mined (workflow, policy) instances are inert only because no mined
-workflow invokes any of the 15 policies' tools---a mismatched vocabulary, not a
-sound prune. On a may-provenance graph a missing edge could hide exactly the
-tool that makes a live monitor look inert, so the gate certifies \emph{none} of
-them, refusing all as uncertified extraction.
-
-\paragraph{Does path-sensitivity buy anything?}
-Alphabet-inertness needs no product; the product earns its keep only when a
-policy's atoms occur and inertness turns on \emph{which} paths reach them. On 18
-(workflow, policy) pairs of that kind, a runtime-only strategy certifies 0, since
-one unobserved path forbids the claim; alphabet-only prunes 1, node-reachability
-3, and the path-sensitive product 10---with no false prunes across 50 concrete
-executions. We are deliberately conservative: five of the 9 incremental cases are
-linear response-obligation pipelines in which the consequent trivially dominates
-every path, and the branching and looping evidence rests on 4 purpose-built
-\emph{synthetic} fixtures. Fifty executions cannot establish the absence of
-false prunes; neither this experiment nor the conditional theorem validates
-operational pruning on extracted code.
-
-% Pruning table moved to the supplement (page limit); counts stated inline above.
+\paragraph{Monitor selection is a scope consequence, not an evaluated claim.}
+If an authored abstraction is event-complete, a policy accepted by the
+graph\,$\times$\,DFA product cannot fire at runtime and its monitor is
+unnecessary. The supplement demonstrates this implication on authored
+fixtures, including path-sensitive cases. The study does not establish its
+antecedent on third-party code: body-level calls are absent from the mined
+vocabulary, and provenance records how observed elements were extracted rather
+than proving that no event was omitted. Therefore all mined would-be
+\texttt{safe} results are returned as \texttt{inconclusive}; no operational
+pruning rate is reported. Establishing event completeness through a
+conservative body-level effect analysis is separate future work.

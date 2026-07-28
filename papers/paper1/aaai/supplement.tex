@@ -64,8 +64,8 @@
 \fi
 
 \title{Supplementary Material for\\
-\emph{Auditing File-Level Static Analysis of Agent Workflows: Extraction Fidelity and
-Policy Applicability}}
+\emph{Before Verifying Agent Workflows: Auditing Extraction Fidelity and Policy
+Applicability}}
 \author{}
 \date{}
 
@@ -1381,11 +1381,26 @@ whole pool (LangGraph ranks 2--391 of 402; ADK 0--52 of 53), and the sample
 contains up to 4 graphs from one repository, which rules out one-per-repo
 designs.
 
-\paragraph{No seed exists.} The only seeded sampler in the repository is
+\paragraph{No historical seed exists.}
 \artifact{scripts/make\_annotation\_samples.py} (\slug{--seed}, default
-\slug{20260713}, line 462; \slug{rng = random.Random(args.seed)} at line 485).
-It draws the \emph{human-annotation} sub-samples \emph{from} the 119, inheriting
-them as a fixed given, and cannot document how the 119 arose.
+\slug{20260713}) draws the \emph{human-annotation} sub-samples \emph{from} the
+119, inheriting them as a fixed given, and cannot document how the 119 arose.
+This remains true of every numeric result reported from that set.
+
+\paragraph{Frozen prospective replacement.}
+To prevent this defect from recurring, the artifact includes
+\artifact{scripts/make\_prospective\_validation\_sample.py} and
+\artifact{corpus/annotations/prospective\_validation\_manifest.json}. Before
+any outcome was inspected, seed \slug{20260728} selected 24 repositories
+uniformly per framework and one eligible corrected-v2 file uniformly within
+each selected repository: 96 files total, with exact inclusion probabilities
+and pinned source hashes. A separately seeded 8-per-framework subset (32 total)
+is locked for dual-human graph reconstruction. The complete staging,
+adjudication, and stop/go rules are in
+\artifact{PROSPECTIVE\_VALIDATION\_PROTOCOL.md}. These prospective records
+contain no labels and contribute no number to the present results; they replace
+the historical quantities only after two independent annotators complete the
+protocol.
 
 \begin{table}[htbp]
 \centering\small

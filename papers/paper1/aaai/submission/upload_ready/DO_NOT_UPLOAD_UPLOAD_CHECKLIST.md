@@ -21,7 +21,7 @@ either Markdown file.
 5. Do not upload this checklist, `OPENREVIEW_FIELDS.md`, `SHA256SUMS.txt`,
    TeX sources, logs, repository history, or other local files.
 
-## Verified locally on 2026-07-28
+## Verified locally on 2026-07-29
 
 - Main paper: 8 US-Letter pages; technical content and the conclusion end on
   page 7, while page 8 contains references only.
@@ -34,8 +34,11 @@ either Markdown file.
 - The anonymous archive contains no symlinks, hidden files, caches, compiled
   bytecode, repository history, secrets, author-owned URL, author name, or
   local absolute path detected by the submission scan.
-- The extracted archive's advertised test command passes: 420 passed and 1
-  skipped. Its three advertised analysis commands also exit successfully.
+- The full checkout passes 423 tests with 1 skipped. The extracted archive's
+  advertised clean-room command passes 421 tests with 3 skipped; two extra
+  skips explicitly require third-party source snapshots that are not
+  redistributed. Its three advertised analysis commands also exit
+  successfully.
 - The manuscript contains a generative-AI-use disclosure.
 
 ## Author-only checks before Submit

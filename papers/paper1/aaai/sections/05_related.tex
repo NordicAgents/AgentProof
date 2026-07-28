@@ -7,8 +7,9 @@ LlamaGuard~\citep{llamaguard}, and Rebuff~\citep{rebuff} enforce safety at the
 point of LLM output or tool call, catching violations only when the offending
 path runs; ToolEmu~\citep{ruan2024toolemu} and
 AgentDojo~\citep{debenedetti2024agentdojo} measure agent risk by executing
-behaviors. Our analyzer is complementary: it analyzes topology before deployment
-and decides which runtime monitors are needed (Section~\ref{sec:pruning}).
+behaviors. Our analyzer is complementary: it audits topology before deployment;
+Section~\ref{sec:pruning} states why using that topology to eliminate runtime
+monitors remains conditional on event-complete extraction.
 
 \paragraph{Concurrent agent-policy systems.}
 A concurrent line of work enforces policies at the tool-call boundary with

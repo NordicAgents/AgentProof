@@ -1,4 +1,4 @@
-\section{Audit Instrument and Conditional Guarantees}
+\section{Audit Instrument and Its Scope Guard}
 \label{sec:system}
 \label{sec:graph_model}
 \label{sec:verification_methods}
@@ -80,8 +80,8 @@ a workflow $P$ can emit, and let $\lambda$ label each event, inducing a graph
 event-language $\mathcal{L}(G,\lambda)$. If $\mathrm{Traces}_{\mathrm{ev}}(P)\subseteq
 \mathcal{L}(G,\lambda)$ (\emph{event-trace conservatism}) and every trace in
 $\mathcal{L}(G,\lambda)$ is accepted by the policy DFA, then every concrete finite
-terminating execution of $P$ satisfies the policy---the guarantee we exploit for
-monitor pruning (Section~\ref{sec:results}); the proof is in the supplement.
+terminating execution of $P$ satisfies the policy; the proof is in the
+supplement.
 Graph-\emph{path} containment alone does \emph{not} suffice: a node may issue tool
 calls the graph never records. Because provenance cannot establish that node
 bodies emit no unmodeled events, the checker returns \texttt{safe} only when the
