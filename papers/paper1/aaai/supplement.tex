@@ -1005,6 +1005,24 @@ Human-gate & 112 & 2.7\%           & 0.0\% & \textbf{83.9\%} & 13.4\% \\
 \end{tabular}
 \end{table}
 
+\begin{table}[htbp]
+\centering\small
+\caption{Conservative legacy-key sensitivity: exclude every flag whose
+\slug{repo\_\_basename} key maps to multiple source paths. Ten audit slugs and
+12 flags are removed; 174 flags (172 non-actionable) remain. Source:
+\slug{false\_positives.collision\_exclusion.retained}.}
+\label{tab:survival_collision}
+\begin{tabular}{@{}lrllll@{}}
+\toprule
+\textbf{Family} & \textbf{$n$} & \textbf{Extr.} & \textbf{Checker} &
+\textbf{Policy} & \textbf{Ref./Label} \\
+\midrule
+Structural & 70  & \textbf{66 (94.3\%)} & 2 (2.9\%) & 0 & 2 (2.9\%) \\
+Human-gate & 102 & 3 (2.9\%) & 0 & \textbf{84 (82.4\%)} & 15 (14.7\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 Three things follow. First, \textsc{checker} is now \emph{quantified} rather
 than merely bounded below: $2/186 = 1.1\%$ $[0.3,3.8]$. The two instances are
 the LangGraph \slug{interrupt()} multi-turn pattern, where a genuinely
@@ -1030,6 +1048,17 @@ absent from the extraction (or vice versa) moves the flag between
 validation and is not offered as a substitute for it. It is a weaker but real
 claim: the headline decomposition does not depend on the LLM triage labels,
 because a mechanical procedure over graphs alone reproduces it.
+
+\paragraph{Collision sensitivity.}
+Table~\ref{tab:survival_collision} closes a separate identity threat that the
+matched fidelity table alone did not address. The full metadata contain 76
+non-unique legacy slugs; 10 occur in the 119-file audit, including one that was
+unavailable to the matched v2 comparison. Their 12 triage records comprise two
+\textsc{extractor} and ten \textsc{policy-spec} attributions. Removing all 12
+leaves the family-level conclusion unchanged: extraction accounts for 66/70
+non-actionable structural flags, while policy specification accounts for
+84/102 non-actionable human-gate flags. The artifact records the excluded
+slugs, rows, and recomputed distributions rather than assuming robustness.
 
 \subsection{False negatives: the opposite budget}
 
@@ -1146,8 +1175,13 @@ therefore make no cross-draft comparison of them.
 
 \paragraph{Shape.} Over $50\to5{,}000$ nodes the graph grows $96\times$ in
 $|V|+|E|$ while check time grows $120\times$, i.e.\ very slightly super-linear.
-The excess comes from quadratic edge scanning in the router-shape and
-tool-declaration checks, which is invisible at the sizes that actually occur: the
+This is an empirical timing ratio, not a quadratic algorithm: router edges are
+grouped in one pass, tool declarations are scanned once, and BFS parent trees
+are reused across witnesses. Predicate evaluation is $O(|V|+|E|)$; the
+deterministically sorted full report is
+$O(|V|\log|V|+|E|+W)$ for total serialized witness length $W$. Python
+allocation, sorting, cache, and scheduling overhead explain small departures
+from the asymptotic slope. The distinction is immaterial at observed sizes: the
 mined corpus has a \emph{median of 2 non-sentinel nodes}
 (\artifact{sections/03\_realworld.tex}; \artifact{corpus/real\_world/metadata\_v2.json}),
 so the largest row of Table~\ref{tab:scaling} is roughly three orders of
@@ -1239,7 +1273,7 @@ SPIN~\citep{holzmann1997spin}   & Promela (manual) & Full LTL & High & Fast (sma
 NuSMV~\citep{cimatti2002nusmv}  & SMV (manual)     & CTL + LTL & High & Fast (small) & None \\
 CBMC~\citep{cbmc}               & C source         & Assertions & Medium & Bounded & None \\
 \textbf{This work}              & Auto-extracted   & Safety LTL fragment &
-\textbf{None} & $O(|V|{+}|E|)$ & \textbf{Agent workflows} \\
+\textbf{None} & $O(|V|\log|V|{+}|E|{+}W)$ & \textbf{Agent workflows} \\
 \bottomrule
 \end{tabular}}\\[3pt]
 {\footnotesize SPIN, NuSMV, and CBMC require manual translation of agent
@@ -1545,9 +1579,9 @@ Descriptive claims about this corpus, with full provenance (every graph is
 pinned to \slug{(repo, SHA, path)} and re-extractable via
 \artifact{scripts/remine\_pinned.py}); instrument-fidelity claims, which are
 properties of the instrument on these inputs and do not require a probability
-sample; the existence and direction findings (a biased frame makes a \emph{low}
-observed defect rate more notable, not less, provided no population number is
-attached); and relative comparisons within the corpus. What it does \emph{not}
+sample; and existence examples and comparisons explicitly conditional on these
+fixed files. Selection bias can alter either magnitude or direction outside
+the audited set. What the design does \emph{not}
 support is any sentence of the form ``$X\%$ of agent workflows on GitHub''.
 Finally, the frame itself is \textbf{not reproducible}---re-running the 11
 queries today returns a different top-40 each. What \emph{is} reproducible is the
@@ -1816,6 +1850,17 @@ $12/119$ count in either direction. Finally the audit is
 \textbf{single-rater}; \slug{ed-donner\_\_agents\_\_sequential\_agents}
 (prompt-level confirmation only) and \slug{microsoft\_\_ACV\_\_test\_cache\_agent}
 (compliant) are the two calls most likely to move under a second rater.
+
+\paragraph{Legacy-key sensitivity for HGP-1.}
+The same conservative rule excludes all 10 ambiguous identities from the
+119-file denominator. Only one is among the 32 effect-bearing records:
+\slug{lordpython\_\_multi-agent-video-system\_\_agent}, already
+\slug{arguable}. The retained set therefore contains 12 violations, 9
+compliant, and 10 arguable cases among 31 effect-bearing files; the violation
+count is unchanged, and the descriptive full-sample ratio is $12/109$
+(Wilson 95\% $[6.41,18.26]$). Source:
+\slug{human\_gate\_audit.json} $\to$
+\slug{legacy\_slug\_collision\_sensitivity}.
 
 % ===========================================================================
 \section{The Slug-Collision Keying Defect and the Matched-Set Methodology}
@@ -2188,8 +2233,14 @@ screened and 1 would be \slug{arguable}. Screening error and label error can
 move the observed count in either direction.
 \item \textbf{Absolute benchmark timings are not comparable across drafts}
 (Section~\ref{sec:eval}). Three recorded figures at 5{,}000 nodes span a factor
-of ${\approx}33$ across machines. Only the asymptotic shape is a property of the
-system.
+of ${\approx}33$ across machines. The implementation bound is
+$O(|V|\log|V|+|E|+W)$ for full deterministic reports, not the stale quadratic
+edge-scan explanation from an earlier implementation.
+\item \textbf{Legacy-key sensitivity is now complete across labeled results}
+(Sections~\ref{sec:survival},~\ref{sec:collisions}). Ten validation identities
+are ambiguous, accounting for 12 triage flags. Excluding all of them preserves
+the structural/policy split (66/70 versus 84/102) and removes no HGP-1
+violation (12/109 remain).
 \item \textbf{Independent human-validation status: \humanValidationStatus}
 (Section~\ref{sec:human-validation}). Reference graphs and triage labels
 originate in LLM passes sharing a model family. The survival test of

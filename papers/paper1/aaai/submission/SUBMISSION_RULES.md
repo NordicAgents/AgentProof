@@ -303,14 +303,14 @@ As of 2026-07-29:
 
 - Main paper: 8 US-Letter pages; page 8 contains references only.
 - Checklist: 2 US-Letter pages.
-- Supplement: 32 US-Letter pages.
+- Supplement: 33 US-Letter pages.
 - All PDFs are unencrypted, contain zero embedded files, and use embedded
   Type 1 fonts with no Type 3 fonts.
 - PDF text and metadata identity scans pass.
 - Logs have no LaTeX errors, overfull boxes, undefined citations, or undefined
   references.
-- Full-checkout suite: 423 passed, 1 skipped. Anonymous archive advertised
-  suite: 421 passed, 3 skipped after clean extraction; two additional skips
+- Full-checkout suite: 424 passed, 1 skipped. Anonymous archive advertised
+  suite: 422 passed, 3 skipped after clean extraction; two additional skips
   require third-party source snapshots deliberately omitted from the archive.
   All three advertised analyses exit zero.
 - Archive member-name/content scans pass; no symlinks, hidden files, caches,

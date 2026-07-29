@@ -146,3 +146,44 @@ class TestSurvivalTestRuleOrdering:
             validated, gt, set(), {"w": "langgraph"}, set(), set())
         assert out["rows"][0]["cause"] == "LABEL"
         assert out["rows"][0]["rule"] == "R4"
+
+    def test_collision_exclusion_recomputes_family_counts(self):
+        from fp_fn_decomposition import _collision_exclusion
+
+        rows = [
+            {
+                "slug": "ambiguous",
+                "check": "dead_ends",
+                "cause": "EXTRACTOR",
+                "rule": "R1_removed_by_oracle",
+                "triage_label": "extraction_artifact",
+            },
+            {
+                "slug": "stable",
+                "check": "dead_ends",
+                "cause": "CHECKER",
+                "rule": "R2_structural_survives_oracle",
+                "triage_label": "intentional",
+            },
+            {
+                "slug": "stable",
+                "check": "human_presence",
+                "cause": "POLICY_SPEC",
+                "rule": "R3a_policy_survives_oracle",
+                "triage_label": "intentional",
+            },
+        ]
+
+        out = _collision_exclusion(rows, {"ambiguous", "unused"})
+
+        assert out["n_ambiguous_legacy_slugs_corpus"] == 2
+        assert out["ambiguous_legacy_slugs_in_triage"] == ["ambiguous"]
+        assert out["n_flags_removed"] == 1
+        assert out["removed_by_cause"] == {"EXTRACTOR": 1}
+        assert out["retained"]["n_flags"] == 2
+        assert out["retained"]["by_check_family"]["structural"]["dist"][
+            "CHECKER"
+        ]["n"] == 1
+        assert out["retained"]["by_check_family"]["human_gate"]["dist"][
+            "POLICY_SPEC"
+        ]["n"] == 1

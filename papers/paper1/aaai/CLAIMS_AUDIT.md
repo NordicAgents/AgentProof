@@ -85,7 +85,7 @@ audited row-by-row.
 | # | Claim (short) | Location | Value | Generating artifact / command | Status | Note |
 |---|---|---|---|---|---|---|
 | S1 | node-kind vocabulary (8 kinds listed) | 02_system.tex:17–20 | 8 kinds | `src/agentproof/graph/model.py` `NodeKind` | **RESOLVED** | The 8-vs-7 mismatch is closed on both sides: `PASSTHROUGH` is now an explicitly documented first-class kind (`model.py:10–24` docstring states the full vocabulary ENTRY, EXIT, TOOL, LLM, ROUTER, HUMAN, SUBGRAPH, PASSTHROUGH and why it was historically omitted), and `02_system.tex:19` lists PASSTHROUGH (reviewer item #7). |
-| S2 | checks each O(\|V\|+\|E\|) | 02_system.tex:31 | complexity | `structural.py` | hand-written-unverified | **imprecise:** `router_shape` scans all edges per router (structural.py:196–197), worst case O(\|V\|·\|E\|); reachability checks are linear |
+| S2 | predicates O(\|V\|+\|E\|); full sorted report O(\|V\|log\|V\|+\|E\|+W) | 02_system.tex | complexity | `structural.py` | traced-to-code | router edges grouped once; shared BFS parents avoid one traversal per witness; sorting and total serialized witness length W are explicit |
 | S3 | DFA sizes: 2–3 states base, k+2 bounded | 02_system.tex:56–57 | 2–3; k+2 | `src/agentproof/monitor/ltl.py` (states are canonical formulas) | hand-written-unverified | no test asserts state counts; add one or soften |
 | S4 | runtime monitors O(1)/event | 02_system.tex:60–61 | O(1) | `monitor/ltl.py` transition lookup | traced-to-artifact | code |
 | S5 | abort ⇒ inconclusive (3-valued) | 02_system.tex:62–64 | — | `monitor/ltl.py` (`MonitorDecision`) | traced-to-artifact | verify a test pins the abort case |
@@ -143,7 +143,7 @@ audited row-by-row.
 | C1 | curated corpus: 18 workflows, 4 frameworks | 04_results.tex:6–7 | 18 | `corpus/curated/` (18 files); `scripts/defect_results.json` | traced-to-artifact | |
 | C2 | detects every injected structural defect | 04_results.tex:7–8 | qualitative | `scripts/defect_results.json` + `corpus/annotations/defect_labels.json` | hand-written-unverified | **Staleness sub-claim RESOLVED:** the committed `scripts/defect_results.json` is *no longer* stale — it now reports `total_defects` = **17** and `defects_by_type` **does** include `reverse_reachability: 2` (full split: human_presence 10, reverse_reachability 2, dead_ends 2, router_shape 1, exit_reachability 1, tool_declarations 1). The earlier audit text asserting "no `reverse_reachability`, 15 defects" described a superseded artifact. Still open (unchanged): there is no committed manifest of *seeded* defects to check firing against; add one. |
 | C3 | risk-aware flags 8 vs 10 blunt; declines 2 | 04_results.tex:8–13 | 8; 10; 2 | `risk_aware_gate_curated.json` | traced-to-artifact | |
-| C4 | sub-second at 5,000 nodes | 04_results.tex:14–15 | ~7 ms | `scripts/scaling_results.json` (structural_check_ms=**7.19** @5000 nodes / 10,713 edges) | traced-to-artifact | **RESOLVED.** Two stale values were in circulation: the audit's 345.2 ms and the previously committed artifact's 239.838 ms. A fresh `python scripts/benchmark_scale.py` on this machine gives 7–8 ms (three consecutive runs: 8.15, 7.19, 8.15 ms), and `scaling_results.json` has been regenerated (7.1905 ms). **Hardware-dependent:** this is a single-machine wall-clock median, not a portable constant; the paper claim that survives re-execution anywhere is the *asymptotic* one (linear in \|V\|+\|E\|, visible across the 50→5000 sweep) plus "sub-second", which all three values satisfy by two orders of magnitude. Do not quote the absolute ms without naming the machine. |
+| C4 | sub-second at 5,000 nodes | 04_results.tex:14–15 | ~7 ms | `scripts/scaling_results.json` (structural_check_ms=**7.19** @5000 nodes / 10,713 edges) | traced-to-artifact | **RESOLVED.** Absolute timing is hardware-dependent. The portable implementation statement is predicate evaluation O(\|V\|+\|E\|) and full deterministic reporting O(\|V\|log\|V\|+\|E\|+W), plus sub-second execution on the reported sweep. |
 | C5 | multi-tool nodes expanded to complete digraph | 04_results.tex:28–31 | qualitative | **stale:** the `expand_multitool` pre-pass was removed from `scripts/monitor_pruning.py` this session; `check_temporal_property`'s default mapper now expands multi-tool nodes natively (Q2 closed) | needs-rerun-after-semantics-change | rewrite 04_results.tex:28–31 to describe the native multi-tool closure (item 15) |
 | C6 | 237/270 (87.8%), mean 13.17/15 skipped | 04_results.tex:33–35 | — | `monitor_pruning_curated.json` (`prunable` 237, `prunable_pct` 87.8, `mean_monitors_pruned_per_workflow` 13.17) | traced-to-artifact | supersedes the stale 251/270 (93.0%), mean 13.9 |
 | C7 | every proven case alphabet-level; product adds 0 | 04_results.tex:36–40 | reach-proven 0 | `monitor_pruning_curated.json` | needs-rerun-after-semantics-change | prune rule tightened this session (item 15); smoke rerun still gives reach-proven 0, but the artifact must be regenerated |
@@ -531,6 +531,25 @@ colliding rows), not the n=115 matched set, whenever a v1↔v2 delta is claimed:
 The collision-free figures are the defensible ones; the n=115 set inflates
 nothing but does mix in 9 rows that compare different programs.
 
+The labeled analyses need a wider exclusion than the matched fidelity set:
+**10 of 119** validation identities are ambiguous (one lacks a matched v2
+record), accounting for **12 of 186** triage flags. The committed conservative
+sensitivity analysis removes every such flag:
+
+- retained: 174 flags, 172 non-actionable;
+- structural: **66/70** extraction-attributable (94.3%);
+- human-gate: **84/102** policy-attributable (82.4%);
+- HGP-1: all 10 ambiguous sample identities removed, leaving **12/109**
+  violations; the only effect-bearing exclusion was already `arguable`, so the
+  violation count is unchanged (12 violation / 9 compliant / 10 arguable among
+  31 retained effect-bearing files).
+
+Sources: `fp_fn_decomposition.json` →
+`false_positives.collision_exclusion` and `human_gate_audit.json` →
+`legacy_slug_collision_sensitivity`. These counts are asserted by
+`validate_submission_claims.py` and tested in
+`TestSurvivalTestRuleOrdering::test_collision_exclusion_recomputes_family_counts`.
+
 ### 8.3 Finite-population correction removed from `reviewer_analyses.py` (SRSWOR unsupported)
 
 `scripts/reviewer_analyses.py:148` applied
@@ -604,8 +623,10 @@ See C4. Three values were in circulation for `structural_check_ms` at 5,000
 nodes: 345.2 ms (audit text), 239.838 ms (committed artifact), and 7–8 ms
 (fresh run). The artifact was regenerated (**7.1905 ms**; three consecutive runs
 gave 8.15 / 7.19 / 8.15 ms on 5,002 nodes / 10,713 edges). Absolute timings must
-be quoted with the machine named; the portable claims are linearity across the
-50→5,000 sweep and "sub-second", which all three values satisfy.
+be quoted with the machine named. The portable bound is
+O(\|V\|log\|V\|+\|E\|+W) for the deterministically sorted report, where W is
+total serialized witness length; predicate evaluation alone is linear.
+All recorded runs support only the empirical "sub-second" statement.
 
 ---
 
@@ -730,9 +751,9 @@ number:
   only portable claims the paper makes: near-linear growth across the
   50→5,000 sweep, and sub-second verification (`04_results.tex:12`).
 
-Test suite: **420 passed, 1 skipped**, including the 15 new estimator and
-rule-ordering tests in `tests/test_agreement_stats.py`.
+Test suite: **424 passed, 1 skipped**, including the estimator,
+rule-ordering, collision-sensitivity, and structural-witness tests.
 
 Documents: `main.pdf` builds with **0 undefined references**, content ending on
-page 7 with references from page 8; `supplement.pdf` builds at **31 pages** with
+page 7 with references from page 8; `supplement.pdf` builds at **33 pages** with
 0 undefined references.

@@ -60,8 +60,9 @@ across LangGraph, CrewAI, AutoGen, and Google ADK. On a fixed, nonrandom
 non-actionable; independent human validation is pending, so these labels are
 exploratory. A graph-substitution survival test shows why the check families
 must remain separate: extraction accounts for 68 of 72 non-actionable
-structural findings, whereas policy misspecification accounts for 94 of 112
-non-actionable human-gate findings. The reverse audit finds a different failure
+structural findings (66/70 after legacy-key collision exclusion), whereas
+policy misspecification accounts for 94 of 112 non-actionable human-gate
+findings (84/102 after exclusion). The reverse audit finds a different failure
 mode. All 12 source-audited human-gate violations escape the mined pipeline,
 and a source-reconstructed graph recovers only one; nine regulated effects
 occur inside node bodies outside the graph vocabulary. Every side-effecting

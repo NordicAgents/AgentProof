@@ -13,6 +13,49 @@
     "arguable": 11,
     "source_unavailable": 0
   },
+  "legacy_slug_collision_sensitivity": {
+    "rule": "exclude every validation-sample record whose legacy <repo>__<basename> slug maps to more than one source path",
+    "n_ambiguous_legacy_slugs_corpus": 76,
+    "n_validation_sample_records_excluded": 10,
+    "excluded_validation_sample_slugs": [
+      "Astrodevil__ADK-Agent-Examples__agent",
+      "MikhailMostWanted__Astra__app_team",
+      "Saimoguloju__AI-Agents__sample_agent",
+      "docker__compose-for-agents__agent",
+      "joansantoso__iox-adk__agent",
+      "lordpython__multi-agent-video-system__agent",
+      "shazy89__ai-learning__agent",
+      "svpino__ml.school__agent",
+      "volcengine__veadk-python__main",
+      "winstonbartlegod__enhanced-multimodal-rag__v1"
+    ],
+    "n_validation_sample_retained": 109,
+    "n_effect_bearing_records_excluded": 1,
+    "excluded_effect_bearing": [
+      {
+        "slug": "lordpython__multi-agent-video-system__agent",
+        "verdict": "arguable"
+      }
+    ],
+    "retained_effect_bearing_n": 31,
+    "retained_effect_bearing_counts": {
+      "violation": 12,
+      "compliant": 9,
+      "arguable": 10,
+      "source_unavailable": 0
+    },
+    "violation_count_unchanged": true,
+    "audit_proportion_over_retained_sample": {
+      "k": 12,
+      "n": 109,
+      "point": 0.1101,
+      "wilson95": [
+        0.0641,
+        0.1826
+      ],
+      "interpretation": "descriptive collision-exclusion sensitivity only"
+    }
+  },
   "audit_proportion_over_sample": {
     "k": 12,
     "n": 119,

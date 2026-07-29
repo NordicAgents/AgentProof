@@ -132,6 +132,17 @@ colliding graph is dropped: \textbf{9} inside the fidelity set, cutting it from
 uniform---ADK loses 5 of 23 versus 0--6\% elsewhere---so ADK's row is the least
 stable. The keying is fixed in the released instrument.
 
+The same legacy key affects \textbf{10 of the 119} audit identities and
+\textbf{12 of 186} triage records; unlike v1 fidelity pairs, their lost file
+identity cannot be reconstructed. We therefore remove every flag on an
+ambiguous key in a conservative sensitivity analysis. It retains 174 flags:
+66 of 70 non-actionable structural findings remain extraction-attributable,
+and 84 of 102 non-actionable human-gate findings remain policy-attributable.
+Applying the same exclusion to HGP-1 removes 10 sample records, including one
+effect-bearing \textsc{arguable} case, but no violation: the count remains
+12/109 (12 violation, 9 compliant, 10 arguable among 31 effect-bearing files).
+Full tables and machine-readable rows are in the supplement.
+
 \paragraph{Extraction fidelity is the bottleneck---for structural checks.}
 Node detection stays strong and stable across instruments (v2 overall
 $P{=}0.914$, $R{=}0.868$; v1 $0.914/0.862$), but edge recall and node-kind
@@ -221,6 +232,7 @@ non-actionable \emph{structural} flags, 68 of 72 are extraction-attributable
 and 2 are checker-attributable. Among the 112 non-actionable
 \emph{human-gate} flags, 3 are extraction-attributable and 94 are
 policy-attributable; the remainder are reference errors or disputed labels.
+The collision exclusion above yields 66/70 and 84/102, respectively.
 Because human-gate checks are $61\%$
 of all flags, pooling the families obscures the actionable result: extraction
 repair targets reachability checks, while policy applicability targets blanket
@@ -360,7 +372,8 @@ validity gap.
 public GitHub files and the unit a file-level graph, so results may not transfer
 to executable roots or private code. \emph{Sampling:} the frame is a convenience
 corpus with undefined inclusion probabilities, quota-selected without
-randomization. \emph{Reference-graph semantics:} node kinds are assigned from
+randomization; even the direction of a contrast may differ outside these fixed
+files. \emph{Reference-graph semantics:} node kinds are assigned from
 naming, not from whether a body has the effect its kind implies---the
 placebo-gate audit shows this can bias human-gate judgments downward. All rates
 are descriptive audit proportions, not population estimates.

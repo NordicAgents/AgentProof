@@ -87,6 +87,32 @@ def main() -> None:
         ]
         == 12
     )
+    collision_fp = decomposition["false_positives"]["collision_exclusion"]
+    assert collision_fp["n_ambiguous_legacy_slugs_in_triage"] == 10
+    assert collision_fp["n_flags_removed"] == 12
+    retained = collision_fp["retained"]
+    assert retained["n_flags"] == 174
+    assert retained["n_non_actionable"] == 172
+    assert retained["by_check_family"]["structural"]["n"] == 70
+    assert (
+        retained["by_check_family"]["structural"]["dist"]["EXTRACTOR"]["n"]
+        == 66
+    )
+    assert retained["by_check_family"]["human_gate"]["n"] == 102
+    assert (
+        retained["by_check_family"]["human_gate"]["dist"]["POLICY_SPEC"]["n"]
+        == 84
+    )
+    collision_hgp = hgp["legacy_slug_collision_sensitivity"]
+    assert collision_hgp["n_validation_sample_records_excluded"] == 10
+    assert collision_hgp["n_effect_bearing_records_excluded"] == 1
+    assert collision_hgp["violation_count_unchanged"] is True
+    assert collision_hgp["retained_effect_bearing_counts"] == {
+        "violation": 12,
+        "compliant": 9,
+        "arguable": 10,
+        "source_unavailable": 0,
+    }
     assert pruning["n_pairs"] == 18
     assert pruning["strategies"]["path_sensitive_product"]["pruned"] == 10
     assert prospective["_meta"]["status"] == "frozen_before_annotation"

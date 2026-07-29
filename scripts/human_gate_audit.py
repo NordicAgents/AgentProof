@@ -28,7 +28,10 @@ import argparse
 import json
 import math
 import random
+from collections import Counter
 from pathlib import Path
+
+from slugkey import ambiguous_slugs
 
 POLICY_ID = "HGP-1"
 POLICY_PATH = "papers/paper1/aaai/HUMAN_GATE_POLICY.md"
@@ -745,6 +748,30 @@ def main() -> None:
     lo_s, hi_s = wilson(k + len(arguable), n_sample)  # sensitivity upper arm
     lo32, hi32 = wilson(k, 32)
 
+    # ---- legacy-key collision sensitivity ----
+    # The historical miner keyed by repo + basename, so ten validation-sample
+    # identities are ambiguous. Exclude all of them, even where the source
+    # judgment itself appears unambiguous, to give a conservative sensitivity
+    # result that does not depend on resolving the lost v1 file identity.
+    mining_records = []
+    for name in ("metadata.json", "metadata.lg_crew.json"):
+        path = root / "corpus" / "real_world" / name
+        if path.exists():
+            mining_records.extend(json.loads(path.read_text())["records"])
+    ambiguous_legacy = set(ambiguous_slugs(mining_records))
+    sample_collision_slugs = sorted(set(flags) & ambiguous_legacy)
+    collision_free_audit = [
+        item for item in AUDIT if item["slug"] not in ambiguous_legacy
+    ]
+    collision_free_counts = Counter(
+        item["verdict"] for item in collision_free_audit
+    )
+    collision_free_n_sample = n_sample - len(sample_collision_slugs)
+    collision_free_violations = collision_free_counts["violation"]
+    lo_cf, hi_cf = wilson(
+        collision_free_violations, collision_free_n_sample
+    )
+
     # ---- post-stratification (corrected corpus mix, no FPC) ----
     pw = rev["per_workflow"]
     ps_violation = post_stratify(set(violations), pw)
@@ -788,6 +815,46 @@ def main() -> None:
             "compliant": len(compliant),
             "arguable": len(arguable),
             "source_unavailable": len(unavailable),
+        },
+        "legacy_slug_collision_sensitivity": {
+            "rule": (
+                "exclude every validation-sample record whose legacy "
+                "<repo>__<basename> slug maps to more than one source path"
+            ),
+            "n_ambiguous_legacy_slugs_corpus": len(ambiguous_legacy),
+            "n_validation_sample_records_excluded": len(
+                sample_collision_slugs
+            ),
+            "excluded_validation_sample_slugs": sample_collision_slugs,
+            "n_validation_sample_retained": collision_free_n_sample,
+            "n_effect_bearing_records_excluded": (
+                len(AUDIT) - len(collision_free_audit)
+            ),
+            "excluded_effect_bearing": [
+                {"slug": item["slug"], "verdict": item["verdict"]}
+                for item in AUDIT
+                if item["slug"] in ambiguous_legacy
+            ],
+            "retained_effect_bearing_n": len(collision_free_audit),
+            "retained_effect_bearing_counts": {
+                verdict: collision_free_counts[verdict]
+                for verdict in (
+                    "violation", "compliant", "arguable",
+                    "source_unavailable"
+                )
+            },
+            "violation_count_unchanged": collision_free_violations == k,
+            "audit_proportion_over_retained_sample": {
+                "k": collision_free_violations,
+                "n": collision_free_n_sample,
+                "point": round(
+                    collision_free_violations / collision_free_n_sample, 4
+                ),
+                "wilson95": [round(lo_cf, 4), round(hi_cf, 4)],
+                "interpretation": (
+                    "descriptive collision-exclusion sensitivity only"
+                ),
+            },
         },
         "audit_proportion_over_sample": {
             "k": k, "n": n_sample, "point": round(k / n_sample, 4),
@@ -876,6 +943,12 @@ def main() -> None:
           f"[{lo_s:.2%}, {hi_s:.2%}]")
     print(f"  audit proportion over effect-bearing 32: {k}/32 = {k/32:.2%}  "
           f"descriptive Wilson [{lo32:.2%}, {hi32:.2%}]")
+    print(
+        "  collision exclusion: "
+        f"{len(sample_collision_slugs)} ambiguous sample records removed; "
+        f"{collision_free_violations}/{collision_free_n_sample} violations "
+        "(count unchanged)"
+    )
     print()
     print("  PER-FRAMEWORK (violations / sampled):")
     for f, v in ps_violation["per_framework"].items():

@@ -43,7 +43,7 @@ COMPARISON_DATA = [
         "input": "Auto-extracted",
         "properties": "Safety LTL fragment",
         "modeling": r"\textbf{None}",
-        "time": r"$O(|V|{+}|E|)$",
+        "time": r"$O(|V|\log|V|{+}|E|{+}W)$",
         "domain": r"\textbf{Agent workflows}",
         "cite": "",
     },

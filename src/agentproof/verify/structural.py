@@ -16,64 +16,57 @@ def _reverse_adj(graph: AgentGraph) -> dict[str, list[str]]:
     return rev
 
 
-def _find_path(adj: dict[str, list[str]], start: str, target: str) -> list[str] | None:
-    """BFS path finder returning a witness path from *start* to *target*, or None."""
-    if start == target:
-        return [start]
+def _bfs_tree(
+    adj: dict[str, list[str]], start: str
+) -> tuple[set[str], dict[str, str], list[str]]:
+    """Return the reachable set, BFS parents, and visitation order from *start*.
+
+    One shared tree supports every entry-rooted witness in output-sensitive
+    time. Re-running BFS once per finding would make report construction
+    quadratic even though each structural predicate is linear.
+    """
     visited: set[str] = {start}
     parent: dict[str, str] = {}
+    order: list[str] = []
     queue: deque[str] = deque([start])
     while queue:
         current = queue.popleft()
+        order.append(current)
         for neighbor in adj.get(current, []):
             if neighbor in visited:
                 continue
-            parent[neighbor] = current
-            if neighbor == target:
-                path = [neighbor]
-                while path[-1] != start:
-                    path.append(parent[path[-1]])
-                path.reverse()
-                return path
             visited.add(neighbor)
+            parent[neighbor] = current
             queue.append(neighbor)
-    return None
+    return visited, parent, order
 
 
-def _find_path_to_frontier(adj: dict[str, list[str]], start: str, reachable: set[str], target: str) -> list[str]:
-    """Find a witness path showing why *target* is unreachable from *start*.
-
-    Returns a path from *start* to the last reachable node (the frontier),
-    with the unreachable *target* appended at the end.
-    """
-    if start not in reachable:
-        return [start, target]
-    # BFS from start, find a reachable node with an edge toward unreachable territory
-    visited: set[str] = {start}
-    parent: dict[str, str] = {}
-    queue: deque[str] = deque([start])
-    frontier_node: str | None = None
-    last_visited: str = start
-    while queue:
-        current = queue.popleft()
-        last_visited = current
-        for neighbor in adj.get(current, []):
-            if neighbor == target or neighbor not in reachable:
-                frontier_node = current
-                break
-            if neighbor not in visited:
-                visited.add(neighbor)
-                parent[neighbor] = current
-                queue.append(neighbor)
-        if frontier_node is not None:
-            break
-
-    # Use frontier_node if found, otherwise the last visited node
-    end = frontier_node if frontier_node is not None else last_visited
-    path = [end]
+def _tree_path(
+    parent: dict[str, str], start: str, target: str
+) -> list[str] | None:
+    """Reconstruct a path in a precomputed BFS tree."""
+    if target == start:
+        return [start]
+    if target not in parent:
+        return None
+    path = [target]
     while path[-1] != start:
         path.append(parent[path[-1]])
     path.reverse()
+    return path
+
+
+def _unreachable_witness(
+    parent: dict[str, str], order: list[str], start: str, target: str
+) -> list[str]:
+    """Return an explanatory path for an unreachable target.
+
+    There cannot be an actual edge from the reachable set to *target*—otherwise
+    it would be reachable. The report therefore shows a path to the final
+    visited reachable node and appends the missing target as an explicit gap.
+    """
+    end = order[-1] if order else start
+    path = _tree_path(parent, start, end) or [start]
     path.append(target)
     return path
 
@@ -110,23 +103,21 @@ def run_structural_checks(
         suppressions = {}
 
     adj = adjacency(graph)
+    entry_reachable, entry_parent, entry_order = _bfs_tree(
+        adj, graph.entry_id
+    )
 
     checks: list[dict[str, Any]] = []
 
     # 1) Exit reachability
-    reachable: set[str] = set()
-    frontier: list[str] = [graph.entry_id]
-    while frontier:
-        node_id = frontier.pop()
-        if node_id in reachable:
-            continue
-        reachable.add(node_id)
-        frontier.extend(adj.get(node_id, []))
-
-    missing_exits = sorted(eid for eid in graph.exit_ids if eid not in reachable)
+    missing_exits = sorted(
+        eid for eid in graph.exit_ids if eid not in entry_reachable
+    )
     witnesses_exit: dict[str, list[str] | None] = {}
     for eid in missing_exits:
-        witnesses_exit[eid] = _find_path_to_frontier(adj, graph.entry_id, reachable, eid)
+        witnesses_exit[eid] = _unreachable_witness(
+            entry_parent, entry_order, graph.entry_id, eid
+        )
     checks.append(
         {
             "check_id": "exit_reachability",
@@ -150,13 +141,15 @@ def run_structural_checks(
 
     suppressed_reverse = suppressions.get("reverse_reachability", set())
     livelock_nodes = sorted(
-        nid for nid in reachable
+        nid for nid in entry_reachable
         if nid not in can_reach_exit
         and nid not in suppressed_reverse
     )
     witnesses_livelock: dict[str, list[str] | None] = {}
     for nid in livelock_nodes:
-        witnesses_livelock[nid] = _find_path(adj, graph.entry_id, nid)
+        witnesses_livelock[nid] = _tree_path(
+            entry_parent, graph.entry_id, nid
+        )
     checks.append(
         {
             "check_id": "reverse_reachability",
@@ -178,7 +171,9 @@ def run_structural_checks(
     )
     witnesses_dead: dict[str, list[str] | None] = {}
     for de in dead_ends:
-        witnesses_dead[de] = _find_path(adj, graph.entry_id, de)
+        witnesses_dead[de] = _tree_path(
+            entry_parent, graph.entry_id, de
+        )
     checks.append(
         {
             "check_id": "dead_ends",
@@ -239,15 +234,15 @@ def run_structural_checks(
             if e.source not in human_ids and e.target not in human_ids:
                 adj_no_human.setdefault(e.source, []).append(e.target)
 
-        # BFS from entry on human-free adjacency
-        reachable_no_human: set[str] = set()
-        nh_frontier: list[str] = [graph.entry_id] if graph.entry_id not in human_ids else []
-        while nh_frontier:
-            nid = nh_frontier.pop()
-            if nid in reachable_no_human:
-                continue
-            reachable_no_human.add(nid)
-            nh_frontier.extend(adj_no_human.get(nid, []))
+        # BFS from entry on human-free adjacency. Reuse its parent tree for
+        # every ungated-tool witness.
+        if graph.entry_id in human_ids:
+            reachable_no_human: set[str] = set()
+            no_human_parent: dict[str, str] = {}
+        else:
+            reachable_no_human, no_human_parent, _ = _bfs_tree(
+                adj_no_human, graph.entry_id
+            )
 
         # Find sensitive tool nodes reachable without passing through HUMAN
         node_map = {n.id: n for n in graph.nodes}
@@ -259,7 +254,9 @@ def run_structural_checks(
         )
         witnesses_gate: dict[str, list[str] | None] = {}
         for nid in ungated_tools:
-            witnesses_gate[nid] = _find_path(adj_no_human, graph.entry_id, nid)
+            witnesses_gate[nid] = _tree_path(
+                no_human_parent, graph.entry_id, nid
+            )
         checks.append(
             {
                 "check_id": "human_gate_coverage",
@@ -292,4 +289,3 @@ def run_structural_checks(
         "total": int(len(checks)),
         "checks": checks,
     }
-

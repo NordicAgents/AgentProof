@@ -100,6 +100,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from agentproof.graph.model import graph_from_dict  # noqa: E402
 from agentproof.verify import run_structural_checks  # noqa: E402
 from risk_aware_gate import SENSITIVE_KEYWORDS  # noqa: E402
+from slugkey import ambiguous_slugs  # noqa: E402
 
 RW = ROOT / "corpus" / "real_world"
 SELF_REPO_PREFIX = "NordicAgents__AgentProof"
@@ -128,6 +129,8 @@ def wilson_ci(k: int, n: int, z: float = 1.96) -> list[float]:
 
 
 def dist(labels: list[str], n: int) -> dict:
+    if n == 0:
+        return {}
     return {
         k: {"n": v, "pct": round(100 * v / n, 1), "wilson95": wilson_ci(v, n)}
         for k, v in sorted(Counter(labels).items(), key=lambda kv: -kv[1])
@@ -165,11 +168,82 @@ def declares_sensitive_tool(graph: dict) -> list[str]:
     return sorted(set(hits))
 
 
+def _check_family(check: str) -> str:
+    if check in STRUCTURAL_CHECKS:
+        return "structural"
+    if check in POLICY_CHECKS:
+        return "human_gate"
+    return "other"
+
+
+def _summarize_false_positive_rows(rows: list[dict]) -> dict:
+    """Summarize an arbitrary flag-row subset with unchanged estimands."""
+    n_all = len(rows)
+    non_act = [r for r in rows if r["cause"] != "ACTIONABLE"]
+
+    by_check = defaultdict(list)
+    by_fam = defaultdict(list)
+    for row in non_act:
+        by_check[row["check"]].append(row["cause"])
+        by_fam[_check_family(row["check"])].append(row["cause"])
+
+    return {
+        "n_flags": n_all,
+        "n_actionable": n_all - len(non_act),
+        "n_non_actionable": len(non_act),
+        "over_all_flags": dist([r["cause"] for r in rows], n_all),
+        "over_non_actionable": dist(
+            [r["cause"] for r in non_act], len(non_act)
+        ),
+        "by_check": {
+            key: {"n": len(values), "dist": dist(values, len(values))}
+            for key, values in sorted(
+                by_check.items(), key=lambda item: -len(item[1])
+            )
+        },
+        "by_check_family": {
+            key: {"n": len(values), "dist": dist(values, len(values))}
+            for key, values in sorted(
+                by_fam.items(), key=lambda item: -len(item[1])
+            )
+        },
+        "rule_counts": dict(Counter(row["rule"] for row in rows)),
+        "rows": rows,
+        "delta_vs_committed_mapping": _delta(rows),
+    }
+
+
+def _collision_exclusion(rows: list[dict], ambiguous: set[str]) -> dict:
+    """Sensitivity analysis excluding non-unique legacy slug identities."""
+    removed = [row for row in rows if row["slug"] in ambiguous]
+    retained = [row for row in rows if row["slug"] not in ambiguous]
+    affected_slugs = sorted({row["slug"] for row in removed})
+    return {
+        "rule": (
+            "exclude every triage record whose legacy <repo>__<basename> "
+            "slug maps to more than one distinct source path"
+        ),
+        "n_ambiguous_legacy_slugs_corpus": len(ambiguous),
+        "n_ambiguous_legacy_slugs_in_triage": len(affected_slugs),
+        "ambiguous_legacy_slugs_in_triage": affected_slugs,
+        "n_flags_removed": len(removed),
+        "removed_by_cause": dict(
+            sorted(Counter(row["cause"] for row in removed).items())
+        ),
+        "removed_by_check_family": dict(
+            sorted(Counter(_check_family(row["check"]) for row in removed).items())
+        ),
+        "retained": _summarize_false_positive_rows(retained),
+    }
+
+
 # ---------------------------------------------------------------------------
 
 
 def decompose_false_positives(validated, gt_graphs, sensitive, fw,
-                              gt_errors, non_discharging) -> dict:
+                              gt_errors, non_discharging,
+                              ambiguous_legacy_slugs: set[str] | None = None
+                              ) -> dict:
     triage = [dict(t) for t in validated["triage_details"]
               if not t["slug"].startswith(SELF_REPO_PREFIX)]
     for t in triage:
@@ -226,34 +300,11 @@ def decompose_false_positives(validated, gt_graphs, sensitive, fw,
                 row.update(cause="POLICY_SPEC", rule="R3a_unclassified_check")
         rows.append(row)
 
-    n_all = len(rows)
-    non_act = [r for r in rows if r["cause"] != "ACTIONABLE"]
-
-    by_check = defaultdict(list)
-    by_fam = defaultdict(list)
-    for r in non_act:
-        by_check[r["check"]].append(r["cause"])
-        fam = ("structural" if r["check"] in STRUCTURAL_CHECKS
-               else "human_gate" if r["check"] in POLICY_CHECKS else "other")
-        by_fam[fam].append(r["cause"])
-
-    return {
-        "n_flags": n_all,
-        "n_actionable": n_all - len(non_act),
-        "n_non_actionable": len(non_act),
-        "over_all_flags": dist([r["cause"] for r in rows], n_all),
-        "over_non_actionable": dist([r["cause"] for r in non_act],
-                                    len(non_act)),
-        "by_check": {k: {"n": len(v), "dist": dist(v, len(v))}
-                     for k, v in sorted(by_check.items(),
-                                        key=lambda kv: -len(kv[1]))},
-        "by_check_family": {k: {"n": len(v), "dist": dist(v, len(v))}
-                            for k, v in sorted(by_fam.items(),
-                                               key=lambda kv: -len(kv[1]))},
-        "rule_counts": dict(Counter(r["rule"] for r in rows)),
-        "rows": rows,
-        "delta_vs_committed_mapping": _delta(rows),
-    }
+    summary = _summarize_false_positive_rows(rows)
+    summary["collision_exclusion"] = _collision_exclusion(
+        rows, ambiguous_legacy_slugs or set()
+    )
+    return summary
 
 
 def _delta(rows) -> dict:
@@ -391,6 +442,12 @@ def main() -> None:
     }
     non_discharging = {p["slug"]
                        for p in audit["placebo_and_ineffective_gates"]}
+    mining_records = []
+    for name in ("metadata.json", "metadata.lg_crew.json"):
+        path = RW / name
+        if path.exists():
+            mining_records.extend(json.loads(path.read_text())["records"])
+    ambiguous_legacy = set(ambiguous_slugs(mining_records))
 
     out = {
         "_meta": {
@@ -422,10 +479,15 @@ def main() -> None:
                 "n_gt_error_flags": len(gt_errors),
                 "n_non_discharging_gates": len(non_discharging),
             },
+            "collision_input": {
+                "metadata_files": ["metadata.json", "metadata.lg_crew.json"],
+                "n_ambiguous_legacy_slugs": len(ambiguous_legacy),
+            },
             "sensitive_tool_lexicon_hits": sorted(sensitive),
         },
         "false_positives": decompose_false_positives(
-            validated, gt_graphs, sensitive, fw, gt_errors, non_discharging),
+            validated, gt_graphs, sensitive, fw, gt_errors, non_discharging,
+            ambiguous_legacy),
         "false_negatives": decompose_false_negatives(
             audit, v1_graphs, gt_graphs, gt_errors),
     }
@@ -447,6 +509,20 @@ def main() -> None:
     for fam, v in fp["by_check_family"].items():
         inner = "  ".join(f"{c}={d['n']}({d['pct']}%)"
                           for c, d in v["dist"].items())
+        print(f"    {fam:12s} n={v['n']:3d}  {inner}")
+    collision = fp["collision_exclusion"]
+    retained = collision["retained"]
+    print(
+        "\n  collision exclusion: "
+        f"{collision['n_ambiguous_legacy_slugs_in_triage']} slugs / "
+        f"{collision['n_flags_removed']} flags removed; "
+        f"{retained['n_flags']} flags retained"
+    )
+    for fam, v in retained["by_check_family"].items():
+        inner = "  ".join(
+            f"{cause}={details['n']}({details['pct']}%)"
+            for cause, details in v["dist"].items()
+        )
         print(f"    {fam:12s} n={v['n']:3d}  {inner}")
     print(f"\nFALSE NEGATIVES  ({fn['n_source_audited_human_gate_violations']} "
           f"source-audited violations)")

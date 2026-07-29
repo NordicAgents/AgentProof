@@ -34,7 +34,8 @@ necessary: \emph{does the policy govern this workflow?} Our audit shows that
 the answer is check-family dependent. A graph-substitution survival test
 attributes 68 of 72 non-actionable structural findings to extraction, while it
 attributes 94 of 112 non-actionable human-gate findings to an inapplicable
-blanket approval policy. These counts should not be pooled into a universal error rate: the
+blanket approval policy. Excluding all flags on ambiguous legacy file keys
+preserves the split (66/70 versus 84/102). These counts should not be pooled into a universal error rate: the
 aggregate is determined by the chosen mix of checks, frameworks, and files.
 More importantly, the reverse audit finds a different boundary. All 12
 source-audited human-gate violations escape the mined pipeline; nine remain
@@ -65,8 +66,8 @@ descriptive audit proportions, not population-prevalence estimates.
 \begin{itemize}\itemsep1pt
   \item \textbf{A cross-framework extraction-fidelity audit} with matched,
   provenance-disambiguated instruments and a corrected-extractor ablation. It
-  localizes extraction error to structural checks instead of treating all
-  findings as one population.
+  localizes extraction error to structural checks on this fixed audit instead
+  of treating all findings as one population.
   \item \textbf{Symmetric audits of findings and misses.} Holding checks fixed
   while swapping mined for reconstructed graphs separates extraction from
   check-side effects; applying the same test to source-audited violations shows

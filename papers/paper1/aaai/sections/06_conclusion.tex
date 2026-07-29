@@ -7,6 +7,8 @@ $922$ extracted file-level graphs from $252$ public GitHub repositories, the
 causes are check-family dependent: graph substitution attributes 68 of 72
 non-actionable structural findings to extraction, while it attributes 94 of
 112 non-actionable human-gate findings to an inapplicable approval policy.
+Conservative removal of every ambiguous legacy file key preserves that split
+(66/70 and 84/102, respectively).
 Pooling them into one error rate would
 make the result depend on how many checks of each family happened to run.
 
@@ -42,8 +44,9 @@ effect modeling, and per-workflow policy instantiation.
 
 \paragraph{Artifact.}
 An anonymized artifact is submitted, not promised: the tool, both corpora, the
-mining and validation pipeline, reference graphs, justified triage labels, and
-all evaluation scripts.
+mining and validation code, committed LLM outputs, reference graphs, justified
+triage labels, and deterministic downstream analyses. The original
+network-bound mining and LLM passes are not claimed to regenerate offline.
 
 \section*{Ethical Statement}
 We mine only \emph{public} GitHub repositories, record exact provenance

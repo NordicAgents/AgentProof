@@ -25,7 +25,7 @@ either Markdown file.
 
 - Main paper: 8 US-Letter pages; technical content and the conclusion end on
   page 7, while page 8 contains references only.
-- Supplement: 32 US-Letter pages.
+- Supplement: 33 US-Letter pages.
 - Reproducibility checklist: 2 US-Letter pages.
 - All PDFs are unencrypted, use embedded Type 1 fonts, contain no embedded
   files, and have no detected author identity in extracted text or metadata.
@@ -34,8 +34,8 @@ either Markdown file.
 - The anonymous archive contains no symlinks, hidden files, caches, compiled
   bytecode, repository history, secrets, author-owned URL, author name, or
   local absolute path detected by the submission scan.
-- The full checkout passes 423 tests with 1 skipped. The extracted archive's
-  advertised clean-room command passes 421 tests with 3 skipped; two extra
+- The full checkout passes 424 tests with 1 skipped. The extracted archive's
+  advertised clean-room command passes 422 tests with 3 skipped; two extra
   skips explicitly require third-party source snapshots that are not
   redistributed. Its three advertised analysis commands also exit
   successfully.

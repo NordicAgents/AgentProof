@@ -30,8 +30,11 @@ declared tool names. This limitation is central to the audit rather than hidden
 by the representation.
 
 \paragraph{Structural checks.}
-Six checks run over the topology, each in $O(|V|+|E|)$ and each emitting a
-\emph{witness trace}~\citep{clarke1999modelchecking} on failure: \emph{exit
+Six checks run over the topology. Their predicates take $O(|V|+|E|)$; the
+implementation reuses BFS parent trees, so a deterministically sorted report
+takes $O(|V|\log|V|+|E|+W)$, where $W$ is the total emitted witness length.
+Each failure includes a
+\emph{witness trace}~\citep{clarke1999modelchecking}: \emph{exit
 reachability} ($V_f\subseteq\mathrm{Reach}(v_0)$), \emph{reverse reachability}
 (reachable nodes with no path to an exit), \emph{dead-end detection} (non-exit
 nodes with no successor), \emph{router shape} (router outgoing edges must be

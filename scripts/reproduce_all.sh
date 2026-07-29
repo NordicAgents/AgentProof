@@ -239,7 +239,9 @@ run "20e. Sensitivity analyses (dedup, confidence, strata)" \
 
 # ---- 21. Survival test: FP/FN decomposition over four causes -----
 # Separates CHECKER from POLICY-SPEC without using the triage labels, and
-# decomposes false negatives symmetrically.  Depends on step 19's inputs only.
+# decomposes false negatives symmetrically. It also recomputes the conservative
+# collision exclusion over every ambiguous legacy audit identity. Depends on
+# step 19's inputs only.
 run "21. Survival test (FP/FN four-way decomposition)" \
     $PY scripts/fp_fn_decomposition.py
 
