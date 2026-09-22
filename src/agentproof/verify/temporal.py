@@ -18,7 +18,9 @@ from agentproof.monitor.ltl import CompiledMonitorRule, _event_symbol
 def _default_event_mapper(node_id: str, graph: AgentGraph) -> dict[str, Any]:
     """Generate a synthetic event dict for a graph node.
 
-    Mirrors the ``_event_for_node`` logic in :mod:`agentproof.api`.
+    For single-tool (or non-TOOL) nodes this returns one event; multi-tool
+    nodes are handled by :func:`_node_dfa_symbols`, which clones the mapped
+    event once per tool so each event carries exactly one live tool name.
     """
     node = node_by_id(graph, node_id)
     if node is None:
@@ -34,6 +36,35 @@ def _default_event_mapper(node_id: str, graph: AgentGraph) -> dict[str, Any]:
     elif node.kind == NodeKind.ROUTER:
         event["tags"] = ["router"]
     return event
+
+
+def _node_dfa_symbols(
+    node_id: str,
+    graph: AgentGraph,
+    predicates: tuple[str, ...],
+    event_mapper: Callable[[str, AgentGraph], dict[str, Any]],
+) -> frozenset[int]:
+    """Return the set of possible DFA input symbols for a graph node.
+
+    For a multi-tool TOOL node, one symbol is produced per declared tool,
+    modelling the non-deterministic "may call one of these" semantics.
+    Branching here keeps both safety and liveness forms sound:
+    - ``G !tool:rm_rf`` catches the tool on any branch.
+    - ``tool:write -> F tool:audit_log`` stays pending on the write-only
+      branch, so the obligation is not self-discharged on a node that
+      happens to also declare ``audit_log``.
+    For single-tool and non-TOOL nodes, exactly one symbol is returned.
+    """
+    base_event = event_mapper(node_id, graph)
+    node = node_by_id(graph, node_id)
+    if node is not None and node.kind == NodeKind.TOOL and len(node.tools) > 1:
+        symbols: set[int] = set()
+        for tool in node.tools:
+            event = dict(base_event)
+            event["tool_name"] = tool
+            symbols.add(_event_symbol(predicates, event))
+        return frozenset(symbols)
+    return frozenset({_event_symbol(predicates, base_event)})
 
 
 def check_temporal_property(
@@ -91,12 +122,14 @@ def check_temporal_property(
 
     visited: set[tuple[str, int]] = {initial_product}
     parent: dict[tuple[str, int], tuple[str, int] | None] = {initial_product: None}
-    # Post-transition product graph edges, for the lasso (cycle) check:
-    # (v, q') -> (u, q') successors recorded as (v,q) pairs keyed by the
-    # pre-transition states so witness paths reconstruct via `parent`.
+    # Post-transition product graph edges for the lasso (cycle) check.
     product_succ: dict[tuple[str, int], list[tuple[str, int]]] = {}
-    # DFA state *after* processing node v, per visited product state.
-    post_state: dict[tuple[str, int], int] = {}
+    # All possible post-transition DFA states per product state.  For multi-tool
+    # nodes this is a set (one element per tool choice); single-tool nodes yield
+    # a singleton.  The lasso check flags a state as pending if ANY branch is
+    # non-accepting, preserving the existential "there exists a violating run"
+    # semantics used throughout.
+    post_states: dict[tuple[str, int], frozenset[int]] = {}
 
     violation_product_state: tuple[str, int] | None = None
     violation_kind: str | None = None
@@ -104,52 +137,50 @@ def check_temporal_property(
     while queue:
         v, q = queue.popleft()
 
-        # Compute the DFA symbol for the current node
-        event = event_mapper(v, graph)
-        symbol = _event_symbol(rule.predicates, event)
-
-        # Transition in the DFA
         transition_row = rule.transition_table.get(q)
         if transition_row is None:
             # Malformed rule — skip this state
             continue
-        q_prime = transition_row[symbol]
-        post_state[(v, q)] = q_prime
 
-        # Check for violation
-        if q_prime in rule.violation_states:
-            # Record the violation: the path ends at v (the node that caused it)
-            # We need to reconstruct the path to v, then note that q_prime is
-            # the violation state reached *after processing* v.
+        # One DFA symbol per possible tool choice (single symbol for non-TOOL /
+        # single-tool nodes).  Branching here is what keeps liveness forms
+        # sound: each branch carries exactly one live tool name, so an
+        # antecedent cannot simultaneously discharge its own consequent.
+        symbols = _node_dfa_symbols(v, graph, rule.predicates, event_mapper)
+        q_primes = frozenset(transition_row[s] for s in symbols)
+        post_states[(v, q)] = q_primes
+
+        # Safety check: any tool choice drives DFA into a violation state.
+        if q_primes & rule.violation_states:
             violation_product_state = (v, q)
             violation_kind = "bad_prefix"
             break
 
-        # LTLf termination check: a complete execution ends here, so a
-        # non-accepting DFA state at an exit node is a violation.
-        if v in exit_ids and q_prime not in rule.accepting_states:
+        # LTLf termination check: any tool choice leaves an obligation pending
+        # at an exit node — obligation can never be fulfilled on that branch.
+        if v in exit_ids and not q_primes <= rule.accepting_states:
             violation_product_state = (v, q)
             violation_kind = "unfulfilled_obligation"
             break
 
-        # Enqueue successors
+        # Enqueue successors: cross product of graph successors × DFA next-states.
         succs = []
         for u in adj.get(v, []):
-            product_next = (u, q_prime)
-            succs.append(product_next)
-            if product_next not in visited:
-                visited.add(product_next)
-                parent[product_next] = (v, q)
-                queue.append(product_next)
+            for q_prime in q_primes:
+                product_next = (u, q_prime)
+                succs.append(product_next)
+                if product_next not in visited:
+                    visited.add(product_next)
+                    parent[product_next] = (v, q)
+                    queue.append(product_next)
         product_succ[(v, q)] = succs
 
     # Lasso check for infinite executions: a cycle in the reachable product
     # restricted to states whose post-transition DFA state is non-accepting
-    # witnesses an infinite run on which the obligation is never fulfilled
-    # (an LTL violation, e.g. G(a -> F b) on an infinite loop without b).
-    if violation_product_state is None and post_state:
-        pending = {s for s, qp in post_state.items()
-                   if qp not in rule.accepting_states}
+    # witnesses an infinite run on which the obligation is never fulfilled.
+    if violation_product_state is None and post_states:
+        pending = {s for s, qps in post_states.items()
+                   if any(qp not in rule.accepting_states for qp in qps)}
         if pending:
             # Iteratively strip states with no pending successor; anything
             # left lies on or leads to a pending-only cycle.
