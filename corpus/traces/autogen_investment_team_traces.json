@@ -64,7 +64,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -156,7 +156,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -248,7 +248,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -340,7 +340,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]
@@ -432,7 +432,7 @@
       {
         "node_id": "market_data",
         "action_type": "tool",
-        "tool_name": "yahoo_finance",
+        "tool_name": "bloomberg_api",
         "tags": [
           "tool"
         ]

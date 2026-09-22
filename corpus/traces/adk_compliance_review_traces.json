@@ -89,7 +89,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "s3_fetch",
+        "tool_name": "api_call",
         "tags": [
           "tool"
         ]
@@ -243,7 +243,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "s3_fetch",
+        "tool_name": "api_call",
         "tags": [
           "tool"
         ]
@@ -369,7 +369,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "s3_fetch",
+        "tool_name": "api_call",
         "tags": [
           "tool"
         ]
@@ -494,7 +494,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "s3_fetch",
+        "tool_name": "api_call",
         "tags": [
           "tool"
         ]
@@ -619,7 +619,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "s3_fetch",
+        "tool_name": "api_call",
         "tags": [
           "tool"
         ]
