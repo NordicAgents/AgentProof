@@ -1,6 +1,6 @@
 # Agentproof
 
-Static graph verification for agent workflows. Prove safety properties on your workflow graph **before deployment** — no runtime overhead, no gatekeeping layer.
+Static graph verification for agent workflows. Check modeled safety properties on your workflow graph **before deployment** — no runtime overhead, no gatekeeping layer.
 
 Supports **LangGraph**, **Google ADK**, **AutoGen**, and **CrewAI**.
 
@@ -27,6 +27,16 @@ pip install agentproofx[all-frameworks]
 - **Framework extractors** — convert native workflow objects from LangGraph, ADK, AutoGen, and CrewAI into Agentproof's framework-agnostic `AgentGraph`
 - **Trace generation** — random-walk trace generator for temporal policy testing
 - **Typed** — full type annotations, `py.typed` marker
+
+## Product direction
+
+AgentProof is evolving toward policy-as-code checks for agent tool safety: a
+five-minute CLI and CI workflow, source-mapped findings, explicit analysis
+coverage, and optional enforcement of the same policies at runtime.
+
+See the [product documentation](docs/README.md), the
+[adoption roadmap](docs/roadmap.md), and the
+[GitHub roadmap epic](https://github.com/NordicAgents/AgentProof/issues/30).
 
 ## Supported Frameworks
 
