@@ -11,6 +11,7 @@ from __future__ import annotations
 import random
 from typing import Any
 
+from agentproof.graph.events import event_for_node
 from agentproof.graph.model import AgentGraph, NodeKind, adjacency, node_by_id
 from agentproof.monitor.ltl import (
     CompiledMonitorRule,
@@ -119,24 +120,6 @@ def verify(
     return report
 
 
-def _event_for_node(node_id: str, graph: AgentGraph) -> dict[str, Any]:
-    """Generate a synthetic event dict for a graph node."""
-    node = node_by_id(graph, node_id)
-    if node is None:
-        return {"node_id": node_id, "action_type": "unknown"}
-    event: dict[str, Any] = {"node_id": node.id, "action_type": node.kind.value}
-    if node.kind == NodeKind.TOOL and node.tools:
-        event["tool_name"] = node.tools[0]
-        event["tags"] = ["tool"]
-    elif node.kind == NodeKind.LLM:
-        event["tags"] = ["llm_step"]
-    elif node.kind == NodeKind.HUMAN:
-        event["tags"] = ["human"]
-    elif node.kind == NodeKind.ROUTER:
-        event["tags"] = ["router"]
-    return event
-
-
 def generate_traces(
     graph: AgentGraph,
     *,
@@ -148,18 +131,27 @@ def generate_traces(
 
     Each trace is a list of event dicts, one per node visited.  The walk
     starts at ``graph.entry_id`` and follows random outgoing edges until
-    an exit node is reached or *max_steps* is exceeded.
+    an exit node is reached or *max_steps* is exceeded.  Repeated visits to
+    a multi-tool node cycle through its declared tools, so the trace set
+    covers each possible tool while every event still represents one call.
     """
     rng = random.Random(seed)
     adj = adjacency(graph)
     exit_set = set(graph.exit_ids)
     traces: list[list[dict[str, Any]]] = []
+    tool_visits: dict[str, int] = {}
 
     for _ in range(n_traces):
         trace: list[dict[str, Any]] = []
         current = graph.entry_id
         for _step in range(max_steps):
-            trace.append(_event_for_node(current, graph))
+            node = node_by_id(graph, current)
+            tool_name = None
+            if node is not None and node.kind == NodeKind.TOOL and node.tools:
+                visit = tool_visits.get(current, 0)
+                tool_name = node.tools[visit % len(node.tools)]
+                tool_visits[current] = visit + 1
+            trace.append(event_for_node(current, graph, tool_name=tool_name))
             if current in exit_set:
                 break
             neighbors = adj.get(current, [])

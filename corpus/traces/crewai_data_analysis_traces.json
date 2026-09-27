@@ -78,7 +78,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "sql_query",
+        "tool_name": "api_fetch",
         "tags": [
           "tool"
         ]
@@ -285,7 +285,7 @@
       {
         "node_id": "collector",
         "action_type": "tool",
-        "tool_name": "sql_query",
+        "tool_name": "api_fetch",
         "tags": [
           "tool"
         ]

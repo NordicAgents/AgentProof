@@ -11,6 +11,7 @@ from agentproof.graph.model import (
     NodeKind,
     adjacency,
 )
+from scripts.evaluate_policies import _tool_atoms_in_trace
 
 
 def _simple_graph() -> AgentGraph:
@@ -99,6 +100,41 @@ def test_tool_event_has_tool_name():
     assert len(tool_events) > 0
     for e in tool_events:
         assert e["tool_name"] == "search"
+
+
+def test_multi_tool_events_cover_each_tool_without_combining_them():
+    graph = AgentGraph(
+        name="multi-tool",
+        framework="manual",
+        nodes=(
+            GraphNode("entry", NodeKind.ENTRY),
+            GraphNode("tool", NodeKind.TOOL, tools=("elk_query", "splunk_search")),
+            GraphNode("exit", NodeKind.EXIT),
+        ),
+        edges=(
+            GraphEdge("entry", "tool"),
+            GraphEdge("tool", "exit"),
+        ),
+        entry_id="entry",
+        exit_ids=("exit",),
+    )
+
+    traces = generate_traces(graph, n_traces=4)
+    tool_events = [
+        event
+        for trace in traces
+        for event in trace
+        if event["node_id"] == "tool"
+    ]
+
+    assert [event["tool_name"] for event in tool_events] == [
+        "elk_query",
+        "splunk_search",
+        "elk_query",
+        "splunk_search",
+    ]
+    assert all("tool_names" not in event for event in tool_events)
+    assert {"tool:elk_query", "tool:splunk_search"} <= _tool_atoms_in_trace(traces)
 
 
 def test_human_event_has_tag():

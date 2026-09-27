@@ -59,7 +59,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -81,7 +81,7 @@
       {
         "node_id": "designer",
         "action_type": "tool",
-        "tool_name": "dall_e",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]
@@ -155,7 +155,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -177,7 +177,7 @@
       {
         "node_id": "designer",
         "action_type": "tool",
-        "tool_name": "dall_e",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]
@@ -251,7 +251,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -273,7 +273,7 @@
       {
         "node_id": "designer",
         "action_type": "tool",
-        "tool_name": "dall_e",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]
@@ -347,7 +347,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -369,7 +369,7 @@
       {
         "node_id": "designer",
         "action_type": "tool",
-        "tool_name": "dall_e",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]
@@ -443,7 +443,7 @@
       {
         "node_id": "research",
         "action_type": "tool",
-        "tool_name": "survey_tool",
+        "tool_name": "competitor_analysis",
         "tags": [
           "tool"
         ]
@@ -465,7 +465,7 @@
       {
         "node_id": "designer",
         "action_type": "tool",
-        "tool_name": "dall_e",
+        "tool_name": "canva_api",
         "tags": [
           "tool"
         ]

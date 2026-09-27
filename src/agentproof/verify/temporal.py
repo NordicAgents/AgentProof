@@ -11,6 +11,7 @@ from __future__ import annotations
 from collections import deque
 from typing import Any, Callable
 
+from agentproof.graph.events import event_for_node
 from agentproof.graph.model import AgentGraph, NodeKind, adjacency, node_by_id
 from agentproof.monitor.ltl import CompiledMonitorRule, _event_symbol
 
@@ -22,20 +23,7 @@ def _default_event_mapper(node_id: str, graph: AgentGraph) -> dict[str, Any]:
     nodes are handled by :func:`_node_dfa_symbols`, which clones the mapped
     event once per tool so each event carries exactly one live tool name.
     """
-    node = node_by_id(graph, node_id)
-    if node is None:
-        return {"node_id": node_id, "action_type": "unknown"}
-    event: dict[str, Any] = {"node_id": node.id, "action_type": node.kind.value}
-    if node.kind == NodeKind.TOOL and node.tools:
-        event["tool_name"] = node.tools[0]
-        event["tags"] = ["tool"]
-    elif node.kind == NodeKind.LLM:
-        event["tags"] = ["llm_step"]
-    elif node.kind == NodeKind.HUMAN:
-        event["tags"] = ["human"]
-    elif node.kind == NodeKind.ROUTER:
-        event["tags"] = ["router"]
-    return event
+    return event_for_node(node_id, graph)
 
 
 def _node_dfa_symbols(

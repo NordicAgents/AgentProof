@@ -59,7 +59,7 @@
       {
         "node_id": "ocr",
         "action_type": "tool",
-        "tool_name": "tesseract",
+        "tool_name": "cloud_vision",
         "tags": [
           "tool"
         ]
@@ -147,7 +147,7 @@
       {
         "node_id": "ocr",
         "action_type": "tool",
-        "tool_name": "tesseract",
+        "tool_name": "cloud_vision",
         "tags": [
           "tool"
         ]
@@ -235,7 +235,7 @@
       {
         "node_id": "ocr",
         "action_type": "tool",
-        "tool_name": "tesseract",
+        "tool_name": "cloud_vision",
         "tags": [
           "tool"
         ]
@@ -323,7 +323,7 @@
       {
         "node_id": "ocr",
         "action_type": "tool",
-        "tool_name": "tesseract",
+        "tool_name": "cloud_vision",
         "tags": [
           "tool"
         ]
@@ -411,7 +411,7 @@
       {
         "node_id": "ocr",
         "action_type": "tool",
-        "tool_name": "tesseract",
+        "tool_name": "cloud_vision",
         "tags": [
           "tool"
         ]
